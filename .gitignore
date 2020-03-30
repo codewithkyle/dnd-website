@@ -1,0 +1,16 @@
+# General
+# --------
+/.env
+/.idea
+.DS_Store
+/node_modules
+/public/uploads/*
+!/public/uploads/.gitkeep
+/public/imager
+_compiled
+_css
+/vendor
+/public/assets
+/public/broadcaster-worker.min.js
+/public/resources-cachebust.json
+/config/pwa-auto.php

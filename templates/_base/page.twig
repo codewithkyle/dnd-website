@@ -1,0 +1,9 @@
+{% extends "_base/base" %}
+
+{% block page %}
+    {% include "_header" %}
+    <main pjax-id="page" eager-load-css="normalize variables page-transition soft-loading" style="min-height: calc(100vh - 5rem);">
+        {% block content %}{% endblock %}
+    </main>
+    {% include "_footer" %}
+{% endblock %}
