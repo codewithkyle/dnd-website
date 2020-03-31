@@ -343,7 +343,10 @@
 
                         {{ inputs.textarea("Equipment", "fields[equipment]", true) }}
 
-                        {{ inputs.number("Armor Class", "fields[armorClass]", true, null, -10, 30, 1) }}
+                        <div grid="columns 2 gap-1">
+                            {{ inputs.number("Armor Class", "fields[armorClass]", true, null, -10, 30, 1) }}
+                            {{ inputs.number("Speed", "fields[speed]", true, null, 0, 100, 1) }}
+                        </div>
                         
                         <div grid="columns 3 gap-1">
                             {{ inputs.number("Copper Coins", "fields[copperCoins]", true, null, 0, null, 1) }}

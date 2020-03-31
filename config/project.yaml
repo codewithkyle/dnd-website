@@ -1,4 +1,4 @@
-dateModified: 1585696033
+dateModified: 1585697687
 email:
   fromEmail: codingwithkyle@gmail.com
   fromName: Boilerplate
@@ -81,6 +81,24 @@ fields:
       defaultValue: null
       max: null
       min: '0'
+      prefix: ''
+      size: null
+      suffix: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Number
+  1697c79c-8540-4999-9569-62f8fc98a9e3:
+    contentColumnType: integer(10)
+    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    handle: currentHitPoints
+    instructions: ''
+    name: 'Current Hit Points'
+    searchable: true
+    settings:
+      decimals: 0
+      defaultValue: null
+      max: null
+      min: '-10'
       prefix: ''
       size: null
       suffix: ''
@@ -237,6 +255,24 @@ fields:
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\Number
+  37aad09e-7771-46ce-b688-4c64d3fe3fc3:
+    contentColumnType: text
+    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    handle: hitDice
+    instructions: ''
+    name: 'Hit Dice'
+    searchable: true
+    settings:
+      byteLimit: null
+      charLimit: null
+      code: ''
+      columnType: null
+      initialRows: '4'
+      multiline: ''
+      placeholder: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\PlainText
   401124d6-f731-4fee-9f82-6a852f0e443c:
     contentColumnType: integer(10)
     fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
@@ -669,6 +705,24 @@ fields:
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\PlainText
+  865d59f0-995a-460e-8dd6-bbc9719d48cf:
+    contentColumnType: integer(10)
+    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    handle: currentHitDice
+    instructions: ''
+    name: 'Current Hit Dice'
+    searchable: true
+    settings:
+      decimals: 0
+      defaultValue: null
+      max: null
+      min: '0'
+      prefix: ''
+      size: null
+      suffix: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Number
   8a20aeca-3742-4f3f-9e47-c1fe5f9496f2:
     contentColumnType: integer(10)
     fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
@@ -915,6 +969,24 @@ fields:
     handle: platinumCoins
     instructions: ''
     name: 'Platinum Coins'
+    searchable: true
+    settings:
+      decimals: 0
+      defaultValue: null
+      max: null
+      min: '0'
+      prefix: ''
+      size: null
+      suffix: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Number
+  ad531314-4d9b-4449-a387-9c9b8df3e538:
+    contentColumnType: integer(10)
+    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    handle: maximumHitPoints
+    instructions: ''
+    name: 'Maximum Hit Points'
     searchable: true
     settings:
       decimals: 0
@@ -1306,9 +1378,6 @@ sections:
             tabs:
               -
                 fields:
-                  36aa3e64-a598-457e-b0bb-d5cbc2c2dc98:
-                    required: false
-                    sortOrder: 8
                   4c46f78f-fc05-4610-b628-3401bc09e15d:
                     required: false
                     sortOrder: 2
@@ -1330,8 +1399,24 @@ sections:
                   ce8c6d47-9591-4a57-a5a3-0abbc910a88a:
                     required: false
                     sortOrder: 5
-                name: Details
+                name: Overview
                 sortOrder: 1
+              -
+                fields:
+                  1697c79c-8540-4999-9569-62f8fc98a9e3:
+                    required: false
+                    sortOrder: 1
+                  37aad09e-7771-46ce-b688-4c64d3fe3fc3:
+                    required: false
+                    sortOrder: 5
+                  865d59f0-995a-460e-8dd6-bbc9719d48cf:
+                    required: false
+                    sortOrder: 3
+                  ad531314-4d9b-4449-a387-9c9b8df3e538:
+                    required: false
+                    sortOrder: 2
+                name: Health
+                sortOrder: 2
               -
                 fields:
                   0ba6284b-ef4e-4ecf-a7da-71f09120b772:
@@ -1374,7 +1459,7 @@ sections:
                     required: false
                     sortOrder: 4
                 name: Abilities
-                sortOrder: 2
+                sortOrder: 3
               -
                 fields:
                   19433c75-f6ef-4adf-bcd6-dabb8a15cfca:
@@ -1396,7 +1481,7 @@ sections:
                     required: false
                     sortOrder: 4
                 name: 'Saving Throws'
-                sortOrder: 3
+                sortOrder: 4
               -
                 fields:
                   5510ce89-571f-48c9-be2d-4c8b746379e7:
@@ -1457,7 +1542,7 @@ sections:
                     required: false
                     sortOrder: 4
                 name: Skills
-                sortOrder: 4
+                sortOrder: 5
               -
                 fields:
                   0044dd61-5dca-48c9-b535-504faa029a65:
@@ -1515,7 +1600,7 @@ sections:
                     required: false
                     sortOrder: 13
                 name: 'Skill Proficiencies'
-                sortOrder: 5
+                sortOrder: 6
               -
                 fields:
                   01076d45-d801-42e4-86af-abb364b06e31:
@@ -1534,18 +1619,21 @@ sections:
                     required: false
                     sortOrder: 3
                 name: Background
-                sortOrder: 6
+                sortOrder: 7
               -
                 fields:
                   14421814-1d3e-41ad-8f5e-e50faf18ac92:
                     required: false
-                    sortOrder: 5
+                    sortOrder: 6
                   1f88d28c-4f7f-4027-81c5-ae451fb955aa:
                     required: false
-                    sortOrder: 4
+                    sortOrder: 5
+                  36aa3e64-a598-457e-b0bb-d5cbc2c2dc98:
+                    required: false
+                    sortOrder: 3
                   401124d6-f731-4fee-9f82-6a852f0e443c:
                     required: false
-                    sortOrder: 6
+                    sortOrder: 7
                   48101cdf-b572-4e6c-8bf5-0137f5573ae5:
                     required: false
                     sortOrder: 1
@@ -1554,15 +1642,15 @@ sections:
                     sortOrder: 2
                   9ed27eff-c04e-4f57-92e9-3a278a1eb6c7:
                     required: false
-                    sortOrder: 3
+                    sortOrder: 4
                   ad4fd4f2-4052-4d96-80ef-9a9f120d99d7:
                     required: false
-                    sortOrder: 8
+                    sortOrder: 9
                   dcc4ce53-3e91-43c0-b04c-a3eb3a0ee5be:
                     required: false
-                    sortOrder: 7
+                    sortOrder: 8
                 name: Equipment
-                sortOrder: 7
+                sortOrder: 8
         handle: characters
         hasTitleField: true
         name: Characters

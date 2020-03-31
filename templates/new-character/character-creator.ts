@@ -108,6 +108,64 @@ class CharacterCreator extends HTMLElement {
 		return skills;
 	}
 
+	private getHitDice(): string {
+		switch (this.classInput.value) {
+			case "Wizard":
+				return "d6";
+			case "Barbarian":
+				return "d12";
+			case "Bard":
+				return "d8";
+			case "Cleric":
+				return "d8";
+			case "Druid":
+				return "d8";
+			case "Fighter":
+				return "d10";
+			case "Monk":
+				return "d8";
+			case "Paladin":
+				return "d10";
+			case "Ranger":
+				return "d10";
+			case "Rogue":
+				return "d8";
+			case "Sorcerer":
+				return "d6";
+			case "Warlock":
+				return "d8";
+		}
+	}
+
+	private getHitPoints(): string {
+		switch (this.classInput.value) {
+			case "Barbarian":
+				return `${12 + this.modifiers.constitution}`;
+			case "Bard":
+				return `${8 + this.modifiers.constitution}`;
+			case "Cleric":
+				return `${8 + this.modifiers.constitution}`;
+			case "Druid":
+				return `${8 + this.modifiers.constitution}`;
+			case "Fighter":
+				return `${10 + this.modifiers.constitution}`;
+			case "Monk":
+				return `${8 + this.modifiers.constitution}`;
+			case "Paladin":
+				return `${10 + this.modifiers.constitution}`;
+			case "Ranger":
+				return `${10 + this.modifiers.constitution}`;
+			case "Rogue":
+				return `${8 + this.modifiers.constitution}`;
+			case "Sorcerer":
+				return `${6 + this.modifiers.constitution}`;
+			case "Warlock":
+				return `${8 + this.modifiers.constitution}`;
+			case "Wizard":
+				return `${6 + this.modifiers.constitution}`;
+		}
+	}
+
 	private handleSubmit: EventListener = async (e: Event) => {
 		e.preventDefault();
 		const ticket = env.startLoading();
@@ -134,6 +192,14 @@ class CharacterCreator extends HTMLElement {
 
 		data.append(`fields[passiveWisdom]`, `${skills["perception"] + 10}`);
 		data.append(`fields[initiative]`, `${this.modifiers.dexterity}`);
+
+		const hitDice = this.getHitDice();
+		data.append(`fields[hitDice]`, hitDice);
+		data.append(`fields[currentHitDice]`, `1`);
+
+		const hitPoints = this.getHitPoints();
+		data.append(`fields[currentHitPoints]`, hitPoints);
+		data.append(`fields[maximumHitPoints]`, hitPoints);
 
 		const request = await fetch(`${location.origin}/actions/entries/save-entry`, {
 			method: "POST",
