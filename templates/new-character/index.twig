@@ -319,6 +319,46 @@
                         </div>
                     </form-page>
 
+                    <form-page id="skills" style="width: 100%;display: none;grid-template-columns: minmax(0px, 1fr);gap: 1rem;">
+                        <h1 class="font-xl font-grey-800 text-center block">Background & Lore</h1>
+
+                        {{ inputs.textarea("Personality Traits", "fields[personalityTraits]", false) }}
+                        {{ inputs.textarea("Ideals", "fields[ideals]", false) }}
+                        {{ inputs.textarea("Bonds", "fields[bonds]", false) }}
+                        {{ inputs.textarea("Flaws", "fields[flaws]", false) }}
+                        {{ inputs.textarea("Features & Traits", "fields[featuresAndTraits]", false) }}
+
+                        <div style="display: flex; justify-content: space-between;align-items: center;">
+                            <button data-direction="-1" type="button" class="button -outline -alt">Back</button>
+                            <button data-direction="1" type="button" class="button -solid -primary">Next</button>
+                        </div>
+                    </form-page>
+
+                    <form-page id="skills" style="width: 100%;display: none;grid-template-columns: minmax(0px, 1fr);gap: 1rem;">
+                        <h1 class="font-xl font-grey-800 text-center block">Equipment</h1>
+
+                        <p class="font-grey-700 font-sm line-normal">
+                            To calcualte your Armor Class check what equipment your class starts with in the <a target="_blank" class="font-primary-700" href="https://www.5thsrd.org/#character">Handbook</a>. You will never need to track provisions.
+                        </p>
+
+                        {{ inputs.textarea("Equipment", "fields[equipment]", true) }}
+
+                        {{ inputs.number("Armor Class", "fields[armorClass]", true, null, -10, 30, 1) }}
+                        
+                        <div grid="columns 3 gap-1">
+                            {{ inputs.number("Copper Coins", "fields[copperCoins]", true, null, 0, null, 1) }}
+                            {{ inputs.number("Silver Coins", "fields[silverCoins]", true, null, 0, null, 1) }}
+                            {{ inputs.number("Electrum Coins", "fields[electrumCoins]", true, null, 0, null, 1) }}
+                            {{ inputs.number("Gold Coins", "fields[goldCoins]", true, null, 0, null, 1) }}
+                            {{ inputs.number("Platinum Coins", "fields[platinumCoins]", true, null, 0, null, 1) }}
+                        </div>
+
+                        <div style="display: flex; justify-content: space-between;align-items: center;">
+                            <button data-direction="-1" type="button" class="button -outline -alt">Back</button>
+                            <button data-direction="1" type="button" class="button -solid -primary">Next</button>
+                        </div>
+                    </form-page>
+
                     <form-page style="width: 100%;display: none;grid-template-columns: minmax(0px, 1fr);gap: 1rem;">
                         <div style="display: flex; justify-content: space-between;align-items: center;">
                             <button data-direction="-1" type="button" class="button -outline -alt">Back</button>

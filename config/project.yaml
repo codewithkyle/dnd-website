@@ -1,4 +1,4 @@
-dateModified: 1585693368
+dateModified: 1585696033
 email:
   fromEmail: codingwithkyle@gmail.com
   fromName: Boilerplate
@@ -21,6 +21,42 @@ fields:
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\Lightswitch
+  01076d45-d801-42e4-86af-abb364b06e31:
+    contentColumnType: text
+    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    handle: bonds
+    instructions: ''
+    name: Bonds
+    searchable: true
+    settings:
+      byteLimit: null
+      charLimit: null
+      code: ''
+      columnType: null
+      initialRows: '4'
+      multiline: '1'
+      placeholder: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\PlainText
+  0ba6284b-ef4e-4ecf-a7da-71f09120b772:
+    contentColumnType: integer(10)
+    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    handle: passiveWisdom
+    instructions: ''
+    name: 'Passive Wisdom'
+    searchable: true
+    settings:
+      decimals: 0
+      defaultValue: null
+      max: null
+      min: '-10'
+      prefix: ''
+      size: null
+      suffix: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Number
   0e3c9c5d-1cae-48be-92cb-c04f3952465f:
     contentColumnType: boolean
     fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
@@ -33,6 +69,24 @@ fields:
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\Lightswitch
+  14421814-1d3e-41ad-8f5e-e50faf18ac92:
+    contentColumnType: integer(10)
+    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    handle: silverCoins
+    instructions: ''
+    name: 'Silver Coins'
+    searchable: true
+    settings:
+      decimals: 0
+      defaultValue: null
+      max: null
+      min: '0'
+      prefix: ''
+      size: null
+      suffix: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Number
   19433c75-f6ef-4adf-bcd6-dabb8a15cfca:
     contentColumnType: integer(10)
     fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
@@ -45,6 +99,24 @@ fields:
       defaultValue: null
       max: null
       min: '-10'
+      prefix: ''
+      size: null
+      suffix: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Number
+  1f88d28c-4f7f-4027-81c5-ae451fb955aa:
+    contentColumnType: integer(10)
+    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    handle: copperCoins
+    instructions: ''
+    name: 'Copper Coins'
+    searchable: true
+    settings:
+      decimals: 0
+      defaultValue: null
+      max: null
+      min: '0'
       prefix: ''
       size: null
       suffix: ''
@@ -129,6 +201,60 @@ fields:
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\Lightswitch
+  34fb6ce6-6cff-43eb-b6ab-57907a84c242:
+    contentColumnType: text
+    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    handle: personalityTraits
+    instructions: ''
+    name: 'Personality Traits'
+    searchable: true
+    settings:
+      byteLimit: null
+      charLimit: null
+      code: ''
+      columnType: null
+      initialRows: '4'
+      multiline: '1'
+      placeholder: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\PlainText
+  36aa3e64-a598-457e-b0bb-d5cbc2c2dc98:
+    contentColumnType: integer(10)
+    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    handle: speed
+    instructions: ''
+    name: Speed
+    searchable: true
+    settings:
+      decimals: 0
+      defaultValue: null
+      max: null
+      min: '0'
+      prefix: ''
+      size: null
+      suffix: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Number
+  401124d6-f731-4fee-9f82-6a852f0e443c:
+    contentColumnType: integer(10)
+    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    handle: electrumCoins
+    instructions: ''
+    name: 'Electrum Coins'
+    searchable: true
+    settings:
+      decimals: 0
+      defaultValue: null
+      max: null
+      min: '0'
+      prefix: ''
+      size: null
+      suffix: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Number
   43da4518-b607-4804-a699-523220069c18:
     contentColumnType: integer(10)
     fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
@@ -141,6 +267,24 @@ fields:
       defaultValue: '0'
       max: null
       min: '0'
+      prefix: ''
+      size: null
+      suffix: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Number
+  48101cdf-b572-4e6c-8bf5-0137f5573ae5:
+    contentColumnType: integer(10)
+    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    handle: armorClass
+    instructions: ''
+    name: 'Armor Class'
+    searchable: true
+    settings:
+      decimals: 0
+      defaultValue: null
+      max: null
+      min: '-10'
       prefix: ''
       size: null
       suffix: ''
@@ -255,6 +399,24 @@ fields:
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\Number
+  57d07f04-94ca-4af1-91d6-cd170d0dc4fc:
+    contentColumnType: text
+    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    handle: ideals
+    instructions: ''
+    name: Ideals
+    searchable: true
+    settings:
+      byteLimit: null
+      charLimit: null
+      code: ''
+      columnType: null
+      initialRows: '4'
+      multiline: '1'
+      placeholder: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\PlainText
   58116fae-b660-4b06-b215-885f3cb09544:
     contentColumnType: boolean
     fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
@@ -375,6 +537,24 @@ fields:
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\PlainText
+  70671d44-63ad-4e27-8857-1a793322e869:
+    contentColumnType: integer(10)
+    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    handle: initiative
+    instructions: ''
+    name: Initiative
+    searchable: true
+    settings:
+      decimals: 0
+      defaultValue: null
+      max: null
+      min: '-10'
+      prefix: ''
+      size: null
+      suffix: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Number
   71181bfe-e9ce-4b04-82ba-482626d3adb9:
     contentColumnType: boolean
     fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
@@ -633,6 +813,24 @@ fields:
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\Lightswitch
+  9ed27eff-c04e-4f57-92e9-3a278a1eb6c7:
+    contentColumnType: text
+    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    handle: equipment
+    instructions: ''
+    name: Equipment
+    searchable: true
+    settings:
+      byteLimit: null
+      charLimit: null
+      code: ''
+      columnType: null
+      initialRows: '4'
+      multiline: '1'
+      placeholder: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\PlainText
   a2fcaf49-c34e-4eb1-b48e-b1a37426d269:
     contentColumnType: integer(10)
     fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
@@ -705,6 +903,24 @@ fields:
       defaultValue: null
       max: null
       min: '-10'
+      prefix: ''
+      size: null
+      suffix: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Number
+  ad4fd4f2-4052-4d96-80ef-9a9f120d99d7:
+    contentColumnType: integer(10)
+    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    handle: platinumCoins
+    instructions: ''
+    name: 'Platinum Coins'
+    searchable: true
+    settings:
+      decimals: 0
+      defaultValue: null
+      max: null
+      min: '0'
       prefix: ''
       size: null
       suffix: ''
@@ -826,7 +1042,7 @@ fields:
       code: ''
       columnType: null
       initialRows: '4'
-      multiline: ''
+      multiline: '1'
       placeholder: ''
     translationKeyFormat: null
     translationMethod: none
@@ -867,6 +1083,24 @@ fields:
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\Number
+  d436f4e0-c992-41e2-9e1f-56e708e8230c:
+    contentColumnType: text
+    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    handle: featuresAndTraits
+    instructions: ''
+    name: 'Features & Traits'
+    searchable: true
+    settings:
+      byteLimit: null
+      charLimit: null
+      code: ''
+      columnType: null
+      initialRows: '4'
+      multiline: '1'
+      placeholder: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\PlainText
   d489fbcf-94ce-4671-a589-a6634e2acea7:
     contentColumnType: boolean
     fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
@@ -879,6 +1113,24 @@ fields:
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\Lightswitch
+  dcc4ce53-3e91-43c0-b04c-a3eb3a0ee5be:
+    contentColumnType: integer(10)
+    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    handle: goldCoins
+    instructions: ''
+    name: 'Gold Coins'
+    searchable: true
+    settings:
+      decimals: 0
+      defaultValue: null
+      max: null
+      min: '0'
+      prefix: ''
+      size: null
+      suffix: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Number
   df9db4db-c3cc-47e7-828b-206d6687bbce:
     contentColumnType: boolean
     fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
@@ -958,7 +1210,7 @@ fields:
       code: ''
       columnType: null
       initialRows: '4'
-      multiline: ''
+      multiline: '1'
       placeholder: ''
     translationKeyFormat: null
     translationMethod: none
@@ -1017,6 +1269,24 @@ fields:
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\Number
+  fd4338e6-2ae4-47cb-a744-c083c966c007:
+    contentColumnType: text
+    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    handle: flaws
+    instructions: ''
+    name: Flaws
+    searchable: true
+    settings:
+      byteLimit: null
+      charLimit: null
+      code: ''
+      columnType: null
+      initialRows: '4'
+      multiline: '1'
+      placeholder: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\PlainText
 plugins:
   eager-beaver:
     edition: standard
@@ -1036,6 +1306,9 @@ sections:
             tabs:
               -
                 fields:
+                  36aa3e64-a598-457e-b0bb-d5cbc2c2dc98:
+                    required: false
+                    sortOrder: 8
                   4c46f78f-fc05-4610-b628-3401bc09e15d:
                     required: false
                     sortOrder: 2
@@ -1061,6 +1334,9 @@ sections:
                 sortOrder: 1
               -
                 fields:
+                  0ba6284b-ef4e-4ecf-a7da-71f09120b772:
+                    required: false
+                    sortOrder: 13
                   224fd7cd-0613-42ac-8082-1700a37171a4:
                     required: false
                     sortOrder: 9
@@ -1131,7 +1407,7 @@ sections:
                     sortOrder: 6
                   5b1ddac8-9b65-4d74-ba6e-42c11e58ed4b:
                     required: false
-                    sortOrder: 13
+                    sortOrder: 12
                   5ff37c04-16a6-4bce-ab98-c95e01b6a29d:
                     required: false
                     sortOrder: 9
@@ -1143,22 +1419,22 @@ sections:
                     sortOrder: 3
                   7c65078c-337c-4ee2-bfa5-a291af2a4117:
                     required: false
-                    sortOrder: 19
+                    sortOrder: 18
                   9a8643ad-5874-4852-8794-8accfad6642d:
                     required: false
                     sortOrder: 5
                   9c996215-28f1-4813-922d-7eacc696d70a:
                     required: false
-                    sortOrder: 18
+                    sortOrder: 17
                   9d5f54a6-a841-4544-89cb-4e5a0fc51008:
                     required: false
                     sortOrder: 11
                   a2fcaf49-c34e-4eb1-b48e-b1a37426d269:
                     required: false
-                    sortOrder: 16
+                    sortOrder: 15
                   a2fe1a92-12e5-4263-99b6-1e82424c1a71:
                     required: false
-                    sortOrder: 14
+                    sortOrder: 13
                   ccca092c-d0a3-4b96-a86e-b446d7f1381a:
                     required: false
                     sortOrder: 1
@@ -1167,16 +1443,16 @@ sections:
                     sortOrder: 2
                   e15353d1-b877-4686-8046-46b2c05a95d6:
                     required: false
-                    sortOrder: 17
+                    sortOrder: 16
                   ea35e279-9bcc-453e-ad3a-f7269441408f:
                     required: false
                     sortOrder: 7
                   f7fab425-96ae-4e66-8a02-94778b542e93:
                     required: false
-                    sortOrder: 12
+                    sortOrder: 19
                   f8c176d0-0d2e-46a6-ba82-1fbfb2cec807:
                     required: false
-                    sortOrder: 15
+                    sortOrder: 14
                   f9e8a8c5-c619-467d-97db-af28a196a39d:
                     required: false
                     sortOrder: 4
@@ -1240,6 +1516,53 @@ sections:
                     sortOrder: 13
                 name: 'Skill Proficiencies'
                 sortOrder: 5
+              -
+                fields:
+                  01076d45-d801-42e4-86af-abb364b06e31:
+                    required: false
+                    sortOrder: 1
+                  34fb6ce6-6cff-43eb-b6ab-57907a84c242:
+                    required: false
+                    sortOrder: 5
+                  57d07f04-94ca-4af1-91d6-cd170d0dc4fc:
+                    required: false
+                    sortOrder: 4
+                  d436f4e0-c992-41e2-9e1f-56e708e8230c:
+                    required: false
+                    sortOrder: 2
+                  fd4338e6-2ae4-47cb-a744-c083c966c007:
+                    required: false
+                    sortOrder: 3
+                name: Background
+                sortOrder: 6
+              -
+                fields:
+                  14421814-1d3e-41ad-8f5e-e50faf18ac92:
+                    required: false
+                    sortOrder: 5
+                  1f88d28c-4f7f-4027-81c5-ae451fb955aa:
+                    required: false
+                    sortOrder: 4
+                  401124d6-f731-4fee-9f82-6a852f0e443c:
+                    required: false
+                    sortOrder: 6
+                  48101cdf-b572-4e6c-8bf5-0137f5573ae5:
+                    required: false
+                    sortOrder: 1
+                  70671d44-63ad-4e27-8857-1a793322e869:
+                    required: false
+                    sortOrder: 2
+                  9ed27eff-c04e-4f57-92e9-3a278a1eb6c7:
+                    required: false
+                    sortOrder: 3
+                  ad4fd4f2-4052-4d96-80ef-9a9f120d99d7:
+                    required: false
+                    sortOrder: 8
+                  dcc4ce53-3e91-43c0-b04c-a3eb3a0ee5be:
+                    required: false
+                    sortOrder: 7
+                name: Equipment
+                sortOrder: 7
         handle: characters
         hasTitleField: true
         name: Characters

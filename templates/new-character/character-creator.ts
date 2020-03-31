@@ -132,6 +132,9 @@ class CharacterCreator extends HTMLElement {
 			data.append(`fields[${key}Proficiency]`, `${value}`);
 		}
 
+		data.append(`fields[passiveWisdom]`, `${skills["perception"] + 10}`);
+		data.append(`fields[initiative]`, `${this.modifiers.dexterity}`);
+
 		const request = await fetch(`${location.origin}/actions/entries/save-entry`, {
 			method: "POST",
 			body: data,
