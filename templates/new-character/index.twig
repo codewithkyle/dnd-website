@@ -1,0 +1,91 @@
+{% extends "_base/page" %}
+
+{% import "_macros" as inputs %}
+
+{% block content %}
+    <article style="width:100%;display: block;">
+        <section style="width:100%;display: block;">
+            <character-creator web-component>
+                <form eager-load-css="grid ratios" method="post" accept-charset="UTF-8" class="bg-white shadow-md" style="width:640px;max-width:100%;display: block;margin: 0 auto;padding:2rem;">
+                    {{ csrfInput() }}
+                    {{ actionInput('entries/save-entry') }}
+                    {{ redirectInput('character/{slug}') }}
+                    {{ hiddenInput('sectionId', '1') }}
+                    {{ hiddenInput('enabled', '1') }}
+
+                    <form-page style="width: 100%;display: grid;grid-template-columns: minmax(0px, 1fr);gap: 1rem;">
+                        <h1 class="font-xl font-grey-800 text-center" style="display: block;">Character Details</h1>
+
+                        <div class="ratio-16/9" style="display:block;width:100%;position:relative;">
+                            <iframe style="width: 100%;height:100%;position: absolute;top:0;left:0;" loading="lazy" width="560" src="https://www.youtube.com/embed/vGyk5piGwrQ?start=499" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+
+                        {{ inputs.text("Character Name", "title", true) }}
+                        
+                        <div grid="columns 2 gap-1">
+                            {{ inputs.text("Class", "fields[class]", true) }}
+                            {{ inputs.text("Race", "fields[race]", true) }}
+                        </div>
+
+                        {{ inputs.text("Background", "fields[background]", true) }}
+                        {{ inputs.text("Alignment", "fields[alignment]", true) }}
+
+                        <div style="display: block; text-align: right;">
+                            <button data-direction="1" type="button" class="button -solid -primary">Next</button>
+                        </div>
+                    </form-page>
+
+                    <form-page style="width: 100%;display: none;grid-template-columns: minmax(0px, 1fr);gap: 1rem;">
+                        <h1 class="font-xl font-grey-800 text-center" style="display: block;">Ability Scores</h1>
+
+                        <div class="ratio-16/9" style="display:block;width:100%;position:relative;">
+                            <iframe style="width: 100%;height:100%;position: absolute;top:0;left:0;" loading="lazy" width="560" src="https://www.youtube.com/embed/vGyk5piGwrQ?start=209" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                        
+                        <div grid="columns 2 gap-1">
+                            {{ inputs.number("Strength", "fields[strength]", true, null, 1, 30, 1) }}
+                            {{ inputs.text("Modifier", "fields[strengthModifier]", true, null, -5, 10, 1) }}
+                        </div>
+
+                        <div grid="columns 2 gap-1">
+                            {{ inputs.number("Dexterity", "fields[dexterity]", true, null, 1, 30, 1) }}
+                            {{ inputs.text("Modifier", "fields[dexterityModifier]", true, null, -5, 10, 1) }}
+                        </div>
+
+                        <div grid="columns 2 gap-1">
+                            {{ inputs.number("Constitution", "fields[constitution]", true, null, 1, 30, 1) }}
+                            {{ inputs.text("Modifier", "fields[constitutionModifier]", true, null, -5, 10, 1) }}
+                        </div>
+
+                        <div grid="columns 2 gap-1">
+                            {{ inputs.number("Intelligence", "fields[intelligence]", true, null, 1, 30, 1) }}
+                            {{ inputs.text("Modifier", "fields[intelligenceModifier]", true, null, -5, 10, 1) }}
+                        </div>
+
+                        <div grid="columns 2 gap-1">
+                            {{ inputs.number("Wisdom", "fields[wisdom]", true, null, 1, 30, 1) }}
+                            {{ inputs.text("Modifier", "fields[wisdomModifier]", true, null, -5, 10, 1) }}
+                        </div>
+
+                        <div grid="columns 2 gap-1">
+                            {{ inputs.number("Charisma", "fields[charisma]", true, null, 1, 30, 1) }}
+                            {{ inputs.text("Modifier", "fields[charismaModifier]", true, null, -5, 10, 1) }}
+                        </div>
+
+                        <div style="display: flex; justify-content: space-between;align-items: center;">
+                            <button data-direction="-1" type="button" class="button -outline -alt">Back</button>
+                            <button data-direction="1" type="button" class="button -solid -primary">Next</button>
+                        </div>
+                    </form-page>
+
+                    <form-page style="width: 100%;display: none;grid-template-columns: minmax(0px, 1fr);gap: 1rem;">
+                        <div style="display: flex; justify-content: space-between;align-items: center;">
+                            <button data-direction="-1" type="button" class="button -outline -alt">Back</button>
+                            <button type="submit" class="button -solid -primary">Save Character</button>
+                        </div>
+                    </form-page>
+                </form>
+            </character-creator>
+        </section>
+    </article>
+{% endblock %}

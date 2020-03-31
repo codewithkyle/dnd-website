@@ -1,21 +1,30 @@
 {% extends "_base/page" %}
 
 {% block content %}
-    <style>
-        code
-        {
-            padding: 0.25rem 0.5rem;
-            background-color: var(--neutral-100);
-            border-radius: 0.125rem;
-            font-family: monospace;
-            cursor: default;
-            user-select: none;
-            display: inline-block;
-        }
-    </style>
-    <article>
-        <section>
-            Get started with this boilerplate by modifying the <code>_header</code> and <code>_footer</code> files.
+    <article style="width:100%;display: block;">
+        <section style="width:100%;display: block;">
+            <div class="bg-white shadow-md" style="width:420px;max-width:100%;display: block;margin: 0 auto;padding:2rem;">
+                {% set characters = craft.entries({
+                    section: 'characters',
+                    authorId: currentUser.id,
+                    limit: null
+                }).all() %}
+                {% if characters|length %}
+                    {% for char in characters %}
+                        <a href="{{ char.url }}" eager-load-css="borders" border="solid 1 grey-300" style="display: block;width: 100%;margin-bottom: 2rem;padding: 1rem;">
+                            <span style="display: block;" class="font-primary-700 font-medium" margin="b-0.25">{{ char.title }}</span>
+                            <span style="display: block;" class="font-grey-700 font-sm">{{ char.class }} Lv. {{ char.charLevel }}</span>
+                        </a>
+                    {% endfor %}
+                {% else %}
+                    <div style="display: block;width: 100%;margin-bottom: 1rem;text-align: center;">
+                        <span class="font-grey-700">Roll a new character to get started.</span>
+                    </div>
+                {% endif %}
+                <div style="display: block;width: 100%;text-align: center;">
+                    <a href="{{ siteUrl|trim('/') }}/new-character" class="button -solid -primary">Roll Character</a>
+                </div>
+            </div>
         </section>
     </article>
 {% endblock %}

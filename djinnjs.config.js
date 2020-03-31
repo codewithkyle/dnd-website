@@ -3,4 +3,5 @@ module.exports = {
 	noCachePattern: /(\/webmaster\/)|(\/cpresources\/)|(index\.php)|(cachebust\.js)|(\/pwa\/)|(\.json)$/gi,
 	cachebustURL: "/pwa/cachebust.json",
 	usePercentage: true,
+	disableServiceWorker: true,
 };

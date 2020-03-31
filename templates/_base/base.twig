@@ -12,20 +12,6 @@
     {% set page = product %}
 {% endif %}
 
-{% set requireLogin = craft.pwa.checkRequireLogin(page) %}
-{% if requireLogin and not currentUser%}
-    {% redirect '/login?redirect=' ~ craft.app.request.pathInfo %}
-{% elseif not requireLogin %}
-    {% set expiry = now|date_modify('+7 days') %}
-    {% header "Cache-Control: max-age=" ~ (expiry.timestamp - now.timestamp) %}
-    {% header "Pragma: cache" %}
-    {% header "Expires: " ~ expiry|date('D, d M Y H:i:s', 'GMT') ~ " GMT" %}
-    {% header "Access-Control-Expose-Headers: etag" %}
-    {% if page.uid %}
-        {% header "ETag: " ~ page.uid ~ '-' ~ craft.pwa.getCache(page.id) %}
-    {% endif %}
-{% endif %}
-
 {% if craft.app.config.env == 'dev' or craft.app.config.env == 'staging' %}
     {% if currentUser and currentUser['admin'] %}
         {% header "Feature-Policy:  oversized-images 'self'(2.0) *(inf); unoptimized-lossy-images 'self'(0.5) *(inf); unoptimized-lossless-images 'self'(1) *(inf); unoptimized-lossless-images-strict 'self'(1) *(inf);" %}
