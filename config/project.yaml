@@ -1,4 +1,4 @@
-dateModified: 1585697687
+dateModified: 1585698600
 email:
   fromEmail: codingwithkyle@gmail.com
   fromName: Boilerplate
@@ -573,6 +573,24 @@ fields:
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\PlainText
+  6eee948b-b278-46c0-ad09-4da2d517f893:
+    contentColumnType: smallint(1)
+    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    handle: successfulDeathSaves
+    instructions: ''
+    name: 'Successful Death Saves'
+    searchable: true
+    settings:
+      decimals: 0
+      defaultValue: '0'
+      max: '3'
+      min: '0'
+      prefix: ''
+      size: null
+      suffix: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Number
   70671d44-63ad-4e27-8857-1a793322e869:
     contentColumnType: integer(10)
     fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
@@ -687,6 +705,24 @@ fields:
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\Number
+  7e19c401-d917-4b25-9232-260b0a3b5b2e:
+    contentColumnType: integer(10)
+    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    handle: temporaryHitPoints
+    instructions: ''
+    name: 'Temporary Hit Points'
+    searchable: true
+    settings:
+      decimals: 0
+      defaultValue: '0'
+      max: null
+      min: '0'
+      prefix: ''
+      size: null
+      suffix: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Number
   8614def5-7fbd-4ba4-8f14-f73be6102fc7:
     contentColumnType: text
     fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
@@ -716,6 +752,24 @@ fields:
       decimals: 0
       defaultValue: null
       max: null
+      min: '0'
+      prefix: ''
+      size: null
+      suffix: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Number
+  883bee43-35cf-48de-8759-1cf2db8c7bfb:
+    contentColumnType: smallint(1)
+    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    handle: failedDeathSaves
+    instructions: ''
+    name: 'Failed Death Saves'
+    searchable: true
+    settings:
+      decimals: 0
+      defaultValue: '0'
+      max: '3'
       min: '0'
       prefix: ''
       size: null
@@ -1409,12 +1463,21 @@ sections:
                   37aad09e-7771-46ce-b688-4c64d3fe3fc3:
                     required: false
                     sortOrder: 5
-                  865d59f0-995a-460e-8dd6-bbc9719d48cf:
+                  6eee948b-b278-46c0-ad09-4da2d517f893:
                     required: false
-                    sortOrder: 3
-                  ad531314-4d9b-4449-a387-9c9b8df3e538:
+                    sortOrder: 7
+                  7e19c401-d917-4b25-9232-260b0a3b5b2e:
                     required: false
                     sortOrder: 2
+                  865d59f0-995a-460e-8dd6-bbc9719d48cf:
+                    required: false
+                    sortOrder: 4
+                  883bee43-35cf-48de-8759-1cf2db8c7bfb:
+                    required: false
+                    sortOrder: 6
+                  ad531314-4d9b-4449-a387-9c9b8df3e538:
+                    required: false
+                    sortOrder: 3
                 name: Health
                 sortOrder: 2
               -
