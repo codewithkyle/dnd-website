@@ -2,75 +2,316 @@
 
 {% import "_macros" as inputs %}
 
+{% set data = {
+    "classes": [
+        {
+            "value": "Barbarian",
+            "label": "Barbarian"
+        },
+        {
+            "value": "Bard",
+            "label": "Bard"
+        },
+        {
+            "value": "Cleric",
+            "label": "Cleric"
+        },
+        {
+            "value": "Druid",
+            "label": "Druid"
+        },
+        {
+            "value": "Fighter",
+            "label": "Fighter"
+        },
+        {
+            "value": "Monk",
+            "label": "Monk"
+        },
+        {
+            "value": "Paladin",
+            "label": "Paladin"
+        },
+        {
+            "value": "Ranger",
+            "label": "Ranger"
+        },
+        {
+            "value": "Rogue",
+            "label": "Rogue"
+        },
+        {
+            "value": "Sorcerer",
+            "label": "Sorcerer"
+        },
+        {
+            "value": "Warlock",
+            "label": "Warlock"
+        },
+        {
+            "value": "Wizard",
+            "label": "Wizard"
+        },
+    ],
+    "races": [
+        {
+            "value": "Dragonborn",
+            "label": "Dragonborn"
+        },
+        {
+            "value": "Dwarf",
+            "label": "Dwarf"
+        },
+        {
+            "value": "Hill Dwarf",
+            "label": "Hill Dwarf"
+        },
+        {
+            "value": "Elf",
+            "label": "Elf"
+        },
+        {
+            "value": "High Elf",
+            "label": "High Elf"
+        },
+        {
+            "value": "Gnome",
+            "label": "Gnome"
+        },
+        {
+            "value": "Rock Gnome",
+            "label": "Rock Gnome"
+        },
+        {
+            "value": "Half-Elf",
+            "label": "Half-Elf"
+        },
+        {
+            "value": "Half-Orc",
+            "label": "Half-Orc"
+        },
+        {
+            "value": "Halfling",
+            "label": "Halfling"
+        },
+        {
+            "value": "Lightfoot Halfling",
+            "label": "Lightfoot Halfling"
+        },
+        {
+            "value": "Human",
+            "label": "Human"
+        },
+        {
+            "value": "Tiefling",
+            "label": "Tiefling"
+        },
+    ],
+    "alignments": [
+        {
+            "value": "Lawful Good",
+            "label": "Lawful Good"
+        },
+        {
+            "value": "Neutral Good",
+            "label": "Neutral Good"
+        },
+        {
+            "value": "Chaotic Good",
+            "label": "Chaotic Good"
+        },
+        {
+            "value": "Lawful Neutral",
+            "label": "Lawful Neutral"
+        },
+        {
+            "value": "Neutral",
+            "label": "Neutral"
+        },
+        {
+            "value": "Chaotic Neutral",
+            "label": "Chaotic Neutral"
+        },
+        {
+            "value": "Lawful Evil",
+            "label": "Lawful Evil"
+        },
+        {
+            "value": "Neutral Evil",
+            "label": "Neutral Evil"
+        },
+        {
+            "value": "Chaotic Evil",
+            "label": "Chaotic Evil"
+        },
+    ],
+    "skills": [
+        {
+            "label": "Acrobatics",
+            "ability": "dexterity",
+        },
+        {
+            "label": "Animal Handling",
+            "ability": "wisdom",
+        },
+        {
+            "label": "Arcana",
+            "ability": "intelligence",
+        },
+        {
+            "label": "Athletics",
+            "ability": "strength",
+        },
+        {
+            "label": "Deception",
+            "ability": "charisma",
+        },
+        {
+            "label": "History",
+            "ability": "intelligence",
+        },
+        {
+            "label": "Insight",
+            "ability": "wisdom",
+        },
+        {
+            "label": "Intimidation",
+            "ability": "charisma",
+        },
+        {
+            "label": "Investigation",
+            "ability": "intelligence",
+        },
+        {
+            "label": "Medicine",
+            "ability": "wisdom",
+        },
+        {
+            "label": "Nature",
+            "ability": "intelligence",
+        },
+        {
+            "label": "Perception",
+            "ability": "wisdom",
+        },
+        {
+            "label": "Performance",
+            "ability": "charisma",
+        },
+        {
+            "label": "Persuasion",
+            "ability": "charisma",
+        },
+        {
+            "label": "Religion",
+            "ability": "intelligence",
+        },
+        {
+            "label": "Sleight of Hand",
+            "ability": "dexterity",
+        },
+        {
+            "label": "Stealth",
+            "ability": "dexterity",
+        },
+        {
+            "label": "Survival",
+            "ability": "wisdom",
+        },
+    ]
+} %}
+
 {% block content %}
     <article style="width:100%;display: block;">
         <section style="width:100%;display: block;">
             <character-creator web-component>
-                <form eager-load-css="grid ratios" method="post" accept-charset="UTF-8" class="bg-white shadow-md" style="width:640px;max-width:100%;display: block;margin: 0 auto;padding:2rem;">
+                <form eager-load-css="ratios" method="post" accept-charset="UTF-8" class="bg-white shadow-md block mx-auto my-0 p-2" style="width:640px;max-width:100%;border-radius: 0.25rem;">
                     {{ csrfInput() }}
                     {{ actionInput('entries/save-entry') }}
                     {{ redirectInput('character/{slug}') }}
                     {{ hiddenInput('sectionId', '1') }}
                     {{ hiddenInput('enabled', '1') }}
 
-                    <form-page style="width: 100%;display: grid;grid-template-columns: minmax(0px, 1fr);gap: 1rem;">
-                        <h1 class="font-xl font-grey-800 text-center" style="display: block;">Character Details</h1>
+                    <form-page id="details" style="width: 100%;display: grid;grid-template-columns: minmax(0px, 1fr);gap: 1rem;">
+                        <h1 class="font-xl font-grey-800 text-center block">Character Details</h1>
 
-                        <div class="ratio-16/9" style="display:block;width:100%;position:relative;">
-                            <iframe style="width: 100%;height:100%;position: absolute;top:0;left:0;" loading="lazy" width="560" src="https://www.youtube.com/embed/vGyk5piGwrQ?start=499" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                        </div>
+                        <p class="font-grey-700 font-sm line-normal">
+                            Select your character's race and class. This choice is very important because it will define your playstyle and abilities. If you're unsure what you want to play spend some time reading the <a target="_blank" class="font-primary-700" href="https://www.5thsrd.org/#character">Handbook</a>.
+                        </p>
 
                         {{ inputs.text("Character Name", "title", true) }}
                         
                         <div grid="columns 2 gap-1">
-                            {{ inputs.text("Class", "fields[class]", true) }}
-                            {{ inputs.text("Race", "fields[race]", true) }}
+                            {{ inputs.select("Class", "fields[class]", true, data.classes) }}
+                            {{ inputs.select("Race", "fields[race]", true, data.races) }}
                         </div>
 
-                        {{ inputs.text("Background", "fields[background]", true) }}
-                        {{ inputs.text("Alignment", "fields[alignment]", true) }}
+                        {{ inputs.textarea("Background", "fields[background]", true) }}
+                        {{ inputs.select("Alignment", "fields[alignment]", false, data.alignments) }}
 
-                        <div style="display: block; text-align: right;">
+                        <div class="block text-right">
                             <button data-direction="1" type="button" class="button -solid -primary">Next</button>
                         </div>
                     </form-page>
 
-                    <form-page style="width: 100%;display: none;grid-template-columns: minmax(0px, 1fr);gap: 1rem;">
-                        <h1 class="font-xl font-grey-800 text-center" style="display: block;">Ability Scores</h1>
+                    <form-page id="abilities" style="width: 100%;display: none;grid-template-columns: minmax(0px, 1fr);gap: 1rem;">
+                        <h1 class="font-xl font-grey-800 text-center block">Ability Scores</h1>
 
-                        <div class="ratio-16/9" style="display:block;width:100%;position:relative;">
-                            <iframe style="width: 100%;height:100%;position: absolute;top:0;left:0;" loading="lazy" width="560" src="https://www.youtube.com/embed/vGyk5piGwrQ?start=209" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                        </div>
+                        <p class="font-grey-700 font-sm line-normal">
+                            The six ability scores make up the core mechanic of the game. To generate your ability score roll four six-sided dice and remove the lowest die. Add the remaining three dice together and enter the result into one of the ability score inputs. Feel free to reassign values as you roll but <strong>DO NOT</strong> re-roll. Bad rolls make interesting characters.
+                        </p>
                         
                         <div grid="columns 2 gap-1">
                             {{ inputs.number("Strength", "fields[strength]", true, null, 1, 30, 1) }}
-                            {{ inputs.text("Modifier", "fields[strengthModifier]", true, null, -5, 10, 1) }}
-                        </div>
-
-                        <div grid="columns 2 gap-1">
                             {{ inputs.number("Dexterity", "fields[dexterity]", true, null, 1, 30, 1) }}
-                            {{ inputs.text("Modifier", "fields[dexterityModifier]", true, null, -5, 10, 1) }}
                         </div>
 
                         <div grid="columns 2 gap-1">
                             {{ inputs.number("Constitution", "fields[constitution]", true, null, 1, 30, 1) }}
-                            {{ inputs.text("Modifier", "fields[constitutionModifier]", true, null, -5, 10, 1) }}
-                        </div>
-
-                        <div grid="columns 2 gap-1">
                             {{ inputs.number("Intelligence", "fields[intelligence]", true, null, 1, 30, 1) }}
-                            {{ inputs.text("Modifier", "fields[intelligenceModifier]", true, null, -5, 10, 1) }}
                         </div>
 
                         <div grid="columns 2 gap-1">
                             {{ inputs.number("Wisdom", "fields[wisdom]", true, null, 1, 30, 1) }}
-                            {{ inputs.text("Modifier", "fields[wisdomModifier]", true, null, -5, 10, 1) }}
+                            {{ inputs.number("Charisma", "fields[charisma]", true, null, 1, 30, 1) }}
                         </div>
 
-                        <div grid="columns 2 gap-1">
-                            {{ inputs.number("Charisma", "fields[charisma]", true, null, 1, 30, 1) }}
-                            {{ inputs.text("Modifier", "fields[charismaModifier]", true, null, -5, 10, 1) }}
+                        <div style="display: flex; justify-content: space-between;align-items: center;">
+                            <button data-direction="-1" type="button" class="button -outline -alt">Back</button>
+                            <button data-direction="1" type="button" class="button -solid -primary">Next</button>
                         </div>
+                    </form-page>
+
+                    <form-page id="skills" style="width: 100%;display: none;grid-template-columns: minmax(0px, 1fr);gap: 1rem;">
+                        <h1 class="font-xl font-grey-800 text-center block">Skills</h1>
+
+                        <p class="font-grey-700 font-sm line-normal">
+                            Skills help your character problem solve and survive in the world of Dungeons and Dragons. Depending upon your character's class you can be proficient in any number of the following skills. If you are unsure what skills your class can be proficient in check the <a target="_blank" class="font-primary-700" href="https://www.5thsrd.org/#character">Handbook</a>. As a bonus select two additional skills relative to the Background you created on the Character Detail page.
+                        </p>
+
+                        {% for skill in data.skills %}
+                            {% if loop.index0 % 2 == 0 and loop.index0 == 0 %}
+                                <div grid="columns 2 gap-1">
+                            {% elseif loop.index0 % 2 == 0 %}
+                                </div>
+                                <div grid="columns 2 gap-1">
+                            {% endif %}
+                            <skill-component lazy-load-css="skill-component">
+                                <input id="{{ skill.label|camel }}" type="checkbox" data-skill="{{ skill.label|camel }}" data-ability="{{ skill.ability }}" />
+                                <label for="{{ skill.label|camel }}">
+                                    <i></i>
+                                    <div>
+                                        <span class="font-sm font-medium font-grey-900">{{ skill.label }}</span>
+                                        <span class="font-xs font-grey-700 text-uppercase ml-0.25">({{ skill.ability|slice(0,3) }})</span>
+                                    </div>
+                                </label>
+                            </skill-component>
+                            {% if loop.last %}
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+
+                        {{ inputs.textarea("Other Proficiencies & Languages", "fields[otherProficiencies]", false) }}
 
                         <div style="display: flex; justify-content: space-between;align-items: center;">
                             <button data-direction="-1" type="button" class="button -outline -alt">Back</button>

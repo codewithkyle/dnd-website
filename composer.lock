@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "5e593cb690ad29680f3bfe565b02f34b",
+    "content-hash": "85050f714305c81bbd4aac20cf84f3a5",
     "packages": [
         {
             "name": "aelvan/imager",
@@ -466,11 +466,11 @@
         },
         {
             "name": "craftcms/cms",
-            "version": "3.4.11",
+            "version": "3.4.12",
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/craftcms/cms/zipball/a028f6003a3c3985cdedfb95407284ca3daf3faa",
-                "reference": "a028f6003a3c3985cdedfb95407284ca3daf3faa",
+                "url": "https://api.github.com/repos/craftcms/cms/zipball/2090328563329fba5423da6466b5c53f4af8421a",
+                "reference": "2090328563329fba5423da6466b5c53f4af8421a",
                 "shasum": ""
             },
             "require": {
@@ -551,7 +551,7 @@
                 "docs": "https://docs.craftcms.com/v3/",
                 "rss": "https://github.com/craftcms/cms/releases.atom"
             },
-            "time": "2020-03-26T23:22:31+00:00"
+            "time": "2020-03-31T18:43:58+00:00"
         },
         {
             "name": "craftcms/element-api",
@@ -2196,11 +2196,11 @@
         },
         {
             "name": "laminas/laminas-feed",
-            "version": "2.12.1",
+            "version": "2.12.2",
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laminas/laminas-feed/zipball/c9356994eb80d0f6b46d7e12ba048d450bf0cd72",
-                "reference": "c9356994eb80d0f6b46d7e12ba048d450bf0cd72",
+                "url": "https://api.github.com/repos/laminas/laminas-feed/zipball/8a193ac96ebcb3e16b6ee754ac2a889eefacb654",
+                "reference": "8a193ac96ebcb3e16b6ee754ac2a889eefacb654",
                 "shasum": ""
             },
             "require": {
@@ -2212,7 +2212,7 @@
                 "php": "^5.6 || ^7.0"
             },
             "replace": {
-                "zendframework/zend-feed": "self.version"
+                "zendframework/zend-feed": "^2.12.0"
             },
             "suggest": {
                 "laminas/laminas-cache": "Laminas\\Cache component, for optionally caching feeds between requests",
@@ -2243,7 +2243,7 @@
                 "feed",
                 "laminas"
             ],
-            "time": "2020-03-23T10:40:31+00:00"
+            "time": "2020-03-29T12:36:29+00:00"
         },
         {
             "name": "laminas/laminas-stdlib",

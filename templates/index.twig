@@ -11,13 +11,13 @@
                 }).all() %}
                 {% if characters|length %}
                     {% for char in characters %}
-                        <a href="{{ char.url }}" eager-load-css="borders" border="solid 1 grey-300" style="display: block;width: 100%;margin-bottom: 2rem;padding: 1rem;">
-                            <span style="display: block;" class="font-primary-700 font-medium" margin="b-0.25">{{ char.title }}</span>
-                            <span style="display: block;" class="font-grey-700 font-sm">{{ char.class }} Lv. {{ char.charLevel }}</span>
+                        <a href="{{ char.url }}" style="display: block;width: 100%;margin-bottom: 2rem;padding: 1rem;">
+                            <span class="block font-primary-700 font-medium">{{ char.title }}</span>
+                            <span class="block font-grey-700 font-sm">{{ char.class }} Lv. {{ char.charLevel }}</span>
                         </a>
                     {% endfor %}
                 {% else %}
-                    <div style="display: block;width: 100%;margin-bottom: 1rem;text-align: center;">
+                    <div class="block w-full text-center mb-1">
                         <span class="font-grey-700">Roll a new character to get started.</span>
                     </div>
                 {% endif %}

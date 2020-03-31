@@ -2,12 +2,16 @@
     <header eager-load-css="header buttons">
         <nav>
             <div>
-                <a href="{{ siteUrl }}" class="button -text -primary" style="margin-right: 0.5rem;">Home</a>
-                <a href="{{ siteUrl|trim('/') }}/new-character" class="button -text -primary">Roll Character</a>
+                <a href="{{ siteUrl }}" class="button -text -primary mr-0.5">Home</a>
+                <a href="{{ siteUrl|trim('/') }}/new-character" class="button -text -primary">Character Creator</a>
             </div>
-            {% if currentUser %}
-                <a no-pjax href="{{ siteUrl|trim('/') }}/actions/users/logout" class="button -text -primary">Log Out</a>
-            {% endif %}
+            <div>
+                <a href="https://www.youtube.com/playlist?list=PLJmFJXf3BXjwXkNFo_-iwtHb24AuJcXqx" target="_blank" class="button -text -primary">Tutorials</a>
+                <a href="https://www.5thsrd.org/" target="_blank" class="button -text -primary ml-0.5">Handbook</a>
+                {% if currentUser %}
+                    <a no-pjax href="{{ siteUrl|trim('/') }}/actions/users/logout" class="button -text -primary ml-0.5">Log Out</a>
+                {% endif %}
+            </div>
         </nav>
     </header>
 {% endcache %}

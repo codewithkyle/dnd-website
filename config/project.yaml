@@ -1,4 +1,4 @@
-dateModified: 1585613895
+dateModified: 1585693368
 email:
   fromEmail: codingwithkyle@gmail.com
   fromName: Boilerplate
@@ -9,6 +9,48 @@ fieldGroups:
   fcc29f23-916c-4883-90ae-60e9e6f0b466:
     name: Common
 fields:
+  0044dd61-5dca-48c9-b535-504faa029a65:
+    contentColumnType: boolean
+    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    handle: deceptionProficiency
+    instructions: ''
+    name: 'Deception Proficiency'
+    searchable: true
+    settings:
+      default: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Lightswitch
+  0e3c9c5d-1cae-48be-92cb-c04f3952465f:
+    contentColumnType: boolean
+    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    handle: historyProficiency
+    instructions: ''
+    name: 'History Proficiency'
+    searchable: true
+    settings:
+      default: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Lightswitch
+  19433c75-f6ef-4adf-bcd6-dabb8a15cfca:
+    contentColumnType: integer(10)
+    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    handle: strengthSavingThrow
+    instructions: ''
+    name: 'Strength Saving Throw'
+    searchable: false
+    settings:
+      decimals: 0
+      defaultValue: null
+      max: null
+      min: '-10'
+      prefix: ''
+      size: null
+      suffix: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Number
   224fd7cd-0613-42ac-8082-1700a37171a4:
     contentColumnType: integer(10)
     fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
@@ -21,6 +63,24 @@ fields:
       defaultValue: '0'
       max: null
       min: '0'
+      prefix: ''
+      size: null
+      suffix: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Number
+  25f8b64b-4c13-4243-94b7-299e1f09652f:
+    contentColumnType: integer(10)
+    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    handle: charismaSavingThrow
+    instructions: ''
+    name: 'Charisma Saving Throw'
+    searchable: true
+    settings:
+      decimals: 0
+      defaultValue: null
+      max: null
+      min: '-10'
       prefix: ''
       size: null
       suffix: ''
@@ -45,6 +105,30 @@ fields:
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\Number
+  2f3c6ad4-62d0-4ef4-b831-f0208d2b3c0f:
+    contentColumnType: boolean
+    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    handle: acrobaticsProficiency
+    instructions: ''
+    name: 'Acrobatics Proficiency'
+    searchable: true
+    settings:
+      default: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Lightswitch
+  30cd25ac-efc2-4889-aab6-d76d20829613:
+    contentColumnType: boolean
+    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    handle: arcanaProficiency
+    instructions: ''
+    name: 'Arcana Proficiency'
+    searchable: true
+    settings:
+      default: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Lightswitch
   43da4518-b607-4804-a699-523220069c18:
     contentColumnType: integer(10)
     fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
@@ -63,6 +147,18 @@ fields:
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\Number
+  4a0b27c3-762d-4c32-a640-b000476329ff:
+    contentColumnType: boolean
+    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    handle: animalHandlingProficiency
+    instructions: ''
+    name: 'Animal Handling Proficiency'
+    searchable: true
+    settings:
+      default: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Lightswitch
   4c46f78f-fc05-4610-b628-3401bc09e15d:
     contentColumnType: integer(10)
     fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
@@ -81,6 +177,18 @@ fields:
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\Number
+  4fdb9a79-9a76-4010-9f23-559ea439fa0c:
+    contentColumnType: boolean
+    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    handle: athleticsProficiency
+    instructions: ''
+    name: 'Athletics Proficiency'
+    searchable: true
+    settings:
+      default: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Lightswitch
   50a1e9a4-5f95-4f5c-8d74-201239c16d65:
     contentColumnType: integer(10)
     fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
@@ -99,6 +207,66 @@ fields:
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\Number
+  521ed1b2-6d3b-4f89-b17d-7514ef4f0053:
+    contentColumnType: boolean
+    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    handle: natureProficiency
+    instructions: ''
+    name: 'Nature Proficiency'
+    searchable: true
+    settings:
+      default: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Lightswitch
+  5510ce89-571f-48c9-be2d-4c8b746379e7:
+    contentColumnType: integer(10)
+    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    handle: medicine
+    instructions: ''
+    name: Medicine
+    searchable: true
+    settings:
+      decimals: 0
+      defaultValue: null
+      max: null
+      min: '-10'
+      prefix: ''
+      size: null
+      suffix: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Number
+  56539951-f943-46c6-b7cf-0bea04fe6d0a:
+    contentColumnType: integer(10)
+    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    handle: history
+    instructions: ''
+    name: History
+    searchable: true
+    settings:
+      decimals: 0
+      defaultValue: null
+      max: null
+      min: '-10'
+      prefix: ''
+      size: null
+      suffix: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Number
+  58116fae-b660-4b06-b215-885f3cb09544:
+    contentColumnType: boolean
+    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    handle: persuasionProficiency
+    instructions: ''
+    name: 'Persuasion Proficiency'
+    searchable: true
+    settings:
+      default: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Lightswitch
   58650e0c-dbb0-4416-a9f2-7e3e66d39b24:
     contentColumnType: integer(10)
     fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
@@ -111,6 +279,42 @@ fields:
       defaultValue: '0'
       max: null
       min: '-100'
+      prefix: ''
+      size: null
+      suffix: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Number
+  5b1ddac8-9b65-4d74-ba6e-42c11e58ed4b:
+    contentColumnType: integer(10)
+    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    handle: perception
+    instructions: ''
+    name: Perception
+    searchable: true
+    settings:
+      decimals: 0
+      defaultValue: null
+      max: null
+      min: '-10'
+      prefix: ''
+      size: null
+      suffix: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Number
+  5ff37c04-16a6-4bce-ab98-c95e01b6a29d:
+    contentColumnType: integer(10)
+    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    handle: investigation
+    instructions: ''
+    name: Investigation
+    searchable: true
+    settings:
+      decimals: 0
+      defaultValue: null
+      max: null
+      min: '-10'
       prefix: ''
       size: null
       suffix: ''
@@ -135,6 +339,24 @@ fields:
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\Number
+  62015e90-f34c-4969-b48c-9046e49f58cb:
+    contentColumnType: integer(10)
+    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    handle: dexteritySavingThrow
+    instructions: ''
+    name: 'Dexterity Saving Throw'
+    searchable: false
+    settings:
+      decimals: 0
+      defaultValue: null
+      max: null
+      min: '-10'
+      prefix: ''
+      size: null
+      suffix: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Number
   6bde9132-4da1-44ca-be56-ad8a6a588dd1:
     contentColumnType: text
     fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
@@ -153,6 +375,66 @@ fields:
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\PlainText
+  71181bfe-e9ce-4b04-82ba-482626d3adb9:
+    contentColumnType: boolean
+    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    handle: religionProficiency
+    instructions: ''
+    name: 'Religion Proficiency'
+    searchable: true
+    settings:
+      default: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Lightswitch
+  735ba638-5d03-4ee2-b9f0-770d2b90775c:
+    contentColumnType: integer(10)
+    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    handle: intimidation
+    instructions: ''
+    name: Intimidation
+    searchable: true
+    settings:
+      decimals: 0
+      defaultValue: null
+      max: null
+      min: '-10'
+      prefix: ''
+      size: null
+      suffix: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Number
+  74159ff1-aeca-4b51-a730-1aa35fb20acf:
+    contentColumnType: integer(10)
+    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    handle: arcana
+    instructions: ''
+    name: Arcana
+    searchable: true
+    settings:
+      decimals: 0
+      defaultValue: null
+      max: null
+      min: '-10'
+      prefix: ''
+      size: null
+      suffix: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Number
+  78b29bee-4047-4992-a8b7-6210c71e78af:
+    contentColumnType: boolean
+    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    handle: insightProficiency
+    instructions: ''
+    name: 'Insight Proficiency'
+    searchable: true
+    settings:
+      default: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Lightswitch
   7ba847b3-82a8-4806-9a22-27521e2a3b3c:
     contentColumnType: integer(10)
     fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
@@ -165,6 +447,24 @@ fields:
       defaultValue: '0'
       max: null
       min: '-100'
+      prefix: ''
+      size: null
+      suffix: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Number
+  7c65078c-337c-4ee2-bfa5-a291af2a4117:
+    contentColumnType: integer(10)
+    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    handle: survival
+    instructions: ''
+    name: Survival
+    searchable: true
+    settings:
+      decimals: 0
+      defaultValue: null
+      max: null
+      min: '-10'
       prefix: ''
       size: null
       suffix: ''
@@ -225,6 +525,210 @@ fields:
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\Number
+  95273a2b-4a77-4fde-88e4-c91f4f67273f:
+    contentColumnType: boolean
+    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    handle: perceptionProficiency
+    instructions: ''
+    name: 'Perception Proficiency'
+    searchable: true
+    settings:
+      default: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Lightswitch
+  9a8643ad-5874-4852-8794-8accfad6642d:
+    contentColumnType: integer(10)
+    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    handle: deception
+    instructions: ''
+    name: Deception
+    searchable: true
+    settings:
+      decimals: 0
+      defaultValue: null
+      max: null
+      min: '-10'
+      prefix: ''
+      size: null
+      suffix: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Number
+  9ad8d5e2-f0a6-4d81-a2c0-be2cfdee2c74:
+    contentColumnType: integer(10)
+    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    handle: wisdomSavingThrow
+    instructions: ''
+    name: 'Wisdom Saving Throw'
+    searchable: false
+    settings:
+      decimals: 0
+      defaultValue: null
+      max: null
+      min: '-10'
+      prefix: ''
+      size: null
+      suffix: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Number
+  9c4c1ac6-8a31-473b-baf2-26e609843e3f:
+    contentColumnType: boolean
+    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    handle: sleightOfHandProficiency
+    instructions: ''
+    name: 'Sleight of Hand Proficiency'
+    searchable: true
+    settings:
+      default: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Lightswitch
+  9c996215-28f1-4813-922d-7eacc696d70a:
+    contentColumnType: integer(10)
+    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    handle: stealth
+    instructions: ''
+    name: Stealth
+    searchable: true
+    settings:
+      decimals: 0
+      defaultValue: null
+      max: null
+      min: '-10'
+      prefix: ''
+      size: null
+      suffix: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Number
+  9d5f54a6-a841-4544-89cb-4e5a0fc51008:
+    contentColumnType: integer(10)
+    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    handle: nature
+    instructions: ''
+    name: Nature
+    searchable: true
+    settings:
+      decimals: 0
+      defaultValue: null
+      max: null
+      min: '-10'
+      prefix: ''
+      size: null
+      suffix: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Number
+  9e83922b-48d7-453d-ab64-d050a6e378e3:
+    contentColumnType: boolean
+    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    handle: survivalProficiency
+    instructions: ''
+    name: 'Survival Proficiency'
+    searchable: true
+    settings:
+      default: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Lightswitch
+  a2fcaf49-c34e-4eb1-b48e-b1a37426d269:
+    contentColumnType: integer(10)
+    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    handle: religion
+    instructions: ''
+    name: Religion
+    searchable: true
+    settings:
+      decimals: 0
+      defaultValue: null
+      max: null
+      min: '-10'
+      prefix: ''
+      size: null
+      suffix: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Number
+  a2fe1a92-12e5-4263-99b6-1e82424c1a71:
+    contentColumnType: integer(10)
+    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    handle: performance
+    instructions: ''
+    name: Performance
+    searchable: true
+    settings:
+      decimals: 0
+      defaultValue: null
+      max: null
+      min: '-10'
+      prefix: ''
+      size: null
+      suffix: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Number
+  a7c42777-67a5-4c7d-b78d-7a38677dd5bd:
+    contentColumnType: boolean
+    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    handle: intimidationProficiency
+    instructions: ''
+    name: 'Intimidation Proficiency'
+    searchable: true
+    settings:
+      default: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Lightswitch
+  abdd6249-82a4-4a70-85f8-983217784dda:
+    contentColumnType: boolean
+    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    handle: stealthProficiency
+    instructions: ''
+    name: 'Stealth Proficiency'
+    searchable: true
+    settings:
+      default: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Lightswitch
+  abe5d7d5-5518-4821-846f-0ef30b5968ad:
+    contentColumnType: integer(10)
+    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    handle: constitutionSavingThrow
+    instructions: ''
+    name: 'Constitution Saving Throw'
+    searchable: false
+    settings:
+      decimals: 0
+      defaultValue: null
+      max: null
+      min: '-10'
+      prefix: ''
+      size: null
+      suffix: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Number
+  b005c7ff-e3f4-4e0d-92b4-f2a85f0426c2:
+    contentColumnType: integer(10)
+    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    handle: inspiration
+    instructions: ''
+    name: Inspiration
+    searchable: true
+    settings:
+      decimals: 0
+      defaultValue: '1'
+      max: null
+      min: '0'
+      prefix: ''
+      size: null
+      suffix: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Number
   b875d0a3-65f2-4668-8e5e-828cc1a5ae12:
     contentColumnType: integer(10)
     fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
@@ -237,6 +741,24 @@ fields:
       defaultValue: '0'
       max: null
       min: '-100'
+      prefix: ''
+      size: null
+      suffix: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Number
+  bcecd30e-94f2-4a14-8eb2-dee8b9e3278b:
+    contentColumnType: integer(10)
+    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    handle: proficiencyBonus
+    instructions: ''
+    name: ' Proficiency Bonus'
+    searchable: false
+    settings:
+      decimals: 0
+      defaultValue: '2'
+      max: null
+      min: '-10'
       prefix: ''
       size: null
       suffix: ''
@@ -261,6 +783,36 @@ fields:
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\Number
+  ca48435d-7b28-474c-95c5-6ac35b4d48a6:
+    contentColumnType: boolean
+    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    handle: medicineProficiency
+    instructions: ''
+    name: 'Medicine Proficiency'
+    searchable: true
+    settings:
+      default: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Lightswitch
+  ccca092c-d0a3-4b96-a86e-b446d7f1381a:
+    contentColumnType: integer(10)
+    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    handle: acrobatics
+    instructions: ''
+    name: Acrobatics
+    searchable: true
+    settings:
+      decimals: 0
+      defaultValue: null
+      max: null
+      min: '-10'
+      prefix: ''
+      size: null
+      suffix: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Number
   ce8c6d47-9591-4a57-a5a3-0abbc910a88a:
     contentColumnType: text
     fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
@@ -279,6 +831,102 @@ fields:
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\PlainText
+  d33b8b80-ac32-4cf0-ab1a-a473d760e61e:
+    contentColumnType: integer(10)
+    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    handle: intelligenceSavingThrow
+    instructions: ''
+    name: 'Intelligence Saving Throw'
+    searchable: false
+    settings:
+      decimals: 0
+      defaultValue: null
+      max: null
+      min: '-10'
+      prefix: ''
+      size: null
+      suffix: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Number
+  d3f7663b-5d04-46c7-aa35-8e6069ae48a6:
+    contentColumnType: integer(10)
+    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    handle: animalHandling
+    instructions: ''
+    name: 'Animal Handling'
+    searchable: true
+    settings:
+      decimals: 0
+      defaultValue: null
+      max: null
+      min: '-10'
+      prefix: ''
+      size: null
+      suffix: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Number
+  d489fbcf-94ce-4671-a589-a6634e2acea7:
+    contentColumnType: boolean
+    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    handle: investigationProficiency
+    instructions: ''
+    name: 'Investigation Proficiency'
+    searchable: true
+    settings:
+      default: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Lightswitch
+  df9db4db-c3cc-47e7-828b-206d6687bbce:
+    contentColumnType: boolean
+    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    handle: performanceProficiency
+    instructions: ''
+    name: 'Performance Proficiency'
+    searchable: true
+    settings:
+      default: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Lightswitch
+  e15353d1-b877-4686-8046-46b2c05a95d6:
+    contentColumnType: integer(10)
+    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    handle: sleightOfHand
+    instructions: ''
+    name: 'Sleight of Hand'
+    searchable: true
+    settings:
+      decimals: 0
+      defaultValue: null
+      max: null
+      min: '-10'
+      prefix: ''
+      size: null
+      suffix: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Number
+  ea35e279-9bcc-453e-ad3a-f7269441408f:
+    contentColumnType: integer(10)
+    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    handle: insight
+    instructions: ''
+    name: Insight
+    searchable: true
+    settings:
+      decimals: 0
+      defaultValue: null
+      max: null
+      min: '-10'
+      prefix: ''
+      size: null
+      suffix: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Number
   f1885df5-1e09-44f0-891f-e4dd75f357de:
     contentColumnType: integer(10)
     fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
@@ -291,6 +939,60 @@ fields:
       defaultValue: '0'
       max: null
       min: '-100'
+      prefix: ''
+      size: null
+      suffix: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Number
+  f7fab425-96ae-4e66-8a02-94778b542e93:
+    contentColumnType: text
+    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    handle: otherProficiencies
+    instructions: ''
+    name: 'Other Proficiencies'
+    searchable: true
+    settings:
+      byteLimit: null
+      charLimit: null
+      code: ''
+      columnType: null
+      initialRows: '4'
+      multiline: ''
+      placeholder: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\PlainText
+  f8c176d0-0d2e-46a6-ba82-1fbfb2cec807:
+    contentColumnType: integer(10)
+    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    handle: persuasion
+    instructions: ''
+    name: Persuasion
+    searchable: true
+    settings:
+      decimals: 0
+      defaultValue: null
+      max: null
+      min: '-10'
+      prefix: ''
+      size: null
+      suffix: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Number
+  f9e8a8c5-c619-467d-97db-af28a196a39d:
+    contentColumnType: integer(10)
+    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    handle: athletics
+    instructions: ''
+    name: Athletics
+    searchable: true
+    settings:
+      decimals: 0
+      defaultValue: null
+      max: null
+      min: '-10'
       prefix: ''
       size: null
       suffix: ''
@@ -346,6 +1048,12 @@ sections:
                   8a20aeca-3742-4f3f-9e47-c1fe5f9496f2:
                     required: false
                     sortOrder: 3
+                  b005c7ff-e3f4-4e0d-92b4-f2a85f0426c2:
+                    required: false
+                    sortOrder: 6
+                  bcecd30e-94f2-4a14-8eb2-dee8b9e3278b:
+                    required: false
+                    sortOrder: 7
                   ce8c6d47-9591-4a57-a5a3-0abbc910a88a:
                     required: false
                     sortOrder: 5
@@ -391,6 +1099,147 @@ sections:
                     sortOrder: 4
                 name: Abilities
                 sortOrder: 2
+              -
+                fields:
+                  19433c75-f6ef-4adf-bcd6-dabb8a15cfca:
+                    required: false
+                    sortOrder: 1
+                  25f8b64b-4c13-4243-94b7-299e1f09652f:
+                    required: false
+                    sortOrder: 6
+                  62015e90-f34c-4969-b48c-9046e49f58cb:
+                    required: false
+                    sortOrder: 2
+                  9ad8d5e2-f0a6-4d81-a2c0-be2cfdee2c74:
+                    required: false
+                    sortOrder: 5
+                  abe5d7d5-5518-4821-846f-0ef30b5968ad:
+                    required: false
+                    sortOrder: 3
+                  d33b8b80-ac32-4cf0-ab1a-a473d760e61e:
+                    required: false
+                    sortOrder: 4
+                name: 'Saving Throws'
+                sortOrder: 3
+              -
+                fields:
+                  5510ce89-571f-48c9-be2d-4c8b746379e7:
+                    required: false
+                    sortOrder: 10
+                  56539951-f943-46c6-b7cf-0bea04fe6d0a:
+                    required: false
+                    sortOrder: 6
+                  5b1ddac8-9b65-4d74-ba6e-42c11e58ed4b:
+                    required: false
+                    sortOrder: 13
+                  5ff37c04-16a6-4bce-ab98-c95e01b6a29d:
+                    required: false
+                    sortOrder: 9
+                  735ba638-5d03-4ee2-b9f0-770d2b90775c:
+                    required: false
+                    sortOrder: 8
+                  74159ff1-aeca-4b51-a730-1aa35fb20acf:
+                    required: false
+                    sortOrder: 3
+                  7c65078c-337c-4ee2-bfa5-a291af2a4117:
+                    required: false
+                    sortOrder: 19
+                  9a8643ad-5874-4852-8794-8accfad6642d:
+                    required: false
+                    sortOrder: 5
+                  9c996215-28f1-4813-922d-7eacc696d70a:
+                    required: false
+                    sortOrder: 18
+                  9d5f54a6-a841-4544-89cb-4e5a0fc51008:
+                    required: false
+                    sortOrder: 11
+                  a2fcaf49-c34e-4eb1-b48e-b1a37426d269:
+                    required: false
+                    sortOrder: 16
+                  a2fe1a92-12e5-4263-99b6-1e82424c1a71:
+                    required: false
+                    sortOrder: 14
+                  ccca092c-d0a3-4b96-a86e-b446d7f1381a:
+                    required: false
+                    sortOrder: 1
+                  d3f7663b-5d04-46c7-aa35-8e6069ae48a6:
+                    required: false
+                    sortOrder: 2
+                  e15353d1-b877-4686-8046-46b2c05a95d6:
+                    required: false
+                    sortOrder: 17
+                  ea35e279-9bcc-453e-ad3a-f7269441408f:
+                    required: false
+                    sortOrder: 7
+                  f7fab425-96ae-4e66-8a02-94778b542e93:
+                    required: false
+                    sortOrder: 12
+                  f8c176d0-0d2e-46a6-ba82-1fbfb2cec807:
+                    required: false
+                    sortOrder: 15
+                  f9e8a8c5-c619-467d-97db-af28a196a39d:
+                    required: false
+                    sortOrder: 4
+                name: Skills
+                sortOrder: 4
+              -
+                fields:
+                  0044dd61-5dca-48c9-b535-504faa029a65:
+                    required: false
+                    sortOrder: 5
+                  0e3c9c5d-1cae-48be-92cb-c04f3952465f:
+                    required: false
+                    sortOrder: 6
+                  2f3c6ad4-62d0-4ef4-b831-f0208d2b3c0f:
+                    required: false
+                    sortOrder: 1
+                  30cd25ac-efc2-4889-aab6-d76d20829613:
+                    required: false
+                    sortOrder: 3
+                  4a0b27c3-762d-4c32-a640-b000476329ff:
+                    required: false
+                    sortOrder: 2
+                  4fdb9a79-9a76-4010-9f23-559ea439fa0c:
+                    required: false
+                    sortOrder: 4
+                  521ed1b2-6d3b-4f89-b17d-7514ef4f0053:
+                    required: false
+                    sortOrder: 11
+                  58116fae-b660-4b06-b215-885f3cb09544:
+                    required: false
+                    sortOrder: 14
+                  71181bfe-e9ce-4b04-82ba-482626d3adb9:
+                    required: false
+                    sortOrder: 15
+                  78b29bee-4047-4992-a8b7-6210c71e78af:
+                    required: false
+                    sortOrder: 7
+                  95273a2b-4a77-4fde-88e4-c91f4f67273f:
+                    required: false
+                    sortOrder: 12
+                  9c4c1ac6-8a31-473b-baf2-26e609843e3f:
+                    required: false
+                    sortOrder: 16
+                  9e83922b-48d7-453d-ab64-d050a6e378e3:
+                    required: false
+                    sortOrder: 18
+                  a7c42777-67a5-4c7d-b78d-7a38677dd5bd:
+                    required: false
+                    sortOrder: 8
+                  abdd6249-82a4-4a70-85f8-983217784dda:
+                    required: false
+                    sortOrder: 17
+                  ca48435d-7b28-474c-95c5-6ac35b4d48a6:
+                    required: false
+                    sortOrder: 10
+                  d489fbcf-94ce-4671-a589-a6634e2acea7:
+                    required: false
+                    sortOrder: 9
+                  df9db4db-c3cc-47e7-828b-206d6687bbce:
+                    required: false
+                    sortOrder: 13
+                name: 'Skill Proficiencies'
+                sortOrder: 5
         handle: characters
         hasTitleField: true
         name: Characters
