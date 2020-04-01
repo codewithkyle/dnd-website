@@ -20,6 +20,7 @@ return [
         'setPasswordPath'                   => 'users/set-password',
         'autoLoginAfterAccountActivation'   => true,
         'email'                             => getenv('SYSTEM_EMAIL'),
+        'userSessionDuration'               => 0,
     ],
 
     // Dev environment settings
