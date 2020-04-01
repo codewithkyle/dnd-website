@@ -201,9 +201,6 @@ class CharacterCreator extends HTMLElement {
 		data.append(`fields[currentHitPoints]`, hitPoints);
 		data.append(`fields[maximumHitPoints]`, hitPoints);
 
-		const attackComponent = this.querySelector("attack-component") as AttackComponent;
-		data.append(`fields[attacksAndSpells]`, attackComponent.dumpAttacks());
-
 		const request = await fetch(`${location.origin}/actions/entries/save-entry`, {
 			method: "POST",
 			body: data,

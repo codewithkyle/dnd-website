@@ -35,6 +35,7 @@
                         </div>
                     </form-page>
                     
+                    {#
                     <form-page id="appearance" style="width: 100%;display: none;grid-template-columns: minmax(0px, 1fr);gap: 1rem;">
                         <h1 class="font-xl font-grey-800 text-center block">Apperance</h1>
                         
@@ -76,6 +77,7 @@
                             <button data-direction="1" type="button" class="button -solid -primary">Next</button>
                         </div>
                     </form-page>
+                    #}
 
                     <form-page id="abilities" style="width: 100%;display: none;grid-template-columns: minmax(0px, 1fr);gap: 1rem;">
                         <h1 class="font-xl font-grey-800 text-center block">Ability Scores</h1>
@@ -166,10 +168,11 @@
 
                         <div style="display: flex; justify-content: space-between;align-items: center;">
                             <button data-direction="-1" type="button" class="button -outline -alt">Back</button>
-                            <button data-direction="1" type="button" class="button -solid -primary">Next</button>
+                            <button type="submit" class="button -solid -primary">Save Character</button>
                         </div>
                     </form-page>
 
+                    {#
                     <form-page id="attacks" style="width: 100%;display: none;grid-template-columns: minmax(0px, 1fr);gap: 1rem;">
                         <h1 class="font-xl font-grey-800 text-center block">Attacks & Spellcasting</h1>
 
@@ -194,13 +197,9 @@
                                 </i>
                                 <span>Add Attack or Spell</span>
                             </button>
-                        </attack-component>
-
-                        <div style="display: flex; justify-content: space-between;align-items: center;">
-                            <button data-direction="-1" type="button" class="button -outline -alt">Back</button>
-                            <button type="submit" class="button -solid -primary">Save Character</button>
-                        </div>
+                        </attack-component>                        
                     </form-page>
+                    #}
                 </form>
             </character-creator>
         </section>
