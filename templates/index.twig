@@ -11,9 +11,9 @@
                 }).all() %}
                 {% if characters|length %}
                     {% for char in characters %}
-                        <a href="{{ char.url }}" style="display: block;width: 100%;margin-bottom: 2rem;padding: 1rem;">
-                            <span class="block font-primary-700 font-medium">{{ char.title }}</span>
-                            <span class="block font-grey-700 font-sm">{{ char.class }} Lv. {{ char.charLevel }}</span>
+                        <a href="{{ char.url }}" class="block w-full b-1 b-solid b-grey-300 p-1 mb-2">
+                            <span class=" block font-primary-700 font-medium mb-0.25">{{ char.title }}</span>
+                            <span class="block font-grey-700 font-sm">Lv. {{ char.charLevel }} {{ char.class }}</span>
                         </a>
                     {% endfor %}
                 {% else %}

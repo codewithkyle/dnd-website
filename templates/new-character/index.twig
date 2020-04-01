@@ -278,6 +278,24 @@
                         </div>
                     </form-page>
 
+                    <form-page id="lore" style="width: 100%;display: none;grid-template-columns: minmax(0px, 1fr);gap: 1rem;">
+                        <h1 class="font-xl font-grey-800 text-center block">Background & Lore</h1>
+
+                        {{ inputs.textarea("Personality Traits", "fields[personalityTraits]", false) }}
+                        {{ inputs.textarea("Ideals", "fields[ideals]", false) }}
+                        {{ inputs.textarea("Bonds", "fields[bonds]", false) }}
+                        {{ inputs.textarea("Flaws", "fields[flaws]", false) }}
+                        {{ inputs.textarea("Features & Traits", "fields[featuresAndTraits]", false) }}
+                        {{ inputs.textarea("Apperance", "fields[apperance]", false) }}
+                        {{ inputs.textarea("Allies & Organizations", "fields[alliesAndOrganizations]", false) }}
+                        {{ inputs.textarea("Backstory", "fields[backstory]", false) }}
+
+                        <div style="display: flex; justify-content: space-between;align-items: center;">
+                            <button data-direction="-1" type="button" class="button -outline -alt">Back</button>
+                            <button data-direction="1" type="button" class="button -solid -primary">Next</button>
+                        </div>
+                    </form-page>
+
                     <form-page id="abilities" style="width: 100%;display: none;grid-template-columns: minmax(0px, 1fr);gap: 1rem;">
                         <h1 class="font-xl font-grey-800 text-center block">Ability Scores</h1>
 
@@ -341,22 +359,7 @@
                             <button data-direction="-1" type="button" class="button -outline -alt">Back</button>
                             <button data-direction="1" type="button" class="button -solid -primary">Next</button>
                         </div>
-                    </form-page>
-
-                    <form-page id="lore" style="width: 100%;display: none;grid-template-columns: minmax(0px, 1fr);gap: 1rem;">
-                        <h1 class="font-xl font-grey-800 text-center block">Background & Lore</h1>
-
-                        {{ inputs.textarea("Personality Traits", "fields[personalityTraits]", false) }}
-                        {{ inputs.textarea("Ideals", "fields[ideals]", false) }}
-                        {{ inputs.textarea("Bonds", "fields[bonds]", false) }}
-                        {{ inputs.textarea("Flaws", "fields[flaws]", false) }}
-                        {{ inputs.textarea("Features & Traits", "fields[featuresAndTraits]", false) }}
-
-                        <div style="display: flex; justify-content: space-between;align-items: center;">
-                            <button data-direction="-1" type="button" class="button -outline -alt">Back</button>
-                            <button data-direction="1" type="button" class="button -solid -primary">Next</button>
-                        </div>
-                    </form-page>
+                    </form-page>                    
 
                     <form-page id="equipment" style="width: 100%;display: none;grid-template-columns: minmax(0px, 1fr);gap: 1rem;">
                         <h1 class="font-xl font-grey-800 text-center block">Equipment</h1>
@@ -411,20 +414,6 @@
                                 <span>Add Attack or Spell</span>
                             </button>
                         </attack-component>
-
-                        <div style="display: flex; justify-content: space-between;align-items: center;">
-                            <button data-direction="-1" type="button" class="button -outline -alt">Back</button>
-                            <button data-direction="1" type="button" class="button -solid -primary">Next</button>
-                        </div>
-                    </form-page>
-
-                    <form-page style="width: 100%;display: none;grid-template-columns: minmax(0px, 1fr);gap: 1rem;">
-
-                        {{ inputs.textarea("Apperance", "fields[apperance]", false) }}
-
-                        {{ inputs.textarea("Allies & Organizations", "fields[alliesAndOrganizations]", false) }}
-
-                        {{ inputs.textarea("Backstory", "fields[backstory]", false) }}
 
                         <div style="display: flex; justify-content: space-between;align-items: center;">
                             <button data-direction="-1" type="button" class="button -outline -alt">Back</button>

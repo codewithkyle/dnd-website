@@ -1,0 +1,20 @@
+{% extends "_base/page" %}
+
+{% set entry = craft.entries({
+    section: 'characters',
+    id: number
+}).one() %}
+
+{% if currentUser['id'] is not defined or entry.authorId != currentUser.id %}
+    {% redirect siteUrl %}
+{% endif %}
+
+{% block content %}
+    <article style="width:100%;display: block;">
+        <section style="width:100%;display: block;">
+            <div class="bg-white shadow-md p-2 block mx-auto" style="width:1024px;max-width:100%;">
+                {{ entry.title }}
+            </div>
+        </section>
+    </article>
+{% endblock %}

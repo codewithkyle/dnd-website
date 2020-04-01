@@ -1,4 +1,4 @@
-dateModified: 1585702631
+dateModified: 1585703806
 email:
   fromEmail: codingwithkyle@gmail.com
   fromName: Boilerplate
@@ -1602,6 +1602,17 @@ plugins:
     edition: standard
     enabled: true
     schemaVersion: 2.0.0
+routes:
+  b4b0f335-ff96-4011-a82e-9d9339137572:
+    siteUid: null
+    sortOrder: 1
+    template: character/index.twig
+    uriParts:
+      - character/
+      -
+        - number
+        - \d+
+    uriPattern: 'character/<number:\d+>'
 sections:
   3d51e8a8-b0d4-479a-88ac-01b9e5659ac9:
     enableVersioning: true
@@ -1944,9 +1955,9 @@ sections:
     siteSettings:
       3253961c-40ff-4967-bda7-42b923305ae9:
         enabledByDefault: true
-        hasUrls: true
-        template: ''
-        uriFormat: 'character/{slug}'
+        hasUrls: false
+        template: null
+        uriFormat: ''
     type: channel
 siteGroups:
   84de28f8-ac64-4668-b1e5-690daa13fd61:
@@ -1969,13 +1980,22 @@ system:
   timeZone: America/Los_Angeles
 users:
   allowPublicRegistration: false
-  defaultGroup: null
+  defaultGroup: ''
   fieldLayouts:
     30924088-a462-4c79-9173-870b48c4299a:
       tabs:
         -
           name: Common
           sortOrder: 1
-  photoSubpath: ''
+  groups:
+    e2d78d98-22b2-4182-ade0-724db8fc3c92:
+      handle: basic
+      name: Basic
+      permissions:
+        - 'createentries:3d51e8a8-b0d4-479a-88ac-01b9e5659ac9'
+        - 'publishentries:3d51e8a8-b0d4-479a-88ac-01b9e5659ac9'
+        - 'deleteentries:3d51e8a8-b0d4-479a-88ac-01b9e5659ac9'
+        - 'editentries:3d51e8a8-b0d4-479a-88ac-01b9e5659ac9'
+  photoSubpath: null
   photoVolumeUid: null
-  requireEmailVerification: true
+  requireEmailVerification: false

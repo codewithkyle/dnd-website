@@ -215,12 +215,12 @@ class CharacterCreator extends HTMLElement {
 		if (request.ok) {
 			const response = await request.json();
 			// @ts-ignore
-			location.href = `${location.origin}/character/${response.slug}`;
+			location.href = `${location.origin}/character/${response.id}`;
 		} else {
 			const error = await request.text();
 			console.error(error);
+			env.stopLoading(ticket);
 		}
-		env.stopLoading(ticket);
 	};
 
 	private handleButtonClick: EventListener = (e: Event) => {
