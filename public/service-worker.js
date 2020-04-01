@@ -1,32 +1,6 @@
 // @ts-nocheck
 let resourcesCacheId = "resources-initial";
 let contentCacheId = "content-initial";
-self.addEventListener("fetch", (event) => {
-	const isResource = event.request.url.match(/(\.js)$|(\.css)$|(\.mjs)$|(\.cjs)$/gi);
-	if (isResource) {
-		event.respondWith(
-			caches.match(event.request).then((response) => {
-				if (response) {
-					return response;
-				}
-				return fetch(event.request, {
-					redirect: "follow",
-				}).then((response) => {
-					if (!response || response.status !== 200 || response.type !== "basic" || response.headers.get("PWA-Cache") === "no-cache" || response.redirected) {
-						return response;
-					}
-					var responseToCache = response.clone();
-					caches.open(cacheName).then((cache) => {
-						cache.put(event.request, responseToCache);
-					});
-					return response;
-				});
-			})
-		);
-	} else {
-		event.respondWith(event.request);
-	}
-});
 self.addEventListener("message", (event) => {
 	const { type } = event.data;
 	switch (type) {
