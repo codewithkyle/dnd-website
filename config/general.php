@@ -16,7 +16,7 @@ return [
         'cpTrigger'                         => 'webmaster',
         'securityKey'                       => getenv('SECURITY_KEY'),
         'useProjectConfigFile'              => true,
-        'useEmailAsUsername'                => true,
+        'useEmailAsUsername'                => false,
         'setPasswordPath'                   => 'users/set-password',
         'autoLoginAfterAccountActivation'   => true,
         'email'                             => getenv('SYSTEM_EMAIL'),
