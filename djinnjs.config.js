@@ -4,4 +4,5 @@ module.exports = {
 	cachebustURL: "/pwa/cachebust.json",
 	usePercentage: true,
 	disableServiceWorker: true,
+	disablePrefetching: true,
 };
