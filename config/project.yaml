@@ -1,4 +1,4 @@
-dateModified: 1585748776
+dateModified: 1585757640
 email:
   fromEmail: codingwithkyle@gmail.com
   fromName: Boilerplate
@@ -57,6 +57,24 @@ fields:
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\Number
+  0c3103be-63e9-4b89-b351-2318f6d9c882:
+    contentColumnType: text
+    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    handle: level4Spells
+    instructions: ''
+    name: 'Level 4 Spells'
+    searchable: true
+    settings:
+      byteLimit: null
+      charLimit: null
+      code: '1'
+      columnType: null
+      initialRows: '4'
+      multiline: ''
+      placeholder: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\PlainText
   0e3c9c5d-1cae-48be-92cb-c04f3952465f:
     contentColumnType: boolean
     fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
@@ -206,6 +224,24 @@ fields:
       byteLimit: null
       charLimit: null
       code: ''
+      columnType: null
+      initialRows: '4'
+      multiline: ''
+      placeholder: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\PlainText
+  246b62e4-8c6f-4456-ac57-33f5272cea3a:
+    contentColumnType: text
+    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    handle: level6Spells
+    instructions: ''
+    name: 'Level 6 Spells'
+    searchable: true
+    settings:
+      byteLimit: null
+      charLimit: null
+      code: '1'
       columnType: null
       initialRows: '4'
       multiline: ''
@@ -363,6 +399,24 @@ fields:
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\PlainText
+  37e8e31f-1b7f-4d7f-8d2d-4d8db92c7ef4:
+    contentColumnType: text
+    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    handle: level8Spells
+    instructions: ''
+    name: 'Level 8 Spells'
+    searchable: true
+    settings:
+      byteLimit: null
+      charLimit: null
+      code: '1'
+      columnType: null
+      initialRows: '4'
+      multiline: ''
+      placeholder: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\PlainText
   38906d4f-79d2-4d5e-9055-a8aa8f8f4029:
     contentColumnType: text
     fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
@@ -435,6 +489,24 @@ fields:
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\Number
+  4a05a818-4ec8-4ab4-964a-81454050ddd0:
+    contentColumnType: text
+    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    handle: level1Spells
+    instructions: ''
+    name: 'Level 1 Spells'
+    searchable: true
+    settings:
+      byteLimit: null
+      charLimit: null
+      code: '1'
+      columnType: null
+      initialRows: '4'
+      multiline: ''
+      placeholder: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\PlainText
   4a0b27c3-762d-4c32-a640-b000476329ff:
     contentColumnType: boolean
     fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
@@ -656,6 +728,24 @@ fields:
       byteLimit: null
       charLimit: null
       code: ''
+      columnType: null
+      initialRows: '4'
+      multiline: ''
+      placeholder: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\PlainText
+  5ddea5bb-7386-4513-a3b9-7a32bd075c94:
+    contentColumnType: text
+    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    handle: level2Spells
+    instructions: ''
+    name: 'Level 2 Spells'
+    searchable: true
+    settings:
+      byteLimit: null
+      charLimit: null
+      code: '1'
       columnType: null
       initialRows: '4'
       multiline: ''
@@ -903,6 +993,24 @@ fields:
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\Number
+  82e6fff6-fcc8-4e42-bdb1-cd5a3ea7bf7f:
+    contentColumnType: text
+    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    handle: level3Spells
+    instructions: ''
+    name: 'Level 3 Spells'
+    searchable: true
+    settings:
+      byteLimit: null
+      charLimit: null
+      code: '1'
+      columnType: null
+      initialRows: '4'
+      multiline: ''
+      placeholder: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\PlainText
   8614def5-7fbd-4ba4-8f14-f73be6102fc7:
     contentColumnType: text
     fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
@@ -1371,6 +1479,24 @@ fields:
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\PlainText
+  d0ccb3d0-2ac8-4a23-a639-9f2d64ce7ee0:
+    contentColumnType: text
+    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    handle: level9Spells
+    instructions: ''
+    name: 'Level 9 Spells'
+    searchable: true
+    settings:
+      byteLimit: null
+      charLimit: null
+      code: '1'
+      columnType: null
+      initialRows: '4'
+      multiline: ''
+      placeholder: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\PlainText
   d33b8b80-ac32-4cf0-ab1a-a473d760e61e:
     contentColumnType: integer(10)
     fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
@@ -1437,6 +1563,24 @@ fields:
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\Lightswitch
+  d99b0d84-7b1f-473d-9142-c3a4c58fd41d:
+    contentColumnType: text
+    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    handle: level5Spells
+    instructions: ''
+    name: 'Level 5 Spells'
+    searchable: true
+    settings:
+      byteLimit: null
+      charLimit: null
+      code: '1'
+      columnType: null
+      initialRows: '4'
+      multiline: ''
+      placeholder: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\PlainText
   dcc4ce53-3e91-43c0-b04c-a3eb3a0ee5be:
     contentColumnType: integer(10)
     fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
@@ -1503,6 +1647,24 @@ fields:
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\Number
+  f019cbec-2f07-4c8e-a281-3380af122533:
+    contentColumnType: text
+    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    handle: level7Spells
+    instructions: ''
+    name: 'Level 7 Spells'
+    searchable: true
+    settings:
+      byteLimit: null
+      charLimit: null
+      code: '1'
+      columnType: null
+      initialRows: '4'
+      multiline: ''
+      placeholder: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\PlainText
   f1885df5-1e09-44f0-891f-e4dd75f357de:
     contentColumnType: integer(10)
     fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
@@ -1607,6 +1769,24 @@ fields:
       columnType: null
       initialRows: '4'
       multiline: '1'
+      placeholder: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\PlainText
+  feecfa59-31ed-4263-9e10-16f5dc8a679f:
+    contentColumnType: text
+    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    handle: cantrips
+    instructions: ''
+    name: Cantrips
+    searchable: true
+    settings:
+      byteLimit: null
+      charLimit: null
+      code: '1'
+      columnType: null
+      initialRows: '4'
+      multiline: ''
       placeholder: ''
     translationKeyFormat: null
     translationMethod: none
@@ -1978,6 +2158,40 @@ sections:
                     sortOrder: 1
                 name: Attacks
                 sortOrder: 10
+              -
+                fields:
+                  0c3103be-63e9-4b89-b351-2318f6d9c882:
+                    required: false
+                    sortOrder: 5
+                  246b62e4-8c6f-4456-ac57-33f5272cea3a:
+                    required: false
+                    sortOrder: 7
+                  37e8e31f-1b7f-4d7f-8d2d-4d8db92c7ef4:
+                    required: false
+                    sortOrder: 9
+                  4a05a818-4ec8-4ab4-964a-81454050ddd0:
+                    required: false
+                    sortOrder: 2
+                  5ddea5bb-7386-4513-a3b9-7a32bd075c94:
+                    required: false
+                    sortOrder: 3
+                  82e6fff6-fcc8-4e42-bdb1-cd5a3ea7bf7f:
+                    required: false
+                    sortOrder: 4
+                  d0ccb3d0-2ac8-4a23-a639-9f2d64ce7ee0:
+                    required: false
+                    sortOrder: 10
+                  d99b0d84-7b1f-473d-9142-c3a4c58fd41d:
+                    required: false
+                    sortOrder: 6
+                  f019cbec-2f07-4c8e-a281-3380af122533:
+                    required: false
+                    sortOrder: 8
+                  feecfa59-31ed-4263-9e10-16f5dc8a679f:
+                    required: false
+                    sortOrder: 1
+                name: Spellbook
+                sortOrder: 11
         handle: characters
         hasTitleField: true
         name: Characters
