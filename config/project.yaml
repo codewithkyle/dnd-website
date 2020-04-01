@@ -1,4 +1,4 @@
-dateModified: 1585698600
+dateModified: 1585702631
 email:
   fromEmail: codingwithkyle@gmail.com
   fromName: Boilerplate
@@ -141,6 +141,24 @@ fields:
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\Number
+  210ef2b5-15f3-4a27-8983-4f742bddc1ba:
+    contentColumnType: text
+    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    handle: height
+    instructions: ''
+    name: Height
+    searchable: true
+    settings:
+      byteLimit: null
+      charLimit: null
+      code: ''
+      columnType: null
+      initialRows: '4'
+      multiline: ''
+      placeholder: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\PlainText
   224fd7cd-0613-42ac-8082-1700a37171a4:
     contentColumnType: integer(10)
     fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
@@ -159,6 +177,24 @@ fields:
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\Number
+  23f8931d-1ad0-4a93-8823-7ac2ce5d7c5d:
+    contentColumnType: text
+    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    handle: age
+    instructions: ''
+    name: Age
+    searchable: true
+    settings:
+      byteLimit: null
+      charLimit: null
+      code: ''
+      columnType: null
+      initialRows: '4'
+      multiline: ''
+      placeholder: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\PlainText
   25f8b64b-4c13-4243-94b7-299e1f09652f:
     contentColumnType: integer(10)
     fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
@@ -195,6 +231,24 @@ fields:
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\Number
+  2a6ec182-50f7-4503-9d7d-d9e6a7b80254:
+    contentColumnType: text
+    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    handle: apperance
+    instructions: ''
+    name: Apperance
+    searchable: true
+    settings:
+      byteLimit: null
+      charLimit: null
+      code: ''
+      columnType: null
+      initialRows: '4'
+      multiline: '1'
+      placeholder: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\PlainText
   2f3c6ad4-62d0-4ef4-b831-f0208d2b3c0f:
     contentColumnType: boolean
     fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
@@ -261,6 +315,24 @@ fields:
     handle: hitDice
     instructions: ''
     name: 'Hit Dice'
+    searchable: true
+    settings:
+      byteLimit: null
+      charLimit: null
+      code: ''
+      columnType: null
+      initialRows: '4'
+      multiline: ''
+      placeholder: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\PlainText
+  38906d4f-79d2-4d5e-9055-a8aa8f8f4029:
+    contentColumnType: text
+    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    handle: skin
+    instructions: ''
+    name: Skin
     searchable: true
     settings:
       byteLimit: null
@@ -399,6 +471,24 @@ fields:
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\Lightswitch
+  53ebc48b-37e5-4ad8-9fbe-7e91c8cc6913:
+    contentColumnType: text
+    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    handle: alliesAndOrganizations
+    instructions: ''
+    name: 'Allies and Organizations'
+    searchable: true
+    settings:
+      byteLimit: null
+      charLimit: null
+      code: ''
+      columnType: null
+      initialRows: '4'
+      multiline: '1'
+      placeholder: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\PlainText
   5510ce89-571f-48c9-be2d-4c8b746379e7:
     contentColumnType: integer(10)
     fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
@@ -483,6 +573,24 @@ fields:
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\Number
+  591d3cd8-f8bf-45ea-825f-d68edf9b1c4a:
+    contentColumnType: text
+    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    handle: attacksAndSpells
+    instructions: ''
+    name: 'Attacks and Spells'
+    searchable: true
+    settings:
+      byteLimit: null
+      charLimit: null
+      code: '1'
+      columnType: null
+      initialRows: '4'
+      multiline: ''
+      placeholder: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\PlainText
   5b1ddac8-9b65-4d74-ba6e-42c11e58ed4b:
     contentColumnType: integer(10)
     fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
@@ -501,6 +609,24 @@ fields:
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\Number
+  5bd5d5cf-345d-4d0f-ac6d-a1eed8b33e73:
+    contentColumnType: text
+    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    handle: eyes
+    instructions: ''
+    name: Eyes
+    searchable: true
+    settings:
+      byteLimit: null
+      charLimit: null
+      code: ''
+      columnType: null
+      initialRows: '4'
+      multiline: ''
+      placeholder: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\PlainText
   5ff37c04-16a6-4bce-ab98-c95e01b6a29d:
     contentColumnType: integer(10)
     fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
@@ -621,6 +747,24 @@ fields:
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\Lightswitch
+  71abcf7b-630d-47a6-9668-028d022fc950:
+    contentColumnType: text
+    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    handle: weight
+    instructions: ''
+    name: Weight
+    searchable: true
+    settings:
+      byteLimit: null
+      charLimit: null
+      code: ''
+      columnType: null
+      initialRows: '4'
+      multiline: ''
+      placeholder: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\PlainText
   735ba638-5d03-4ee2-b9f0-770d2b90775c:
     contentColumnType: integer(10)
     fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
@@ -935,6 +1079,24 @@ fields:
       columnType: null
       initialRows: '4'
       multiline: '1'
+      placeholder: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\PlainText
+  9f034a65-41ce-43a0-9cc6-d11c20b42a74:
+    contentColumnType: text
+    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    handle: hair
+    instructions: ''
+    name: Hair
+    searchable: true
+    settings:
+      byteLimit: null
+      charLimit: null
+      code: ''
+      columnType: null
+      initialRows: '4'
+      multiline: ''
       placeholder: ''
     translationKeyFormat: null
     translationMethod: none
@@ -1395,6 +1557,24 @@ fields:
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\Number
+  faac3b1d-36f3-4f88-9a73-a2592c965518:
+    contentColumnType: text
+    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    handle: backstory
+    instructions: ''
+    name: Backstory
+    searchable: true
+    settings:
+      byteLimit: null
+      charLimit: null
+      code: ''
+      columnType: null
+      initialRows: '4'
+      multiline: '1'
+      placeholder: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\PlainText
   fd4338e6-2ae4-47cb-a744-c083c966c007:
     contentColumnType: text
     fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
@@ -1666,23 +1846,54 @@ sections:
                 sortOrder: 6
               -
                 fields:
+                  210ef2b5-15f3-4a27-8983-4f742bddc1ba:
+                    required: false
+                    sortOrder: 4
+                  23f8931d-1ad0-4a93-8823-7ac2ce5d7c5d:
+                    required: false
+                    sortOrder: 1
+                  38906d4f-79d2-4d5e-9055-a8aa8f8f4029:
+                    required: false
+                    sortOrder: 5
+                  5bd5d5cf-345d-4d0f-ac6d-a1eed8b33e73:
+                    required: false
+                    sortOrder: 2
+                  71abcf7b-630d-47a6-9668-028d022fc950:
+                    required: false
+                    sortOrder: 6
+                  9f034a65-41ce-43a0-9cc6-d11c20b42a74:
+                    required: false
+                    sortOrder: 3
+                name: Appearance
+                sortOrder: 7
+              -
+                fields:
                   01076d45-d801-42e4-86af-abb364b06e31:
                     required: false
                     sortOrder: 1
+                  2a6ec182-50f7-4503-9d7d-d9e6a7b80254:
+                    required: false
+                    sortOrder: 7
                   34fb6ce6-6cff-43eb-b6ab-57907a84c242:
                     required: false
                     sortOrder: 5
+                  53ebc48b-37e5-4ad8-9fbe-7e91c8cc6913:
+                    required: false
+                    sortOrder: 6
                   57d07f04-94ca-4af1-91d6-cd170d0dc4fc:
                     required: false
                     sortOrder: 4
                   d436f4e0-c992-41e2-9e1f-56e708e8230c:
                     required: false
                     sortOrder: 2
+                  faac3b1d-36f3-4f88-9a73-a2592c965518:
+                    required: false
+                    sortOrder: 8
                   fd4338e6-2ae4-47cb-a744-c083c966c007:
                     required: false
                     sortOrder: 3
                 name: Background
-                sortOrder: 7
+                sortOrder: 8
               -
                 fields:
                   14421814-1d3e-41ad-8f5e-e50faf18ac92:
@@ -1713,7 +1924,14 @@ sections:
                     required: false
                     sortOrder: 8
                 name: Equipment
-                sortOrder: 8
+                sortOrder: 9
+              -
+                fields:
+                  591d3cd8-f8bf-45ea-825f-d68edf9b1c4a:
+                    required: false
+                    sortOrder: 1
+                name: Attacks
+                sortOrder: 10
         handle: characters
         hasTitleField: true
         name: Characters

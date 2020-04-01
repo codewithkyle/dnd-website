@@ -19,7 +19,7 @@ class CharacterCreator extends HTMLElement {
 		super();
 		this.page = 0;
 		this.form = this.querySelector("form");
-		this.buttons = Array.from(this.querySelectorAll(`button[type="button"`));
+		this.buttons = Array.from(this.querySelectorAll(`button[type="button"][data-direction]`));
 		this.pages = Array.from(this.querySelectorAll("form-page"));
 		this.classInput = this.querySelector('select[name="fields[class]"]');
 		this.modifiers = {
@@ -200,6 +200,9 @@ class CharacterCreator extends HTMLElement {
 		const hitPoints = this.getHitPoints();
 		data.append(`fields[currentHitPoints]`, hitPoints);
 		data.append(`fields[maximumHitPoints]`, hitPoints);
+
+		const attackComponent = this.querySelector("attack-component") as AttackComponent;
+		data.append(`fields[attacksAndSpells]`, attackComponent.dumpAttacks());
 
 		const request = await fetch(`${location.origin}/actions/entries/save-entry`, {
 			method: "POST",

@@ -253,6 +253,30 @@
                             <button data-direction="1" type="button" class="button -solid -primary">Next</button>
                         </div>
                     </form-page>
+                    
+                    <form-page id="appearance" style="width: 100%;display: none;grid-template-columns: minmax(0px, 1fr);gap: 1rem;">
+                        <h1 class="font-xl font-grey-800 text-center block">Apperance</h1>
+                        
+                        <div grid="columns 2 gap-1">
+                            {{ inputs.text("Age", "fields[age]", false) }}
+                            {{ inputs.text("Eyes", "fields[eyes]", false) }}
+                        </div>
+
+                        <div grid="columns 2 gap-1">
+                            {{ inputs.text("Hair", "fields[hair]", false) }}
+                            {{ inputs.text("Height", "fields[height]", false) }}
+                        </div>
+
+                        <div grid="columns 2 gap-1">
+                            {{ inputs.text("Skin", "fields[skin]", false) }}
+                            {{ inputs.text("Weight", "fields[weight]", false) }}
+                        </div>
+
+                        <div style="display: flex; justify-content: space-between;align-items: center;">
+                            <button data-direction="-1" type="button" class="button -outline -alt">Back</button>
+                            <button data-direction="1" type="button" class="button -solid -primary">Next</button>
+                        </div>
+                    </form-page>
 
                     <form-page id="abilities" style="width: 100%;display: none;grid-template-columns: minmax(0px, 1fr);gap: 1rem;">
                         <h1 class="font-xl font-grey-800 text-center block">Ability Scores</h1>
@@ -319,7 +343,7 @@
                         </div>
                     </form-page>
 
-                    <form-page id="skills" style="width: 100%;display: none;grid-template-columns: minmax(0px, 1fr);gap: 1rem;">
+                    <form-page id="lore" style="width: 100%;display: none;grid-template-columns: minmax(0px, 1fr);gap: 1rem;">
                         <h1 class="font-xl font-grey-800 text-center block">Background & Lore</h1>
 
                         {{ inputs.textarea("Personality Traits", "fields[personalityTraits]", false) }}
@@ -334,7 +358,7 @@
                         </div>
                     </form-page>
 
-                    <form-page id="skills" style="width: 100%;display: none;grid-template-columns: minmax(0px, 1fr);gap: 1rem;">
+                    <form-page id="equipment" style="width: 100%;display: none;grid-template-columns: minmax(0px, 1fr);gap: 1rem;">
                         <h1 class="font-xl font-grey-800 text-center block">Equipment</h1>
 
                         <p class="font-grey-700 font-sm line-normal">
@@ -362,7 +386,46 @@
                         </div>
                     </form-page>
 
+                    <form-page id="attacks" style="width: 100%;display: none;grid-template-columns: minmax(0px, 1fr);gap: 1rem;">
+                        <h1 class="font-xl font-grey-800 text-center block">Attacks & Spellcasting</h1>
+
+                        <p class="font-grey-700 font-sm line-normal">
+                            Check your class and your equipment to determine what weapons or spells you have available. Refer to the <a target="_blank" class="font-primary-700" href="https://www.5thsrd.org/#character">Handbook</a> for additional information.
+                        </p>
+
+                        <attack-component loading="eager" web-component lazy-load-css="attack-component">
+                            <table class="w-full" style="display: none;">
+                                <thead class="block w-full mb-0.5">
+                                    <tr class="block w-full" grid="columns 3 gap-1">
+                                        <th class="pl-0.5 text-left font-regular font-grey-700 font-xs">Name</th>
+                                        <th class="pl-0.5 text-left font-regular font-grey-700 font-xs">Attack Bonus</th>
+                                        <th class="pl-0.5 text-left font-regular font-grey-700 font-xs">Damage/Type</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                            <button type="button">
+                                <i>
+                                    <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="plus" class="svg-inline--fa fa-plus fa-w-12" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="currentColor" d="M368 224H224V80c0-8.84-7.16-16-16-16h-32c-8.84 0-16 7.16-16 16v144H16c-8.84 0-16 7.16-16 16v32c0 8.84 7.16 16 16 16h144v144c0 8.84 7.16 16 16 16h32c8.84 0 16-7.16 16-16V288h144c8.84 0 16-7.16 16-16v-32c0-8.84-7.16-16-16-16z"></path></svg>
+                                </i>
+                                <span>Add Attack or Spell</span>
+                            </button>
+                        </attack-component>
+
+                        <div style="display: flex; justify-content: space-between;align-items: center;">
+                            <button data-direction="-1" type="button" class="button -outline -alt">Back</button>
+                            <button data-direction="1" type="button" class="button -solid -primary">Next</button>
+                        </div>
+                    </form-page>
+
                     <form-page style="width: 100%;display: none;grid-template-columns: minmax(0px, 1fr);gap: 1rem;">
+
+                        {{ inputs.textarea("Apperance", "fields[apperance]", false) }}
+
+                        {{ inputs.textarea("Allies & Organizations", "fields[alliesAndOrganizations]", false) }}
+
+                        {{ inputs.textarea("Backstory", "fields[backstory]", false) }}
+
                         <div style="display: flex; justify-content: space-between;align-items: center;">
                             <button data-direction="-1" type="button" class="button -outline -alt">Back</button>
                             <button type="submit" class="button -solid -primary">Save Character</button>
