@@ -1,4 +1,4 @@
-dateModified: 1585757640
+dateModified: 1585768157
 email:
   fromEmail: codingwithkyle@gmail.com
   fromName: Boilerplate
@@ -75,6 +75,24 @@ fields:
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\PlainText
+  0e0b6774-2e1b-4f6f-a918-be69aec278bd:
+    contentColumnType: integer(10)
+    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    handle: expendedLevel1Slots
+    instructions: ''
+    name: 'Expended Level 1 Slots'
+    searchable: true
+    settings:
+      decimals: 0
+      defaultValue: '0'
+      max: null
+      min: '0'
+      prefix: ''
+      size: null
+      suffix: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Number
   0e3c9c5d-1cae-48be-92cb-c04f3952465f:
     contentColumnType: boolean
     fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
@@ -87,6 +105,24 @@ fields:
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\Lightswitch
+  0f8d465c-72f9-473b-a0b4-3e574771f0fa:
+    contentColumnType: integer(10)
+    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    handle: expendedLevel5Slots
+    instructions: ''
+    name: 'Expended Level 5 Slots'
+    searchable: true
+    settings:
+      decimals: 0
+      defaultValue: '0'
+      max: null
+      min: '0'
+      prefix: ''
+      size: null
+      suffix: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Number
   12394b2b-8b48-478e-8bb0-9e0b13793d8e:
     contentColumnType: text
     fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
@@ -105,12 +141,66 @@ fields:
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\PlainText
+  12bcf3f3-e15b-416c-bd09-54df004273f4:
+    contentColumnType: integer(10)
+    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    handle: expendedLevel9Slots
+    instructions: ''
+    name: 'Expended Level 9 Slots'
+    searchable: true
+    settings:
+      decimals: 0
+      defaultValue: '0'
+      max: null
+      min: '0'
+      prefix: ''
+      size: null
+      suffix: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Number
+  143d3a40-2fbc-4f2c-9b81-81050da7ccb4:
+    contentColumnType: integer(10)
+    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    handle: totalLevel8Slots
+    instructions: ''
+    name: 'Total Level 8 Slots'
+    searchable: true
+    settings:
+      decimals: 0
+      defaultValue: null
+      max: null
+      min: '0'
+      prefix: ''
+      size: null
+      suffix: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Number
   14421814-1d3e-41ad-8f5e-e50faf18ac92:
     contentColumnType: integer(10)
     fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
     handle: silverCoins
     instructions: ''
     name: 'Silver Coins'
+    searchable: true
+    settings:
+      decimals: 0
+      defaultValue: null
+      max: null
+      min: '0'
+      prefix: ''
+      size: null
+      suffix: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Number
+  15b53ce4-bcaa-46be-a30a-c0dfc901d4bf:
+    contentColumnType: integer(10)
+    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    handle: totalLevel4Slots
+    instructions: ''
+    name: 'Total Level 4 Slots'
     searchable: true
     settings:
       decimals: 0
@@ -135,6 +225,24 @@ fields:
       defaultValue: null
       max: null
       min: '-10'
+      prefix: ''
+      size: null
+      suffix: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Number
+  18988618-853d-4e37-8233-6eeb661dd354:
+    contentColumnType: integer(10)
+    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    handle: totalLevel6Slots
+    instructions: ''
+    name: 'Total Level 6 Slots'
+    searchable: true
+    settings:
+      decimals: 0
+      defaultValue: null
+      max: null
+      min: '0'
       prefix: ''
       size: null
       suffix: ''
@@ -471,6 +579,24 @@ fields:
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\Number
+  47c169f9-8c41-471e-a068-810f714dcfde:
+    contentColumnType: integer(10)
+    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    handle: expendedLevel3Slots
+    instructions: ''
+    name: 'Expended Level 3 Slots'
+    searchable: true
+    settings:
+      decimals: 0
+      defaultValue: '0'
+      max: null
+      min: '0'
+      prefix: ''
+      size: null
+      suffix: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Number
   48101cdf-b572-4e6c-8bf5-0137f5573ae5:
     contentColumnType: integer(10)
     fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
@@ -597,6 +723,24 @@ fields:
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\PlainText
+  5476a72c-20a5-498f-92f2-f3a91cb3de9f:
+    contentColumnType: integer(10)
+    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    handle: totalLevel3Slots
+    instructions: ''
+    name: 'Total Level 3 Slots'
+    searchable: true
+    settings:
+      decimals: 0
+      defaultValue: null
+      max: null
+      min: '0'
+      prefix: ''
+      size: null
+      suffix: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Number
   5510ce89-571f-48c9-be2d-4c8b746379e7:
     contentColumnType: integer(10)
     fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
@@ -843,6 +987,42 @@ fields:
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\Number
+  6fb8a6d2-9d02-43d8-b859-1f366ef803d7:
+    contentColumnType: integer(10)
+    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    handle: totalLevel9Slots
+    instructions: ''
+    name: 'Total Level 9 Slots'
+    searchable: true
+    settings:
+      decimals: 0
+      defaultValue: null
+      max: null
+      min: '0'
+      prefix: ''
+      size: null
+      suffix: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Number
+  6ffb1731-dd5a-4c37-8f4d-31b02b814c13:
+    contentColumnType: integer(10)
+    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    handle: expendedLevel8Slots
+    instructions: ''
+    name: 'Expended Level 8 Slots'
+    searchable: true
+    settings:
+      decimals: 0
+      defaultValue: '0'
+      max: null
+      min: '0'
+      prefix: ''
+      size: null
+      suffix: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Number
   70671d44-63ad-4e27-8857-1a793322e869:
     contentColumnType: integer(10)
     fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
@@ -855,6 +1035,24 @@ fields:
       defaultValue: null
       max: null
       min: '-10'
+      prefix: ''
+      size: null
+      suffix: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Number
+  709d2f7d-c0f5-46f7-b1a4-97c3f741db4f:
+    contentColumnType: integer(10)
+    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    handle: totalLevel1Slots
+    instructions: ''
+    name: 'Total Level 1 Slots'
+    searchable: true
+    settings:
+      decimals: 0
+      defaultValue: null
+      max: null
+      min: '0'
       prefix: ''
       size: null
       suffix: ''
@@ -1011,6 +1209,24 @@ fields:
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\PlainText
+  84e15c00-998a-4999-8635-b59083087da1:
+    contentColumnType: integer(10)
+    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    handle: expendedLevel7Slots
+    instructions: ''
+    name: 'Expended Level 7 Slots'
+    searchable: true
+    settings:
+      decimals: 0
+      defaultValue: '0'
+      max: null
+      min: '0'
+      prefix: ''
+      size: null
+      suffix: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Number
   8614def5-7fbd-4ba4-8f14-f73be6102fc7:
     contentColumnType: text
     fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
@@ -1245,6 +1461,24 @@ fields:
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\PlainText
+  a16904a8-4386-475c-ad8a-465eb40b32e9:
+    contentColumnType: integer(10)
+    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    handle: totalLevel2Slots
+    instructions: ''
+    name: 'Total Level 2 Slots'
+    searchable: true
+    settings:
+      decimals: 0
+      defaultValue: null
+      max: null
+      min: '0'
+      prefix: ''
+      size: null
+      suffix: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Number
   a2fcaf49-c34e-4eb1-b48e-b1a37426d269:
     contentColumnType: integer(10)
     fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
@@ -1413,6 +1647,24 @@ fields:
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\Number
+  c0516690-b30e-4588-9286-6ce7d5739fa7:
+    contentColumnType: integer(10)
+    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    handle: totalLevel5Slots
+    instructions: ''
+    name: 'Total Level 5 Slots'
+    searchable: true
+    settings:
+      decimals: 0
+      defaultValue: null
+      max: null
+      min: '0'
+      prefix: ''
+      size: null
+      suffix: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Number
   c60ac919-bcc2-4033-98db-c7b7ce052456:
     contentColumnType: integer(10)
     fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
@@ -1497,6 +1749,24 @@ fields:
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\PlainText
+  d238a7bb-6c39-4748-a0ad-508bb2dbe282:
+    contentColumnType: integer(10)
+    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    handle: expendedLevel2Slots
+    instructions: ''
+    name: 'Expended Level 2 Slots'
+    searchable: true
+    settings:
+      decimals: 0
+      defaultValue: '0'
+      max: null
+      min: '0'
+      prefix: ''
+      size: null
+      suffix: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Number
   d33b8b80-ac32-4cf0-ab1a-a473d760e61e:
     contentColumnType: integer(10)
     fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
@@ -1683,6 +1953,42 @@ fields:
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\Number
+  f3f7fb3b-bbdd-4ec2-b47e-bf493d2508fa:
+    contentColumnType: integer(10)
+    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    handle: expendedLevel6Slots
+    instructions: ''
+    name: 'Expended Level 6 Slots'
+    searchable: true
+    settings:
+      decimals: 0
+      defaultValue: '0'
+      max: null
+      min: '0'
+      prefix: ''
+      size: null
+      suffix: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Number
+  f54ebf27-90be-4176-8a0d-36f1502ed76b:
+    contentColumnType: integer(10)
+    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    handle: totalLevel7Slots
+    instructions: ''
+    name: 'Total Level 7 Slots'
+    searchable: true
+    settings:
+      decimals: 0
+      defaultValue: null
+      max: null
+      min: '0'
+      prefix: ''
+      size: null
+      suffix: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Number
   f7fab425-96ae-4e66-8a02-94778b542e93:
     contentColumnType: text
     fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
@@ -1773,6 +2079,24 @@ fields:
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\PlainText
+  fe86b66c-8811-4552-a07a-dbc3345e673f:
+    contentColumnType: integer(10)
+    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    handle: expendedLevel4Slots
+    instructions: ''
+    name: 'Expended Level 4 Slots'
+    searchable: true
+    settings:
+      decimals: 0
+      defaultValue: '0'
+      max: null
+      min: '0'
+      prefix: ''
+      size: null
+      suffix: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Number
   feecfa59-31ed-4263-9e10-16f5dc8a679f:
     contentColumnType: text
     fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
@@ -1953,6 +2277,64 @@ sections:
                 sortOrder: 4
               -
                 fields:
+                  0e0b6774-2e1b-4f6f-a918-be69aec278bd:
+                    required: false
+                    sortOrder: 1
+                  0f8d465c-72f9-473b-a0b4-3e574771f0fa:
+                    required: false
+                    sortOrder: 5
+                  12bcf3f3-e15b-416c-bd09-54df004273f4:
+                    required: false
+                    sortOrder: 9
+                  143d3a40-2fbc-4f2c-9b81-81050da7ccb4:
+                    required: false
+                    sortOrder: 17
+                  15b53ce4-bcaa-46be-a30a-c0dfc901d4bf:
+                    required: false
+                    sortOrder: 13
+                  18988618-853d-4e37-8233-6eeb661dd354:
+                    required: false
+                    sortOrder: 15
+                  47c169f9-8c41-471e-a068-810f714dcfde:
+                    required: false
+                    sortOrder: 3
+                  5476a72c-20a5-498f-92f2-f3a91cb3de9f:
+                    required: false
+                    sortOrder: 12
+                  6fb8a6d2-9d02-43d8-b859-1f366ef803d7:
+                    required: false
+                    sortOrder: 18
+                  6ffb1731-dd5a-4c37-8f4d-31b02b814c13:
+                    required: false
+                    sortOrder: 8
+                  709d2f7d-c0f5-46f7-b1a4-97c3f741db4f:
+                    required: false
+                    sortOrder: 10
+                  84e15c00-998a-4999-8635-b59083087da1:
+                    required: false
+                    sortOrder: 7
+                  a16904a8-4386-475c-ad8a-465eb40b32e9:
+                    required: false
+                    sortOrder: 11
+                  c0516690-b30e-4588-9286-6ce7d5739fa7:
+                    required: false
+                    sortOrder: 14
+                  d238a7bb-6c39-4748-a0ad-508bb2dbe282:
+                    required: false
+                    sortOrder: 2
+                  f3f7fb3b-bbdd-4ec2-b47e-bf493d2508fa:
+                    required: false
+                    sortOrder: 6
+                  f54ebf27-90be-4176-8a0d-36f1502ed76b:
+                    required: false
+                    sortOrder: 16
+                  fe86b66c-8811-4552-a07a-dbc3345e673f:
+                    required: false
+                    sortOrder: 4
+                name: 'Spell Slots'
+                sortOrder: 5
+              -
+                fields:
                   5510ce89-571f-48c9-be2d-4c8b746379e7:
                     required: false
                     sortOrder: 10
@@ -2011,7 +2393,7 @@ sections:
                     required: false
                     sortOrder: 4
                 name: Skills
-                sortOrder: 5
+                sortOrder: 6
               -
                 fields:
                   0044dd61-5dca-48c9-b535-504faa029a65:
@@ -2069,7 +2451,7 @@ sections:
                     required: false
                     sortOrder: 13
                 name: 'Skill Proficiencies'
-                sortOrder: 6
+                sortOrder: 7
               -
                 fields:
                   210ef2b5-15f3-4a27-8983-4f742bddc1ba:
@@ -2091,7 +2473,7 @@ sections:
                     required: false
                     sortOrder: 3
                 name: Appearance
-                sortOrder: 7
+                sortOrder: 8
               -
                 fields:
                   01076d45-d801-42e4-86af-abb364b06e31:
@@ -2119,7 +2501,7 @@ sections:
                     required: false
                     sortOrder: 3
                 name: Background
-                sortOrder: 8
+                sortOrder: 9
               -
                 fields:
                   14421814-1d3e-41ad-8f5e-e50faf18ac92:
@@ -2150,14 +2532,14 @@ sections:
                     required: false
                     sortOrder: 8
                 name: Equipment
-                sortOrder: 9
+                sortOrder: 10
               -
                 fields:
                   591d3cd8-f8bf-45ea-825f-d68edf9b1c4a:
                     required: false
                     sortOrder: 1
                 name: Attacks
-                sortOrder: 10
+                sortOrder: 11
               -
                 fields:
                   0c3103be-63e9-4b89-b351-2318f6d9c882:
@@ -2191,7 +2573,7 @@ sections:
                     required: false
                     sortOrder: 1
                 name: Spellbook
-                sortOrder: 11
+                sortOrder: 12
         handle: characters
         hasTitleField: true
         name: Characters

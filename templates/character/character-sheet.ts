@@ -44,6 +44,36 @@ class CharacterSheet extends HTMLElement {
 		const attackComponent = this.querySelector("attack-component") as AttackComponent;
 		data.append(`fields[attacksAndSpells]`, attackComponent.dumpAttacks());
 
+		const cantripsComponent = this.querySelector("#cantrip-spellbook") as SpellComponent;
+		data.append(`fields[cantrips]`, cantripsComponent.dumpData());
+
+		const level1Spells = this.querySelector("#level-1-spellbook") as SpellComponent;
+		data.append(`fields[level1Spells]`, level1Spells.dumpData());
+
+		const level2Spells = this.querySelector("#level-2-spellbook") as SpellComponent;
+		data.append(`fields[level2Spells]`, level2Spells.dumpData());
+
+		const level3Spells = this.querySelector("#level-3-spellbook") as SpellComponent;
+		data.append(`fields[level3Spells]`, level3Spells.dumpData());
+
+		const level4Spells = this.querySelector("#level-4-spellbook") as SpellComponent;
+		data.append(`fields[level4Spells]`, level4Spells.dumpData());
+
+		const level5Spells = this.querySelector("#level-5-spellbook") as SpellComponent;
+		data.append(`fields[level5Spells]`, level5Spells.dumpData());
+
+		const level6Spells = this.querySelector("#level-6-spellbook") as SpellComponent;
+		data.append(`fields[level6Spells]`, level6Spells.dumpData());
+
+		const level7Spells = this.querySelector("#level-7-spellbook") as SpellComponent;
+		data.append(`fields[level7Spells]`, level7Spells.dumpData());
+
+		const level8Spells = this.querySelector("#level-8-spellbook") as SpellComponent;
+		data.append(`fields[level8Spells]`, level8Spells.dumpData());
+
+		const level9Spells = this.querySelector("#level-9-spellbook") as SpellComponent;
+		data.append(`fields[level9Spells]`, level9Spells.dumpData());
+
 		let ticket;
 		if (doLoading) {
 			ticket = env.startLoading();

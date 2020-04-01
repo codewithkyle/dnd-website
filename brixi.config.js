@@ -14,4 +14,5 @@ module.exports = {
 		dashboard: "#F5F7F9",
 		sidenav: "#051E34",
 	},
+	gaps: [0.5, 1, 1.5, 2],
 };

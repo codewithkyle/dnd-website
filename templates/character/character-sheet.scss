@@ -24,6 +24,8 @@ character-sheet{
                     background-color: var(--white) !important;
                     box-shadow: var(--shadow-md) !important;
                     cursor: default;
+                    color: var(--primary-700);
+                    border-color: var(--grey-100);
                 }
             }
 
@@ -42,6 +44,7 @@ character-sheet{
             border-radius: 0.25rem;
             color: var(--grey-700);
             transition: all 150ms var(--ease-in-out);
+            border: 1px solid transparent;
             cursor: pointer;
             font-size: var(--font-sm);
 

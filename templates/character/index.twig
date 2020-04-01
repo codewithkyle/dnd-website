@@ -14,7 +14,7 @@
 {% block content %}
     <article class="block w-full px-1">
         <character-sheet eager-load-css="character-sheet" web-component data-character-id="{{ character.id }}">
-            <nav grid="rows 1 gap-1">
+            <nav grid="rows 1 gap-0.5">
                 <div>
                     <input type="radio" name="navigation" {{ slug is defined and slug == 'overview' or slug is not defined ? 'checked' }} id="nav-overview" value="0" data-slug="overview" />
                     <label for="nav-overview">Overview</label>
@@ -43,7 +43,7 @@
                     <input type="radio" name="navigation" id="nav-spells" value="6" data-slug="spells" {{ slug is defined and slug == 'spells' ? 'checked' }} />
                     <label for="nav-spells">Spellbook</label>
                 </div>
-                <button id="save-button" class="button -solid -primary">Save Characater</button>
+                <button id="save-button" class="button -solid -primary mt-2">Save Characater</button>
             </nav>
             <form class="bg-white shadow-md p-2 mb-auto" style="border-radius: 0.25rem;">
                 {{ csrfInput() }}
@@ -272,7 +272,284 @@
                 </form-page>
 
                 <form-page class="w-full" id="spells" style="display: {{ slug is defined and slug == 'spells' ? 'grid' : 'none' }};grid-template-rows: 1fr; gap: 2rem;">
-                    Spells {{ character.title }}
+                    <spellbook-component web-component eager-load-css="spellbook-component">
+                        <spellbook-tabs>
+                            <button data-index="0" type="button" class="is-active">Cantrips</button>
+                            <button data-index="1" type="button">Lvl 1</button>
+                            <button data-index="2" type="button">Lvl 2</button>
+                            <button data-index="3" type="button">Lvl 3</button>
+                            <button data-index="4" type="button">Lvl 4</button>
+                            <button data-index="5" type="button">Lvl 5</button>
+                            <button data-index="6" type="button">Lvl 6</button>
+                            <button data-index="7" type="button">Lvl 7</button>
+                            <button data-index="8" type="button">Lvl 8</button>
+                            <button data-index="9" type="button">Lvl 9</button>
+                        </spellbook-tabs>
+                        <spellbook-page style="display: block;">
+                            {% set cantrips = character.cantrips|json_decode() %}
+                            <spell-component id="cantrip-spellbook" eager-load-css="spell-component" web-component>
+                                <line-items>
+                                    {% for spell in cantrips %}
+                                        <div class="block w-full mb-1">
+                                            <input type="text" value="{{ spell }}">
+                                            <button type="button" class="close">
+                                                <svg style="width:12px;height:12px;" aria-hidden="true" focusable="false" data-prefix="far" data-icon="times" class="svg-inline--fa fa-times fa-w-10" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M207.6 256l107.72-107.72c6.23-6.23 6.23-16.34 0-22.58l-25.03-25.03c-6.23-6.23-16.34-6.23-22.58 0L160 208.4 52.28 100.68c-6.23-6.23-16.34-6.23-22.58 0L4.68 125.7c-6.23 6.23-6.23 16.34 0 22.58L112.4 256 4.68 363.72c-6.23 6.23-6.23 16.34 0 22.58l25.03 25.03c6.23 6.23 16.34 6.23 22.58 0L160 303.6l107.72 107.72c6.23 6.23 16.34 6.23 22.58 0l25.03-25.03c6.23-6.23 6.23-16.34 0-22.58L207.6 256z"></path></svg>
+                                            </button>
+                                        </div>
+                                    {% endfor %}
+                                </line-items>
+                                <button class="add-spell" type="button">
+                                    <i>
+                                        <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="plus" class="svg-inline--fa fa-plus fa-w-12" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="currentColor" d="M368 224H224V80c0-8.84-7.16-16-16-16h-32c-8.84 0-16 7.16-16 16v144H16c-8.84 0-16 7.16-16 16v32c0 8.84 7.16 16 16 16h144v144c0 8.84 7.16 16 16 16h32c8.84 0 16-7.16 16-16V288h144c8.84 0 16-7.16 16-16v-32c0-8.84-7.16-16-16-16z"></path></svg>
+                                    </i>
+                                    <span>Add Cantrip</span>
+                                </button>
+                            </spell-component>
+                        </spellbook-page>
+                        <spellbook-page style="display: none;">
+                            
+                            <div class="w-full mb-2" grid="columns 2 gap-2">
+                                {{ inputs.number("Total Level 1 Spell Slots", "fields[totalLevel1Slots]", false, null, 0, null, 1, character.totalLevel1Slots) }}
+                                {{ inputs.number("Expended Level 1 Spell Slots", "fields[expendedLevel1Slots]", false, null, 0, null, 1, character.expendedLevel1Slots) }}
+                            </div>
+
+                            {% set level1Spells = character.level1Spells|json_decode() %}
+                            <spell-component id="level-1-spellbook" eager-load-css="spell-component" web-component>
+                                <line-items>
+                                    {% for spell in level1Spells %}
+                                        <div class="block w-full mb-1">
+                                            <input type="text" value="{{ spell }}">
+                                            <button type="button" class="close">
+                                                <svg style="width:12px;height:12px;" aria-hidden="true" focusable="false" data-prefix="far" data-icon="times" class="svg-inline--fa fa-times fa-w-10" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M207.6 256l107.72-107.72c6.23-6.23 6.23-16.34 0-22.58l-25.03-25.03c-6.23-6.23-16.34-6.23-22.58 0L160 208.4 52.28 100.68c-6.23-6.23-16.34-6.23-22.58 0L4.68 125.7c-6.23 6.23-6.23 16.34 0 22.58L112.4 256 4.68 363.72c-6.23 6.23-6.23 16.34 0 22.58l25.03 25.03c6.23 6.23 16.34 6.23 22.58 0L160 303.6l107.72 107.72c6.23 6.23 16.34 6.23 22.58 0l25.03-25.03c6.23-6.23 6.23-16.34 0-22.58L207.6 256z"></path></svg>
+                                            </button>
+                                        </div>
+                                    {% endfor %}
+                                </line-items>
+                                <button class="add-spell" type="button">
+                                    <i>
+                                        <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="plus" class="svg-inline--fa fa-plus fa-w-12" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="currentColor" d="M368 224H224V80c0-8.84-7.16-16-16-16h-32c-8.84 0-16 7.16-16 16v144H16c-8.84 0-16 7.16-16 16v32c0 8.84 7.16 16 16 16h144v144c0 8.84 7.16 16 16 16h32c8.84 0 16-7.16 16-16V288h144c8.84 0 16-7.16 16-16v-32c0-8.84-7.16-16-16-16z"></path></svg>
+                                    </i>
+                                    <span>Add Level 1 Spell</span>
+                                </button>
+                            </spell-component>
+                        </spellbook-page>
+                        <spellbook-page style="display: none;">
+                            
+                            <div class="w-full mb-2" grid="columns 2 gap-2">
+                                {{ inputs.number("Total Level 2 Spell Slots", "fields[totalLevel2Slots]", false, null, 0, null, 1, character.totalLevel2Slots) }}
+                                {{ inputs.number("Expended Level 2 Spell Slots", "fields[expendedLevel2Slots]", false, null, 0, null, 1, character.expendedLevel2Slots) }}
+                            </div>
+
+                            {% set level2Spells = character.level2Spells|json_decode() %}
+                            <spell-component id="level-2-spellbook" eager-load-css="spell-component" web-component>
+                                <line-items>
+                                    {% for spell in level2Spells %}
+                                        <div class="block w-full mb-1">
+                                            <input type="text" value="{{ spell }}">
+                                            <button type="button" class="close">
+                                                <svg style="width:12px;height:12px;" aria-hidden="true" focusable="false" data-prefix="far" data-icon="times" class="svg-inline--fa fa-times fa-w-10" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M207.6 256l107.72-107.72c6.23-6.23 6.23-16.34 0-22.58l-25.03-25.03c-6.23-6.23-16.34-6.23-22.58 0L160 208.4 52.28 100.68c-6.23-6.23-16.34-6.23-22.58 0L4.68 125.7c-6.23 6.23-6.23 16.34 0 22.58L112.4 256 4.68 363.72c-6.23 6.23-6.23 16.34 0 22.58l25.03 25.03c6.23 6.23 16.34 6.23 22.58 0L160 303.6l107.72 107.72c6.23 6.23 16.34 6.23 22.58 0l25.03-25.03c6.23-6.23 6.23-16.34 0-22.58L207.6 256z"></path></svg>
+                                            </button>
+                                        </div>
+                                    {% endfor %}
+                                </line-items>
+                                <button class="add-spell" type="button">
+                                    <i>
+                                        <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="plus" class="svg-inline--fa fa-plus fa-w-12" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="currentColor" d="M368 224H224V80c0-8.84-7.16-16-16-16h-32c-8.84 0-16 7.16-16 16v144H16c-8.84 0-16 7.16-16 16v32c0 8.84 7.16 16 16 16h144v144c0 8.84 7.16 16 16 16h32c8.84 0 16-7.16 16-16V288h144c8.84 0 16-7.16 16-16v-32c0-8.84-7.16-16-16-16z"></path></svg>
+                                    </i>
+                                    <span>Add Level 2 Spell</span>
+                                </button>
+                            </spell-component>
+                        </spellbook-page>
+                        <spellbook-page style="display: none;">
+
+                            <div class="w-full mb-2" grid="columns 2 gap-2">
+                                {{ inputs.number("Total Level 3 Spell Slots", "fields[totalLevel3Slots]", false, null, 0, null, 1, character.totalLevel3Slots) }}
+                                {{ inputs.number("Expended Level 3 Spell Slots", "fields[expendedLevel3Slots]", false, null, 0, null, 1, character.expendedLevel3Slots) }}
+                            </div>
+
+                            {% set level3Spells = character.level3Spells|json_decode() %}
+                            <spell-component id="level-3-spellbook" eager-load-css="spell-component" web-component>
+                                <line-items>
+                                    {% for spell in level3Spells %}
+                                        <div class="block w-full mb-1">
+                                            <input type="text" value="{{ spell }}">
+                                            <button type="button" class="close">
+                                                <svg style="width:12px;height:12px;" aria-hidden="true" focusable="false" data-prefix="far" data-icon="times" class="svg-inline--fa fa-times fa-w-10" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M207.6 256l107.72-107.72c6.23-6.23 6.23-16.34 0-22.58l-25.03-25.03c-6.23-6.23-16.34-6.23-22.58 0L160 208.4 52.28 100.68c-6.23-6.23-16.34-6.23-22.58 0L4.68 125.7c-6.23 6.23-6.23 16.34 0 22.58L112.4 256 4.68 363.72c-6.23 6.23-6.23 16.34 0 22.58l25.03 25.03c6.23 6.23 16.34 6.23 22.58 0L160 303.6l107.72 107.72c6.23 6.23 16.34 6.23 22.58 0l25.03-25.03c6.23-6.23 6.23-16.34 0-22.58L207.6 256z"></path></svg>
+                                            </button>
+                                        </div>
+                                    {% endfor %}
+                                </line-items>
+                                <button class="add-spell" type="button">
+                                    <i>
+                                        <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="plus" class="svg-inline--fa fa-plus fa-w-12" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="currentColor" d="M368 224H224V80c0-8.84-7.16-16-16-16h-32c-8.84 0-16 7.16-16 16v144H16c-8.84 0-16 7.16-16 16v32c0 8.84 7.16 16 16 16h144v144c0 8.84 7.16 16 16 16h32c8.84 0 16-7.16 16-16V288h144c8.84 0 16-7.16 16-16v-32c0-8.84-7.16-16-16-16z"></path></svg>
+                                    </i>
+                                    <span>Add Level 3 Spell</span>
+                                </button>
+                            </spell-component>
+                        </spellbook-page>
+                        <spellbook-page style="display: none;">
+
+                            <div class="w-full mb-2" grid="columns 2 gap-2">
+                                {{ inputs.number("Total Level 4 Spell Slots", "fields[totalLevel4Slots]", false, null, 0, null, 1, character.totalLevel4Slots) }}
+                                {{ inputs.number("Expended Level 4 Spell Slots", "fields[expendedLevel4Slots]", false, null, 0, null, 1, character.expendedLevel4Slots) }}
+                            </div>
+
+                            {% set level4Spells = character.level4Spells|json_decode() %}
+                            <spell-component id="level-4-spellbook" eager-load-css="spell-component" web-component>
+                                <line-items>
+                                    {% for spell in level4Spells %}
+                                        <div class="block w-full mb-1">
+                                            <input type="text" value="{{ spell }}">
+                                            <button type="button" class="close">
+                                                <svg style="width:12px;height:12px;" aria-hidden="true" focusable="false" data-prefix="far" data-icon="times" class="svg-inline--fa fa-times fa-w-10" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M207.6 256l107.72-107.72c6.23-6.23 6.23-16.34 0-22.58l-25.03-25.03c-6.23-6.23-16.34-6.23-22.58 0L160 208.4 52.28 100.68c-6.23-6.23-16.34-6.23-22.58 0L4.68 125.7c-6.23 6.23-6.23 16.34 0 22.58L112.4 256 4.68 363.72c-6.23 6.23-6.23 16.34 0 22.58l25.03 25.03c6.23 6.23 16.34 6.23 22.58 0L160 303.6l107.72 107.72c6.23 6.23 16.34 6.23 22.58 0l25.03-25.03c6.23-6.23 6.23-16.34 0-22.58L207.6 256z"></path></svg>
+                                            </button>
+                                        </div>
+                                    {% endfor %}
+                                </line-items>
+                                <button class="add-spell" type="button">
+                                    <i>
+                                        <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="plus" class="svg-inline--fa fa-plus fa-w-12" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="currentColor" d="M368 224H224V80c0-8.84-7.16-16-16-16h-32c-8.84 0-16 7.16-16 16v144H16c-8.84 0-16 7.16-16 16v32c0 8.84 7.16 16 16 16h144v144c0 8.84 7.16 16 16 16h32c8.84 0 16-7.16 16-16V288h144c8.84 0 16-7.16 16-16v-32c0-8.84-7.16-16-16-16z"></path></svg>
+                                    </i>
+                                    <span>Add Level 4 Spell</span>
+                                </button>
+                            </spell-component>
+                        </spellbook-page>
+                        <spellbook-page style="display: none;">
+
+                            <div class="w-full mb-2" grid="columns 2 gap-2">
+                                {{ inputs.number("Total Level 5 Spell Slots", "fields[totalLevel5Slots]", false, null, 0, null, 1, character.totalLevel5Slots) }}
+                                {{ inputs.number("Expended Level 5 Spell Slots", "fields[expendedLevel5Slots]", false, null, 0, null, 1, character.expendedLevel5Slots) }}
+                            </div>
+
+                            {% set level5Spells = character.level5Spells|json_decode() %}
+                            <spell-component id="level-5-spellbook" eager-load-css="spell-component" web-component>
+                                <line-items>
+                                    {% for spell in level5Spells %}
+                                        <div class="block w-full mb-1">
+                                            <input type="text" value="{{ spell }}">
+                                            <button type="button" class="close">
+                                                <svg style="width:12px;height:12px;" aria-hidden="true" focusable="false" data-prefix="far" data-icon="times" class="svg-inline--fa fa-times fa-w-10" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M207.6 256l107.72-107.72c6.23-6.23 6.23-16.34 0-22.58l-25.03-25.03c-6.23-6.23-16.34-6.23-22.58 0L160 208.4 52.28 100.68c-6.23-6.23-16.34-6.23-22.58 0L4.68 125.7c-6.23 6.23-6.23 16.34 0 22.58L112.4 256 4.68 363.72c-6.23 6.23-6.23 16.34 0 22.58l25.03 25.03c6.23 6.23 16.34 6.23 22.58 0L160 303.6l107.72 107.72c6.23 6.23 16.34 6.23 22.58 0l25.03-25.03c6.23-6.23 6.23-16.34 0-22.58L207.6 256z"></path></svg>
+                                            </button>
+                                        </div>
+                                    {% endfor %}
+                                </line-items>
+                                <button class="add-spell" type="button">
+                                    <i>
+                                        <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="plus" class="svg-inline--fa fa-plus fa-w-12" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="currentColor" d="M368 224H224V80c0-8.84-7.16-16-16-16h-32c-8.84 0-16 7.16-16 16v144H16c-8.84 0-16 7.16-16 16v32c0 8.84 7.16 16 16 16h144v144c0 8.84 7.16 16 16 16h32c8.84 0 16-7.16 16-16V288h144c8.84 0 16-7.16 16-16v-32c0-8.84-7.16-16-16-16z"></path></svg>
+                                    </i>
+                                    <span>Add Level 5 Spell</span>
+                                </button>
+                            </spell-component>
+                        </spellbook-page>
+                        <spellbook-page style="display: none;">
+
+                            <div class="w-full mb-2" grid="columns 2 gap-2">
+                                {{ inputs.number("Total Level 6 Spell Slots", "fields[totalLevel6Slots]", false, null, 0, null, 1, character.totalLevel6Slots) }}
+                                {{ inputs.number("Expended Level 6 Spell Slots", "fields[expendedLevel6Slots]", false, null, 0, null, 1, character.expendedLevel6Slots) }}
+                            </div>
+
+                            {% set level6Spells = character.level6Spells|json_decode() %}
+                            <spell-component id="level-6-spellbook" eager-load-css="spell-component" web-component>
+                                <line-items>
+                                    {% for spell in level6Spells %}
+                                        <div class="block w-full mb-1">
+                                            <input type="text" value="{{ spell }}">
+                                            <button type="button" class="close">
+                                                <svg style="width:12px;height:12px;" aria-hidden="true" focusable="false" data-prefix="far" data-icon="times" class="svg-inline--fa fa-times fa-w-10" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M207.6 256l107.72-107.72c6.23-6.23 6.23-16.34 0-22.58l-25.03-25.03c-6.23-6.23-16.34-6.23-22.58 0L160 208.4 52.28 100.68c-6.23-6.23-16.34-6.23-22.58 0L4.68 125.7c-6.23 6.23-6.23 16.34 0 22.58L112.4 256 4.68 363.72c-6.23 6.23-6.23 16.34 0 22.58l25.03 25.03c6.23 6.23 16.34 6.23 22.58 0L160 303.6l107.72 107.72c6.23 6.23 16.34 6.23 22.58 0l25.03-25.03c6.23-6.23 6.23-16.34 0-22.58L207.6 256z"></path></svg>
+                                            </button>
+                                        </div>
+                                    {% endfor %}
+                                </line-items>
+                                <button class="add-spell" type="button">
+                                    <i>
+                                        <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="plus" class="svg-inline--fa fa-plus fa-w-12" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="currentColor" d="M368 224H224V80c0-8.84-7.16-16-16-16h-32c-8.84 0-16 7.16-16 16v144H16c-8.84 0-16 7.16-16 16v32c0 8.84 7.16 16 16 16h144v144c0 8.84 7.16 16 16 16h32c8.84 0 16-7.16 16-16V288h144c8.84 0 16-7.16 16-16v-32c0-8.84-7.16-16-16-16z"></path></svg>
+                                    </i>
+                                    <span>Add Level 6 Spell</span>
+                                </button>
+                            </spell-component>
+                        </spellbook-page>
+                        <spellbook-page style="display: none;">
+
+                            <div class="w-full mb-2" grid="columns 2 gap-2">
+                                {{ inputs.number("Total Level 7 Spell Slots", "fields[totalLevel7Slots]", false, null, 0, null, 1, character.totalLevel7Slots) }}
+                                {{ inputs.number("Expended Level 7 Spell Slots", "fields[expendedLevel7Slots]", false, null, 0, null, 1, character.expendedLevel7Slots) }}
+                            </div>
+
+                            {% set level7Spells = character.level7Spells|json_decode() %}
+                            <spell-component id="level-7-spellbook" eager-load-css="spell-component" web-component>
+                                <line-items>
+                                    {% for spell in level7Spells %}
+                                        <div class="block w-full mb-1">
+                                            <input type="text" value="{{ spell }}">
+                                            <button type="button" class="close">
+                                                <svg style="width:12px;height:12px;" aria-hidden="true" focusable="false" data-prefix="far" data-icon="times" class="svg-inline--fa fa-times fa-w-10" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M207.6 256l107.72-107.72c6.23-6.23 6.23-16.34 0-22.58l-25.03-25.03c-6.23-6.23-16.34-6.23-22.58 0L160 208.4 52.28 100.68c-6.23-6.23-16.34-6.23-22.58 0L4.68 125.7c-6.23 6.23-6.23 16.34 0 22.58L112.4 256 4.68 363.72c-6.23 6.23-6.23 16.34 0 22.58l25.03 25.03c6.23 6.23 16.34 6.23 22.58 0L160 303.6l107.72 107.72c6.23 6.23 16.34 6.23 22.58 0l25.03-25.03c6.23-6.23 6.23-16.34 0-22.58L207.6 256z"></path></svg>
+                                            </button>
+                                        </div>
+                                    {% endfor %}
+                                </line-items>
+                                <button class="add-spell" type="button">
+                                    <i>
+                                        <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="plus" class="svg-inline--fa fa-plus fa-w-12" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="currentColor" d="M368 224H224V80c0-8.84-7.16-16-16-16h-32c-8.84 0-16 7.16-16 16v144H16c-8.84 0-16 7.16-16 16v32c0 8.84 7.16 16 16 16h144v144c0 8.84 7.16 16 16 16h32c8.84 0 16-7.16 16-16V288h144c8.84 0 16-7.16 16-16v-32c0-8.84-7.16-16-16-16z"></path></svg>
+                                    </i>
+                                    <span>Add Level 7 Spell</span>
+                                </button>
+                            </spell-component>
+                        </spellbook-page>
+                        <spellbook-page style="display: none;">
+
+                            <div class="w-full mb-2" grid="columns 2 gap-2">
+                                {{ inputs.number("Total Level 8 Spell Slots", "fields[totalLevel8Slots]", false, null, 0, null, 1, character.totalLevel8Slots) }}
+                                {{ inputs.number("Expended Level 8 Spell Slots", "fields[expendedLevel8Slots]", false, null, 0, null, 1, character.expendedLevel8Slots) }}
+                            </div>
+                            
+                            {% set level8Spells = character.level8Spells|json_decode() %}
+                            <spell-component id="level-8-spellbook" eager-load-css="spell-component" web-component>
+                                <line-items>
+                                    {% for spell in level8Spells %}
+                                        <div class="block w-full mb-1">
+                                            <input type="text" value="{{ spell }}">
+                                            <button type="button" class="close">
+                                                <svg style="width:12px;height:12px;" aria-hidden="true" focusable="false" data-prefix="far" data-icon="times" class="svg-inline--fa fa-times fa-w-10" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M207.6 256l107.72-107.72c6.23-6.23 6.23-16.34 0-22.58l-25.03-25.03c-6.23-6.23-16.34-6.23-22.58 0L160 208.4 52.28 100.68c-6.23-6.23-16.34-6.23-22.58 0L4.68 125.7c-6.23 6.23-6.23 16.34 0 22.58L112.4 256 4.68 363.72c-6.23 6.23-6.23 16.34 0 22.58l25.03 25.03c6.23 6.23 16.34 6.23 22.58 0L160 303.6l107.72 107.72c6.23 6.23 16.34 6.23 22.58 0l25.03-25.03c6.23-6.23 6.23-16.34 0-22.58L207.6 256z"></path></svg>
+                                            </button>
+                                        </div>
+                                    {% endfor %}
+                                </line-items>
+                                <button class="add-spell" type="button">
+                                    <i>
+                                        <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="plus" class="svg-inline--fa fa-plus fa-w-12" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="currentColor" d="M368 224H224V80c0-8.84-7.16-16-16-16h-32c-8.84 0-16 7.16-16 16v144H16c-8.84 0-16 7.16-16 16v32c0 8.84 7.16 16 16 16h144v144c0 8.84 7.16 16 16 16h32c8.84 0 16-7.16 16-16V288h144c8.84 0 16-7.16 16-16v-32c0-8.84-7.16-16-16-16z"></path></svg>
+                                    </i>
+                                    <span>Add Level 8 Spell</span>
+                                </button>
+                            </spell-component>
+                        </spellbook-page>
+                        <spellbook-page style="display: none;">
+
+                            <div class="w-full mb-2" grid="columns 2 gap-2">
+                                {{ inputs.number("Total Level 9 Spell Slots", "fields[totalLevel9Slots]", false, null, 0, null, 1, character.totalLevel9Slots) }}
+                                {{ inputs.number("Expended Level 9 Spell Slots", "fields[expendedLevel9Slots]", false, null, 0, null, 1, character.expendedLevel9Slots) }}
+                            </div>
+
+                            {% set level9Spells = character.level9Spells|json_decode() %}
+                            <spell-component id="level-9-spellbook" eager-load-css="spell-component" web-component>
+                                <line-items>
+                                    {% for spell in level9Spells %}
+                                        <div class="block w-full mb-1">
+                                            <input type="text" value="{{ spell }}">
+                                            <button type="button" class="close">
+                                                <svg style="width:12px;height:12px;" aria-hidden="true" focusable="false" data-prefix="far" data-icon="times" class="svg-inline--fa fa-times fa-w-10" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M207.6 256l107.72-107.72c6.23-6.23 6.23-16.34 0-22.58l-25.03-25.03c-6.23-6.23-16.34-6.23-22.58 0L160 208.4 52.28 100.68c-6.23-6.23-16.34-6.23-22.58 0L4.68 125.7c-6.23 6.23-6.23 16.34 0 22.58L112.4 256 4.68 363.72c-6.23 6.23-6.23 16.34 0 22.58l25.03 25.03c6.23 6.23 16.34 6.23 22.58 0L160 303.6l107.72 107.72c6.23 6.23 16.34 6.23 22.58 0l25.03-25.03c6.23-6.23 6.23-16.34 0-22.58L207.6 256z"></path></svg>
+                                            </button>
+                                        </div>
+                                    {% endfor %}
+                                </line-items>
+                                <button class="add-spell" type="button">
+                                    <i>
+                                        <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="plus" class="svg-inline--fa fa-plus fa-w-12" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="currentColor" d="M368 224H224V80c0-8.84-7.16-16-16-16h-32c-8.84 0-16 7.16-16 16v144H16c-8.84 0-16 7.16-16 16v32c0 8.84 7.16 16 16 16h144v144c0 8.84 7.16 16 16 16h32c8.84 0 16-7.16 16-16V288h144c8.84 0 16-7.16 16-16v-32c0-8.84-7.16-16-16-16z"></path></svg>
+                                    </i>
+                                    <span>Add Level 9 Spell</span>
+                                </button>
+                            </spell-component>
+                        </spellbook-page>
+                    </spellbook-component>
                 </form-page>
             </form>
         </character-sheet>
