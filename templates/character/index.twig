@@ -13,7 +13,7 @@
 
 {% block content %}
     <article class="block w-full px-1">
-        <character-sheet eager-load-css="character-sheet" web-component data-character-id="{{ character.id }}">
+        <character-sheet eager-load-css="character-sheet" web-component loading="eager" data-character-id="{{ character.id }}">
             <nav grid="rows 1 gap-0.5">
                 <div>
                     <input type="radio" name="navigation" {{ slug is defined and slug == 'overview' or slug is not defined ? 'checked' }} id="nav-overview" value="0" data-slug="overview" />
@@ -272,7 +272,7 @@
                 </form-page>
 
                 <form-page class="w-full" id="spells" style="display: {{ slug is defined and slug == 'spells' ? 'grid' : 'none' }};grid-template-rows: 1fr; gap: 2rem;">
-                    <spellbook-component web-component eager-load-css="spellbook-component">
+                    <spellbook-component web-component loading="eager" eager-load-css="spellbook-component">
                         <spellbook-tabs>
                             <button data-index="0" type="button" class="is-active">Cantrips</button>
                             <button data-index="1" type="button">Lvl 1</button>
@@ -287,7 +287,7 @@
                         </spellbook-tabs>
                         <spellbook-page style="display: block;">
                             {% set cantrips = character.cantrips|json_decode() %}
-                            <spell-component id="cantrip-spellbook" eager-load-css="spell-component" web-component>
+                            <spell-component id="cantrip-spellbook" eager-load-css="spell-component" web-component loading="eager">
                                 <line-items>
                                     {% for spell in cantrips %}
                                         <div class="block w-full mb-1">
@@ -314,7 +314,7 @@
                             </div>
 
                             {% set level1Spells = character.level1Spells|json_decode() %}
-                            <spell-component id="level-1-spellbook" eager-load-css="spell-component" web-component>
+                            <spell-component id="level-1-spellbook" eager-load-css="spell-component" web-component loading="eager">
                                 <line-items>
                                     {% for spell in level1Spells %}
                                         <div class="block w-full mb-1">
@@ -341,7 +341,7 @@
                             </div>
 
                             {% set level2Spells = character.level2Spells|json_decode() %}
-                            <spell-component id="level-2-spellbook" eager-load-css="spell-component" web-component>
+                            <spell-component id="level-2-spellbook" eager-load-css="spell-component" web-component loading="eager">
                                 <line-items>
                                     {% for spell in level2Spells %}
                                         <div class="block w-full mb-1">
@@ -368,7 +368,7 @@
                             </div>
 
                             {% set level3Spells = character.level3Spells|json_decode() %}
-                            <spell-component id="level-3-spellbook" eager-load-css="spell-component" web-component>
+                            <spell-component id="level-3-spellbook" eager-load-css="spell-component" web-component loading="eager">
                                 <line-items>
                                     {% for spell in level3Spells %}
                                         <div class="block w-full mb-1">
@@ -395,7 +395,7 @@
                             </div>
 
                             {% set level4Spells = character.level4Spells|json_decode() %}
-                            <spell-component id="level-4-spellbook" eager-load-css="spell-component" web-component>
+                            <spell-component id="level-4-spellbook" eager-load-css="spell-component" web-component loading="eager">
                                 <line-items>
                                     {% for spell in level4Spells %}
                                         <div class="block w-full mb-1">
@@ -422,7 +422,7 @@
                             </div>
 
                             {% set level5Spells = character.level5Spells|json_decode() %}
-                            <spell-component id="level-5-spellbook" eager-load-css="spell-component" web-component>
+                            <spell-component id="level-5-spellbook" eager-load-css="spell-component" web-component loading="eager">
                                 <line-items>
                                     {% for spell in level5Spells %}
                                         <div class="block w-full mb-1">
@@ -449,7 +449,7 @@
                             </div>
 
                             {% set level6Spells = character.level6Spells|json_decode() %}
-                            <spell-component id="level-6-spellbook" eager-load-css="spell-component" web-component>
+                            <spell-component id="level-6-spellbook" eager-load-css="spell-component" web-component loading="eager">
                                 <line-items>
                                     {% for spell in level6Spells %}
                                         <div class="block w-full mb-1">
@@ -476,7 +476,7 @@
                             </div>
 
                             {% set level7Spells = character.level7Spells|json_decode() %}
-                            <spell-component id="level-7-spellbook" eager-load-css="spell-component" web-component>
+                            <spell-component id="level-7-spellbook" eager-load-css="spell-component" web-component loading="eager">
                                 <line-items>
                                     {% for spell in level7Spells %}
                                         <div class="block w-full mb-1">
@@ -503,7 +503,7 @@
                             </div>
                             
                             {% set level8Spells = character.level8Spells|json_decode() %}
-                            <spell-component id="level-8-spellbook" eager-load-css="spell-component" web-component>
+                            <spell-component id="level-8-spellbook" eager-load-css="spell-component" web-component loading="eager">
                                 <line-items>
                                     {% for spell in level8Spells %}
                                         <div class="block w-full mb-1">
@@ -530,7 +530,7 @@
                             </div>
 
                             {% set level9Spells = character.level9Spells|json_decode() %}
-                            <spell-component id="level-9-spellbook" eager-load-css="spell-component" web-component>
+                            <spell-component id="level-9-spellbook" eager-load-css="spell-component" web-component loading="eager">
                                 <line-items>
                                     {% for spell in level9Spells %}
                                         <div class="block w-full mb-1">
