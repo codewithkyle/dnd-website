@@ -1,5 +1,7 @@
 import { env } from "djinnjs/env";
 
+import { notify } from "@codewithkyle/notifyjs";
+
 class CharacterSheet extends HTMLElement {
 	private pages: Array<HTMLElement>;
 	private form: HTMLFormElement;
@@ -99,6 +101,12 @@ class CharacterSheet extends HTMLElement {
 
 		if (doLoading) {
 			env.stopLoading(ticket);
+			notify({
+				message: "Character saved.",
+				force: true,
+				closeable: true,
+				duration: 3,
+			});
 		}
 
 		this.countdown = 300;
