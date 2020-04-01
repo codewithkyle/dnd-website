@@ -20,6 +20,7 @@ spellbook-component{
             padding: 0 1rem;
             border-radius: 0.25rem;
             margin-right: 1rem;
+            user-select: none;
             cursor: pointer;
             transition: all 150ms var(--ease-in-out);
 

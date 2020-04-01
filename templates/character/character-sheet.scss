@@ -41,6 +41,7 @@ character-sheet{
             align-items: center;
             height: 36px;
             padding: 0 1rem;
+            user-select: none;
             border-radius: 0.25rem;
             color: var(--grey-700);
             transition: all 150ms var(--ease-in-out);
