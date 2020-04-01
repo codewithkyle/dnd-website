@@ -14,6 +14,9 @@ class AttackComponent extends HTMLElement {
 			attacks: [],
 		};
 		this.tBody = this.querySelector("tbody");
+		if (this.dataset.attacks) {
+			this.state.attacks = JSON.parse(this.dataset.attacks);
+		}
 	}
 	private addRow: EventListener = () => {
 		this.state.attacks.push({
@@ -87,6 +90,12 @@ class AttackComponent extends HTMLElement {
 	}
 	connectedCallback() {
 		this.querySelector("button").addEventListener("click", this.addRow);
+
+		if (this.state.attacks.length) {
+			this.querySelectorAll("input").forEach((input) => {
+				input.addEventListener("input", this.handleChange);
+			});
+		}
 	}
 }
 customElements.define("attack-component", AttackComponent);

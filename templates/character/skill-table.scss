@@ -1,0 +1,103 @@
+skill-table{
+
+    input[type="checkbox"]{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 0;
+        opacity: 0;
+
+        &:checked{
+            & + label{
+                &::after{
+                    border-color: var(--primary-500);
+                }
+
+                &::before{
+                    transform: translate(-50%, -50%) scale(1);
+                }
+            }
+        }
+
+        &:focus-visible{
+            & + label{
+                &::after{
+                    border-color: var(--primary-500);
+                }
+
+                &::before{
+                    transform: translate(-50%, -50%) scale(1);
+                }
+            }
+        }
+    }
+
+    input[type="number"]{
+        background-color: transparent;
+        height: 36px;
+    }
+
+    label{
+        width: 24px;
+        height: 24px;
+        display: inline-block;
+        position: relative;
+        margin-right: 0.5rem;
+        cursor: pointer;
+
+        &:hover{
+            &::after{
+                border-color: var(--primary-500);
+            }
+
+            &::before{
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+
+        &:active{
+            &::after{
+                border-color: var(--primary-600);
+            }
+
+            &::before{
+                background-color: var(--primary-600);
+                transform: translate(-50%, -50%) scale(1.15);
+            }
+        }
+
+        &::before,
+        &::after{
+            content: "";
+            display: inline-block;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            border-radius: 50%;
+            transition: all 150ms var(--ease-in-out);
+        }
+
+        &::after{
+            width: 16px;
+            height: 16px;
+            transform: translate(-50%, -50%);
+            border: 1px solid var(--grey-300);
+        }
+
+        &::before{
+            width: 10px;
+            height: 10px;
+            transform: translate(-50%, -50%) scale(0);
+            background-color: var(--primary-500);
+        }
+    }
+
+    th,
+    td{
+        height: 36px;
+        padding: 0 0.5rem;
+        display: inline-flex;
+        align-items: center;
+    }
+}

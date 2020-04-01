@@ -1,11 +1,11 @@
 {% extends "_base/page" %}
 
-{% set entry = craft.entries({
+{% set character = craft.entries({
     section: 'characters',
     id: number
 }).one() %}
 
-{% if currentUser['id'] is not defined or entry.authorId != currentUser.id %}
+{% if currentUser['id'] is not defined or character.authorId != currentUser.id %}
     {% redirect siteUrl %}
 {% endif %}
 
@@ -13,7 +13,7 @@
 
 {% block content %}
     <article class="block w-full px-1">
-        <character-sheet eager-load-css="character-sheet" web-component data-character-id="{{ entry.id }}">
+        <character-sheet eager-load-css="character-sheet" web-component data-character-id="{{ character.id }}">
             <nav grid="rows 1 gap-1">
                 <div>
                     <input type="radio" name="navigation" {{ slug is defined and slug == 'overview' or slug is not defined ? 'checked' }} id="nav-overview" value="0" data-slug="overview" />
@@ -28,89 +28,251 @@
                     <label for="nav-abilities">Abilities & Skills</label>
                 </div>
                 <div>
-                    <input type="radio" name="navigation" id="nav-lore" value="3" data-slug="lore" {{ slug is defined and slug == 'lore' ? 'checked' }} />
+                    <input type="radio" name="navigation" id="nav-saving-throw" value="3" data-slug="saving-throws" {{ slug is defined and slug == 'saving-throws' ? 'checked' }} />
+                    <label for="nav-saving-throw">Saving Throws</label>
+                </div>
+                <div>
+                    <input type="radio" name="navigation" id="nav-equipment" value="4" data-slug="equipment" {{ slug is defined and slug == 'equipment' ? 'checked' }} />
+                    <label for="nav-equipment">Equipment</label>
+                </div>
+                <div>
+                    <input type="radio" name="navigation" id="nav-lore" value="5" data-slug="lore" {{ slug is defined and slug == 'lore' ? 'checked' }} />
                     <label for="nav-lore">Appearance & Lore</label>
                 </div>
                 <div>
-                    <input type="radio" name="navigation" id="nav-spells" value="4" data-slug="spells" {{ slug is defined and slug == 'spells' ? 'checked' }} />
+                    <input type="radio" name="navigation" id="nav-spells" value="6" data-slug="spells" {{ slug is defined and slug == 'spells' ? 'checked' }} />
                     <label for="nav-spells">Spellbook</label>
                 </div>
                 <button id="save-button" class="button -solid -primary">Save Characater</button>
             </nav>
-            <form class="bg-white shadow-md p-2" style="border-radius: 0.25rem;">
+            <form class="bg-white shadow-md p-2 mb-auto" style="border-radius: 0.25rem;">
                 {{ csrfInput() }}
-                {{ hiddenInput('entryId', entry.id) }}
+                {{ hiddenInput('entryId', character.id) }}
 
                 <form-page class="w-full" id="overview" style="display: {{ slug is defined and slug == 'overview' or slug is not defined ? 'grid' : 'none' }};grid-template-rows: 1fr; gap: 2rem;">
 
-                    {{ inputs.text("Character Name", "title", true, null, entry.title) }}
+                    {{ inputs.text("Character Name", "title", true, null, character.title) }}
 
                     <div grid="columns 3 gap-2">
-                        {{ inputs.select("Class", "fields[class]", false, data.classes, null, entry.class, false) }}
-                        {{ inputs.select("Race", "fields[race]", false, data.races, null, entry.race, false) }}
-                        {{ inputs.select("Alignment", "fields[alignment]", false, data.alignments, null, entry.alignment) }}
+                        {{ inputs.select("Class", "fields[class]", false, data.classes, null, character.class, false) }}
+                        {{ inputs.select("Race", "fields[race]", false, data.races, null, character.race, false) }}
+                        {{ inputs.select("Alignment", "fields[alignment]", false, data.alignments, null, character.alignment) }}
 
-                        {{ inputs.number("Level", "fields[charLevel]", false, null, 1, 20, 1, entry.charLevel) }}
-                        {{ inputs.number("Experience Points", "fields[exp]", false, null, 0, null, 1, entry.exp) }}
-                        {{ inputs.number("Proficiency Bonus", "fields[proficiencyBonus]", false, null, 0, null, 1, entry.proficiencyBonus) }}
+                        {{ inputs.number("Level", "fields[charLevel]", false, null, 1, 20, 1, character.charLevel) }}
+                        {{ inputs.number("Experience Points", "fields[exp]", false, null, 0, null, 1, character.exp) }}
+                        {{ inputs.number("Proficiency Bonus", "fields[proficiencyBonus]", false, null, 0, null, 1, character.proficiencyBonus) }}
                     </div>
 
-                    <hr class="w-full block bb-1 bb-solid bb-grey-200">
+                    <hr class="w-full block bb-1 bb-solid bb-neutral-200">
 
                     <div grid="columns 2 gap-2">
-                        {{ inputs.number("Armor Class", "fields[armorClass]", false, null, null, null, 1, entry.armorClass) }}
-                        {{ inputs.number("Initiative", "fields[initiative]", false, null, null, null, 1, entry.initiative) }}
-                        {{ inputs.number("Speed", "fields[speed]", false, null, null, null, 1, entry.speed) }}
-                        {{ inputs.number("Inspiration", "fields[inspiration]", false, null, 0, null, 1, entry.inspiration) }}
+                        {{ inputs.number("Armor Class", "fields[armorClass]", false, null, null, null, 1, character.armorClass) }}
+                        {{ inputs.number("Initiative", "fields[initiative]", false, null, null, null, 1, character.initiative) }}
+                        {{ inputs.number("Speed", "fields[speed]", false, null, null, null, 1, character.speed) }}
+                        {{ inputs.number("Inspiration", "fields[inspiration]", false, null, 0, null, 1, character.inspiration) }}
                     </div>
                     
                 </form-page>
+
                 <form-page class="w-full" id="health" style="display: {{ slug is defined and slug == 'health' ? 'grid' : 'none' }};grid-template-rows: 1fr; gap: 2rem;">
                     <div grid="columns 3 gap-2">
-                        {{ inputs.number("Current Hit Poitns", "fields[currentHitPoints]", false, null, null, null, 1, entry.currentHitPoints) }}
-                        {{ inputs.number("Maximum Hit Points", "fields[maximumHitPoints]", false, null, null, null, 1, entry.maximumHitPoints) }}
-                        {{ inputs.number("Temporary Hit Points", "fields[temporaryHitPoints]", false, null, null, null, 1, entry.temporaryHitPoints) }}
+                        {{ inputs.number("Current Hit Poitns", "fields[currentHitPoints]", false, null, null, null, 1, character.currentHitPoints) }}
+                        {{ inputs.number("Maximum Hit Points", "fields[maximumHitPoints]", false, null, null, null, 1, character.maximumHitPoints) }}
+                        {{ inputs.number("Temporary Hit Points", "fields[temporaryHitPoints]", false, null, null, null, 1, character.temporaryHitPoints) }}
                     </div>
 
                     <div grid="columns 2 gap-2">
-                        {{ inputs.number("Hit Dice", "fields[currentHitDice]", false, null, null, null, 1, entry.currentHitDice) }}
-                        {{ inputs.select("Hit Dice Type", "fields[hitDice]", false, data.dice, null, entry.hitDice, false) }}
+                        {{ inputs.number("Hit Dice", "fields[currentHitDice]", false, null, null, null, 1, character.currentHitDice) }}
+                        {{ inputs.select("Hit Dice Type", "fields[hitDice]", false, data.dice, null, character.hitDice, false) }}
                     </div>
 
-                    <hr class="w-full block bb-1 bb-solid bb-grey-200">
+                    <hr class="w-full block bb-1 bb-solid bb-neutral-200">
 
                     <div grid="columns 2 gap-2">
-                        {{ inputs.number("Successful Death Saves", "fields[successfulDeathSaves]", false, null, 0, 3, 1, entry.successfulDeathSaves) }}
-                        {{ inputs.number("Failed Death Saves", "fields[failedDeathSaves]", false, null, 0, 3, 1, entry.failedDeathSaves) }}
+                        {{ inputs.number("Successful Death Saves", "fields[successfulDeathSaves]", false, null, 0, 3, 1, character.successfulDeathSaves) }}
+                        {{ inputs.number("Failed Death Saves", "fields[failedDeathSaves]", false, null, 0, 3, 1, character.failedDeathSaves) }}
                     </div>
                 </form-page>
+
                 <form-page class="w-full" id="abilities" style="display: {{ slug is defined and slug == 'abilities' ? 'grid' : 'none' }};grid-template-rows: 1fr; gap: 2rem;">
-                    Abilities {{ entry.title }}
+                    <character-abilities eager-load-css="character-abilities">
+                        <character-ability>
+                            <span>Strength</span>
+                            <input class="ability" type="number" max="99" step="1" value="{{ character.strength }}" name="fields[strength]" />
+                            <input class="modifier" type="number" max="99" step="1" value="{{ character.strengthModifier }}" name="fields[strengthModifier]" />
+                        </character-ability>
+                        <character-ability>
+                            <span>Dexterity</span>
+                            <input class="ability" type="number" max="99" step="1" value="{{ character.dexterity }}" name="fields[dexterity]" />
+                            <input class="modifier" type="number" max="99" step="1" value="{{ character.dexterityModifier }}" name="fields[dexterityModifier]" />
+                        </character-ability>
+                        <character-ability>
+                            <span>Constitution</span>
+                            <input class="ability" type="number" max="99" step="1" value="{{ character.constitution }}" name="fields[constitution]" />
+                            <input class="modifier" type="number" max="99" step="1" value="{{ character.constitutionModifier }}" name="fields[constitutionModifier]" />
+                        </character-ability>
+                        <character-ability>
+                            <span>Intelligence</span>
+                            <input class="ability" type="number" max="99" step="1" value="{{ character.intelligence }}" name="fields[intelligence]" />
+                            <input class="modifier" type="number" max="99" step="1" value="{{ character.intelligenceModifier }}" name="fields[intelligenceModifier]" />
+                        </character-ability>
+                        <character-ability>
+                            <span>Wisdom</span>
+                            <input class="ability" type="number" max="99" step="1" value="{{ character.wisdom }}" name="fields[wisdom]" />
+                            <input class="modifier" type="number" max="99" step="1" value="{{ character.wisdomModifier }}" name="fields[wisdomModifier]" />
+                        </character-ability>
+                        <character-ability>
+                            <span>Charisma</span>
+                            <input class="ability" type="number" max="99" step="1" value="{{ character.charisma }}" name="fields[charisma]" />
+                            <input class="modifier" type="number" max="99" step="1" value="{{ character.charismaModifier }}" name="fields[charismaModifier]" />
+                        </character-ability>
+                        <character-ability>
+                            <span>Passive Wisdom</span>
+                            <input class="ability" type="number" max="99" step="1" value="{{ character.passiveWisdom }}" name="fields[passiveWisdom]" />
+                        </character-ability>
+                    </character-abilities>
+
+                    <skill-table eager-load-css="skill-table" grid="columns 2 gap-2">
+                        <table class="block w-full text-left p-1 b-1 b-solid b-neutral-200" style="border-radius: 0.25rem;">
+                            <thead class="block w-full bg-neutral-100 px-0.25" style="border-radius: 0.125rem">
+                                <tr class="w-full" grid="columns 3 gap-1">
+                                    <th class="font-grey-800 font-regular font-xs">Proficiency</th>
+                                    <th class="font-grey-800 font-regular font-xs">Skill</th>
+                                    <th class="font-grey-800 font-regular font-xs">Modifier</th>
+                                </tr>
+                            </thead>
+                            <tbody class="block w-full">
+                                {% for skill in data.skills %}
+                                    {% if loop.index0 % 2 == 0 %}
+                                        <tr class="w-full" grid="columns 3 gap-1">
+                                            <td>
+                                                <input id="{{ skill.label|camel }}" type="checkbox" name="fields[{{ skill.label|camel }}Proficiency]" {{ character[skill.label|camel ~ 'Proficiency'] ? 'checked' }} />
+                                                <label aria-label="checkbox icon" for="{{ skill.label|camel }}"></label>
+                                            </td>
+                                            <td class="font-sm font-grey-700">{{ skill.label }}</td>
+                                            <td>
+                                                <input class="w-full" type="number" step="1" name="fields[{{ skill.label|camel }}]" value="{{ character[skill.label|camel] }}" />
+                                            </td>
+                                        </tr>
+                                    {% endif %}
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                        <table class="block w-full text-left p-1 b-1 b-solid b-neutral-200" style="border-radius: 0.25rem;">
+                            <thead class="block w-full bg-neutral-100 px-0.25" style="border-radius: 0.125rem">
+                                <tr class="w-full" grid="columns 3 gap-1">
+                                    <th class="font-grey-700 font-regular font-xs">Proficiency</th>
+                                    <th class="font-grey-700 font-regular font-xs">Skill</th>
+                                    <th class="font-grey-700 font-regular font-xs">Modifier</th>
+                                </tr>
+                            </thead>
+                            <tbody class="block w-full">
+                                {% for skill in data.skills %}
+                                    {% if loop.index0 % 2 != 0 %}
+                                        <tr class="w-full" grid="columns 3 gap-1">
+                                            <td>
+                                                <input id="{{ skill.label|camel }}" type="checkbox" name="fields[{{ skill.label|camel }}Proficiency]" {{ character[skill.label|camel ~ 'Proficiency'] ? 'checked' }} />
+                                                <label aria-label="checkbox icon" for="{{ skill.label|camel }}"></label>
+                                            </td>
+                                            <td class="font-sm font-grey-700">{{ skill.label }}</td>
+                                            <td>
+                                                <input class="w-full" type="number" step="1" name="fields[{{ skill.label|camel }}]" value="{{ character[skill.label|camel] }}" />
+                                            </td>
+                                        </tr>
+                                    {% endif %}
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </skill-table>
+
+                    {{ inputs.textarea("Other Proficiencies", "fields[otherProficiencies]", false, null, character.otherProficiencies, 12) }}
                 </form-page>
+
+                <form-page class="w-full" id="saving-throws" style="display: {{ slug is defined and slug == 'saving-throws' ? 'grid' : 'none' }};grid-template-rows: 1fr; gap: 2rem;">
+                    <div grid="columns 3 gap-2">
+                        {{ inputs.number("Strength", "fields[strengthSavingThrow]", false, null, null, null, 1, character.strengthSavingThrow) }}
+                        {{ inputs.number("Dexterity", "fields[dexteritySavingThrow]", false, null, null, null, 1, character.dexteritySavingThrow) }}
+                        {{ inputs.number("Constitution", "fields[constitutionSavingThrow]", false, null, null, null, 1, character.constitutionSavingThrow) }}
+                        {{ inputs.number("Intelligence", "fields[intelligenceSavingThrow]", false, null, null, null, 1, character.intelligenceSavingThrow) }}
+                        {{ inputs.number("Wisdom", "fields[wisdomSavingThrow]", false, null, null, null, 1, character.wisdomSavingThrow) }}
+                        {{ inputs.number("Charisma", "fields[charismaSavingThrow]", false, null, null, null, 1, character.charismaSavingThrow) }}
+                    </div>
+                </form-page>
+
+                <form-page class="w-full" id="equipment" style="display: {{ slug is defined and slug == 'equipment' ? 'grid' : 'none' }};grid-template-rows: 1fr; gap: 2rem;">
+
+                    {% set attacks = character.attacksAndSpells|json_decode() %}
+                    <attack-component loading="eager" web-component lazy-load-css="attack-component" data-attacks="{{ character.attacksAndSpells }}">
+                        <table class="w-full" style="display: {{ attacks|length ? 'block' : 'none' }};">
+                            <thead class="block w-full mb-0.5">
+                                <tr class="block w-full" grid="columns 3 gap-1">
+                                    <th class="pl-0.25 text-left font-regular font-grey-700 font-xs">Name</th>
+                                    <th class="pl-0.25 text-left font-regular font-grey-700 font-xs">Attack Bonus</th>
+                                    <th class="pl-0.25 text-left font-regular font-grey-700 font-xs">Damage/Type</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for row in attacks %}
+                                    <tr data-index="{{ loop.index0 }}" grid="columns 3 gap-1">
+                                        <td>
+                                            <input type="text" data-index="{{ loop.index0 }}" data-key="name" value="{{ row.name }}">
+                                        </td>
+                                        <td>
+                                            <input type="text" data-index="{{ loop.index0 }}" data-key="attackBonus" value="{{ row.attackBonus }}">
+                                        </td>
+                                        <td>
+                                            <input type="text" data-index="{{ loop.index0 }}" data-key="damageType" value="{{ row.damageType }}">
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                        <button type="button">
+                            <i>
+                                <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="plus" class="svg-inline--fa fa-plus fa-w-12" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="currentColor" d="M368 224H224V80c0-8.84-7.16-16-16-16h-32c-8.84 0-16 7.16-16 16v144H16c-8.84 0-16 7.16-16 16v32c0 8.84 7.16 16 16 16h144v144c0 8.84 7.16 16 16 16h32c8.84 0 16-7.16 16-16V288h144c8.84 0 16-7.16 16-16v-32c0-8.84-7.16-16-16-16z"></path></svg>
+                            </i>
+                            <span>Add Attack or Spell</span>
+                        </button>
+                    </attack-component>
+
+                    <hr class="w-full block bb-1 bb-solid bb-neutral-200">
+
+                    <div style="display: grid;gap: 2rem;grid-template-columns: repeat(auto-fit, minmax(128px, 1fr));">
+                        {{ inputs.number("Copper Coins", "fields[copperCoins]", false, null, 0, null, 1, character.copperCoins) }}
+                        {{ inputs.number("Silver Coins", "fields[silverCoins]", false, null, 0, null, 1, character.silverCoins) }}
+                        {{ inputs.number("Electrum Coins", "fields[electrumCoins]", false, null, 0, null, 1, character.electrumCoins) }}
+                        {{ inputs.number("Gold Coins", "fields[goldCoins]", false, null, 0, null, 1, character.goldCoins) }}
+                        {{ inputs.number("Platinum Coins", "fields[platinumCoins]", false, null, 0, null, 1, character.platinumCoins) }}
+                    </div>
+
+                    {{ inputs.textarea("Equipment", "fields[equipment]", false, null, character.equipment, 12) }}
+                </form-page>
+
                 <form-page class="w-full" id="lore" style="display: {{ slug is defined and slug == 'lore' ? 'grid' : 'none' }};grid-template-rows: 1fr; gap: 2rem;">
 
                     <div grid="columns 3 gap-2">
-                        {{ inputs.text("Age", "fields[age]", true, null, entry.age) }}
-                        {{ inputs.text("Height", "fields[height]", true, null, entry.height) }}
-                        {{ inputs.number("Weight", "fields[weight]", false, null, 0, null, 1, entry.weight) }}
-                        {{ inputs.text("Eyes", "fields[eyes]", true, null, entry.eyes) }}
-                        {{ inputs.text("Skin", "fields[skin]", true, null, entry.skin) }}
-                        {{ inputs.text("Hair", "fields[hair]", true, null, entry.hair) }}
+                        {{ inputs.text("Age", "fields[age]", true, null, character.age) }}
+                        {{ inputs.text("Height", "fields[height]", true, null, character.height) }}
+                        {{ inputs.number("Weight", "fields[weight]", false, null, 0, null, 1, character.weight) }}
+                        {{ inputs.text("Eyes", "fields[eyes]", true, null, character.eyes) }}
+                        {{ inputs.text("Skin", "fields[skin]", true, null, character.skin) }}
+                        {{ inputs.text("Hair", "fields[hair]", true, null, character.hair) }}
                     </div>
 
-                    {{ inputs.textarea("Background", "fields[background]", false, null, entry.apperance, 12) }}
-                    {{ inputs.textarea("Personality Traits", "fields[personalityTraits]", false, null, entry.personalityTraits) }}
-                    {{ inputs.textarea("Ideals", "fields[ideals]", false, null, entry.ideals) }}
-                    {{ inputs.textarea("Bonds", "fields[bonds]", false, null, entry.bonds) }}
-                    {{ inputs.textarea("Flaws", "fields[flaws]", false, null, entry.flaws) }}
-                    {{ inputs.textarea("Features & Traits", "fields[featuresAndTraits]", false, null, entry.featuresAndTraits, 12) }}
-                    {{ inputs.textarea("Appearance", "fields[apperance]", false, null, entry.apperance, 12) }}
-                    {{ inputs.textarea("Allies & Organizations", "fields[alliesAndOrganizations]", false, null, entry.alliesAndOrganizations, 12) }}
-                    {{ inputs.textarea("Treasure", "fields[treasure]", false, null, entry.treasure) }}
+                    {{ inputs.textarea("Background", "fields[background]", false, null, character.apperance, 12) }}
+                    {{ inputs.textarea("Personality Traits", "fields[personalityTraits]", false, null, character.personalityTraits) }}
+                    {{ inputs.textarea("Ideals", "fields[ideals]", false, null, character.ideals) }}
+                    {{ inputs.textarea("Bonds", "fields[bonds]", false, null, character.bonds) }}
+                    {{ inputs.textarea("Flaws", "fields[flaws]", false, null, character.flaws) }}
+                    {{ inputs.textarea("Features & Traits", "fields[featuresAndTraits]", false, null, character.featuresAndTraits, 12) }}
+                    {{ inputs.textarea("Appearance", "fields[apperance]", false, null, character.apperance, 12) }}
+                    {{ inputs.textarea("Allies & Organizations", "fields[alliesAndOrganizations]", false, null, character.alliesAndOrganizations, 12) }}
+                    {{ inputs.textarea("Treasure", "fields[treasure]", false, null, character.treasure) }}
                     
                 </form-page>
+
                 <form-page class="w-full" id="spells" style="display: {{ slug is defined and slug == 'spells' ? 'grid' : 'none' }};grid-template-rows: 1fr; gap: 2rem;">
-                    Spells {{ entry.title }}
+                    Spells {{ character.title }}
                 </form-page>
             </form>
         </character-sheet>

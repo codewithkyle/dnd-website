@@ -41,6 +41,9 @@ class CharacterSheet extends HTMLElement {
 		this.isSaving = true;
 		const data = new FormData(this.form);
 
+		const attackComponent = this.querySelector("attack-component") as AttackComponent;
+		data.append(`fields[attacksAndSpells]`, attackComponent.dumpAttacks());
+
 		let ticket;
 		if (doLoading) {
 			ticket = env.startLoading();
@@ -76,7 +79,7 @@ class CharacterSheet extends HTMLElement {
 		if (e instanceof KeyboardEvent) {
 			if (e.key === "s" && (e.ctrlKey || e.metaKey)) {
 				e.preventDefault();
-				this.saveCharacter();
+				this.saveCharacter(true);
 			}
 		}
 	};
