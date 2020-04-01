@@ -8,6 +8,8 @@ character-sheet{
 
     nav{
         margin-bottom: auto;
+        position: sticky;
+        top: 96px;
 
         input{
             width: 0;

@@ -3,7 +3,7 @@
 {% block content %}
     <article style="width:100%;display: block;">
         <section style="width:100%;display: block;">
-            <div class="bg-white shadow-md" style="width:420px;max-width:100%;display: block;margin: 0 auto;padding:2rem;">
+            <div class="bg-white shadow-md block mx-auto p-2" style="width:420px;max-width:100%;border-radius: 0.25rem;">
                 {% set characters = craft.entries({
                     section: 'characters',
                     authorId: currentUser.id,
@@ -11,7 +11,7 @@
                 }).all() %}
                 {% if characters|length %}
                     {% for char in characters %}
-                        <a href="{{ char.url }}" class="block w-full b-1 b-solid b-grey-300 p-1 mb-2">
+                        <a href="{{ siteUrl|trim('/') }}/character/{{ char.id }}" class="block w-full b-1 b-solid b-grey-300 p-1 mb-2" style="border-radius: 0.25rem;">
                             <span class=" block font-primary-700 font-medium mb-0.25">{{ char.title }}</span>
                             <span class="block font-grey-700 font-sm">Lv. {{ char.charLevel }} {{ char.class }}</span>
                         </a>
