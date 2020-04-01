@@ -10,11 +10,44 @@
 {% endif %}
 
 {% block content %}
-    <article style="width:100%;display: block;">
-        <section style="width:100%;display: block;">
-            <div class="bg-white shadow-md p-2 block mx-auto" style="width:1024px;max-width:100%;">
-                {{ entry.title }}
-            </div>
-        </section>
+    <article class="block w-full px-1">
+        <character-sheet eager-load-css="character-sheet" web-component>
+            <nav grid="rows 1 gap-1">
+                <div>
+                    <input type="radio" name="navigation" checked id="nav-overview" value="0" />
+                    <label for="nav-overview">Overview</label>
+                </div>
+                <div>
+                    <input type="radio" name="navigation" id="nav-abilities" value="1" />
+                    <label for="nav-abilities">Abilities & Skills</label>
+                </div>
+                <div>
+                    <input type="radio" name="navigation" id="nav-lore" value="2" />
+                    <label for="nav-lore">Your Lore</label>
+                </div>
+                <div>
+                    <input type="radio" name="navigation" id="nav-spells" value="3" />
+                    <label for="nav-spells">Spellbook</label>
+                </div>
+                <button id="save-button" class="button -solid -primary">Save Characater</button>
+            </nav>
+            <form class="bg-white shadow-md p-2" style="border-radius: 0.25rem;">
+                {{ csrfInput() }}
+                {{ hiddenInput('entryId', entry.id) }}
+
+                <form-page class="w-full" id="overview" style="display: block;">
+                    Overview {{ entry.title }}
+                </form-page>
+                <form-page class="w-full" id="abilities" style="display: none;">
+                    Abilities {{ entry.title }}
+                </form-page>
+                <form-page class="w-full" id="lore" style="display: none;">
+                    Lore {{ entry.title }}
+                </form-page>
+                <form-page class="w-full" id="spells" style="display: none;">
+                    Spells {{ entry.title }}
+                </form-page>
+            </form>
+        </character-sheet>
     </article>
 {% endblock %}

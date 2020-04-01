@@ -1,0 +1,53 @@
+character-sheet{
+    width: 1200px;
+    max-width: 100%;
+    display: grid;
+    margin: 0 auto;
+    gap: 2rem;
+    grid-template-columns: 200px minmax(0px, 1fr);
+
+    nav{
+        input{
+            width: 0;
+            height: 0;
+            opacity: 0;
+            position: absolute;
+            top: 0;
+            left: 0;
+
+            &:checked{
+                & + label{
+                    background-color: var(--white) !important;
+                    box-shadow: var(--shadow-md) !important;
+                    cursor: default;
+                }
+            }
+
+            &:focus{
+                & + label{
+                    background-color: var(--neutral-200);
+                }
+            }
+        }
+
+        label{
+            display: flex;
+            align-items: center;
+            height: 36px;
+            padding: 0 1rem;
+            border-radius: 0.25rem;
+            color: var(--grey-700);
+            transition: all 150ms var(--ease-in-out);
+            cursor: pointer;
+            font-size: var(--font-sm);
+
+            &:hover{
+                background-color: var(--neutral-200);
+            }
+
+            &:active{
+                background-color: var(--neutral-300);
+            }
+        }
+    }
+}

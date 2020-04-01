@@ -24,6 +24,10 @@
         background-color: var(--neutral-200) !important;
         cursor: not-allowed !important;
         color: var(--neutral-700) !important;
+
+        &::before{
+            display: none !important;
+        }
     }
 
     &.-text{
