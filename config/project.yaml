@@ -1,4 +1,4 @@
-dateModified: 1585703806
+dateModified: 1585748776
 email:
   fromEmail: codingwithkyle@gmail.com
   fromName: Boilerplate
@@ -69,6 +69,24 @@ fields:
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\Lightswitch
+  12394b2b-8b48-478e-8bb0-9e0b13793d8e:
+    contentColumnType: text
+    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    handle: treasure
+    instructions: ''
+    name: Treasure
+    searchable: true
+    settings:
+      byteLimit: null
+      charLimit: null
+      code: ''
+      columnType: null
+      initialRows: '4'
+      multiline: '1'
+      placeholder: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\PlainText
   14421814-1d3e-41ad-8f5e-e50faf18ac92:
     contentColumnType: integer(10)
     fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
@@ -183,6 +201,24 @@ fields:
     handle: age
     instructions: ''
     name: Age
+    searchable: true
+    settings:
+      byteLimit: null
+      charLimit: null
+      code: ''
+      columnType: null
+      initialRows: '4'
+      multiline: ''
+      placeholder: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\PlainText
+  25c3aa96-218a-49bc-a7f8-d45ddee774a0:
+    contentColumnType: text
+    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    handle: race
+    instructions: ''
+    name: Race
     searchable: true
     settings:
       byteLimit: null
@@ -1557,24 +1593,6 @@ fields:
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\Number
-  faac3b1d-36f3-4f88-9a73-a2592c965518:
-    contentColumnType: text
-    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
-    handle: backstory
-    instructions: ''
-    name: Backstory
-    searchable: true
-    settings:
-      byteLimit: null
-      charLimit: null
-      code: ''
-      columnType: null
-      initialRows: '4'
-      multiline: '1'
-      placeholder: ''
-    translationKeyFormat: null
-    translationMethod: none
-    type: craft\fields\PlainText
   fd4338e6-2ae4-47cb-a744-c083c966c007:
     contentColumnType: text
     fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
@@ -1603,6 +1621,16 @@ plugins:
     enabled: true
     schemaVersion: 2.0.0
 routes:
+  8e5c2240-8fe2-4d72-846a-1bd720e346bf:
+    siteUid: null
+    sortOrder: 2
+    template: character/index.twig
+    uriParts:
+      - character/
+      -
+        - number
+        - \d+
+    uriPattern: 'character/<number:\d+>'
   b4b0f335-ff96-4011-a82e-9d9339137572:
     siteUid: null
     sortOrder: 1
@@ -1612,7 +1640,11 @@ routes:
       -
         - number
         - \d+
-    uriPattern: 'character/<number:\d+>'
+      - /
+      -
+        - slug
+        - '[^\/]+'
+    uriPattern: 'character/<number:\d+>/<slug:[^\/]+>'
 sections:
   3d51e8a8-b0d4-479a-88ac-01b9e5659ac9:
     enableVersioning: true
@@ -1623,27 +1655,30 @@ sections:
             tabs:
               -
                 fields:
-                  4c46f78f-fc05-4610-b628-3401bc09e15d:
+                  25c3aa96-218a-49bc-a7f8-d45ddee774a0:
                     required: false
                     sortOrder: 2
+                  4c46f78f-fc05-4610-b628-3401bc09e15d:
+                    required: false
+                    sortOrder: 3
                   6bde9132-4da1-44ca-be56-ad8a6a588dd1:
                     required: false
                     sortOrder: 1
                   8614def5-7fbd-4ba4-8f14-f73be6102fc7:
                     required: false
-                    sortOrder: 4
+                    sortOrder: 5
                   8a20aeca-3742-4f3f-9e47-c1fe5f9496f2:
                     required: false
-                    sortOrder: 3
+                    sortOrder: 4
                   b005c7ff-e3f4-4e0d-92b4-f2a85f0426c2:
                     required: false
-                    sortOrder: 6
+                    sortOrder: 7
                   bcecd30e-94f2-4a14-8eb2-dee8b9e3278b:
                     required: false
-                    sortOrder: 7
+                    sortOrder: 8
                   ce8c6d47-9591-4a57-a5a3-0abbc910a88a:
                     required: false
-                    sortOrder: 5
+                    sortOrder: 6
                 name: Overview
                 sortOrder: 1
               -
@@ -1882,6 +1917,9 @@ sections:
                   01076d45-d801-42e4-86af-abb364b06e31:
                     required: false
                     sortOrder: 1
+                  12394b2b-8b48-478e-8bb0-9e0b13793d8e:
+                    required: false
+                    sortOrder: 8
                   2a6ec182-50f7-4503-9d7d-d9e6a7b80254:
                     required: false
                     sortOrder: 7
@@ -1897,9 +1935,6 @@ sections:
                   d436f4e0-c992-41e2-9e1f-56e708e8230c:
                     required: false
                     sortOrder: 2
-                  faac3b1d-36f3-4f88-9a73-a2592c965518:
-                    required: false
-                    sortOrder: 8
                   fd4338e6-2ae4-47cb-a744-c083c966c007:
                     required: false
                     sortOrder: 3

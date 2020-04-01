@@ -24,6 +24,251 @@
     {% set imageFormat = 'jpg' %}
 {% endif %}
 
+{% set data = {
+    "classes": [
+        {
+            "value": "Barbarian",
+            "label": "Barbarian"
+        },
+        {
+            "value": "Bard",
+            "label": "Bard"
+        },
+        {
+            "value": "Cleric",
+            "label": "Cleric"
+        },
+        {
+            "value": "Druid",
+            "label": "Druid"
+        },
+        {
+            "value": "Fighter",
+            "label": "Fighter"
+        },
+        {
+            "value": "Monk",
+            "label": "Monk"
+        },
+        {
+            "value": "Paladin",
+            "label": "Paladin"
+        },
+        {
+            "value": "Ranger",
+            "label": "Ranger"
+        },
+        {
+            "value": "Rogue",
+            "label": "Rogue"
+        },
+        {
+            "value": "Sorcerer",
+            "label": "Sorcerer"
+        },
+        {
+            "value": "Warlock",
+            "label": "Warlock"
+        },
+        {
+            "value": "Wizard",
+            "label": "Wizard"
+        },
+    ],
+    "races": [
+        {
+            "value": "Dragonborn",
+            "label": "Dragonborn"
+        },
+        {
+            "value": "Dwarf",
+            "label": "Dwarf"
+        },
+        {
+            "value": "Hill Dwarf",
+            "label": "Hill Dwarf"
+        },
+        {
+            "value": "Elf",
+            "label": "Elf"
+        },
+        {
+            "value": "High Elf",
+            "label": "High Elf"
+        },
+        {
+            "value": "Gnome",
+            "label": "Gnome"
+        },
+        {
+            "value": "Rock Gnome",
+            "label": "Rock Gnome"
+        },
+        {
+            "value": "Half-Elf",
+            "label": "Half-Elf"
+        },
+        {
+            "value": "Half-Orc",
+            "label": "Half-Orc"
+        },
+        {
+            "value": "Halfling",
+            "label": "Halfling"
+        },
+        {
+            "value": "Lightfoot Halfling",
+            "label": "Lightfoot Halfling"
+        },
+        {
+            "value": "Human",
+            "label": "Human"
+        },
+        {
+            "value": "Tiefling",
+            "label": "Tiefling"
+        },
+    ],
+    "alignments": [
+        {
+            "value": "Lawful Good",
+            "label": "Lawful Good"
+        },
+        {
+            "value": "Neutral Good",
+            "label": "Neutral Good"
+        },
+        {
+            "value": "Chaotic Good",
+            "label": "Chaotic Good"
+        },
+        {
+            "value": "Lawful Neutral",
+            "label": "Lawful Neutral"
+        },
+        {
+            "value": "Neutral",
+            "label": "Neutral"
+        },
+        {
+            "value": "Chaotic Neutral",
+            "label": "Chaotic Neutral"
+        },
+        {
+            "value": "Lawful Evil",
+            "label": "Lawful Evil"
+        },
+        {
+            "value": "Neutral Evil",
+            "label": "Neutral Evil"
+        },
+        {
+            "value": "Chaotic Evil",
+            "label": "Chaotic Evil"
+        },
+    ],
+    "skills": [
+        {
+            "label": "Acrobatics",
+            "ability": "dexterity",
+        },
+        {
+            "label": "Animal Handling",
+            "ability": "wisdom",
+        },
+        {
+            "label": "Arcana",
+            "ability": "intelligence",
+        },
+        {
+            "label": "Athletics",
+            "ability": "strength",
+        },
+        {
+            "label": "Deception",
+            "ability": "charisma",
+        },
+        {
+            "label": "History",
+            "ability": "intelligence",
+        },
+        {
+            "label": "Insight",
+            "ability": "wisdom",
+        },
+        {
+            "label": "Intimidation",
+            "ability": "charisma",
+        },
+        {
+            "label": "Investigation",
+            "ability": "intelligence",
+        },
+        {
+            "label": "Medicine",
+            "ability": "wisdom",
+        },
+        {
+            "label": "Nature",
+            "ability": "intelligence",
+        },
+        {
+            "label": "Perception",
+            "ability": "wisdom",
+        },
+        {
+            "label": "Performance",
+            "ability": "charisma",
+        },
+        {
+            "label": "Persuasion",
+            "ability": "charisma",
+        },
+        {
+            "label": "Religion",
+            "ability": "intelligence",
+        },
+        {
+            "label": "Sleight of Hand",
+            "ability": "dexterity",
+        },
+        {
+            "label": "Stealth",
+            "ability": "dexterity",
+        },
+        {
+            "label": "Survival",
+            "ability": "wisdom",
+        },
+    ],
+    "dice": [
+        {
+            "label": "d20",
+            "value": "d20"
+        },
+        {
+            "label": "d12",
+            "value": "d12"
+        },
+        {
+            "label": "d10",
+            "value": "d10"
+        },
+        {
+            "label": "d8",
+            "value": "d8"
+        },
+        {
+            "label": "d6",
+            "value": "d6"
+        },
+        {
+            "label": "d4",
+            "value": "d4"
+        },
+    ]
+} %}
+
 {% spaceless %}
 <!DOCTYPE html>
 <html 

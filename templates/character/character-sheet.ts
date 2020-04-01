@@ -20,11 +20,13 @@ class CharacterSheet extends HTMLElement {
 		const index = parseInt(input.value);
 		for (let i = 0; i < this.pages.length; i++) {
 			if (i === index) {
-				this.pages[i].style.display = "block";
+				this.pages[i].style.display = "grid";
 			} else {
 				this.pages[i].style.display = "none";
 			}
 		}
+
+		window.history.replaceState(null, null, `${location.origin}/character/${this.dataset.characterId}/${input.dataset.slug}`);
 	};
 
 	private handleCharacterSave: EventListener = (e: Event) => {
@@ -54,7 +56,9 @@ class CharacterSheet extends HTMLElement {
 		});
 		if (request.ok) {
 			const response = await request.json();
-			console.log(response);
+			if (!response.success) {
+				console.error(response);
+			}
 		} else {
 			const error = await request.text();
 			console.error(error);

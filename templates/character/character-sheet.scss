@@ -7,6 +7,8 @@ character-sheet{
     grid-template-columns: 200px minmax(0px, 1fr);
 
     nav{
+        margin-bottom: auto;
+
         input{
             width: 0;
             height: 0;

@@ -9,24 +9,30 @@
     {% redirect siteUrl %}
 {% endif %}
 
+{% import "_macros" as inputs %}
+
 {% block content %}
     <article class="block w-full px-1">
-        <character-sheet eager-load-css="character-sheet" web-component>
+        <character-sheet eager-load-css="character-sheet" web-component data-character-id="{{ entry.id }}">
             <nav grid="rows 1 gap-1">
                 <div>
-                    <input type="radio" name="navigation" checked id="nav-overview" value="0" />
+                    <input type="radio" name="navigation" {{ slug is defined and slug == 'overview' or slug is not defined ? 'checked' }} id="nav-overview" value="0" data-slug="overview" />
                     <label for="nav-overview">Overview</label>
                 </div>
                 <div>
-                    <input type="radio" name="navigation" id="nav-abilities" value="1" />
+                    <input type="radio" name="navigation" id="nav-health" value="1" data-slug="health" {{ slug is defined and slug == 'health' ? 'checked' }} />
+                    <label for="nav-health">Health</label>
+                </div>
+                <div>
+                    <input type="radio" name="navigation" id="nav-abilities" value="2" data-slug="abilities" {{ slug is defined and slug == 'abilities' ? 'checked' }} />
                     <label for="nav-abilities">Abilities & Skills</label>
                 </div>
                 <div>
-                    <input type="radio" name="navigation" id="nav-lore" value="2" />
-                    <label for="nav-lore">Your Lore</label>
+                    <input type="radio" name="navigation" id="nav-lore" value="3" data-slug="lore" {{ slug is defined and slug == 'lore' ? 'checked' }} />
+                    <label for="nav-lore">Appearance & Lore</label>
                 </div>
                 <div>
-                    <input type="radio" name="navigation" id="nav-spells" value="3" />
+                    <input type="radio" name="navigation" id="nav-spells" value="4" data-slug="spells" {{ slug is defined and slug == 'spells' ? 'checked' }} />
                     <label for="nav-spells">Spellbook</label>
                 </div>
                 <button id="save-button" class="button -solid -primary">Save Characater</button>
@@ -35,16 +41,75 @@
                 {{ csrfInput() }}
                 {{ hiddenInput('entryId', entry.id) }}
 
-                <form-page class="w-full" id="overview" style="display: block;">
-                    Overview {{ entry.title }}
+                <form-page class="w-full" id="overview" style="display: {{ slug is defined and slug == 'overview' or slug is not defined ? 'grid' : 'none' }};grid-template-rows: 1fr; gap: 2rem;">
+
+                    {{ inputs.text("Character Name", "title", true, null, entry.title) }}
+
+                    <div grid="columns 3 gap-2">
+                        {{ inputs.select("Class", "fields[class]", false, data.classes, null, entry.class, false) }}
+                        {{ inputs.select("Race", "fields[race]", false, data.races, null, entry.race, false) }}
+                        {{ inputs.select("Alignment", "fields[alignment]", false, data.alignments, null, entry.alignment) }}
+
+                        {{ inputs.number("Level", "fields[charLevel]", false, null, 1, 20, 1, entry.charLevel) }}
+                        {{ inputs.number("Experience Points", "fields[exp]", false, null, 0, null, 1, entry.exp) }}
+                        {{ inputs.number("Proficiency Bonus", "fields[proficiencyBonus]", false, null, 0, null, 1, entry.proficiencyBonus) }}
+                    </div>
+
+                    <hr class="w-full block bb-1 bb-solid bb-grey-200">
+
+                    <div grid="columns 2 gap-2">
+                        {{ inputs.number("Armor Class", "fields[armorClass]", false, null, null, null, 1, entry.armorClass) }}
+                        {{ inputs.number("Initiative", "fields[initiative]", false, null, null, null, 1, entry.initiative) }}
+                        {{ inputs.number("Speed", "fields[speed]", false, null, null, null, 1, entry.speed) }}
+                        {{ inputs.number("Inspiration", "fields[inspiration]", false, null, 0, null, 1, entry.inspiration) }}
+                    </div>
+                    
                 </form-page>
-                <form-page class="w-full" id="abilities" style="display: none;">
+                <form-page class="w-full" id="health" style="display: {{ slug is defined and slug == 'health' ? 'grid' : 'none' }};grid-template-rows: 1fr; gap: 2rem;">
+                    <div grid="columns 3 gap-2">
+                        {{ inputs.number("Current Hit Poitns", "fields[currentHitPoints]", false, null, null, null, 1, entry.currentHitPoints) }}
+                        {{ inputs.number("Maximum Hit Points", "fields[maximumHitPoints]", false, null, null, null, 1, entry.maximumHitPoints) }}
+                        {{ inputs.number("Temporary Hit Points", "fields[temporaryHitPoints]", false, null, null, null, 1, entry.temporaryHitPoints) }}
+                    </div>
+
+                    <div grid="columns 2 gap-2">
+                        {{ inputs.number("Hit Dice", "fields[currentHitDice]", false, null, null, null, 1, entry.currentHitDice) }}
+                        {{ inputs.select("Hit Dice Type", "fields[hitDice]", false, data.dice, null, entry.hitDice, false) }}
+                    </div>
+
+                    <hr class="w-full block bb-1 bb-solid bb-grey-200">
+
+                    <div grid="columns 2 gap-2">
+                        {{ inputs.number("Successful Death Saves", "fields[successfulDeathSaves]", false, null, 0, 3, 1, entry.successfulDeathSaves) }}
+                        {{ inputs.number("Failed Death Saves", "fields[failedDeathSaves]", false, null, 0, 3, 1, entry.failedDeathSaves) }}
+                    </div>
+                </form-page>
+                <form-page class="w-full" id="abilities" style="display: {{ slug is defined and slug == 'abilities' ? 'grid' : 'none' }};grid-template-rows: 1fr; gap: 2rem;">
                     Abilities {{ entry.title }}
                 </form-page>
-                <form-page class="w-full" id="lore" style="display: none;">
-                    Lore {{ entry.title }}
+                <form-page class="w-full" id="lore" style="display: {{ slug is defined and slug == 'lore' ? 'grid' : 'none' }};grid-template-rows: 1fr; gap: 2rem;">
+
+                    <div grid="columns 3 gap-2">
+                        {{ inputs.text("Age", "fields[age]", true, null, entry.age) }}
+                        {{ inputs.text("Height", "fields[height]", true, null, entry.height) }}
+                        {{ inputs.number("Weight", "fields[weight]", false, null, 0, null, 1, entry.weight) }}
+                        {{ inputs.text("Eyes", "fields[eyes]", true, null, entry.eyes) }}
+                        {{ inputs.text("Skin", "fields[skin]", true, null, entry.skin) }}
+                        {{ inputs.text("Hair", "fields[hair]", true, null, entry.hair) }}
+                    </div>
+
+                    {{ inputs.textarea("Background", "fields[background]", false, null, entry.apperance, 12) }}
+                    {{ inputs.textarea("Personality Traits", "fields[personalityTraits]", false, null, entry.personalityTraits) }}
+                    {{ inputs.textarea("Ideals", "fields[ideals]", false, null, entry.ideals) }}
+                    {{ inputs.textarea("Bonds", "fields[bonds]", false, null, entry.bonds) }}
+                    {{ inputs.textarea("Flaws", "fields[flaws]", false, null, entry.flaws) }}
+                    {{ inputs.textarea("Features & Traits", "fields[featuresAndTraits]", false, null, entry.featuresAndTraits, 12) }}
+                    {{ inputs.textarea("Appearance", "fields[apperance]", false, null, entry.apperance, 12) }}
+                    {{ inputs.textarea("Allies & Organizations", "fields[alliesAndOrganizations]", false, null, entry.alliesAndOrganizations, 12) }}
+                    {{ inputs.textarea("Treasure", "fields[treasure]", false, null, entry.treasure) }}
+                    
                 </form-page>
-                <form-page class="w-full" id="spells" style="display: none;">
+                <form-page class="w-full" id="spells" style="display: {{ slug is defined and slug == 'spells' ? 'grid' : 'none' }};grid-template-rows: 1fr; gap: 2rem;">
                     Spells {{ entry.title }}
                 </form-page>
             </form>

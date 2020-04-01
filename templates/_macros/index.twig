@@ -103,7 +103,7 @@
     </lightswitch-component>
 {% endmacro %}
 
-{% macro number(label, name, required, helperText = null, minimum = null, maximum = null, step = null) %}
+{% macro number(label, name, required, helperText = null, minimum = null, maximum = null, step = null, value = null) %}
 {% if minimum %}
     {% set minimum = 'min=' ~ minimum %}
 {% endif %}
@@ -113,8 +113,8 @@
 {% if step %}
     {% set step = 'step=' ~ step %}
 {% endif %}
-    <input-component lazy-load-css="input-component" web-component>
-        <input type="number" name="{{ name }}" id="{{ label|camel }}" {{ required ? 'required' }} {{ minimum }} {{ maximum }} {{ step }} inputmode="numeric">
+    <input-component lazy-load-css="input-component" web-component class="{{ value is not null ? 'has-value' }}">
+        <input type="number" name="{{ name }}" id="{{ label|camel }}" {{ required ? 'required' }} {{ minimum }} {{ maximum }} {{ step }} inputmode="numeric" {{ value is not null ? "value=" ~ value }}>
         <label for="{{ label|camel }}">{{ label }}</label>
         {% if helperText|length %}
             <helper-text lazy-load-css="helper-text">
@@ -157,12 +157,14 @@
     </fieldset-component>
 {% endmacro %}
 
-{% macro select(label, name, required, options, helperText = null) %}
-    <select-component web-component lazy-load-css="select-component">
+{% macro select(label, name, required, options, helperText = null, value = null, allowBlank = true) %}
+    <select-component web-component lazy-load-css="select-component" class="{{ value is not null or not allowBlank ? 'has-value' }}">
         <select name="{{ name }}" id="{{ label|camel }}" {{ required ? 'required' }}>
-            <option value=""></option>
+            {% if allowBlank %}
+                <option value=""></option>
+            {% endif %}
             {% for option in options %}
-                <option value="{{ option.value }}">{{ option.label }}</option>
+                <option value="{{ option.value }}" {{ value == option.value ? 'selected' }}>{{ option.label }}</option>
             {% endfor %}
         </select>
         <label for="{{ label|camel }}">{{ label }}</label>
@@ -213,9 +215,9 @@
     </noscript>
 {% endmacro %}
 
-{% macro text(label, name, required, helperText = null) %}
-    <input-component lazy-load-css="input-component" web-component>
-        <input type="text" name="{{ name }}" id="{{ label|camel }}" {{ required ? 'required' }}>
+{% macro text(label, name, required, helperText = null, value = null) %}
+    <input-component lazy-load-css="input-component" web-component class="{{ value is not null ? 'has-value' }}">
+        <input type="text" name="{{ name }}" id="{{ label|camel }}" {{ required ? 'required' }} value="{{ value }}">
         <label for="{{ label|camel }}">{{ label }}</label>
         {% if helperText|length %}
             <helper-text lazy-load-css="helper-text">
@@ -238,9 +240,9 @@
     </noscript>
 {% endmacro %}
 
-{% macro textarea(label, name, required, helperText = null) %}
-    <textarea-component lazy-load-css="textarea-component" web-component>
-        <textarea name="{{ name }}" id="{{ label|camel }}" rows="5" {{ required ? 'required' }}></textarea>
+{% macro textarea(label, name, required, helperText = null, value = null, rows = 8) %}
+    <textarea-component lazy-load-css="textarea-component" web-component class="{{ value is not null ? 'has-value' }}">
+        <textarea name="{{ name }}" id="{{ label|camel }}" {{ required ? 'required' }} style="min-height: {{ rows }}rem;">{{ value }}</textarea>
         <label for="{{ label|camel }}">{{ label }}</label>
         {% if helperText|length %}
             <helper-text lazy-load-css="helper-text">
