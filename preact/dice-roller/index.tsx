@@ -33,7 +33,7 @@ class DiceRoller extends Component<{}, DrawerState> {
 		};
 	}
 	private openDrawer: EventListener = () => {
-		this.setState({ open: true });
+		this.setState({ open: true, queuedD4: 0, queuedD8: 0, queuedD10: 0, queuedD12: 0, queuedD20: 0, queuedD6: 0, view: "waiting" });
 	};
 	private closeDrawer: EventListener = () => {
 		this.setState({ open: false, queuedD4: 0, queuedD8: 0, queuedD10: 0, queuedD12: 0, queuedD20: 0, queuedD6: 0, view: "waiting" });
