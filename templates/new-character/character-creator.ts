@@ -190,6 +190,12 @@ class CharacterCreator extends HTMLElement {
 
 		const data = new FormData(this.form);
 
+		if (isFinal) {
+			data.append("enabled", "1");
+		} else {
+			data.append("enabled", "0");
+		}
+
 		const nameInput = this.form.querySelector('input[name="title"]') as HTMLInputElement;
 		if (nameInput.value === "") {
 			data.set("title", uid());

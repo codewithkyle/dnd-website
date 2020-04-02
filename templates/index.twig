@@ -13,7 +13,8 @@
                     {% set characters = craft.entries({
                         section: 'characters',
                         authorId: currentUser.id,
-                        limit: null
+                        limit: null,
+                        status: "live"
                     }).all() %}
                 {% endif %}
                 {% if characters|length %}
