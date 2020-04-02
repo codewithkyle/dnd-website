@@ -178,7 +178,7 @@ class DiceRoller extends Component<{}, DrawerState> {
 				array = [...array];
 			}
 			this.setState({ results: array, queuedD4: 0, queuedD8: 0, queuedD10: 0, queuedD12: 0, queuedD20: 0, queuedD6: 0, view: "rolled" });
-		}, 300);
+		}, 600);
 	};
 
 	private calcTotal() {
