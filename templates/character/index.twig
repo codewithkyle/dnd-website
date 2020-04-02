@@ -5,7 +5,7 @@
     id: number
 }).one() %}
 
-{% if currentUser['id'] is not defined or character.authorId != currentUser.id %}
+{% if currentUser['id'] is not defined or character.authorId != currentUser.id or currentUser['admin'] is defined %}
     {% redirect siteUrl %}
 {% endif %}
 
