@@ -186,6 +186,7 @@
                     </skill-table>
 
                     {{ inputs.textarea("Other Proficiencies", "fields[otherProficiencies]", false, null, character.otherProficiencies, 12) }}
+                    {{ inputs.textarea("Features & Traits", "fields[featuresAndTraits]", false, null, character.featuresAndTraits, 12) }}
                 </form-page>
 
                 <form-page class="w-full" id="saving-throws" style="display: {{ slug is defined and slug == 'saving-throws' ? 'grid' : 'none' }};grid-template-rows: 1fr; gap: 2rem;">
@@ -264,7 +265,6 @@
                     {{ inputs.textarea("Ideals", "fields[ideals]", false, null, character.ideals) }}
                     {{ inputs.textarea("Bonds", "fields[bonds]", false, null, character.bonds) }}
                     {{ inputs.textarea("Flaws", "fields[flaws]", false, null, character.flaws) }}
-                    {{ inputs.textarea("Features & Traits", "fields[featuresAndTraits]", false, null, character.featuresAndTraits, 12) }}
                     {{ inputs.textarea("Appearance", "fields[apperance]", false, null, character.apperance, 12) }}
                     {{ inputs.textarea("Allies & Organizations", "fields[alliesAndOrganizations]", false, null, character.alliesAndOrganizations, 12) }}
                     {{ inputs.textarea("Treasure", "fields[treasure]", false, null, character.treasure) }}
@@ -554,4 +554,6 @@
             </form>
         </character-sheet>
     </article>
+    <div id="dice-mounting-point"></div>
+    <script src="{{ alias('@rootUrl')|trim('/') }}/preact/dice-roller.js"></script>
 {% endblock %}

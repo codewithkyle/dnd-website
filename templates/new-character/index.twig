@@ -27,7 +27,7 @@
                             {{ inputs.select("Race", "fields[race]", true, data.races) }}
                         </div>
 
-                        {{ inputs.textarea("Background", "fields[background]", true) }}
+                        {{ inputs.textarea("Background", "fields[background]", false) }}
                         {{ inputs.select("Alignment", "fields[alignment]", false, data.alignments) }}
 
                         <div class="block text-right">
@@ -159,11 +159,11 @@
                         </div>
                         
                         <div grid="columns 3 gap-1">
-                            {{ inputs.number("Copper Coins", "fields[copperCoins]", true, null, 0, null, 1) }}
-                            {{ inputs.number("Silver Coins", "fields[silverCoins]", true, null, 0, null, 1) }}
-                            {{ inputs.number("Electrum Coins", "fields[electrumCoins]", true, null, 0, null, 1) }}
-                            {{ inputs.number("Gold Coins", "fields[goldCoins]", true, null, 0, null, 1) }}
-                            {{ inputs.number("Platinum Coins", "fields[platinumCoins]", true, null, 0, null, 1) }}
+                            {{ inputs.number("Copper Coins", "fields[copperCoins]", false, null, 0, null, 1) }}
+                            {{ inputs.number("Silver Coins", "fields[silverCoins]", false, null, 0, null, 1) }}
+                            {{ inputs.number("Electrum Coins", "fields[electrumCoins]", false, null, 0, null, 1) }}
+                            {{ inputs.number("Gold Coins", "fields[goldCoins]", false, null, 0, null, 1) }}
+                            {{ inputs.number("Platinum Coins", "fields[platinumCoins]", false, null, 0, null, 1) }}
                         </div>
 
                         <div style="display: flex; justify-content: space-between;align-items: center;">
