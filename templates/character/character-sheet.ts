@@ -37,6 +37,10 @@ class CharacterSheet extends HTMLElement {
 	};
 
 	private async saveCharacter(doLoading = false) {
+		if (this.dataset.preventSave) {
+			return;
+		}
+
 		if (this.isSaving) {
 			return;
 		}
@@ -140,11 +144,13 @@ class CharacterSheet extends HTMLElement {
 			input.addEventListener("change", this.switchView);
 		});
 		this.form.addEventListener("submit", this.handleCharacterSave);
-		this.querySelector("#save-button").addEventListener("click", this.handleCharacterSave);
-		document.addEventListener("keydown", this.handleKeypress);
 
-		this.time = performance.now();
-		this.autoSave();
+		if (!this.dataset.preventSave) {
+			this.querySelector("#save-button").addEventListener("click", this.handleCharacterSave);
+			document.addEventListener("keydown", this.handleKeypress);
+			this.time = performance.now();
+			this.autoSave();
+		}
 	}
 }
 customElements.define("character-sheet", CharacterSheet);
