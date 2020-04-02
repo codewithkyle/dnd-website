@@ -8,8 +8,6 @@
             <character-creator web-component>
                 <form eager-load-css="ratios" method="post" accept-charset="UTF-8" class="bg-white shadow-md block mx-auto my-0 p-2" style="width:640px;max-width:100%;border-radius: 0.25rem;">
                     {{ csrfInput() }}
-                    {{ actionInput('entries/save-entry') }}
-                    {{ redirectInput('character/{slug}') }}
                     {{ hiddenInput('sectionId', '1') }}
                     {{ hiddenInput('enabled', '1') }}
 

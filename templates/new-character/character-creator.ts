@@ -1,4 +1,5 @@
 import { env } from "djinnjs/env";
+import { uid } from "../uid";
 
 class CharacterCreator extends HTMLElement {
 	private form: HTMLFormElement;
@@ -6,6 +7,9 @@ class CharacterCreator extends HTMLElement {
 	private page: number;
 	private pages: Array<HTMLElement>;
 	private classInput: HTMLInputElement;
+	private isSaving: boolean;
+	private countdown: number;
+	private time: number;
 	private modifiers: {
 		strength: number;
 		dexterity: number;
@@ -14,6 +18,7 @@ class CharacterCreator extends HTMLElement {
 		wisdom: number;
 		charisma: number;
 	};
+	private entryId: string;
 
 	constructor() {
 		super();
@@ -30,6 +35,8 @@ class CharacterCreator extends HTMLElement {
 			wisdom: 0,
 			charisma: 0,
 		};
+		this.countdown = 300;
+		this.entryId = null;
 	}
 
 	private getSavingThrows() {
@@ -134,6 +141,8 @@ class CharacterCreator extends HTMLElement {
 				return "d6";
 			case "Warlock":
 				return "d8";
+			default:
+				return "";
 		}
 	}
 
@@ -163,16 +172,35 @@ class CharacterCreator extends HTMLElement {
 				return `${8 + this.modifiers.constitution}`;
 			case "Wizard":
 				return `${6 + this.modifiers.constitution}`;
+			default:
+				return "0";
 		}
 	}
 
-	private handleSubmit: EventListener = async (e: Event) => {
+	private handleSubmit: EventListener = (e: Event) => {
 		e.preventDefault();
-		const ticket = env.startLoading();
+		this.saveCharacter(false);
+	};
+
+	private async saveCharacter(isFinal = false) {
+		if (this.isSaving) {
+			return;
+		}
+		this.isSaving = true;
+
 		const data = new FormData(this.form);
+
+		const nameInput = this.form.querySelector('input[name="title"]') as HTMLInputElement;
+		if (nameInput.value === "") {
+			data.set("title", uid());
+		}
 
 		for (const [key, value] of Object.entries(this.modifiers)) {
 			data.append(`fields[${key}Modifier]`, `${value}`);
+		}
+
+		if (this.entryId) {
+			data.append(`entryId`, this.entryId);
 		}
 
 		const savingThrows = this.getSavingThrows();
@@ -211,14 +239,21 @@ class CharacterCreator extends HTMLElement {
 		});
 		if (request.ok) {
 			const response = await request.json();
-			// @ts-ignore
-			location.href = `${location.origin}/character/${response.id}`;
+			if (response.success) {
+				this.entryId = response.id;
+
+				if (isFinal) {
+					window.location.href = `${location.origin}/character/${response.id}`;
+				}
+			}
 		} else {
 			const error = await request.text();
 			console.error(error);
-			env.stopLoading(ticket);
 		}
-	};
+
+		this.isSaving = false;
+		this.countdown = 300;
+	}
 
 	private handleButtonClick: EventListener = (e: Event) => {
 		const button = e.currentTarget as HTMLButtonElement;
@@ -291,8 +326,28 @@ class CharacterCreator extends HTMLElement {
 		this.modifiers[key] = modifier;
 	};
 
+	private autoSave() {
+		const newTime = performance.now();
+		const deltaTime = (newTime - this.time) / 1000;
+		this.time = newTime;
+		if (!this.isSaving) {
+			this.countdown -= deltaTime;
+			if (this.countdown <= 0) {
+				this.saveCharacter();
+			}
+		}
+		window.requestAnimationFrame(this.autoSave.bind(this));
+	}
+
+	private handleSubmitButton: EventListener = (e: Event) => {
+		e.preventDefault();
+		env.startLoading();
+		this.saveCharacter(true);
+	};
+
 	connectedCallback() {
 		this.form.addEventListener("submit", this.handleSubmit);
+		this.querySelector('button[type="submit"]').addEventListener("click", this.handleSubmitButton);
 		for (let i = 0; i < this.buttons.length; i++) {
 			this.buttons[i].addEventListener("click", this.handleButtonClick);
 		}
@@ -300,6 +355,11 @@ class CharacterCreator extends HTMLElement {
 		this.querySelectorAll("#abilities input").forEach((input) => {
 			input.addEventListener("input", this.handleAbilityInput);
 		});
+
+		if (!this.dataset.preventSave) {
+			this.time = performance.now();
+			this.autoSave();
+		}
 	}
 }
 customElements.define("character-creator", CharacterCreator);

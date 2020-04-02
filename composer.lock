@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "85050f714305c81bbd4aac20cf84f3a5",
+    "content-hash": "f5f849549684ab82e192be5ab4758357",
     "packages": [
         {
             "name": "aelvan/imager",
@@ -466,11 +466,11 @@
         },
         {
             "name": "craftcms/cms",
-            "version": "3.4.12",
+            "version": "3.4.13",
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/craftcms/cms/zipball/2090328563329fba5423da6466b5c53f4af8421a",
-                "reference": "2090328563329fba5423da6466b5c53f4af8421a",
+                "url": "https://api.github.com/repos/craftcms/cms/zipball/a516349f715bd96681dbe8ff190d970d6acd1773",
+                "reference": "a516349f715bd96681dbe8ff190d970d6acd1773",
                 "shasum": ""
             },
             "require": {
@@ -551,7 +551,7 @@
                 "docs": "https://docs.craftcms.com/v3/",
                 "rss": "https://github.com/craftcms/cms/releases.atom"
             },
-            "time": "2020-03-31T18:43:58+00:00"
+            "time": "2020-04-02T13:49:11+00:00"
         },
         {
             "name": "craftcms/element-api",
@@ -2720,11 +2720,11 @@
         },
         {
             "name": "mrclay/minify",
-            "version": "3.0.9",
+            "version": "3.0.10",
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mrclay/minify/zipball/d2a3e8c1d203958b45f56c0a399714ee8b478a12",
-                "reference": "d2a3e8c1d203958b45f56c0a399714ee8b478a12",
+                "url": "https://api.github.com/repos/mrclay/minify/zipball/8dba84a2d24ae6382057a1215ad3af25202addb9",
+                "reference": "8dba84a2d24ae6382057a1215ad3af25202addb9",
                 "shasum": ""
             },
             "require": {
@@ -2764,7 +2764,7 @@
             ],
             "description": "Minify is a PHP app that helps you follow several rules for client-side performance. It combines multiple CSS or Javascript files, removes unnecessary whitespace and comments, and serves them with gzip encoding and optimal client-side cache headers",
             "homepage": "https://github.com/mrclay/minify",
-            "time": "2020-03-24T19:30:43+00:00"
+            "time": "2020-04-02T19:47:26+00:00"
         },
         {
             "name": "mrclay/props-dic",
