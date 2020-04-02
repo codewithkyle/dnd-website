@@ -139,11 +139,24 @@ $cap: round;
         margin-bottom: 1rem;
     }
 
+    .results{
+        height: 36px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        span{
+            margin: 0 0.5rem;
+            color: var(--primary-700);
+        }
+    }
+
     .loader{
         display: flex;
         justify-content: center;
         align-items: center;
         user-select: none;
+        height: 36px;
 
         span{
             margin-left: 0.5rem;

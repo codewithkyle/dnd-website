@@ -1,4 +1,5 @@
 import { h, render, Component, Fragment } from "preact";
+import { DiceRoller as DRoller } from "rpg-dice-roller";
 
 import "./dice-roller.scss";
 
@@ -11,11 +12,14 @@ type DrawerState = {
 	queuedD12: number;
 	queuedD20: number;
 	view: "rolling" | "waiting" | "rolled";
+	results: Array<string>;
 };
 
 class DiceRoller extends Component<{}, DrawerState> {
+	private roller: any;
 	constructor() {
 		super();
+		this.roller = new DRoller();
 		this.state = {
 			open: false,
 			queuedD4: 0,
@@ -25,6 +29,7 @@ class DiceRoller extends Component<{}, DrawerState> {
 			queuedD12: 0,
 			queuedD20: 0,
 			view: "waiting",
+			results: [],
 		};
 	}
 	private openDrawer: EventListener = () => {
@@ -41,6 +46,7 @@ class DiceRoller extends Component<{}, DrawerState> {
 		const target = e.currentTarget as HTMLButtonElement;
 		const type = target.dataset.die;
 		const updatedState = { ...this.state };
+		updatedState.view = "waiting";
 		switch (type) {
 			case "d4":
 				updatedState.queuedD4++;
@@ -136,12 +142,73 @@ class DiceRoller extends Component<{}, DrawerState> {
 	}
 
 	private doRoll: EventListener = () => {
+		if (this.state.view === "rolling") {
+			return;
+		}
+		let numOfRolls = 0;
+		let rollType;
+		if (this.state.queuedD4) {
+			rollType = "d4";
+			numOfRolls = this.state.queuedD4;
+		} else if (this.state.queuedD6) {
+			rollType = "d6";
+			numOfRolls = this.state.queuedD6;
+		} else if (this.state.queuedD8) {
+			rollType = "d8";
+			numOfRolls = this.state.queuedD8;
+		} else if (this.state.queuedD10) {
+			rollType = "d10";
+			numOfRolls = this.state.queuedD10;
+		} else if (this.state.queuedD12) {
+			rollType = "d12";
+			numOfRolls = this.state.queuedD12;
+		} else if (this.state.queuedD20) {
+			rollType = "d20";
+			numOfRolls = this.state.queuedD20;
+		}
 		this.setState({ view: "rolling" });
+		setTimeout(() => {
+			// @ts-ignore
+			const rolls = this.roller.roll(`${numOfRolls}${rollType}`).toString();
+			let array = rolls
+				.match(/\[.*\]/g)[0]
+				.replace(/(\[)|(\])/g, "")
+				.split(",");
+			if (!Array.isArray(array)) {
+				array = [...array];
+			}
+			this.setState({ results: array, queuedD4: 0, queuedD8: 0, queuedD10: 0, queuedD12: 0, queuedD20: 0, queuedD6: 0, view: "rolled" });
+		}, 300);
 	};
+
+	private calcTotal() {
+		if (this.state.results.length === 1) {
+			return null;
+		}
+		let total = 0;
+		this.state.results.map((res) => {
+			const num = parseInt(res);
+			total += num;
+		});
+		return (
+			<Fragment>
+				<span class="font-grey-700">=</span>
+				<span class="font-grey-700">{total}</span>
+			</Fragment>
+		);
+	}
 
 	render() {
 		let rollBox = null;
-		if (this.state.queuedD10 || this.state.queuedD12 || this.state.queuedD20 || this.state.queuedD4 || this.state.queuedD6 || this.state.queuedD8) {
+		if (
+			this.state.queuedD10 ||
+			this.state.queuedD12 ||
+			this.state.queuedD20 ||
+			this.state.queuedD4 ||
+			this.state.queuedD6 ||
+			this.state.queuedD8 ||
+			this.state.results.length
+		) {
 			let rollView = null;
 			if (this.state.view === "waiting") {
 				rollView = (
@@ -156,6 +223,15 @@ class DiceRoller extends Component<{}, DrawerState> {
 							<circle cx="33" cy="33" r="30"></circle>
 						</svg>
 						<span>Rolling dice</span>
+					</div>
+				);
+			} else if (this.state.view === "rolled") {
+				rollView = (
+					<div className="results">
+						{this.state.results.map((res) => (
+							<span>{res.trim()}</span>
+						))}
+						{this.calcTotal()}
 					</div>
 				);
 			}

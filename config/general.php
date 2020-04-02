@@ -21,6 +21,9 @@ return [
         'autoLoginAfterAccountActivation'   => true,
         'email'                             => getenv('SYSTEM_EMAIL'),
         'userSessionDuration'               => 0,
+        'elevatedSessionDuration'           => 0,
+        'purgeStaleUserSessionDuration'     => 0,
+        
     ],
 
     // Dev environment settings
