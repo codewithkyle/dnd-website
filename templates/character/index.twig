@@ -18,7 +18,7 @@
 
 {% block content %}
     <article class="block w-full px-1">
-        <character-sheet eager-load-css="character-sheet snackbar" web-component loading="eager" data-character-id="{{ character.id }}" {{ currentUser['admin'] ? 'data-prevent-save="true"' }} data-campaign-uid="{{ campaign.uid }}">
+        <character-sheet eager-load-css="character-sheet snackbar" web-component loading="eager" data-character-id="{{ character.id }}" {{ currentUser['admin'] ? 'data-prevent-save="true"' }} data-campaign-uid="{{ campaign.uid ?? null }}" data-character-name="{{ character.title }}">
             <nav grid="rows 1 gap-0.5">
                 <div>
                     <input type="radio" name="navigation" {{ slug is defined and slug == 'overview' or slug is not defined ? 'checked' }} id="nav-overview" value="0" data-slug="overview" />

@@ -62,7 +62,9 @@
 	"snowpack": {
 		"webDependencies": [
 			"@codewithkyle/notifyjs",
-			"flatpickr"
+			"flatpickr",
+			"socket.io-client",
+			"rpg-dice-roller"
 		]
 	}
 }

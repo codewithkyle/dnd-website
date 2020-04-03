@@ -8,6 +8,6 @@
 		"lib": ["dom", "esnext"],
 		"moduleResolution": "Node"
 	},
-	"include": ["templates", "web_modules"],
+	"include": ["templates", "web_modules", "controllers"],
 	"exclude": ["vendor", "node_modules"]
 }

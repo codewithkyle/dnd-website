@@ -1,5 +1,5 @@
 import { env } from "djinnjs/env";
-
+import { message } from "djinnjs/broadcaster";
 import { notify } from "@codewithkyle/notifyjs";
 
 class CharacterSheet extends HTMLElement {
@@ -144,6 +144,11 @@ class CharacterSheet extends HTMLElement {
 		this.isActive = false;
 		this.countdown = 0;
 		this.autoSave = () => {};
+
+		message("server", {
+			type: "leave",
+			campaign: this.dataset.campaignUid,
+		});
 	}
 
 	connectedCallback() {
@@ -159,6 +164,11 @@ class CharacterSheet extends HTMLElement {
 			this.isActive = true;
 			this.autoSave();
 		}
+		message("server", {
+			type: "join",
+			name: this.dataset.characterName,
+			campaign: this.dataset.campaignUid,
+		});
 	}
 }
 customElements.define("character-sheet", CharacterSheet);

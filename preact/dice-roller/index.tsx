@@ -1,6 +1,5 @@
 import { h, render, Component, Fragment } from "preact";
-import { DiceRoller as DRoller } from "rpg-dice-roller";
-import * as io from "socket.io-client";
+import { hookup, message } from "djinnjs/broadcaster";
 
 import "./dice-roller.scss";
 
@@ -16,15 +15,11 @@ type DrawerState = {
 	results: Array<string>;
 };
 
-declare var campaignUid: string | undefined;
-
 class DiceRoller extends Component<{}, DrawerState> {
-	private roller: any;
-	private useServer: boolean;
-	private socket: any;
+	private inboxUid: string;
+
 	constructor() {
 		super();
-		this.roller = new DRoller();
 		this.state = {
 			open: false,
 			queuedD4: 0,
@@ -36,26 +31,17 @@ class DiceRoller extends Component<{}, DrawerState> {
 			view: "waiting",
 			results: [],
 		};
-		this.useServer = false;
-		this.socket = null;
-		this.attemptConnection();
+		this.inboxUid = hookup("dice-roller", this.inbox.bind(this));
 	}
 
-	private attemptConnection() {
-		const characterSheet: HTMLElement = document.body.querySelector("character-sheet") || null;
-		if (characterSheet) {
-			this.socket = io(`http://${document.documentElement.dataset.server}:5876`);
-			this.socket.on("connect", () => {
-				this.useServer = true;
-				this.socket.emit("join", characterSheet.dataset.campaignUid);
-			});
-			this.socket.on("event", (data) => {
-				console.log(data);
-				// TODO: handle dice-roll events
-			});
-			this.socket.on("disconnect", () => {
-				console.log("disconnected");
-			});
+	private inbox(data) {
+		switch (data.type) {
+			case "roll-results":
+				this.setState({ results: data.results, queuedD4: 0, queuedD8: 0, queuedD10: 0, queuedD12: 0, queuedD20: 0, queuedD6: 0, view: "rolled" });
+				break;
+			default:
+				console.log(`Dice Roller recieved an undefined message type: ${data.type}`);
+				break;
 		}
 	}
 
@@ -194,25 +180,15 @@ class DiceRoller extends Component<{}, DrawerState> {
 			numOfRolls = this.state.queuedD20;
 		}
 		this.setState({ view: "rolling" });
-		setTimeout(() => {
-			// @ts-ignore
-			const rolls = this.roller.roll(`${numOfRolls}${rollType}`).toString();
-			let array = rolls
-				.match(/\[.*\]/g)[0]
-				.replace(/(\[)|(\])/g, "")
-				.split(",");
-			if (!Array.isArray(array)) {
-				array = [...array];
-			}
-			this.setState({ results: array, queuedD4: 0, queuedD8: 0, queuedD10: 0, queuedD12: 0, queuedD20: 0, queuedD6: 0, view: "rolled" });
-		}, this.getRandomInt(300, 900));
+		message(
+			"server",
+			{
+				type: "roll-dice",
+				dice: `${numOfRolls}${rollType}`,
+			},
+			this.inboxUid
+		);
 	};
-
-	private getRandomInt(min, max) {
-		min = Math.ceil(min);
-		max = Math.floor(max);
-		return Math.floor(Math.random() * (max - min)) + min;
-	}
 
 	private calcTotal() {
 		if (this.state.results.length === 1) {

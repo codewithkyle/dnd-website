@@ -1,6 +1,8 @@
 {
   "imports": {
     "@codewithkyle/notifyjs": "./@codewithkyle/notifyjs.js",
-    "flatpickr": "./flatpickr.js"
+    "flatpickr": "./flatpickr.js",
+    "rpg-dice-roller": "./rpg-dice-roller.js",
+    "socket.io-client": "./socket.io-client.js"
   }
 }
