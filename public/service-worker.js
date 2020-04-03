@@ -31,13 +31,7 @@ self.addEventListener("fetch", (event) => {
 			})
 		);
 	} else {
-		event.respondWith(
-			fetch(event.request, {
-				redirect: "follow",
-			}).then((response) => {
-				return response;
-			})
-		);
+		event.respondWith(fetch(event.request));
 	}
 });
 
