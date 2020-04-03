@@ -540,20 +540,15 @@
                     .then(() => {
                         /** Verify the service worker was registered correctly */
                         if (navigator.serviceWorker.controller) {
-                            this.serviceWorker = navigator.serviceWorker.controller;
-                            navigator.serviceWorker.onmessage = this.handleServiceWorkerMessage.bind(this);
-
                             /** Tell the service worker to get the latest cachebust data */
-                            this.serviceWorker.postMessage({
+                            navigator.serviceWorker.controller.postMessage({
                                 type: "cachebust",
                                 url: window.location.href,
                             });
                         }
                     })
                     .catch(error => {
-                        if (debug) {
-                            console.error("Registration failed with " + error);
-                        }
+                        console.error("Registration failed with " + error);
                     });
             }
         </script>
