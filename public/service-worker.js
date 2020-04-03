@@ -3,8 +3,9 @@ let resourcesCacheId = "resources-initial";
 let contentCacheId = "content-initial";
 
 self.addEventListener("fetch", (event) => {
+	const noCache = event.request.url.match(new RegExp(/(\/webmaster\/)|(\/cpresources\/)|(index\.php)|(cachebust\.js)|(\/pwa\/)|(\.json)$/gi));
 	const isResource = event.request.url.match(/(\.js)$|(\.css)$|(\.mjs)$|(\.cjs)$/gi);
-	if (isResource) {
+	if (isResource && !noCache) {
 		event.respondWith(
 			caches.match(event.request).then((response) => {
 				const cacheName = resourcesCacheId;
