@@ -12,7 +12,7 @@
 		"sass:dev": "cssmonster --e dev",
 		"sass:prod": "cssmonster",
 		"build": "npm run cleanup && npm run compile && npm run sass:dev && djinnjs -e dev",
-		"production": "npm run cleanup && npm run compile && npm run sass:prod && djinnjs -e production && npm run cleanup && npm run preact:prod",
+		"production": "npm run cleanup && npm run compile && npm run sass:prod && djinnjs -e production && npm run cleanup && npm run preact:prod && node ./cachebust.js",
 		"compile:brixi": "brixi",
 		"preact": "cross-env NODE_ENV=development webpack --config ./preact/webpack.config.js",
 		"preact:prod": "cross-env NODE_ENV=production webpack --config ./preact/webpack.config.js"

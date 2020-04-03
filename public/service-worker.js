@@ -1,6 +1,45 @@
 // @ts-nocheck
 let resourcesCacheId = "resources-initial";
 let contentCacheId = "content-initial";
+
+self.addEventListener("fetch", (event) => {
+	const isResource = event.request.url.match(/(\.js)$|(\.css)$|(\.mjs)$|(\.cjs)$/gi);
+	if (isResource) {
+		event.respondWith(
+			caches.match(event.request).then((response) => {
+				const cacheName = resourcesCacheId;
+
+				if (response) {
+					return response;
+				}
+
+				return fetch(event.request, {
+					redirect: "follow",
+				}).then((response) => {
+					if (!response || response.status !== 200 || response.type !== "basic" || response.headers.get("PWA-Cache") === "no-cache" || response.redirected) {
+						return response;
+					}
+
+					var responseToCache = response.clone();
+
+					caches.open(cacheName).then((cache) => {
+						cache.put(event.request, responseToCache);
+					});
+					return response;
+				});
+			})
+		);
+	} else {
+		event.respondWith(
+			fetch(event.request, {
+				redirect: "follow",
+			}).then((response) => {
+				return response;
+			})
+		);
+	}
+});
+
 self.addEventListener("message", (event) => {
 	const { type } = event.data;
 	switch (type) {
@@ -42,7 +81,7 @@ function informClientOfCachebustValues(maximumContentPrompts, contentCacheDurati
 		});
 	});
 }
-async function cachebust(url) {
+async function cachebust() {
 	const request = await fetch(`/resources-cachebust.json`, {
 		cache: "no-cache",
 		credentials: "include",
@@ -62,41 +101,6 @@ async function cachebust(url) {
 				})
 			);
 		});
-	}
-	const request2 = await fetch("/pwa/cachebust.json", {
-		cache: "no-cache",
-		credentials: "include",
-		headers: new Headers({
-			Accept: "application/json",
-		}),
-	});
-	if (request2.ok) {
-		const response = await request2.json();
-		contentCacheId = `content-${response.cacheTimestamp}`;
-		caches.keys().then((cacheNames) => {
-			return Promise.all(
-				cacheNames.map((cacheName) => {
-					if (new RegExp(/content/i).test(cacheName) && cacheName !== contentCacheId) {
-						return caches.delete(cacheName);
-					}
-				})
-			);
-		});
-		informClientOfCachebustValues(response.maximumContentPrompts, response.contentCacheDuration, url);
-	} else {
-		if (contentCacheId === "content-initial") {
-			contentCacheId = `content-${Date.now()}`;
-			caches.keys().then((cacheNames) => {
-				return Promise.all(
-					cacheNames.map((cacheName) => {
-						if (new RegExp(/content/i).test(cacheName) && cacheName !== contentCacheId) {
-							return caches.delete(cacheName);
-						}
-					})
-				);
-			});
-		}
-		informClientOfCachebustValues(4, 7, url);
 	}
 }
 async function updatePageCache(url, network) {

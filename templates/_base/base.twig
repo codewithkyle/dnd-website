@@ -299,7 +299,7 @@
         <!-- Google Font -->
         <!-- <link rel="preload" href="https://fonts.googleapis.com/css?family=Roboto:300,500,700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"> -->
         
-<!-- Critical colors -->
+        <!-- Critical colors -->
         <style>
             :root
             {
@@ -529,17 +529,32 @@
         <!-- Global site tag (gtag.js) - Google Analytics -->
         <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script> -->
 
-        <!-- Web Components polyfill for Edge -->
         <script>
             if (/Edge/.test(navigator.userAgent)) {
                 document.write('<script src="https://unpkg.com/@webcomponents/webcomponentsjs@2.4.0/webcomponents-bundle.js"><\/script>');
             }
-        </script>
 
-        <!-- Polyfill for Intersection Observer -->
-        <script>
-            if (!('IntersectionObserver' in window) || !('IntersectionObserverEntry' in window) || !('intersectionRatio' in window.IntersectionObserverEntry.prototype)) {
-                document.write('<script src="{{ alias('@rootUrl')|trim('/') }}/polyfills/intersection-observer.js"><\/script>');
+            if ("serviceWorker" in navigator) {
+                navigator.serviceWorker
+                    .register(`${window.location.origin}/service-worker.js`, { scope: "/" })
+                    .then(() => {
+                        /** Verify the service worker was registered correctly */
+                        if (navigator.serviceWorker.controller) {
+                            this.serviceWorker = navigator.serviceWorker.controller;
+                            navigator.serviceWorker.onmessage = this.handleServiceWorkerMessage.bind(this);
+
+                            /** Tell the service worker to get the latest cachebust data */
+                            this.serviceWorker.postMessage({
+                                type: "cachebust",
+                                url: window.location.href,
+                            });
+                        }
+                    })
+                    .catch(error => {
+                        if (debug) {
+                            console.error("Registration failed with " + error);
+                        }
+                    });
             }
         </script>
 
