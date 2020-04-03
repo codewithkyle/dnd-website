@@ -35,6 +35,14 @@ return [
                 ],
             ],
         ],
+        'dnd-module' => [
+            'class' => \modules\dndmodule\DndModule::class,
+            'components' => [
+                'dndModuleService' => [
+                    'class' => 'modules\dndmodule\services\DndModuleService',
+                ],
+            ],
+        ],
     ],
-    'bootstrap' => ['pwa-module'],
+    'bootstrap' => ['pwa-module', 'dnd-module'],
 ];

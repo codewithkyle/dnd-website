@@ -48,6 +48,20 @@
             }
         }
 
+        &.-black{
+            &:hover{
+                color: var(--grey-800);
+            }
+
+            &:focus-visible{
+                color: var(--grey-800);
+            }
+
+            &::before{
+                background-color: var(--grey-900);
+            }
+        }
+
         &:hover{
             &::before{
                 opacity: 0.06;

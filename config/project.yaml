@@ -1,4 +1,4 @@
-dateModified: 1585773668
+dateModified: 1585873027
 email:
   fromEmail: codingwithkyle@gmail.com
   fromName: Boilerplate
@@ -1317,6 +1317,26 @@ fields:
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\Number
+  93315ff6-68b1-4de0-9972-2318dbbe1277:
+    contentColumnType: string
+    fieldGroup: fcc29f23-916c-4883-90ae-60e9e6f0b466
+    handle: users
+    instructions: ''
+    name: Users
+    searchable: true
+    settings:
+      limit: ''
+      localizeRelations: false
+      selectionLabel: ''
+      source: null
+      sources:
+        - 'group:e2d78d98-22b2-4182-ade0-724db8fc3c92'
+      targetSiteId: null
+      validateRelatedElements: ''
+      viewMode: null
+    translationKeyFormat: null
+    translationMethod: site
+    type: craft\fields\Users
   95273a2b-4a77-4fde-88e4-c91f4f67273f:
     contentColumnType: boolean
     fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
@@ -1461,6 +1481,26 @@ fields:
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\PlainText
+  a10cc301-c022-4ada-9aa4-93d07b972c16:
+    contentColumnType: string
+    fieldGroup: fcc29f23-916c-4883-90ae-60e9e6f0b466
+    handle: characters
+    instructions: ''
+    name: Characters
+    searchable: true
+    settings:
+      limit: ''
+      localizeRelations: false
+      selectionLabel: 'Add a Character'
+      source: null
+      sources:
+        - 'section:3d51e8a8-b0d4-479a-88ac-01b9e5659ac9'
+      targetSiteId: null
+      validateRelatedElements: ''
+      viewMode: null
+    translationKeyFormat: null
+    translationMethod: site
+    type: craft\fields\Entries
   a16904a8-4386-475c-ad8a-465eb40b32e9:
     contentColumnType: integer(10)
     fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
@@ -2582,6 +2622,36 @@ sections:
         titleLabel: Name
     handle: characters
     name: Characters
+    propagationMethod: all
+    siteSettings:
+      3253961c-40ff-4967-bda7-42b923305ae9:
+        enabledByDefault: true
+        hasUrls: false
+        template: null
+        uriFormat: ''
+    type: channel
+  897444ed-a565-4e87-bb56-a6a89ff6df82:
+    enableVersioning: true
+    entryTypes:
+      81e75164-25ce-42f0-bd7d-d73a15c227d6:
+        fieldLayouts:
+          109c524b-d32b-4ca4-a6ac-e40287802860:
+            tabs:
+              -
+                fields:
+                  a10cc301-c022-4ada-9aa4-93d07b972c16:
+                    required: false
+                    sortOrder: 1
+                name: 'Tab 1'
+                sortOrder: 1
+        handle: campaigns
+        hasTitleField: true
+        name: Campaigns
+        sortOrder: 1
+        titleFormat: ''
+        titleLabel: Title
+    handle: campaigns
+    name: Campaigns
     propagationMethod: all
     siteSettings:
       3253961c-40ff-4967-bda7-42b923305ae9:

@@ -2,203 +2,227 @@
 
 {% import "_macros" as inputs %}
 
+{% set unfinishedCharacterId = craft.app.request.getParam('id') %}
+
 {% block content %}
     <article style="width:100%;display: block;">
         <section style="width:100%;display: block;">
-            <character-creator web-component>
-                <form eager-load-css="ratios" method="post" accept-charset="UTF-8" class="bg-white shadow-md block mx-auto my-0 p-2" style="width:640px;max-width:100%;border-radius: 0.25rem;">
-                    {{ csrfInput() }}
-                    {{ hiddenInput('sectionId', '1') }}
+            {% set unfinishedCharacter = craft.entries({
+                section: 'characters',
+                status: 'disabled',
+                authorId: currentUser.id,
+                id: unfinishedCharacterId ?? null
+            }).one() %}
+            {% if unfinishedCharacter|length and not unfinishedCharacterId %}
+                <div class="bg-white shadow-md p-2 mx-auto" style="border-radius: 0.25rem;width: 420px;">
+                    <p class="font-grey-800 mb-1.5 line-normal">You have an unfinished character. Would you like to resume creating your character or start fresh?</p>
+                    <div class="w-full block text-center">
+                        <purge-old-characters web-component role="button" class="button -outline -alt">New Character</purge-old-characters>
+                        <a href="{{ siteUrl|trim('/') }}/new-character?id={{ unfinishedCharacter.id }}" class="button -solid -primary ml-1">Resume</a>
+                    </div>
+                </div>
+            {% else %}
+                <character-creator web-component data-character-id="{{ unfinishedCharacterId }}">
+                    <form eager-load-css="ratios" method="post" accept-charset="UTF-8" class="bg-white shadow-md block mx-auto my-0 p-2" style="width:640px;max-width:100%;border-radius: 0.25rem;">
+                        {{ csrfInput() }}
+                        {{ hiddenInput('sectionId', '1') }}
 
-                    <form-page id="details" style="width: 100%;display: grid;grid-template-columns: minmax(0px, 1fr);gap: 1rem;">
-                        <h1 class="font-xl font-grey-800 text-center block">Character Details</h1>
+                        <form-page id="details" style="width: 100%;display: grid;grid-template-columns: minmax(0px, 1fr);gap: 1rem;">
+                            <h1 class="font-xl font-grey-800 text-center block">Character Details</h1>
 
-                        <p class="font-grey-700 font-sm line-normal">
-                            Select your character's race and class. This choice is very important because it will define your playstyle and abilities. If you're unsure what you want to play spend some time reading the <a target="_blank" class="font-primary-700" href="https://www.5thsrd.org/#character">Handbook</a>.
-                        </p>
+                            <p class="font-grey-700 font-sm line-normal">
+                                Select your character's race and class. This choice is very important because it will define your playstyle and abilities. If you're unsure what you want to play spend some time reading the <a target="_blank" class="font-primary-700" href="https://www.5thsrd.org/#character">Handbook</a>.
+                            </p>
 
-                        {{ inputs.text("Character Name", "title", true) }}
+                            {{ inputs.text("Character Name", "title", true, null, unfinishedCharacter.title ?? null) }}
+                            
+                            <div grid="columns 2 gap-1">
+                                {{ inputs.select("Class", "fields[class]", true, data.classes, null, unfinishedCharacter.class ?? null) }}
+                                {{ inputs.select("Race", "fields[race]", true, data.races, null, unfinishedCharacter.race ?? null) }}
+                            </div>
+
+                            {{ inputs.textarea("Background", "fields[background]", false,  null, unfinishedCharacter.background ?? null) }}
+                            {{ inputs.select("Alignment", "fields[alignment]", false, data.alignments, null, unfinishedCharacter.alignment ?? null) }}
+
+                            <div class="block text-right">
+                                <button data-direction="1" type="button" class="button -solid -primary">Next</button>
+                            </div>
+                        </form-page>
                         
-                        <div grid="columns 2 gap-1">
-                            {{ inputs.select("Class", "fields[class]", true, data.classes) }}
-                            {{ inputs.select("Race", "fields[race]", true, data.races) }}
-                        </div>
+                        {#
+                        <form-page id="appearance" style="width: 100%;display: none;grid-template-columns: minmax(0px, 1fr);gap: 1rem;">
+                            <h1 class="font-xl font-grey-800 text-center block">Apperance</h1>
+                            
+                            <div grid="columns 2 gap-1">
+                                {{ inputs.text("Age", "fields[age]", false) }}
+                                {{ inputs.text("Eyes", "fields[eyes]", false) }}
+                            </div>
 
-                        {{ inputs.textarea("Background", "fields[background]", false) }}
-                        {{ inputs.select("Alignment", "fields[alignment]", false, data.alignments) }}
+                            <div grid="columns 2 gap-1">
+                                {{ inputs.text("Hair", "fields[hair]", false) }}
+                                {{ inputs.text("Height", "fields[height]", false) }}
+                            </div>
 
-                        <div class="block text-right">
-                            <button data-direction="1" type="button" class="button -solid -primary">Next</button>
-                        </div>
-                    </form-page>
-                    
-                    {#
-                    <form-page id="appearance" style="width: 100%;display: none;grid-template-columns: minmax(0px, 1fr);gap: 1rem;">
-                        <h1 class="font-xl font-grey-800 text-center block">Apperance</h1>
-                        
-                        <div grid="columns 2 gap-1">
-                            {{ inputs.text("Age", "fields[age]", false) }}
-                            {{ inputs.text("Eyes", "fields[eyes]", false) }}
-                        </div>
+                            <div grid="columns 2 gap-1">
+                                {{ inputs.text("Skin", "fields[skin]", false) }}
+                                {{ inputs.text("Weight", "fields[weight]", false) }}
+                            </div>
 
-                        <div grid="columns 2 gap-1">
-                            {{ inputs.text("Hair", "fields[hair]", false) }}
-                            {{ inputs.text("Height", "fields[height]", false) }}
-                        </div>
+                            <div style="display: flex; justify-content: space-between;align-items: center;">
+                                <button data-direction="-1" type="button" class="button -outline -alt">Back</button>
+                                <button data-direction="1" type="button" class="button -solid -primary">Next</button>
+                            </div>
+                        </form-page>
 
-                        <div grid="columns 2 gap-1">
-                            {{ inputs.text("Skin", "fields[skin]", false) }}
-                            {{ inputs.text("Weight", "fields[weight]", false) }}
-                        </div>
+                        <form-page id="lore" style="width: 100%;display: none;grid-template-columns: minmax(0px, 1fr);gap: 1rem;">
+                            <h1 class="font-xl font-grey-800 text-center block">Background & Lore</h1>
 
-                        <div style="display: flex; justify-content: space-between;align-items: center;">
-                            <button data-direction="-1" type="button" class="button -outline -alt">Back</button>
-                            <button data-direction="1" type="button" class="button -solid -primary">Next</button>
-                        </div>
-                    </form-page>
+                            {{ inputs.textarea("Personality Traits", "fields[personalityTraits]", false) }}
+                            {{ inputs.textarea("Ideals", "fields[ideals]", false) }}
+                            {{ inputs.textarea("Bonds", "fields[bonds]", false) }}
+                            {{ inputs.textarea("Flaws", "fields[flaws]", false) }}
+                            {{ inputs.textarea("Features & Traits", "fields[featuresAndTraits]", false) }}
+                            {{ inputs.textarea("Apperance", "fields[apperance]", false) }}
+                            {{ inputs.textarea("Allies & Organizations", "fields[alliesAndOrganizations]", false) }}
+                            {{ inputs.textarea("Treasure", "fields[treasure]", false) }}
 
-                    <form-page id="lore" style="width: 100%;display: none;grid-template-columns: minmax(0px, 1fr);gap: 1rem;">
-                        <h1 class="font-xl font-grey-800 text-center block">Background & Lore</h1>
+                            <div style="display: flex; justify-content: space-between;align-items: center;">
+                                <button data-direction="-1" type="button" class="button -outline -alt">Back</button>
+                                <button data-direction="1" type="button" class="button -solid -primary">Next</button>
+                            </div>
+                        </form-page>
+                        #}
 
-                        {{ inputs.textarea("Personality Traits", "fields[personalityTraits]", false) }}
-                        {{ inputs.textarea("Ideals", "fields[ideals]", false) }}
-                        {{ inputs.textarea("Bonds", "fields[bonds]", false) }}
-                        {{ inputs.textarea("Flaws", "fields[flaws]", false) }}
-                        {{ inputs.textarea("Features & Traits", "fields[featuresAndTraits]", false) }}
-                        {{ inputs.textarea("Apperance", "fields[apperance]", false) }}
-                        {{ inputs.textarea("Allies & Organizations", "fields[alliesAndOrganizations]", false) }}
-                        {{ inputs.textarea("Treasure", "fields[treasure]", false) }}
+                        <form-page id="abilities" style="width: 100%;display: none;grid-template-columns: minmax(0px, 1fr);gap: 1rem;">
+                            <h1 class="font-xl font-grey-800 text-center block">Ability Scores</h1>
 
-                        <div style="display: flex; justify-content: space-between;align-items: center;">
-                            <button data-direction="-1" type="button" class="button -outline -alt">Back</button>
-                            <button data-direction="1" type="button" class="button -solid -primary">Next</button>
-                        </div>
-                    </form-page>
-                    #}
+                            <p class="font-grey-700 font-sm line-normal">
+                                The six ability scores make up the core mechanic of the game. To generate your ability score roll four six-sided dice and remove the lowest die. Add the remaining three dice together and enter the result into one of the ability score inputs. Feel free to reassign values as you roll but <strong>DO NOT</strong> re-roll. Bad rolls make interesting characters.
+                            </p>
+                            
+                            <div grid="columns 2 gap-1">
+                                {{ inputs.number("Strength", "fields[strength]", true, null, 1, 30, 1, unfinishedCharacter.strength ?? null) }}
+                                {{ inputs.number("Dexterity", "fields[dexterity]", true, null, 1, 30, 1, unfinishedCharacter.dexterity ?? null) }}
+                            </div>
 
-                    <form-page id="abilities" style="width: 100%;display: none;grid-template-columns: minmax(0px, 1fr);gap: 1rem;">
-                        <h1 class="font-xl font-grey-800 text-center block">Ability Scores</h1>
+                            <div grid="columns 2 gap-1">
+                                {{ inputs.number("Constitution", "fields[constitution]", true, null, 1, 30, 1, unfinishedCharacter.constitution ?? null) }}
+                                {{ inputs.number("Intelligence", "fields[intelligence]", true, null, 1, 30, 1, unfinishedCharacter.intelligence ?? null) }}
+                            </div>
 
-                        <p class="font-grey-700 font-sm line-normal">
-                            The six ability scores make up the core mechanic of the game. To generate your ability score roll four six-sided dice and remove the lowest die. Add the remaining three dice together and enter the result into one of the ability score inputs. Feel free to reassign values as you roll but <strong>DO NOT</strong> re-roll. Bad rolls make interesting characters.
-                        </p>
-                        
-                        <div grid="columns 2 gap-1">
-                            {{ inputs.number("Strength", "fields[strength]", true, null, 1, 30, 1) }}
-                            {{ inputs.number("Dexterity", "fields[dexterity]", true, null, 1, 30, 1) }}
-                        </div>
+                            <div grid="columns 2 gap-1">
+                                {{ inputs.number("Wisdom", "fields[wisdom]", true, null, 1, 30, 1, unfinishedCharacter.wisdom ?? null) }}
+                                {{ inputs.number("Charisma", "fields[charisma]", true, null, 1, 30, 1, unfinishedCharacter.charisma ?? null) }}
+                            </div>
 
-                        <div grid="columns 2 gap-1">
-                            {{ inputs.number("Constitution", "fields[constitution]", true, null, 1, 30, 1) }}
-                            {{ inputs.number("Intelligence", "fields[intelligence]", true, null, 1, 30, 1) }}
-                        </div>
+                            <div style="display: flex; justify-content: space-between;align-items: center;">
+                                <button data-direction="-1" type="button" class="button -outline -alt">Back</button>
+                                <button data-direction="1" type="button" class="button -solid -primary">Next</button>
+                            </div>
+                        </form-page>
 
-                        <div grid="columns 2 gap-1">
-                            {{ inputs.number("Wisdom", "fields[wisdom]", true, null, 1, 30, 1) }}
-                            {{ inputs.number("Charisma", "fields[charisma]", true, null, 1, 30, 1) }}
-                        </div>
+                        <form-page id="skills" style="width: 100%;display: none;grid-template-columns: minmax(0px, 1fr);gap: 1rem;">
+                            <h1 class="font-xl font-grey-800 text-center block">Skills</h1>
 
-                        <div style="display: flex; justify-content: space-between;align-items: center;">
-                            <button data-direction="-1" type="button" class="button -outline -alt">Back</button>
-                            <button data-direction="1" type="button" class="button -solid -primary">Next</button>
-                        </div>
-                    </form-page>
+                            <p class="font-grey-700 font-sm line-normal">
+                                Skills help your character problem solve and survive in the world of Dungeons and Dragons. Depending upon your character's class you can be proficient in any number of the following skills. If you are unsure what skills your class can be proficient in check the <a target="_blank" class="font-primary-700" href="https://www.5thsrd.org/#character">Handbook</a>. As a bonus select two additional skills relative to the Background you created on the Character Detail page.
+                            </p>
 
-                    <form-page id="skills" style="width: 100%;display: none;grid-template-columns: minmax(0px, 1fr);gap: 1rem;">
-                        <h1 class="font-xl font-grey-800 text-center block">Skills</h1>
-
-                        <p class="font-grey-700 font-sm line-normal">
-                            Skills help your character problem solve and survive in the world of Dungeons and Dragons. Depending upon your character's class you can be proficient in any number of the following skills. If you are unsure what skills your class can be proficient in check the <a target="_blank" class="font-primary-700" href="https://www.5thsrd.org/#character">Handbook</a>. As a bonus select two additional skills relative to the Background you created on the Character Detail page.
-                        </p>
-
-                        {% for skill in data.skills %}
-                            {% if loop.index0 % 2 == 0 and loop.index0 == 0 %}
-                                <div grid="columns 2 gap-1">
-                            {% elseif loop.index0 % 2 == 0 %}
-                                </div>
-                                <div grid="columns 2 gap-1">
-                            {% endif %}
-                            <skill-component lazy-load-css="skill-component">
-                                <input id="{{ skill.label|camel }}" type="checkbox" data-skill="{{ skill.label|camel }}" data-ability="{{ skill.ability }}" />
-                                <label for="{{ skill.label|camel }}">
-                                    <i></i>
-                                    <div>
-                                        <span class="font-sm font-medium font-grey-900">{{ skill.label }}</span>
-                                        <span class="font-xs font-grey-700 text-uppercase ml-0.25">({{ skill.ability|slice(0,3) }})</span>
+                            {% for skill in data.skills %}
+                                {% if loop.index0 % 2 == 0 and loop.index0 == 0 %}
+                                    <div grid="columns 2 gap-1">
+                                {% elseif loop.index0 % 2 == 0 %}
                                     </div>
-                                </label>
-                            </skill-component>
-                            {% if loop.last %}
-                                </div>
-                            {% endif %}
-                        {% endfor %}
+                                    <div grid="columns 2 gap-1">
+                                {% endif %}
+                                <skill-component lazy-load-css="skill-component">
+                                    {% set isChecked = false %}
+                                    {% if unfinishedCharacter|length %}
+                                        {% if unfinishedCharacter[skill.label|camel ~ 'Proficiency'] %}
+                                            {% set isChecked = true %}
+                                        {% endif %}
+                                    {% endif %}
+                                    <input {{ isChecked ? 'checked'  }} id="{{ skill.label|camel }}" type="checkbox" data-skill="{{ skill.label|camel }}" data-ability="{{ skill.ability }}" />
+                                    <label for="{{ skill.label|camel }}">
+                                        <i></i>
+                                        <div>
+                                            <span class="font-sm font-medium font-grey-900">{{ skill.label }}</span>
+                                            <span class="font-xs font-grey-700 text-uppercase ml-0.25">({{ skill.ability|slice(0,3) }})</span>
+                                        </div>
+                                    </label>
+                                </skill-component>
+                                {% if loop.last %}
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
 
-                        {{ inputs.textarea("Other Proficiencies & Languages", "fields[otherProficiencies]", false) }}
+                            {{ inputs.textarea("Other Proficiencies & Languages", "fields[otherProficiencies]", false, null, unfinishedCharacter.otherProficiencies ?? null) }}
 
-                        <div style="display: flex; justify-content: space-between;align-items: center;">
-                            <button data-direction="-1" type="button" class="button -outline -alt">Back</button>
-                            <button data-direction="1" type="button" class="button -solid -primary">Next</button>
-                        </div>
-                    </form-page>                    
+                            <div style="display: flex; justify-content: space-between;align-items: center;">
+                                <button data-direction="-1" type="button" class="button -outline -alt">Back</button>
+                                <button data-direction="1" type="button" class="button -solid -primary">Next</button>
+                            </div>
+                        </form-page>                    
 
-                    <form-page id="equipment" style="width: 100%;display: none;grid-template-columns: minmax(0px, 1fr);gap: 1rem;">
-                        <h1 class="font-xl font-grey-800 text-center block">Equipment</h1>
+                        <form-page id="equipment" style="width: 100%;display: none;grid-template-columns: minmax(0px, 1fr);gap: 1rem;">
+                            <h1 class="font-xl font-grey-800 text-center block">Equipment</h1>
 
-                        <p class="font-grey-700 font-sm line-normal">
-                            To calcualte your Armor Class check what equipment your class starts with in the <a target="_blank" class="font-primary-700" href="https://www.5thsrd.org/#character">Handbook</a>. You will never need to track provisions.
-                        </p>
+                            <p class="font-grey-700 font-sm line-normal">
+                                To calcualte your Armor Class check what equipment your class starts with in the <a target="_blank" class="font-primary-700" href="https://www.5thsrd.org/#character">Handbook</a>. You will never need to track provisions.
+                            </p>
 
-                        {{ inputs.textarea("Equipment", "fields[equipment]", true) }}
+                            {{ inputs.textarea("Equipment", "fields[equipment]", true, null, unfinishedCharacter.equipment ?? null) }}
 
-                        <div grid="columns 2 gap-1">
-                            {{ inputs.number("Armor Class", "fields[armorClass]", true, null, -10, 30, 1) }}
-                            {{ inputs.number("Speed", "fields[speed]", true, null, 0, 100, 1) }}
-                        </div>
-                        
-                        <div grid="columns 3 gap-1">
-                            {{ inputs.number("Copper Coins", "fields[copperCoins]", false, null, 0, null, 1) }}
-                            {{ inputs.number("Silver Coins", "fields[silverCoins]", false, null, 0, null, 1) }}
-                            {{ inputs.number("Electrum Coins", "fields[electrumCoins]", false, null, 0, null, 1) }}
-                            {{ inputs.number("Gold Coins", "fields[goldCoins]", false, null, 0, null, 1) }}
-                            {{ inputs.number("Platinum Coins", "fields[platinumCoins]", false, null, 0, null, 1) }}
-                        </div>
+                            <div grid="columns 2 gap-1">
+                                {{ inputs.number("Armor Class", "fields[armorClass]", true, null, -10, 30, 1, unfinishedCharacter.armorClass ?? null) }}
+                                {{ inputs.number("Speed", "fields[speed]", true, null, 0, 100, 1, unfinishedCharacter.speed ?? null) }}
+                            </div>
+                            
+                            <div grid="columns 3 gap-1">
+                                {{ inputs.number("Copper Coins", "fields[copperCoins]", false, null, 0, null, 1, unfinishedCharacter.copperCoins ?? null) }}
+                                {{ inputs.number("Silver Coins", "fields[silverCoins]", false, null, 0, null, 1, unfinishedCharacter.silverCoins ?? null) }}
+                                {{ inputs.number("Electrum Coins", "fields[electrumCoins]", false, null, 0, null, 1, unfinishedCharacter.electrumCoins ?? null) }}
+                                {{ inputs.number("Gold Coins", "fields[goldCoins]", false, null, 0, null, 1, unfinishedCharacter.goldCoins ?? null) }}
+                                {{ inputs.number("Platinum Coins", "fields[platinumCoins]", false, null, 0, null, 1, unfinishedCharacter.platinumCoins ?? null) }}
+                            </div>
 
-                        <div style="display: flex; justify-content: space-between;align-items: center;">
-                            <button data-direction="-1" type="button" class="button -outline -alt">Back</button>
-                            <button type="submit" class="button -solid -primary">Save Character</button>
-                        </div>
-                    </form-page>
+                            <div style="display: flex; justify-content: space-between;align-items: center;">
+                                <button data-direction="-1" type="button" class="button -outline -alt">Back</button>
+                                <button type="submit" class="button -solid -primary">Save Character</button>
+                            </div>
+                        </form-page>
 
-                    {#
-                    <form-page id="attacks" style="width: 100%;display: none;grid-template-columns: minmax(0px, 1fr);gap: 1rem;">
-                        <h1 class="font-xl font-grey-800 text-center block">Attacks & Spellcasting</h1>
+                        {#
+                        <form-page id="attacks" style="width: 100%;display: none;grid-template-columns: minmax(0px, 1fr);gap: 1rem;">
+                            <h1 class="font-xl font-grey-800 text-center block">Attacks & Spellcasting</h1>
 
-                        <p class="font-grey-700 font-sm line-normal">
-                            Check your class and your equipment to determine what weapons or spells you have available. Refer to the <a target="_blank" class="font-primary-700" href="https://www.5thsrd.org/#character">Handbook</a> for additional information.
-                        </p>
+                            <p class="font-grey-700 font-sm line-normal">
+                                Check your class and your equipment to determine what weapons or spells you have available. Refer to the <a target="_blank" class="font-primary-700" href="https://www.5thsrd.org/#character">Handbook</a> for additional information.
+                            </p>
 
-                        <attack-component loading="eager" web-component lazy-load-css="attack-component">
-                            <table class="w-full" style="display: none;">
-                                <thead class="block w-full mb-0.5">
-                                    <tr class="block w-full" grid="columns 3 gap-1">
-                                        <th class="pl-0.5 text-left font-regular font-grey-700 font-xs">Name</th>
-                                        <th class="pl-0.5 text-left font-regular font-grey-700 font-xs">Attack Bonus</th>
-                                        <th class="pl-0.5 text-left font-regular font-grey-700 font-xs">Damage/Type</th>
-                                    </tr>
-                                </thead>
-                                <tbody></tbody>
-                            </table>
-                            <button type="button">
-                                <i>
-                                    <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="plus" class="svg-inline--fa fa-plus fa-w-12" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="currentColor" d="M368 224H224V80c0-8.84-7.16-16-16-16h-32c-8.84 0-16 7.16-16 16v144H16c-8.84 0-16 7.16-16 16v32c0 8.84 7.16 16 16 16h144v144c0 8.84 7.16 16 16 16h32c8.84 0 16-7.16 16-16V288h144c8.84 0 16-7.16 16-16v-32c0-8.84-7.16-16-16-16z"></path></svg>
-                                </i>
-                                <span>Add Attack or Spell</span>
-                            </button>
-                        </attack-component>                        
-                    </form-page>
-                    #}
-                </form>
-            </character-creator>
+                            <attack-component loading="eager" web-component lazy-load-css="attack-component">
+                                <table class="w-full" style="display: none;">
+                                    <thead class="block w-full mb-0.5">
+                                        <tr class="block w-full" grid="columns 3 gap-1">
+                                            <th class="pl-0.5 text-left font-regular font-grey-700 font-xs">Name</th>
+                                            <th class="pl-0.5 text-left font-regular font-grey-700 font-xs">Attack Bonus</th>
+                                            <th class="pl-0.5 text-left font-regular font-grey-700 font-xs">Damage/Type</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                                <button type="button">
+                                    <i>
+                                        <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="plus" class="svg-inline--fa fa-plus fa-w-12" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="currentColor" d="M368 224H224V80c0-8.84-7.16-16-16-16h-32c-8.84 0-16 7.16-16 16v144H16c-8.84 0-16 7.16-16 16v32c0 8.84 7.16 16 16 16h144v144c0 8.84 7.16 16 16 16h32c8.84 0 16-7.16 16-16V288h144c8.84 0 16-7.16 16-16v-32c0-8.84-7.16-16-16-16z"></path></svg>
+                                    </i>
+                                    <span>Add Attack or Spell</span>
+                                </button>
+                            </attack-component>                        
+                        </form-page>
+                        #}
+                    </form>
+                </character-creator>
+            {% endif %}
         </section>
     </article>
     <div id="dice-mounting-point"></div>

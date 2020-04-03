@@ -10,6 +10,7 @@ class CharacterCreator extends HTMLElement {
 	private isSaving: boolean;
 	private countdown: number;
 	private time: number;
+	private isActive: boolean;
 	private modifiers: {
 		strength: number;
 		dexterity: number;
@@ -36,7 +37,7 @@ class CharacterCreator extends HTMLElement {
 			charisma: 0,
 		};
 		this.countdown = 300;
-		this.entryId = null;
+		this.entryId = this.dataset.characterId;
 	}
 
 	private getSavingThrows() {
@@ -110,6 +111,8 @@ class CharacterCreator extends HTMLElement {
 		this.querySelectorAll("skill-component input").forEach((input: HTMLInputElement) => {
 			if (input.checked) {
 				skills[input.dataset.skill] = 1;
+			} else {
+				skills[input.dataset.skill] = 0;
 			}
 		});
 		return skills;
@@ -338,7 +341,7 @@ class CharacterCreator extends HTMLElement {
 		this.time = newTime;
 		if (!this.isSaving) {
 			this.countdown -= deltaTime;
-			if (this.countdown <= 0) {
+			if (this.countdown <= 0 && this.isActive) {
 				this.saveCharacter();
 			}
 		}
@@ -350,6 +353,12 @@ class CharacterCreator extends HTMLElement {
 		env.startLoading();
 		this.saveCharacter(true);
 	};
+
+	disconnectedCallback() {
+		this.isActive = false;
+		this.countdown = 0;
+		this.autoSave = () => {};
+	}
 
 	connectedCallback() {
 		this.form.addEventListener("submit", this.handleSubmit);
@@ -363,6 +372,7 @@ class CharacterCreator extends HTMLElement {
 		});
 
 		if (!this.dataset.preventSave) {
+			this.isActive = true;
 			this.time = performance.now();
 			this.autoSave();
 		}

@@ -1,5 +1,6 @@
 import { h, render, Component, Fragment } from "preact";
 import { DiceRoller as DRoller } from "rpg-dice-roller";
+import * as io from "socket.io-client";
 
 import "./dice-roller.scss";
 
@@ -15,8 +16,12 @@ type DrawerState = {
 	results: Array<string>;
 };
 
+declare var campaignUid: string | undefined;
+
 class DiceRoller extends Component<{}, DrawerState> {
 	private roller: any;
+	private useServer: boolean;
+	private socket: any;
 	constructor() {
 		super();
 		this.roller = new DRoller();
@@ -31,7 +36,29 @@ class DiceRoller extends Component<{}, DrawerState> {
 			view: "waiting",
 			results: [],
 		};
+		this.useServer = false;
+		this.socket = null;
+		this.attemptConnection();
 	}
+
+	private attemptConnection() {
+		const characterSheet: HTMLElement = document.body.querySelector("character-sheet") || null;
+		if (characterSheet) {
+			this.socket = io(`http://${document.documentElement.dataset.server}:5876`);
+			this.socket.on("connect", () => {
+				this.useServer = true;
+				this.socket.emit("join", characterSheet.dataset.campaignUid);
+			});
+			this.socket.on("event", (data) => {
+				console.log(data);
+				// TODO: handle dice-roll events
+			});
+			this.socket.on("disconnect", () => {
+				console.log("disconnected");
+			});
+		}
+	}
+
 	private openDrawer: EventListener = () => {
 		this.setState({ open: true, queuedD4: 0, queuedD8: 0, queuedD10: 0, queuedD12: 0, queuedD20: 0, queuedD6: 0, view: "waiting", results: [] });
 	};

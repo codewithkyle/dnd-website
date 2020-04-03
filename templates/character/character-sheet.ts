@@ -8,6 +8,7 @@ class CharacterSheet extends HTMLElement {
 	private isSaving: boolean;
 	private countdown: number;
 	private time: number;
+	private isActive: boolean;
 
 	constructor() {
 		super();
@@ -132,11 +133,17 @@ class CharacterSheet extends HTMLElement {
 		this.time = newTime;
 		if (document.hasFocus() && !this.isSaving) {
 			this.countdown -= deltaTime;
-			if (this.countdown <= 0) {
+			if (this.countdown <= 0 && this.isActive) {
 				this.saveCharacter();
 			}
 		}
 		window.requestAnimationFrame(this.autoSave.bind(this));
+	}
+
+	disconnectedCallback() {
+		this.isActive = false;
+		this.countdown = 0;
+		this.autoSave = () => {};
 	}
 
 	connectedCallback() {
@@ -149,6 +156,7 @@ class CharacterSheet extends HTMLElement {
 			this.querySelector("#save-button").addEventListener("click", this.handleCharacterSave);
 			document.addEventListener("keydown", this.handleKeypress);
 			this.time = performance.now();
+			this.isActive = true;
 			this.autoSave();
 		}
 	}
