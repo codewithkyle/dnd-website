@@ -18,7 +18,7 @@ class SocketManager {
 		this.rollReplyId = null;
 		this.dice = new DiceRoller();
 
-		this.socket = io(`https://${document.documentElement.dataset.server}:5876`);
+		this.socket = io(`https://${document.documentElement.dataset.server}:5876`, { secure: true });
 		this.socket.on("connect", () => {
 			this.isConnected = true;
 		});
