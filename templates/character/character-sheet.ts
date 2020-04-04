@@ -108,7 +108,7 @@ class CharacterSheet extends HTMLElement {
 			env.stopLoading(ticket);
 			notify({
 				message: "Character saved.",
-				force: true,
+				force: false,
 				closeable: true,
 				duration: 3,
 			});

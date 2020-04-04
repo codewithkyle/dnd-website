@@ -2,6 +2,8 @@ import { hookup, reply } from "djinnjs/broadcaster";
 // @ts-ignore
 import io from "socket";
 import { DiceRoller } from "rpg-dice-roller";
+// @ts-ignore
+import { toast } from "notifyjs";
 
 class SocketManager {
 	private socket: any;
@@ -23,10 +25,24 @@ class SocketManager {
 		this.socket.on("disconnect", () => {
 			this.isConnected = false;
 		});
-		this.socket.on("roll", (result) => {
+		this.socket.on("roll", (results) => {
 			reply(this.rollReplyId, {
 				type: "roll-results",
-				results: result,
+				results: results,
+			});
+		});
+		this.socket.on("roll-notificaiton", (data) => {
+			let total = 0;
+			if (data.results.length > 1) {
+				for (let i = 0; i < data.results.length; i++) {
+					total += parseInt(data.results[i]);
+				}
+			}
+			toast({
+				title: `${data.character} rolled ${data.dice}`,
+				message: `Result${total === 0 ? "" : "s"}: ${data.results}${total === 0 ? "" : " = " + total}`,
+				closeable: true,
+				duration: 6,
 			});
 		});
 	}

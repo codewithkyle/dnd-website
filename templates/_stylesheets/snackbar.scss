@@ -20,36 +20,13 @@ snackbar-component {
 	color: rgba($white, 0.87);
 	min-width: 350px;
 	max-width: 90vw;
-	transform: scale(0.87);
 	opacity: 0;
 	z-index: 1000;
-	transform-origin: center;
-	animation: notificationPop 300ms cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
-
-	&[position] {
-		&[position~='bottom'] {
-			bottom: 1rem;
-		}
-
-		&[position~='top'] {
-			top: 1rem;
-		}
-
-		&[position~='center'] {
-			left: 50%;
-			transform: translate(-50%) scale(0.87);
-			transform-origin: left center;
-			animation: notificationPopCenter 300ms cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
-		}
-
-		&[position~='left'] {
-			left: 1.5rem;
-		}
-
-		&[position~='right'] {
-			right: 1.5rem;
-		}
-	}
+	bottom: 1rem;
+	left: 50%;
+	transform: translate(-50%) scale(0.87);
+	transform-origin: left center;
+	animation: notificationPopCenter 300ms cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
 
 	p {
 		padding: 0.875rem 1rem;
