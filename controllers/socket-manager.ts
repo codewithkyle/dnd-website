@@ -18,7 +18,7 @@ class SocketManager {
 		this.rollReplyId = null;
 		this.dice = new DiceRoller();
 
-		this.socket = io(`http://${document.documentElement.dataset.server}:5876`);
+		this.socket = io(`https://${document.documentElement.dataset.server}:5876`);
 		this.socket.on("connect", () => {
 			this.isConnected = true;
 		});
@@ -32,6 +32,7 @@ class SocketManager {
 			});
 		});
 		this.socket.on("roll-notificaiton", (data) => {
+			console.log(data);
 			let total = 0;
 			if (data.results.length > 1) {
 				for (let i = 0; i < data.results.length; i++) {
