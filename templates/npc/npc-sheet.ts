@@ -1,5 +1,6 @@
 import { env } from "djinnjs/env";
 import { notify } from "@codewithkyle/notifyjs";
+import { message } from "djinnjs/broadcaster";
 
 class NPCSheet extends HTMLElement {
 	private form: HTMLFormElement;
@@ -75,6 +76,12 @@ class NPCSheet extends HTMLElement {
 	connectedCallback() {
 		this.form.addEventListener("submit", this.handleSave);
 		document.addEventListener("keydown", this.handleKeypress);
+
+		message("server", {
+			type: "join",
+			name: "Game Master",
+			campaign: this.dataset.campaignUid,
+		});
 	}
 }
 customElements.define("npc-sheet", NPCSheet);
