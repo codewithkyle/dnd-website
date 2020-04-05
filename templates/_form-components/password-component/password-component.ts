@@ -59,6 +59,7 @@ class PasswordComponent extends HTMLElement {
 	connectedCallback() {
 		this.input.addEventListener("blur", this.handleBlurEvent);
 		this.input.addEventListener("keypress", this.handleKeyboardEvent);
+		this.input.addEventListener("input", this.handleKeyboardEvent);
 		this.button.addEventListener("click", this.handleButtonClick);
 	}
 }

@@ -1,0 +1,95 @@
+{% extends "_base/page" %}
+
+{% import "_macros" as inputs %}
+
+{% if not currentUser.isInGroup('gm') %}
+    {% redirect siteUrl %}
+{% endif %}
+
+{% set npc = craft.entries({
+    section: 'npcs',
+    uid: uid
+}).one() %}
+
+{% if not npc %}
+    {% redirect siteUrl %}
+{% endif %}
+
+{% block content %}
+    <article style="width:100%;display: block;">
+        <section style="width:100%;display: block;">
+            <npc-sheet web-component>
+                <form eager-load-css="snackbar" grid="columns 1 gap-1" method="post" accept-charset="UTF-8" class="bg-white shadow-md block mx-auto my-0 p-2" style="width:768px;max-width:100%;border-radius: 0.25rem;">
+                    {{ csrfInput() }}
+                    {{ hiddenInput('entryId', npc.id) }}
+
+                    <div class="block w-full">
+                        <div flex="justify-between items-center">
+                            <h1 class="font-grey-800 font-xl font-bold mb-0.5">{{ npc.title }}</h1>
+                            <span class="font-grey-700 mb-0.5 font-sm">{{ npc.race }} - {{ npc.class }}</span>
+                        </div>
+                        {% if npc.alignment|length %}
+                            <span class="font-grey-700 mb-0.5">{{ npc.alignment }}</span>
+                        {% endif %}
+                        {% if npc.age|length %}
+                            <span class="font-grey-700 mb-0.5">{{ npc.age }} years old</span>
+                        {% endif %}
+                    </div>
+
+                    <div class="w-full" grid="columns 3 gap-1">
+                        {{ inputs.number("Speed", "fields[speed]", false, null, 0, null, 1, npc.speed) }}
+                        {{ inputs.text("Armor Class", "fields[armorClass]", false, null, npc.armorClass) }}
+                        {{ inputs.text("Initiative", "fields[initiative]", false, null, npc.initiative) }}
+                    </div>
+
+                    <div grid="columns 2 gap-1">
+                        {{ inputs.number("Hit Points", "fields[currentHitPoints]", false, null, 0, null, 1, npc.currentHitPoints) }}
+                        {{ inputs.number("Max Hit Points", "fields[maximumHitPoints]", false, null, 0, null, 1, npc.maximumHitPoints) }}
+                    </div>
+
+                    <character-abilities eager-load-css="character-abilities">
+                        <character-ability>
+                            <span>Strength</span>
+                            <input class="ability" type="number" max="99" step="1" value="{{ npc.strength }}" name="fields[strength]" />
+                            <input class="modifier" type="number" max="99" step="1" value="{{ npc.strengthModifier }}" name="fields[strengthModifier]" />
+                        </character-ability>
+                        <character-ability>
+                            <span>Dexterity</span>
+                            <input class="ability" type="number" max="99" step="1" value="{{ npc.dexterity }}" name="fields[dexterity]" />
+                            <input class="modifier" type="number" max="99" step="1" value="{{ npc.dexterityModifier }}" name="fields[dexterityModifier]" />
+                        </character-ability>
+                        <character-ability>
+                            <span>Constitution</span>
+                            <input class="ability" type="number" max="99" step="1" value="{{ npc.constitution }}" name="fields[constitution]" />
+                            <input class="modifier" type="number" max="99" step="1" value="{{ npc.constitutionModifier }}" name="fields[constitutionModifier]" />
+                        </character-ability>
+                        <character-ability>
+                            <span>Intelligence</span>
+                            <input class="ability" type="number" max="99" step="1" value="{{ npc.intelligence }}" name="fields[intelligence]" />
+                            <input class="modifier" type="number" max="99" step="1" value="{{ npc.intelligenceModifier }}" name="fields[intelligenceModifier]" />
+                        </character-ability>
+                        <character-ability>
+                            <span>Wisdom</span>
+                            <input class="ability" type="number" max="99" step="1" value="{{ npc.wisdom }}" name="fields[wisdom]" />
+                            <input class="modifier" type="number" max="99" step="1" value="{{ npc.wisdomModifier }}" name="fields[wisdomModifier]" />
+                        </character-ability>
+                        <character-ability>
+                            <span>Charisma</span>
+                            <input class="ability" type="number" max="99" step="1" value="{{ npc.charisma }}" name="fields[charisma]" />
+                            <input class="modifier" type="number" max="99" step="1" value="{{ npc.charismaModifier }}" name="fields[charismaModifier]" />
+                        </character-ability>
+                    </character-abilities>
+
+                    {{ inputs.textarea("Background", "fields[background]", false, null, npc.background) }}
+                    {{ inputs.textarea("Appearance", "fields[apperance]", false, null, npc.apperance) }}
+                    {{ inputs.textarea("Equipment", "fields[equipment]", false, null, npc.equipment) }}
+                    {{ inputs.textarea("Notes", "fields[notes]", false, null, npc.notes) }}
+
+                    <div style="display: flex; justify-content: flex-end;align-items: center;">
+                        <button type="submit" class="button -solid -primary">Save</button>
+                    </div>
+                </form>
+            </npc-sheet>
+        </section>
+    </article>
+{% endblock %}

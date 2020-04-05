@@ -10,8 +10,8 @@
                 }).all() %}
                 <div class="bg-white shadow-md block mx-auto p-2 mb-2" style="width:420px;max-width:100%;border-radius: 0.25rem;">
                     {% for campaign in campaigns %}
-                        <a href="{{ siteUrl|trim('/') }}/campaign/{{ campaign.uid }}" class="block w-full b-1 b-solid b-grey-300 p-1" style="border-radius: 0.25rem;">
-                            <span class=" block font-primary-700 font-medium mb-0.25">{{ campaign.title }}</span>
+                        <a href="{{ siteUrl|trim('/') }}/campaign/{{ campaign.uid }}" class="block w-full b-1 b-solid b-grey-300 p-1 mb-1" style="border-radius: 0.25rem;">
+                            <span class=" block font-primary-700 font-medium">{{ campaign.title }}</span>
                         </a>
                     {% endfor %}
                     <div style="display: block;width: 100%;text-align: center;">

@@ -252,7 +252,7 @@ class CharacterCreator extends HTMLElement {
 				this.entryId = response.id;
 
 				if (isFinal) {
-					window.location.href = `${location.origin}/character/${response.id}`;
+					window.location.href = `${location.origin}`;
 				}
 			}
 		} else {

@@ -1,0 +1,102 @@
+{% extends "_base/page" %}
+
+{% import "_macros" as inputs %}
+
+{% set campaignId = craft.app.request.getParam('campaign') %}
+
+{% if not campaignId %}
+    {% redirect siteUrl %}
+{% else %}
+    {% set campaign = craft.entries({
+        section: 'campaigns',
+        uid: campaignId
+    }).one() %}
+    {% if not campaign %}
+        {% redirect siteUrl %}
+    {% endif %}
+{% endif %}
+
+{% block content %}
+    <article style="width:100%;display: block;">
+        <section style="width:100%;display: block;">
+            <npc-creator web-component data-campaign-uid="{{ campaignId }}">
+                <form eager-load-css="snackbar" grid="columns 1 gap-1" method="post" accept-charset="UTF-8" class="bg-white shadow-md block mx-auto my-0 p-2" style="width:640px;max-width:100%;border-radius: 0.25rem;">
+                    {{ csrfInput() }}
+                    {{ hiddenInput('sectionId', '3') }}
+                    {{ hiddenInput('enabled', '1') }}
+                    {{ hiddenInput('fields[campaign][]', campaign.id) }}
+
+                    <h1 class="font-xl font-grey-700 text-center block">NPC Creator</h1>
+
+                    <h3 class="block font-grey-700 font-lg">General Details</h3>
+
+                    {{ inputs.text("NPC Name", "title", true) }}
+                    
+                    <div grid="columns 2 gap-1">
+                        {{ inputs.select("Class", "fields[class]", true, data.classes) }}
+                        {{ inputs.select("Race", "fields[race]", true, data.races) }}
+                    </div>
+
+                    {{ inputs.select("Alignment", "fields[alignment]", false, data.alignments) }}
+
+                    <div grid="columns 2 gap-1">
+                        {{ inputs.number("Age", "fields[age]", false, null, 0, null, 1) }}
+                        {{ inputs.number("Speed", "fields[speed]", false, null, 0, null, 1) }}
+                    </div>
+
+                    <div grid="columns 2 gap-1">
+                        {{ inputs.text("Armor Class", "fields[armorClass]", false) }}
+                        {{ inputs.text("Initiative", "fields[initiative]", false) }}
+                    </div>
+
+                    <div grid="columns 2 gap-1">
+                        {{ inputs.number("Hit Points", "fields[currentHitPoints]", false, null, 0, null, 1) }}
+                        {{ inputs.number("Max Hit Points", "fields[maximumHitPoints]", false, null, 0, null, 1) }}
+                    </div>
+
+                    <div class="pt-1"></div>
+
+                    <div flex="justify-between items-center">
+                        <h3 class="font-lg font-grey-700">Ability Scores</h3>
+                        <button id="auto-fill" type="button" class="button -outline -alt">Auto-fill</button>
+                    </div>
+
+                    <div grid="columns 3 gap-1">
+                        {{ inputs.number("Strength", "fields[strength]", false, null, 0, null, 1) }}
+                        <input type="hidden" name="fields[strengthModifier]" />
+
+                        {{ inputs.number("Dexterity", "fields[dexterity]", false, null, 0, null, 1) }}
+                        <input type="hidden" name="fields[dexterityModifier]" />
+
+                        {{ inputs.number("Constitution", "fields[constitution]", false, null, 0, null, 1) }}
+                        <input type="hidden" name="fields[constitutionModifier]" />
+
+                        {{ inputs.number("Intelligence", "fields[intelligence]", false, null, 0, null, 1) }}
+                        <input type="hidden" name="fields[intelligenceModifier]" />
+
+                        {{ inputs.number("Wisdom", "fields[wisdom]", false, null, 0, null, 1) }}
+                        <input type="hidden" name="fields[wisdomModifier]" />
+
+                        {{ inputs.number("Charisma", "fields[charisma]", false, null, 0, null, 1) }}
+                        <input type="hidden" name="fields[charismaModifier]" />
+                    </div>
+
+                    <div class="pt-1"></div>
+
+                    <h3 class="block font-grey-700 font-lg">Lore</h3>
+
+                    {{ inputs.textarea("Background", "fields[background]", false) }}
+                    {{ inputs.textarea("Appearance", "fields[apperance]", false) }}
+                    {{ inputs.textarea("Equipment", "fields[equipment]", false) }}
+                    {{ inputs.textarea("Notes", "fields[notes]", false) }}
+
+                    <div style="display: flex; justify-content: flex-end;align-items: center;">
+                        <button type="submit" class="button -solid -primary">Save NPC</button>
+                    </div>
+                </form>
+            </npc-creator>
+        </section>
+    </article>
+    <div id="dice-mounting-point"></div>
+    <script src="{{ alias('@rootUrl')|trim('/') }}/preact/dice-roller.js"></script>
+{% endblock %}

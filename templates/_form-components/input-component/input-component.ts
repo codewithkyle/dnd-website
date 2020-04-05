@@ -45,6 +45,7 @@ class InputComponent extends HTMLElement {
 
 	connectedCallback() {
 		this.input.addEventListener("blur", this.handleBlurEvent);
+		this.input.addEventListener("input", this.handleKeyboardEvent);
 		this.input.addEventListener("keypress", this.handleKeyboardEvent);
 	}
 }

@@ -1,4 +1,4 @@
-dateModified: 1586081338
+dateModified: 1586102248
 email:
   fromEmail: codingwithkyle@gmail.com
   fromName: Boilerplate
@@ -3021,6 +3021,14 @@ users:
         - 'publishentries:897444ed-a565-4e87-bb56-a6a89ff6df82'
         - 'deleteentries:897444ed-a565-4e87-bb56-a6a89ff6df82'
         - 'editentries:897444ed-a565-4e87-bb56-a6a89ff6df82'
+        - 'createentries:37d7fb71-cdac-49c0-86eb-f145408f5771'
+        - 'publishentries:37d7fb71-cdac-49c0-86eb-f145408f5771'
+        - 'deleteentries:37d7fb71-cdac-49c0-86eb-f145408f5771'
+        - 'editentries:37d7fb71-cdac-49c0-86eb-f145408f5771'
+        - 'createentries:974126ba-1bc8-4543-a3e8-d78bb913d86b'
+        - 'publishentries:974126ba-1bc8-4543-a3e8-d78bb913d86b'
+        - 'deleteentries:974126ba-1bc8-4543-a3e8-d78bb913d86b'
+        - 'editentries:974126ba-1bc8-4543-a3e8-d78bb913d86b'
     e2d78d98-22b2-4182-ade0-724db8fc3c92:
       handle: basic
       name: Basic
