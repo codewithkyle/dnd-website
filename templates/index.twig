@@ -3,6 +3,19 @@
 {% block content %}
     <article style="width:100%;display: block;">
         <section style="width:100%;display: block;">
+            {% if currentUser.isInGroup('gm') %}
+                {% set campaigns = craft.entries({
+                    section: 'campaigns',
+                    authorId: currentUser.id
+                }).all() %}
+                <div class="bg-white shadow-md block mx-auto p-2 mb-2" style="width:420px;max-width:100%;border-radius: 0.25rem;">
+                    {% for campaign in campaigns %}
+                        <a href="{{ siteUrl|trim('/') }}/campaign/{{ campaign.uid }}" class="block w-full b-1 b-solid b-grey-300 p-1" style="border-radius: 0.25rem;">
+                            <span class=" block font-primary-700 font-medium mb-0.25">{{ campaign.title }}</span>
+                        </a>
+                    {% endfor %}
+                </div>
+            {% endif %}
             <div class="bg-white shadow-md block mx-auto p-2" style="width:420px;max-width:100%;border-radius: 0.25rem;">
                 {% if currentUser['admin'] %}
                     {% set characters = craft.entries({
@@ -19,7 +32,7 @@
                 {% endif %}
                 {% if characters|length %}
                     {% for char in characters %}
-                        <a href="{{ siteUrl|trim('/') }}/character/{{ char.id }}" class="block w-full b-1 b-solid b-grey-300 p-1 mb-2" style="border-radius: 0.25rem;">
+                        <a href="{{ siteUrl|trim('/') }}/character/{{ char.uid }}" class="block w-full b-1 b-solid b-grey-300 p-1 mb-2" style="border-radius: 0.25rem;">
                             <span class=" block font-primary-700 font-medium mb-0.25">{{ char.title }}</span>
                             <span class="block font-grey-700 font-sm">Lv. {{ char.charLevel }} {{ char.class }}</span>
                         </a>

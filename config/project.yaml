@@ -1,4 +1,4 @@
-dateModified: 1585873027
+dateModified: 1586081338
 email:
   fromEmail: codingwithkyle@gmail.com
   fromName: Boilerplate
@@ -6,8 +6,12 @@ email:
 fieldGroups:
   23e4e445-4b38-4cb2-b804-8f0709fc5994:
     name: Character
+  d3ff5079-6775-4ee8-bdfd-4a7a621e79ae:
+    name: 'Ability Scores'
   fcc29f23-916c-4883-90ae-60e9e6f0b466:
     name: Common
+  ff8b74fb-2c95-441f-86a8-a7c93a0e903c:
+    name: Monsters
 fields:
   0044dd61-5dca-48c9-b535-504faa029a65:
     contentColumnType: boolean
@@ -305,7 +309,7 @@ fields:
     type: craft\fields\PlainText
   224fd7cd-0613-42ac-8082-1700a37171a4:
     contentColumnType: integer(10)
-    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    fieldGroup: d3ff5079-6775-4ee8-bdfd-4a7a621e79ae
     handle: wisdom
     instructions: ''
     name: Wisdom
@@ -395,7 +399,7 @@ fields:
     type: craft\fields\Number
   28c16db0-e3bc-43e3-abda-655cb84246f5:
     contentColumnType: integer(10)
-    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    fieldGroup: d3ff5079-6775-4ee8-bdfd-4a7a621e79ae
     handle: intelligence
     instructions: ''
     name: Intelligence
@@ -543,6 +547,24 @@ fields:
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\PlainText
+  40055f18-8f93-4a56-906d-6cc34f74bf32:
+    contentColumnType: text
+    fieldGroup: ff8b74fb-2c95-441f-86a8-a7c93a0e903c
+    handle: flavorText
+    instructions: ''
+    name: 'Flavor Text'
+    searchable: true
+    settings:
+      byteLimit: null
+      charLimit: null
+      code: ''
+      columnType: null
+      initialRows: '4'
+      multiline: ''
+      placeholder: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\PlainText
   401124d6-f731-4fee-9f82-6a852f0e443c:
     contentColumnType: integer(10)
     fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
@@ -563,7 +585,7 @@ fields:
     type: craft\fields\Number
   43da4518-b607-4804-a699-523220069c18:
     contentColumnType: integer(10)
-    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    fieldGroup: d3ff5079-6775-4ee8-bdfd-4a7a621e79ae
     handle: strength
     instructions: ''
     name: Strength
@@ -663,6 +685,24 @@ fields:
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\Number
+  4d7122f9-4bd2-4e76-913a-46940afffb72:
+    contentColumnType: text
+    fieldGroup: ff8b74fb-2c95-441f-86a8-a7c93a0e903c
+    handle: actions
+    instructions: ''
+    name: Actions
+    searchable: true
+    settings:
+      byteLimit: null
+      charLimit: null
+      code: ''
+      columnType: null
+      initialRows: '4'
+      multiline: '1'
+      placeholder: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\PlainText
   4fdb9a79-9a76-4010-9f23-559ea439fa0c:
     contentColumnType: boolean
     fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
@@ -677,7 +717,7 @@ fields:
     type: craft\fields\Lightswitch
   50a1e9a4-5f95-4f5c-8d74-201239c16d65:
     contentColumnType: integer(10)
-    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    fieldGroup: d3ff5079-6775-4ee8-bdfd-4a7a621e79ae
     handle: wisdomModifier
     instructions: ''
     name: 'Wisdom Modifier'
@@ -809,7 +849,7 @@ fields:
     type: craft\fields\Lightswitch
   58650e0c-dbb0-4416-a9f2-7e3e66d39b24:
     contentColumnType: integer(10)
-    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    fieldGroup: d3ff5079-6775-4ee8-bdfd-4a7a621e79ae
     handle: constitutionModifier
     instructions: ''
     name: 'Constitution Modifier'
@@ -917,7 +957,7 @@ fields:
     type: craft\fields\Number
   61786029-b796-465c-b1d8-fc7fc92082f7:
     contentColumnType: integer(10)
-    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    fieldGroup: d3ff5079-6775-4ee8-bdfd-4a7a621e79ae
     handle: charisma
     instructions: ''
     name: Charisma
@@ -1139,7 +1179,7 @@ fields:
     type: craft\fields\Lightswitch
   7ba847b3-82a8-4806-9a22-27521e2a3b3c:
     contentColumnType: integer(10)
-    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    fieldGroup: d3ff5079-6775-4ee8-bdfd-4a7a621e79ae
     handle: charismaModifier
     instructions: ''
     name: 'Charisma Modifier'
@@ -1301,7 +1341,7 @@ fields:
     type: craft\fields\Number
   8d1596b9-1261-4320-af82-546ca10e72f0:
     contentColumnType: integer(10)
-    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    fieldGroup: d3ff5079-6775-4ee8-bdfd-4a7a621e79ae
     handle: dexterity
     instructions: ''
     name: Dexterity
@@ -1653,7 +1693,7 @@ fields:
     type: craft\fields\Number
   b875d0a3-65f2-4668-8e5e-828cc1a5ae12:
     contentColumnType: integer(10)
-    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    fieldGroup: d3ff5079-6775-4ee8-bdfd-4a7a621e79ae
     handle: intelligenceModifier
     instructions: ''
     name: 'Intelligence Modifier'
@@ -1707,7 +1747,7 @@ fields:
     type: craft\fields\Number
   c60ac919-bcc2-4033-98db-c7b7ce052456:
     contentColumnType: integer(10)
-    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    fieldGroup: d3ff5079-6775-4ee8-bdfd-4a7a621e79ae
     handle: constitution
     instructions: ''
     name: Constitution
@@ -1873,6 +1913,44 @@ fields:
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\Lightswitch
+  d4b7d281-0862-495f-a914-8401f4234bc8:
+    contentColumnType: string
+    fieldGroup: fcc29f23-916c-4883-90ae-60e9e6f0b466
+    handle: campaign
+    instructions: ''
+    name: Campaign
+    searchable: true
+    settings:
+      limit: ''
+      localizeRelations: false
+      selectionLabel: 'Add a Campaign'
+      source: null
+      sources:
+        - 'section:897444ed-a565-4e87-bb56-a6a89ff6df82'
+      targetSiteId: null
+      validateRelatedElements: '1'
+      viewMode: null
+    translationKeyFormat: null
+    translationMethod: site
+    type: craft\fields\Entries
+  d8a26bf8-2ad7-4ba9-b03b-60449d7dfbf5:
+    contentColumnType: text
+    fieldGroup: fcc29f23-916c-4883-90ae-60e9e6f0b466
+    handle: notes
+    instructions: ''
+    name: Notes
+    searchable: true
+    settings:
+      byteLimit: null
+      charLimit: null
+      code: ''
+      columnType: null
+      initialRows: '6'
+      multiline: '1'
+      placeholder: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\PlainText
   d99b0d84-7b1f-473d-9142-c3a4c58fd41d:
     contentColumnType: text
     fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
@@ -1977,7 +2055,7 @@ fields:
     type: craft\fields\PlainText
   f1885df5-1e09-44f0-891f-e4dd75f357de:
     contentColumnType: integer(10)
-    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    fieldGroup: d3ff5079-6775-4ee8-bdfd-4a7a621e79ae
     handle: strengthModifier
     instructions: ''
     name: 'Strength Modifier'
@@ -2085,7 +2163,7 @@ fields:
     type: craft\fields\Number
   fa80cda9-2c6f-4876-8ef5-6e14def438eb:
     contentColumnType: integer(10)
-    fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
+    fieldGroup: d3ff5079-6775-4ee8-bdfd-4a7a621e79ae
     handle: dexterityModifier
     instructions: ''
     name: 'Dexterity Modifier'
@@ -2101,6 +2179,24 @@ fields:
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\Number
+  fc9ef8c7-fbc1-4ad4-a1a1-2b6757bd0d79:
+    contentColumnType: text
+    fieldGroup: ff8b74fb-2c95-441f-86a8-a7c93a0e903c
+    handle: legendaryActions
+    instructions: ''
+    name: 'Legendary Actions'
+    searchable: true
+    settings:
+      byteLimit: null
+      charLimit: null
+      code: ''
+      columnType: null
+      initialRows: '4'
+      multiline: '1'
+      placeholder: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\PlainText
   fd4338e6-2ae4-47cb-a744-c083c966c007:
     contentColumnType: text
     fieldGroup: 23e4e445-4b38-4cb2-b804-8f0709fc5994
@@ -2165,6 +2261,16 @@ plugins:
     enabled: true
     schemaVersion: 2.0.0
 routes:
+  5678e7f4-eae1-4721-b3d9-0f0c32aa1c37:
+    siteUid: null
+    sortOrder: 4
+    template: campaign/index.twig
+    uriParts:
+      - campaign/
+      -
+        - uid
+        - '[A-Za-z0-9]{8}-[A-Za-z0-9]{4}-4[A-Za-z0-9]{3}-[89abAB][A-Za-z0-9]{3}-[A-Za-z0-9]{12}'
+    uriPattern: 'campaign/<uid:[A-Za-z0-9]{8}-[A-Za-z0-9]{4}-4[A-Za-z0-9]{3}-[89abAB][A-Za-z0-9]{3}-[A-Za-z0-9]{12}>'
   8e5c2240-8fe2-4d72-846a-1bd720e346bf:
     siteUid: null
     sortOrder: 2
@@ -2172,9 +2278,19 @@ routes:
     uriParts:
       - character/
       -
-        - number
-        - \d+
-    uriPattern: 'character/<number:\d+>'
+        - uid
+        - '[A-Za-z0-9]{8}-[A-Za-z0-9]{4}-4[A-Za-z0-9]{3}-[89abAB][A-Za-z0-9]{3}-[A-Za-z0-9]{12}'
+    uriPattern: 'character/<uid:[A-Za-z0-9]{8}-[A-Za-z0-9]{4}-4[A-Za-z0-9]{3}-[89abAB][A-Za-z0-9]{3}-[A-Za-z0-9]{12}>'
+  a667bc14-7de2-4d8c-8a1a-f25bc4f9ed31:
+    siteUid: null
+    sortOrder: 3
+    template: npc/index.twig
+    uriParts:
+      - npc/
+      -
+        - uid
+        - '[A-Za-z0-9]{8}-[A-Za-z0-9]{4}-4[A-Za-z0-9]{3}-[89abAB][A-Za-z0-9]{3}-[A-Za-z0-9]{12}'
+    uriPattern: 'npc/<uid:[A-Za-z0-9]{8}-[A-Za-z0-9]{4}-4[A-Za-z0-9]{3}-[89abAB][A-Za-z0-9]{3}-[A-Za-z0-9]{12}>'
   b4b0f335-ff96-4011-a82e-9d9339137572:
     siteUid: null
     sortOrder: 1
@@ -2182,14 +2298,112 @@ routes:
     uriParts:
       - character/
       -
-        - number
-        - \d+
+        - uid
+        - '[A-Za-z0-9]{8}-[A-Za-z0-9]{4}-4[A-Za-z0-9]{3}-[89abAB][A-Za-z0-9]{3}-[A-Za-z0-9]{12}'
       - /
       -
         - slug
         - '[^\/]+'
-    uriPattern: 'character/<number:\d+>/<slug:[^\/]+>'
+    uriPattern: 'character/<uid:[A-Za-z0-9]{8}-[A-Za-z0-9]{4}-4[A-Za-z0-9]{3}-[89abAB][A-Za-z0-9]{3}-[A-Za-z0-9]{12}>/<slug:[^\/]+>'
 sections:
+  37d7fb71-cdac-49c0-86eb-f145408f5771:
+    enableVersioning: true
+    entryTypes:
+      599f7ff3-40a9-4069-a123-9408d7582fa6:
+        fieldLayouts:
+          2007e9be-a95c-47fa-8d36-49b086a87987:
+            tabs:
+              -
+                fields:
+                  1697c79c-8540-4999-9569-62f8fc98a9e3:
+                    required: false
+                    sortOrder: 3
+                  36aa3e64-a598-457e-b0bb-d5cbc2c2dc98:
+                    required: false
+                    sortOrder: 4
+                  40055f18-8f93-4a56-906d-6cc34f74bf32:
+                    required: false
+                    sortOrder: 1
+                  48101cdf-b572-4e6c-8bf5-0137f5573ae5:
+                    required: false
+                    sortOrder: 2
+                  8a20aeca-3742-4f3f-9e47-c1fe5f9496f2:
+                    required: false
+                    sortOrder: 5
+                  d4b7d281-0862-495f-a914-8401f4234bc8:
+                    required: false
+                    sortOrder: 7
+                  d8a26bf8-2ad7-4ba9-b03b-60449d7dfbf5:
+                    required: false
+                    sortOrder: 6
+                name: Details
+                sortOrder: 1
+              -
+                fields:
+                  4d7122f9-4bd2-4e76-913a-46940afffb72:
+                    required: false
+                    sortOrder: 1
+                  fc9ef8c7-fbc1-4ad4-a1a1-2b6757bd0d79:
+                    required: false
+                    sortOrder: 2
+                name: Actions
+                sortOrder: 2
+              -
+                fields:
+                  224fd7cd-0613-42ac-8082-1700a37171a4:
+                    required: false
+                    sortOrder: 11
+                  28c16db0-e3bc-43e3-abda-655cb84246f5:
+                    required: false
+                    sortOrder: 7
+                  43da4518-b607-4804-a699-523220069c18:
+                    required: false
+                    sortOrder: 9
+                  50a1e9a4-5f95-4f5c-8d74-201239c16d65:
+                    required: false
+                    sortOrder: 12
+                  58650e0c-dbb0-4416-a9f2-7e3e66d39b24:
+                    required: false
+                    sortOrder: 4
+                  61786029-b796-465c-b1d8-fc7fc92082f7:
+                    required: false
+                    sortOrder: 1
+                  7ba847b3-82a8-4806-9a22-27521e2a3b3c:
+                    required: false
+                    sortOrder: 2
+                  8d1596b9-1261-4320-af82-546ca10e72f0:
+                    required: false
+                    sortOrder: 5
+                  b875d0a3-65f2-4668-8e5e-828cc1a5ae12:
+                    required: false
+                    sortOrder: 8
+                  c60ac919-bcc2-4033-98db-c7b7ce052456:
+                    required: false
+                    sortOrder: 3
+                  f1885df5-1e09-44f0-891f-e4dd75f357de:
+                    required: false
+                    sortOrder: 10
+                  fa80cda9-2c6f-4876-8ef5-6e14def438eb:
+                    required: false
+                    sortOrder: 6
+                name: 'Ability Scores'
+                sortOrder: 3
+        handle: monsters
+        hasTitleField: true
+        name: Monsters
+        sortOrder: 1
+        titleFormat: ''
+        titleLabel: Name
+    handle: monsters
+    name: Monsters
+    propagationMethod: all
+    siteSettings:
+      3253961c-40ff-4967-bda7-42b923305ae9:
+        enabledByDefault: true
+        hasUrls: false
+        template: null
+        uriFormat: ''
+    type: channel
   3d51e8a8-b0d4-479a-88ac-01b9e5659ac9:
     enableVersioning: true
     entryTypes:
@@ -2660,6 +2874,116 @@ sections:
         template: null
         uriFormat: ''
     type: channel
+  974126ba-1bc8-4543-a3e8-d78bb913d86b:
+    enableVersioning: true
+    entryTypes:
+      ea49b983-a589-499a-a655-de5e9d5dbbbc:
+        fieldLayouts:
+          92625f51-71eb-4a7b-9e6c-565082cfab97:
+            tabs:
+              -
+                fields:
+                  1697c79c-8540-4999-9569-62f8fc98a9e3:
+                    required: false
+                    sortOrder: 6
+                  23f8931d-1ad0-4a93-8823-7ac2ce5d7c5d:
+                    required: false
+                    sortOrder: 3
+                  25c3aa96-218a-49bc-a7f8-d45ddee774a0:
+                    required: false
+                    sortOrder: 2
+                  36aa3e64-a598-457e-b0bb-d5cbc2c2dc98:
+                    required: false
+                    sortOrder: 8
+                  48101cdf-b572-4e6c-8bf5-0137f5573ae5:
+                    required: false
+                    sortOrder: 4
+                  6bde9132-4da1-44ca-be56-ad8a6a588dd1:
+                    required: false
+                    sortOrder: 1
+                  70671d44-63ad-4e27-8857-1a793322e869:
+                    required: false
+                    sortOrder: 5
+                  ad531314-4d9b-4449-a387-9c9b8df3e538:
+                    required: false
+                    sortOrder: 7
+                  d4b7d281-0862-495f-a914-8401f4234bc8:
+                    required: false
+                    sortOrder: 9
+                name: Overview
+                sortOrder: 1
+              -
+                fields:
+                  2a6ec182-50f7-4503-9d7d-d9e6a7b80254:
+                    required: false
+                    sortOrder: 1
+                  9ed27eff-c04e-4f57-92e9-3a278a1eb6c7:
+                    required: false
+                    sortOrder: 3
+                  ce8c6d47-9591-4a57-a5a3-0abbc910a88a:
+                    required: false
+                    sortOrder: 2
+                  d8a26bf8-2ad7-4ba9-b03b-60449d7dfbf5:
+                    required: false
+                    sortOrder: 4
+                name: Details
+                sortOrder: 2
+              -
+                fields:
+                  224fd7cd-0613-42ac-8082-1700a37171a4:
+                    required: false
+                    sortOrder: 9
+                  28c16db0-e3bc-43e3-abda-655cb84246f5:
+                    required: false
+                    sortOrder: 7
+                  43da4518-b607-4804-a699-523220069c18:
+                    required: false
+                    sortOrder: 1
+                  50a1e9a4-5f95-4f5c-8d74-201239c16d65:
+                    required: false
+                    sortOrder: 10
+                  58650e0c-dbb0-4416-a9f2-7e3e66d39b24:
+                    required: false
+                    sortOrder: 6
+                  61786029-b796-465c-b1d8-fc7fc92082f7:
+                    required: false
+                    sortOrder: 11
+                  7ba847b3-82a8-4806-9a22-27521e2a3b3c:
+                    required: false
+                    sortOrder: 12
+                  8d1596b9-1261-4320-af82-546ca10e72f0:
+                    required: false
+                    sortOrder: 3
+                  b875d0a3-65f2-4668-8e5e-828cc1a5ae12:
+                    required: false
+                    sortOrder: 8
+                  c60ac919-bcc2-4033-98db-c7b7ce052456:
+                    required: false
+                    sortOrder: 5
+                  f1885df5-1e09-44f0-891f-e4dd75f357de:
+                    required: false
+                    sortOrder: 2
+                  fa80cda9-2c6f-4876-8ef5-6e14def438eb:
+                    required: false
+                    sortOrder: 4
+                name: 'Ability Scores'
+                sortOrder: 3
+        handle: npcs
+        hasTitleField: true
+        name: NPCs
+        sortOrder: 1
+        titleFormat: ''
+        titleLabel: Name
+    handle: npcs
+    name: NPCs
+    propagationMethod: all
+    siteSettings:
+      3253961c-40ff-4967-bda7-42b923305ae9:
+        enabledByDefault: true
+        hasUrls: false
+        template: null
+        uriFormat: ''
+    type: channel
 siteGroups:
   84de28f8-ac64-4668-b1e5-690daa13fd61:
     name: Boilerplate
@@ -2680,8 +3004,8 @@ system:
   schemaVersion: 3.4.10
   timeZone: America/Los_Angeles
 users:
-  allowPublicRegistration: false
-  defaultGroup: ''
+  allowPublicRegistration: true
+  defaultGroup: e2d78d98-22b2-4182-ade0-724db8fc3c92
   fieldLayouts:
     30924088-a462-4c79-9173-870b48c4299a:
       tabs:
@@ -2689,6 +3013,14 @@ users:
           name: Common
           sortOrder: 1
   groups:
+    a0c0d5c3-44f1-4162-9d27-d8455c0a2481:
+      handle: gm
+      name: GM
+      permissions:
+        - 'createentries:897444ed-a565-4e87-bb56-a6a89ff6df82'
+        - 'publishentries:897444ed-a565-4e87-bb56-a6a89ff6df82'
+        - 'deleteentries:897444ed-a565-4e87-bb56-a6a89ff6df82'
+        - 'editentries:897444ed-a565-4e87-bb56-a6a89ff6df82'
     e2d78d98-22b2-4182-ade0-724db8fc3c92:
       handle: basic
       name: Basic
@@ -2699,4 +3031,4 @@ users:
         - 'editentries:3d51e8a8-b0d4-479a-88ac-01b9e5659ac9'
   photoSubpath: null
   photoVolumeUid: null
-  requireEmailVerification: false
+  requireEmailVerification: true

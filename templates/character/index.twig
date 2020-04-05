@@ -2,7 +2,7 @@
 
 {% set character = craft.entries({
     section: 'characters',
-    id: number
+    uid: uid
 }).one() %}
 
 {% if currentUser['id'] is not defined or character.authorId != currentUser.id and currentUser['admin'] is not defined %}

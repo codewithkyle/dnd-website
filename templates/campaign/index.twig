@@ -1,0 +1,49 @@
+{% extends "_base/page" %}
+
+{% if not currentUser.isInGroup('gm') %}
+    {% redirect siteUrl %}
+{% endif %}
+
+{% set campaign = craft.entries({
+    section: 'campaigns',
+    uid: uid
+}).one() %}
+
+{% set monsters = craft.entries({
+    section: 'monsters',
+    relatedTo: campaign
+}).all() %}
+
+{% set npcs = craft.entries({
+    section: 'npcs',
+    relatedTo: campaign
+}).all() %}
+
+{% block content %}
+    <article style="width:100%;display: block;">
+        <section style="width:100%;display: block;">
+                <div class="bg-white shadow-md block mx-auto p-2 mb-2" style="width:420px;max-width:100%;border-radius: 0.25rem;">
+                    <h3 class="block w-full mb-1 font-sm font-grey-700 text-center">NPCs<h3>
+                    {% for npc in npcs %}
+                        <a href="{{ siteUrl|trim('/') }}/npc/{{ npc.uid }}" class="block w-full b-1 b-solid b-grey-300 p-1 mb-2" style="border-radius: 0.25rem;">
+                            <span class=" block font-primary-700 font-medium mb-0.25">{{ npc.title }}</span>
+                        </a>
+                    {% endfor %}
+                    <div style="display: block;width: 100%;text-align: center;">
+                        <a href="{{ siteUrl|trim('/') }}/new-npc" class="button -solid -primary">Create NPC</a>
+                    </div>
+                </div>
+                <div class="bg-white shadow-md block mx-auto p-2 mb-2" style="width:420px;max-width:100%;border-radius: 0.25rem;">
+                    <h3 class="block w-full mb-1 font-sm font-grey-700 text-center">Monsters<h3>
+                    {% for monster in monsters %}
+                        <a href="{{ siteUrl|trim('/') }}/monster/{{ monster.uid }}" class="block w-full b-1 b-solid b-grey-300 p-1 mb-2" style="border-radius: 0.25rem;">
+                            <span class=" block font-primary-700 font-medium mb-0.25">{{ monster.title }}</span>
+                        </a>
+                    {% endfor %}
+                    <div style="display: block;width: 100%;text-align: center;">
+                        <a href="{{ siteUrl|trim('/') }}/new-monster" class="button -solid -primary">Create Monster</a>
+                    </div>
+                </div>
+        </section>
+    </article>
+{% endblock %}
