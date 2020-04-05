@@ -44,6 +44,7 @@ return [
         // Base site URL
         'siteUrl'           => getenv('STAGING_URL'),
         'allowAdminChanges' => true,
+        'allowUpdates'      => false,
         'aliases' => [
             '@rootUrl' => getenv('STAGING_URL'),
         ],
@@ -54,6 +55,7 @@ return [
         // Base site URL
         'siteUrl'           => getenv('PRODUCTION_URL'),
         'allowAdminChanges' => true,
+        'allowUpdates'      => false,
         'aliases' => [
             '@rootUrl' => getenv('PRODUCTION_URL'),
         ],
