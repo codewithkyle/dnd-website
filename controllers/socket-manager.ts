@@ -55,11 +55,13 @@ class SocketManager {
 				this.inRoom = false;
 				break;
 			case "join":
-				this.socket.emit("join", {
-					name: data.name,
-					roomUid: data.campaign,
-				});
-				this.inRoom = true;
+				if (!this.inRoom) {
+					this.socket.emit("join", {
+						name: data.name,
+						roomUid: data.campaign,
+					});
+					this.inRoom = true;
+				}
 				break;
 			case "roll-dice":
 				this.rollReplyId = data.replyID;
