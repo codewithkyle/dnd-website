@@ -14,38 +14,43 @@
                             <span class=" block font-primary-700 font-medium mb-0.25">{{ campaign.title }}</span>
                         </a>
                     {% endfor %}
+                    <div style="display: block;width: 100%;text-align: center;">
+                        <a href="{{ siteUrl|trim('/') }}/new-campaign" class="button -solid -primary">Creat a Campaign</a>
+                    </div>
                 </div>
             {% endif %}
-            <div class="bg-white shadow-md block mx-auto p-2" style="width:420px;max-width:100%;border-radius: 0.25rem;">
-                {% if currentUser['admin'] %}
-                    {% set characters = craft.entries({
-                        section: 'characters',
-                        limit: null
-                    }).all() %}
-                {% else %}
-                    {% set characters = craft.entries({
-                        section: 'characters',
-                        authorId: currentUser.id,
-                        limit: null,
-                        status: "live"
-                    }).all() %}
-                {% endif %}
-                {% if characters|length %}
-                    {% for char in characters %}
-                        <a href="{{ siteUrl|trim('/') }}/character/{{ char.uid }}" class="block w-full b-1 b-solid b-grey-300 p-1 mb-2" style="border-radius: 0.25rem;">
-                            <span class=" block font-primary-700 font-medium mb-0.25">{{ char.title }}</span>
-                            <span class="block font-grey-700 font-sm">Lv. {{ char.charLevel }} {{ char.class }}</span>
-                        </a>
-                    {% endfor %}
-                {% else %}
-                    <div class="block w-full text-center mb-1">
-                        <span class="font-grey-700">Roll a new character to get started.</span>
+            {% if currentUser.isInGroup('basic') %}
+                <div class="bg-white shadow-md block mx-auto p-2" style="width:420px;max-width:100%;border-radius: 0.25rem;">
+                    {% if currentUser['admin'] %}
+                        {% set characters = craft.entries({
+                            section: 'characters',
+                            limit: null
+                        }).all() %}
+                    {% else %}
+                        {% set characters = craft.entries({
+                            section: 'characters',
+                            authorId: currentUser.id,
+                            limit: null,
+                            status: "live"
+                        }).all() %}
+                    {% endif %}
+                    {% if characters|length %}
+                        {% for char in characters %}
+                            <a href="{{ siteUrl|trim('/') }}/character/{{ char.uid }}" class="block w-full b-1 b-solid b-grey-300 p-1 mb-2" style="border-radius: 0.25rem;">
+                                <span class=" block font-primary-700 font-medium mb-0.25">{{ char.title }}</span>
+                                <span class="block font-grey-700 font-sm">Lv. {{ char.charLevel }} {{ char.class }}</span>
+                            </a>
+                        {% endfor %}
+                    {% else %}
+                        <div class="block w-full text-center mb-1">
+                            <span class="font-grey-700">Roll a new character to get started.</span>
+                        </div>
+                    {% endif %}
+                    <div style="display: block;width: 100%;text-align: center;">
+                        <a href="{{ siteUrl|trim('/') }}/new-character" class="button -solid -primary">New Character</a>
                     </div>
-                {% endif %}
-                <div style="display: block;width: 100%;text-align: center;">
-                    <a href="{{ siteUrl|trim('/') }}/new-character" class="button -solid -primary">New Character</a>
                 </div>
-            </div>
+            {% endif %}
         </section>
     </article>
 {% endblock %}
