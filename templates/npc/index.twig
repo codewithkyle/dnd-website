@@ -18,6 +18,13 @@
 {% block content %}
     <article style="width:100%;display: block;">
         <section style="width:100%;display: block;">
+            <div class="mx-auto mb-2" flex="justify-between items-center" style="width: 768px;">
+                <button class="button -solid -primary" onClick="window.history.back();">Back to Campaign</button>
+                <div>
+                    <delete-npc-button web-component data-entry-id="{{ npc.id }}" data-campaign-uid="{{ npc.campaign[0].uid }}" class="button -outline -danger">Delete NPC</delete-npc-button>
+                    <button class="ml-1 button -solid -primary" onClick="document.body.querySelector('form').submit();">Save NPC</button>
+                </div>
+            </div>
             <npc-sheet web-component>
                 <form eager-load-css="snackbar" grid="columns 1 gap-1" method="post" accept-charset="UTF-8" class="bg-white shadow-md block mx-auto my-0 p-2" style="width:768px;max-width:100%;border-radius: 0.25rem;">
                     {{ csrfInput() }}
@@ -84,10 +91,6 @@
                     {{ inputs.textarea("Appearance", "fields[apperance]", false, null, npc.apperance) }}
                     {{ inputs.textarea("Equipment", "fields[equipment]", false, null, npc.equipment) }}
                     {{ inputs.textarea("Notes", "fields[notes]", false, null, npc.notes) }}
-
-                    <div style="display: flex; justify-content: flex-end;align-items: center;">
-                        <button type="submit" class="button -solid -primary">Save</button>
-                    </div>
                 </form>
             </npc-sheet>
         </section>

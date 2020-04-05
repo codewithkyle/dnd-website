@@ -184,6 +184,26 @@
             }
         }
 
+        &.-danger{
+            padding: 0 1rem;
+            border-color: var(--grey-300);
+            color: var(--danger-700);
+
+            &:hover{
+                border-color: var(--danger-700);
+                color: var(--danger-800);
+            }
+
+            &:focus-visible{
+                border-color: var(--danger-700);
+                color: var(--danger-800);
+            }
+
+            &::before{
+                background-color: var(--danger-500);
+            }
+        }
+
         &:hover{
             &::before
             {
