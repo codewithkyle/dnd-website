@@ -131,7 +131,7 @@ class CharacterSheet extends HTMLElement {
 		const newTime = performance.now();
 		const deltaTime = (newTime - this.time) / 1000;
 		this.time = newTime;
-		if (document.hasFocus() && !this.isSaving) {
+		if (!this.isSaving) {
 			this.countdown -= deltaTime;
 			if (this.countdown <= 0 && this.isActive) {
 				this.saveCharacter();
