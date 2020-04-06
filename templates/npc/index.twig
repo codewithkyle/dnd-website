@@ -22,7 +22,7 @@
                 <button class="button -solid -primary" onClick="window.history.back();">Back to Campaign</button>
                 <div>
                     <delete-npc-button web-component data-entry-id="{{ npc.id }}" data-campaign-uid="{{ npc.campaign[0].uid }}" class="button -outline -danger">Delete NPC</delete-npc-button>
-                    <button class="ml-1 button -solid -primary" onClick="document.body.querySelector('form').submit();">Save NPC</button>
+                    <button class="ml-1 button -solid -primary" id="save-button">Save NPC</button>
                 </div>
             </div>
             <npc-sheet web-component data-campaign-uid="{{ npc.campaign[0].uid }}">
