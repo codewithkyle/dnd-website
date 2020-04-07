@@ -86,7 +86,7 @@
 
                 <form-page class="w-full" id="health" style="display: {{ slug is defined and slug == 'health' ? 'grid' : 'none' }};grid-template-rows: 1fr; gap: 2rem;">
                     <div grid="columns 3 gap-2">
-                        {{ inputs.number("Current Hit Poitns", "fields[currentHitPoints]", false, null, null, null, 1, character.currentHitPoints) }}
+                        {{ inputs.number("Current Hit Points", "fields[currentHitPoints]", false, null, null, null, 1, character.currentHitPoints) }}
                         {{ inputs.number("Maximum Hit Points", "fields[maximumHitPoints]", false, null, null, null, 1, character.maximumHitPoints) }}
                         {{ inputs.number("Temporary Hit Points", "fields[temporaryHitPoints]", false, null, null, null, 1, character.temporaryHitPoints) }}
                     </div>
