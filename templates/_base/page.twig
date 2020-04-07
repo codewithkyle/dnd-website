@@ -4,28 +4,7 @@
 
 {% block page %}
     {% include "_header" %}
-    <main pjax-id="page" eager-load-css="normalize brixi page-transition soft-loading toaster-notification" style="min-height: calc(100vh - 12rem);">
-        {% if not currentUser %}
-            <article style="width:100%;display: block;">
-                <section style="width:100%;display: block;">
-                    <form grid="columns 1 gap-1" method="post" accept-charset="UTF-8" class="bg-white shadow-md" style="width:420px;max-width:100%;display: block;margin: 0 auto;padding:2rem;">
-                        {{ csrfInput() }}
-                        {{ actionInput('users/login') }}
-                        {{ redirectInput(craft.app.request.absoluteUrl) }}
-
-                        {{ inputs.text("Username", "loginName", true) }}
-                        {{ inputs.password("Password", true) }}
-                    
-                        <button type="submit" class="button -solid -primary">Log In</button>
-                    
-                        {% if errorMessage is defined %}
-                            <p class="font-danger-500 font-sm">{{ errorMessage }}</p>
-                        {% endif %}
-                    </form>
-                </section>
-            </article>
-        {% else %}
-            {% block content %}{% endblock %}
-        {% endif %}
+    <main pjax-id="page" eager-load-css="normalize brixi page-transition soft-loading toaster-notification" style="min-height: calc(100vh - 12rem);">        
+        {% block content %}{% endblock %}
     </main>
 {% endblock %}

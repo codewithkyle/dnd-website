@@ -1,56 +1,77 @@
 {% extends "_base/page" %}
 
 {% block content %}
-    <article style="width:100%;display: block;">
-        <section style="width:100%;display: block;">
-            {% if currentUser.isInGroup('gm') %}
-                {% set campaigns = craft.entries({
-                    section: 'campaigns',
-                    authorId: currentUser.id
-                }).all() %}
-                <div class="bg-white shadow-md block mx-auto p-2 mb-2" style="width:420px;max-width:100%;border-radius: 0.25rem;">
-                    {% for campaign in campaigns %}
-                        <a href="{{ siteUrl|trim('/') }}/campaign/{{ campaign.uid }}" class="block w-full b-1 b-solid b-grey-300 p-1 mb-1" style="border-radius: 0.25rem;">
-                            <span class=" block font-primary-700 font-medium">{{ campaign.title }}</span>
-                        </a>
-                    {% endfor %}
-                    <div style="display: block;width: 100%;text-align: center;">
-                        <a href="{{ siteUrl|trim('/') }}/new-campaign" class="button -solid -primary">Creat a Campaign</a>
-                    </div>
-                </div>
-            {% endif %}
-            {% if currentUser.isInGroup('basic') %}
-                <div class="bg-white shadow-md block mx-auto p-2" style="width:420px;max-width:100%;border-radius: 0.25rem;">
-                    {% if currentUser['admin'] %}
-                        {% set characters = craft.entries({
-                            section: 'characters',
-                            limit: null
-                        }).all() %}
-                    {% else %}
-                        {% set characters = craft.entries({
-                            section: 'characters',
-                            authorId: currentUser.id,
-                            limit: null,
-                            status: "live"
-                        }).all() %}
+    {% if not currentUser %}
+        <article style="width:100%;display: block;">
+            <section style="width:100%;display: block;">
+                <form grid="columns 1 gap-1" method="post" accept-charset="UTF-8" class="bg-white shadow-md" style="width:420px;max-width:100%;display: block;margin: 0 auto;padding:2rem;">
+                    {{ csrfInput() }}
+                    {{ actionInput('users/login') }}
+                    {{ redirectInput(craft.app.request.absoluteUrl) }}
+
+                    {{ inputs.text("Username", "loginName", true) }}
+                    {{ inputs.password("Password", true) }}
+                
+                    <button type="submit" class="button -solid -primary">Log In</button>
+                
+                    {% if errorMessage is defined %}
+                        <p class="font-danger-500 font-sm">{{ errorMessage }}</p>
                     {% endif %}
-                    {% if characters|length %}
-                        {% for char in characters %}
-                            <a href="{{ siteUrl|trim('/') }}/character/{{ char.uid }}" class="block w-full b-1 b-solid b-grey-300 p-1 mb-2" style="border-radius: 0.25rem;">
-                                <span class=" block font-primary-700 font-medium mb-0.25">{{ char.title }}</span>
-                                <span class="block font-grey-700 font-sm">Lv. {{ char.charLevel }} {{ char.class }}</span>
+                </form>
+            </section>
+        </article>
+    {% else %}
+        <article style="width:100%;display: block;">
+            <section style="width:100%;display: block;">
+                {% if currentUser.isInGroup('gm') %}
+                    {% set campaigns = craft.entries({
+                        section: 'campaigns',
+                        authorId: currentUser.id
+                    }).all() %}
+                    <div class="bg-white shadow-md block mx-auto p-2 mb-2" style="width:420px;max-width:100%;border-radius: 0.25rem;">
+                        {% for campaign in campaigns %}
+                            <a href="{{ siteUrl|trim('/') }}/campaign/{{ campaign.uid }}" class="block w-full b-1 b-solid b-grey-300 p-1 mb-1" style="border-radius: 0.25rem;">
+                                <span class=" block font-primary-700 font-medium">{{ campaign.title }}</span>
                             </a>
                         {% endfor %}
-                    {% else %}
-                        <div class="block w-full text-center mb-1">
-                            <span class="font-grey-700">Roll a new character to get started.</span>
+                        <div style="display: block;width: 100%;text-align: center;">
+                            <a href="{{ siteUrl|trim('/') }}/new-campaign" class="button -solid -primary">Creat a Campaign</a>
                         </div>
-                    {% endif %}
-                    <div style="display: block;width: 100%;text-align: center;">
-                        <a href="{{ siteUrl|trim('/') }}/new-character" class="button -solid -primary">New Character</a>
                     </div>
-                </div>
-            {% endif %}
-        </section>
-    </article>
+                {% endif %}
+                {% if currentUser.isInGroup('basic') %}
+                    <div class="bg-white shadow-md block mx-auto p-2" style="width:420px;max-width:100%;border-radius: 0.25rem;">
+                        {% if currentUser['admin'] %}
+                            {% set characters = craft.entries({
+                                section: 'characters',
+                                limit: null
+                            }).all() %}
+                        {% else %}
+                            {% set characters = craft.entries({
+                                section: 'characters',
+                                authorId: currentUser.id,
+                                limit: null,
+                                status: "live"
+                            }).all() %}
+                        {% endif %}
+                        {% if characters|length %}
+                            {% for char in characters %}
+                                <a href="{{ siteUrl|trim('/') }}/character/{{ char.uid }}" class="block w-full b-1 b-solid b-grey-300 p-1 mb-2" style="border-radius: 0.25rem;">
+                                    <span class=" block font-primary-700 font-medium mb-0.25">{{ char.title }}</span>
+                                    <span class="block font-grey-700 font-sm">Lv. {{ char.charLevel }} {{ char.class }}</span>
+                                </a>
+                            {% endfor %}
+                        {% else %}
+                            <div class="block w-full text-center mb-1">
+                                <span class="font-grey-700">Roll a new character to get started.</span>
+                            </div>
+                        {% endif %}
+                        <div style="display: block;width: 100%;text-align: center;">
+                            <a href="{{ siteUrl|trim('/') }}/new-character" class="button -solid -primary">New Character</a>
+                        </div>
+                    </div>
+                {% endif %}
+            </section>
+        </article>
+    {% endif %}
 {% endblock %}
