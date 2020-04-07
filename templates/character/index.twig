@@ -183,12 +183,12 @@
                                     {% if loop.index0 % 2 != 0 %}
                                         <tr class="w-full" grid="columns 3 gap-1">
                                             <td>
-                                                <input id="{{ skill.label|camel }}" type="checkbox" name="fields[{{ skill.label|camel }}Proficiency]" {{ character[skill.label|camel ~ 'Proficiency'] ? 'checked' }} />
+                                                <input data-skill="{{ skill.label|camel }}" id="{{ skill.label|camel }}" type="checkbox" name="fields[{{ skill.label|camel }}Proficiency]" {{ character[skill.label|camel ~ 'Proficiency'] ? 'checked' }} />
                                                 <label aria-label="checkbox icon" for="{{ skill.label|camel }}"></label>
                                             </td>
                                             <td class="font-sm font-grey-700">{{ skill.label }}</td>
                                             <td>
-                                                <input class="w-full" type="number" step="1" name="fields[{{ skill.label|camel }}]" value="{{ character[skill.label|camel] }}" />
+                                                <input data-skill="{{ skill.label|camel }}" class="w-full" type="number" step="1" name="fields[{{ skill.label|camel }}]" value="{{ character[skill.label|camel] }}" />
                                             </td>
                                         </tr>
                                     {% endif %}

@@ -1,3 +1,5 @@
+import { message } from "djinnjs/broadcaster";
+
 class LevelComponent extends HTMLElement {
 	private levelInput: HTMLInputElement;
 	private expInput: HTMLInputElement;
@@ -72,8 +74,17 @@ class LevelComponent extends HTMLElement {
 		const exp = parseInt(this.expInput.value);
 		const level = this.calculateLevel(exp);
 		const profBonus = this.calculateProficencyBonus(level);
+		const oldBonus = parseInt(this.profBonuesInput.value);
+
 		this.levelInput.value = `${level}`;
 		this.profBonuesInput.value = `${profBonus}`;
+
+		if (profBonus - oldBonus !== 0) {
+			message("character-update", {
+				type: "proficiency",
+				difference: profBonus - oldBonus,
+			});
+		}
 	};
 
 	connectedCallback() {
