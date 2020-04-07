@@ -564,6 +564,8 @@
             </form>
         </character-sheet>
     </article>
-    <div id="dice-mounting-point"></div>
-    <script src="{{ alias('@rootUrl')|trim('/') }}/preact/dice-roller.js"></script>
+    {% if isAuthor %}
+        <div id="dice-mounting-point"></div>
+        <script src="{{ alias('@rootUrl')|trim('/') }}/preact/dice-roller.js"></script>
+    {% endif %}
 {% endblock %}
