@@ -152,20 +152,21 @@ class CharacterSheet extends HTMLElement {
 	}
 
 	connectedCallback() {
+		this.querySelectorAll("nav input").forEach((input) => {
+			input.addEventListener("change", this.switchView);
+		});
+
 		if (this.dataset.preventSave || !this.dataset.characterId || !this.dataset.campaignUid || !this.dataset.characterName) {
-			this.querySelectorAll("textarea, select, input").forEach((input: HTMLInputElement) => {
+			this.querySelectorAll("textarea, input").forEach((input: HTMLInputElement) => {
 				input.readOnly = true;
 			});
 			this.form.addEventListener("submit", (e: Event) => {
 				e.preventDefault();
 			});
 			return;
+		} else {
+			this.form.addEventListener("submit", this.handleCharacterSave);
 		}
-
-		this.querySelectorAll("nav input").forEach((input) => {
-			input.addEventListener("change", this.switchView);
-		});
-		this.form.addEventListener("submit", this.handleCharacterSave);
 
 		if (!this.dataset.preventSave) {
 			this.querySelector("#save-button").addEventListener("click", this.handleCharacterSave);
