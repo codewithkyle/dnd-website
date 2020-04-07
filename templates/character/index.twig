@@ -144,7 +144,7 @@
                         </character-ability>
                     </character-abilities>
 
-                    <skill-table eager-load-css="skill-table" grid="columns 2 gap-2">
+                    <skill-table web-component loading="eager" eager-load-css="skill-table" grid="columns 2 gap-2">
                         <table class="block w-full text-left p-1 b-1 b-solid b-neutral-200" style="border-radius: 0.25rem;">
                             <thead class="block w-full bg-neutral-100 px-0.25" style="border-radius: 0.125rem">
                                 <tr class="w-full" grid="columns 3 gap-1">
@@ -158,12 +158,12 @@
                                     {% if loop.index0 % 2 == 0 %}
                                         <tr class="w-full" grid="columns 3 gap-1">
                                             <td>
-                                                <input id="{{ skill.label|camel }}" type="checkbox" name="fields[{{ skill.label|camel }}Proficiency]" {{ character[skill.label|camel ~ 'Proficiency'] ? 'checked' }} />
+                                                <input data-skill="{{ skill.label|camel }}" id="{{ skill.label|camel }}" type="checkbox" name="fields[{{ skill.label|camel }}Proficiency]" {{ character[skill.label|camel ~ 'Proficiency'] ? 'checked' }} />
                                                 <label aria-label="checkbox icon" for="{{ skill.label|camel }}"></label>
                                             </td>
                                             <td class="font-sm font-grey-700">{{ skill.label }}</td>
                                             <td>
-                                                <input class="w-full" type="number" step="1" name="fields[{{ skill.label|camel }}]" value="{{ character[skill.label|camel] }}" />
+                                                <input class="w-full" type="number" step="1" data-skill="{{ skill.label|camel }}" name="fields[{{ skill.label|camel }}]" value="{{ character[skill.label|camel] }}" />
                                             </td>
                                         </tr>
                                     {% endif %}
