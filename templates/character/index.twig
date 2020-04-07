@@ -67,11 +67,13 @@
                         {{ inputs.select("Class", "fields[class]", false, data.classes, null, character.class, false) }}
                         {{ inputs.select("Race", "fields[race]", false, data.races, null, character.race, false) }}
                         {{ inputs.select("Alignment", "fields[alignment]", false, data.alignments, null, character.alignment) }}
-
-                        {{ inputs.number("Level", "fields[charLevel]", false, null, 1, 20, 1, character.charLevel) }}
-                        {{ inputs.number("Experience Points", "fields[exp]", false, null, 0, null, 1, character.exp) }}
-                        {{ inputs.number("Proficiency Bonus", "fields[proficiencyBonus]", false, null, 0, null, 1, character.proficiencyBonus) }}
                     </div>
+
+                    <level-component web-component loading="eager" grid="columns 3 gap-2">
+                        {{ inputs.number("Experience Points", "fields[exp]", false, null, 0, null, 1, character.exp) }}
+                        {{ inputs.number("Level", "fields[charLevel]", false, null, 1, 20, 1, character.charLevel) }}
+                        {{ inputs.number("Proficiency Bonus", "fields[proficiencyBonus]", false, null, 0, null, 1, character.proficiencyBonus) }}
+                    </level-component>
 
                     <hr class="w-full block bb-1 bb-solid bb-neutral-200">
 
