@@ -1,6 +1,7 @@
 import { env } from "djinnjs/env";
 import { notify } from "@codewithkyle/notifyjs";
 import { DiceRoller } from "rpg-dice-roller";
+import { calculateModifier } from "../_utils/character";
 
 class NPCCreator extends HTMLElement {
 	private form: HTMLFormElement;
@@ -28,44 +29,6 @@ class NPCCreator extends HTMLElement {
 		this.acInput = this.querySelector('input[name="fields[armorClass]"]');
 		this.isSaving = false;
 		this.dice = new DiceRoller();
-	}
-
-	private calcualteModifier(score: number): number {
-		let modifier = 0;
-		if (score === 1) {
-			modifier = -5;
-		} else if (score === 2 || score === 3) {
-			modifier = -4;
-		} else if (score === 4 || score === 5) {
-			modifier = -3;
-		} else if (score === 6 || score === 7) {
-			modifier = -2;
-		} else if (score === 8 || score === 9) {
-			modifier = -1;
-		} else if (score === 10 || score === 11) {
-			modifier = 0;
-		} else if (score === 12 || score === 13) {
-			modifier = 1;
-		} else if (score === 14 || score === 15) {
-			modifier = 2;
-		} else if (score === 16 || score === 17) {
-			modifier = 3;
-		} else if (score === 18 || score === 19) {
-			modifier = 4;
-		} else if (score === 20 || score === 21) {
-			modifier = 5;
-		} else if (score === 22 || score === 23) {
-			modifier = 6;
-		} else if (score === 24 || score === 25) {
-			modifier = 7;
-		} else if (score === 26 || score === 27) {
-			modifier = 8;
-		} else if (score === 28 || score === 28) {
-			modifier = 9;
-		} else if (score === 29 || score === 30) {
-			modifier = 10;
-		}
-		return modifier;
 	}
 
 	private diceRoller(dice): Array<number> {
@@ -127,12 +90,12 @@ class NPCCreator extends HTMLElement {
 		const wisdomModifierInput = this.querySelector('input[name="fields[wisdomModifier]"]') as HTMLInputElement;
 		const charismaModifierInput = this.querySelector('input[name="fields[charismaModifier]"]') as HTMLInputElement;
 
-		strengthModifierInput.value = `${this.calcualteModifier(parseInt(this.strengthInput.value))}`;
-		dexterityModifierInput.value = `${this.calcualteModifier(parseInt(this.dexterityInput.value))}`;
-		constitutionModifierInput.value = `${this.calcualteModifier(parseInt(this.constitutionInput.value))}`;
-		intelligenceModifierInput.value = `${this.calcualteModifier(parseInt(this.intelligenceInput.value))}`;
-		wisdomModifierInput.value = `${this.calcualteModifier(parseInt(this.wisdomInput.value))}`;
-		charismaModifierInput.value = `${this.calcualteModifier(parseInt(this.charismaInput.value))}`;
+		strengthModifierInput.value = `${calculateModifier(parseInt(this.strengthInput.value))}`;
+		dexterityModifierInput.value = `${calculateModifier(parseInt(this.dexterityInput.value))}`;
+		constitutionModifierInput.value = `${calculateModifier(parseInt(this.constitutionInput.value))}`;
+		intelligenceModifierInput.value = `${calculateModifier(parseInt(this.intelligenceInput.value))}`;
+		wisdomModifierInput.value = `${calculateModifier(parseInt(this.wisdomInput.value))}`;
+		charismaModifierInput.value = `${calculateModifier(parseInt(this.charismaInput.value))}`;
 
 		this.inititativeInput.value = dexterityModifierInput.value;
 		this.inititativeInput.parentElement.classList.add("has-value");
@@ -183,7 +146,7 @@ class NPCCreator extends HTMLElement {
 		const input = e.currentTarget as HTMLInputElement;
 		const name = input.name.replace(/(fields\[)|(\])/g, "");
 		const modifierInput = this.querySelector(`input[name="fields[${name}Modifier]"]`) as HTMLInputElement;
-		modifierInput.value = `${this.calcualteModifier(parseInt(input.value))}`;
+		modifierInput.value = `${calculateModifier(parseInt(input.value))}`;
 
 		if (name === "dexterity") {
 			this.inititativeInput.value = modifierInput.value;

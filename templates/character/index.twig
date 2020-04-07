@@ -106,39 +106,39 @@
 
                 <form-page class="w-full" id="abilities" style="display: {{ slug is defined and slug == 'abilities' ? 'grid' : 'none' }};grid-template-rows: 1fr; gap: 2rem;">
                     <character-abilities eager-load-css="character-abilities">
-                        <character-ability>
+                        <character-ability web-component loading="eager">
                             <span>Strength</span>
-                            <input class="ability" type="number" max="99" step="1" value="{{ character.strength }}" name="fields[strength]" />
-                            <input class="modifier" type="number" max="99" step="1" value="{{ character.strengthModifier }}" name="fields[strengthModifier]" />
+                            <input class="ability" type="number" max="30" min="1" step="1" value="{{ character.strength }}" name="fields[strength]" />
+                            <input class="modifier" type="number" max="10" min="-5" step="1" value="{{ character.strengthModifier }}" name="fields[strengthModifier]" />
                         </character-ability>
-                        <character-ability>
+                        <character-ability web-component>
                             <span>Dexterity</span>
-                            <input class="ability" type="number" max="99" step="1" value="{{ character.dexterity }}" name="fields[dexterity]" />
-                            <input class="modifier" type="number" max="99" step="1" value="{{ character.dexterityModifier }}" name="fields[dexterityModifier]" />
+                            <input class="ability" type="number" max="30" min="1" step="1" value="{{ character.dexterity }}" name="fields[dexterity]" />
+                            <input class="modifier" type="number" max="10" min="-5" step="1" value="{{ character.dexterityModifier }}" name="fields[dexterityModifier]" />
                         </character-ability>
-                        <character-ability>
+                        <character-ability web-component>
                             <span>Constitution</span>
-                            <input class="ability" type="number" max="99" step="1" value="{{ character.constitution }}" name="fields[constitution]" />
-                            <input class="modifier" type="number" max="99" step="1" value="{{ character.constitutionModifier }}" name="fields[constitutionModifier]" />
+                            <input class="ability" type="number" max="30" min="1" step="1" value="{{ character.constitution }}" name="fields[constitution]" />
+                            <input class="modifier" type="number" max="10" min="-5" step="1" value="{{ character.constitutionModifier }}" name="fields[constitutionModifier]" />
                         </character-ability>
-                        <character-ability>
+                        <character-ability web-component>
                             <span>Intelligence</span>
-                            <input class="ability" type="number" max="99" step="1" value="{{ character.intelligence }}" name="fields[intelligence]" />
-                            <input class="modifier" type="number" max="99" step="1" value="{{ character.intelligenceModifier }}" name="fields[intelligenceModifier]" />
+                            <input class="ability" type="number" max="30" min="1" step="1" value="{{ character.intelligence }}" name="fields[intelligence]" />
+                            <input class="modifier" type="number" max="10" min="-5" step="1" value="{{ character.intelligenceModifier }}" name="fields[intelligenceModifier]" />
                         </character-ability>
-                        <character-ability>
+                        <character-ability web-component>
                             <span>Wisdom</span>
-                            <input class="ability" type="number" max="99" step="1" value="{{ character.wisdom }}" name="fields[wisdom]" />
-                            <input class="modifier" type="number" max="99" step="1" value="{{ character.wisdomModifier }}" name="fields[wisdomModifier]" />
+                            <input class="ability" type="number" max="30" min="1" step="1" value="{{ character.wisdom }}" name="fields[wisdom]" />
+                            <input class="modifier" type="number" max="10" min="-5" step="1" value="{{ character.wisdomModifier }}" name="fields[wisdomModifier]" />
                         </character-ability>
-                        <character-ability>
+                        <character-ability web-component>
                             <span>Charisma</span>
-                            <input class="ability" type="number" max="99" step="1" value="{{ character.charisma }}" name="fields[charisma]" />
-                            <input class="modifier" type="number" max="99" step="1" value="{{ character.charismaModifier }}" name="fields[charismaModifier]" />
+                            <input class="ability" type="number" max="30" min="1" step="1" value="{{ character.charisma }}" name="fields[charisma]" />
+                            <input class="modifier" type="number" max="10" min="-5" step="1" value="{{ character.charismaModifier }}" name="fields[charismaModifier]" />
                         </character-ability>
-                        <character-ability>
+                        <character-ability web-component>
                             <span>Passive Wisdom</span>
-                            <input class="ability" type="number" max="99" step="1" value="{{ character.passiveWisdom }}" name="fields[passiveWisdom]" />
+                            <input class="ability" type="number" max="30" min="1" step="1" value="{{ character.passiveWisdom }}" name="fields[passiveWisdom]" />
                         </character-ability>
                     </character-abilities>
 

@@ -1,5 +1,6 @@
 import { env } from "djinnjs/env";
 import { uid } from "../uid";
+import { calculateModifier } from "../_utils/character";
 
 class CharacterCreator extends HTMLElement {
 	private form: HTMLFormElement;
@@ -298,40 +299,7 @@ class CharacterCreator extends HTMLElement {
 		const input = e.currentTarget as HTMLInputElement;
 		const key = input.name.replace(/(fields\[)|(\])/g, "");
 		const score = parseInt(input.value);
-		let modifier = 0;
-		if (score === 1) {
-			modifier = -5;
-		} else if (score === 2 || score === 3) {
-			modifier = -4;
-		} else if (score === 4 || score === 5) {
-			modifier = -3;
-		} else if (score === 6 || score === 7) {
-			modifier = -2;
-		} else if (score === 8 || score === 9) {
-			modifier = -1;
-		} else if (score === 10 || score === 11) {
-			modifier = 0;
-		} else if (score === 12 || score === 13) {
-			modifier = 1;
-		} else if (score === 14 || score === 15) {
-			modifier = 2;
-		} else if (score === 16 || score === 17) {
-			modifier = 3;
-		} else if (score === 18 || score === 19) {
-			modifier = 4;
-		} else if (score === 20 || score === 21) {
-			modifier = 5;
-		} else if (score === 22 || score === 23) {
-			modifier = 6;
-		} else if (score === 24 || score === 25) {
-			modifier = 7;
-		} else if (score === 26 || score === 27) {
-			modifier = 8;
-		} else if (score === 28 || score === 28) {
-			modifier = 9;
-		} else if (score === 29 || score === 30) {
-			modifier = 10;
-		}
+		const modifier = calculateModifier(score);
 		this.modifiers[key] = modifier;
 	};
 
