@@ -4,6 +4,10 @@
 
 {% set unfinishedCharacterId = craft.app.request.getParam('id') %}
 
+{% if currentUser['id'] is not defined %}
+    {% redirect 'login' %}
+{% endif %}
+
 {% block content %}
     <article style="width:100%;display: block;">
         <section style="width:100%;display: block;">
