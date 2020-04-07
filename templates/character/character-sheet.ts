@@ -152,6 +152,16 @@ class CharacterSheet extends HTMLElement {
 	}
 
 	connectedCallback() {
+		if (this.dataset.preventSave || !this.dataset.characterId || !this.dataset.campaignUid || !this.dataset.characterName) {
+			this.querySelectorAll("textarea, select, input").forEach((input: HTMLInputElement) => {
+				input.readOnly = true;
+			});
+			this.form.addEventListener("submit", (e: Event) => {
+				e.preventDefault();
+			});
+			return;
+		}
+
 		this.querySelectorAll("nav input").forEach((input) => {
 			input.addEventListener("change", this.switchView);
 		});

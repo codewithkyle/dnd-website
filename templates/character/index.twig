@@ -5,8 +5,9 @@
     uid: uid
 }).one() %}
 
-{% if currentUser['id'] is not defined or character.authorId != currentUser.id and currentUser['admin'] is not defined %}
-    {% redirect siteUrl %}
+{% set isAuthor = false %}
+{% if currentUser['id'] is defined and character.authorId == currentUser['id'] %}
+    {% set isAuthor = true %}
 {% endif %}
 
 {% import "_macros" as inputs %}
@@ -18,7 +19,7 @@
 
 {% block content %}
     <article class="block w-full px-1">
-        <character-sheet eager-load-css="character-sheet snackbar" web-component loading="eager" data-character-id="{{ character.id }}" {{ currentUser['admin'] ? 'data-prevent-save="true"' }} data-campaign-uid="{{ campaign.uid ?? null }}" data-character-name="{{ character.title }}">
+        <character-sheet eager-load-css="character-sheet snackbar" web-component loading="eager" {% if isAuthor %}data-character-id="{{ character.id }}" data-campaign-uid="{{ campaign.uid ?? null }}" data-character-name="{{ character.title }}"{% else %}data-prevent-save="true"{% endif %}>
             <nav grid="rows 1 gap-0.5">
                 <div>
                     <input type="radio" name="navigation" {{ slug is defined and slug == 'overview' or slug is not defined ? 'checked' }} id="nav-overview" value="0" data-slug="overview" />
@@ -48,13 +49,15 @@
                     <input type="radio" name="navigation" id="nav-spells" value="6" data-slug="spells" {{ slug is defined and slug == 'spells' ? 'checked' }} />
                     <label for="nav-spells">Spellbook</label>
                 </div>
-                {% if not currentUser['admin'] %}
+                {% if isAuthor %}
                     <button id="save-button" class="button -solid -primary mt-1">Save Character</button>
                 {% endif %}
             </nav>
-            <form class="bg-white shadow-md p-2 mb-auto" style="border-radius: 0.25rem;">
-                {{ csrfInput() }}
-                {{ hiddenInput('entryId', character.id) }}
+            <form class="bg-white shadow-md p-2 mb-auto" style="border-radius: 0.25rem;">                
+                {% if isAuthor %}
+                    {{ csrfInput() }}
+                    {{ hiddenInput('entryId', character.id) }}
+                {% endif %}
 
                 <form-page class="w-full" id="overview" style="display: {{ slug is defined and slug == 'overview' or slug is not defined ? 'grid' : 'none' }};grid-template-rows: 1fr; gap: 2rem;">
 
