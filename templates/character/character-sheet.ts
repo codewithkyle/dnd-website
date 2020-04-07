@@ -29,7 +29,7 @@ class CharacterSheet extends HTMLElement {
 			}
 		}
 
-		window.history.replaceState(null, null, `${location.origin}/character/${this.dataset.characterId}/${input.dataset.slug}`);
+		window.history.replaceState(null, null, `${location.origin}/character/${this.dataset.characterUid}/${input.dataset.slug}`);
 	};
 
 	private handleCharacterSave: EventListener = (e: Event) => {
