@@ -163,7 +163,7 @@
                                             </td>
                                             <td class="font-sm font-grey-700">{{ skill.label }}</td>
                                             <td>
-                                                <input class="w-full" type="number" step="1" data-skill="{{ skill.label|camel }}" name="fields[{{ skill.label|camel }}]" value="{{ character[skill.label|camel] }}" />
+                                                <input data-ability="{{ skill.ability }}" class="w-full" type="number" step="1" data-skill="{{ skill.label|camel }}" name="fields[{{ skill.label|camel }}]" value="{{ character[skill.label|camel] }}" />
                                             </td>
                                         </tr>
                                     {% endif %}
@@ -188,7 +188,7 @@
                                             </td>
                                             <td class="font-sm font-grey-700">{{ skill.label }}</td>
                                             <td>
-                                                <input data-skill="{{ skill.label|camel }}" class="w-full" type="number" step="1" name="fields[{{ skill.label|camel }}]" value="{{ character[skill.label|camel] }}" />
+                                                <input data-ability="{{ skill.ability }}" data-skill="{{ skill.label|camel }}" class="w-full" type="number" step="1" name="fields[{{ skill.label|camel }}]" value="{{ character[skill.label|camel] }}" />
                                             </td>
                                         </tr>
                                     {% endif %}

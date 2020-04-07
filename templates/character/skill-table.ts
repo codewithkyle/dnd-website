@@ -17,9 +17,33 @@ class SkillTable extends HTMLElement {
 			case "proficiency":
 				this.updateCheckedSkills(data.difference);
 				break;
+			case "strength":
+				this.updateModifiers("strength", data.difference);
+				break;
+			case "dexterity":
+				this.updateModifiers("dexterity", data.difference);
+				break;
+			case "constitution":
+				this.updateModifiers("constitution", data.difference);
+				break;
+			case "intelligence":
+				this.updateModifiers("intelligence", data.difference);
+				break;
+			case "wisdom":
+				this.updateModifiers("wisdom", data.difference);
+				break;
+			case "charisma":
+				this.updateModifiers("charisma", data.difference);
+				break;
 			default:
 				break;
 		}
+	}
+
+	private updateModifiers(skill: string, difference: number) {
+		this.querySelectorAll(`input[type="number"][data-ability="${skill}"]`).forEach((input: HTMLInputElement) => {
+			input.value = `${parseInt(input.value) + difference}`;
+		});
 	}
 
 	private updateCheckedSkills(diff) {
