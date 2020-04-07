@@ -11,6 +11,8 @@
             <a href="https://www.5esrd.com/" target="_blank" class="button -text -primary ml-0.5">Handbook</a>
             {% if currentUser['id'] is defined %}
                 <a no-pjax href="{{ siteUrl|trim('/') }}/actions/users/logout" class="button -text -primary ml-0.5">Log Out</a>
+            {% else %}
+                <a href="{{ siteUrl|trim('/') }}/login" class="button -text -primary ml-0.5">Log In</a>
             {% endif %}
         </div>
     </nav>
