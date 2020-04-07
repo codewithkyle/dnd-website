@@ -1,4 +1,5 @@
 import { calculateModifier } from "../_utils/character";
+import { message } from "djinnjs/broadcaster";
 
 class CharacterAbility extends HTMLElement {
 	private input: HTMLInputElement;
@@ -12,7 +13,15 @@ class CharacterAbility extends HTMLElement {
 
 	private handleAbilityInput: EventListener = () => {
 		const score = parseInt(this.input.value);
-		this.modifier.value = `${calculateModifier(score)}`;
+		const oldValue = parseInt(this.modifier.value);
+		const newValue = calculateModifier(score);
+		this.modifier.value = `${newValue}`;
+		if (newValue - oldValue !== 0) {
+			message("character-update", {
+				type: this.dataset.ability,
+				difference: newValue - oldValue,
+			});
+		}
 	};
 
 	connectedCallback() {

@@ -64,8 +64,8 @@
                     {{ inputs.text("Character Name", "title", true, null, character.title) }}
 
                     <div grid="columns 3 gap-2">
-                        {{ inputs.select("Class", "fields[class]", false, data.classes, null, character.class, false) }}
-                        {{ inputs.select("Race", "fields[race]", false, data.races, null, character.race, false) }}
+                        {{ inputs.text("Class", "fields[class]", false, null, character.class) }}
+                        {{ inputs.text("Race", "fields[race]", false, null, character.race) }}
                         {{ inputs.select("Alignment", "fields[alignment]", false, data.alignments, null, character.alignment) }}
                     </div>
 
@@ -108,32 +108,32 @@
 
                 <form-page class="w-full" id="abilities" style="display: {{ slug is defined and slug == 'abilities' ? 'grid' : 'none' }};grid-template-rows: 1fr; gap: 2rem;">
                     <character-abilities eager-load-css="character-abilities">
-                        <character-ability web-component loading="eager">
+                        <character-ability web-component loading="eager" data-ability="strength">
                             <span>Strength</span>
                             <input class="ability" type="number"  min="1" step="1" value="{{ character.strength }}" name="fields[strength]" />
                             <input class="modifier" type="number" max="10" min="-5" step="1" value="{{ character.strengthModifier }}" name="fields[strengthModifier]" />
                         </character-ability>
-                        <character-ability web-component>
+                        <character-ability web-component data-ability="dexterity">
                             <span>Dexterity</span>
                             <input class="ability" type="number"  min="1" step="1" value="{{ character.dexterity }}" name="fields[dexterity]" />
                             <input class="modifier" type="number" max="10" min="-5" step="1" value="{{ character.dexterityModifier }}" name="fields[dexterityModifier]" />
                         </character-ability>
-                        <character-ability web-component>
+                        <character-ability web-component data-ability="constitution">
                             <span>Constitution</span>
                             <input class="ability" type="number"  min="1" step="1" value="{{ character.constitution }}" name="fields[constitution]" />
                             <input class="modifier" type="number" max="10" min="-5" step="1" value="{{ character.constitutionModifier }}" name="fields[constitutionModifier]" />
                         </character-ability>
-                        <character-ability web-component>
+                        <character-ability web-component data-ability="intelligence">
                             <span>Intelligence</span>
                             <input class="ability" type="number"  min="1" step="1" value="{{ character.intelligence }}" name="fields[intelligence]" />
                             <input class="modifier" type="number" max="10" min="-5" step="1" value="{{ character.intelligenceModifier }}" name="fields[intelligenceModifier]" />
                         </character-ability>
-                        <character-ability web-component>
+                        <character-ability web-component data-ability="wisdom">
                             <span>Wisdom</span>
                             <input class="ability" type="number"  min="1" step="1" value="{{ character.wisdom }}" name="fields[wisdom]" />
                             <input class="modifier" type="number" max="10" min="-5" step="1" value="{{ character.wisdomModifier }}" name="fields[wisdomModifier]" />
                         </character-ability>
-                        <character-ability web-component>
+                        <character-ability web-component data-ability="charisma">
                             <span>Charisma</span>
                             <input class="ability" type="number"  min="1" step="1" value="{{ character.charisma }}" name="fields[charisma]" />
                             <input class="modifier" type="number" max="10" min="-5" step="1" value="{{ character.charismaModifier }}" name="fields[charismaModifier]" />
@@ -202,14 +202,14 @@
                 </form-page>
 
                 <form-page class="w-full" id="saving-throws" style="display: {{ slug is defined and slug == 'saving-throws' ? 'grid' : 'none' }};grid-template-rows: 1fr; gap: 2rem;">
-                    <div grid="columns 3 gap-2">
+                    <saving-throws web-component loading="eager" grid="columns 3 gap-2">
                         {{ inputs.number("Strength", "fields[strengthSavingThrow]", false, null, null, null, 1, character.strengthSavingThrow) }}
                         {{ inputs.number("Dexterity", "fields[dexteritySavingThrow]", false, null, null, null, 1, character.dexteritySavingThrow) }}
                         {{ inputs.number("Constitution", "fields[constitutionSavingThrow]", false, null, null, null, 1, character.constitutionSavingThrow) }}
                         {{ inputs.number("Intelligence", "fields[intelligenceSavingThrow]", false, null, null, null, 1, character.intelligenceSavingThrow) }}
                         {{ inputs.number("Wisdom", "fields[wisdomSavingThrow]", false, null, null, null, 1, character.wisdomSavingThrow) }}
                         {{ inputs.number("Charisma", "fields[charismaSavingThrow]", false, null, null, null, 1, character.charismaSavingThrow) }}
-                    </div>
+                    </saving-throws>
                 </form-page>
 
                 <form-page class="w-full" id="equipment" style="display: {{ slug is defined and slug == 'equipment' ? 'grid' : 'none' }};grid-template-rows: 1fr; gap: 2rem;">

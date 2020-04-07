@@ -1,14 +1,15 @@
-import { hookup } from "djinnjs/broadcaster";
+import { hookup, disconnect } from "djinnjs/broadcaster";
 
 class SkillTable extends HTMLElement {
 	private modifiers: Array<HTMLInputElement>;
 	private checkboxes: Array<HTMLInputElement>;
+	private inboxUid: string;
 
 	constructor() {
 		super();
 		this.modifiers = Array.from(this.querySelectorAll('input[type="number"]'));
 		this.checkboxes = Array.from(this.querySelectorAll('input[type="checkbox"]'));
-		hookup("character-update", this.inbox.bind(this));
+		this.inboxUid = hookup("character-update", this.inbox.bind(this));
 	}
 
 	private inbox(data) {
@@ -56,6 +57,10 @@ class SkillTable extends HTMLElement {
 		for (let i = 0; i < this.checkboxes.length; i++) {
 			this.checkboxes[i].addEventListener("change", this.toggleProficiencyBonus);
 		}
+	}
+
+	disconnectedCallback() {
+		disconnect(this.inboxUid);
 	}
 }
 customElements.define("skill-table", SkillTable);
