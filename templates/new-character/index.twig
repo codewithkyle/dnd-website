@@ -6,6 +6,8 @@
 
 {% if currentUser['id'] is not defined %}
     {% redirect 'login' %}
+{% else if currentUser.isInGroup('gm') %}
+    {% redirect siteUrl %}
 {% endif %}
 
 {% block content %}

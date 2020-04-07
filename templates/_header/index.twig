@@ -2,7 +2,7 @@
     <nav>
         <div>
             <a href="{{ siteUrl }}" class="button -text -primary mr-0.5">Home</a>
-            {% if currentUser['id'] is defined %}
+            {% if currentUser['id'] is defined and currentUser.isInGroup('basic') %}
                 <a href="{{ siteUrl|trim('/') }}/new-character" class="button -text -primary">Character Creator</a>
             {% endif %}
         </div>
