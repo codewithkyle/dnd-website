@@ -18,8 +18,8 @@
 		"preact:prod": "cross-env NODE_ENV=production webpack --config ./preact/webpack.config.js"
 	},
 	"devDependencies": {
-		"@typescript-eslint/eslint-plugin": "^2.26.0",
-		"@typescript-eslint/parser": "^2.26.0",
+		"@typescript-eslint/eslint-plugin": "^2.27.0",
+		"@typescript-eslint/parser": "^2.27.0",
 		"cross-env": "^7.0.2",
 		"eslint": "^6.8.0",
 		"eslint-config-prettier": "^6.10.1",
@@ -28,7 +28,7 @@
 		"husky": "^3.1.0",
 		"minify": "^4.1.3",
 		"node-sass": "^4.13.1",
-		"prettier": "^2.0.3",
+		"prettier": "^2.0.4",
 		"rollup": "^1.32.1",
 		"rollup-plugin-commonjs": "^10.1.0",
 		"rollup-plugin-node-resolve": "^5.2.0",
@@ -41,11 +41,11 @@
 	"dependencies": {
 		"@codewithkyle/notifyjs": "^1.2.0",
 		"brixi": "^0.2.0",
-		"css-loader": "^3.4.2",
+		"css-loader": "^3.5.1",
 		"cssmonster": "^0.2.0",
 		"djinnjs": "0.0.24",
 		"flatpickr": "^4.6.3",
-		"preact": "^10.3.4",
+		"preact": "^10.4.0",
 		"rpg-dice-roller": "^4.0.2",
 		"sass-loader": "^8.0.2",
 		"socket.io-client": "^2.3.0",
