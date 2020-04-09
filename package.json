@@ -43,7 +43,7 @@
 		"brixi": "^0.2.0",
 		"css-loader": "^3.4.2",
 		"cssmonster": "^0.2.0",
-		"djinnjs": "0.0.23",
+		"djinnjs": "0.0.24",
 		"flatpickr": "^4.6.3",
 		"preact": "^10.3.4",
 		"rpg-dice-roller": "^4.0.2",
