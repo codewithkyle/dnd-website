@@ -53,7 +53,7 @@ class InitiationOrder extends Component<{}, InitiationOrderState> {
 		let entities: any = <span>The Game Master hasn't set the combat order yet.</span>;
 		if (this.state.order.length) {
 			entities = this.state.order.map((entity, index) => (
-				<span className={`mx-0.5 font-${this.state.initiationIndex === index ? "primary" : "grey"}-700 font-medium`}>{entity.name}</span>
+				<span className={`m-0.5 font-${this.state.initiationIndex === index ? "primary" : "grey"}-700 font-medium`}>{entity.name}</span>
 			));
 		}
 		return (
