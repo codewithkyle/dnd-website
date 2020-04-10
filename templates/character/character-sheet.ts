@@ -179,6 +179,7 @@ class CharacterSheet extends HTMLElement {
 			type: "join",
 			name: this.dataset.characterName,
 			campaign: this.dataset.campaignUid,
+			characterUid: this.dataset.characterUid,
 		});
 	}
 }

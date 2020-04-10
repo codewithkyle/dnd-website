@@ -21,9 +21,17 @@ export class EntityComponent extends HTMLElement {
 		});
 	};
 
+	private notifyOnDeck: EventListener = () => {
+		message("server", {
+			type: "ping-from-npc",
+			name: this.nameInput.value,
+		});
+	};
+
 	connectedCallback() {
 		const removeButton = this.querySelector(".js-remove");
 		const pingButton = this.querySelector(".js-ping");
+		const notifyButton = this.querySelector(".js-notify");
 
 		if (removeButton) {
 			removeButton.addEventListener("click", this.removeEntity);
@@ -31,6 +39,10 @@ export class EntityComponent extends HTMLElement {
 
 		if (pingButton) {
 			pingButton.addEventListener("click", this.pingPlayer);
+		}
+
+		if (notifyButton) {
+			notifyButton.addEventListener("click", this.notifyOnDeck);
 		}
 	}
 }

@@ -1,3 +1,8 @@
+$blue: #4299E1;
+$red: #F56565;
+$green: #48BB78;
+$yellow: #ECC94B;
+
 toaster-component{
     height: 100vh;
     position: fixed;
@@ -17,7 +22,7 @@ toaster-component{
         box-shadow: var(--shadow-lg);
         display: flex;
         flex-flow: row nowrap;
-        border-left: 4px solid #4299E1;
+        border-left: 4px solid $blue;
         width: 300px;
         margin: 1rem 1rem 0;
         transform: translateX(150%);
@@ -26,6 +31,46 @@ toaster-component{
         animation: grow 300ms forwards var(--ease-in);
         pointer-events: all;
         position: relative;
+
+        &.-yellow{
+            border-color: $yellow;
+
+            i{
+                color: $yellow
+            }
+        }
+
+        &.-red{
+            border-color: $red;
+
+            i{
+                color: $red;
+            }
+        }
+
+        &.-green{
+            border-color: $green;
+
+            i{
+                color: $green;
+            }
+        }
+
+        i{
+            width: 24px;
+            height: 24px;
+            position: relative;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 1rem;
+            color: $blue;
+
+            svg{
+                width: 18px;
+                height: 18px;
+            }
+        }
 
         copy-wrapper{
             display: block;
