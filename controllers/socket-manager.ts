@@ -83,6 +83,12 @@ class SocketManager {
 				type: "clear-order",
 			});
 		});
+		this.socket.on("update-initiation-index", (index) => {
+			message("initiation-order", {
+				type: "update-initiation-index",
+				index: index,
+			});
+		});
 	}
 
 	private inbox(data) {

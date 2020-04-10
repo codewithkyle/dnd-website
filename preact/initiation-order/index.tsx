@@ -9,6 +9,7 @@ type InitiationOrderState = {
 		name: string;
 		characterUid: string | null;
 	}>;
+	initiationIndex: number;
 };
 
 class InitiationOrder extends Component<{}, InitiationOrderState> {
@@ -19,14 +20,18 @@ class InitiationOrder extends Component<{}, InitiationOrderState> {
 		this.state = {
 			open: false,
 			order: [],
+			initiationIndex: 0,
 		};
 		this.inboxUid = hookup("initiation-order", this.inbox.bind(this));
 	}
 
 	private inbox(data) {
 		switch (data.type) {
+			case "update-initiation-index":
+				this.setState({ initiationIndex: data.index });
+				break;
 			case "clear-order":
-				this.setState({ order: [] });
+				this.setState({ order: [], initiationIndex: 0 });
 				break;
 			case "set-order":
 				this.setState({ order: data.order });
@@ -47,7 +52,9 @@ class InitiationOrder extends Component<{}, InitiationOrderState> {
 	render() {
 		let entities: any = <span>The Game Master hasn't set the combat order yet.</span>;
 		if (this.state.order.length) {
-			entities = this.state.order.map((entity) => <span className="mx-0.5 font-primary-700 font-medium">{entity.name}</span>);
+			entities = this.state.order.map((entity, index) => (
+				<span className={`mx-0.5 font-${this.state.initiationIndex === index ? "primary" : "grey"}-700 font-medium`}>{entity.name}</span>
+			));
 		}
 		return (
 			<Fragment>
