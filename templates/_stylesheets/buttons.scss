@@ -152,6 +152,27 @@
 
     &.-outline
     {
+        &.-primary
+        {
+            padding: 0 1rem;
+            border-color: var(--primary-700);
+            color: var(--primary-700);
+
+            &:hover{
+                border-color: var(--primary-800);
+                color: var(--primary-800);
+            }
+
+            &:focus-visible{
+                border-color: var(--primary-800);
+                color: var(--primary-800);
+            }
+
+            &::before{
+                background-color: var(--primary-500);
+            }
+        }
+
         &.-black
         {
             padding: 0 1rem;

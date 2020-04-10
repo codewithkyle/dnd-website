@@ -50,6 +50,11 @@ class SocketManager {
 
 	private inbox(data) {
 		switch (data.type) {
+			case "ping-player":
+				if (this.isConnected && this.inRoom) {
+					this.socket.emit("ping-player", data.characterUid);
+				}
+				break;
 			case "leave":
 				this.socket.emit("leave");
 				this.inRoom = false;
