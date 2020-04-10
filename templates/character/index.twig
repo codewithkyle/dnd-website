@@ -19,6 +19,14 @@
 
 {% block content %}
     <article class="block w-full px-1">
+        {% if not isAuthor %}
+            <div class="block w-full mb-2 mx-auto" style="max-width: 1200px;">
+                <a href="{{ siteUrl|trim('/') }}/campaign/{{ campaign.uid }}" class="button -outline -alt">
+                    <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="arrow-left" class="svg-inline--fa fa-arrow-left fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M229.9 473.899l19.799-19.799c4.686-4.686 4.686-12.284 0-16.971L94.569 282H436c6.627 0 12-5.373 12-12v-28c0-6.627-5.373-12-12-12H94.569l155.13-155.13c4.686-4.686 4.686-12.284 0-16.971L229.9 38.101c-4.686-4.686-12.284-4.686-16.971 0L3.515 247.515c-4.686 4.686-4.686 12.284 0 16.971L212.929 473.9c4.686 4.686 12.284 4.686 16.971-.001z"></path></svg>
+                    <span>Back to campaign</span>
+                </a>
+            </div>
+        {% endif %}
         <character-sheet eager-load-css="character-sheet snackbar" web-component loading="eager" data-character-uid="{{ character.uid }}" {% if isAuthor %}data-campaign-uid="{{ campaign.uid ?? null }}" data-character-name="{{ character.title }}"{% else %}data-prevent-save="true"{% endif %}>
             <nav grid="rows 1 gap-0.5">
                 <div>
@@ -567,7 +575,7 @@
         </character-sheet>
     </article>
     {% if isAuthor %}
-        <div class="w-full p-1 text-center fixed l-0 b-0">
+        <div class="w-full p-1 text-center fixed l-0 b-0" style="pointer-events: none;">
             <div class="mx-0.5 inline-block" id="dice-mounting-point"></div>
             <script src="{{ alias('@rootUrl')|trim('/') }}/preact/dice-roller.js"></script>
             <div class="mx-0.5 inline-block" id="initiation-mounting-point"></div>

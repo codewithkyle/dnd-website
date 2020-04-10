@@ -21,6 +21,7 @@ $cap: round;
     visibility: hidden;
     opacity: 0;
     z-index: 1000;
+    pointer-events: all;
 
     &.is-open{
         visibility: visible;
@@ -193,6 +194,7 @@ $cap: round;
     border-radius: 50%;
     color: var(--grey-700);
     transition: all 150ms var(--ease-in-out);
+    pointer-events: all;
 
     &:hover{
         color: var(--primary-700);

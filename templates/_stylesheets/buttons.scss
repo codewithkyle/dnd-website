@@ -1,6 +1,6 @@
 .button
 {
-    display: block;
+    display: flex;
     height: 36px;
     line-height: 36px;
     border-width: 1px;
@@ -13,10 +13,12 @@
     font-weight: var(--font-medium);
     cursor: pointer;
     transition: all 75ms ease-in-out;
-    text-align: center;
+    justify-content: center;
+    align-items: center;
+    flex-flow: row nowrap;
 
     @media (min-width: 500px){
-        display: inline-block;
+        display: inline-flex;
     }
 
     html[state="soft-loading"] & {
@@ -285,5 +287,11 @@
 
     &.-inline{
         display: inline-block;
+    }
+
+    svg{
+        width: 14px;
+        height: 14px;
+        margin-right: 0.5rem;
     }
 }
