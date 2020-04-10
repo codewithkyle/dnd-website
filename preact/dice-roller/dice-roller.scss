@@ -20,6 +20,7 @@ $cap: round;
     transition: all 150ms var(--ease-in-out);
     visibility: hidden;
     opacity: 0;
+    z-index: 1000;
 
     &.is-open{
         visibility: visible;
@@ -190,10 +191,6 @@ $cap: round;
     background-color: var(--white);
     box-shadow: var(--shadow-lg);
     border-radius: 50%;
-    position: fixed;
-    bottom: 1rem;
-    left: 50%;
-    transform: translateX(-50%);
     color: var(--grey-700);
     transition: all 150ms var(--ease-in-out);
 
@@ -203,7 +200,7 @@ $cap: round;
 
     &:active{
         box-shadow: var(--shadow-sm);
-        transform: translateX(-50%) scale(0.87);
+        transform: scale(0.87);
     }
 
     svg{

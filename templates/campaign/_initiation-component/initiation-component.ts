@@ -14,8 +14,11 @@ class InitationComponent extends HTMLElement {
 	}
 
 	private addEntityComponent: EventListener = () => {
-		const newComponent = this.entityComponentTemplate.content.cloneNode(true);
-		this.entityWrapper.appendChild(newComponent);
+		const node = document.importNode(this.entityComponentTemplate.content, true);
+		const component = node.querySelector("entity-component") as HTMLElement;
+		component.style.order = `${this.entities.length}`;
+		this.entityWrapper.appendChild(node);
+		this.entities = Array.from(this.querySelectorAll("entity-wrapper entity-component"));
 	};
 
 	private updateOrder: EventListener = () => {
@@ -60,9 +63,16 @@ class InitationComponent extends HTMLElement {
 		});
 	};
 
+	private clearOrder: EventListener = () => {
+		message("server", {
+			type: "clear-order",
+		});
+	};
+
 	connectedCallback() {
 		this.querySelector(".js-add-entity").addEventListener("click", this.addEntityComponent);
 		this.querySelector(".js-update-initiation-order").addEventListener("click", this.updateOrder);
+		this.querySelector(".js-clear-order").addEventListener("click", this.clearOrder);
 	}
 }
 customElements.define("initiation-component", InitationComponent);

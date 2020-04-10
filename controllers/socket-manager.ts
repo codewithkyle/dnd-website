@@ -1,4 +1,4 @@
-import { hookup, reply } from "djinnjs/broadcaster";
+import { hookup, reply, message } from "djinnjs/broadcaster";
 // @ts-ignore
 import io from "socket";
 import { DiceRoller } from "rpg-dice-roller";
@@ -73,12 +73,25 @@ class SocketManager {
 			});
 		});
 		this.socket.on("initiation-order", (order) => {
-			console.log(order);
+			message("initiation-order", {
+				type: "set-order",
+				order: order,
+			});
+		});
+		this.socket.on("clear-order", () => {
+			message("initiation-order", {
+				type: "clear-order",
+			});
 		});
 	}
 
 	private inbox(data) {
 		switch (data.type) {
+			case "clear-order":
+				if (this.isConnected && this.inRoom) {
+					this.socket.emit("clear-order");
+				}
+				break;
 			case "ping-from-npc":
 				if (this.isConnected && this.inRoom) {
 					this.socket.emit("ping-from-npc", data.name);
