@@ -7,7 +7,7 @@
             {% endif %}
         </div>
         <div>
-            <a href="https://www.youtube.com/playlist?list=PLJmFJXf3BXjwXkNFo_-iwtHb24AuJcXqx" target="_blank" class="button -text -primary">Tutorials</a>
+            <tips-button web-component role="button" class="button -text -primary">Quick Tips</tips-button>
             <a href="https://www.5esrd.com/" target="_blank" class="button -text -primary ml-0.5">Handbook</a>
             {% if currentUser['id'] is defined %}
                 <a no-pjax href="{{ siteUrl|trim('/') }}/actions/users/logout" class="button -text -primary ml-0.5">Log Out</a>
