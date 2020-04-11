@@ -1,5 +1,6 @@
 import { EntityComponent } from "./entity-component";
 import { message } from "djinnjs/broadcaster";
+import { notify } from "@codewithkyle/notifyjs";
 
 class InitationComponent extends HTMLElement {
 	private entityComponentTemplate: HTMLTemplateElement;
@@ -24,6 +25,10 @@ class InitationComponent extends HTMLElement {
 	private updateOrder: EventListener = () => {
 		this.entities = Array.from(this.querySelectorAll("entity-wrapper entity-component"));
 		const orderedEntities = [];
+		let invalidParams = false;
+		let matchedValue;
+		let name1;
+		let name2;
 		for (let i = 0; i < this.entities.length; i++) {
 			const entity = {
 				el: this.entities[i],
@@ -35,10 +40,21 @@ class InitationComponent extends HTMLElement {
 			} else {
 				let injectAt = null;
 				for (let k = 0; k < orderedEntities.length; k++) {
-					if (entity.value >= orderedEntities[k].value) {
+					if (entity.value > orderedEntities[k].value) {
 						injectAt = k;
 						break;
+					} else if (entity.value === orderedEntities[k].value) {
+						invalidParams = true;
+						// @ts-ignore
+						name1 = entity.el.querySelector(".js-name").value;
+						// @ts-ignore
+						name2 = orderedEntities[k].el.querySelector(".js-name").value;
+						matchedValue = entity.value;
+						break;
 					}
+				}
+				if (invalidParams) {
+					break;
 				}
 				if (injectAt === null) {
 					orderedEntities.push(entity);
@@ -46,6 +62,15 @@ class InitationComponent extends HTMLElement {
 					orderedEntities.splice(injectAt, 0, entity);
 				}
 			}
+		}
+
+		if (invalidParams) {
+			notify({
+				message: `Invalid initation order. ${name1} and ${name2} both rolled a ${matchedValue}`,
+				closeable: true,
+				force: true,
+			});
+			return;
 		}
 
 		const serverData = [];
@@ -67,6 +92,11 @@ class InitationComponent extends HTMLElement {
 		message("server", {
 			type: "clear-order",
 		});
+		for (let i = 0; i < this.entities.length; i++) {
+			this.entities[i].style.order = "";
+			// @ts-ignore
+			this.entities[i].querySelector(".js-initiation").value = "";
+		}
 	};
 
 	connectedCallback() {
