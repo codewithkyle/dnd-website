@@ -26,14 +26,21 @@ class InitationComponent extends HTMLElement {
 		this.entities = Array.from(this.querySelectorAll("entity-wrapper entity-component"));
 		const orderedEntities = [];
 		let invalidParams = false;
+		let invalidReason = 0;
 		let matchedValue;
 		let name1;
 		let name2;
 		for (let i = 0; i < this.entities.length; i++) {
+			// @ts-ignore
+			const value = this.entities[i].querySelector(".js-initiation").value;
+			if (value === "") {
+				invalidParams = true;
+				invalidReason = 1;
+				break;
+			}
 			const entity = {
 				el: this.entities[i],
-				// @ts-ignore
-				value: parseInt(this.entities[i].querySelector(".js-initiation").value),
+				value: parseInt(value),
 			};
 			if (i === 0) {
 				orderedEntities.push(entity);
@@ -50,6 +57,7 @@ class InitationComponent extends HTMLElement {
 						// @ts-ignore
 						name2 = orderedEntities[k].el.querySelector(".js-name").value;
 						matchedValue = entity.value;
+						invalidReason = 2;
 						break;
 					}
 				}
@@ -64,7 +72,14 @@ class InitationComponent extends HTMLElement {
 			}
 		}
 
-		if (invalidParams) {
+		if (invalidParams && invalidReason === 1) {
+			notify({
+				message: `Initiation order values cannot be blank.`,
+				closeable: true,
+				force: true,
+			});
+			return;
+		} else if (invalidParams && invalidReason === 2) {
 			notify({
 				message: `Invalid initation order. ${name1} and ${name2} both rolled a ${matchedValue}`,
 				closeable: true,
