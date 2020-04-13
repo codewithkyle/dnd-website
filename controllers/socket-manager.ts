@@ -12,15 +12,21 @@ class SocketManager {
 	private dice: any;
 	private rollReplyId: string;
 
+	private time: number;
+	private countdown: number;
+
 	constructor() {
 		hookup("server", this.inbox.bind(this));
 		this.inRoom = false;
 		this.rollReplyId = null;
 		this.dice = new DiceRoller();
 
-		this.socket = io(`${document.documentElement.dataset.server}:5876`, { secure: true });
+		this.socket = io(`${document.documentElement.dataset.server}:5876`, { secure: true, reconnection: true });
 		this.socket.on("connect", () => {
 			this.isConnected = true;
+			this.time = performance.now();
+			this.countdown = 15;
+			this.tick();
 		});
 		this.socket.on("disconnect", () => {
 			this.isConnected = false;
@@ -170,6 +176,22 @@ class SocketManager {
 		min = Math.ceil(min);
 		max = Math.floor(max);
 		return Math.floor(Math.random() * (max - min)) + min;
+	}
+
+	private tick() {
+		const newTime = performance.now();
+		const deltaTime = (newTime - this.time) / 1000;
+		this.time = newTime;
+
+		this.countdown -= deltaTime;
+		if (this.countdown <= 0) {
+			if (this.isConnected) {
+				this.socket.emit("heartbeat");
+			}
+			this.countdown = 15;
+		}
+
+		window.requestAnimationFrame(this.tick.bind(this));
 	}
 }
 new SocketManager();
