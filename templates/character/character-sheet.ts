@@ -37,6 +37,18 @@ class CharacterSheet extends HTMLElement {
 		this.saveCharacter(true);
 	};
 
+	private getProficientSkills() {
+		const skills = {};
+		this.querySelectorAll(`skill-table input[type="checkbox"]`).forEach((input: HTMLInputElement) => {
+			if (input.checked) {
+				skills[input.dataset.skill] = 1;
+			} else {
+				skills[input.dataset.skill] = 0;
+			}
+		});
+		return skills;
+	}
+
 	private async saveCharacter(doLoading = false) {
 		if (this.dataset.preventSave) {
 			return;
@@ -80,6 +92,11 @@ class CharacterSheet extends HTMLElement {
 
 		const level9Spells = this.querySelector("#level-9-spellbook") as SpellComponent;
 		data.append(`fields[level9Spells]`, level9Spells.dumpData());
+
+		const proficientSkills = this.getProficientSkills();
+		for (const [key, value] of Object.entries(proficientSkills)) {
+			data.append(`fields[${key}Proficiency]`, `${value}`);
+		}
 
 		let ticket;
 		if (doLoading) {

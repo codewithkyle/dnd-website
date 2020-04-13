@@ -1,4 +1,4 @@
-dateModified: 1586102248
+dateModified: 1586803227
 email:
   fromEmail: codingwithkyle@gmail.com
   fromName: Boilerplate
@@ -2271,6 +2271,16 @@ routes:
         - uid
         - '[A-Za-z0-9]{8}-[A-Za-z0-9]{4}-4[A-Za-z0-9]{3}-[89abAB][A-Za-z0-9]{3}-[A-Za-z0-9]{12}'
     uriPattern: 'campaign/<uid:[A-Za-z0-9]{8}-[A-Za-z0-9]{4}-4[A-Za-z0-9]{3}-[89abAB][A-Za-z0-9]{3}-[A-Za-z0-9]{12}>'
+  7b9166db-ff26-482d-a09d-f1949f179061:
+    siteUid: null
+    sortOrder: 1
+    template: character/index.twig
+    uriParts:
+      - character/
+      -
+        - uid
+        - '[A-Za-z0-9]{8}-[A-Za-z0-9]{4}-4[A-Za-z0-9]{3}-[89abAB][A-Za-z0-9]{3}-[A-Za-z0-9]{12}'
+    uriPattern: 'character/<uid:[A-Za-z0-9]{8}-[A-Za-z0-9]{4}-4[A-Za-z0-9]{3}-[89abAB][A-Za-z0-9]{3}-[A-Za-z0-9]{12}>'
   8e5c2240-8fe2-4d72-846a-1bd720e346bf:
     siteUid: null
     sortOrder: 2
@@ -2305,6 +2315,16 @@ routes:
         - slug
         - '[^\/]+'
     uriPattern: 'character/<uid:[A-Za-z0-9]{8}-[A-Za-z0-9]{4}-4[A-Za-z0-9]{3}-[89abAB][A-Za-z0-9]{3}-[A-Za-z0-9]{12}>/<slug:[^\/]+>'
+  d02343db-f724-4070-be1f-862dcc4ef2e8:
+    siteUid: null
+    sortOrder: 1
+    template: character/index.twig
+    uriParts:
+      - character/
+      -
+        - uid
+        - '[A-Za-z0-9]{8}-[A-Za-z0-9]{4}-4[A-Za-z0-9]{3}-[89abAB][A-Za-z0-9]{3}-[A-Za-z0-9]{12}'
+    uriPattern: 'character/<uid:[A-Za-z0-9]{8}-[A-Za-z0-9]{4}-4[A-Za-z0-9]{3}-[89abAB][A-Za-z0-9]{3}-[A-Za-z0-9]{12}>'
 sections:
   37d7fb71-cdac-49c0-86eb-f145408f5771:
     enableVersioning: true
