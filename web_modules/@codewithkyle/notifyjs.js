@@ -5,8 +5,17 @@ class NotificationManager {
         this.snackbar = this.notify;
         this.handleToastClose = (e) => {
             const target = e.currentTarget;
-            const id = parseInt(target.parentElement.dataset.id);
-            this.removeToasterNotification(this.toaster[id], id);
+            const notificationId = target.parentElement.dataset.id;
+            let index = null;
+            for (let i = 0; i < this.toaster.length; i++) {
+                if (this.toaster[i].element.dataset.id === notificationId) {
+                    index = i;
+                    break;
+                }
+            }
+            if (index) {
+                this.removeToasterNotification(index);
+            }
         };
         this._queue = [];
         this._callback = () => { };
@@ -94,7 +103,7 @@ class NotificationManager {
                 for (let i = 0; i < this.toaster.length; i++) {
                     this.toaster[i].duration -= deltaTime;
                     if (this.toaster[i].duration <= 0) {
-                        this.removeToasterNotification(this.toaster[i], i);
+                        this.removeToasterNotification(i);
                     }
                 }
             }
@@ -282,9 +291,9 @@ class NotificationManager {
             console.error(error);
         });
     }
-    removeToasterNotification(notification, id) {
-        notification.element.remove();
-        this.toaster.splice(id, 1);
+    removeToasterNotification(index) {
+        this.toaster[index].element.remove();
+        this.toaster.splice(index, 1);
     }
     createToast(notification) {
         var _a;
@@ -322,7 +331,7 @@ class NotificationManager {
             document.body.appendChild(shell);
         }
         const notificationEl = this.createToast(notification);
-        notificationEl.dataset.id = `${this.toaster.length}`;
+        notificationEl.dataset.id = `${performance.now()}`;
         notification.element = notificationEl;
         if ((notification === null || notification === void 0 ? void 0 : notification.duration) && !isNaN(notification.duration)) {
             notification.duration = notification.duration;
