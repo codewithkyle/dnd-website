@@ -63,6 +63,9 @@ class BattleMap extends Component<{}, BattleMapState> {
 	};
 
 	private moveMarker: EventListener = (e: MouseEvent) => {
+		if (!this.state.characterUid) {
+			return;
+		}
 		const map = e.currentTarget as HTMLElement;
 		const bounds = map.getBoundingClientRect();
 		if (e instanceof MouseEvent) {

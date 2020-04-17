@@ -98,6 +98,8 @@
         <div class="w-full p-1 text-center fixed l-0 b-0" style="pointer-events: none;z-index: 1500;">
             <div class="mx-0.5 inline-block" id="dice-mounting-point"></div>
             <script src="{{ alias('@rootUrl')|trim('/') }}/preact/dice-roller.js"></script>
+            <div class="mx-0.5 inline-block" id="battle-map-mounting-point"></div>
+            <script src="{{ alias('@rootUrl')|trim('/') }}/preact/battle-map.js"></script>
         </div>
     {% endif %}
 {% endblock %}
