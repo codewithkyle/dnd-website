@@ -1,0 +1,14 @@
+{% set maps = campaign.maps.all() %}
+{% if maps|length %}
+    <maps-component lazy-load-css="maps-component" grid="columns 3 gap-2" class="w-full bg-white p-2 shadow-md block mb-2">
+        {% for map in maps %}
+            <map-component web-component class="b-1 b-solid b-grey-300 p-1 cursor-pointer" web-component role="button" style="border-radius: 0.25rem;" data-url="{{ map.url }}">
+                <img class="block w-full mb-1" width="320" loading="lazy" draggable="false" src="{{ map.url }}" alt="{{ map.title }}" />
+                <span class="block font-grey-800 font-medium">{{ map.title }}</span>
+                {% if map.flavorText|length %}
+                    <span class="block font-sm font-grey-700 mt-0.5">{{ map.flavorText }}</span>
+                {% endif %}
+            </map-component>
+        {% endfor %}
+    </maps-component>
+{% endif %}

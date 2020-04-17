@@ -95,10 +95,32 @@ class SocketManager {
 				index: index,
 			});
 		});
+		this.socket.on("load-map", (url) => {
+			message("battle-map", {
+				type: "load-map",
+				url: url,
+			});
+		});
+		this.socket.on("render-entities", (entities) => {
+			message("battle-map", {
+				type: "render-entities",
+				entities: entities,
+			});
+		});
 	}
 
 	private inbox(data) {
 		switch (data.type) {
+			case "load-map":
+				if (this.isConnected && this.inRoom) {
+					this.socket.emit("load-map", data.url);
+				}
+				break;
+			case "send-position":
+				if (this.isConnected && this.inRoom) {
+					this.socket.emit("update-position", data.entity);
+				}
+				break;
 			case "clear-order":
 				if (this.isConnected && this.inRoom) {
 					this.socket.emit("clear-order");

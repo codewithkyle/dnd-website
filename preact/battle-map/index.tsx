@@ -1,18 +1,21 @@
 import { h, render, Component, Fragment } from "preact";
-import { hookup } from "djinnjs/broadcaster";
+import { hookup, message } from "djinnjs/broadcaster";
 
 import "./battle-map.scss";
 
 type BattleMapState = {
 	open: boolean;
 	map: string;
+	name: string;
+	characterUid: string;
 	entities: Array<{
 		name: string;
+		uid: string;
+		type: string;
 		pos: {
 			x: number;
 			y: number;
 		};
-		uid: string;
 	}>;
 };
 
@@ -21,10 +24,13 @@ class BattleMap extends Component<{}, BattleMapState> {
 
 	constructor() {
 		super();
+		const characterSheet: HTMLElement = document.body.querySelector("character-sheet") || null;
 		this.state = {
-			map: `${location.origin}/uploads/maps/example.jpg`,
+			map: null,
 			open: false,
 			entities: [],
+			name: characterSheet ? characterSheet.dataset.characterName : null,
+			characterUid: characterSheet ? characterSheet.dataset.characterUid : null,
 		};
 		this.inboxUid = hookup("battle-map", this.inbox.bind(this));
 		document.body.addEventListener("keyup", this.handleKeypress);
@@ -32,6 +38,12 @@ class BattleMap extends Component<{}, BattleMapState> {
 
 	private inbox(data) {
 		switch (data.type) {
+			case "render-entities":
+				this.setState({ entities: data.entities });
+				break;
+			case "load-map":
+				this.setState({ map: data.url, entities: [] });
+				break;
 			default:
 				console.log(`Battle Map recieved an undefined message type: ${data.type}`);
 				break;
@@ -64,17 +76,32 @@ class BattleMap extends Component<{}, BattleMapState> {
 			if (bounds.y > 0) {
 				newPos.y - bounds.y;
 			}
-			console.log(newPos);
+			message("server", {
+				type: "send-position",
+				entity: {
+					name: this.state.name,
+					uid: this.state.characterUid,
+					pos: newPos,
+					type: "pc",
+				},
+			});
 		}
 	};
 
 	render() {
 		let map: any = <span>The Game Master hasn't loaded a map yet.</span>;
 		if (this.state.map) {
+			let entities = this.state.entities.map((entity) => (
+				<div className={`entity -${entity.type}`} style={{ transform: `translate(${entity.pos.x - 12}px, ${entity.pos.y - 12}px)` }}>
+					<div className="tooltip">
+						<span>{entity.name}</span>
+					</div>
+				</div>
+			));
 			map = (
 				<div className="map-wrapper">
-					<div className="entities"></div>
 					<img onClick={this.moveMarker} draggable={false} className="map" src={this.state.map} alt="a D&D battle map" />
+					<div className="entities">{entities}</div>
 				</div>
 			);
 		}

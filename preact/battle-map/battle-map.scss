@@ -6,6 +6,11 @@ $spinner-speed: 1400ms;
 $offset: 188;
 $cap: round;
 
+$blue: #4299E1;
+$red: #F56565;
+$green: #48BB78;
+$yellow: #ECC94B;
+
 .battle-map{
     background-color: var(--white);
     position: fixed;
@@ -66,7 +71,81 @@ $cap: round;
         left: 0;
         width: 100%;
         height: 100%;
-        pointer-events: all;
+        pointer-events: none;
+
+        .entity{
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            box-shadow: var(--shadow-md);
+            position: absolute;
+            top: 0;
+            left: 0;
+            transition: all 300ms var(--ease-in-out);
+            pointer-events: all;
+            cursor: default;
+
+            &.-pc{
+                background-color: $blue;
+            }
+
+            &.-enemy{
+                background-color: $red;
+            }
+
+            &.-npc{
+                background-color: $yellow;
+            }
+
+            &:hover{
+                .tooltip{
+                    opacity: 1;
+                    visibility: visible;
+                }
+            }
+
+            .tooltip{
+                position: absolute;
+                top: -20px;
+                left: 50%;
+                transform: translate(-50%, 0);
+                opacity: 0;
+                visibility: hidden;
+                transition: all 150ms var(--ease-in-out);
+                cursor: default;
+
+                &::before{
+                    content:"";
+                    display: inline-block;
+                    width: 12px;
+                    height: 12px;
+                    border-radius: 0.125rem;
+                    position: absolute;
+                    bottom: -6px;
+                    left: 50%;
+                    transform: translate(-50%, 0) rotate(45deg);
+                    background-color: var(--grey-800);
+                    box-shadow: var(--shadow-md);
+                    z-index: 1;
+                }
+
+                span{
+                    font-size: 0.75rem;
+                    text-transform: uppercase;
+                    font-weight: var(--font-medium);
+                    color: var(--white);
+                    display: inline-block;
+                    z-index: 2;
+                    line-height: 24px;
+                    height: 24px;
+                    background-color: var(--grey-800);
+                    box-shadow: var(--shadow-md);
+                    padding: 0 0.5rem;
+                    border-radius: 0.125rem;
+                }
+            }
+        }
     }
 
     .map-wrapper{
@@ -78,6 +157,7 @@ $cap: round;
         .map{
             position: relative;
             display: block;
+            cursor: default;
         }
     }
 }
