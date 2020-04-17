@@ -96,16 +96,26 @@ class SocketManager {
 			});
 		});
 		this.socket.on("load-map", (url) => {
-			message("battle-map", {
-				type: "load-map",
-				url: url,
-			});
+			message(
+				"battle-map",
+				{
+					type: "load-map",
+					url: url,
+				},
+				null,
+				Infinity
+			);
 		});
 		this.socket.on("render-entities", (entities) => {
-			message("battle-map", {
-				type: "render-entities",
-				entities: entities,
-			});
+			message(
+				"battle-map",
+				{
+					type: "render-entities",
+					entities: entities,
+				},
+				null,
+				Infinity
+			);
 		});
 	}
 
