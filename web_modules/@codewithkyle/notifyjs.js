@@ -13,7 +13,7 @@ class NotificationManager {
                     break;
                 }
             }
-            if (index) {
+            if (index !== null) {
                 this.removeToasterNotification(index);
             }
         };

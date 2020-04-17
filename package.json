@@ -39,7 +39,7 @@
 		"typescript": "^3.8.3"
 	},
 	"dependencies": {
-		"@codewithkyle/notifyjs": "^1.2.1",
+		"@codewithkyle/notifyjs": "^1.2.2",
 		"brixi": "^0.2.0",
 		"css-loader": "^3.5.2",
 		"cssmonster": "^0.2.0",
