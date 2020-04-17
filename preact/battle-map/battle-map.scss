@@ -7,7 +7,7 @@ $offset: 188;
 $cap: round;
 
 .battle-map{
-    background-color: var(--dashboard);
+    background-color: var(--white);
     position: fixed;
     width: 100vw;
     height: 100vh;
@@ -70,14 +70,10 @@ $cap: round;
     }
 
     .map-wrapper{
-        width: 1920px;
-        height: 1080px;
-        max-width: 100%;
-        max-height: 100%;
+        max-width: 100vw;
+        max-height: 100vh;
         overflow: auto;
         position: relative;
-        background-color: var(--white);
-        box-shadow: var(--shadow-lg);
 
         .map{
             position: relative;
