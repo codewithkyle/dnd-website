@@ -1,4 +1,4 @@
-dateModified: 1586803227
+dateModified: 1587155877
 email:
   fromEmail: codingwithkyle@gmail.com
   fromName: Boilerplate
@@ -2251,6 +2251,35 @@ fields:
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\PlainText
+  fff45f37-3634-47b5-bd0c-3f73dde3e3c4:
+    contentColumnType: string
+    fieldGroup: fcc29f23-916c-4883-90ae-60e9e6f0b466
+    handle: maps
+    instructions: ''
+    name: Maps
+    searchable: false
+    settings:
+      allowedKinds:
+        - image
+      defaultUploadLocationSource: 'volume:dce32d59-4bf6-4bf6-a685-ba7cb1b6cec2'
+      defaultUploadLocationSubpath: ''
+      limit: ''
+      localizeRelations: false
+      restrictFiles: '1'
+      selectionLabel: 'Add a Map'
+      showUnpermittedFiles: false
+      showUnpermittedVolumes: false
+      singleUploadLocationSource: 'volume:dce32d59-4bf6-4bf6-a685-ba7cb1b6cec2'
+      singleUploadLocationSubpath: ''
+      source: null
+      sources: '*'
+      targetSiteId: null
+      useSingleFolder: true
+      validateRelatedElements: '1'
+      viewMode: list
+    translationKeyFormat: null
+    translationMethod: site
+    type: craft\fields\Assets
 plugins:
   eager-beaver:
     edition: standard
@@ -2876,8 +2905,15 @@ sections:
                   a10cc301-c022-4ada-9aa4-93d07b972c16:
                     required: false
                     sortOrder: 1
-                name: 'Tab 1'
+                name: Players
                 sortOrder: 1
+              -
+                fields:
+                  fff45f37-3634-47b5-bd0c-3f73dde3e3c4:
+                    required: false
+                    sortOrder: 1
+                name: Maps
+                sortOrder: 2
         handle: campaigns
         hasTitleField: true
         name: Campaigns
@@ -3060,3 +3096,23 @@ users:
   photoSubpath: null
   photoVolumeUid: null
   requireEmailVerification: true
+volumes:
+  dce32d59-4bf6-4bf6-a685-ba7cb1b6cec2:
+    fieldLayouts:
+      5ee68fd4-dc54-4acc-a38a-68fe696401e5:
+        tabs:
+          -
+            fields:
+              40055f18-8f93-4a56-906d-6cc34f74bf32:
+                required: false
+                sortOrder: 1
+            name: 'Tab 1'
+            sortOrder: 1
+    handle: maps
+    hasUrls: true
+    name: Maps
+    settings:
+      path: '@webroot/uploads/maps'
+    sortOrder: 1
+    type: craft\volumes\Local
+    url: '@rootUrl/map'
