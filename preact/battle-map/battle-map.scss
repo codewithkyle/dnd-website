@@ -7,7 +7,7 @@ $offset: 188;
 $cap: round;
 
 .battle-map{
-    background-color: rgba(#F5F7F9, 0.87);
+    background-color: var(--dashboard);
     position: fixed;
     width: 100vw;
     height: 100vh;
