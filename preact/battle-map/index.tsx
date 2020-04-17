@@ -22,7 +22,7 @@ class BattleMap extends Component<{}, BattleMapState> {
 	constructor() {
 		super();
 		this.state = {
-			map: "http://dnd.local/uploads/maps/example.jpg",
+			map: `${location.origin}/uploads/maps/example.jpg`,
 			open: false,
 			entities: [],
 		};
