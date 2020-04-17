@@ -1,4 +1,4 @@
-dateModified: 1587155877
+dateModified: 1587159490
 email:
   fromEmail: codingwithkyle@gmail.com
   fromName: Boilerplate
@@ -3115,4 +3115,4 @@ volumes:
       path: '@webroot/uploads/maps'
     sortOrder: 1
     type: craft\volumes\Local
-    url: '@rootUrl/map'
+    url: '@rootUrl/uploads/maps'

@@ -65,6 +65,24 @@ $cap: round;
         overflow-y: auto;
         width: 100%;
     }
+
+    .map-wrapper{
+        width: 1920px;
+        height: 1080px;
+        max-width: 100%;
+        max-height: 100%;
+        overflow: auto;
+        position: relative;
+        background-color: var(--white);
+        border-radius: 0.25rem;
+        border: 1px solid #3aaeff;
+        box-shadow: var(--shadow-lg);
+
+        .map{
+            position: relative;
+            display: block;
+        }
+    }
 }
 .open-map-button{
     width: 48px;
