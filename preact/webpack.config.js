@@ -4,6 +4,7 @@ module.exports = {
 	entry: {
 		"dice-roller": path.join(__dirname, "dice-roller", "index.tsx"),
 		"initiation-order": path.join(__dirname, "initiation-order", "index.tsx"),
+		"battle-map": path.join(__dirname, "battle-map", "index.tsx"),
 	},
 	mode: process.env.NODE_ENV === "production" ? "production" : "development",
 	module: {

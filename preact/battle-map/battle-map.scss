@@ -6,31 +6,26 @@ $spinner-speed: 1400ms;
 $offset: 188;
 $cap: round;
 
-.initiation-order{
-    background-color: var(--white);
-    border-radius: 0.25rem 0.25rem 0 0;
-    padding: 1rem;
+.battle-map{
+    background-color: rgba(#F5F7F9, 0.87);
     position: fixed;
-    width: 1024px;
-    max-width: 90vw;
-    left: 50%;
-    bottom: 0;
-    transform: translateX(-50%) translateY(100%);
-    box-shadow: 0 0px 24px -1px rgba(0, 0, 0, 0.1),0 0px 6px -1px rgba(0, 0, 0, 0.06);
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
     transition: all 150ms var(--ease-in-out);
     visibility: hidden;
     opacity: 0;
-    z-index: 1700;
-    height: 96px;
+    z-index: 1500;
     display: flex;
     align-items: center;
     justify-content: center;
-    pointer-events: all;
+    pointer-events: none;
 
     &.is-open{
         visibility: visible;
-        transform: translateX(-50%) translateY(0);
         opacity: 1;
+        pointer-events: all;
     }
 
     .close-button{
@@ -41,8 +36,8 @@ $cap: round;
         box-shadow: var(--shadow-lg);
         border-radius: 50%;
         position: absolute;
-        top: -24px;
-        right: -24px;
+        top: 1rem;
+        right: 1rem;
         color: var(--grey-700);
         transition: all 150ms var(--ease-in-out);
 
@@ -71,7 +66,7 @@ $cap: round;
         width: 100%;
     }
 }
-.open-initiation-button{
+.open-map-button{
     width: 48px;
     height: 48px;
     display: inline-block;
