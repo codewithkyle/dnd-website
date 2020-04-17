@@ -50,12 +50,31 @@ class BattleMap extends Component<{}, BattleMapState> {
 		}
 	};
 
+	private moveMarker: EventListener = (e: MouseEvent) => {
+		const map = e.currentTarget as HTMLElement;
+		const bounds = map.getBoundingClientRect();
+		if (e instanceof MouseEvent) {
+			const newPos = {
+				x: e.pageX + (e.offsetX - e.pageX),
+				y: e.pageY + (e.offsetY - e.pageY),
+			};
+			if (bounds.x > 0) {
+				newPos.x - bounds.x;
+			}
+			if (bounds.y > 0) {
+				newPos.y - bounds.y;
+			}
+			console.log(newPos);
+		}
+	};
+
 	render() {
 		let map: any = <span>The Game Master hasn't loaded a map yet.</span>;
 		if (this.state.map) {
 			map = (
 				<div className="map-wrapper">
-					<img className="map" src={this.state.map} alt="a D&D battle map" />
+					<div className="entities"></div>
+					<img onClick={this.moveMarker} draggable={false} className="map" src={this.state.map} alt="a D&D battle map" />
 				</div>
 			);
 		}
