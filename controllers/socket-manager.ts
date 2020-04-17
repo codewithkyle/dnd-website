@@ -11,6 +11,7 @@ class SocketManager {
 	private inRoom: boolean;
 	private dice: any;
 	private rollReplyId: string;
+	private initMapReplyId: string;
 
 	private time: number;
 	private countdown: number;
@@ -19,6 +20,7 @@ class SocketManager {
 		hookup("server", this.inbox.bind(this));
 		this.inRoom = false;
 		this.rollReplyId = null;
+		this.initMapReplyId = null;
 		this.dice = new DiceRoller();
 
 		this.socket = io(`${document.documentElement.dataset.server}:5876`, { secure: true, reconnection: true });
@@ -96,31 +98,34 @@ class SocketManager {
 			});
 		});
 		this.socket.on("load-map", (url) => {
-			message(
-				"battle-map",
-				{
-					type: "load-map",
-					url: url,
-				},
-				null,
-				Infinity
-			);
+			message("battle-map", {
+				type: "load-map",
+				url: url,
+			});
 		});
 		this.socket.on("render-entities", (entities) => {
-			message(
-				"battle-map",
-				{
-					type: "render-entities",
-					entities: entities,
-				},
-				null,
-				Infinity
-			);
+			message("battle-map", {
+				type: "render-entities",
+				entities: entities,
+			});
+		});
+		this.socket.on("init-map", (data) => {
+			reply(this.initMapReplyId, {
+				type: "init-map",
+				map: data.url,
+				entities: data.entities,
+			});
 		});
 	}
 
 	private inbox(data) {
 		switch (data.type) {
+			case "init-map":
+				if (this.isConnected && this.inRoom) {
+					this.initMapReplyId = data.replyID;
+					this.socket.emit("init-map");
+				}
+				break;
 			case "load-map":
 				if (this.isConnected && this.inRoom) {
 					this.socket.emit("load-map", data.url);

@@ -33,11 +33,21 @@ class BattleMap extends Component<{}, BattleMapState> {
 			characterUid: characterSheet ? characterSheet.dataset.characterUid : null,
 		};
 		this.inboxUid = hookup("battle-map", this.inbox.bind(this));
+		message(
+			"server",
+			{
+				type: "init-map",
+			},
+			this.inboxUid
+		);
 		document.body.addEventListener("keyup", this.handleKeypress);
 	}
 
 	private inbox(data) {
 		switch (data.type) {
+			case "init-map":
+				this.setState({ map: data.url, entities: data.entities });
+				break;
 			case "render-entities":
 				this.setState({ entities: data.entities });
 				break;
