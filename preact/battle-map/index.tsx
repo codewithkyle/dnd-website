@@ -99,6 +99,9 @@ class BattleMap extends Component<{}, BattleMapState> {
 
 	private toggleDrawer: EventListener = () => {
 		this.setState({ open: this.state.open ? false : true });
+		message("server", {
+			type: "init-map",
+		});
 	};
 
 	private handleKeypress: EventListener = (e: KeyboardEvent) => {
