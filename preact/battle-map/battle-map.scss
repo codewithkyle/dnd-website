@@ -525,8 +525,8 @@ $yellow: #ECC94B;
         }
 
         svg{
-            width: 24px;
-            height: 24px;
+            width: 18px;
+            height: 18px;
             margin-right: 0.5rem;
         }
 
@@ -584,6 +584,30 @@ $yellow: #ECC94B;
                 background-color: var(--neutral-300);
             }
         }
+    }
+}
+dynamic-map{
+    pointer-events: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0.6;
+    transition: all 150ms var(--ease-in-out);
+
+    &.is-active{
+        pointer-events: all;
+        z-index: 2000;
+        opacity: 0.87;
+    }
+
+    canvas{
+        width: 100%;
+        height: 100%;
+        display: block;
+        cursor: crosshair;
     }
 }
 

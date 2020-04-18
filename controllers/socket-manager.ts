@@ -116,6 +116,13 @@ class SocketManager {
 				entities: data.entities,
 				pins: data.pins,
 			});
+			if (data.drawing) {
+				message("dynamic-map", {
+					type: "render",
+					drawing: data.drawing,
+					map: data.url,
+				});
+			}
 		});
 		this.socket.on("ping-pos", (pos) => {
 			message("pinger", {
@@ -129,10 +136,31 @@ class SocketManager {
 				pins: pins,
 			});
 		});
+		this.socket.on("render-drawing", (drawing) => {
+			message("dynamic-map", {
+				type: "render",
+				drawing: drawing,
+			});
+		});
+		this.socket.on("clear-drawing", () => {
+			message("dynamic-map", {
+				type: "clear",
+			});
+		});
 	}
 
 	private inbox(data) {
 		switch (data.type) {
+			case "clear-dynamic-map":
+				if (this.isConnected && this.inRoom) {
+					this.socket.emit("clear-drawing");
+				}
+				break;
+			case "render-drawing":
+				if (this.isConnected && this.inRoom) {
+					this.socket.emit("render-drawing", data.drawing);
+				}
+				break;
 			case "remove-entity":
 				if (this.isConnected && this.inRoom) {
 					this.socket.emit("remove-entity", data.uid);

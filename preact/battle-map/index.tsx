@@ -12,6 +12,7 @@ type BattleMapState = {
 	gmModal: null | "pin" | "entity";
 	entityType: null | "enemy" | "npc";
 	selectedEntity: string;
+	enableDrawing: boolean;
 	savedPos: null | {
 		x: number;
 		y: number;
@@ -59,6 +60,7 @@ class BattleMap extends Component<{}, BattleMapState> {
 			savedPos: null,
 			entityType: null,
 			selectedEntity: null,
+			enableDrawing: false,
 		};
 		this.canPing = true;
 		this.inboxUid = hookup("battle-map", this.inbox.bind(this));
@@ -72,12 +74,20 @@ class BattleMap extends Component<{}, BattleMapState> {
 				break;
 			case "init-map":
 				this.setState({ map: data.url, entities: data.entities, pins: data.pins });
+				message("dynamic-map", {
+					type: "init",
+					map: data.url,
+				});
 				break;
 			case "render-entities":
 				this.setState({ entities: data.entities });
 				break;
 			case "load-map":
 				this.setState({ map: data.url, entities: [] });
+				message("dynamic-map", {
+					type: "init",
+					map: data.url,
+				});
 				break;
 			default:
 				console.log(`Battle Map recieved an undefined message type: ${data.type}`);
@@ -272,6 +282,29 @@ class BattleMap extends Component<{}, BattleMapState> {
 		}
 	};
 
+	private toggleDrawing: EventListener = (e: Event) => {
+		const updatedState = { ...this.state };
+		if (this.state.enableDrawing) {
+			updatedState.enableDrawing = false;
+		} else {
+			updatedState.enableDrawing = true;
+			message("dynamic-map", {
+				type: "init",
+				map: this.state.map,
+			});
+		}
+		this.setState(updatedState);
+	};
+
+	private clearDrawing: EventListener = (e: Event) => {
+		message("dynamic-map", {
+			type: "clear",
+		});
+		message("server", {
+			type: "clear-dynamic-map",
+		});
+	};
+
 	render() {
 		let map: any = <span>The Game Master hasn't loaded a map yet.</span>;
 
@@ -303,6 +336,24 @@ class BattleMap extends Component<{}, BattleMapState> {
 							></path>
 						</svg>
 						<span>Nametags</span>
+					</button>
+					<button onClick={this.toggleDrawing} className={this.state.enableDrawing ? "is-active" : ""}>
+						<svg aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+							<path
+								fill="currentColor"
+								d="M493.255 56.236l-37.49-37.49c-24.993-24.993-65.515-24.994-90.51 0L12.838 371.162.151 485.346c-1.698 15.286 11.22 28.203 26.504 26.504l114.184-12.687 352.417-352.417c24.992-24.994 24.992-65.517-.001-90.51zM164.686 347.313c6.249 6.249 16.379 6.248 22.627 0L368 166.627l30.059 30.059L174 420.745V386h-48v-48H91.255l224.059-224.059L345.373 144 164.686 324.687c-6.249 6.248-6.249 16.378 0 22.626zm-38.539 121.285l-58.995 6.555-30.305-30.305 6.555-58.995L63.255 366H98v48h48v34.745l-19.853 19.853zm344.48-344.48l-49.941 49.941-82.745-82.745 49.941-49.941c12.505-12.505 32.748-12.507 45.255 0l37.49 37.49c12.506 12.506 12.507 32.747 0 45.255z"
+							></path>
+						</svg>
+						<span>Drawing Mode</span>
+					</button>
+					<button onClick={this.clearDrawing}>
+						<svg aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+							<path
+								fill="currentColor"
+								d="M296 432h16a8 8 0 0 0 8-8V152a8 8 0 0 0-8-8h-16a8 8 0 0 0-8 8v272a8 8 0 0 0 8 8zm-160 0h16a8 8 0 0 0 8-8V152a8 8 0 0 0-8-8h-16a8 8 0 0 0-8 8v272a8 8 0 0 0 8 8zM440 64H336l-33.6-44.8A48 48 0 0 0 264 0h-80a48 48 0 0 0-38.4 19.2L112 64H8a8 8 0 0 0-8 8v16a8 8 0 0 0 8 8h24v368a48 48 0 0 0 48 48h288a48 48 0 0 0 48-48V96h24a8 8 0 0 0 8-8V72a8 8 0 0 0-8-8zM171.2 38.4A16.1 16.1 0 0 1 184 32h80a16.1 16.1 0 0 1 12.8 6.4L296 64H152zM384 464a16 16 0 0 1-16 16H80a16 16 0 0 1-16-16V96h320zm-168-32h16a8 8 0 0 0 8-8V152a8 8 0 0 0-8-8h-16a8 8 0 0 0-8 8v272a8 8 0 0 0 8 8z"
+							></path>
+						</svg>
+						<span>Clear Drawing</span>
 					</button>
 				</div>
 			);
@@ -448,6 +499,13 @@ class BattleMap extends Component<{}, BattleMapState> {
 			map = (
 				<div className="map-wrapper">
 					<img onClick={this.moveMarker} onContextMenu={this.handleRightClick} draggable={false} className="map" src={this.state.map} alt="a D&D battle map" />
+					{/* 
+					// @ts-ignore */}
+					<dynamic-map web-component loading="eager" className={this.state.enableDrawing ? "is-active" : null}>
+						<canvas></canvas>
+						{/* 
+					// @ts-ignore */}
+					</dynamic-map>
 					<div className="entities">
 						{pins}
 						{entities}
