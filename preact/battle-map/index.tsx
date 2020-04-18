@@ -13,6 +13,7 @@ type BattleMapState = {
 	entityType: null | "enemy" | "npc";
 	selectedEntity: string;
 	enableDrawing: boolean;
+	drawing: string;
 	savedPos: null | {
 		x: number;
 		y: number;
@@ -61,6 +62,7 @@ class BattleMap extends Component<{}, BattleMapState> {
 			entityType: null,
 			selectedEntity: null,
 			enableDrawing: false,
+			drawing: null,
 		};
 		this.canPing = true;
 		this.inboxUid = hookup("battle-map", this.inbox.bind(this));
@@ -76,7 +78,7 @@ class BattleMap extends Component<{}, BattleMapState> {
 				this.setState({ pins: data.pins });
 				break;
 			case "init-map":
-				this.setState({ map: data.url, entities: data.entities, pins: data.pins });
+				this.setState({ map: data.url, entities: data.entities, pins: data.pins, drawing: data.drawing });
 				message("dynamic-map", {
 					type: "init",
 					map: data.url,
@@ -295,6 +297,7 @@ class BattleMap extends Component<{}, BattleMapState> {
 			message("dynamic-map", {
 				type: "init",
 				map: this.state.map,
+				drawing: this.state.drawing,
 			});
 		}
 		this.setState(updatedState);
