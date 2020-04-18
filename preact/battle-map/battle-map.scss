@@ -85,17 +85,22 @@ $yellow: #ECC94B;
             transition: all 300ms var(--ease-in-out);
             pointer-events: all;
             cursor: default;
+            border-width: 0 1px 2px 1px;
+            border-style: solid;
 
             &.-pc{
                 background-color: $blue;
+                border-color: darken($blue, 3);
             }
 
             &.-enemy{
                 background-color: $red;
+                border-color: darken($red, 3);
             }
 
             &.-npc{
                 background-color: $yellow;
+                border-color: darken($yellow, 3);
             }
 
             &:hover{
