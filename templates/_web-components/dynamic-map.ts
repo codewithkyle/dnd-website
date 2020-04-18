@@ -31,6 +31,10 @@ class DynamicMap extends HTMLElement {
 			x: null,
 			y: null,
 		};
+		this.xyAddLast = {
+			x: null,
+			y: null,
+		};
 		this.inboxUid = hookup("dynamic-map", this.inbox.bind(this));
 		this.map = null;
 		this.calculate = false;
