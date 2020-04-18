@@ -93,6 +93,7 @@ class BattleMap extends Component<{}, BattleMapState> {
 				message("dynamic-map", {
 					type: "init",
 					map: data.url,
+					drawing: null,
 				});
 				break;
 			default:
@@ -294,6 +295,7 @@ class BattleMap extends Component<{}, BattleMapState> {
 			message("dynamic-map", {
 				type: "init",
 				map: this.state.map,
+				drawing: this.state.drawing,
 			});
 		}
 		this.setState(updatedState);
