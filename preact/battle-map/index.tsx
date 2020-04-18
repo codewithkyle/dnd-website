@@ -84,7 +84,7 @@ class BattleMap extends Component<{}, BattleMapState> {
 				this.setState({ entities: data.entities });
 				break;
 			case "load-map":
-				this.setState({ map: data.url, entities: [], drawing: null });
+				this.setState({ map: data.url, entities: [], drawing: null, enableDrawing: false });
 				message("dynamic-map", {
 					type: "init",
 					map: data.url,
@@ -320,7 +320,7 @@ class BattleMap extends Component<{}, BattleMapState> {
 		let map: any = <span>The Game Master hasn't loaded a map yet.</span>;
 
 		let drawer = null;
-		if (this.state.characterUid && this.state.open) {
+		if (this.state.characterUid && this.state.open && this.state.map) {
 			// Player drawer
 			drawer = (
 				<div className="map-action-drawer">
@@ -335,7 +335,7 @@ class BattleMap extends Component<{}, BattleMapState> {
 					</button>
 				</div>
 			);
-		} else if (!this.state.characterUid && this.state.open) {
+		} else if (!this.state.characterUid && this.state.open && this.state.map) {
 			// GM drawer
 			drawer = (
 				<div className="map-action-drawer">
