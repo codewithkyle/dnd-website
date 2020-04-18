@@ -199,7 +199,7 @@ class BattleMap extends Component<{}, BattleMapState> {
 		e.stopImmediatePropagation();
 		message("pinger", {
 			type: "ping",
-			pos: this.state.gmMenuPos,
+			pos: this.state.savedPos,
 		});
 		this.setState({ gmMenuPos: null });
 	};
