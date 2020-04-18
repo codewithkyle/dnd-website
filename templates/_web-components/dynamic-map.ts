@@ -133,6 +133,7 @@ class DynamicMap extends HTMLElement {
 	}
 
 	private init(map, drawing) {
+		console.log("init");
 		if (!this.map || this.map !== map) {
 			this.canvas = this.querySelector("canvas");
 			const bounds = this.getBoundingClientRect();
