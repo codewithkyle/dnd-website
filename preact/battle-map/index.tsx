@@ -160,6 +160,7 @@ class BattleMap extends Component<{}, BattleMapState> {
 					</div>
 				</div>
 			));
+			console.log("Rendered new entity pos");
 			map = (
 				<div className="map-wrapper">
 					<img onClick={this.moveMarker} onContextMenu={this.handleRightClick} draggable={false} className="map" src={this.state.map} alt="a D&D battle map" />
