@@ -84,7 +84,7 @@ class BattleMap extends Component<{}, BattleMapState> {
 				this.setState({ entities: data.entities });
 				break;
 			case "load-map":
-				this.setState({ map: data.url, entities: [] });
+				this.setState({ map: data.url, entities: [], drawing: null });
 				message("dynamic-map", {
 					type: "init",
 					map: data.url,

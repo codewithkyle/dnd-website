@@ -153,12 +153,12 @@ class DynamicMap extends HTMLElement {
 			this.canvas.addEventListener("mouseup", this.handleMouseUp);
 			this.canvas.addEventListener("mousemove", this.handleMouseMove);
 			this.map = map;
+			this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
 			if (drawing) {
 				const currentDrawing = new Image();
 				currentDrawing.src = drawing;
 				currentDrawing.onload = () => {
-					this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
 					this.context.drawImage(currentDrawing, 0, 0, currentDrawing.width, currentDrawing.height);
 				};
 			}
