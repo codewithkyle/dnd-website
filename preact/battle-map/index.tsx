@@ -201,7 +201,11 @@ class BattleMap extends Component<{}, BattleMapState> {
 			type: "ping",
 			pos: this.state.savedPos,
 		});
-		this.setState({ gmMenuPos: null });
+		message("server", {
+			type: "send-ping",
+			pos: this.state.savedPos,
+		});
+		this.setState({ gmMenuPos: null, savedPos: null });
 	};
 
 	private placePin: EventListener = (e: Event) => {
