@@ -38,7 +38,7 @@ class DynamicMap extends HTMLElement {
 		switch (data.type) {
 			case "render":
 				if (!this.context) {
-					this.init(data?.map);
+					return;
 				}
 				const currentDrawing = new Image();
 				currentDrawing.src = data.drawing;
@@ -51,7 +51,7 @@ class DynamicMap extends HTMLElement {
 				this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
 				break;
 			case "init":
-				this.init(data.map);
+				this.init(data.map, data.drawing);
 				break;
 			default:
 				console.warn(`Dynamic Map recieved an undefined message type: ${data.type}`);
@@ -132,7 +132,7 @@ class DynamicMap extends HTMLElement {
 		disconnect(this.inboxUid);
 	}
 
-	private init(map) {
+	private init(map, drawing) {
 		if (!this.map || this.map !== map) {
 			this.canvas = this.querySelector("canvas");
 			const bounds = this.getBoundingClientRect();
@@ -147,6 +147,15 @@ class DynamicMap extends HTMLElement {
 			this.canvas.addEventListener("mousemove", this.handleMouseMove);
 			this.canvas.addEventListener("contextmenu", this.handleContextMenu);
 			this.map = map;
+		}
+
+		if (drawing) {
+			const currentDrawing = new Image();
+			currentDrawing.src = drawing;
+			currentDrawing.onload = () => {
+				this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+				this.context.drawImage(currentDrawing, 0, 0, currentDrawing.width, currentDrawing.height);
+			};
 		}
 	}
 }

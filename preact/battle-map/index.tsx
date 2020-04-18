@@ -80,6 +80,7 @@ class BattleMap extends Component<{}, BattleMapState> {
 				message("dynamic-map", {
 					type: "init",
 					map: data.url,
+					drawing: data.drawing,
 				});
 				break;
 			case "render-entities":

@@ -115,14 +115,8 @@ class SocketManager {
 				url: data.url,
 				entities: data.entities,
 				pins: data.pins,
+				drawing: data.drawing,
 			});
-			if (data.drawing) {
-				message("dynamic-map", {
-					type: "render",
-					drawing: data.drawing,
-					map: data.url,
-				});
-			}
 		});
 		this.socket.on("ping-pos", (pos) => {
 			message("pinger", {
