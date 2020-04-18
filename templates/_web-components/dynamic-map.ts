@@ -12,12 +12,7 @@ class DynamicMap extends HTMLElement {
 	private canvas: HTMLCanvasElement;
 	private context: CanvasRenderingContext2D;
 	private mouse: IMouse;
-	private calculate: boolean;
 	private xyLast: {
-		x: number;
-		y: number;
-	};
-	private xyAddLast: {
 		x: number;
 		y: number;
 	};
@@ -31,19 +26,13 @@ class DynamicMap extends HTMLElement {
 			x: null,
 			y: null,
 		};
-		this.xyAddLast = {
-			x: null,
-			y: null,
-		};
 		this.inboxUid = hookup("dynamic-map", this.inbox.bind(this));
 		this.map = null;
-		this.calculate = false;
 	}
 
 	private inbox(data) {
 		switch (data.type) {
 			case "render":
-				console.log("render");
 				const currentDrawing = new Image();
 				currentDrawing.src = data.drawing;
 				currentDrawing.onload = () => {
@@ -52,7 +41,6 @@ class DynamicMap extends HTMLElement {
 				};
 				break;
 			case "clear":
-				console.log("doing a clear");
 				this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
 				break;
 			case "init":
@@ -65,9 +53,7 @@ class DynamicMap extends HTMLElement {
 	}
 
 	private handleMouseDown: EventListener = (e: MouseEvent) => {
-		console.log("hot mosue");
 		this.mouse.active = true;
-		this.calculate = true;
 		const xy = this.getCords(e);
 		this.context.beginPath();
 		this.context.moveTo(xy.x, xy.y);
@@ -77,7 +63,6 @@ class DynamicMap extends HTMLElement {
 	private handleMouseUp: EventListener = (e: MouseEvent) => {
 		this.context.stroke();
 		this.mouse.active = false;
-		this.calculate = false;
 		message("server", {
 			type: "render-drawing",
 			drawing: this.canvas.toDataURL(),
@@ -97,18 +82,10 @@ class DynamicMap extends HTMLElement {
 			y: (this.xyLast.y + xy.y) / 2,
 		};
 
-		if (this.calculate) {
-			const xLast = (this.xyAddLast.x + this.xyLast.x + xyAdd.x) / 3;
-			const yLast = (this.xyAddLast.y + this.xyLast.y + xyAdd.y) / 3;
-		} else {
-			this.calculate = true;
-		}
-
 		this.context.quadraticCurveTo(this.xyLast.x, this.xyLast.y, xyAdd.x, xyAdd.y);
 		this.context.stroke();
 		this.context.beginPath();
 		this.context.moveTo(xyAdd.x, xyAdd.y);
-		this.xyAddLast = xyAdd;
 		this.xyLast = xy;
 	};
 

@@ -189,7 +189,6 @@ class SocketManager {
 				break;
 			case "init-map":
 				if (this.isConnected && this.inRoom) {
-					console.log("User is trying to init map");
 					this.socket.emit("init-map");
 				}
 				break;
