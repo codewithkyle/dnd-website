@@ -9,7 +9,9 @@ type BattleMapState = {
 	name: string;
 	characterUid: string;
 	showNametags: boolean;
-	gmModal: null | "label";
+	gmModal: null | "pin" | "entity";
+	entityType: null | "enemy" | "npc";
+	selectedEntity: string;
 	savedPos: null | {
 		x: number;
 		y: number;
@@ -55,6 +57,8 @@ class BattleMap extends Component<{}, BattleMapState> {
 			pins: [],
 			gmModal: null,
 			savedPos: null,
+			entityType: null,
+			selectedEntity: null,
 		};
 		this.canPing = true;
 		this.inboxUid = hookup("battle-map", this.inbox.bind(this));
@@ -97,12 +101,10 @@ class BattleMap extends Component<{}, BattleMapState> {
 	};
 
 	private moveMarker: EventListener = (e: MouseEvent) => {
-		if (!this.state.characterUid) {
-			return;
-		}
-		const map = e.currentTarget as HTMLElement;
-		const bounds = map.getBoundingClientRect();
 		if (e instanceof MouseEvent) {
+			const map = e.currentTarget as HTMLElement;
+			const bounds = map.getBoundingClientRect();
+
 			const newPos = {
 				x: e.pageX + (e.offsetX - e.pageX),
 				y: e.pageY + (e.offsetY - e.pageY),
@@ -113,15 +115,26 @@ class BattleMap extends Component<{}, BattleMapState> {
 			if (bounds.y > 0) {
 				newPos.y - bounds.y;
 			}
-			message("server", {
-				type: "send-position",
-				entity: {
-					name: this.state.name,
-					uid: this.state.characterUid,
-					pos: newPos,
-					type: "pc",
-				},
-			});
+
+			if (this.state.characterUid) {
+				message("server", {
+					type: "send-position",
+					entity: {
+						name: this.state.name,
+						uid: this.state.characterUid,
+						pos: newPos,
+						type: "pc",
+					},
+				});
+			} else if (!this.state.characterUid && this.state.selectedEntity) {
+				message("server", {
+					type: "send-position",
+					entity: {
+						uid: this.state.selectedEntity,
+						pos: newPos,
+					},
+				});
+			}
 		}
 	};
 
@@ -158,9 +171,9 @@ class BattleMap extends Component<{}, BattleMapState> {
 					this.canPing = true;
 				}, 900);
 			} else if ((this.state.characterUid && e.ctrlKey) || e.metaKey) {
-				this.setState({ gmModal: "label", savedPos: newPos });
+				this.setState({ gmModal: "pin", savedPos: newPos, selectedEntity: null });
 			} else if (this.state.characterUid === null) {
-				this.setState({ gmMenuPos: newPos, savedPos: newPos });
+				this.setState({ gmMenuPos: newPos, savedPos: newPos, selectedEntity: null });
 			}
 		}
 	};
@@ -180,7 +193,7 @@ class BattleMap extends Component<{}, BattleMapState> {
 	};
 
 	private placePin: EventListener = (e: Event) => {
-		this.setState({ gmModal: "label" });
+		this.setState({ gmModal: "pin" });
 	};
 
 	private createPin: EventListener = (e: Event) => {
@@ -198,6 +211,41 @@ class BattleMap extends Component<{}, BattleMapState> {
 
 	private closeGMModal: EventListener = (e: Event) => {
 		this.setState({ gmMenuPos: null, gmModal: null, savedPos: null });
+	};
+
+	private spawnEntity: EventListener = (e: Event) => {
+		e.stopImmediatePropagation();
+		const target = e.currentTarget as HTMLButtonElement;
+		// @ts-ignore
+		this.setState({ gmModal: "entity", entityType: target.dataset.type });
+	};
+
+	private createEntity: EventListener = (e: Event) => {
+		e.preventDefault();
+		e.stopImmediatePropagation();
+		const target = e.currentTarget as HTMLFormElement;
+		const labelInput = target.querySelector("input");
+		message("server", {
+			type: "add-entity",
+			entityType: this.state.entityType,
+			label: labelInput.value,
+			pos: this.state.gmMenuPos,
+		});
+		this.setState({ gmMenuPos: null, gmModal: null, entityType: null, savedPos: null });
+	};
+
+	private entityClick: EventListener = (e: Event) => {
+		e.stopImmediatePropagation();
+		const target = e.currentTarget as HTMLElement;
+		const type = target.dataset.type;
+		const uid = target.dataset.uid;
+		if ((this.state.characterUid === null && type === "enemy") || type === "npc") {
+			if (uid === this.state.selectedEntity) {
+				this.setState({ selectedEntity: null });
+			} else {
+				this.setState({ selectedEntity: target.dataset.uid });
+			}
+		}
 	};
 
 	render() {
@@ -238,7 +286,28 @@ class BattleMap extends Component<{}, BattleMapState> {
 
 		let gmModal;
 		switch (this.state.gmModal) {
-			case "label":
+			case "entity":
+				gmModal = (
+					<div className="gm-modal">
+						<div className="modal-backdrop" onClick={this.closeGMModal}></div>
+						<form onSubmit={this.createEntity}>
+							<label htmlFor="name-input" className="block w-full font-sm font-grey-800 mb-0.5 text-left font-medium">
+								Name
+							</label>
+							<input type="text" id="name-input" />
+							<div className="block w-full text-right">
+								<button onClick={this.closeGMModal} type="button" className="button -text -black mr-1">
+									cancel
+								</button>
+								<button type="submit" className="button -solid -primary">
+									Spawn
+								</button>
+							</div>
+						</form>
+					</div>
+				);
+				break;
+			case "pin":
 				gmModal = (
 					<div className="gm-modal">
 						<div className="modal-backdrop" onClick={this.closeGMModal}></div>
@@ -289,7 +358,7 @@ class BattleMap extends Component<{}, BattleMapState> {
 							</i>
 							<span>ping</span>
 						</button>
-						<button onClick={this.gmPing} className="gm-button -enemy">
+						<button onClick={this.spawnEntity} data-type="enemy" className="gm-button -enemy">
 							<i>
 								<svg aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
 									<path
@@ -300,7 +369,7 @@ class BattleMap extends Component<{}, BattleMapState> {
 							</i>
 							<span>spawn enemy</span>
 						</button>
-						<button onClick={this.gmPing} className="gm-button -npc">
+						<button onClick={this.spawnEntity} data-type="npc" className="gm-button -npc">
 							<i>
 								<svg aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512">
 									<path
@@ -329,7 +398,13 @@ class BattleMap extends Component<{}, BattleMapState> {
 
 		if (this.state.map) {
 			let entities = this.state.entities.map((entity) => (
-				<div className={`entity -${entity.type}`} style={{ transform: `translate(${entity.pos.x - 12}px, ${entity.pos.y - 12}px)` }}>
+				<div
+					onClick={this.entityClick}
+					data-type={entity.type}
+					data-uid={entity.uid}
+					className={`entity -${entity.type} ${entity.uid === this.state.selectedEntity ? "is-selected" : ""}`}
+					style={{ transform: `translate(${entity.pos.x - 12}px, ${entity.pos.y - 12}px)` }}
+				>
 					<div className={`tooltip ${this.state.showNametags ? "is-visible" : ""}`}>
 						<span>{entity.name}</span>
 					</div>

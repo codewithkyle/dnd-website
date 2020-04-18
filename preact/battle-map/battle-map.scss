@@ -26,6 +26,7 @@ $yellow: #ECC94B;
     align-items: center;
     justify-content: center;
     pointer-events: none;
+    user-select: none;
 
     &.is-open{
         visibility: visible;
@@ -111,6 +112,7 @@ $yellow: #ECC94B;
                 left: 50%;
                 transform-origin: center;
                 transform: translate(-50%, -50%);
+                filter: drop-shadow(var(--shadow-md));
             }
 
             span{
@@ -157,6 +159,12 @@ $yellow: #ECC94B;
             cursor: default;
             border-width: 0 1px 2px 1px;
             border-style: solid;
+            outline: 2px dashed transparent;
+            outline-offset: 1px;
+
+            &.is-selected{
+                outline-color: var(--black);
+            }
 
             &.-pc{
                 background-color: $blue;
@@ -165,12 +173,14 @@ $yellow: #ECC94B;
 
             &.-enemy{
                 background-color: $red;
-                border-color: darken($red, 5);
+                border-color: darken($red, 3);
+                cursor: pointer;
             }
 
             &.-npc{
                 background-color: $yellow;
                 border-color: darken($yellow, 5);
+                cursor: pointer;
             }
 
             &:hover{
@@ -426,6 +436,7 @@ $yellow: #ECC94B;
     transition: all 150ms var(--ease-in-out);
     pointer-events: all;
     z-index: 1600;
+    user-select: none;
 
     &:hover{
         color: var(--primary-700);
@@ -463,6 +474,7 @@ $yellow: #ECC94B;
     border-width: 0px 1px 1px 1px;
     border-style: solid;
     border-color: var(--grey-200);
+    user-select: none;
 
     button{
         padding: 0 1rem;

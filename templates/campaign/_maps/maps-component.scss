@@ -3,6 +3,7 @@ maps-component{
         transition: all 150ms var(--ease-in-out);
         transform-origin: center;
         background-color: var(--white);
+        user-select: none;
 
         &:hover{
             box-shadow: var(--shadow-md);
