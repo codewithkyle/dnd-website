@@ -10,6 +10,10 @@ type BattleMapState = {
 	characterUid: string;
 	showNametags: boolean;
 	gmModal: null | "label";
+	savedPos: null | {
+		x: number;
+		y: number;
+	};
 	entities: Array<{
 		name: string;
 		uid: string;
@@ -50,6 +54,7 @@ class BattleMap extends Component<{}, BattleMapState> {
 			gmMenuPos: null,
 			pins: [],
 			gmModal: null,
+			savedPos: null,
 		};
 		this.canPing = true;
 		this.inboxUid = hookup("battle-map", this.inbox.bind(this));
@@ -139,9 +144,8 @@ class BattleMap extends Component<{}, BattleMapState> {
 			if (bounds.y > 0) {
 				newPos.y - bounds.y;
 			}
-			if (this.state.characterUid && this.canPing) {
+			if (this.state.characterUid && this.canPing && !e.ctrlKey && !e.metaKey) {
 				this.canPing = false;
-
 				message("server", {
 					type: "send-ping",
 					pos: newPos,
@@ -153,15 +157,17 @@ class BattleMap extends Component<{}, BattleMapState> {
 				setTimeout(() => {
 					this.canPing = true;
 				}, 900);
+			} else if ((this.state.characterUid && e.ctrlKey) || e.metaKey) {
+				this.setState({ gmModal: "label", savedPos: newPos });
 			} else if (this.state.characterUid === null) {
-				this.setState({ gmMenuPos: newPos });
+				this.setState({ gmMenuPos: newPos, savedPos: newPos });
 			}
 		}
 	};
 
 	private closeGMMenu: EventListener = (e: Event) => {
 		e.stopImmediatePropagation();
-		this.setState({ gmMenuPos: null });
+		this.setState({ gmMenuPos: null, savedPos: null });
 	};
 
 	private gmPing: EventListener = (e: Event) => {
@@ -185,13 +191,13 @@ class BattleMap extends Component<{}, BattleMapState> {
 		message("server", {
 			type: "place-pin",
 			label: labelInput.value,
-			pos: this.state.gmMenuPos,
+			pos: this.state.savedPos,
 		});
-		this.setState({ gmMenuPos: null, gmModal: null });
+		this.setState({ gmMenuPos: null, gmModal: null, savedPos: null });
 	};
 
 	private closeGMModal: EventListener = (e: Event) => {
-		this.setState({ gmMenuPos: null, gmModal: null });
+		this.setState({ gmMenuPos: null, gmModal: null, savedPos: null });
 	};
 
 	render() {
