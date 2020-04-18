@@ -116,7 +116,7 @@ class BattleMap extends Component<{}, BattleMapState> {
 				newPos.y - bounds.y;
 			}
 
-			if (this.state.characterUid) {
+			if (this.state.characterUid && !e.ctrlKey && !e.metaKey) {
 				message("server", {
 					type: "send-position",
 					entity: {
@@ -126,6 +126,8 @@ class BattleMap extends Component<{}, BattleMapState> {
 						type: "pc",
 					},
 				});
+			} else if ((this.state.characterUid && e.ctrlKey) || e.metaKey) {
+				this.setState({ gmModal: "pin", savedPos: newPos, selectedEntity: null });
 			} else if (!this.state.characterUid && this.state.selectedEntity) {
 				message("server", {
 					type: "send-position",
@@ -157,7 +159,7 @@ class BattleMap extends Component<{}, BattleMapState> {
 			if (bounds.y > 0) {
 				newPos.y - bounds.y;
 			}
-			if (this.state.characterUid && this.canPing && !e.ctrlKey && !e.metaKey) {
+			if (this.state.characterUid && this.canPing) {
 				this.canPing = false;
 				message("server", {
 					type: "send-ping",
@@ -170,8 +172,6 @@ class BattleMap extends Component<{}, BattleMapState> {
 				setTimeout(() => {
 					this.canPing = true;
 				}, 900);
-			} else if ((this.state.characterUid && e.ctrlKey) || e.metaKey) {
-				this.setState({ gmModal: "pin", savedPos: newPos, selectedEntity: null });
 			} else if (this.state.characterUid === null) {
 				this.setState({ gmMenuPos: newPos, savedPos: newPos, selectedEntity: null });
 			}
