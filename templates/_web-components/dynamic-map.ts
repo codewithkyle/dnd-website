@@ -52,6 +52,7 @@ class DynamicMap extends HTMLElement {
 				};
 				break;
 			case "clear":
+				console.log("doing a clear");
 				this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
 				break;
 			case "init":
@@ -160,14 +161,14 @@ class DynamicMap extends HTMLElement {
 			this.canvas.addEventListener("mousemove", this.handleMouseMove);
 			this.map = map;
 
-			if (drawing) {
-				const currentDrawing = new Image();
-				currentDrawing.src = drawing;
-				currentDrawing.onload = () => {
-					this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
-					this.context.drawImage(currentDrawing, 0, 0, currentDrawing.width, currentDrawing.height);
-				};
-			}
+			// if (drawing) {
+			// 	const currentDrawing = new Image();
+			// 	currentDrawing.src = drawing;
+			// 	currentDrawing.onload = () => {
+			// 		this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+			// 		this.context.drawImage(currentDrawing, 0, 0, currentDrawing.width, currentDrawing.height);
+			// 	};
+			// }
 		}
 	}
 }
