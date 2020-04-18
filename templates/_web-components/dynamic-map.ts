@@ -110,6 +110,8 @@ class DynamicMap extends HTMLElement {
 		this.context.moveTo(xyAdd.x, xyAdd.y);
 		this.xyAddLast = xyAdd;
 		this.xyLast = xy;
+
+		console.log(this.xyLast);
 	};
 
 	private getCords(e) {
