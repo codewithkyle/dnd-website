@@ -69,6 +69,9 @@ class BattleMap extends Component<{}, BattleMapState> {
 
 	private inbox(data) {
 		switch (data.type) {
+			case "stop-drawing":
+				this.setState({ enableDrawing: false });
+				break;
 			case "render-pins":
 				this.setState({ pins: data.pins });
 				break;
