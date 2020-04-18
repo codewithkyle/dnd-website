@@ -38,9 +38,6 @@ class DynamicMap extends HTMLElement {
 		switch (data.type) {
 			case "render":
 				console.log("render");
-				if (!this.context) {
-					return;
-				}
 				const currentDrawing = new Image();
 				currentDrawing.src = data.drawing;
 				currentDrawing.onload = () => {
@@ -61,6 +58,7 @@ class DynamicMap extends HTMLElement {
 	}
 
 	private handleMouseDown: EventListener = (e: MouseEvent) => {
+		console.log("hot mosue");
 		this.mouse.active = true;
 		const xy = this.getCords(e);
 		this.context.beginPath();
@@ -146,15 +144,15 @@ class DynamicMap extends HTMLElement {
 			this.canvas.addEventListener("mouseup", this.handleMouseUp);
 			this.canvas.addEventListener("mousemove", this.handleMouseMove);
 			this.map = map;
-		}
 
-		if (drawing) {
-			const currentDrawing = new Image();
-			currentDrawing.src = drawing;
-			currentDrawing.onload = () => {
-				this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
-				this.context.drawImage(currentDrawing, 0, 0, currentDrawing.width, currentDrawing.height);
-			};
+			if (drawing) {
+				const currentDrawing = new Image();
+				currentDrawing.src = drawing;
+				currentDrawing.onload = () => {
+					this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+					this.context.drawImage(currentDrawing, 0, 0, currentDrawing.width, currentDrawing.height);
+				};
+			}
 		}
 	}
 }
