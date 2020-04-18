@@ -103,6 +103,35 @@ class BattleMap extends Component<{}, BattleMapState> {
 		this.setState({ showNametags: this.state.showNametags ? false : true });
 	};
 
+	private handleRightClick: EventListener = (e: Event) => {
+		if (e instanceof MouseEvent) {
+			e.preventDefault();
+			// Is PC
+			if (this.state.characterUid) {
+				const map = e.currentTarget as HTMLElement;
+				const bounds = map.getBoundingClientRect();
+				const newPos = {
+					x: e.pageX + (e.offsetX - e.pageX),
+					y: e.pageY + (e.offsetY - e.pageY),
+				};
+				if (bounds.x > 0) {
+					newPos.x - bounds.x;
+				}
+				if (bounds.y > 0) {
+					newPos.y - bounds.y;
+				}
+				message("server", {
+					type: "send-ping",
+					pos: newPos,
+				});
+				message("pinger", {
+					type: "ping",
+					pos: newPos,
+				});
+			}
+		}
+	};
+
 	render() {
 		let map: any = <span>The Game Master hasn't loaded a map yet.</span>;
 
@@ -133,8 +162,11 @@ class BattleMap extends Component<{}, BattleMapState> {
 			));
 			map = (
 				<div className="map-wrapper">
-					<img onClick={this.moveMarker} draggable={false} className="map" src={this.state.map} alt="a D&D battle map" />
+					<img onClick={this.moveMarker} onContextMenu={this.handleRightClick} draggable={false} className="map" src={this.state.map} alt="a D&D battle map" />
 					<div className="entities">{entities}</div>
+					{/* 
+					// @ts-ignore */}
+					<ping-manager web-component loading="eager"></ping-manager>
 				</div>
 			);
 		}

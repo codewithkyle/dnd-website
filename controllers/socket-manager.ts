@@ -116,10 +116,21 @@ class SocketManager {
 				entities: data.entities,
 			});
 		});
+		this.socket.on("ping-pos", (pos) => {
+			message("pinger", {
+				type: "ping",
+				pos: pos,
+			});
+		});
 	}
 
 	private inbox(data) {
 		switch (data.type) {
+			case "send-ping":
+				if (this.isConnected && this.inRoom) {
+					this.socket.emit("ping-pos", data.pos);
+				}
+				break;
 			case "init-map":
 				if (this.isConnected && this.inRoom) {
 					this.socket.emit("init-map");
