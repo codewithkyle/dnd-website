@@ -37,6 +37,7 @@ class DynamicMap extends HTMLElement {
 	private inbox(data) {
 		switch (data.type) {
 			case "render":
+				console.log("render");
 				if (!this.context) {
 					return;
 				}
