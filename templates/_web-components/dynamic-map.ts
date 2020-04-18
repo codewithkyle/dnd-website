@@ -121,14 +121,6 @@ class DynamicMap extends HTMLElement {
 		};
 	}
 
-	private handleContextMenu: EventListener = (e: Event) => {
-		e.preventDefault();
-		e.stopImmediatePropagation();
-		message("battle-map", {
-			type: "stop-drawing",
-		});
-	};
-
 	disconnectCallback() {
 		disconnect(this.inboxUid);
 	}
@@ -147,7 +139,6 @@ class DynamicMap extends HTMLElement {
 			this.canvas.addEventListener("mousedown", this.handleMouseDown);
 			this.canvas.addEventListener("mouseup", this.handleMouseUp);
 			this.canvas.addEventListener("mousemove", this.handleMouseMove);
-			this.canvas.addEventListener("contextmenu", this.handleContextMenu);
 			this.map = map;
 		}
 
