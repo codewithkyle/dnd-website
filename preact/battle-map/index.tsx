@@ -33,13 +33,6 @@ class BattleMap extends Component<{}, BattleMapState> {
 			characterUid: characterSheet ? characterSheet.dataset.characterUid : null,
 		};
 		this.inboxUid = hookup("battle-map", this.inbox.bind(this));
-		message(
-			"server",
-			{
-				type: "init-map",
-			},
-			this.inboxUid
-		);
 		document.body.addEventListener("keyup", this.handleKeypress);
 	}
 
@@ -62,6 +55,13 @@ class BattleMap extends Component<{}, BattleMapState> {
 
 	private toggleDrawer: EventListener = () => {
 		this.setState({ open: this.state.open ? false : true });
+		message(
+			"server",
+			{
+				type: "init-map",
+			},
+			this.inboxUid
+		);
 	};
 
 	private handleKeypress: EventListener = (e: KeyboardEvent) => {
