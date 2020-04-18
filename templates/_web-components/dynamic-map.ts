@@ -110,8 +110,6 @@ class DynamicMap extends HTMLElement {
 		this.context.moveTo(xyAdd.x, xyAdd.y);
 		this.xyAddLast = xyAdd;
 		this.xyLast = xy;
-
-		console.log(this.context, this.canvas);
 	};
 
 	private getCords(e) {
@@ -141,14 +139,7 @@ class DynamicMap extends HTMLElement {
 		disconnect(this.inboxUid);
 	}
 
-	connectedCallback() {
-		message("server", {
-			type: "init-map",
-		});
-	}
-
 	private init(map, drawing) {
-		console.log("init", map, drawing);
 		if (!this.map || this.map !== map) {
 			this.canvas = this.querySelector("canvas");
 			const bounds = this.getBoundingClientRect();
@@ -163,14 +154,14 @@ class DynamicMap extends HTMLElement {
 			this.canvas.addEventListener("mousemove", this.handleMouseMove);
 			this.map = map;
 
-			// if (drawing) {
-			// 	const currentDrawing = new Image();
-			// 	currentDrawing.src = drawing;
-			// 	currentDrawing.onload = () => {
-			// 		this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
-			// 		this.context.drawImage(currentDrawing, 0, 0, currentDrawing.width, currentDrawing.height);
-			// 	};
-			// }
+			if (drawing) {
+				const currentDrawing = new Image();
+				currentDrawing.src = drawing;
+				currentDrawing.onload = () => {
+					this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+					this.context.drawImage(currentDrawing, 0, 0, currentDrawing.width, currentDrawing.height);
+				};
+			}
 		}
 	}
 }

@@ -79,11 +79,6 @@ class BattleMap extends Component<{}, BattleMapState> {
 				break;
 			case "init-map":
 				this.setState({ map: data.url, entities: data.entities, pins: data.pins, drawing: data.drawing });
-				message("dynamic-map", {
-					type: "init",
-					map: data.url,
-					drawing: data.drawing,
-				});
 				break;
 			case "render-entities":
 				this.setState({ entities: data.entities });
@@ -310,6 +305,14 @@ class BattleMap extends Component<{}, BattleMapState> {
 		});
 	};
 
+	private mapLoaded: EventListener = () => {
+		message("dynamic-map", {
+			type: "init",
+			map: this.state.map,
+			drawing: this.state.drawing,
+		});
+	};
+
 	render() {
 		let map: any = <span>The Game Master hasn't loaded a map yet.</span>;
 
@@ -503,7 +506,15 @@ class BattleMap extends Component<{}, BattleMapState> {
 			));
 			map = (
 				<div className="map-wrapper">
-					<img onClick={this.moveMarker} onContextMenu={this.handleRightClick} draggable={false} className="map" src={this.state.map} alt="a D&D battle map" />
+					<img
+						onLoad={this.mapLoaded}
+						onClick={this.moveMarker}
+						onContextMenu={this.handleRightClick}
+						draggable={false}
+						className="map"
+						src={this.state.map}
+						alt="a D&D battle map"
+					/>
 					{/* 
 					// @ts-ignore */}
 					<dynamic-map web-component loading="eager" className={this.state.enableDrawing ? "is-active" : null}>
