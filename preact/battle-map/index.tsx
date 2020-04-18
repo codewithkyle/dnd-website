@@ -236,14 +236,38 @@ class BattleMap extends Component<{}, BattleMapState> {
 
 	private entityClick: EventListener = (e: Event) => {
 		e.stopImmediatePropagation();
-		const target = e.currentTarget as HTMLElement;
-		const type = target.dataset.type;
-		const uid = target.dataset.uid;
-		if ((this.state.characterUid === null && type === "enemy") || type === "npc") {
-			if (uid === this.state.selectedEntity) {
-				this.setState({ selectedEntity: null });
-			} else {
-				this.setState({ selectedEntity: target.dataset.uid });
+		if (e instanceof MouseEvent) {
+			const target = e.currentTarget as HTMLElement;
+			const type = target.dataset.type;
+			const uid = target.dataset.uid;
+			if ((this.state.characterUid === null && type === "enemy") || type === "npc") {
+				if (e.metaKey || e.ctrlKey) {
+					this.setState({ selectedEntity: null });
+					message("server", {
+						type: "remove-entity",
+						uid: uid,
+					});
+				} else {
+					if (uid === this.state.selectedEntity) {
+						this.setState({ selectedEntity: null });
+					} else {
+						this.setState({ selectedEntity: target.dataset.uid });
+					}
+				}
+			}
+		}
+	};
+
+	private pinClick: EventListener = (e: Event) => {
+		e.stopImmediatePropagation();
+		if (e instanceof MouseEvent) {
+			if (e.ctrlKey || e.metaKey) {
+				const target = e.currentTarget as HTMLElement;
+				const uid = target.dataset.uid;
+				message("server", {
+					type: "remove-pin",
+					uid: uid,
+				});
 			}
 		}
 	};
@@ -411,7 +435,7 @@ class BattleMap extends Component<{}, BattleMapState> {
 				</div>
 			));
 			let pins = this.state.pins.map((pin) => (
-				<i className="pin" data-uid={pin.uid} style={{ transform: `translate(${pin.pos.x - 16}px, ${pin.pos.y - 31}px)` }}>
+				<i onClick={this.pinClick} className="pin" data-uid={pin.uid} style={{ transform: `translate(${pin.pos.x - 16}px, ${pin.pos.y - 31}px)` }}>
 					<svg aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
 						<path
 							fill="currentColor"

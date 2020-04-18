@@ -133,6 +133,16 @@ class SocketManager {
 
 	private inbox(data) {
 		switch (data.type) {
+			case "remove-entity":
+				if (this.isConnected && this.inRoom) {
+					this.socket.emit("remove-entity", data.uid);
+				}
+				break;
+			case "remove-pin":
+				if (this.isConnected && this.inRoom) {
+					this.socket.emit("remove-pin", data.uid);
+				}
+				break;
 			case "add-entity":
 				if (this.isConnected && this.inRoom) {
 					this.socket.emit("add-entity", {
