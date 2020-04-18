@@ -125,6 +125,12 @@ class DynamicMap extends HTMLElement {
 		disconnect(this.inboxUid);
 	}
 
+	connectedCallback() {
+		message("server", {
+			type: "init-map",
+		});
+	}
+
 	private init(map, drawing) {
 		console.log("init");
 		if (!this.map || this.map !== map) {
