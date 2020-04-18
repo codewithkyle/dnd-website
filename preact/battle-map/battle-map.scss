@@ -90,17 +90,17 @@ $yellow: #ECC94B;
 
             &.-pc{
                 background-color: $blue;
-                border-color: darken($blue, 3);
+                border-color: darken($blue, 5);
             }
 
             &.-enemy{
                 background-color: $red;
-                border-color: darken($red, 3);
+                border-color: darken($red, 5);
             }
 
             &.-npc{
                 background-color: $yellow;
-                border-color: darken($yellow, 3);
+                border-color: darken($yellow, 5);
             }
 
             &:hover{
@@ -112,7 +112,7 @@ $yellow: #ECC94B;
 
             .tooltip{
                 position: absolute;
-                top: -20px;
+                top: -22px;
                 left: 50%;
                 transform: translate(-50%, 0);
                 opacity: 0;
