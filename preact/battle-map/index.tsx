@@ -9,6 +9,7 @@ type BattleMapState = {
 	name: string;
 	characterUid: string;
 	showNametags: boolean;
+	gmModal: null | "label";
 	entities: Array<{
 		name: string;
 		uid: string;
@@ -22,6 +23,14 @@ type BattleMapState = {
 		x: number;
 		y: number;
 	};
+	pins: Array<{
+		uid: string;
+		label: string;
+		pos: {
+			x: number;
+			y: number;
+		};
+	}>;
 };
 
 class BattleMap extends Component<{}, BattleMapState> {
@@ -39,6 +48,8 @@ class BattleMap extends Component<{}, BattleMapState> {
 			characterUid: characterSheet ? characterSheet.dataset.characterUid : null,
 			showNametags: false,
 			gmMenuPos: null,
+			pins: [],
+			gmModal: null,
 		};
 		this.canPing = true;
 		this.inboxUid = hookup("battle-map", this.inbox.bind(this));
@@ -47,8 +58,11 @@ class BattleMap extends Component<{}, BattleMapState> {
 
 	private inbox(data) {
 		switch (data.type) {
+			case "render-pins":
+				this.setState({ pins: data.pins });
+				break;
 			case "init-map":
-				this.setState({ map: data.url, entities: data.entities });
+				this.setState({ map: data.url, entities: data.entities, pins: data.pins });
 				break;
 			case "render-entities":
 				this.setState({ entities: data.entities });
@@ -159,11 +173,48 @@ class BattleMap extends Component<{}, BattleMapState> {
 		this.setState({ gmMenuPos: null });
 	};
 
+	private placePin: EventListener = (e: Event) => {
+		this.setState({ gmModal: "label" });
+	};
+
+	private createPin: EventListener = (e: Event) => {
+		e.stopImmediatePropagation();
+		e.preventDefault();
+		const target = e.currentTarget as HTMLFormElement;
+		const labelInput = target.querySelector("input");
+		message("server", {
+			type: "place-pin",
+			label: labelInput.value,
+			pos: this.state.gmMenuPos,
+		});
+		this.setState({ gmMenuPos: null, gmModal: null });
+	};
+
+	private closeGMModal: EventListener = (e: Event) => {
+		this.setState({ gmMenuPos: null, gmModal: null });
+	};
+
 	render() {
 		let map: any = <span>The Game Master hasn't loaded a map yet.</span>;
 
 		let drawer = null;
 		if (this.state.characterUid && this.state.open) {
+			// Player drawer
+			drawer = (
+				<div className="map-action-drawer">
+					<button onClick={this.toggleNameTags} className={this.state.showNametags ? "is-active" : ""}>
+						<svg aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+							<path
+								fill="currentColor"
+								d="M512 32H64C28.7 32 0 60.7 0 96v320c0 35.3 28.7 64 64 64h448c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64zm32 384c0 17.6-14.4 32-32 32H64c-17.6 0-32-14.4-32-32V96c0-17.6 14.4-32 32-32h448c17.6 0 32 14.4 32 32v320zm-72-128H360c-4.4 0-8 3.6-8 8v16c0 4.4 3.6 8 8 8h112c4.4 0 8-3.6 8-8v-16c0-4.4-3.6-8-8-8zm0-64H360c-4.4 0-8 3.6-8 8v16c0 4.4 3.6 8 8 8h112c4.4 0 8-3.6 8-8v-16c0-4.4-3.6-8-8-8zm0-64H360c-4.4 0-8 3.6-8 8v16c0 4.4 3.6 8 8 8h112c4.4 0 8-3.6 8-8v-16c0-4.4-3.6-8-8-8zM208 288c44.2 0 80-35.8 80-80s-35.8-80-80-80-80 35.8-80 80 35.8 80 80 80zm0-128c26.5 0 48 21.5 48 48s-21.5 48-48 48-48-21.5-48-48 21.5-48 48-48zm46.8 144c-19.5 0-24.4 7-46.8 7s-27.3-7-46.8-7c-21.2 0-41.8 9.4-53.8 27.4C100.2 342.1 96 355 96 368.9V392c0 4.4 3.6 8 8 8h16c4.4 0 8-3.6 8-8v-23.1c0-7 2.1-13.8 6-19.6 5.6-8.3 15.8-13.2 27.3-13.2 12.4 0 20.8 7 46.8 7 25.9 0 34.3-7 46.8-7 11.5 0 21.7 5 27.3 13.2 3.9 5.8 6 12.6 6 19.6V392c0 4.4 3.6 8 8 8h16c4.4 0 8-3.6 8-8v-23.1c0-13.9-4.2-26.8-11.4-37.5-12.3-18-32.9-27.4-54-27.4z"
+							></path>
+						</svg>
+						<span>Nametags</span>
+					</button>
+				</div>
+			);
+		} else if (!this.state.characterUid && this.state.open) {
+			// GM drawer
 			drawer = (
 				<div className="map-action-drawer">
 					<button onClick={this.toggleNameTags} className={this.state.showNametags ? "is-active" : ""}>
@@ -179,8 +230,36 @@ class BattleMap extends Component<{}, BattleMapState> {
 			);
 		}
 
+		let gmModal;
+		switch (this.state.gmModal) {
+			case "label":
+				gmModal = (
+					<div className="gm-modal">
+						<div className="modal-backdrop" onClick={this.closeGMModal}></div>
+						<form onSubmit={this.createPin}>
+							<label htmlFor="label-input" className="block w-full font-sm font-grey-800 mb-0.5 text-left font-medium">
+								Pin Label
+							</label>
+							<input type="text" id="label-input" />
+							<div className="block w-full text-right">
+								<button onClick={this.closeGMModal} type="button" className="button -text -black mr-1">
+									cancel
+								</button>
+								<button type="submit" className="button -solid -primary">
+									Create Pin
+								</button>
+							</div>
+						</form>
+					</div>
+				);
+				break;
+			default:
+				gmModal = null;
+				break;
+		}
+
 		let gmMenu = null;
-		if (this.state.gmMenuPos !== null) {
+		if (this.state.gmMenuPos !== null && this.state.gmModal === null) {
 			gmMenu = (
 				<Fragment>
 					<div className="gm-backdrop" onClick={this.closeGMMenu}></div>
@@ -226,7 +305,7 @@ class BattleMap extends Component<{}, BattleMapState> {
 							</i>
 							<span>spawn npc</span>
 						</button>
-						<button onClick={this.gmPing} className="gm-button -pin">
+						<button onClick={this.placePin} className="gm-button -pin">
 							<i>
 								<svg aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 288 512">
 									<path
@@ -250,10 +329,24 @@ class BattleMap extends Component<{}, BattleMapState> {
 					</div>
 				</div>
 			));
+			let pins = this.state.pins.map((pin) => (
+				<i className="pin" data-uid={pin.uid} style={{ transform: `translate(${pin.pos.x - 16}px, ${pin.pos.y - 31}px)` }}>
+					<svg aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+						<path
+							fill="currentColor"
+							d="M172.268 501.67C26.97 291.031 0 269.413 0 192 0 85.961 85.961 0 192 0s192 85.961 192 192c0 77.413-26.97 99.031-172.268 309.67-9.535 13.774-29.93 13.773-39.464 0zM192 272c44.183 0 80-35.817 80-80s-35.817-80-80-80-80 35.817-80 80 35.817 80 80 80z"
+						></path>
+					</svg>
+					<span className={this.state.showNametags ? "is-visible" : ""}>{pin.label}</span>
+				</i>
+			));
 			map = (
 				<div className="map-wrapper">
 					<img onClick={this.moveMarker} onContextMenu={this.handleRightClick} draggable={false} className="map" src={this.state.map} alt="a D&D battle map" />
-					<div className="entities">{entities}</div>
+					<div className="entities">
+						{pins}
+						{entities}
+					</div>
 					{/* 
 					// @ts-ignore */}
 					<ping-manager web-component loading="eager"></ping-manager>
@@ -289,6 +382,7 @@ class BattleMap extends Component<{}, BattleMapState> {
 				</button>
 				<div className={`battle-map ${this.state.open ? "is-open" : ""}`}>{map}</div>
 				{drawer}
+				{gmModal}
 			</Fragment>
 		);
 	}

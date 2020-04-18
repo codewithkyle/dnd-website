@@ -9,6 +9,7 @@ maps-component{
         }
 
         &:active{
+            transition: all 75ms var(--ease-in);
             transform: scale(0.95);
             box-shadow: none;
         }

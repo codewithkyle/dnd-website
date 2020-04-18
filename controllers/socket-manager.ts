@@ -114,6 +114,7 @@ class SocketManager {
 				type: "init-map",
 				url: data.url,
 				entities: data.entities,
+				pins: data.pins,
 			});
 		});
 		this.socket.on("ping-pos", (pos) => {
@@ -122,10 +123,24 @@ class SocketManager {
 				pos: pos,
 			});
 		});
+		this.socket.on("render-pins", (pins) => {
+			message("battle-map", {
+				type: "render-pins",
+				pins: pins,
+			});
+		});
 	}
 
 	private inbox(data) {
 		switch (data.type) {
+			case "place-pin":
+				if (this.isConnected && this.inRoom) {
+					this.socket.emit("place-pin", {
+						pos: data.pos,
+						label: data.label,
+					});
+				}
+				break;
 			case "send-ping":
 				if (this.isConnected && this.inRoom) {
 					this.socket.emit("ping-pos", data.pos);

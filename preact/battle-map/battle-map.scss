@@ -73,6 +73,76 @@ $yellow: #ECC94B;
         height: 100%;
         pointer-events: none;
 
+        .pin{
+            width: 32px;
+            height: 32px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            pointer-events: all;
+
+            &:hover{
+                span{
+                    opacity: 1;
+                    visibility: visible;
+                }
+            }
+
+            &::before{
+                content:"";
+                display: inline-block;
+                width: 8px;
+                height: 8px;
+                border-radius: 50%;
+                position: absolute;
+                bottom: -3px;
+                left: 50%;
+                transform: translate(-50%, 0);
+                background-color: var(--black);
+                opacity: 0.06;
+            }
+
+            svg{
+                color: var(--primary-700);
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform-origin: center;
+                transform: translate(-50%, -50%);
+            }
+
+            span{
+                position: absolute;
+                top: -26px;
+                left: 50%;
+                transform: translate(-50%, 0);
+                opacity: 0;
+                visibility: hidden;
+                transition: all 150ms var(--ease-in-out);
+                cursor: default;
+                font-size: 0.75rem;
+                text-transform: uppercase;
+                font-weight: var(--font-medium);
+                color: var(--white);
+                display: inline-block;
+                line-height: 24px;
+                height: 24px;
+                background-color: var(--grey-800);
+                box-shadow: var(--shadow-md);
+                padding: 0 0.5rem;
+                border-radius: 0.125rem;
+                font-style: normal;
+                white-space: nowrap;
+
+                &.is-visible{
+                    opacity: 1;
+                    visibility: visible;
+                }
+            }
+        }
+
         .entity{
             display: inline-block;
             width: 24px;
@@ -153,6 +223,8 @@ $yellow: #ECC94B;
                     box-shadow: var(--shadow-md);
                     padding: 0 0.5rem;
                     border-radius: 0.125rem;
+                    font-style: normal;
+                    white-space: nowrap;
                 }
             }
         }
@@ -445,6 +517,57 @@ $yellow: #ECC94B;
 
         span{
             font-size: 0.875rem;
+        }
+    }
+}
+.gm-modal{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: all;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+
+    .modal-backdrop{
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: var(--black);
+        opacity: 0.3;
+    }
+
+    form{
+        width: 420px;
+        max-width: 90vw;
+        background-color: var(--white);
+        box-shadow: var(--shadow-lg);
+        border-radius: 0.25rem;
+        padding: 2rem;
+
+        input{
+            margin-bottom: 1rem;
+            display: block;
+            width: 100%;
+            height: 48px;
+            padding: 0 1rem;
+            border-radius: 0.25rem;
+            background-color: var(--neutral-100);
+            transition: all 150ms var(--ease-in-out);
+
+            &:hover,
+            &:focus{
+                background-color: var(--neutral-200);
+            }
+
+            &:active{
+                background-color: var(--neutral-300);
+            }
         }
     }
 }
