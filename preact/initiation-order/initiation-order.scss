@@ -8,7 +8,7 @@ $cap: round;
 
 .initiation-order{
     background-color: var(--white);
-    border-radius: 0.25rem 0.25rem 0 0;
+    border-radius: 0.5rem 0.5rem 0 0;
     padding: 1rem;
     position: fixed;
     width: 1024px;
@@ -16,7 +16,7 @@ $cap: round;
     left: 50%;
     bottom: 0;
     transform: translateX(-50%) translateY(100%);
-    box-shadow: 0 0px 24px -1px rgba(0, 0, 0, 0.1),0 0px 6px -1px rgba(0, 0, 0, 0.06);
+    box-shadow: var(--shadow-lg);
     transition: all 150ms var(--ease-in-out);
     visibility: hidden;
     opacity: 0;
@@ -26,6 +26,9 @@ $cap: round;
     align-items: center;
     justify-content: center;
     pointer-events: all;
+    border-width: 1px 1px 0 1px;
+    border-style: solid;
+    border-color: var(--grey-200);
 
     &.is-open{
         visibility: visible;

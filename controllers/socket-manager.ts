@@ -110,9 +110,9 @@ class SocketManager {
 			});
 		});
 		this.socket.on("init-map", (data) => {
-			reply(this.initMapReplyId, {
+			message("battle-map", {
 				type: "init-map",
-				map: data.url,
+				url: data.url,
 				entities: data.entities,
 			});
 		});
@@ -122,7 +122,6 @@ class SocketManager {
 		switch (data.type) {
 			case "init-map":
 				if (this.isConnected && this.inRoom) {
-					this.initMapReplyId = data.replyID;
 					this.socket.emit("init-map");
 				}
 				break;
