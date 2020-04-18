@@ -104,7 +104,6 @@ class SocketManager {
 			});
 		});
 		this.socket.on("render-entities", (entities) => {
-			console.log("Got new entity pos");
 			message("battle-map", {
 				type: "render-entities",
 				entities: entities,

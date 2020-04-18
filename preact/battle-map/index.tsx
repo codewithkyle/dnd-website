@@ -22,6 +22,7 @@ type BattleMapState = {
 
 class BattleMap extends Component<{}, BattleMapState> {
 	private inboxUid: string;
+	private canPing: boolean;
 
 	constructor() {
 		super();
@@ -34,6 +35,7 @@ class BattleMap extends Component<{}, BattleMapState> {
 			characterUid: characterSheet ? characterSheet.dataset.characterUid : null,
 			showNametags: false,
 		};
+		this.canPing = true;
 		this.inboxUid = hookup("battle-map", this.inbox.bind(this));
 		document.body.addEventListener("keyup", this.handleKeypress);
 	}
@@ -107,7 +109,8 @@ class BattleMap extends Component<{}, BattleMapState> {
 		if (e instanceof MouseEvent) {
 			e.preventDefault();
 			// Is PC
-			if (this.state.characterUid) {
+			if (this.state.characterUid && this.canPing) {
+				this.canPing = false;
 				const map = e.currentTarget as HTMLElement;
 				const bounds = map.getBoundingClientRect();
 				const newPos = {
@@ -128,6 +131,9 @@ class BattleMap extends Component<{}, BattleMapState> {
 					type: "ping",
 					pos: newPos,
 				});
+				setTimeout(() => {
+					this.canPing = true;
+				}, 900);
 			}
 		}
 	};
@@ -160,7 +166,6 @@ class BattleMap extends Component<{}, BattleMapState> {
 					</div>
 				</div>
 			));
-			console.log("Rendered new entity pos");
 			map = (
 				<div className="map-wrapper">
 					<img onClick={this.moveMarker} onContextMenu={this.handleRightClick} draggable={false} className="map" src={this.state.map} alt="a D&D battle map" />
