@@ -111,7 +111,7 @@ class DynamicMap extends HTMLElement {
 		this.xyAddLast = xyAdd;
 		this.xyLast = xy;
 
-		console.log(this.xyLast);
+		console.log(this.context, this.canvas);
 	};
 
 	private getCords(e) {
