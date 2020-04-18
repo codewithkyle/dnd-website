@@ -163,6 +163,10 @@ class DynamicMap extends HTMLElement {
 				};
 			}
 		}
+
+		if (!drawing && this.context) {
+			this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+		}
 	}
 }
 customElements.define("dynamic-map", DynamicMap);
