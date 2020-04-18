@@ -18,6 +18,10 @@ type BattleMapState = {
 			y: number;
 		};
 	}>;
+	gmMenuPos: {
+		x: number;
+		y: number;
+	};
 };
 
 class BattleMap extends Component<{}, BattleMapState> {
@@ -34,6 +38,7 @@ class BattleMap extends Component<{}, BattleMapState> {
 			name: characterSheet ? characterSheet.dataset.characterName : null,
 			characterUid: characterSheet ? characterSheet.dataset.characterUid : null,
 			showNametags: false,
+			gmMenuPos: null,
 		};
 		this.canPing = true;
 		this.inboxUid = hookup("battle-map", this.inbox.bind(this));
@@ -108,21 +113,21 @@ class BattleMap extends Component<{}, BattleMapState> {
 	private handleRightClick: EventListener = (e: Event) => {
 		if (e instanceof MouseEvent) {
 			e.preventDefault();
-			// Is PC
+			const map = e.currentTarget as HTMLElement;
+			const bounds = map.getBoundingClientRect();
+			const newPos = {
+				x: e.pageX + (e.offsetX - e.pageX),
+				y: e.pageY + (e.offsetY - e.pageY),
+			};
+			if (bounds.x > 0) {
+				newPos.x - bounds.x;
+			}
+			if (bounds.y > 0) {
+				newPos.y - bounds.y;
+			}
 			if (this.state.characterUid && this.canPing) {
 				this.canPing = false;
-				const map = e.currentTarget as HTMLElement;
-				const bounds = map.getBoundingClientRect();
-				const newPos = {
-					x: e.pageX + (e.offsetX - e.pageX),
-					y: e.pageY + (e.offsetY - e.pageY),
-				};
-				if (bounds.x > 0) {
-					newPos.x - bounds.x;
-				}
-				if (bounds.y > 0) {
-					newPos.y - bounds.y;
-				}
+
 				message("server", {
 					type: "send-ping",
 					pos: newPos,
@@ -134,8 +139,24 @@ class BattleMap extends Component<{}, BattleMapState> {
 				setTimeout(() => {
 					this.canPing = true;
 				}, 900);
+			} else if (this.state.characterUid === null) {
+				this.setState({ gmMenuPos: newPos });
 			}
 		}
+	};
+
+	private closeGMMenu: EventListener = (e: Event) => {
+		e.stopImmediatePropagation();
+		this.setState({ gmMenuPos: null });
+	};
+
+	private gmPing: EventListener = (e: Event) => {
+		e.stopImmediatePropagation();
+		message("pinger", {
+			type: "ping",
+			pos: this.state.gmMenuPos,
+		});
+		this.setState({ gmMenuPos: null });
 	};
 
 	render() {
@@ -158,6 +179,69 @@ class BattleMap extends Component<{}, BattleMapState> {
 			);
 		}
 
+		let gmMenu = null;
+		if (this.state.gmMenuPos !== null) {
+			gmMenu = (
+				<Fragment>
+					<div className="gm-backdrop" onClick={this.closeGMMenu}></div>
+					<div className="gm-menu" style={{ transform: `translate(${this.state.gmMenuPos.x - 230}px, ${this.state.gmMenuPos.y - 85}px)` }}>
+						<button onClick={this.closeGMMenu} className="close-button">
+							<svg aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+								<path
+									fill="currentColor"
+									d="M193.94 256L296.5 153.44l21.15-21.15c3.12-3.12 3.12-8.19 0-11.31l-22.63-22.63c-3.12-3.12-8.19-3.12-11.31 0L160 222.06 36.29 98.34c-3.12-3.12-8.19-3.12-11.31 0L2.34 120.97c-3.12 3.12-3.12 8.19 0 11.31L126.06 256 2.34 379.71c-3.12 3.12-3.12 8.19 0 11.31l22.63 22.63c3.12 3.12 8.19 3.12 11.31 0L160 289.94 262.56 392.5l21.15 21.15c3.12 3.12 8.19 3.12 11.31 0l22.63-22.63c3.12-3.12 3.12-8.19 0-11.31L193.94 256z"
+								></path>
+							</svg>
+						</button>
+						<button onClick={this.gmPing} className="gm-button -ping">
+							<i>
+								<svg aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+									<path
+										fill="currentColor"
+										d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 448c-110.532 0-200-89.431-200-200 0-110.495 89.472-200 200-200 110.491 0 200 89.471 200 200 0 110.53-89.431 200-200 200zm42-104c0 23.159-18.841 42-42 42s-42-18.841-42-42 18.841-42 42-42 42 18.841 42 42zm-81.37-211.401l6.8 136c.319 6.387 5.591 11.401 11.985 11.401h41.17c6.394 0 11.666-5.014 11.985-11.401l6.8-136c.343-6.854-5.122-12.599-11.985-12.599h-54.77c-6.863 0-12.328 5.745-11.985 12.599z"
+									></path>
+								</svg>
+							</i>
+							<span>ping</span>
+						</button>
+						<button onClick={this.gmPing} className="gm-button -enemy">
+							<i>
+								<svg aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+									<path
+										fill="currentColor"
+										d="M507.31 462.06L448 402.75l31.64-59.03c3.33-6.22 2.2-13.88-2.79-18.87l-17.54-17.53c-6.25-6.25-16.38-6.25-22.63 0L420 324 112 16 18.27.16C8.27-1.27-1.42 7.17.17 18.26l15.84 93.73 308 308-16.69 16.69c-6.25 6.25-6.25 16.38 0 22.62l17.53 17.54a16 16 0 0 0 18.87 2.79L402.75 448l59.31 59.31c6.25 6.25 16.38 6.25 22.63 0l22.62-22.62c6.25-6.25 6.25-16.38 0-22.63zm-149.36-76.01L60.78 88.89l-5.72-33.83 33.84 5.72 297.17 297.16-28.12 28.11zm65.17-325.27l33.83-5.72-5.72 33.84L340.7 199.43l33.94 33.94L496.01 112l15.84-93.73c1.43-10-7.01-19.69-18.1-18.1l-93.73 15.84-121.38 121.36 33.94 33.94L423.12 60.78zM199.45 340.69l-45.38 45.38-28.12-28.12 45.38-45.38-33.94-33.94-45.38 45.38-16.69-16.69c-6.25-6.25-16.38-6.25-22.62 0l-17.54 17.53a16 16 0 0 0-2.79 18.87L64 402.75 4.69 462.06c-6.25 6.25-6.25 16.38 0 22.63l22.62 22.62c6.25 6.25 16.38 6.25 22.63 0L109.25 448l59.03 31.64c6.22 3.33 13.88 2.2 18.87-2.79l17.53-17.54c6.25-6.25 6.25-16.38 0-22.63L188 420l45.38-45.38-33.93-33.93z"
+									></path>
+								</svg>
+							</i>
+							<span>spawn enemy</span>
+						</button>
+						<button onClick={this.gmPing} className="gm-button -npc">
+							<i>
+								<svg aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512">
+									<path
+										fill="currentColor"
+										d="M340.3 464H48v-25.6c0-47.6 38.8-86.4 86.4-86.4 14.6 0 38.3 16 89.6 16 42.6 0 70-11.9 80.1-14.4-.1-7.5-.1-24.8 6.1-49.2-28.6 1.4-40.9 15.6-86.2 15.6-47.1 0-60.8-16-89.6-16C60.2 304 0 364.2 0 438.4V464c0 26.5 21.5 48 48 48h342c-19.4-12.9-36.2-29.2-49.7-48zM224 288c79.5 0 144-64.5 144-144S303.5 0 224 0 80 64.5 80 144s64.5 144 144 144zm0-240c52.9 0 96 43.1 96 96s-43.1 96-96 96-96-43.1-96-96 43.1-96 96-96zm386.5 325.3c2.6-14.1 2.6-28.5 0-42.6l25.8-14.9c3-1.7 4.3-5.2 3.3-8.5-6.7-21.6-18.2-41.2-33.2-57.4-2.3-2.5-6-3.1-9-1.4l-25.8 14.9c-10.9-9.3-23.4-16.5-36.9-21.3v-29.8c0-3.4-2.4-6.4-5.7-7.1-22.3-5-45-4.8-66.2 0-3.3.7-5.7 3.7-5.7 7.1v29.8c-13.5 4.8-26 12-36.9 21.3l-25.8-14.9c-2.9-1.7-6.7-1.1-9 1.4-15 16.2-26.5 35.8-33.2 57.4-1 3.3.4 6.8 3.3 8.5l25.8 14.9c-2.6 14.1-2.6 28.5 0 42.6l-25.8 14.9c-3 1.7-4.3 5.2-3.3 8.5 6.7 21.6 18.2 41.1 33.2 57.4 2.3 2.5 6 3.1 9 1.4l25.8-14.9c10.9 9.3 23.4 16.5 36.9 21.3v29.8c0 3.4 2.4 6.4 5.7 7.1 22.3 5 45 4.8 66.2 0 3.3-.7 5.7-3.7 5.7-7.1v-29.8c13.5-4.8 26-12 36.9-21.3l25.8 14.9c2.9 1.7 6.7 1.1 9-1.4 15-16.2 26.5-35.8 33.2-57.4 1-3.3-.4-6.8-3.3-8.5l-25.8-14.9zM496 400.5c-26.8 0-48.5-21.8-48.5-48.5s21.8-48.5 48.5-48.5 48.5 21.8 48.5 48.5-21.7 48.5-48.5 48.5z"
+									></path>
+								</svg>
+							</i>
+							<span>spawn npc</span>
+						</button>
+						<button onClick={this.gmPing} className="gm-button -pin">
+							<i>
+								<svg aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 288 512">
+									<path
+										fill="currentColor"
+										d="M144 0C64.47 0 0 64.47 0 144c0 71.31 51.96 130.1 120 141.58v197.64l16.51 24.77c3.56 5.34 11.41 5.34 14.98 0L168 483.22V285.58C236.04 274.1 288 215.31 288 144 288 64.47 223.53 0 144 0zm0 240c-52.94 0-96-43.07-96-96 0-52.94 43.06-96 96-96s96 43.06 96 96c0 52.93-43.06 96-96 96zm0-160c-35.28 0-64 28.7-64 64 0 8.84 7.16 16 16 16s16-7.16 16-16c0-17.64 14.34-32 32-32 8.84 0 16-7.16 16-16s-7.16-16-16-16z"
+									></path>
+								</svg>
+							</i>
+							<span>place marker</span>
+						</button>
+					</div>
+				</Fragment>
+			);
+		}
+
 		if (this.state.map) {
 			let entities = this.state.entities.map((entity) => (
 				<div className={`entity -${entity.type}`} style={{ transform: `translate(${entity.pos.x - 12}px, ${entity.pos.y - 12}px)` }}>
@@ -173,6 +257,7 @@ class BattleMap extends Component<{}, BattleMapState> {
 					{/* 
 					// @ts-ignore */}
 					<ping-manager web-component loading="eager"></ping-manager>
+					{gmMenu}
 				</div>
 			);
 		}
