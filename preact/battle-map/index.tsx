@@ -117,7 +117,7 @@ class BattleMap extends Component<{}, BattleMapState> {
 			const key = e.key.toLowerCase();
 			switch (key) {
 				case "delete":
-					if (isGM) {
+					if (isGM && !this.state.gmModal) {
 						message("dynamic-map", {
 							type: "clear",
 						});
@@ -127,7 +127,7 @@ class BattleMap extends Component<{}, BattleMapState> {
 					}
 					break;
 				case "backspace":
-					if (isGM) {
+					if (isGM && !this.state.gmModal) {
 						message("dynamic-map", {
 							type: "clear",
 						});
@@ -137,12 +137,14 @@ class BattleMap extends Component<{}, BattleMapState> {
 					}
 					break;
 				case "d":
-					if (isGM) {
+					if (isGM && !this.state.gmModal) {
 						this.setState({ enableDrawing: this.state.enableDrawing ? false : true });
 					}
 					break;
 				case "tab":
-					this.setState({ showNametags: this.state.showNametags ? false : true });
+					if (!this.state.gmModal) {
+						this.setState({ showNametags: this.state.showNametags ? false : true });
+					}
 					break;
 				case "escape":
 					if (this.state.gmModal) {
