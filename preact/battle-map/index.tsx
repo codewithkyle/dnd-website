@@ -14,6 +14,7 @@ type BattleMapState = {
 	selectedEntity: string;
 	enableDrawing: boolean;
 	drawing: string;
+	allowInput: boolean;
 	savedPos: null | {
 		x: number;
 		y: number;
@@ -63,6 +64,7 @@ class BattleMap extends Component<{}, BattleMapState> {
 			selectedEntity: null,
 			enableDrawing: false,
 			drawing: null,
+			allowInput: true,
 		};
 		this.canPing = true;
 		this.inboxUid = hookup("battle-map", this.inbox.bind(this));
@@ -105,9 +107,52 @@ class BattleMap extends Component<{}, BattleMapState> {
 	};
 
 	private handleKeypress: EventListener = (e: KeyboardEvent) => {
+		if (!this.state.open) {
+			return;
+		}
 		if (e instanceof KeyboardEvent) {
-			if (e.key.toLowerCase() === "escape") {
-				this.setState({ open: false });
+			e.preventDefault();
+			e.stopImmediatePropagation();
+			const isGM = this.state.characterUid === null;
+			const key = e.key.toLowerCase();
+			switch (key) {
+				case "delete":
+					if (isGM) {
+						message("dynamic-map", {
+							type: "clear",
+						});
+						message("server", {
+							type: "clear-dynamic-map",
+						});
+					}
+					break;
+				case "backspace":
+					if (isGM) {
+						message("dynamic-map", {
+							type: "clear",
+						});
+						message("server", {
+							type: "clear-dynamic-map",
+						});
+					}
+					break;
+				case "d":
+					if (isGM) {
+						this.setState({ enableDrawing: this.state.enableDrawing ? false : true });
+					}
+					break;
+				case "tab":
+					this.setState({ showNametags: this.state.showNametags ? false : true });
+					break;
+				case "escape":
+					if (this.state.gmModal) {
+						this.setState({ gmModal: null, gmMenuPos: null, savedPos: null });
+					} else {
+						this.setState({ open: false });
+					}
+					break;
+				default:
+					break;
 			}
 		}
 	};
@@ -320,6 +365,16 @@ class BattleMap extends Component<{}, BattleMapState> {
 		});
 	};
 
+	private togglePlayerInput: EventListener = (e: Event) => {
+		e.stopImmediatePropagation();
+		let allowPlayers = this.state.allowInput ? false : true;
+		this.setState({ allowInput: allowPlayers });
+		message("server", {
+			type: "allow-player-input",
+			allowPlayers: allowPlayers,
+		});
+	};
+
 	render() {
 		let map: any = <span>The Game Master hasn't loaded a map yet.</span>;
 
@@ -369,6 +424,24 @@ class BattleMap extends Component<{}, BattleMapState> {
 							></path>
 						</svg>
 						<span>Clear Drawing</span>
+					</button>
+					<button onClick={this.togglePlayerInput}>
+						{this.state.allowInput ? (
+							<svg aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512">
+								<path
+									fill="currentColor"
+									d="M320,64a79.94,79.94,0,0,1,45,146.05l25.67,20.21C415.71,209.73,432,178.94,432,144A111.93,111.93,0,0,0,320,32c-44.42,0-82.41,26-100.53,63.44l25.91,20.4A80,80,0,0,1,320,64ZM544,224a80,80,0,1,0-80-80A80,80,0,0,0,544,224Zm0-128a48,48,0,1,1-48,48A48,48,0,0,1,544,96Zm20,160H524a72.22,72.22,0,0,0-41.09,12.91A135.38,135.38,0,0,1,508.3,291.3,39.79,39.79,0,0,1,524,288h40c24.2,0,44,21.5,44,48a16,16,0,0,0,32,0C640,291.91,605.91,256,564,256ZM176,448a16,16,0,0,1-16-16V387.2a83.2,83.2,0,0,1,14.09-46.4C187.91,320.3,212.5,308,239.8,308c21.3,0,32.15,7.19,56,10.42L242.09,276.1c-.77,0-1.39-.1-2.18-.1-36.32,0-71.61,16.2-92.32,46.91A114.63,114.63,0,0,0,128,387.2V432a48,48,0,0,0,48,48H464a47.73,47.73,0,0,0,26.7-8.13L460.39,448ZM26,106a79.12,79.12,0,0,0-10,38,79.7,79.7,0,0,0,133.45,59.15L123.83,183a47.86,47.86,0,0,1-72.28-56.92Zm131.06,163A72.73,72.73,0,0,0,116,256H76c-41.91,0-76,35.91-76,80a16,16,0,0,0,32,0c0-26.5,19.8-48,44-48h40a39.79,39.79,0,0,1,15.7,3.3A138.6,138.6,0,0,1,157.09,268.91ZM23,1.8A7.88,7.88,0,0,0,11.77,3l-10,12.5A7.94,7.94,0,0,0,3,26.71L617,510.23A8,8,0,0,0,628.2,509l10-12.5a7.86,7.86,0,0,0-1.21-11.2Z"
+								></path>
+							</svg>
+						) : (
+							<svg aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512">
+								<path
+									fill="currentColor"
+									d="M544 224c44.2 0 80-35.8 80-80s-35.8-80-80-80-80 35.8-80 80 35.8 80 80 80zm0-128c26.5 0 48 21.5 48 48s-21.5 48-48 48-48-21.5-48-48 21.5-48 48-48zM320 256c61.9 0 112-50.1 112-112S381.9 32 320 32 208 82.1 208 144s50.1 112 112 112zm0-192c44.1 0 80 35.9 80 80s-35.9 80-80 80-80-35.9-80-80 35.9-80 80-80zm244 192h-40c-15.2 0-29.3 4.8-41.1 12.9 9.4 6.4 17.9 13.9 25.4 22.4 4.9-2.1 10.2-3.3 15.7-3.3h40c24.2 0 44 21.5 44 48 0 8.8 7.2 16 16 16s16-7.2 16-16c0-44.1-34.1-80-76-80zM96 224c44.2 0 80-35.8 80-80s-35.8-80-80-80-80 35.8-80 80 35.8 80 80 80zm0-128c26.5 0 48 21.5 48 48s-21.5 48-48 48-48-21.5-48-48 21.5-48 48-48zm304.1 180c-33.4 0-41.7 12-80.1 12-38.4 0-46.7-12-80.1-12-36.3 0-71.6 16.2-92.3 46.9-12.4 18.4-19.6 40.5-19.6 64.3V432c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48v-44.8c0-23.8-7.2-45.9-19.6-64.3-20.7-30.7-56-46.9-92.3-46.9zM480 432c0 8.8-7.2 16-16 16H176c-8.8 0-16-7.2-16-16v-44.8c0-16.6 4.9-32.7 14.1-46.4 13.8-20.5 38.4-32.8 65.7-32.8 27.4 0 37.2 12 80.2 12s52.8-12 80.1-12c27.3 0 51.9 12.3 65.7 32.8 9.2 13.7 14.1 29.8 14.1 46.4V432zM157.1 268.9c-11.9-8.1-26-12.9-41.1-12.9H76c-41.9 0-76 35.9-76 80 0 8.8 7.2 16 16 16s16-7.2 16-16c0-26.5 19.8-48 44-48h40c5.5 0 10.8 1.2 15.7 3.3 7.5-8.5 16.1-16 25.4-22.4z"
+								></path>
+							</svg>
+						)}
+						<span>{this.state.allowInput ? "Disable" : "Enable"} Input</span>
 					</button>
 				</div>
 			);

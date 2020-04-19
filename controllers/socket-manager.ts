@@ -145,6 +145,11 @@ class SocketManager {
 
 	private inbox(data) {
 		switch (data.type) {
+			case "allow-player-input":
+				if (this.isConnected && this.inRoom) {
+					this.socket.emit("toggle-player-input", data.allowPlayers);
+				}
+				break;
 			case "clear-dynamic-map":
 				if (this.isConnected && this.inRoom) {
 					this.socket.emit("clear-drawing");
