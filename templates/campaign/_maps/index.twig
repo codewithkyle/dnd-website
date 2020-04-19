@@ -14,7 +14,8 @@
         </custom-map-component> 
         {% for map in maps %}
             <map-component web-component web-component role="button" data-url="{{ map.url }}">
-                <img class="block w-full mb-1" width="320" loading="lazy" draggable="false" src="{{ map.url }}" alt="{{ map.title }}" />
+                {% set image = craft.imager.transformImage(map, { width: '320px', quality: 50 }) %}
+                <img class="block w-full mb-1" width="320" loading="lazy" draggable="false" src="{{ image.url }}" alt="{{ map.title }}" />
                 <span class="block font-grey-800 font-medium">{{ map.title }}</span>
                 {% if map.flavorText|length %}
                     <span class="block font-sm font-grey-700 mt-0.5">{{ map.flavorText }}</span>
