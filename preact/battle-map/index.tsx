@@ -73,6 +73,8 @@ class BattleMap extends Component<{}, BattleMapState> {
 
 	private inbox(data) {
 		switch (data.type) {
+			case "open":
+				break;
 			case "stop-drawing":
 				this.setState({ enableDrawing: false });
 				break;
@@ -86,7 +88,7 @@ class BattleMap extends Component<{}, BattleMapState> {
 				this.setState({ entities: data.entities });
 				break;
 			case "load-map":
-				this.setState({ map: data.url, entities: [], drawing: null, enableDrawing: false });
+				this.setState({ map: data.url, entities: [], drawing: null, enableDrawing: false, open: true });
 				message("dynamic-map", {
 					type: "init",
 					map: data.url,
