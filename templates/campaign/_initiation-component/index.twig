@@ -1,5 +1,5 @@
 <initiation-component web-component eager-load-css="initiation-component snackbar" class="w-full bg-white p-2 shadow-md">
-    <h3 class="font-sm font-grey-700 font-bold mb-1">Initiation Order</h3>
+    <h3 class="font-sm font-grey-700 font-bold mb-1 text-center">Initiation Order</h3>
     <entity-wrapper>
         {% for player in players %}
             <entity-component data-character-uid="{{ player.uid }}">
@@ -14,10 +14,10 @@
             </entity-component>
         {% endfor %}
     </entity-wrapper>
-    <div class="w-full mb-1 block">
-        <button class="mr-1 mb-1 button -solid -primary js-add-entity">Add Entity</button>
-        <button class="mr-1 mb-1 button -solid -primary js-update-initiation-order">Update</button>
-        <button class="mr-1 mb-1 button -solid -primary js-clear-order">Clear</button>
+    <div class="w-full mb-1 block text-center py-0.5">
+        <button class="m-0.5 button -solid -primary js-add-entity">Add Entity</button>
+        <button class="m-0.5 button -solid -primary js-update-initiation-order">Update</button>
+        <button class="m-0.5 button -solid -primary js-clear-order">Clear</button>
     </div>
     <template tag="entity-component">
         <entity-component>

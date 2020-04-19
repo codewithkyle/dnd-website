@@ -32,55 +32,63 @@
             <campaign-component {% if isGameMaster %}web-component data-campaign-uid="{{ campaign.uid }}"{% endif %} style="width: 1024px;max-width: 100%;" class="block mx-auto">
                 {% if isGameMaster %}
                     <div class="w-full mb-2" grid="columns 2 gap-1">
+
                         <div class="bg-white shadow-md block mx-auto p-2 w-full" style="border-radius: 0.25rem;">
                             {% if npcs|length %}
-                                <h3 class="block w-full mb-1 font-sm font-grey-700 font-bold text-center">NPCs<h3>
-                                {% for npc in npcs %}
-                                    <a href="{{ siteUrl|trim('/') }}/npc/{{ npc.uid }}" class="block w-full b-1 b-solid b-grey-300 p-1 mb-1" style="border-radius: 0.25rem;">
-                                        <span class=" block font-primary-700 font-medium">{{ npc.title }}</span>
-                                    </a>
-                                {% endfor %}
-                            {% else %}
-                                <h3 class="block w-full mb-1 font-sm font-grey-700 text-center pb-1">This campaign does not currently have any NPCs.<h3>
+                                <h3 class="block w-full mb-1 font-sm font-grey-700 font-bold text-center">NPCs</h3>
+                                <div class="w-full mb-1.5" grid="columns 2 gap-1">
+                                    {% for npc in npcs %}
+                                        <a href="{{ siteUrl|trim('/') }}/npc/{{ npc.uid }}" class="block w-full b-1 b-solid b-grey-300 p-1" style="border-radius: 0.25rem;">
+                                            <span class=" block font-primary-700 font-medium">{{ npc.title }}</span>
+                                        </a>
+                                    {% endfor %}
+                                </div>
                             {% endif %}
-                            <div style="display: block;width: 100%;text-align: center;">
+                            <div class="block w-full text-center">
                                 <a href="{{ siteUrl|trim('/') }}/new-npc?campaign={{ campaign.uid }}" class="button -solid -primary">Create NPC</a>
                             </div>
                         </div>
-                        <div class="bg-white shadow-md block mx-auto p-2 w-full" style="border-radius: 0.25rem;">
+
+                        <div class="bg-white shadow-md block mx-auto p-2 w-full" style="border-radius: 0.25rem;" {% if not monsters|length %}flex="items-center justify-center column wrap"{% endif %}>
                             {% if monsters|length %}
-                                <h3 class="block w-full mb-1 font-sm font-grey-700">Monsters<h3>
-                                {% for monster in monsters %}
-                                    <a href="{{ siteUrl|trim('/') }}/monster/{{ monster.uid }}" class="block w-full b-1 b-solid b-grey-300 p-1 mb-1" style="border-radius: 0.25rem;">
-                                        <span class=" block font-primary-700 font-medium">{{ monster.title }}</span>
-                                    </a>
-                                {% endfor %}
-                            {% else %}
-                                <h3 class="block w-full mb-1 font-sm font-grey-700 text-center pb-1">This campaign does not have any custom monsters.<h3>
+                                <h3 class="block w-full mb-1 font-sm font-grey-700">Monsters</h3>
+                                <div class="w-full mb-1.5" grid="columns 2 gap-1">
+                                    {% for monster in monsters %}
+                                        <a href="{{ siteUrl|trim('/') }}/monster/{{ monster.uid }}" class="block w-full b-1 b-solid b-grey-300 p-1" style="border-radius: 0.25rem;">
+                                            <span class=" block font-primary-700 font-medium">{{ monster.title }}</span>
+                                        </a>
+                                    {% endfor %}
+                                </div>
                             {% endif %}
-                            <div style="display: block;width: 100%;text-align: center;">
+                            <div class="block w-full text-center">
                                 <a href="{{ siteUrl|trim('/') }}/new-monster" class="button -solid -primary">Create Monster</a>
                             </div>
                         </div>
+
                         <div class="bg-white shadow-md block mx-auto p-2 w-full" style="border-radius: 0.25rem;">
                             {% if players|length %}
-                                <h3 class="block w-full mb-1 font-sm font-grey-700 font-bold text-center">Players<h3>
-                                {% for player in players %}
-                                    <a href="{{ siteUrl|trim('/') }}/character/{{ player.uid }}" class="block w-full b-1 b-solid b-grey-300 p-1 mb-1" style="border-radius: 0.25rem;">
-                                        <span class=" block font-primary-700 font-medium">{{ player.title }}</span>
-                                    </a>
-                                {% endfor %}
+                                <h3 class="block w-full mb-1 font-sm font-grey-700 font-bold text-center">Players</h3>
+                                <div class="w-full" grid="columns 2 gap-1">
+                                    {% for player in players %}
+                                        <a href="{{ siteUrl|trim('/') }}/character/{{ player.uid }}" class="block w-full b-1 b-solid b-grey-300 p-1" style="border-radius: 0.25rem;">
+                                            <span class=" block font-primary-700 font-medium">{{ player.title }}</span>
+                                        </a>
+                                    {% endfor %}
+                                </div>
                             {% else %}
                                 <h3 class="block w-full mb-1 font-sm font-grey-700 text-center pb-1">This campaign does not have any players.<h3>
                             {% endif %}
                         </div>
+
                         {% include "campaign/_initiation-component" %}
+
                     </div>
+
                     {% include "campaign/_maps" %}
                 {% else %}
                     <div class="bg-white shadow-md block mx-auto p-2" style="width:420px;max-width:100%;border-radius: 0.25rem;">
                         {% if players|length %}
-                            <h3 class="block w-full mb-1 font-sm font-grey-700 font-bold text-center">Players<h3>
+                            <h3 class="block w-full mb-1 font-sm font-grey-700 font-bold text-center">Players</h3>
                             {% for player in players %}
                                 <a href="{{ siteUrl|trim('/') }}/character/{{ player.uid }}" class="block w-full b-1 b-solid b-grey-300 p-1 mb-2" style="border-radius: 0.25rem;">
                                     <span class=" block font-primary-700 font-medium">{{ player.title }}</span>

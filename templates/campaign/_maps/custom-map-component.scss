@@ -1,0 +1,38 @@
+custom-map-component{
+    transition: all 150ms var(--ease-in-out);
+    transform-origin: center;
+    background-color: var(--white);
+    user-select: none;
+    border-radius: 0.25rem;
+    padding: 1rem;
+    cursor: pointer;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+
+    &:hover{
+        box-shadow: var(--shadow-md);
+    }
+
+    &:active{
+        transition: all 75ms var(--ease-in);
+        transform: scale(0.95);
+        box-shadow: none;
+    }
+
+    i{
+        display: block;
+        margin: 0 auto;
+        text-align: center;
+
+        svg{
+            width: 24px;
+            height: 24px;
+        }
+    }
+
+    span{
+        display: block;
+        text-align: center;
+    }
+}

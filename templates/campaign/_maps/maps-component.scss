@@ -4,6 +4,9 @@ maps-component{
         transform-origin: center;
         background-color: var(--white);
         user-select: none;
+        border-radius: 0.25rem;
+        padding: 1rem;
+        cursor: pointer;
 
         &:hover{
             box-shadow: var(--shadow-md);
