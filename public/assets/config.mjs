@@ -1,0 +1,1 @@
+export const djinnjsOutDir="assets";export const gaId="";export const environment="production";export const defaultTransition="fade";export const disablePjax=!1;export const disablePrefetching=!0;export const followRedirects=!0;export const usePercentage=!0;export const disableServiceWorker=!0;

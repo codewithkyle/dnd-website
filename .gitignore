@@ -9,8 +9,4 @@
 /public/imager
 _compiled
 _css
-/public/assets
-/public/broadcaster-worker.min.js
-/public/resources-cachebust.json
 /config/pwa-auto.php
-/public/preact

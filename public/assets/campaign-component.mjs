@@ -1,0 +1,1 @@
+import{message as e}from"./broadcaster.mjs";class a extends HTMLElement{connectedCallback(){e("server",{type:"join",name:"Game Master",campaign:this.dataset.campaignUid})}}customElements.define("campaign-component",a);

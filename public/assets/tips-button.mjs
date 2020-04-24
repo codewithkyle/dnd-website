@@ -1,0 +1,1 @@
+import{message as e}from"./broadcaster.mjs";class t extends HTMLElement{constructor(){super(...arguments),this.toggleTipsDrawer=()=>{e("tips-drawer",{type:"toggle"})}}connectedCallback(){this.addEventListener("click",this.toggleTipsDrawer)}}customElements.define("tips-button",t);

@@ -1,0 +1,1 @@
+export function calculateModifier(o){return Math.floor((o-10)/2)}

@@ -1,0 +1,1 @@
+import{message as e}from"./broadcaster.mjs";class t extends HTMLElement{constructor(){super(...arguments),this.handleClick=()=>{e("server",{type:"load-map",url:this.dataset.url})}}connectedCallback(){this.addEventListener("click",this.handleClick)}}customElements.define("map-component",t);

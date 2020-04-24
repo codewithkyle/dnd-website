@@ -1,0 +1,1 @@
+maps-component map-component{transition:all 150ms var(--ease-in-out);transform-origin:center;background-color:var(--white);user-select:none;border-radius:.25rem;padding:1rem;cursor:pointer}maps-component map-component:hover{box-shadow:var(--shadow-md)}maps-component map-component:active{transition:all 75ms var(--ease-in);transform:scale(.95);box-shadow:none}
