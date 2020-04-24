@@ -212,19 +212,14 @@ class SocketManager {
 					this.socket.emit("clear-order");
 				}
 				break;
-			case "ping-from-npc":
-				if (this.isConnected && this.inRoom) {
-					this.socket.emit("ping-from-npc", data.name);
-				}
-				break;
 			case "initiation-order":
 				if (this.isConnected && this.inRoom) {
 					this.socket.emit("initiation-order", data.entities);
 				}
 				break;
-			case "ping-player":
+			case "combat-order-update":
 				if (this.isConnected && this.inRoom) {
-					this.socket.emit("ping-player", data.characterUid);
+					this.socket.emit("combat-order-update", data.uid);
 				}
 				break;
 			case "leave":

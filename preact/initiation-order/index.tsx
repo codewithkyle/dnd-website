@@ -1,5 +1,5 @@
 import { h, render, Component, Fragment } from "preact";
-import { hookup } from "djinnjs/broadcaster";
+import { hookup, message } from "djinnjs/broadcaster";
 
 import "./initiation-order.scss";
 
@@ -7,13 +7,14 @@ type InitiationOrderState = {
 	open: boolean;
 	order: Array<{
 		name: string;
-		characterUid: string | null;
+		uid: string;
 	}>;
 	initiationIndex: number;
 };
 
 class InitiationOrder extends Component<{}, InitiationOrderState> {
 	private inboxUid: string;
+	private isGM: boolean;
 
 	constructor() {
 		super();
@@ -23,6 +24,7 @@ class InitiationOrder extends Component<{}, InitiationOrderState> {
 			initiationIndex: 0,
 		};
 		this.inboxUid = hookup("initiation-order", this.inbox.bind(this));
+		this.isGM = document.body.querySelector("campaign-component") ? true : false;
 	}
 
 	private inbox(data) {
@@ -48,13 +50,28 @@ class InitiationOrder extends Component<{}, InitiationOrderState> {
 	private closeDrawer: EventListener = () => {
 		this.setState({ open: false });
 	};
+	private pingPlayer: EventListener = (e: Event) => {
+		const target = e.currentTarget as HTMLElement;
+		message("server", {
+			type: "combat-order-update",
+			uid: target.dataset.uid,
+		});
+	};
 
 	render() {
 		let entities: any = <span>The Game Master hasn't set the combat order yet.</span>;
 		if (this.state.order.length) {
-			entities = this.state.order.map((entity, index) => (
-				<span className={`m-0.5 font-${this.state.initiationIndex === index ? "primary" : "grey"}-700 font-medium`}>{entity.name}</span>
-			));
+			if (this.isGM) {
+				entities = this.state.order.map((entity, index) => (
+					<button onClick={this.pingPlayer} data-uid={entity.uid} className={`m-0.5 ${this.state.initiationIndex === index ? "is-active" : ""}`}>
+						{entity.name}
+					</button>
+				));
+			} else {
+				entities = this.state.order.map((entity, index) => (
+					<span className={`m-0.5 font-${this.state.initiationIndex === index ? "primary" : "grey"}-700 font-medium`}>{entity.name}</span>
+				));
+			}
 		}
 		return (
 			<Fragment>

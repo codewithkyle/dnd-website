@@ -39,9 +39,9 @@
 		"typescript": "^3.8.3"
 	},
 	"dependencies": {
-		"@codewithkyle/notifyjs": "^2.0.0",
+		"@codewithkyle/notifyjs": "^2.0.1",
 		"brixi": "^0.2.0",
-		"css-loader": "^3.5.2",
+		"css-loader": "^3.5.3",
 		"cssmonster": "^0.2.0",
 		"djinnjs": "0.0.24",
 		"flatpickr": "^4.6.3",
@@ -63,7 +63,8 @@
 		"webDependencies": [
 			"@codewithkyle/notifyjs",
 			"flatpickr",
-			"socket.io-client"
+			"socket.io-client",
+			"rpg-dice-roller"
 		]
 	}
 }

@@ -1,6 +1,7 @@
 import { EntityComponent } from "./entity-component";
 import { message } from "djinnjs/broadcaster";
 import { snackbar } from "@codewithkyle/notifyjs";
+import { uid } from "../../uid";
 
 class InitationComponent extends HTMLElement {
 	private entityComponentTemplate: HTMLTemplateElement;
@@ -18,6 +19,7 @@ class InitationComponent extends HTMLElement {
 		const node = document.importNode(this.entityComponentTemplate.content, true);
 		const component = node.querySelector("entity-component") as HTMLElement;
 		component.style.order = `${this.entities.length}`;
+		component.dataset.uid = uid();
 		this.entityWrapper.appendChild(node);
 		this.entities = Array.from(this.querySelectorAll("entity-wrapper entity-component"));
 	};
@@ -93,11 +95,9 @@ class InitationComponent extends HTMLElement {
 			orderedEntities[i].el.style.order = i;
 			serverData.push({
 				name: orderedEntities[i].el.querySelector(".js-name").value,
-				characterUid: orderedEntities[i].el.dataset.characterUid,
+				uid: orderedEntities[i].el.dataset.uid,
 			});
 		}
-
-		sessionStorage.setItem("initiation", JSON.stringify(serverData));
 
 		message("server", {
 			type: "initiation-order",
@@ -114,38 +114,12 @@ class InitationComponent extends HTMLElement {
 			// @ts-ignore
 			this.entities[i].querySelector(".js-initiation").value = "";
 		}
-		sessionStorage.removeItem("initiation");
 	};
 
 	connectedCallback() {
 		this.querySelector(".js-add-entity").addEventListener("click", this.addEntityComponent);
 		this.querySelector(".js-update-initiation-order").addEventListener("click", this.updateOrder);
 		this.querySelector(".js-clear-order").addEventListener("click", this.clearOrder);
-
-		let initialOrder = sessionStorage.getItem("initiation");
-		if (initialOrder) {
-			initialOrder = JSON.parse(initialOrder);
-			for (let k = 0; k < initialOrder.length; k++) {
-				// @ts-ignore
-				if (initialOrder[k].characterUid) {
-					for (let i = 0; i < this.entities.length; i++) {
-						// @ts-ignore
-						if (initialOrder[k].characterUid === this.entities[i].dataset.characterUid) {
-							this.entities[i].style.order = `${k}`;
-						}
-					}
-				} else {
-					const node = document.importNode(this.entityComponentTemplate.content, true);
-					const component = node.querySelector("entity-component") as HTMLElement;
-					component.style.order = `${k}`;
-					const nameInput = component.querySelector(".js-name") as HTMLInputElement;
-					// @ts-ignore
-					nameInput.value = initialOrder[k].name;
-					this.entityWrapper.appendChild(node);
-					this.entities = Array.from(this.querySelectorAll("entity-wrapper entity-component"));
-				}
-			}
-		}
 	}
 }
 customElements.define("initiation-component", InitationComponent);
