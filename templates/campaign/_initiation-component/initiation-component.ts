@@ -1,6 +1,6 @@
 import { EntityComponent } from "./entity-component";
 import { message } from "djinnjs/broadcaster";
-import { notify } from "@codewithkyle/notifyjs";
+import { snackbar } from "@codewithkyle/notifyjs";
 
 class InitationComponent extends HTMLElement {
 	private entityComponentTemplate: HTMLTemplateElement;
@@ -73,14 +73,14 @@ class InitationComponent extends HTMLElement {
 		}
 
 		if (invalidParams && invalidReason === 1) {
-			notify({
+			snackbar({
 				message: `Initiation order values cannot be blank.`,
 				closeable: true,
 				force: true,
 			});
 			return;
 		} else if (invalidParams && invalidReason === 2) {
-			notify({
+			snackbar({
 				message: `Invalid initation order. ${name1} and ${name2} both rolled a ${matchedValue}`,
 				closeable: true,
 				force: true,

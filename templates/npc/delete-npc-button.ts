@@ -1,5 +1,5 @@
 import { env } from "djinnjs/env";
-import { notify } from "@codewithkyle/notifyjs";
+import { snackbar } from "@codewithkyle/notifyjs";
 
 class DeleteNPCButton extends HTMLElement {
 	private isDeleting: boolean;
@@ -31,7 +31,7 @@ class DeleteNPCButton extends HTMLElement {
 			if (!response.success) {
 				const error = response?.error || response?.errors?.[0] || null;
 				if (error) {
-					notify({
+					snackbar({
 						message: error,
 						closeable: true,
 						force: true,
@@ -46,7 +46,7 @@ class DeleteNPCButton extends HTMLElement {
 		} else {
 			const error = await request.text();
 			console.error(error);
-			notify({
+			snackbar({
 				message: "Failed to delete NPC, try again later.",
 				closeable: true,
 				force: true,

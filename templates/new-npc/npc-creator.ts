@@ -1,5 +1,5 @@
 import { env } from "djinnjs/env";
-import { notify } from "@codewithkyle/notifyjs";
+import { snackbar } from "@codewithkyle/notifyjs";
 import { DiceRoller } from "rpg-dice-roller";
 import { calculateModifier } from "../_utils/character";
 
@@ -132,7 +132,7 @@ class NPCCreator extends HTMLElement {
 		} else {
 			const error = await request.text();
 			console.error(error);
-			notify({
+			snackbar({
 				message: "Failed to create NPC, try again later.",
 				closeable: true,
 				force: true,

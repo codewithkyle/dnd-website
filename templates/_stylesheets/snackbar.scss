@@ -21,7 +21,7 @@ snackbar-component {
 	min-width: 350px;
 	max-width: 90vw;
 	opacity: 0;
-	z-index: 1000;
+	z-index: 9000;
 	bottom: 1rem;
 	left: 50%;
 	transform: translate(-50%) scale(0.87);
@@ -88,7 +88,7 @@ snackbar-component {
 			}
 		}
 
-		close-button {
+		.close {
 			width: 2.5rem;
 			height: 2.5rem;
 			display: inline-flex;

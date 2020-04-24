@@ -1,6 +1,6 @@
 import { env } from "djinnjs/env";
 import { message } from "djinnjs/broadcaster";
-import { notify } from "@codewithkyle/notifyjs";
+import { snackbar } from "@codewithkyle/notifyjs";
 
 class CharacterSheet extends HTMLElement {
 	private pages: Array<HTMLElement>;
@@ -123,7 +123,7 @@ class CharacterSheet extends HTMLElement {
 
 		if (doLoading) {
 			env.stopLoading(ticket);
-			notify({
+			snackbar({
 				message: "Character saved.",
 				force: false,
 				closeable: true,
@@ -156,6 +156,50 @@ class CharacterSheet extends HTMLElement {
 		}
 		window.requestAnimationFrame(this.autoSave.bind(this));
 	}
+
+	private handleExit: EventListener = () => {
+		const data = new FormData(this.form);
+
+		const attackComponent = this.querySelector("attack-component") as AttackComponent;
+		data.append(`fields[attacksAndSpells]`, attackComponent.dumpAttacks());
+
+		const cantripsComponent = this.querySelector("#cantrip-spellbook") as SpellComponent;
+		data.append(`fields[cantrips]`, cantripsComponent.dumpData());
+
+		const level1Spells = this.querySelector("#level-1-spellbook") as SpellComponent;
+		data.append(`fields[level1Spells]`, level1Spells.dumpData());
+
+		const level2Spells = this.querySelector("#level-2-spellbook") as SpellComponent;
+		data.append(`fields[level2Spells]`, level2Spells.dumpData());
+
+		const level3Spells = this.querySelector("#level-3-spellbook") as SpellComponent;
+		data.append(`fields[level3Spells]`, level3Spells.dumpData());
+
+		const level4Spells = this.querySelector("#level-4-spellbook") as SpellComponent;
+		data.append(`fields[level4Spells]`, level4Spells.dumpData());
+
+		const level5Spells = this.querySelector("#level-5-spellbook") as SpellComponent;
+		data.append(`fields[level5Spells]`, level5Spells.dumpData());
+
+		const level6Spells = this.querySelector("#level-6-spellbook") as SpellComponent;
+		data.append(`fields[level6Spells]`, level6Spells.dumpData());
+
+		const level7Spells = this.querySelector("#level-7-spellbook") as SpellComponent;
+		data.append(`fields[level7Spells]`, level7Spells.dumpData());
+
+		const level8Spells = this.querySelector("#level-8-spellbook") as SpellComponent;
+		data.append(`fields[level8Spells]`, level8Spells.dumpData());
+
+		const level9Spells = this.querySelector("#level-9-spellbook") as SpellComponent;
+		data.append(`fields[level9Spells]`, level9Spells.dumpData());
+
+		const proficientSkills = this.getProficientSkills();
+		for (const [key, value] of Object.entries(proficientSkills)) {
+			data.append(`fields[${key}Proficiency]`, `${value}`);
+		}
+
+		navigator.sendBeacon(`${location.origin}/actions/entries/save-entry`, data);
+	};
 
 	disconnectedCallback() {
 		this.isActive = false;
@@ -191,6 +235,7 @@ class CharacterSheet extends HTMLElement {
 			this.time = performance.now();
 			this.isActive = true;
 			this.autoSave();
+			window.addEventListener("unload", this.handleExit);
 		}
 		message("server", {
 			type: "join",

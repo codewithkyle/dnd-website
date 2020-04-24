@@ -8,9 +8,6 @@ toaster-component{
     position: fixed;
     top: 0;
     right: 0;
-    display: flex;
-    flex-flow: column-reverse nowrap;
-    justify-content: flex-end;
     z-index: 2000;
     overflow-y: auto;
     pointer-events: none;
