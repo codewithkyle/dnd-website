@@ -185,6 +185,21 @@ $yellow: #ECC94B;
                 border-color: darken($yellow, 5);
             }
 
+            &.is-dead{
+                background-color: var(--white);
+                border-color: darken(#fff, 5);
+
+                svg{
+                    width: 14px;
+                    height: 14px;
+                    color: var(--neutral-700);
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                }
+            }
+
             &:hover{
                 z-index: 100;
 

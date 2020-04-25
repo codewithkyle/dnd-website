@@ -1,6 +1,8 @@
 import { h, render, Component, Fragment } from "preact";
 import { hookup, message } from "djinnjs/broadcaster";
 
+import { EntityDrawer } from "./entity-drawer";
+
 import "./battle-map.scss";
 
 type BattleMapState = {
@@ -11,7 +13,7 @@ type BattleMapState = {
 	showNametags: boolean;
 	gmModal: null | "pin" | "entity";
 	entityType: null | "enemy" | "npc";
-	selectedEntity: string;
+	selectedEntityUid: string;
 	enableDrawing: boolean;
 	drawing: string;
 	allowInput: boolean;
@@ -27,6 +29,8 @@ type BattleMapState = {
 			x: number;
 			y: number;
 		};
+		hp: string;
+		ac: string;
 	}>;
 	gmMenuPos: {
 		x: number;
@@ -61,7 +65,7 @@ class BattleMap extends Component<{}, BattleMapState> {
 			gmModal: null,
 			savedPos: null,
 			entityType: null,
-			selectedEntity: null,
+			selectedEntityUid: null,
 			enableDrawing: false,
 			drawing: null,
 			allowInput: true,
@@ -188,12 +192,12 @@ class BattleMap extends Component<{}, BattleMapState> {
 					},
 				});
 			} else if ((this.state.characterUid && e.ctrlKey) || e.metaKey) {
-				this.setState({ gmModal: "pin", savedPos: newPos, selectedEntity: null });
-			} else if (!this.state.characterUid && this.state.selectedEntity) {
+				this.setState({ gmModal: "pin", savedPos: newPos, selectedEntityUid: null });
+			} else if (!this.state.characterUid && this.state.selectedEntityUid) {
 				message("server", {
 					type: "send-position",
 					entity: {
-						uid: this.state.selectedEntity,
+						uid: this.state.selectedEntityUid,
 						pos: newPos,
 					},
 				});
@@ -234,7 +238,7 @@ class BattleMap extends Component<{}, BattleMapState> {
 					this.canPing = true;
 				}, 900);
 			} else if (this.state.characterUid === null) {
-				this.setState({ gmMenuPos: newPos, savedPos: newPos, selectedEntity: null });
+				this.setState({ gmMenuPos: newPos, savedPos: newPos, selectedEntityUid: null });
 			}
 		}
 	};
@@ -289,12 +293,16 @@ class BattleMap extends Component<{}, BattleMapState> {
 		e.preventDefault();
 		e.stopImmediatePropagation();
 		const target = e.currentTarget as HTMLFormElement;
-		const labelInput = target.querySelector("input");
+		const labelInput = target.querySelector("#name-input") as HTMLInputElement;
+		const hpInput = target.querySelector("#hp-input") as HTMLInputElement;
+		const acInput = target.querySelector("#ac-input") as HTMLInputElement;
 		message("server", {
 			type: "add-entity",
 			entityType: this.state.entityType,
 			label: labelInput.value,
 			pos: this.state.gmMenuPos,
+			ac: acInput.value,
+			hp: hpInput.value,
 		});
 		this.setState({ gmMenuPos: null, gmModal: null, entityType: null, savedPos: null });
 	};
@@ -307,16 +315,16 @@ class BattleMap extends Component<{}, BattleMapState> {
 			const uid = target.dataset.uid;
 			if (this.state.characterUid === null) {
 				if (e.metaKey || e.ctrlKey) {
-					this.setState({ selectedEntity: null });
+					this.setState({ selectedEntityUid: null });
 					message("server", {
 						type: "remove-entity",
 						uid: uid,
 					});
 				} else {
-					if (uid === this.state.selectedEntity) {
-						this.setState({ selectedEntity: null });
+					if (uid === this.state.selectedEntityUid) {
+						this.setState({ selectedEntityUid: null });
 					} else {
-						this.setState({ selectedEntity: target.dataset.uid });
+						this.setState({ selectedEntityUid: target.dataset.uid });
 					}
 				}
 			}
@@ -462,6 +470,22 @@ class BattleMap extends Component<{}, BattleMapState> {
 								Name
 							</label>
 							<input type="text" id="name-input" />
+							{/* 
+							// @ts-ignore */}
+							<div grid="columns 2 gap-1.5">
+								<div>
+									<label htmlFor="hp-input" className="block w-full font-sm font-grey-800 mb-0.5 text-left font-medium">
+										Hit Points
+									</label>
+									<input min={0} step={1} type="number" id="hp-input" />
+								</div>
+								<div>
+									<label htmlFor="ac-input" className="block w-full font-sm font-grey-800 mb-0.5 text-left font-medium">
+										Armor Class
+									</label>
+									<input min={0} step={1} type="number" id="ac-input" />
+								</div>
+							</div>
 							<div className="block w-full text-right">
 								<button onClick={this.closeGMModal} type="button" className="button -text -black mr-1">
 									cancel
@@ -569,9 +593,19 @@ class BattleMap extends Component<{}, BattleMapState> {
 					onClick={this.entityClick}
 					data-type={entity.type}
 					data-uid={entity.uid}
-					className={`entity -${entity.type} ${entity.uid === this.state.selectedEntity ? "is-selected" : ""}`}
+					className={`entity -${entity.type} ${entity.uid === this.state.selectedEntityUid ? "is-selected" : ""} ${
+						entity?.hp && parseInt(entity?.hp) <= 0 ? "is-dead" : ""
+					}`}
 					style={{ transform: `translate(${entity.pos.x - 12}px, ${entity.pos.y - 12}px)` }}
 				>
+					{entity?.hp && parseInt(entity?.hp) <= 0 ? (
+						<svg aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+							<path
+								fill="currentColor"
+								d="M344 200c-30.9 0-56 25.1-56 56s25.1 56 56 56 56-25.1 56-56-25.1-56-56-56zm-176 0c-30.9 0-56 25.1-56 56s25.1 56 56 56 56-25.1 56-56-25.1-56-56-56zM256 0C114.6 0 0 100.3 0 224c0 70.1 36.9 132.6 94.5 173.7 9.7 6.9 15.2 18.1 13.5 29.9l-6.8 47.9c-2.7 19.3 12.2 36.5 31.7 36.5h246.3c19.5 0 34.4-17.2 31.7-36.5l-6.8-47.9c-1.7-11.7 3.8-23 13.5-29.9C475.1 356.6 512 294.1 512 224 512 100.3 397.4 0 256 0zm133.7 358.6c-24.6 17.5-37.3 46.5-33.2 75.7l4.2 29.7H320v-40c0-4.4-3.6-8-8-8h-16c-4.4 0-8 3.6-8 8v40h-64v-40c0-4.4-3.6-8-8-8h-16c-4.4 0-8 3.6-8 8v40h-40.7l4.2-29.7c4.1-29.2-8.6-58.2-33.2-75.7C75.1 324.9 48 275.9 48 224c0-97 93.3-176 208-176s208 79 208 176c0 51.9-27.1 100.9-74.3 134.6z"
+							></path>
+						</svg>
+					) : null}
 					<div className={`tooltip ${this.state.showNametags ? "is-visible" : ""}`}>
 						<span>{entity.name}</span>
 					</div>
@@ -638,6 +672,23 @@ class BattleMap extends Component<{}, BattleMapState> {
 				</svg>
 			);
 		}
+
+		let entityDrawer = null;
+		if (this.state.selectedEntityUid) {
+			let entity = null;
+			for (let i = 0; i < this.state.entities.length; i++) {
+				if (this.state.entities[i].uid === this.state.selectedEntityUid) {
+					if (this.state.entities[i].type === "npc" || this.state.entities[i].type === "enemy") {
+						entity = this.state.entities[i];
+					} else {
+						break;
+					}
+				}
+			}
+			entityDrawer = <EntityDrawer entity={entity} />;
+		} else {
+			entityDrawer = <EntityDrawer entity={null} />;
+		}
 		return (
 			<Fragment>
 				<button onClick={this.toggleDrawer} className="open-map-button">
@@ -646,6 +697,7 @@ class BattleMap extends Component<{}, BattleMapState> {
 				<div className={`battle-map ${this.state.open ? "is-open" : ""}`}>{map}</div>
 				{drawer}
 				{gmModal}
+				{entityDrawer}
 			</Fragment>
 		);
 	}

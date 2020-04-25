@@ -145,6 +145,15 @@ class SocketManager {
 
 	private inbox(data) {
 		switch (data.type) {
+			case "update-entity":
+				if (this.isConnected && this.inRoom) {
+					this.socket.emit("update-entity", {
+						uid: data.uid,
+						hp: data.hp,
+						ac: data.ac,
+					});
+				}
+				break;
 			case "init-combat-order":
 				if (this.isConnected && this.inRoom) {
 					this.socket.emit("init-combat-order");
@@ -181,6 +190,8 @@ class SocketManager {
 						pos: data.pos,
 						name: data.label,
 						type: data.entityType,
+						ac: data.ac,
+						hp: data.hp,
 					});
 				}
 				break;
