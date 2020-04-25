@@ -30,7 +30,7 @@ class InitationComponent extends HTMLElement {
 	}
 
 	private initOrder(order) {
-		if (!this.needReset) {
+		if (!this.needReset || !order.length) {
 			return;
 		}
 		this.entityWrapper.innerHTML = "";
