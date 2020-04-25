@@ -305,7 +305,7 @@ class BattleMap extends Component<{}, BattleMapState> {
 			const target = e.currentTarget as HTMLElement;
 			const type = target.dataset.type;
 			const uid = target.dataset.uid;
-			if ((this.state.characterUid === null && type === "enemy") || type === "npc") {
+			if (this.state.characterUid === null) {
 				if (e.metaKey || e.ctrlKey) {
 					this.setState({ selectedEntity: null });
 					message("server", {
