@@ -37,7 +37,7 @@ class DynamicMap extends HTMLElement {
 				currentDrawing.src = data.drawing;
 				currentDrawing.onload = () => {
 					this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
-					this.context.drawImage(currentDrawing, 0, 0, currentDrawing.width, currentDrawing.height);
+					this.context.drawImage(currentDrawing, 0, 0, this.canvas.width, this.canvas.height);
 				};
 				break;
 			case "clear":

@@ -145,6 +145,11 @@ class SocketManager {
 
 	private inbox(data) {
 		switch (data.type) {
+			case "init-combat-order":
+				if (this.isConnected && this.inRoom) {
+					this.socket.emit("init-combat-order");
+				}
+				break;
 			case "allow-player-input":
 				if (this.isConnected && this.inRoom) {
 					this.socket.emit("toggle-player-input", data.allowPlayers);

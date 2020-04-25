@@ -25,6 +25,9 @@ class InitiationOrder extends Component<{}, InitiationOrderState> {
 		};
 		this.inboxUid = hookup("initiation-order", this.inbox.bind(this));
 		this.isGM = document.body.querySelector("campaign-component") ? true : false;
+		message("server", {
+			type: "init-combat-order",
+		});
 	}
 
 	private inbox(data) {

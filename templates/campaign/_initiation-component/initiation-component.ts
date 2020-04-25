@@ -1,5 +1,5 @@
 import { EntityComponent } from "./entity-component";
-import { message } from "djinnjs/broadcaster";
+import { message, hookup } from "djinnjs/broadcaster";
 import { snackbar } from "@codewithkyle/notifyjs";
 import { uid } from "../../uid";
 
@@ -7,12 +7,45 @@ class InitationComponent extends HTMLElement {
 	private entityComponentTemplate: HTMLTemplateElement;
 	private entities: Array<HTMLElement>;
 	private entityWrapper: HTMLElement;
+	private inboxUid: string;
+	private needReset: boolean;
 
 	constructor() {
 		super();
 		this.entities = Array.from(this.querySelectorAll("entity-wrapper entity-component"));
 		this.entityComponentTemplate = this.querySelector('template[tag="entity-component"]');
 		this.entityWrapper = this.querySelector("entity-wrapper");
+		this.inboxUid = hookup("initiation-order", this.inbox.bind(this));
+		this.needReset = true;
+	}
+
+	private inbox(data) {
+		switch (data.type) {
+			case "set-order":
+				this.initOrder(data.order);
+				break;
+			default:
+				break;
+		}
+	}
+
+	private initOrder(order) {
+		if (!this.needReset) {
+			return;
+		}
+		this.entityWrapper.innerHTML = "";
+		for (let i = 0; i < order.length; i++) {
+			const node = document.importNode(this.entityComponentTemplate.content, true);
+			const component = node.querySelector("entity-component") as HTMLElement;
+			component.style.order = `${i}`;
+			component.dataset.uid = order[i].uid;
+			const name = component.querySelector(".js-name") as HTMLInputElement;
+			name.value = order[i].name;
+			const number = component.querySelector(".js-initiation") as HTMLInputElement;
+			number.value = `${order.length - i}`;
+			this.entityWrapper.appendChild(node);
+		}
+		this.entities = Array.from(this.querySelectorAll("entity-wrapper entity-component"));
 	}
 
 	private addEntityComponent: EventListener = () => {
@@ -25,6 +58,7 @@ class InitationComponent extends HTMLElement {
 	};
 
 	private updateOrder: EventListener = () => {
+		this.needReset = false;
 		this.entities = Array.from(this.querySelectorAll("entity-wrapper entity-component"));
 		const orderedEntities = [];
 		let invalidParams = false;
@@ -120,6 +154,9 @@ class InitationComponent extends HTMLElement {
 		this.querySelector(".js-add-entity").addEventListener("click", this.addEntityComponent);
 		this.querySelector(".js-update-initiation-order").addEventListener("click", this.updateOrder);
 		this.querySelector(".js-clear-order").addEventListener("click", this.clearOrder);
+		message("server", {
+			type: "init-combat-order",
+		});
 	}
 }
 customElements.define("initiation-component", InitationComponent);

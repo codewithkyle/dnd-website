@@ -576,14 +576,14 @@
     </article>
     {% if isAuthor %}
         <div class="w-full p-1 text-center fixed l-0 b-0" style="pointer-events: none;z-index: 1500;">
-            <div class="mx-0.5 inline-block" id="dice-mounting-point"></div>
-            <script src="{{ alias('@rootUrl')|trim('/') }}/preact/dice-roller.js"></script>
-            <div class="mx-0.5 inline-block" id="initiation-mounting-point"></div>
-            <script src="{{ alias('@rootUrl')|trim('/') }}/preact/initiation-order.js"></script>
-            <div class="mx-0.5 inline-block" id="battle-map-mounting-point"></div>
-            <script src="{{ alias('@rootUrl')|trim('/') }}/preact/battle-map.js"></script>
             <script type="module" src="{{ alias('@rootUrl')|trim('/') }}/assets/ping-manager.mjs"></script>
             <script type="module" src="{{ alias('@rootUrl')|trim('/') }}/assets/dynamic-map.mjs"></script>
+            <div class="mx-0.5 inline-block" id="dice-mounting-point"></div>
+            <script defer src="{{ alias('@rootUrl')|trim('/') }}/preact/dice-roller.js"></script>
+            <div class="mx-0.5 inline-block" id="initiation-mounting-point"></div>
+            <script defer src="{{ alias('@rootUrl')|trim('/') }}/preact/initiation-order.js"></script>
+            <div class="mx-0.5 inline-block" id="battle-map-mounting-point"></div>
+            <script defer src="{{ alias('@rootUrl')|trim('/') }}/preact/battle-map.js"></script>
         </div>
         {% include "character/_combat-timer" %}
     {% endif %}
