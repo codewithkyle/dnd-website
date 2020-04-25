@@ -84,6 +84,8 @@ $yellow: #ECC94B;
             cursor: pointer;
 
             &:hover{
+                z-index: 100;
+                
                 span{
                     opacity: 1;
                     visibility: visible;
@@ -184,6 +186,8 @@ $yellow: #ECC94B;
             }
 
             &:hover{
+                z-index: 100;
+
                 .tooltip{
                     opacity: 1;
                     visibility: visible;
