@@ -63,7 +63,7 @@
 
         &:active{
             box-shadow: var(--shadow-sm);
-            transform: scale(0.87);
+            transform: scale(0.87) translateY(-50%);
         }
 
         svg{
