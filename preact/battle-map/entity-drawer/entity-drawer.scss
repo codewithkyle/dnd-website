@@ -55,6 +55,7 @@
         border: 1px solid var(--grey-100);
         transform: translateY(-50%);
         transition: all 150ms var(--ease-in-out);
+        transform-origin: center;
 
         &:hover{
             color: var(--primary-700);
