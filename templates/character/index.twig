@@ -72,8 +72,8 @@
                     {{ inputs.text("Character Name", "title", true, null, character.title) }}
 
                     <div grid="columns 3 gap-2">
-                        {{ inputs.text("Class", "fields[class]", false, null, character.class) }}
-                        {{ inputs.text("Race", "fields[race]", false, null, character.race) }}
+                        {{ inputs.datalist("Class", "fields[class]", false, data.classes, null, character.class) }}
+                        {{ inputs.datalist("Race", "fields[race]", false, data.races, null, character.race) }}
                         {{ inputs.select("Alignment", "fields[alignment]", false, data.alignments, null, character.alignment) }}
                     </div>
 

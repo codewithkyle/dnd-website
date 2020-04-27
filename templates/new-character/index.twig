@@ -43,8 +43,8 @@
                             {{ inputs.text("Character Name", "title", true, null, unfinishedCharacter.title ?? null) }}
                             
                             <div grid="columns 2 gap-1">
-                                {{ inputs.select("Class", "fields[class]", true, data.classes, null, unfinishedCharacter.class ?? null) }}
-                                {{ inputs.select("Race", "fields[race]", true, data.races, null, unfinishedCharacter.race ?? null) }}
+                                {{ inputs.datalist("Class", "fields[class]", true, data.classes, null, unfinishedCharacter.class ?? null) }}
+                                {{ inputs.datalist("Race", "fields[race]", true, data.races, null, unfinishedCharacter.race ?? null) }}
                             </div>
 
                             {{ inputs.textarea("Background", "fields[background]", false,  null, unfinishedCharacter.background ?? null) }}

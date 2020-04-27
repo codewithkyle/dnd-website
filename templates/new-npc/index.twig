@@ -33,8 +33,8 @@
                     {{ inputs.text("NPC Name", "title", true) }}
                     
                     <div grid="columns 2 gap-1">
-                        {{ inputs.select("Class", "fields[class]", true, data.classes) }}
-                        {{ inputs.select("Race", "fields[race]", true, data.races) }}
+                        {{ inputs.datalist("Class", "fields[class]", true, data.classes) }}
+                        {{ inputs.datalist("Race", "fields[race]", true, data.races) }}
                     </div>
 
                     {{ inputs.select("Alignment", "fields[alignment]", false, data.alignments) }}
