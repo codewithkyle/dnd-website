@@ -11,6 +11,7 @@ type DrawerState = {
 	queuedD10: number;
 	queuedD12: number;
 	queuedD20: number;
+	queuedDPer: number;
 	view: "rolling" | "waiting" | "rolled";
 	results: Array<string>;
 };
@@ -28,6 +29,7 @@ class DiceRoller extends Component<{}, DrawerState> {
 			queuedD10: 0,
 			queuedD12: 0,
 			queuedD20: 0,
+			queuedDPer: 0,
 			view: "waiting",
 			results: [],
 		};
@@ -37,7 +39,7 @@ class DiceRoller extends Component<{}, DrawerState> {
 	private inbox(data) {
 		switch (data.type) {
 			case "roll-results":
-				this.setState({ results: data.results, queuedD4: 0, queuedD8: 0, queuedD10: 0, queuedD12: 0, queuedD20: 0, queuedD6: 0, view: "rolled" });
+				this.setState({ results: data.results, queuedD4: 0, queuedD8: 0, queuedD10: 0, queuedD12: 0, queuedD20: 0, queuedD6: 0, view: "rolled", queuedDPer: 0 });
 				break;
 			default:
 				console.log(`Dice Roller recieved an undefined message type: ${data.type}`);
@@ -46,10 +48,10 @@ class DiceRoller extends Component<{}, DrawerState> {
 	}
 
 	private openDrawer: EventListener = () => {
-		this.setState({ open: true, queuedD4: 0, queuedD8: 0, queuedD10: 0, queuedD12: 0, queuedD20: 0, queuedD6: 0, view: "waiting", results: [] });
+		this.setState({ open: true, queuedD4: 0, queuedD8: 0, queuedD10: 0, queuedD12: 0, queuedD20: 0, queuedD6: 0, view: "waiting", results: [], queuedDPer: 0 });
 	};
 	private closeDrawer: EventListener = () => {
-		this.setState({ open: false, queuedD4: 0, queuedD8: 0, queuedD10: 0, queuedD12: 0, queuedD20: 0, queuedD6: 0, view: "waiting", results: [] });
+		this.setState({ open: false, queuedD4: 0, queuedD8: 0, queuedD10: 0, queuedD12: 0, queuedD20: 0, queuedD6: 0, view: "waiting", results: [], queuedDPer: 0 });
 	};
 
 	private queueDie: EventListener = (e: Event) => {
@@ -68,6 +70,7 @@ class DiceRoller extends Component<{}, DrawerState> {
 				updatedState.queuedD10 = 0;
 				updatedState.queuedD12 = 0;
 				updatedState.queuedD20 = 0;
+				updatedState.queuedDPer = 0;
 				break;
 			case "d6":
 				updatedState.queuedD4 = 0;
@@ -76,6 +79,7 @@ class DiceRoller extends Component<{}, DrawerState> {
 				updatedState.queuedD10 = 0;
 				updatedState.queuedD12 = 0;
 				updatedState.queuedD20 = 0;
+				updatedState.queuedDPer = 0;
 				break;
 			case "d8":
 				updatedState.queuedD4 = 0;
@@ -84,6 +88,7 @@ class DiceRoller extends Component<{}, DrawerState> {
 				updatedState.queuedD10 = 0;
 				updatedState.queuedD12 = 0;
 				updatedState.queuedD20 = 0;
+				updatedState.queuedDPer = 0;
 				break;
 			case "d10":
 				updatedState.queuedD4 = 0;
@@ -92,6 +97,7 @@ class DiceRoller extends Component<{}, DrawerState> {
 				updatedState.queuedD10++;
 				updatedState.queuedD12 = 0;
 				updatedState.queuedD20 = 0;
+				updatedState.queuedDPer = 0;
 				break;
 			case "d12":
 				updatedState.queuedD4 = 0;
@@ -100,6 +106,7 @@ class DiceRoller extends Component<{}, DrawerState> {
 				updatedState.queuedD10 = 0;
 				updatedState.queuedD12++;
 				updatedState.queuedD20 = 0;
+				updatedState.queuedDPer = 0;
 				break;
 			case "d20":
 				updatedState.queuedD4 = 0;
@@ -108,6 +115,16 @@ class DiceRoller extends Component<{}, DrawerState> {
 				updatedState.queuedD10 = 0;
 				updatedState.queuedD12 = 0;
 				updatedState.queuedD20++;
+				updatedState.queuedDPer = 0;
+				break;
+			case "d%":
+				updatedState.queuedD4 = 0;
+				updatedState.queuedD6 = 0;
+				updatedState.queuedD8 = 0;
+				updatedState.queuedD10 = 0;
+				updatedState.queuedD12 = 0;
+				updatedState.queuedD20 = 0;
+				updatedState.queuedDPer++;
 				break;
 		}
 		this.setState(updatedState);
@@ -151,6 +168,12 @@ class DiceRoller extends Component<{}, DrawerState> {
 				} else {
 					return null;
 				}
+			case "d%":
+				if (this.state.queuedDPer !== 0) {
+					return <i>{this.state.queuedDPer}</i>;
+				} else {
+					return null;
+				}
 		}
 	}
 
@@ -178,6 +201,9 @@ class DiceRoller extends Component<{}, DrawerState> {
 		} else if (this.state.queuedD20) {
 			rollType = "d20";
 			numOfRolls = this.state.queuedD20;
+		} else if (this.state.queuedDPer) {
+			rollType = "d%";
+			numOfRolls = this.state.queuedDPer;
 		}
 		this.setState({ view: "rolling" });
 		message(
@@ -216,6 +242,7 @@ class DiceRoller extends Component<{}, DrawerState> {
 			this.state.queuedD4 ||
 			this.state.queuedD6 ||
 			this.state.queuedD8 ||
+			this.state.queuedDPer ||
 			this.state.results.length
 		) {
 			let rollView = null;
@@ -259,6 +286,16 @@ class DiceRoller extends Component<{}, DrawerState> {
 				<div className={`dice-roller ${this.state.open ? "is-open" : ""}`}>
 					{rollBox}
 					<div className="dice">
+						<button onClick={this.queueDie} className="die-button" data-die="d%">
+							<svg aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+								<path
+									fill="currentColor"
+									d="M349.66 173.65l-11.31-11.31c-3.12-3.12-8.19-3.12-11.31 0l-164.7 164.69c-3.12 3.12-3.12 8.19 0 11.31l11.31 11.31c3.12 3.12 8.19 3.12 11.31 0l164.69-164.69c3.13-3.12 3.13-8.18.01-11.31zM240 192c0-26.47-21.53-48-48-48s-48 21.53-48 48 21.53 48 48 48 48-21.53 48-48zm-64 0c0-8.83 7.19-16 16-16s16 7.17 16 16-7.19 16-16 16-16-7.17-16-16zm144 80c-26.47 0-48 21.53-48 48s21.53 48 48 48 48-21.53 48-48-21.53-48-48-48zm0 64c-8.81 0-16-7.17-16-16s7.19-16 16-16 16 7.17 16 16-7.19 16-16 16zm192-80c0-35.5-19.4-68.2-49.6-85.5 9.1-33.6-.3-70.4-25.4-95.5s-61.9-34.5-95.5-25.4C324.2 19.4 291.5 0 256 0s-68.2 19.4-85.5 49.6c-33.6-9.1-70.4.3-95.5 25.4s-34.5 61.9-25.4 95.5C19.4 187.8 0 220.5 0 256s19.4 68.2 49.6 85.5c-9.1 33.6.3 70.4 25.4 95.5 26.5 26.5 63.4 34.1 95.5 25.4 17.4 30.2 50 49.6 85.5 49.6s68.1-19.4 85.5-49.6c32.7 8.9 69.4.7 95.5-25.4 25.1-25.1 34.5-61.9 25.4-95.5 30.2-17.3 49.6-50 49.6-85.5zm-91.1 68.3c5.3 11.8 29.5 54.1-6.5 90.1-28.9 28.9-57.5 21.3-90.1 6.5C319.7 433 307 480 256 480c-52.1 0-64.7-49.5-68.3-59.1-32.6 14.8-61.3 22.2-90.1-6.5-36.8-36.7-10.9-80.5-6.5-90.1C79 319.7 32 307 32 256c0-52.1 49.5-64.7 59.1-68.3-5.3-11.8-29.5-54.1 6.5-90.1 36.8-36.9 80.8-10.7 90.1-6.5C192.3 79 205 32 256 32c52.1 0 64.7 49.5 68.3 59.1 11.8-5.3 54.1-29.5 90.1 6.5 36.8 36.7 10.9 80.5 6.5 90.1C433 192.3 480 205 480 256c0 52.1-49.5 64.7-59.1 68.3z"
+								></path>
+							</svg>
+							<span>Percent</span>
+							{this.renderQueue("d%")}
+						</button>
 						<button onClick={this.queueDie} className="die-button" data-die="d4">
 							<svg aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
 								<path
