@@ -1,1 +1,131 @@
-async function e(e){const s=e.match(/(lazy-load-css\=[\'\"].*?[\'\"])/gi);if(null===s||0===s.length)return[];const t=[];s&&s.map(e=>{const s=e.replace(/(lazy-load-css\=[\'\"])|[\'\"]$/g,"").trim().split(/\s+/g);s&&s.map(e=>{const s=e.trim().toLowerCase().replace(/(\.css)$|(\.scss)$/g,"");""!==s&&t.push(s)})});const a=[];for(let e=0;e<t.length;e++){let s=!0;for(let n=0;n<a.length;n++)t[e]===a[n]&&(s=!1);s&&a.push(t[e])}return a}async function s(e){const s=e.match(/(eager-load-css\=[\'\"].*?[\'\"])/gi);if(null===s||0===s.length)return[];const t=[];s&&s.map(e=>{const s=e.replace(/(eager-load-css\=[\'\"])|[\'\"]$/g,"").trim().split(/\s+/g);s&&s.map(e=>{const s=e.trim().toLowerCase().replace(/(\.css)$|(\.scss)$/g,"");""!==s&&t.push(s)})});const a=[];for(let e=0;e<t.length;e++){let s=!0;for(let n=0;n<a.length;n++)t[e]===a[n]&&(s=!1);s&&a.push(t[e])}return a}onmessage=t=>{switch(t.data.type){case"eager":s(t.data.body).then(e=>{postMessage({type:"eager",files:e})});break;case"lazy":e(t.data.body).then(e=>{postMessage({type:"lazy",files:e})});break;case"parse":(async function(t){const a=await s(t),n=await e(t),c={eager:a,lazy:[]};return n.map(e=>{a.includes(e)||c.lazy.push(e)}),c})(t.data.body).then(e=>{postMessage({type:"parse",pjaxFiles:e,requestUid:t.data.requestUid})})}};
+/**
+ * Parses HTML for all `lazy-load-css` attributes and collects all unique file names.
+ * @param body - the body text to be parsed
+ */
+async function parseLazyLoadedCSS(body) {
+    const matches = body.match(/(lazy-load-css\=[\'\"].*?[\'\"])/gi);
+    if (matches === null || matches.length === 0) {
+        return [];
+    }
+    const files = [];
+    if (matches) {
+        matches.map((match) => {
+            const clean = match.replace(/(lazy-load-css\=[\'\"])|[\'\"]$/g, "");
+            const filenames = clean.trim().split(/\s+/g);
+            if (filenames) {
+                filenames.map(filename => {
+                    const cleanFilename = filename
+                        .trim()
+                        .toLowerCase()
+                        .replace(/(\.css)$|(\.scss)$/g, "");
+                    if (cleanFilename !== "") {
+                        files.push(cleanFilename);
+                    }
+                });
+            }
+        });
+    }
+    const uniqueFiles = [];
+    for (let i = 0; i < files.length; i++) {
+        let isUnique = true;
+        for (let k = 0; k < uniqueFiles.length; k++) {
+            if (files[i] === uniqueFiles[k]) {
+                isUnique = false;
+            }
+        }
+        if (isUnique) {
+            uniqueFiles.push(files[i]);
+        }
+    }
+    return uniqueFiles;
+}
+/**
+ * Parses HTML for all `eager-load-css` attributes and collects all unique file names.
+ * @param body - the body text to be parsed
+ */
+async function parseEagerLoadedCSS(body) {
+    const matches = body.match(/(eager-load-css\=[\'\"].*?[\'\"])/gi);
+    if (matches === null || matches.length === 0) {
+        return [];
+    }
+    const files = [];
+    if (matches) {
+        matches.map((match) => {
+            const clean = match.replace(/(eager-load-css\=[\'\"])|[\'\"]$/g, "");
+            const filenames = clean.trim().split(/\s+/g);
+            if (filenames) {
+                filenames.map(filename => {
+                    const cleanFilename = filename
+                        .trim()
+                        .toLowerCase()
+                        .replace(/(\.css)$|(\.scss)$/g, "");
+                    if (cleanFilename !== "") {
+                        files.push(cleanFilename);
+                    }
+                });
+            }
+        });
+    }
+    const uniqueFiles = [];
+    for (let i = 0; i < files.length; i++) {
+        let isUnique = true;
+        for (let k = 0; k < uniqueFiles.length; k++) {
+            if (files[i] === uniqueFiles[k]) {
+                isUnique = false;
+            }
+        }
+        if (isUnique) {
+            uniqueFiles.push(files[i]);
+        }
+    }
+    return uniqueFiles;
+}
+/**
+ * Parses HTML and collects all requested CSS files.
+ * @param body - the body text to be parsed
+ * @param requestUid - the navigation request unique id
+ */
+async function parseCSS(body) {
+    const eagerCSSFiles = await parseEagerLoadedCSS(body);
+    const lazyCSSFiles = await parseLazyLoadedCSS(body);
+    const uniqueFiles = { eager: eagerCSSFiles, lazy: [] };
+    lazyCSSFiles.map(lazyFilename => {
+        if (!eagerCSSFiles.includes(lazyFilename)) {
+            uniqueFiles.lazy.push(lazyFilename);
+        }
+    });
+    return uniqueFiles;
+}
+/** Incoming request from the Runtime class. */
+onmessage = (e) => {
+    switch (e.data.type) {
+        case "eager":
+            parseEagerLoadedCSS(e.data.body).then(files => {
+                // @ts-ignore
+                postMessage({
+                    type: "eager",
+                    files: files,
+                });
+            });
+            break;
+        case "lazy":
+            parseLazyLoadedCSS(e.data.body).then(files => {
+                // @ts-ignore
+                postMessage({
+                    type: "lazy",
+                    files: files,
+                });
+            });
+            break;
+        case "parse":
+            parseCSS(e.data.body).then(data => {
+                // @ts-ignore
+                postMessage({
+                    type: "parse",
+                    pjaxFiles: data,
+                    requestUid: e.data.requestUid,
+                });
+            });
+            break;
+    }
+};

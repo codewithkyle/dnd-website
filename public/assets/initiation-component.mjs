@@ -1,1 +1,151 @@
-import{EntityComponent as e}from"./entity-component.mjs";import{message as t,hookup as i}from"./broadcaster.mjs";import{snackbar as r}from"./notifyjs.mjs";import{uid as n}from"./uid.mjs";class o extends HTMLElement{constructor(){super(),this.addEntityComponent=()=>{const e=document.importNode(this.entityComponentTemplate.content,!0),t=e.querySelector("entity-component");t.style.order=""+this.entities.length,t.dataset.uid=n(),this.entityWrapper.appendChild(e),this.entities=Array.from(this.querySelectorAll("entity-wrapper entity-component"))},this.updateOrder=()=>{this.needReset=!1,this.entities=Array.from(this.querySelectorAll("entity-wrapper entity-component"));const e=[];let i,n,o,s=!1,l=0;for(let t=0;t<this.entities.length;t++){const r=this.entities[t].querySelector(".js-initiation").value;if(""===r){s=!0,l=1;break}const a={el:this.entities[t],value:parseInt(r)};if(0===t)e.push(a);else{let t=null;for(let r=0;r<e.length;r++){if(a.value>e[r].value){t=r;break}if(a.value===e[r].value){s=!0,n=a.el.querySelector(".js-name").value,o=e[r].el.querySelector(".js-name").value,i=a.value,l=2;break}}if(s)break;null===t?e.push(a):e.splice(t,0,a)}}if(s&&1===l)return void r({message:"Initiation order values cannot be blank.",closeable:!0,force:!0});if(s&&2===l)return void r({message:`Invalid initation order. ${n} and ${o} both rolled a ${i}`,closeable:!0,force:!0});const a=[];for(let t=0;t<e.length;t++)e[t].el.style.order=t,a.push({name:e[t].el.querySelector(".js-name").value,uid:e[t].el.dataset.uid});t("server",{type:"initiation-order",entities:a})},this.clearOrder=()=>{t("server",{type:"clear-order"});for(let e=0;e<this.entities.length;e++)this.entities[e].style.order="",this.entities[e].querySelector(".js-initiation").value=""},this.entities=Array.from(this.querySelectorAll("entity-wrapper entity-component")),this.entityComponentTemplate=this.querySelector('template[tag="entity-component"]'),this.entityWrapper=this.querySelector("entity-wrapper"),this.inboxUid=i("initiation-order",this.inbox.bind(this)),this.needReset=!0}inbox(e){switch(e.type){case"set-order":this.initOrder(e.order)}}initOrder(e){if(this.needReset&&e.length){this.entityWrapper.innerHTML="";for(let t=0;t<e.length;t++){const i=document.importNode(this.entityComponentTemplate.content,!0),r=i.querySelector("entity-component");r.style.order=""+t,r.dataset.uid=e[t].uid,r.querySelector(".js-name").value=e[t].name,r.querySelector(".js-initiation").value=""+(e.length-t),this.entityWrapper.appendChild(i)}this.entities=Array.from(this.querySelectorAll("entity-wrapper entity-component"))}}connectedCallback(){this.querySelector(".js-add-entity").addEventListener("click",this.addEntityComponent),this.querySelector(".js-update-initiation-order").addEventListener("click",this.updateOrder),this.querySelector(".js-clear-order").addEventListener("click",this.clearOrder),t("server",{type:"init-combat-order"})}}customElements.define("initiation-component",o),customElements.define("entity-component",e);
+import { EntityComponent } from "./entity-component.mjs";
+import { message, hookup } from "./broadcaster.mjs";
+import { snackbar } from "./notifyjs.mjs";
+import { uid } from "./uid.mjs";
+class InitationComponent extends HTMLElement {
+    constructor() {
+        super();
+        this.addEntityComponent = () => {
+            const node = document.importNode(this.entityComponentTemplate.content, true);
+            const component = node.querySelector("entity-component");
+            component.style.order = `${this.entities.length}`;
+            component.dataset.uid = uid();
+            this.entityWrapper.appendChild(node);
+            this.entities = Array.from(this.querySelectorAll("entity-wrapper entity-component"));
+        };
+        this.updateOrder = () => {
+            this.needReset = false;
+            this.entities = Array.from(this.querySelectorAll("entity-wrapper entity-component"));
+            const orderedEntities = [];
+            let invalidParams = false;
+            let invalidReason = 0;
+            let matchedValue;
+            let name1;
+            let name2;
+            for (let i = 0; i < this.entities.length; i++) {
+                // @ts-ignore
+                const value = this.entities[i].querySelector(".js-initiation").value;
+                if (value === "") {
+                    invalidParams = true;
+                    invalidReason = 1;
+                    break;
+                }
+                const entity = {
+                    el: this.entities[i],
+                    value: parseInt(value),
+                };
+                if (i === 0) {
+                    orderedEntities.push(entity);
+                }
+                else {
+                    let injectAt = null;
+                    for (let k = 0; k < orderedEntities.length; k++) {
+                        if (entity.value > orderedEntities[k].value) {
+                            injectAt = k;
+                            break;
+                        }
+                        else if (entity.value === orderedEntities[k].value) {
+                            invalidParams = true;
+                            // @ts-ignore
+                            name1 = entity.el.querySelector(".js-name").value;
+                            // @ts-ignore
+                            name2 = orderedEntities[k].el.querySelector(".js-name").value;
+                            matchedValue = entity.value;
+                            invalidReason = 2;
+                            break;
+                        }
+                    }
+                    if (invalidParams) {
+                        break;
+                    }
+                    if (injectAt === null) {
+                        orderedEntities.push(entity);
+                    }
+                    else {
+                        orderedEntities.splice(injectAt, 0, entity);
+                    }
+                }
+            }
+            if (invalidParams && invalidReason === 1) {
+                snackbar({
+                    message: `Initiation order values cannot be blank.`,
+                    closeable: true,
+                    force: true,
+                });
+                return;
+            }
+            else if (invalidParams && invalidReason === 2) {
+                snackbar({
+                    message: `Invalid initation order. ${name1} and ${name2} both rolled a ${matchedValue}`,
+                    closeable: true,
+                    force: true,
+                });
+                return;
+            }
+            const serverData = [];
+            for (let i = 0; i < orderedEntities.length; i++) {
+                orderedEntities[i].el.style.order = i;
+                serverData.push({
+                    name: orderedEntities[i].el.querySelector(".js-name").value,
+                    uid: orderedEntities[i].el.dataset.uid,
+                });
+            }
+            message("server", {
+                type: "initiation-order",
+                entities: serverData,
+            });
+        };
+        this.clearOrder = () => {
+            message("server", {
+                type: "clear-order",
+            });
+            for (let i = 0; i < this.entities.length; i++) {
+                this.entities[i].style.order = "";
+                // @ts-ignore
+                this.entities[i].querySelector(".js-initiation").value = "";
+            }
+        };
+        this.entities = Array.from(this.querySelectorAll("entity-wrapper entity-component"));
+        this.entityComponentTemplate = this.querySelector('template[tag="entity-component"]');
+        this.entityWrapper = this.querySelector("entity-wrapper");
+        this.inboxUid = hookup("initiation-order", this.inbox.bind(this));
+        this.needReset = true;
+    }
+    inbox(data) {
+        switch (data.type) {
+            case "set-order":
+                this.initOrder(data.order);
+                break;
+            default:
+                break;
+        }
+    }
+    initOrder(order) {
+        if (!this.needReset || !order.length) {
+            return;
+        }
+        this.entityWrapper.innerHTML = "";
+        for (let i = 0; i < order.length; i++) {
+            const node = document.importNode(this.entityComponentTemplate.content, true);
+            const component = node.querySelector("entity-component");
+            component.style.order = `${i}`;
+            component.dataset.uid = order[i].uid;
+            const name = component.querySelector(".js-name");
+            name.value = order[i].name;
+            const number = component.querySelector(".js-initiation");
+            number.value = `${order.length - i}`;
+            this.entityWrapper.appendChild(node);
+        }
+        this.entities = Array.from(this.querySelectorAll("entity-wrapper entity-component"));
+    }
+    connectedCallback() {
+        this.querySelector(".js-add-entity").addEventListener("click", this.addEntityComponent);
+        this.querySelector(".js-update-initiation-order").addEventListener("click", this.updateOrder);
+        this.querySelector(".js-clear-order").addEventListener("click", this.clearOrder);
+        message("server", {
+            type: "init-combat-order",
+        });
+    }
+}
+customElements.define("initiation-component", InitationComponent);
+customElements.define("entity-component", EntityComponent);

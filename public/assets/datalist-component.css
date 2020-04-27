@@ -1,1 +1,94 @@
-datalist-component{display:block;width:100%;position:relative;box-sizing:border-box}datalist-component[disabled] input{border-color:var(--neutral-300)!important;background-color:var(--neutral-100)!important;cursor:not-allowed!important;box-shadow:none!important}datalist-component[disabled] label{color:var(--neutral-700)!important}datalist-component.has-value label{transform:translateY(.25rem) scale(.75)}datalist-component.is-invalid input{border-color:var(--danger-500)!important}datalist-component.is-invalid input:focus{box-shadow:0 0 6px rgba(245,101,101,.1),0 0 3px rgba(245,101,101,.06)!important}datalist-component.is-invalid input:hover{box-shadow:0 0 6px rgba(245,101,101,.1),0 0 3px rgba(245,101,101,.06)!important}datalist-component.is-invalid span{opacity:1}datalist-component.is-invalid label{color:var(--danger-700)!important;transform:translateY(.25rem) scale(.75)}datalist-component datalist{display:none}datalist-component input{background-color:var(--white);box-sizing:border-box;display:block;width:100%;text-overflow:ellipsis;color:var(--neutral-700);line-height:1;height:56px;padding:1.5rem 1rem .625rem;border-radius:.25rem;border:1px solid var(--neutral-300);box-shadow:none;outline:0;transition:all 150ms var(--ease-in-out)}datalist-component input:focus{border-color:var(--primary-400);box-shadow:var(--shadow-sm)}datalist-component input:focus+label{transform:translateY(.25rem) scale(.75);color:var(--primary-700)}datalist-component input:hover{border-color:var(--primary-400);box-shadow:var(--shadow-sm)}datalist-component input:hover+label{color:var(--primary-700)}datalist-component label{color:var(--grey-700);user-select:none;position:absolute;top:0;transform-origin:left center;transform:translateY(1.25rem) scale(1);left:1rem;pointer-events:none;transition:all 150ms var(--ease-in-out)}
+datalist-component {
+  display: block;
+  width: 100%;
+  position: relative;
+  box-sizing: border-box;
+}
+
+datalist-component[disabled] input {
+  border-color: var(--neutral-300) !important;
+  background-color: var(--neutral-100) !important;
+  cursor: not-allowed !important;
+  box-shadow: none !important;
+}
+
+datalist-component[disabled] label {
+  color: var(--neutral-700) !important;
+}
+
+datalist-component.has-value label {
+  transform: translateY(0.25rem) scale(0.75);
+}
+
+datalist-component.is-invalid input {
+  border-color: var(--danger-500) !important;
+}
+
+datalist-component.is-invalid input:focus {
+  box-shadow: 0 0 6px rgba(245, 101, 101, 0.1), 0 0 3px rgba(245, 101, 101, 0.06) !important;
+}
+
+datalist-component.is-invalid input:hover {
+  box-shadow: 0 0 6px rgba(245, 101, 101, 0.1), 0 0 3px rgba(245, 101, 101, 0.06) !important;
+}
+
+datalist-component.is-invalid span {
+  opacity: 1;
+}
+
+datalist-component.is-invalid label {
+  color: var(--danger-700) !important;
+  transform: translateY(0.25rem) scale(0.75);
+}
+
+datalist-component datalist {
+  display: none;
+}
+
+datalist-component input {
+  background-color: var(--white);
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  text-overflow: ellipsis;
+  color: var(--neutral-700);
+  line-height: 1;
+  height: 56px;
+  padding: 1.5rem 1rem 0.625rem;
+  border-radius: 0.25rem;
+  border: 1px solid var(--neutral-300);
+  box-shadow: none;
+  outline: none;
+  transition: all 150ms var(--ease-in-out);
+}
+
+datalist-component input:focus {
+  border-color: var(--primary-400);
+  box-shadow: var(--shadow-sm);
+}
+
+datalist-component input:focus + label {
+  transform: translateY(0.25rem) scale(0.75);
+  color: var(--primary-700);
+}
+
+datalist-component input:hover {
+  border-color: var(--primary-400);
+  box-shadow: var(--shadow-sm);
+}
+
+datalist-component input:hover + label {
+  color: var(--primary-700);
+}
+
+datalist-component label {
+  color: var(--grey-700);
+  user-select: none;
+  position: absolute;
+  top: 0;
+  transform-origin: left center;
+  transform: translateY(1.25rem) scale(1);
+  left: 1rem;
+  pointer-events: none;
+  transition: all 150ms var(--ease-in-out);
+}

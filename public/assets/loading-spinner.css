@@ -1,1 +1,44 @@
-loading-spinner{display:block;height:64px;width:64px;box-sizing:border-box;margin:0 auto 1rem;border:4px var(--grey-100) solid;border-top:4px var(--loading-bar) solid;border-radius:50%;animation:circleRailSpinner 1s infinite linear}loading-spinner.-inline{display:inline-block;vertical-align:middle;margin:0}loading-spinner.-floating{position:absolute;top:50%;left:50%;margin-left:-32px;margin-top:-32px;animation:circleRailSpinnerFloating 1s infinite linear}@keyframes circleRailSpinnerFloating{from{transform:rotate(0)}to{transform:rotate(359deg)}}@keyframes circleRailSpinner{from{transform:rotate(0)}to{transform:rotate(359deg)}}
+loading-spinner {
+  display: block;
+  height: 64px;
+  width: 64px;
+  box-sizing: border-box;
+  margin: 0 auto 1rem;
+  border: 4px var(--grey-100) solid;
+  border-top: 4px var(--loading-bar) solid;
+  border-radius: 50%;
+  animation: circleRailSpinner 1000ms infinite linear;
+}
+
+loading-spinner.-inline {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0;
+}
+
+loading-spinner.-floating {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -32px;
+  margin-top: -32px;
+  animation: circleRailSpinnerFloating 1000ms infinite linear;
+}
+
+@keyframes circleRailSpinnerFloating {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
+
+@keyframes circleRailSpinner {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}

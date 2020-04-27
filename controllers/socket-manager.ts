@@ -4,6 +4,7 @@ import io from "socket";
 import { DiceRoller } from "rpg-dice-roller";
 // @ts-ignore
 import { toast } from "notifyjs";
+import { snackbar } from "../web_modules/@codewithkyle/notifyjs";
 
 class SocketManager {
 	private socket: any;
@@ -141,6 +142,16 @@ class SocketManager {
 				type: "clear",
 			});
 		});
+		this.socket.on("accepted", () => {
+			this.inRoom = true;
+		});
+		this.socket.on("rejected", (reason) => {
+			snackbar({
+				message: reason,
+				closeable: true,
+				duration: Infinity,
+			});
+		});
 	}
 
 	private inbox(data) {
@@ -249,7 +260,6 @@ class SocketManager {
 						roomUid: data.campaign,
 						characterUid: data?.characterUid ?? null,
 					});
-					this.inRoom = true;
 				}
 				break;
 			case "roll-dice":

@@ -1,1 +1,142 @@
-import{env as e}from"./env.mjs";import{djinnjsOutDir as t,usePercentage as n}from"./config.mjs";export function fetchJS(n){return new Promise(o=>{const r=e.startLoading(),i=n instanceof Array?n:[n];0===i.length&&(e.stopLoading(r),o());let l=0;for(let n=0;n<i.length;n++){const d=i[n],a=new RegExp(/^(http)/i).test(i[n]);let s=document.head.querySelector(`script[src="${i[n]}"]`)||document.head.querySelector(`script[file="${d}"]`)||null;s?(l++,l===i.length&&(e.stopLoading(r),o())):(s=document.createElement("script"),a||s.setAttribute("file",""+d),s.type="module",a?s.src=i[n]:d.match(/(\..*)$/gi)?s.src=`${window.location.origin}/${t}/${d}`:s.src=`${window.location.origin}/${t}/${d}.mjs`,s.addEventListener("load",()=>{l++,l===i.length&&(e.stopLoading(r),o())}),s.addEventListener("error",()=>{l++,l===i.length&&(e.stopLoading(r),o())}),document.head.append(s))}})}export function fetchCSS(o){return new Promise(r=>{const i=e.startLoading(),l=o instanceof Array?o:[o];0===l.length&&(e.stopLoading(i),r());const d=document.body.querySelector("djinnjs-file-loading-value")||null;let a=0;for(let o=0;o<l.length;o++){const s=l[o].replace(/(\.css)$/gi,""),c=new RegExp(/^(http)/gi).test(s);let g=document.head.querySelector(`link[file="${s}.css"]`)||document.head.querySelector(`link[href="${s}"]`)||null;g?(a++,"hard-loading"===e.domState&&d&&(d.innerHTML=n?Math.round(a/l.length*100)+"%":`${a}/${l.length}`),a===l.length&&(e.stopLoading(i),r())):(g=document.createElement("link"),c||g.setAttribute("file",s+".css"),g.rel="stylesheet",g.href=c?s+".css":`${window.location.origin}/${t}/${s}.css`,g.addEventListener("load",()=>{a++,"hard-loading"===e.domState&&d&&(d.innerHTML=n?Math.round(a/l.length*100)+"%":`${a}/${l.length}`),a===l.length&&(e.stopLoading(i),r())}),g.addEventListener("error",()=>{a++,"hard-loading"===e.domState&&d&&(d.innerHTML=n?Math.round(a/l.length*100)+"%":`${a}/${l.length}`),a===l.length&&(e.stopLoading(i),r())}),document.head.append(g))}})}
+import { env } from "./env.mjs";
+import { djinnjsOutDir, usePercentage } from "./config.mjs";
+/**
+ * Appends JavaScript resources to the documents head if it hasn't already been loaded.
+ * @param filenames - a filename `sting` or an array of `string` JS filenames or a URL -- exclude the extension
+ */
+export function fetchJS(filenames) {
+    return new Promise(resolve => {
+        const ticket = env.startLoading();
+        const resourceList = filenames instanceof Array ? filenames : [filenames];
+        if (resourceList.length === 0) {
+            env.stopLoading(ticket);
+            resolve();
+        }
+        let loaded = 0;
+        for (let i = 0; i < resourceList.length; i++) {
+            const filename = resourceList[i];
+            const isUrl = new RegExp(/^(http)/i).test(resourceList[i]);
+            let el = document.head.querySelector(`script[src="${resourceList[i]}"]`) || document.head.querySelector(`script[file="${filename}"]`) || null;
+            if (!el) {
+                el = document.createElement("script");
+                if (!isUrl) {
+                    el.setAttribute("file", `${filename}`);
+                }
+                el.type = "module";
+                if (!isUrl) {
+                    if (filename.match(/(\..*)$/gi)) {
+                        el.src = `${window.location.origin}/${djinnjsOutDir}/${filename}`;
+                    }
+                    else {
+                        el.src = `${window.location.origin}/${djinnjsOutDir}/${filename}.mjs`;
+                    }
+                }
+                else {
+                    el.src = resourceList[i];
+                }
+                el.addEventListener("load", () => {
+                    loaded++;
+                    if (loaded === resourceList.length) {
+                        env.stopLoading(ticket);
+                        resolve();
+                    }
+                });
+                el.addEventListener("error", () => {
+                    loaded++;
+                    if (loaded === resourceList.length) {
+                        env.stopLoading(ticket);
+                        resolve();
+                    }
+                });
+                document.head.append(el);
+            }
+            else {
+                loaded++;
+                if (loaded === resourceList.length) {
+                    env.stopLoading(ticket);
+                    resolve();
+                }
+            }
+        }
+    });
+}
+/**
+ * Appends resources to the documents head if it hasn't already been loaded.
+ * @param filenames - a filename `sting` or an array of `string` CSS filenames or a URL -- exclude the extension
+ */
+export function fetchCSS(filenames) {
+    return new Promise(resolve => {
+        const ticket = env.startLoading();
+        const resourceList = filenames instanceof Array ? filenames : [filenames];
+        if (resourceList.length === 0) {
+            env.stopLoading(ticket);
+            resolve();
+        }
+        const loadingMessage = document.body.querySelector("djinnjs-file-loading-value") || null;
+        let loaded = 0;
+        for (let i = 0; i < resourceList.length; i++) {
+            const filename = resourceList[i].replace(/(\.css)$/gi, "");
+            const isUrl = new RegExp(/^(http)/gi).test(filename);
+            let el = document.head.querySelector(`link[file="${filename}.css"]`) || document.head.querySelector(`link[href="${filename}"]`) || null;
+            if (!el) {
+                el = document.createElement("link");
+                if (!isUrl) {
+                    el.setAttribute("file", `${filename}.css`);
+                }
+                el.rel = "stylesheet";
+                if (!isUrl) {
+                    el.href = `${window.location.origin}/${djinnjsOutDir}/${filename}.css`;
+                }
+                else {
+                    el.href = `${filename}.css`;
+                }
+                el.addEventListener("load", () => {
+                    loaded++;
+                    if (env.domState === "hard-loading" && loadingMessage) {
+                        if (usePercentage) {
+                            loadingMessage.innerHTML = `${Math.round((loaded / resourceList.length) * 100)}%`;
+                        }
+                        else {
+                            loadingMessage.innerHTML = `${loaded}/${resourceList.length}`;
+                        }
+                    }
+                    if (loaded === resourceList.length) {
+                        env.stopLoading(ticket);
+                        resolve();
+                    }
+                });
+                el.addEventListener("error", () => {
+                    loaded++;
+                    if (env.domState === "hard-loading" && loadingMessage) {
+                        if (usePercentage) {
+                            loadingMessage.innerHTML = `${Math.round((loaded / resourceList.length) * 100)}%`;
+                        }
+                        else {
+                            loadingMessage.innerHTML = `${loaded}/${resourceList.length}`;
+                        }
+                    }
+                    if (loaded === resourceList.length) {
+                        env.stopLoading(ticket);
+                        resolve();
+                    }
+                });
+                document.head.append(el);
+            }
+            else {
+                loaded++;
+                if (env.domState === "hard-loading" && loadingMessage) {
+                    if (usePercentage) {
+                        loadingMessage.innerHTML = `${Math.round((loaded / resourceList.length) * 100)}%`;
+                    }
+                    else {
+                        loadingMessage.innerHTML = `${loaded}/${resourceList.length}`;
+                    }
+                }
+                if (loaded === resourceList.length) {
+                    env.stopLoading(ticket);
+                    resolve();
+                }
+            }
+        }
+    });
+}

@@ -1,1 +1,234 @@
-class t{constructor(){this.handleCloseClickEvent=this.removeNotification.bind(this),this.handleActionButtonClick=this.activateButton.bind(this),this._queue=[],this._callback=()=>{},this._isRunning=!1,this._time=0}activateButton(t){const e=t.currentTarget;this._queue[0].buttons[parseInt(e.dataset.index)].callback(),this.removeNotification()}createNotification(t){const e=document.createElement("pjax-notification");e.setAttribute("position",t.position);const i=document.createElement("p");if(i.innerText=t.message,e.appendChild(i),t.closeable||t.buttons.length){const i=document.createElement("snackbar-actions");if(t.buttons.length)for(let e=0;e<t.buttons.length;e++){const n=document.createElement("button");n.innerText=t.buttons[e].label,n.dataset.index=""+e,t.buttons[e].ariaLabel&&n.setAttribute("aria-label",t.buttons[e].ariaLabel),n.addEventListener("click",this.handleActionButtonClick),i.appendChild(n)}if(t.closeable){const t=document.createElement("close-button");t.setAttribute("aria-label","close notification"),t.setAttribute("aria-pressed","false"),t.setAttribute("role","button"),t.innerHTML='<svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="times" class="svg-inline--fa fa-times fa-w-10" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M207.6 256l107.72-107.72c6.23-6.23 6.23-16.34 0-22.58l-25.03-25.03c-6.23-6.23-16.34-6.23-22.58 0L160 208.4 52.28 100.68c-6.23-6.23-16.34-6.23-22.58 0L4.68 125.7c-6.23 6.23-6.23 16.34 0 22.58L112.4 256 4.68 363.72c-6.23 6.23-6.23 16.34 0 22.58l25.03 25.03c6.23 6.23 16.34 6.23 22.58 0L160 303.6l107.72 107.72c6.23 6.23 16.34 6.23 22.58 0l25.03-25.03c6.23-6.23 6.23-16.34 0-22.58L207.6 256z"></path></svg>',t.addEventListener("click",this.handleCloseClickEvent),i.appendChild(t)}e.appendChild(i)}document.body.appendChild(e),t.element=e}removeNotification(){const t=this._queue[0].element.querySelector("close-button");t&&t.removeEventListener("click",this.handleCloseClickEvent);const e=Array.from(this._queue[0].element.querySelectorAll("button"));if(e.length)for(let t=0;t<e.length;t++)e[t].removeEventListener("click",this.activateButton);this._queue[0].element.remove(),this._queue.splice(0,1),0!==this._queue.length?this.createNotification(this._queue[0]):this.stopCallback()}startCallback(){this._isRunning||(this._isRunning=!0,this._callback=this.animationFrameCallback.bind(this),this._time=performance.now(),this._callback(),this.createNotification(this._queue[0]))}stopCallback(){this._isRunning=!1,this._callback=()=>{}}animationFrameCallback(){if(0===this._queue.length||!this._isRunning)return void this.stopCallback();const t=performance.now(),e=(t-this._time)/1e3;this._time=t,document.hasFocus()&&Infinity!==this._queue[0].duration&&(this._queue[0].duration-=e,this._queue[0].duration<=0&&this.removeNotification()),window.requestAnimationFrame(()=>{this._callback()})}validateNotification(t){return new Promise((e,i)=>{const n={};let o=[];if(t.element&&i("Notifications create their own HTMLElement, do not provide one."),t.message?n.message=t.message:i("Notifications require a message."),t.closeable?n.closeable=t.closeable:n.closeable=!1,t.duration?(n.duration=t.duration,Infinity===t.duration&&n.closeable&&(n.duration=Infinity)):n.duration=10,t.position?(t.position.match("top")?n.position="top":(t.position.match("bottom"),n.position="bottom"),t.position.match("left")?n.position+=" left":t.position.match("right")?n.position+=" right":(t.position.match("center"),n.position+=" center")):n.position="bottom center",t.buttons){const e=[];for(let i=0;i<t.buttons.length;i++){const n={},a=[];t.buttons[i].label?n.label=t.buttons[i].label:a.push("Buttons require a label."),t.buttons[i].callback?"function"==typeof t.buttons[i].callback?n.callback=t.buttons[i].callback:a.push("Buttons callbacks must be a function."):a.push("Buttons require a callback function."),t.buttons[i].ariaLabel&&(n.ariaLabel=t.buttons[i].ariaLabel),o=[...o,...a],0===a.length&&e.push(n)}e.length&&(n.buttons=e)}else n.buttons=[];t.force?n.force=t.force:n.force=!1,e({validNotification:n,warnings:o})})}notify(t){this.validateNotification(t).then(t=>{if(0!==this._queue.length&&t.validNotification.force?this._queue.length>0&&t.validNotification.force&&(this._queue.splice(1,0,t.validNotification),this.removeNotification()):this._queue.push(t.validNotification),this.startCallback(),0!==t.warnings.length)for(let e=0;e<t.warnings.length;e++);}).catch(t=>{})}}const e=new t,i=e.notify.bind(e);export{t as NotificationManager,i as notify};
+/**
+ * This package has been modified. Do not update.
+ * The package has been locked at v1.0.3
+ * Changes:
+ * - Custom element renamed to `pjax-notification`
+ * - File renamed to `notifications.js`
+ */
+class NotificationManager {
+    constructor() {
+        this.handleCloseClickEvent = this.removeNotification.bind(this);
+        this.handleActionButtonClick = this.activateButton.bind(this);
+        this._queue = [];
+        this._callback = () => { };
+        this._isRunning = false;
+        this._time = 0;
+    }
+    activateButton(e) {
+        const buttonEl = e.currentTarget;
+        const button = this._queue[0].buttons[parseInt(buttonEl.dataset.index)];
+        button.callback();
+        this.removeNotification();
+    }
+    createNotification(notification) {
+        const el = document.createElement("pjax-notification");
+        el.setAttribute("position", notification.position);
+        const message = document.createElement("p");
+        message.innerText = notification.message;
+        el.appendChild(message);
+        if (notification.closeable || notification.buttons.length) {
+            const actionsWrapper = document.createElement("snackbar-actions");
+            if (notification.buttons.length) {
+                for (let i = 0; i < notification.buttons.length; i++) {
+                    const button = document.createElement("button");
+                    button.innerText = notification.buttons[i].label;
+                    button.dataset.index = `${i}`;
+                    if (notification.buttons[i].ariaLabel) {
+                        button.setAttribute("aria-label", notification.buttons[i].ariaLabel);
+                    }
+                    button.addEventListener("click", this.handleActionButtonClick);
+                    actionsWrapper.appendChild(button);
+                }
+            }
+            if (notification.closeable) {
+                const closeButton = document.createElement("close-button");
+                closeButton.setAttribute("aria-label", "close notification");
+                closeButton.setAttribute("aria-pressed", "false");
+                closeButton.setAttribute("role", "button");
+                closeButton.innerHTML =
+                    '<svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="times" class="svg-inline--fa fa-times fa-w-10" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M207.6 256l107.72-107.72c6.23-6.23 6.23-16.34 0-22.58l-25.03-25.03c-6.23-6.23-16.34-6.23-22.58 0L160 208.4 52.28 100.68c-6.23-6.23-16.34-6.23-22.58 0L4.68 125.7c-6.23 6.23-6.23 16.34 0 22.58L112.4 256 4.68 363.72c-6.23 6.23-6.23 16.34 0 22.58l25.03 25.03c6.23 6.23 16.34 6.23 22.58 0L160 303.6l107.72 107.72c6.23 6.23 16.34 6.23 22.58 0l25.03-25.03c6.23-6.23 6.23-16.34 0-22.58L207.6 256z"></path></svg>';
+                closeButton.addEventListener("click", this.handleCloseClickEvent);
+                actionsWrapper.appendChild(closeButton);
+            }
+            el.appendChild(actionsWrapper);
+        }
+        document.body.appendChild(el);
+        notification.element = el;
+    }
+    removeNotification() {
+        const closeButton = this._queue[0].element.querySelector("close-button");
+        if (closeButton) {
+            closeButton.removeEventListener("click", this.handleCloseClickEvent);
+        }
+        const buttons = Array.from(this._queue[0].element.querySelectorAll("button"));
+        if (buttons.length) {
+            for (let i = 0; i < buttons.length; i++) {
+                buttons[i].removeEventListener("click", this.activateButton);
+            }
+        }
+        this._queue[0].element.remove();
+        this._queue.splice(0, 1);
+        if (this._queue.length !== 0) {
+            this.createNotification(this._queue[0]);
+        }
+        else {
+            this.stopCallback();
+        }
+    }
+    startCallback() {
+        if (this._isRunning) {
+            return;
+        }
+        this._isRunning = true;
+        this._callback = this.animationFrameCallback.bind(this);
+        this._time = performance.now();
+        this._callback();
+        this.createNotification(this._queue[0]);
+    }
+    stopCallback() {
+        this._isRunning = false;
+        this._callback = () => { };
+    }
+    animationFrameCallback() {
+        if (this._queue.length === 0 || !this._isRunning) {
+            this.stopCallback();
+            return;
+        }
+        const newTime = performance.now();
+        const deltaTime = (newTime - this._time) / 1000;
+        this._time = newTime;
+        if (document.hasFocus() && this._queue[0].duration !== Infinity) {
+            this._queue[0].duration -= deltaTime;
+            if (this._queue[0].duration <= 0) {
+                this.removeNotification();
+            }
+        }
+        window.requestAnimationFrame(() => {
+            this._callback();
+        });
+    }
+    validateNotification(notification) {
+        return new Promise((resolve, reject) => {
+            const newNotification = {};
+            let warnings = [];
+            if (notification.element) {
+                reject("Notifications create their own HTMLElement, do not provide one.");
+            }
+            if (!notification.message) {
+                reject("Notifications require a message.");
+            }
+            else {
+                newNotification.message = notification.message;
+            }
+            if (notification.closeable) {
+                newNotification.closeable = notification.closeable;
+            }
+            else {
+                newNotification.closeable = false;
+            }
+            if (notification.duration) {
+                newNotification.duration = notification.duration;
+                if (notification.duration === Infinity && newNotification.closeable) {
+                    newNotification.duration = Infinity;
+                }
+            }
+            else {
+                newNotification.duration = 10;
+            }
+            if (notification.position) {
+                if (notification.position.match("top")) {
+                    newNotification.position = "top";
+                }
+                else if (notification.position.match("bottom")) {
+                    newNotification.position = "bottom";
+                }
+                else {
+                    newNotification.position = "bottom";
+                }
+                if (notification.position.match("left")) {
+                    newNotification.position += " left";
+                }
+                else if (notification.position.match("right")) {
+                    newNotification.position += " right";
+                }
+                else if (notification.position.match("center")) {
+                    newNotification.position += " center";
+                }
+                else {
+                    newNotification.position += " center";
+                }
+            }
+            else {
+                newNotification.position = "bottom center";
+            }
+            if (notification.buttons) {
+                const buttons = [];
+                for (let i = 0; i < notification.buttons.length; i++) {
+                    const button = {};
+                    const newWarnings = [];
+                    if (notification.buttons[i].label) {
+                        button.label = notification.buttons[i].label;
+                    }
+                    else {
+                        newWarnings.push("Buttons require a label.");
+                    }
+                    if (notification.buttons[i].callback) {
+                        if (typeof notification.buttons[i].callback === "function") {
+                            button.callback = notification.buttons[i].callback;
+                        }
+                        else {
+                            newWarnings.push("Buttons callbacks must be a function.");
+                        }
+                    }
+                    else {
+                        newWarnings.push("Buttons require a callback function.");
+                    }
+                    if (notification.buttons[i].ariaLabel) {
+                        button.ariaLabel = notification.buttons[i].ariaLabel;
+                    }
+                    warnings = [...warnings, ...newWarnings];
+                    if (newWarnings.length === 0) {
+                        buttons.push(button);
+                    }
+                }
+                if (buttons.length) {
+                    newNotification.buttons = buttons;
+                }
+            }
+            else {
+                newNotification.buttons = [];
+            }
+            if (notification.force) {
+                newNotification.force = notification.force;
+            }
+            else {
+                newNotification.force = false;
+            }
+            resolve({ validNotification: newNotification, warnings: warnings });
+        });
+    }
+    notify(notification) {
+        this.validateNotification(notification)
+            .then(response => {
+            if (this._queue.length === 0 || !response.validNotification.force) {
+                this._queue.push(response.validNotification);
+            }
+            else if (this._queue.length > 0 && response.validNotification.force) {
+                this._queue.splice(1, 0, response.validNotification);
+                this.removeNotification();
+            }
+            this.startCallback();
+            if (response.warnings.length !== 0) {
+                for (let i = 0; i < response.warnings.length; i++) {
+                    console.warn(response.warnings[i]);
+                }
+            }
+        })
+            .catch(error => {
+            console.error(error);
+        });
+    }
+}
+const globalManager = new NotificationManager();
+const notify = globalManager.notify.bind(globalManager);
+export { NotificationManager, notify };

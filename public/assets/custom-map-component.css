@@ -1,1 +1,38 @@
-custom-map-component{transition:all 150ms var(--ease-in-out);transform-origin:center;background-color:var(--white);user-select:none;border-radius:.25rem;padding:1rem;cursor:pointer;display:inline-flex;justify-content:center;align-items:center}custom-map-component:hover{box-shadow:var(--shadow-md)}custom-map-component:active{transition:all 75ms var(--ease-in);transform:scale(.95);box-shadow:none}custom-map-component i{display:block;margin:0 auto;text-align:center}custom-map-component i svg{width:24px;height:24px}custom-map-component span{display:block;text-align:center}
+custom-map-component {
+  transition: all 150ms var(--ease-in-out);
+  transform-origin: center;
+  background-color: var(--white);
+  user-select: none;
+  border-radius: 0.25rem;
+  padding: 1rem;
+  cursor: pointer;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+custom-map-component:hover {
+  box-shadow: var(--shadow-md);
+}
+
+custom-map-component:active {
+  transition: all 75ms var(--ease-in);
+  transform: scale(0.95);
+  box-shadow: none;
+}
+
+custom-map-component i {
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+}
+
+custom-map-component i svg {
+  width: 24px;
+  height: 24px;
+}
+
+custom-map-component span {
+  display: block;
+  text-align: center;
+}

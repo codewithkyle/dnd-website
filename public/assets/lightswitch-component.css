@@ -1,1 +1,136 @@
-lightswitch-component{display:inline-block;width:100%;position:relative}lightswitch-component.is-invalid label span{color:var(--danger-800)}lightswitch-component.is-invalid label lightswitch-icon lightswitch-track{background-color:var(--danger-200)!important}lightswitch-component.is-invalid label lightswitch-icon lightswitch-knob:after{background-color:var(--danger-500)!important;border-color:var(--danger-500)!important}lightswitch-component.is-invalid label lightswitch-icon lightswitch-knob::before{background-color:var(--danger-500)}lightswitch-component input{position:absolute;top:0;left:0;width:0;height:0;opacity:0}lightswitch-component input:checked+label lightswitch-icon lightswitch-track{background-color:var(--primary-200)}lightswitch-component input:checked+label lightswitch-icon lightswitch-knob{transform:translate(1rem,-50%)}lightswitch-component input:checked+label lightswitch-icon lightswitch-knob:after{background-color:var(--primary-500);border-color:var(--primary-500)}lightswitch-component label{min-height:3rem;width:100%;min-width:256px;cursor:pointer;padding-left:3.5rem;display:flex;align-items:center;flex-flow:row nowrap;user-select:none;position:relative}lightswitch-component label:focus lightswitch-icon lightswitch-knob:before,lightswitch-component label:hover lightswitch-icon lightswitch-knob:before{transform:scale(.87);opacity:.06}lightswitch-component label:active lightswitch-icon lightswitch-knob:before{transform:scale(1);opacity:.1;transition:all 75ms ease-in-out}lightswitch-component label lightswitch-icon{width:2rem;height:.875rem;position:absolute;top:50%;left:.25rem;transform:translateY(-56%)}lightswitch-component label lightswitch-icon lightswitch-track{background-color:var(--grey-200);border-radius:7px;height:.875rem;width:2rem;transition:all 150ms ease-in-out;display:inline-block}lightswitch-component label lightswitch-icon lightswitch-knob{width:20px;height:20px;pointer-events:none;position:absolute;top:50%;left:0;transform:translate(-.125rem,-52%);display:inline-flex;justify-content:center;align-items:center;transition:all 150ms ease-in-out}lightswitch-component label lightswitch-icon lightswitch-knob::after{content:"";display:inline-block;position:absolute;width:20px;height:20px;background-color:var(--white);border-radius:50%;transition:all 150ms ease-in-out;box-shadow:var(--shadow);border:10px solid var(--white);box-sizing:border-box}lightswitch-component label lightswitch-icon lightswitch-knob::before{content:"";display:inline-block;width:3rem;height:3rem;border-radius:50%;position:absolute;background-color:var(--primary-500);opacity:0;transform:scale(0);transition:all 175ms cubic-bezier(.68,-.55,.265,1.55)}lightswitch-component label span{display:inline-block;user-select:none;line-height:1.25;color:var(--grey-800);font-weight:var(--font-normal);font-family:var(--font-system)}
+lightswitch-component {
+  display: inline-block;
+  width: 100%;
+  position: relative;
+}
+
+lightswitch-component.is-invalid label span {
+  color: var(--danger-800);
+}
+
+lightswitch-component.is-invalid label lightswitch-icon lightswitch-track {
+  background-color: var(--danger-200) !important;
+}
+
+lightswitch-component.is-invalid label lightswitch-icon lightswitch-knob:after {
+  background-color: var(--danger-500) !important;
+  border-color: var(--danger-500) !important;
+}
+
+lightswitch-component.is-invalid label lightswitch-icon lightswitch-knob::before {
+  background-color: var(--danger-500);
+}
+
+lightswitch-component input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  opacity: 0;
+}
+
+lightswitch-component input:checked + label lightswitch-icon lightswitch-track {
+  background-color: var(--primary-200);
+}
+
+lightswitch-component input:checked + label lightswitch-icon lightswitch-knob {
+  transform: translate(1rem, -50%);
+}
+
+lightswitch-component input:checked + label lightswitch-icon lightswitch-knob:after {
+  background-color: var(--primary-500);
+  border-color: var(--primary-500);
+}
+
+lightswitch-component label {
+  min-height: 3rem;
+  width: 100%;
+  min-width: 256px;
+  cursor: pointer;
+  padding-left: 3.5rem;
+  display: flex;
+  align-items: center;
+  flex-flow: row nowrap;
+  user-select: none;
+  position: relative;
+}
+
+lightswitch-component label:hover lightswitch-icon lightswitch-knob:before, lightswitch-component label:focus lightswitch-icon lightswitch-knob:before {
+  transform: scale(0.87);
+  opacity: 0.06;
+}
+
+lightswitch-component label:active lightswitch-icon lightswitch-knob:before {
+  transform: scale(1);
+  opacity: 0.1;
+  transition: all 75ms ease-in-out;
+}
+
+lightswitch-component label lightswitch-icon {
+  width: 2rem;
+  height: 0.875rem;
+  position: absolute;
+  top: 50%;
+  left: 0.25rem;
+  transform: translateY(-56%);
+}
+
+lightswitch-component label lightswitch-icon lightswitch-track {
+  background-color: var(--grey-200);
+  border-radius: 7px;
+  height: 0.875rem;
+  width: 2rem;
+  transition: all 150ms ease-in-out;
+  display: inline-block;
+}
+
+lightswitch-component label lightswitch-icon lightswitch-knob {
+  width: 20px;
+  height: 20px;
+  pointer-events: none;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translate(-0.125rem, -52%);
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 150ms ease-in-out;
+}
+
+lightswitch-component label lightswitch-icon lightswitch-knob::after {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: var(--white);
+  border-radius: 50%;
+  transition: all 150ms ease-in-out;
+  box-shadow: var(--shadow);
+  border: 10px solid var(--white);
+  box-sizing: border-box;
+}
+
+lightswitch-component label lightswitch-icon lightswitch-knob::before {
+  content: "";
+  display: inline-block;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  position: absolute;
+  background-color: var(--primary-500);
+  opacity: 0;
+  transform: scale(0);
+  transition: all 175ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+lightswitch-component label span {
+  display: inline-block;
+  user-select: none;
+  line-height: 1.25;
+  color: var(--grey-800);
+  font-weight: var(--font-normal);
+  font-family: var(--font-system);
+}

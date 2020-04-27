@@ -1,1 +1,11 @@
-import{message as e}from"./broadcaster.mjs";class a extends HTMLElement{connectedCallback(){e("server",{type:"join",name:"Game Master",campaign:this.dataset.campaignUid})}}customElements.define("campaign-component",a);
+import { message } from "./broadcaster.mjs";
+class CampaignComponent extends HTMLElement {
+    connectedCallback() {
+        message("server", {
+            type: "join",
+            name: "Game Master",
+            campaign: this.dataset.campaignUid,
+        });
+    }
+}
+customElements.define("campaign-component", CampaignComponent);

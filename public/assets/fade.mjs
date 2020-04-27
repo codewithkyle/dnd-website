@@ -1,1 +1,43 @@
-export function fade(t,o,i){return new Promise(e=>{var n,s,r;const l=document.body.querySelector(t);l.style.transition="all 0ms 0ms linear",l.style.opacity="1";const a={scroll:"auto",duration:450};if(i){const t=null===(s=null===(n=i.getAttribute("scroll"))||void 0===n?void 0:n.toLowerCase())||void 0===s?void 0:s.trim();"auto"!==t&&"smooth"!==t&&"none"!==t||(a.scroll=t);const o=null===(r=i.getAttribute("duration"))||void 0===r?void 0:r.trim();isNaN(o)||(a.duration=parseInt(o))}setTimeout(()=>{l.style.transition=`opacity ${a.duration/2}ms ease-out`,l.style.opacity="0",setTimeout(()=>{l.innerHTML=o,"none"!==a.scroll&&window.scroll({top:0,left:0,behavior:a.scroll}),l.style.transition=`opacity ${a.duration/2}ms ease-in`,l.style.opacity="1",e()},a.duration/2+15)},15)})}
+export function fade(selector, newHTML, target) {
+    return new Promise(resolve => {
+        var _a, _b, _c;
+        /** Transition reset */
+        const main = document.body.querySelector(selector);
+        main.style.transition = "all 0ms 0ms linear";
+        main.style.opacity = "1";
+        const transition = {
+            scroll: "auto",
+            duration: 450,
+        };
+        if (target) {
+            const scrollBehavior = (_b = (_a = target
+                .getAttribute("scroll")) === null || _a === void 0 ? void 0 : _a.toLowerCase()) === null || _b === void 0 ? void 0 : _b.trim();
+            if (scrollBehavior === "auto" || scrollBehavior === "smooth" || scrollBehavior === "none") {
+                transition.scroll = scrollBehavior;
+            }
+            const desiredDuration = (_c = target.getAttribute("duration")) === null || _c === void 0 ? void 0 : _c.trim();
+            // @ts-ignore
+            if (!isNaN(desiredDuration)) {
+                transition.duration = parseInt(desiredDuration);
+            }
+        }
+        setTimeout(() => {
+            /** Transition */
+            main.style.transition = `opacity ${transition.duration / 2}ms ease-out`;
+            main.style.opacity = "0";
+            setTimeout(() => {
+                main.innerHTML = newHTML;
+                if (transition.scroll !== "none") {
+                    window.scroll({
+                        top: 0,
+                        left: 0,
+                        behavior: transition.scroll,
+                    });
+                }
+                main.style.transition = `opacity ${transition.duration / 2}ms ease-in`;
+                main.style.opacity = "1";
+                resolve();
+            }, transition.duration / 2 + 15);
+        }, 15);
+    });
+}

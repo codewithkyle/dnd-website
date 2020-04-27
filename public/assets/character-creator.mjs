@@ -1,1 +1,303 @@
-import{env as t}from"./env.mjs";import{uid as e}from"./uid.mjs";import{calculateModifier as i}from"./character.mjs";class s extends HTMLElement{constructor(){super(),this.handleSubmit=t=>{t.preventDefault(),this.saveCharacter(!1)},this.handleButtonClick=t=>{const e=t.currentTarget,i=parseInt(e.dataset.direction),s=this.pages[this.page].querySelectorAll("input, textarea, select");let r=!0;s.forEach(t=>{t.required&&""===t.value&&(r=!1)}),r||-1===i?(this.page+=i,this.update()):this.form.reportValidity()},this.handleAbilityInput=t=>{const e=t.currentTarget,s=e.name.replace(/(fields\[)|(\])/g,""),r=parseInt(e.value),a=i(r);this.modifiers[s]=a},this.handleSubmitButton=e=>{e.preventDefault(),t.startLoading(),this.saveCharacter(!0)},this.page=0,this.form=this.querySelector("form"),this.buttons=Array.from(this.querySelectorAll('button[type="button"][data-direction]')),this.pages=Array.from(this.querySelectorAll("form-page")),this.classInput=this.querySelector('select[name="fields[class]"]'),this.modifiers={strength:0,dexterity:0,constitution:0,intelligence:0,wisdom:0,charisma:0},this.countdown=300,this.entryId=this.dataset.characterId}getSavingThrows(){const t={...this.modifiers};switch(this.classInput.value){case"Wizard":t.intelligence+=2,t.wisdom+=2;break;case"Barbarian":t.strength+=2,t.constitution+=2;break;case"Bard":t.dexterity+=2,t.charisma+=2;break;case"Cleric":t.wisdom+=2,t.charisma+=2;break;case"Druid":t.intelligence+=2,t.wisdom+=2;break;case"Fighter":t.strength+=2,t.constitution+=2;break;case"Monk":t.strength+=2,t.dexterity+=2;break;case"Paladin":t.wisdom+=2,t.charisma+=2;break;case"Ranger":t.strength+=2,t.dexterity+=2;break;case"Rogue":t.dexterity+=2,t.intelligence+=2;break;case"Sorcerer":t.constitution+=2,t.charisma+=2;break;case"Warlock":t.wisdom+=2,t.charisma+=2}return t}getSkills(){const t={};return this.querySelectorAll("skill-component input").forEach(e=>{t[e.dataset.skill]=this.modifiers[e.dataset.ability],e.checked&&(t[e.dataset.skill]+=2)}),t}getProficientSkills(){const t={};return this.querySelectorAll("skill-component input").forEach(e=>{e.checked?t[e.dataset.skill]=1:t[e.dataset.skill]=0}),t}getHitDice(){switch(this.classInput.value){case"Wizard":return"d6";case"Barbarian":return"d12";case"Bard":case"Cleric":case"Druid":return"d8";case"Fighter":return"d10";case"Monk":return"d8";case"Paladin":case"Ranger":return"d10";case"Rogue":return"d8";case"Sorcerer":return"d6";case"Warlock":return"d8";default:return""}}getHitPoints(){switch(this.classInput.value){case"Barbarian":return""+(12+this.modifiers.constitution);case"Bard":case"Cleric":case"Druid":return""+(8+this.modifiers.constitution);case"Fighter":return""+(10+this.modifiers.constitution);case"Monk":return""+(8+this.modifiers.constitution);case"Paladin":case"Ranger":return""+(10+this.modifiers.constitution);case"Rogue":return""+(8+this.modifiers.constitution);case"Sorcerer":return""+(6+this.modifiers.constitution);case"Warlock":return""+(8+this.modifiers.constitution);case"Wizard":return""+(6+this.modifiers.constitution);default:return"0"}}async saveCharacter(t=!1){if(this.isSaving)return;this.isSaving=!0;const i=new FormData(this.form);t?i.append("enabled","1"):i.append("enabled","0"),""===this.form.querySelector('input[name="title"]').value&&i.set("title",e());for(const[t,e]of Object.entries(this.modifiers))i.append(`fields[${t}Modifier]`,""+e);this.entryId&&i.append("entryId",this.entryId);const s=this.getSavingThrows();for(const[t,e]of Object.entries(s))i.append(`fields[${t}SavingThrow]`,""+e);const r=this.getSkills();for(const[t,e]of Object.entries(r))i.append(`fields[${t}]`,""+e);const a=this.getProficientSkills();for(const[t,e]of Object.entries(a))i.append(`fields[${t}Proficiency]`,""+e);i.append("fields[passiveWisdom]",""+(r.perception+10)),i.append("fields[initiative]",""+this.modifiers.dexterity);const n=this.getHitDice();i.append("fields[hitDice]",n),i.append("fields[currentHitDice]","1");const o=this.getHitPoints();i.append("fields[currentHitPoints]",o),i.append("fields[maximumHitPoints]",o);const c=await fetch(location.origin+"/actions/entries/save-entry",{method:"POST",body:i,headers:new Headers({Accept:"application/json"}),credentials:"include"});if(c.ok){const e=await c.json();e.success&&(this.entryId=e.id,t&&(window.location.href=""+location.origin))}else{await c.text()}this.isSaving=!1,this.countdown=300}update(){window.scrollTo({top:0,left:0,behavior:"smooth"});for(let t=0;t<this.pages.length;t++)t!==this.page?this.pages[t].style.display="none":this.pages[t].style.display="grid"}autoSave(){const t=performance.now(),e=(t-this.time)/1e3;this.time=t,this.isSaving||(this.countdown-=e,this.countdown<=0&&this.isActive&&this.saveCharacter()),window.requestAnimationFrame(this.autoSave.bind(this))}disconnectedCallback(){this.isActive=!1,this.countdown=0,this.autoSave=()=>{}}connectedCallback(){this.form.addEventListener("submit",this.handleSubmit),this.querySelector('button[type="submit"]').addEventListener("click",this.handleSubmitButton);for(let t=0;t<this.buttons.length;t++)this.buttons[t].addEventListener("click",this.handleButtonClick);this.querySelectorAll("#abilities input").forEach(t=>{t.addEventListener("input",this.handleAbilityInput)}),this.dataset.preventSave||(this.isActive=!0,this.time=performance.now(),this.autoSave())}}customElements.define("character-creator",s);
+import { env } from "./env.mjs";
+import { uid } from "./uid.mjs";
+import { calculateModifier } from "./character.mjs";
+class CharacterCreator extends HTMLElement {
+    constructor() {
+        super();
+        this.handleSubmit = (e) => {
+            e.preventDefault();
+            this.saveCharacter(false);
+        };
+        this.handleButtonClick = (e) => {
+            const button = e.currentTarget;
+            const dir = parseInt(button.dataset.direction);
+            const inputs = this.pages[this.page].querySelectorAll("input, textarea, select");
+            let isValid = true;
+            inputs.forEach((input) => {
+                if (input.required && input.value === "") {
+                    isValid = false;
+                }
+            });
+            if (isValid || dir === -1) {
+                this.page += dir;
+                this.update();
+            }
+            else {
+                this.form.reportValidity();
+            }
+        };
+        this.handleAbilityInput = (e) => {
+            const input = e.currentTarget;
+            const key = input.name.replace(/(fields\[)|(\])/g, "");
+            const score = parseInt(input.value);
+            const modifier = calculateModifier(score);
+            this.modifiers[key] = modifier;
+        };
+        this.handleSubmitButton = (e) => {
+            e.preventDefault();
+            env.startLoading();
+            this.saveCharacter(true);
+        };
+        this.page = 0;
+        this.form = this.querySelector("form");
+        this.buttons = Array.from(this.querySelectorAll(`button[type="button"][data-direction]`));
+        this.pages = Array.from(this.querySelectorAll("form-page"));
+        this.classInput = this.querySelector('select[name="fields[class]"]');
+        this.modifiers = {
+            strength: 0,
+            dexterity: 0,
+            constitution: 0,
+            intelligence: 0,
+            wisdom: 0,
+            charisma: 0,
+        };
+        this.countdown = 300;
+        this.entryId = this.dataset.characterId;
+    }
+    getSavingThrows() {
+        const savingThrows = { ...this.modifiers };
+        switch (this.classInput.value) {
+            case "Wizard":
+                savingThrows.intelligence += 2;
+                savingThrows.wisdom += 2;
+                break;
+            case "Barbarian":
+                savingThrows.strength += 2;
+                savingThrows.constitution += 2;
+                break;
+            case "Bard":
+                savingThrows.dexterity += 2;
+                savingThrows.charisma += 2;
+                break;
+            case "Cleric":
+                savingThrows.wisdom += 2;
+                savingThrows.charisma += 2;
+                break;
+            case "Druid":
+                savingThrows.intelligence += 2;
+                savingThrows.wisdom += 2;
+                break;
+            case "Fighter":
+                savingThrows.strength += 2;
+                savingThrows.constitution += 2;
+                break;
+            case "Monk":
+                savingThrows.strength += 2;
+                savingThrows.dexterity += 2;
+                break;
+            case "Paladin":
+                savingThrows.wisdom += 2;
+                savingThrows.charisma += 2;
+                break;
+            case "Ranger":
+                savingThrows.strength += 2;
+                savingThrows.dexterity += 2;
+                break;
+            case "Rogue":
+                savingThrows.dexterity += 2;
+                savingThrows.intelligence += 2;
+                break;
+            case "Sorcerer":
+                savingThrows.constitution += 2;
+                savingThrows.charisma += 2;
+                break;
+            case "Warlock":
+                savingThrows.wisdom += 2;
+                savingThrows.charisma += 2;
+                break;
+        }
+        return savingThrows;
+    }
+    getSkills() {
+        const skills = {};
+        this.querySelectorAll("skill-component input").forEach((input) => {
+            skills[input.dataset.skill] = this.modifiers[input.dataset.ability];
+            if (input.checked) {
+                skills[input.dataset.skill] += 2;
+            }
+        });
+        return skills;
+    }
+    getProficientSkills() {
+        const skills = {};
+        this.querySelectorAll("skill-component input").forEach((input) => {
+            if (input.checked) {
+                skills[input.dataset.skill] = 1;
+            }
+            else {
+                skills[input.dataset.skill] = 0;
+            }
+        });
+        return skills;
+    }
+    getHitDice() {
+        switch (this.classInput.value) {
+            case "Wizard":
+                return "d6";
+            case "Barbarian":
+                return "d12";
+            case "Bard":
+                return "d8";
+            case "Cleric":
+                return "d8";
+            case "Druid":
+                return "d8";
+            case "Fighter":
+                return "d10";
+            case "Monk":
+                return "d8";
+            case "Paladin":
+                return "d10";
+            case "Ranger":
+                return "d10";
+            case "Rogue":
+                return "d8";
+            case "Sorcerer":
+                return "d6";
+            case "Warlock":
+                return "d8";
+            default:
+                return "";
+        }
+    }
+    getHitPoints() {
+        switch (this.classInput.value) {
+            case "Barbarian":
+                return `${12 + this.modifiers.constitution}`;
+            case "Bard":
+                return `${8 + this.modifiers.constitution}`;
+            case "Cleric":
+                return `${8 + this.modifiers.constitution}`;
+            case "Druid":
+                return `${8 + this.modifiers.constitution}`;
+            case "Fighter":
+                return `${10 + this.modifiers.constitution}`;
+            case "Monk":
+                return `${8 + this.modifiers.constitution}`;
+            case "Paladin":
+                return `${10 + this.modifiers.constitution}`;
+            case "Ranger":
+                return `${10 + this.modifiers.constitution}`;
+            case "Rogue":
+                return `${8 + this.modifiers.constitution}`;
+            case "Sorcerer":
+                return `${6 + this.modifiers.constitution}`;
+            case "Warlock":
+                return `${8 + this.modifiers.constitution}`;
+            case "Wizard":
+                return `${6 + this.modifiers.constitution}`;
+            default:
+                return "0";
+        }
+    }
+    async saveCharacter(isFinal = false) {
+        if (this.isSaving) {
+            return;
+        }
+        this.isSaving = true;
+        const data = new FormData(this.form);
+        if (isFinal) {
+            data.append("enabled", "1");
+        }
+        else {
+            data.append("enabled", "0");
+        }
+        const nameInput = this.form.querySelector('input[name="title"]');
+        if (nameInput.value === "") {
+            data.set("title", uid());
+        }
+        for (const [key, value] of Object.entries(this.modifiers)) {
+            data.append(`fields[${key}Modifier]`, `${value}`);
+        }
+        if (this.entryId) {
+            data.append(`entryId`, this.entryId);
+        }
+        const savingThrows = this.getSavingThrows();
+        for (const [key, value] of Object.entries(savingThrows)) {
+            data.append(`fields[${key}SavingThrow]`, `${value}`);
+        }
+        const skills = this.getSkills();
+        for (const [key, value] of Object.entries(skills)) {
+            data.append(`fields[${key}]`, `${value}`);
+        }
+        const proficientSkills = this.getProficientSkills();
+        for (const [key, value] of Object.entries(proficientSkills)) {
+            data.append(`fields[${key}Proficiency]`, `${value}`);
+        }
+        data.append(`fields[passiveWisdom]`, `${skills["perception"] + 10}`);
+        data.append(`fields[initiative]`, `${this.modifiers.dexterity}`);
+        const hitDice = this.getHitDice();
+        data.append(`fields[hitDice]`, hitDice);
+        data.append(`fields[currentHitDice]`, `1`);
+        const hitPoints = this.getHitPoints();
+        data.append(`fields[currentHitPoints]`, hitPoints);
+        data.append(`fields[maximumHitPoints]`, hitPoints);
+        const request = await fetch(`${location.origin}/actions/entries/save-entry`, {
+            method: "POST",
+            body: data,
+            headers: new Headers({
+                Accept: "application/json",
+            }),
+            credentials: "include",
+        });
+        if (request.ok) {
+            const response = await request.json();
+            if (response.success) {
+                this.entryId = response.id;
+                if (isFinal) {
+                    window.location.href = `${location.origin}`;
+                }
+            }
+        }
+        else {
+            const error = await request.text();
+            console.error(error);
+        }
+        this.isSaving = false;
+        this.countdown = 300;
+    }
+    update() {
+        window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+        for (let i = 0; i < this.pages.length; i++) {
+            if (i !== this.page) {
+                this.pages[i].style.display = "none";
+            }
+            else {
+                this.pages[i].style.display = "grid";
+            }
+        }
+    }
+    autoSave() {
+        const newTime = performance.now();
+        const deltaTime = (newTime - this.time) / 1000;
+        this.time = newTime;
+        if (!this.isSaving) {
+            this.countdown -= deltaTime;
+            if (this.countdown <= 0 && this.isActive) {
+                this.saveCharacter();
+            }
+        }
+        window.requestAnimationFrame(this.autoSave.bind(this));
+    }
+    disconnectedCallback() {
+        this.isActive = false;
+        this.countdown = 0;
+        this.autoSave = () => { };
+    }
+    connectedCallback() {
+        this.form.addEventListener("submit", this.handleSubmit);
+        this.querySelector('button[type="submit"]').addEventListener("click", this.handleSubmitButton);
+        for (let i = 0; i < this.buttons.length; i++) {
+            this.buttons[i].addEventListener("click", this.handleButtonClick);
+        }
+        this.querySelectorAll("#abilities input").forEach((input) => {
+            input.addEventListener("input", this.handleAbilityInput);
+        });
+        if (!this.dataset.preventSave) {
+            this.isActive = true;
+            this.time = performance.now();
+            this.autoSave();
+        }
+    }
+}
+customElements.define("character-creator", CharacterCreator);

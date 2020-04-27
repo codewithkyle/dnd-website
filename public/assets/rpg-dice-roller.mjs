@@ -6,4 +6,15579 @@
  * @author GreenImp <info@greenimp.co.uk> (http://greenimp.co.uk)
  * @link https://github.com/GreenImp/rpg-dice-roller
  */
-function t(e,r,n,o){this.message=e,this.expected=r,this.found=n,this.location=o,this.name="SyntaxError","function"==typeof Error.captureStackTrace&&Error.captureStackTrace(this,t)}!function(t,e){function r(){this.constructor=t}r.prototype=e.prototype,t.prototype=new r}(t,Error),t.buildMessage=function(t,e){var r={literal:function(t){return'"'+o(t.text)+'"'},class:function(t){var e,r="";for(e=0;e<t.parts.length;e++)r+=t.parts[e]instanceof Array?i(t.parts[e][0])+"-"+i(t.parts[e][1]):i(t.parts[e]);return"["+(t.inverted?"^":"")+r+"]"},any:function(t){return"any character"},end:function(t){return"end of input"},other:function(t){return t.description}};function n(t){return t.charCodeAt(0).toString(16).toUpperCase()}function o(t){return t.replace(/\\/g,"\\\\").replace(/"/g,'\\"').replace(/\0/g,"\\0").replace(/\t/g,"\\t").replace(/\n/g,"\\n").replace(/\r/g,"\\r").replace(/[\x00-\x0F]/g,(function(t){return"\\x0"+n(t)})).replace(/[\x10-\x1F\x7F-\x9F]/g,(function(t){return"\\x"+n(t)}))}function i(t){return t.replace(/\\/g,"\\\\").replace(/\]/g,"\\]").replace(/\^/g,"\\^").replace(/-/g,"\\-").replace(/\0/g,"\\0").replace(/\t/g,"\\t").replace(/\n/g,"\\n").replace(/\r/g,"\\r").replace(/[\x00-\x0F]/g,(function(t){return"\\x0"+n(t)})).replace(/[\x10-\x1F\x7F-\x9F]/g,(function(t){return"\\x"+n(t)}))}return"Expected "+function(t){var e,n,o,i=new Array(t.length);for(e=0;e<t.length;e++)i[e]=(o=t[e],r[o.type](o));if(i.sort(),i.length>0){for(e=1,n=1;e<i.length;e++)i[e-1]!==i[e]&&(i[n]=i[e],n++);i.length=n}switch(i.length){case 1:return i[0];case 2:return i[0]+" or "+i[1];default:return i.slice(0,-1).join(", ")+", or "+i[i.length-1]}}(t)+" but "+function(t){return t?'"'+o(t)+'"':"end of input"}(e)+" found."};var e=function(e,r){r=void 0!==r?r:{};var n,o,i,a,s={},u={Main:At},c=At,p=xt("{",!1),f=xt(",",!1),h=xt("}",!1),l=xt("d",!1),m=xt("%",!1),d=xt("dF",!1),y=xt(".",!1),g=/^[12]/,v=Nt(["1","2"],!1,!1),w=xt("!",!1),b=xt("p",!1),x=/^[lh]/,N=Nt(["l","h"],!1,!1),E=xt("k",!1),S=xt("r",!1),O=xt("o",!1),A=xt("cs",!1),j=xt("cf",!1),T=xt("s",!1),k=xt("a",!1),P=xt("f",!1),C=xt("!=",!1),M=xt("<=",!1),F=xt(">=",!1),_=xt("=",!1),I=xt(">",!1),D=xt("<",!1),L=xt("(",!1),J=xt(")",!1),R=function(t,e,r){return[t,...e,r]},q=xt("abs",!1),B=xt("ceil",!1),H=xt("cos",!1),W=xt("exp",!1),z=xt("floor",!1),U=xt("log",!1),$=xt("round",!1),V=xt("sign",!1),X=xt("sin",!1),Z=xt("sqrt",!1),G=xt("tan",!1),K=xt("pow",!1),Q=xt("-",!1),Y=/^[.]/,tt=Nt(["."],!1,!1),et=/^[1-9]/,rt=Nt([["1","9"]],!1,!1),nt=/^[0-9]/,ot=Nt([["0","9"]],!1,!1),it=function(){return parseInt(bt(),10)},at=xt("**",!1),st=xt("*",!1),ut=xt("^",!1),ct=xt("/",!1),pt=xt("+",!1),ft={type:"other",description:"whitespace"},ht=/^[ \t\n\r]/,lt=Nt([" ","\t","\n","\r"],!1,!1),mt=0,dt=0,yt=[{line:1,column:1}],gt=0,vt=[],wt=0;if("startRule"in r){if(!(r.startRule in u))throw new Error("Can't start parsing from rule \""+r.startRule+'".');c=u[r.startRule]}function bt(){return e.substring(dt,mt)}function xt(t,e){return{type:"literal",text:t,ignoreCase:e}}function Nt(t,e,r){return{type:"class",parts:t,inverted:e,ignoreCase:r}}function Et(t){var r,n=yt[t];if(n)return n;for(r=t-1;!yt[r];)r--;for(n={line:(n=yt[r]).line,column:n.column};r<t;)10===e.charCodeAt(r)?(n.line++,n.column=1):n.column++,r++;return yt[t]=n,n}function St(t,e){var r=Et(t),n=Et(e);return{start:{offset:t,line:r.line,column:r.column},end:{offset:e,line:n.line,column:n.column}}}function Ot(t){mt<gt||(mt>gt&&(gt=mt,vt=[]),vt.push(t))}function At(){return Mt()}function jt(){var t,r,n,o,i,a,u,c,l,m,d,y;if(t=mt,123===e.charCodeAt(mt)?(r="{",mt++):(r=s,0===wt&&Ot(p)),r!==s)if(Jt()!==s)if((n=Mt())!==s){for(o=[],i=mt,(a=Jt())!==s?(44===e.charCodeAt(mt)?(u=",",mt++):(u=s,0===wt&&Ot(f)),u!==s&&(c=Jt())!==s&&(l=Mt())!==s?i=a=[a,u,c,l]:(mt=i,i=s)):(mt=i,i=s);i!==s;)o.push(i),i=mt,(a=Jt())!==s?(44===e.charCodeAt(mt)?(u=",",mt++):(u=s,0===wt&&Ot(f)),u!==s&&(c=Jt())!==s&&(l=Mt())!==s?i=a=[a,u,c,l]:(mt=i,i=s)):(mt=i,i=s);if(o!==s)if((i=Jt())!==s)if(125===e.charCodeAt(mt)?(a="}",mt++):(a=s,0===wt&&Ot(h)),a!==s){for(u=[],c=kt();c!==s;)u.push(c),c=kt();u!==s?(dt=t,m=n,d=o,y=u,t=r={type:"group",notation:bt(),expressions:[m,...d.map(t=>t[3])],modifiers:Object.assign({},...y.map(t=>({[t.subType]:t})))}):(mt=t,t=s)}else mt=t,t=s;else mt=t,t=s;else mt=t,t=s}else mt=t,t=s;else mt=t,t=s;else mt=t,t=s;return t}function Tt(){var t,r,n,o,i,a;if(t=mt,(r=function(){var t,r;t=mt,(r=function(){var t,r,n,o;t=mt,(r=Ct())===s&&(r=null);r!==s?(100===e.charCodeAt(mt)?(n="d",mt++):(n=s,0===wt&&Ot(l)),n!==s&&(o=Ct())!==s?(dt=t,t=r={type:"dice",subType:"standard",qty:r||1,d:n,sides:o}):(mt=t,t=s)):(mt=t,t=s);return t}())===s&&(r=function(){var t,r,n,o;t=mt,(r=Ct())===s&&(r=null);r!==s?(100===e.charCodeAt(mt)?(n="d",mt++):(n=s,0===wt&&Ot(l)),n!==s?(37===e.charCodeAt(mt)?(o="%",mt++):(o=s,0===wt&&Ot(m)),o!==s?(dt=t,t=r={type:"dice",subType:"percentile",qty:r||1,d:n,sides:100}):(mt=t,t=s)):(mt=t,t=s)):(mt=t,t=s);return t}())===s&&(r=function(){var t,r,n,o,i,a;t=mt,(r=Ct())===s&&(r=null);r!==s?("dF"===e.substr(mt,2)?(n="dF",mt+=2):(n=s,0===wt&&Ot(d)),n!==s?(o=mt,46===e.charCodeAt(mt)?(i=".",mt++):(i=s,0===wt&&Ot(y)),i!==s?(g.test(e.charAt(mt))?(a=e.charAt(mt),mt++):(a=s,0===wt&&Ot(v)),a!==s?o=i=[i,a]:(mt=o,o=s)):(mt=o,o=s),o===s&&(o=null),o!==s?(dt=t,r={type:"dice",subType:"fudge",qty:r||1,d:n,sides:(u=o)?parseInt(u[1],10):2},t=r):(mt=t,t=s)):(mt=t,t=s)):(mt=t,t=s);var u;return t}());r!==s&&(dt=t,n=r,r=Object.assign(n,{notation:bt()}));var n;return t=r}())!==s){for(n=[],o=kt();o!==s;)n.push(o),o=kt();n!==s?(dt=t,i=r,a=n,t=r=Object.assign(i,{modifiers:Object.assign({},...a.map(t=>({[t.subType]:t})))})):(mt=t,t=s)}else mt=t,t=s;return t}function kt(){var t,r,n;return t=mt,(r=function(){var t,r,n,o,i;t=mt,33===e.charCodeAt(mt)?(r="!",mt++):(r=s,0===wt&&Ot(w));r!==s?(33===e.charCodeAt(mt)?(n="!",mt++):(n=s,0===wt&&Ot(w)),n===s&&(n=null),n!==s?(112===e.charCodeAt(mt)?(o="p",mt++):(o=s,0===wt&&Ot(b)),o===s&&(o=null),o!==s?((i=Pt())===s&&(i=null),i!==s?(dt=t,t=r={type:"modifier",subType:"explode",penetrate:!!o,compound:!!n,comparePoint:i}):(mt=t,t=s)):(mt=t,t=s)):(mt=t,t=s)):(mt=t,t=s);return t}())===s&&(r=function(){var t,r,n;t=mt,(r=Pt())!==s?((n=function(){var t,r,n;t=mt,102===e.charCodeAt(mt)?(r="f",mt++):(r=s,0===wt&&Ot(P));r!==s&&(n=Pt())!==s?(dt=t,t=r=n):(mt=t,t=s);return t}())===s&&(n=null),n!==s?(dt=t,t=r={type:"modifier",subType:"target",successCP:r,failureCP:n}):(mt=t,t=s)):(mt=t,t=s);return t}())===s&&(r=function(){var t,r,n,o;t=mt,100===e.charCodeAt(mt)?(r="d",mt++):(r=s,0===wt&&Ot(l));r!==s?(x.test(e.charAt(mt))?(n=e.charAt(mt),mt++):(n=s,0===wt&&Ot(N)),n===s&&(n=null),n!==s&&(o=It())!==s?(dt=t,t=r={type:"modifier",subType:"drop",end:n||"l",qty:o}):(mt=t,t=s)):(mt=t,t=s);return t}())===s&&(r=function(){var t,r,n,o;t=mt,107===e.charCodeAt(mt)?(r="k",mt++):(r=s,0===wt&&Ot(E));r!==s?(x.test(e.charAt(mt))?(n=e.charAt(mt),mt++):(n=s,0===wt&&Ot(N)),n===s&&(n=null),n!==s&&(o=It())!==s?(dt=t,t=r={type:"modifier",subType:"keep",end:n||"h",qty:o}):(mt=t,t=s)):(mt=t,t=s);return t}())===s&&(r=function(){var t,r,n,o;t=mt,114===e.charCodeAt(mt)?(r="r",mt++):(r=s,0===wt&&Ot(S));r!==s?(111===e.charCodeAt(mt)?(n="o",mt++):(n=s,0===wt&&Ot(O)),n===s&&(n=null),n!==s?((o=Pt())===s&&(o=null),o!==s?(dt=t,t=r={type:"modifier",subType:"re-roll",once:!!n,comparePoint:o}):(mt=t,t=s)):(mt=t,t=s)):(mt=t,t=s);return t}())===s&&(r=function(){var t,r,n;t=mt,"cs"===e.substr(mt,2)?(r="cs",mt+=2):(r=s,0===wt&&Ot(A));r!==s&&(n=Pt())!==s?(dt=t,t=r={type:"modifier",subType:"critical-success",comparePoint:n}):(mt=t,t=s);return t}())===s&&(r=function(){var t,r,n;t=mt,"cf"===e.substr(mt,2)?(r="cf",mt+=2):(r=s,0===wt&&Ot(j));r!==s&&(n=Pt())!==s?(dt=t,t=r={type:"modifier",subType:"critical-failure",comparePoint:n}):(mt=t,t=s);return t}())===s&&(r=function(){var t,r,n;t=mt,115===e.charCodeAt(mt)?(r="s",mt++):(r=s,0===wt&&Ot(T));r!==s?(97===e.charCodeAt(mt)?(n="a",mt++):(n=s,0===wt&&Ot(k)),n===s&&(100===e.charCodeAt(mt)?(n="d",mt++):(n=s,0===wt&&Ot(l))),n===s&&(n=null),n!==s?(dt=t,t=r={type:"modifier",subType:"sort",direction:n||"a"}):(mt=t,t=s)):(mt=t,t=s);return t}()),r!==s&&(dt=t,n=r,r=Object.assign(n,{notation:bt()})),t=r}function Pt(){var t,r,n;return t=mt,(r=function(){var t;"!="===e.substr(mt,2)?(t="!=",mt+=2):(t=s,0===wt&&Ot(C));t===s&&("<="===e.substr(mt,2)?(t="<=",mt+=2):(t=s,0===wt&&Ot(M)),t===s&&(">="===e.substr(mt,2)?(t=">=",mt+=2):(t=s,0===wt&&Ot(F)),t===s&&(61===e.charCodeAt(mt)?(t="=",mt++):(t=s,0===wt&&Ot(_)),t===s&&(62===e.charCodeAt(mt)?(t=">",mt++):(t=s,0===wt&&Ot(I)),t===s&&(60===e.charCodeAt(mt)?(t="<",mt++):(t=s,0===wt&&Ot(D)))))));return t}())!==s&&(n=_t())!==s?(dt=t,t=r={type:"compare-point",operator:r,value:n}):(mt=t,t=s),t}function Ct(){var t,r,n,o;return(t=It())===s&&(t=mt,40===e.charCodeAt(mt)?(r="(",mt++):(r=s,0===wt&&Ot(L)),r!==s&&Jt()!==s&&(n=Mt())!==s&&Jt()!==s?(41===e.charCodeAt(mt)?(o=")",mt++):(o=s,0===wt&&Ot(J)),o!==s?(dt=t,t=r=R(r,n,o)):(mt=t,t=s)):(mt=t,t=s)),t}function Mt(){var t,e,r,n,o,i,a,u,c,p;if(t=mt,(e=Ft())!==s){for(r=[],n=mt,(o=Jt())!==s&&(i=Lt())!==s&&(a=Jt())!==s&&(u=Ft())!==s?n=o=[o,i,a,u]:(mt=n,n=s);n!==s;)r.push(n),n=mt,(o=Jt())!==s&&(i=Lt())!==s&&(a=Jt())!==s&&(u=Ft())!==s?n=o=[o,i,a,u]:(mt=n,n=s);r!==s?(dt=t,c=e,p=r,c=Array.isArray(c)?c:[c],t=e=[...c,...p.map(([,t,,e])=>[t,e]).flat(2)]):(mt=t,t=s)}else mt=t,t=s;return t}function Ft(){var t,r,n,o;return(t=function(){var t,r,n,o,i,a,u;t=mt,"abs"===e.substr(mt,3)?(r="abs",mt+=3):(r=s,0===wt&&Ot(q));r===s&&("ceil"===e.substr(mt,4)?(r="ceil",mt+=4):(r=s,0===wt&&Ot(B)),r===s&&("cos"===e.substr(mt,3)?(r="cos",mt+=3):(r=s,0===wt&&Ot(H)),r===s&&("exp"===e.substr(mt,3)?(r="exp",mt+=3):(r=s,0===wt&&Ot(W)),r===s&&("floor"===e.substr(mt,5)?(r="floor",mt+=5):(r=s,0===wt&&Ot(z)),r===s&&("log"===e.substr(mt,3)?(r="log",mt+=3):(r=s,0===wt&&Ot(U)),r===s&&("round"===e.substr(mt,5)?(r="round",mt+=5):(r=s,0===wt&&Ot($)),r===s&&("sign"===e.substr(mt,4)?(r="sign",mt+=4):(r=s,0===wt&&Ot(V)),r===s&&("sin"===e.substr(mt,3)?(r="sin",mt+=3):(r=s,0===wt&&Ot(X)),r===s&&("sqrt"===e.substr(mt,4)?(r="sqrt",mt+=4):(r=s,0===wt&&Ot(Z)),r===s&&("tan"===e.substr(mt,3)?(r="tan",mt+=3):(r=s,0===wt&&Ot(G))))))))))));r!==s?(40===e.charCodeAt(mt)?(n="(",mt++):(n=s,0===wt&&Ot(L)),n!==s&&Jt()!==s&&(o=Mt())!==s&&Jt()!==s?(41===e.charCodeAt(mt)?(i=")",mt++):(i=s,0===wt&&Ot(J)),i!==s?(dt=t,c=o,r=[r+"(",...c,")"],t=r):(mt=t,t=s)):(mt=t,t=s)):(mt=t,t=s);var c;t===s&&(t=mt,"pow"===e.substr(mt,3)?(r="pow",mt+=3):(r=s,0===wt&&Ot(K)),r!==s?(40===e.charCodeAt(mt)?(n="(",mt++):(n=s,0===wt&&Ot(L)),n!==s&&Jt()!==s&&(o=Mt())!==s&&Jt()!==s?(44===e.charCodeAt(mt)?(i=",",mt++):(i=s,0===wt&&Ot(f)),i!==s&&Jt()!==s&&(a=Mt())!==s&&Jt()!==s?(41===e.charCodeAt(mt)?(u=")",mt++):(u=s,0===wt&&Ot(J)),u!==s?(dt=t,r=function(t,e,r){return[t+"(",...e,",",...r,")"]}(r,o,a),t=r):(mt=t,t=s)):(mt=t,t=s)):(mt=t,t=s)):(mt=t,t=s));return t}())===s&&(t=Tt())===s&&(t=_t())===s&&(t=mt,40===e.charCodeAt(mt)?(r="(",mt++):(r=s,0===wt&&Ot(L)),r!==s&&Jt()!==s&&(n=Mt())!==s&&Jt()!==s?(41===e.charCodeAt(mt)?(o=")",mt++):(o=s,0===wt&&Ot(J)),o!==s?(dt=t,t=r=R(r,n,o)):(mt=t,t=s)):(mt=t,t=s),t===s&&(t=jt())),t}function _t(){var t,r,n,o,i;return t=mt,45===e.charCodeAt(mt)?(r="-",mt++):(r=s,0===wt&&Ot(Q)),r===s&&(r=null),r!==s&&Dt()!==s?(n=mt,Y.test(e.charAt(mt))?(o=e.charAt(mt),mt++):(o=s,0===wt&&Ot(tt)),o!==s&&(i=Dt())!==s?n=o=[o,i]:(mt=n,n=s),n===s&&(n=null),n!==s?(dt=t,t=r=parseFloat(bt())):(mt=t,t=s)):(mt=t,t=s),t}function It(){var t,r,n,o;if(t=mt,et.test(e.charAt(mt))?(r=e.charAt(mt),mt++):(r=s,0===wt&&Ot(rt)),r!==s){for(n=[],nt.test(e.charAt(mt))?(o=e.charAt(mt),mt++):(o=s,0===wt&&Ot(ot));o!==s;)n.push(o),nt.test(e.charAt(mt))?(o=e.charAt(mt),mt++):(o=s,0===wt&&Ot(ot));n!==s?(dt=t,t=r=it()):(mt=t,t=s)}else mt=t,t=s;return t}function Dt(){var t,r,n;if(t=mt,r=[],nt.test(e.charAt(mt))?(n=e.charAt(mt),mt++):(n=s,0===wt&&Ot(ot)),n!==s)for(;n!==s;)r.push(n),nt.test(e.charAt(mt))?(n=e.charAt(mt),mt++):(n=s,0===wt&&Ot(ot));else r=s;return r!==s&&(dt=t,r=it()),t=r}function Lt(){var t,r;return t=mt,"**"===e.substr(mt,2)?(r="**",mt+=2):(r=s,0===wt&&Ot(at)),r!==s&&(dt=t,r="^"),(t=r)===s&&(42===e.charCodeAt(mt)?(t="*",mt++):(t=s,0===wt&&Ot(st)),t===s&&(94===e.charCodeAt(mt)?(t="^",mt++):(t=s,0===wt&&Ot(ut)),t===s&&(37===e.charCodeAt(mt)?(t="%",mt++):(t=s,0===wt&&Ot(m)),t===s&&(47===e.charCodeAt(mt)?(t="/",mt++):(t=s,0===wt&&Ot(ct)),t===s&&(43===e.charCodeAt(mt)?(t="+",mt++):(t=s,0===wt&&Ot(pt)),t===s&&(45===e.charCodeAt(mt)?(t="-",mt++):(t=s,0===wt&&Ot(Q)))))))),t}function Jt(){var t,r;for(wt++,t=[],ht.test(e.charAt(mt))?(r=e.charAt(mt),mt++):(r=s,0===wt&&Ot(lt));r!==s;)t.push(r),ht.test(e.charAt(mt))?(r=e.charAt(mt),mt++):(r=s,0===wt&&Ot(lt));return wt--,t===s&&(r=s,0===wt&&Ot(ft)),t}if((n=c())!==s&&mt===e.length)return n;throw n!==s&&mt<e.length&&Ot({type:"end"}),o=vt,i=gt<e.length?e.charAt(gt):null,a=gt<e.length?St(gt,gt+1):St(gt,gt),new t(t.buildMessage(o,i),o,i,a)};Array.prototype.flat||(Array.prototype.flat=function(){var t=arguments[0];return(t=void 0===t?1:Math.floor(t))<1?Array.prototype.slice.call(this):function t(e,r){for(var n=e.length>>>0,o=[],i=0;i<n;){if(i in e){var a=e[i];Array.isArray(a)&&r>0?o=o.concat(t(a,r-1)):o.push(a)}i++}return o}(this,t)}),Array.prototype.flatMap||(Array.prototype.flatMap=function(){return Array.prototype.map.apply(this,arguments).flat(1)});const r=Object.freeze({isNumeric:t=>!Array.isArray(t)&&!Number.isNaN(t)&&Number.isFinite(parseInt(t,10)),isBase64(t){try{return!(!t||btoa(atob(t))!==t)}catch(t){return!1}},isJson(t){try{let e=!!t&&JSON.parse(t);return!(!e||"object"!=typeof e)}catch(t){return!1}},generateNumber:(t,e)=>(t=t?parseInt(t,10):1,(e=e?parseInt(e,10):t)<=t?t:Math.floor(Math.random()*(e-t+1)+t)),get sumArray(){return t=>Array.isArray(t)?t.reduce((t,e)=>t+(this.isNumeric(e)?parseFloat(e):0),0):0},compareNumbers(t,e,r){let n;switch(t=parseFloat(t),e=parseFloat(e),r){case"=":case"==":n=t===e;break;case"<":n=t<e;break;case">":n=t>e;break;case"<=":n=t<=e;break;case">=":n=t>=e;break;case"!":case"!=":n=t!==e;break;default:n=!1}return n},toFixed:(t,e)=>parseFloat(parseFloat(t).toFixed(e||0))}),n=Object.freeze({JSON:0,BASE_64:1,OBJECT:2}),o=class{constructor(t){if(!t)throw new Error("Notation is required");this.notation=t,this.order=999}get name(){return this.constructor.name}run(t,e){return t}toJSON(){const{notation:t,name:e}=this;return{name:e,notation:t,type:"modifier"}}toString(){return this.notation}},i=(()=>{const t=Symbol("operator"),e=Symbol("value");return class{constructor(t,e){if(!t)throw new Error("ComparePoint: No compare operator specified");if(!e&&0!==e)throw new Error("ComparePoint: No compare value specified");this.operator=t,this.value=e}static isValidOperator(t){return"string"==typeof t&&/^(?:[<>!]?=|[<>])$/.test(t)}set operator(e){if(!this.constructor.isValidOperator(e))throw new Error(`ComparePoint: operator "${e}" is not valid`);this[t]=e}get operator(){return this[t]}set value(t){if(!r.isNumeric(t))throw new Error("ComparePoint: value must be numeric");this[e]=parseInt(t,10)}get value(){return this[e]}isMatch(t){return r.compareNumbers(t,this.value,this.operator)}toJSON(){const{operator:t,value:e}=this;return{operator:t,type:"compare-point",value:e}}toString(){return`${this.operator}${this.value}`}}})(),a=(()=>{const t=Symbol("compare-point");return class extends o{constructor(t,e){super(t),e&&(this.comparePoint=e)}get comparePoint(){return this[t]}set comparePoint(e){if(!(e instanceof i))throw TypeError("comparePoint must be instance of ComparePoint");this[t]=e}isComparePoint(t){return!!this.comparePoint&&this.comparePoint.isMatch(t)}toJSON(){const{comparePoint:t}=this;return Object.assign(super.toJSON(),{comparePoint:t})}}})(),s=(()=>{const t=Symbol("calculation-value"),e=Symbol("modifiers"),n=Symbol("initial-value"),o=Symbol("use-in-total"),i=Symbol("value");return class{constructor(t,e,o=!0){if(r.isNumeric(t))this[n]=parseInt(t,10);else{if(!t||"object"!=typeof t||Array.isArray(t))throw new Error("Result value is invalid: "+t);{const i=r.isNumeric(t.initialValue)?t.initialValue:t.value;if(!r.isNumeric(i))throw new Error("Result value is invalid: "+i);this[n]=parseInt(i,10),r.isNumeric(t.value)&&parseInt(t.value,10)!==this[n]&&(this.value=t.value),r.isNumeric(t.calculationValue)&&parseFloat(t.calculationValue)!==this.value&&(this.calculationValue=t.calculationValue),Array.isArray(t.modifiers)&&t.modifiers.length&&(e=t.modifiers),"boolean"==typeof t.useInTotal&&(o=t.useInTotal)}}this.modifiers=e||[],this.useInTotal=o}get calculationValue(){return r.isNumeric(this[t])?parseFloat(this[t]):this.value}set calculationValue(e){const n=r.isNumeric(e);if(e&&!n)throw new Error("Result calculation value is invalid: "+e);this[t]=n?parseFloat(e):null}get initialValue(){return this[n]}get modifierFlags(){return this.modifiers.reduce((t,e)=>{switch(e){case"compound":case"explode":e="!";break;case"critical-failure":e="__";break;case"critical-success":e="**";break;case"drop":e="d";break;case"penetrate":e="p";break;case"re-roll":e="r";break;case"re-roll-once":e="ro";break;case"target-failure":e="_";break;case"target-success":e="*"}return t+e},"")}get modifiers(){return this[e]||[]}set modifiers(t){if((t||0===t)&&(!Array.isArray(t)||t.some(t=>"string"!=typeof t)))throw new Error("Modifiers must be an array of modifier names: "+t);this[e]=t||[]}get useInTotal(){return!!this[o]}set useInTotal(t){this[o]=!!t}get value(){return r.isNumeric(this[i])?this[i]:this[n]}set value(t){if(!r.isNumeric(t))throw new Error("Result value is invalid: "+t);this[i]=parseInt(t,10)}toJSON(){const{calculationValue:t,initialValue:e,modifierFlags:r,modifiers:n,useInTotal:o,value:i}=this;return{calculationValue:t,initialValue:e,modifierFlags:r,modifiers:n,type:"result",useInTotal:o,value:i}}toString(){return this.value+this.modifierFlags}}})(),u=(()=>{const t=Symbol("compound"),e=Symbol("penetrate");return class extends a{constructor(r,n=null,o=!1,i=!1){super(r,n),this[t]=!!o,this[e]=!!i,this.order=1}get compound(){return this[t]}get penetrate(){return this[e]}run(t,e){if(e.min===e.max)throw new Error("Die must have more than 1 side to explode: "+e);return t.rolls=t.rolls.map(t=>{const n=[t];let o=t.value;for(;this.isComparePoint(o);){const t=n[n.length-1],r=e.rollOnce();o=r.value,t.modifiers.push("explode"),this.penetrate&&(t.modifiers.push("penetrate"),r.value--),n.push(r)}return this.compound&&n.length>1?(t.value=r.sumArray(n),t.modifiers=["explode","compound"],this.penetrate&&t.modifiers.push("penetrate"),t):n}).flat(),t}toJSON(){const{compound:t,penetrate:e}=this;return Object.assign(super.toJSON(),{compound:t,penetrate:e})}}})(),c=(()=>{const t=Symbol("rolls");return class{constructor(t){this.rolls=t||[]}get length(){return this.rolls.length||0}get rolls(){return[...this[t]||[]]}set rolls(e){if(!e||!Array.isArray(e))throw new Error("Rolls must be an array: "+e);this[t]=[],e.forEach(t=>{this.addRoll(t)})}get value(){return this.rolls.reduce((t,e)=>t+(e.useInTotal?e.calculationValue:0),0)}addRoll(e){const r=e instanceof s?e:new s(e);this[t].push(r)}toJSON(){const{rolls:t,value:e}=this;return{rolls:t,value:e}}toString(){return`[${this.rolls.join(", ")}]`}}})(),p=(()=>{const t=Symbol("once");return class extends a{constructor(t,e=!1,r=null){super(t,r),this.once=!!e,this.order=2}get once(){return!!this[t]}set once(e){this[t]=!!e}run(t,e){if(e.min===e.max)throw new Error("Die must have more than 1 side to re-roll: "+e);return t.rolls.map(t=>{let r=!1;for(;this.isComparePoint(t.value)&&(!this.once||!r);){const n=e.rollOnce();t.value=n.value,r=!0}return r&&t.modifiers.push("re-roll"+(this.once?"-once":"")),t}),t}toJSON(){const{once:t}=this;return Object.assign(super.toJSON(),{once:t})}}})(),f=(()=>{const t=Symbol("modifiers"),e=Symbol("notation"),n=Symbol("qty"),a=Symbol("sides");return class{constructor(s,c,f=1,h=null){if(!s)throw new TypeError("Dice: Notation is required");if(!c)throw new TypeError("Dice: sides is required");if(!r.isNumeric(f)||f<1)throw new TypeError("qty must be a positive integer");if(this[e]=s,this[n]=parseInt(f,10),this[a]=c,h){if(h instanceof Map)this[t]=h;else if(Array.isArray(h))this[t]=new Map(h.map(t=>[t.name,t]));else{if("object"!=typeof h)throw new Error("modifiers should be a Map or an Object");this[t]=new Map(Object.entries(h))}if(this[t].size&&[...this[t].entries()].some(t=>!(t[1]instanceof o)))throw new Error("modifiers is invalid. List must only contain Modifier instances");this[t].forEach(t=>{t instanceof u&&!t.comparePoint?t.comparePoint=new i("=",this.max):t instanceof p&&!t.comparePoint&&(t.comparePoint=new i("=",this.min))})}}get modifiers(){return this[t]?new Map([...this[t]].sort((t,e)=>t[1].order-e[1].order)):null}get max(){return this.sides}get min(){return 1}get name(){return this.constructor.name}get notation(){return this[e]}get qty(){return this[n]}get sides(){return this[a]}roll(){const t=new c;for(let e=0;e<this.qty;e++)t.addRoll(this.rollOnce());return(this.modifiers||[]).forEach(e=>{e.run(t,this)}),t}rollOnce(){return new s(r.generateNumber(this.min,this.max))}toJSON(){const{max:t,min:e,modifiers:r,name:n,notation:o,qty:i,sides:a}=this;return{max:t,min:e,modifiers:r,name:n,notation:o,qty:i,sides:a,type:"die"}}toString(){return this.notation}}})(),h=class extends f{constructor(t,e=2,r=1,n=null){if(e||0===e){if(1!==e&&2!==e)throw new Error("nonBlanks must be 1 or 2")}else e=2;super(t,parseInt(e,10),r,n)}get max(){return 1}get min(){return-1}get nonBlanks(){return super.sides}get sides(){return"F."+this.nonBlanks}rollOnce(){let t=0;if(2===this.nonBlanks)t=r.generateNumber(1,3)-2;else if(1===this.nonBlanks){const e=r.generateNumber(1,6);1===e?t=-1:6===e&&(t=1)}return new s(t)}},l=class extends f{constructor(t,e=1,r=null){super(t,100,e,r)}get max(){return 100}get sides(){return"%"}};var m=Object.freeze({__proto__:null,FudgeDice:h,PercentileDice:l,StandardDice:f});const d=class extends a{constructor(t,e){super(t,e),this.order=7}run(t,e){return t.rolls.map(t=>(this.isComparePoint(t.value)&&t.modifiers.push("critical-failure"),t)),t}},y=class extends a{constructor(t,e){super(t,e),this.order=6}run(t,e){return t.rolls.map(t=>(this.isComparePoint(t.value)&&t.modifiers.push("critical-success"),t)),t}},g=(()=>{const t=Symbol("end"),e=Symbol("qty");return class extends o{constructor(t,e,r){super(t),this.end=e,this.qty=r||0===r?r:1,this.order=3}get end(){return this[t]}set end(e){if("h"!==e&&"l"!==e)throw new Error('End must be "h" or "l"');this[t]=e}get qty(){return this[e]}set qty(t){if(!r.isNumeric(t)||t<1)throw new Error("qty must be a positive integer");this[e]=parseInt(t,10)}_rangeToDrop(t){return[this.qty,t.length]}run(t,e){return[...t.rolls].map((t,e)=>({value:t.value,index:e})).sort((t,e)=>"h"===this.end?e.value-t.value:t.value-e.value).map(t=>t.index).slice(...this._rangeToDrop(t)).forEach(e=>{const r=t.rolls[e];r.modifiers.push("drop"),r.useInTotal=!1}),t}toJSON(){const{end:t,qty:e}=this;return Object.assign(super.toJSON(),{end:t,qty:e})}}})(),v=class extends g{constructor(t,e,r){super(t,e,r),this.order=4}_rangeToDrop(t){return[0,this.qty]}},w=(()=>{const t=Symbol("direction");return class extends o{constructor(t,e="a"){super(t),this.direction=e||"a",this.order=8}get direction(){return this[t]}set direction(e){if("a"!==e&&"d"!==e)throw new Error('Direction must be "a" (Ascending) or "d" (Descending)');this[t]=e}run(t,e){return t.rolls=t.rolls.sort((t,e)=>"d"===this.direction?e.value-t.value:t.value-e.value),t}toJSON(){const{direction:t}=this;return Object.assign(super.toJSON(),{direction:t})}}})(),b=(()=>{const t=Symbol("failure-cp");return class extends a{constructor(t,e,r){super(t,e),this.failureComparePoint=r,this.order=5}get failureComparePoint(){return this[t]}set failureComparePoint(e){if(e&&!(e instanceof i))throw TypeError("failure comparePoint must be instance of ComparePoint or null");this[t]=e||null}get successComparePoint(){return this.comparePoint}set successComparePoint(t){super.comparePoint=t}getStateValue(t){return this.isSuccess(t)?1:this.isFailure(t)?-1:0}isFailure(t){return!!this.failureComparePoint&&this.failureComparePoint.isMatch(t)}isNeutral(t){return!this.isSuccess(t)&&!this.isFailure(t)}isSuccess(t){return this.isComparePoint(t)}run(t,e){return t.rolls.map(t=>(this.isSuccess(t.value)?t.modifiers.push("target-success"):this.isFailure(t)&&t.modifiers.push("target-failure"),t.calculationValue=this.getStateValue(t.value),t)),t}toJSON(){const{failureComparePoint:t,successComparePoint:e}=this,r=super.toJSON();return delete r.comparePoint,Object.assign(r,{failureComparePoint:t,successComparePoint:e})}}})();var x=Object.freeze({__proto__:null,ComparisonModifier:a,CriticalFailureModifier:d,CriticalSuccessModifier:y,DropModifier:v,ExplodeModifier:u,KeepModifier:g,ReRollModifier:p,SortingModifier:w,TargetModifier:b});const N=(()=>{const t=Symbol("modifiers"),e=Symbol("notation"),r=Symbol("expressions");return class{constructor(n,o,i=null){this[e]=n,this[r]=o,this[t]=i}get modifiers(){return this[t]}get notation(){return this[e]}get expressions(){return this[r]}toJSON(){const{modifiers:t,notation:e,expressions:r}=this;return{expressions:r,modifiers:t,notation:e,type:"group"}}}})();Number.isFinite=Number.isFinite||function(t){return"number"==typeof t&&isFinite(t)},Number.isNaN=Number.isNaN||function(t){return t!=t};"undefined"!=typeof globalThis?globalThis:"undefined"!=typeof window?window:"undefined"!=typeof global?global:"undefined"!=typeof self&&self;function E(t,e){return t(e={exports:{}},e.exports),e.exports}var S=function(t){return t&&t.constructor.prototype.isBigNumber||!1},O=E((function(t,e){function r(t){return(r="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t})(t)}e.clone=function t(n){var o=r(n);if("number"===o||"string"===o||"boolean"===o||null==n)return n;if("function"==typeof n.clone)return n.clone();if(Array.isArray(n))return n.map((function(e){return t(e)}));if(n instanceof Date)return new Date(n.valueOf());if(S(n))return n;if(n instanceof RegExp)throw new TypeError("Cannot clone "+n);return e.map(n,t)},e.map=function(t,r){var n={};for(var o in t)e.hasOwnProperty(t,o)&&(n[o]=r(t[o]));return n},e.extend=function(t,r){for(var n in r)e.hasOwnProperty(r,n)&&(t[n]=r[n]);return t},e.deepExtend=function t(r,n){if(Array.isArray(n))throw new TypeError("Arrays are not supported by deepExtend");for(var o in n)if(e.hasOwnProperty(n,o))if(n[o]&&n[o].constructor===Object)void 0===r[o]&&(r[o]={}),r[o].constructor===Object?t(r[o],n[o]):r[o]=n[o];else{if(Array.isArray(n[o]))throw new TypeError("Arrays are not supported by deepExtend");r[o]=n[o]}return r},e.deepEqual=function(t,r){var n,o,i;if(Array.isArray(t)){if(!Array.isArray(r))return!1;if(t.length!==r.length)return!1;for(o=0,i=t.length;o<i;o++)if(!e.deepEqual(t[o],r[o]))return!1;return!0}if(t instanceof Object){if(Array.isArray(r)||!(r instanceof Object))return!1;for(n in t)if(!e.deepEqual(t[n],r[n]))return!1;for(n in r)if(!e.deepEqual(t[n],r[n]))return!1;return!0}return t===r},e.canDefineProperty=function(){try{if(Object.defineProperty)return Object.defineProperty({},"x",{get:function(){}}),!0}catch(t){}return!1},e.lazy=function(t,r,n){if(e.canDefineProperty()){var o,i=!0;Object.defineProperty(t,r,{get:function(){return i&&(o=n(),i=!1),o},set:function(t){o=t,i=!1},configurable:!0,enumerable:!0})}else t[r]=n()},e.traverse=function(t,e){var r=t;if(e)for(var n=e.split("."),o=0;o<n.length;o++){var i=n[o];i in r||(r[i]={}),r=r[i]}return r},e.hasOwnProperty=function(t,e){return t&&Object.hasOwnProperty.call(t,e)},e.isFactory=function(t){return t&&"function"==typeof t.factory}})),A=(O.clone,O.map,O.extend,O.deepExtend,O.deepEqual,O.canDefineProperty,O.lazy,O.traverse,O.isFactory,E((function(t,e){t.exports=function(){function t(){return!0}function e(){return!1}function r(){}return function n(){var o=[{name:"number",test:function(t){return"number"==typeof t}},{name:"string",test:function(t){return"string"==typeof t}},{name:"boolean",test:function(t){return"boolean"==typeof t}},{name:"Function",test:function(t){return"function"==typeof t}},{name:"Array",test:Array.isArray},{name:"Date",test:function(t){return t instanceof Date}},{name:"RegExp",test:function(t){return t instanceof RegExp}},{name:"Object",test:function(t){return"object"==typeof t&&t.constructor===Object}},{name:"null",test:function(t){return null===t}},{name:"undefined",test:function(t){return void 0===t}}],i={name:"any",test:t},a=[],s=[],u={types:o,conversions:s,ignore:a};function c(t){var e=q(u.types,(function(e){return e.name===t}));if(e)return e;if("any"===t)return i;var r=q(u.types,(function(e){return e.name.toLowerCase()===t.toLowerCase()}));throw new TypeError('Unknown type "'+t+'"'+(r?'. Did you mean "'+r.name+'"?':""))}function p(t){return t===i?999:u.types.indexOf(t)}function f(t){var e=q(u.types,(function(e){return e.test(t)}));if(e)return e.name;throw new TypeError("Value has unknown type. Value: "+t)}function h(t){return t.map((function(t){var e=t.types.map(b);return(t.restParam?"...":"")+e.join("|")})).join(",")}function l(t,e){var r=0===t.indexOf("..."),n=(r?t.length>3?t.slice(3):"any":t).split("|").map(M).filter(F).filter(C),o=function(t,e){var r={};return t.forEach((function(t){-1!==e.indexOf(t.from)||-1===e.indexOf(t.to)||r[t.from]||(r[t.from]=t)})),Object.keys(r).map((function(t){return r[t]}))}(e,n),i=n.map((function(t){var e=c(t);return{name:t,typeIndex:p(e),test:e.test,conversion:null,conversionIndex:-1}})),a=o.map((function(t){var r=c(t.from);return{name:t.from,typeIndex:p(r),test:r.test,conversion:t,conversionIndex:e.indexOf(t)}}));return{types:i.concat(a),restParam:r}}function m(t){var e=D(t);return!!e&&e.restParam}function d(t){return t.types.some((function(t){return null!=t.conversion}))}function y(e){if(e&&0!==e.types.length){if(1===e.types.length)return c(e.types[0].name).test;if(2===e.types.length){var r=c(e.types[0].name).test,n=c(e.types[1].name).test;return function(t){return r(t)||n(t)}}var o=e.types.map((function(t){return c(t.name).test}));return function(t){for(var e=0;e<o.length;e++)if(o[e](t))return!0;return!1}}return t}function g(t){var e,r,n,o;if(m(t)){var i=(e=(o=t,o.slice(0,o.length-1)).map(y)).length,a=y(D(t));return function(t){for(var r=0;r<e.length;r++)if(!e[r](t[r]))return!1;return function(t){for(var e=i;e<t.length;e++)if(!a(t[e]))return!1;return!0}(t)&&t.length>=i+1}}return 0===t.length?function(t){return 0===t.length}:1===t.length?(r=y(t[0]),function(t){return r(t[0])&&1===t.length}):2===t.length?(r=y(t[0]),n=y(t[1]),function(t){return r(t[0])&&n(t[1])&&2===t.length}):(e=t.map(y),function(t){for(var r=0;r<e.length;r++)if(!e[r](t[r]))return!1;return t.length===e.length})}function v(t,e){return e<t.params.length?t.params[e]:m(t.params)?D(t.params):null}function w(t,e,r){var n=v(t,e);return(n?r?n.types.filter(x):n.types:[]).map(b)}function b(t){return t.name}function x(t){return null===t.conversion||void 0===t.conversion}function N(t,e){var r=function(t){for(var e={},r=0;r<t.length;r++)e[t[r]]=!0;return Object.keys(e)}(B(t,(function(t){return w(t,e,!1)})));return-1!==r.indexOf("any")?["any"]:r}function E(t,e,r){var n,o,i,a=t||"unnamed",s=r;for(i=0;i<e.length;i++){var u=s.filter((function(t){var r=y(v(t,i));return(i<t.params.length||m(t.params))&&r(e[i])}));if(0===u.length){if((o=N(s,i)).length>0){var c=f(e[i]);return(n=new TypeError("Unexpected type of argument in function "+a+" (expected: "+o.join(" or ")+", actual: "+c+", index: "+i+")")).data={category:"wrongType",fn:a,index:i,actual:c,expected:o},n}}else s=u}var p=s.map((function(t){return m(t.params)?Infinity:t.params.length}));if(e.length<Math.min.apply(null,p))return o=N(s,i),(n=new TypeError("Too few arguments in function "+a+" (expected: "+o.join(" or ")+", index: "+e.length+")")).data={category:"tooFewArgs",fn:a,index:e.length,expected:o},n;var h=Math.max.apply(null,p);return e.length>h?((n=new TypeError("Too many arguments in function "+a+" (expected: "+h+", actual: "+e.length+")")).data={category:"tooManyArgs",fn:a,index:e.length,expectedLength:h},n):((n=new TypeError('Arguments of type "'+e.join(", ")+'" do not match any of the defined signatures of function '+a+".")).data={category:"mismatch",actual:e.map(f)},n)}function S(t){for(var e=999,r=0;r<t.types.length;r++)x(t.types[r])&&(e=Math.min(e,t.types[r].typeIndex));return e}function O(t){for(var e=999,r=0;r<t.types.length;r++)x(t.types[r])||(e=Math.min(e,t.types[r].conversionIndex));return e}function A(t,e){var r;return 0!=(r=t.restParam-e.restParam)||0!=(r=d(t)-d(e))||0!=(r=S(t)-S(e))?r:O(t)-O(e)}function j(t,e){var r,n,o=Math.min(t.params.length,e.params.length);if(0!=(n=t.params.some(d)-e.params.some(d)))return n;for(r=0;r<o;r++)if(0!=(n=d(t.params[r])-d(e.params[r])))return n;for(r=0;r<o;r++)if(0!==(n=A(t.params[r],e.params[r])))return n;return t.params.length-e.params.length}function T(t){var e,r,n,o,i=[],a=[];switch(t.types.forEach((function(t){t.conversion&&(i.push(c(t.conversion.from).test),a.push(t.conversion.convert))})),a.length){case 0:return function(t){return t};case 1:return e=i[0],n=a[0],function(t){return e(t)?n(t):t};case 2:return e=i[0],r=i[1],n=a[0],o=a[1],function(t){return e(t)?n(t):r(t)?o(t):t};default:return function(t){for(var e=0;e<a.length;e++)if(i[e](t))return a[e](t);return t}}}function k(t,e){return function t(r,n,o){if(n<r.length){var i,a=r[n],s=e?a.types.filter(x):a.types;if(a.restParam){var u=s.filter(x);i=u.length<s.length?[u,s]:[s]}else i=s.map((function(t){return[t]}));return B(i,(function(e){return t(r,n+1,o.concat([e]))}))}return[o.map((function(t,e){return{types:t,restParam:e===r.length-1&&m(r)}}))]}(t,0,[])}function P(t,n){if(0===Object.keys(n).length)throw new SyntaxError("No signatures provided");var o=[];Object.keys(n).map((function(t){return function(t,e,r){var n=[];return""!==t.trim()&&(n=t.split(",").map(M).map((function(t,e,n){var o=l(t,r);if(o.restParam&&e!==n.length-1)throw new SyntaxError('Unexpected rest parameter "'+t+'": only allowed for the last parameter');return o}))),n.some(I)?null:{params:n,fn:e}}(t,n[t],u.conversions)})).filter(_).forEach((function(t){var e=q(o,(function(e){return function(t,e){for(var r=Math.max(t.params.length,e.params.length),n=0;n<r;n++)if(!R(w(t,n,!0),w(e,n,!0)))return!1;var o=t.params.length,i=e.params.length,a=m(t.params),s=m(e.params);return a?s?o===i:i>=o:s?o>=i:o===i}(e,t)}));if(e)throw new TypeError('Conflicting signatures "'+h(e.params)+'" and "'+h(t.params)+'".');o.push(t)}));var i=B(o,(function(t){return(t?k(t.params,!1):[]).map((function(e){return{params:e,fn:t.fn}}))})).filter(_);i.sort(j);var a=i[0]&&i[0].params.length<=2&&!m(i[0].params),s=i[1]&&i[1].params.length<=2&&!m(i[1].params),c=i[2]&&i[2].params.length<=2&&!m(i[2].params),p=i[3]&&i[3].params.length<=2&&!m(i[3].params),f=i[4]&&i[4].params.length<=2&&!m(i[4].params),v=i[5]&&i[5].params.length<=2&&!m(i[5].params),b=a&&s&&c&&p&&f&&v,x=i.map((function(t){return g(t.params)})),N=a?y(i[0].params[0]):e,S=s?y(i[1].params[0]):e,O=c?y(i[2].params[0]):e,A=p?y(i[3].params[0]):e,P=f?y(i[4].params[0]):e,C=v?y(i[5].params[0]):e,F=a?y(i[0].params[1]):e,D=s?y(i[1].params[1]):e,J=c?y(i[2].params[1]):e,H=p?y(i[3].params[1]):e,W=f?y(i[4].params[1]):e,z=v?y(i[5].params[1]):e,U=i.map((function(t){return function(t,e){var r=e;if(t.some(d)){var n=m(t),o=t.map(T);r=function(){for(var t=[],r=n?arguments.length-1:arguments.length,i=0;i<r;i++)t[i]=o[i](arguments[i]);return n&&(t[r]=arguments[r].map(o[r])),e.apply(null,t)}}var i=r;if(m(t)){var a=t.length-1;i=function(){return r.apply(null,L(arguments,0,a).concat([L(arguments,a)]))}}return i}(t.params,t.fn)})),$=a?U[0]:r,V=s?U[1]:r,X=c?U[2]:r,Z=p?U[3]:r,G=f?U[4]:r,K=v?U[5]:r,Q=a?i[0].params.length:-1,Y=s?i[1].params.length:-1,tt=c?i[2].params.length:-1,et=p?i[3].params.length:-1,rt=f?i[4].params.length:-1,nt=v?i[5].params.length:-1,ot=b?6:0,it=i.length,at=function(){for(var e=ot;e<it;e++)if(x[e](arguments))return U[e].apply(null,arguments);throw E(t,arguments,i)},st=function(t,e){return arguments.length===Q&&N(t)&&F(e)?$.apply(null,arguments):arguments.length===Y&&S(t)&&D(e)?V.apply(null,arguments):arguments.length===tt&&O(t)&&J(e)?X.apply(null,arguments):arguments.length===et&&A(t)&&H(e)?Z.apply(null,arguments):arguments.length===rt&&P(t)&&W(e)?G.apply(null,arguments):arguments.length===nt&&C(t)&&z(e)?K.apply(null,arguments):at.apply(null,arguments)};try{Object.defineProperty(st,"name",{value:t})}catch(t){}return st.signatures=function(t){var e={};return t.forEach((function(t){t.params.some(d)||k(t.params,!0).forEach((function(r){e[h(r)]=t.fn}))})),e}(i),st}function C(t){return-1===u.ignore.indexOf(t)}function M(t){return t.trim()}function F(t){return!!t}function _(t){return null!==t}function I(t){return 0===t.types.length}function D(t){return t[t.length-1]}function L(t,e,r){return Array.prototype.slice.call(t,e,r)}function J(t,e){return-1!==t.indexOf(e)}function R(t,e){for(var r=0;r<t.length;r++)if(J(e,t[r]))return!0;return!1}function q(t,e){for(var r=0;r<t.length;r++)if(e(t[r]))return t[r]}function B(t,e){return Array.prototype.concat.apply([],t.map(e))}function H(t){for(var e="",r=0;r<t.length;r++){var n=t[r];if(("object"==typeof n.signatures||"string"==typeof n.signature)&&""!==n.name)if(""===e)e=n.name;else if(e!==n.name){var o=new Error("Function names do not match (expected: "+e+", actual: "+n.name+")");throw o.data={actual:n.name,expected:e},o}}return e}function W(t){var e,r={};function n(t,n){if(r.hasOwnProperty(t)&&n!==r[t])throw(e=new Error('Signature "'+t+'" is defined twice')).data={signature:t},e}for(var o=0;o<t.length;o++){var i=t[o];if("object"==typeof i.signatures)for(var a in i.signatures)i.signatures.hasOwnProperty(a)&&(n(a,i.signatures[a]),r[a]=i.signatures[a]);else{if("string"!=typeof i.signature)throw(e=new TypeError("Function is no typed-function (index: "+o+")")).data={index:o},e;n(i.signature,i),r[i.signature]=i}}return r}return(u=P("typed",{"string, Object":P,Object:function(t){var e=[];for(var r in t)t.hasOwnProperty(r)&&e.push(t[r]);return P(H(e),t)},"...Function":function(t){return P(H(t),W(t))},"string, ...Function":function(t,e){return P(t,W(e))}})).create=n,u.types=o,u.conversions=s,u.ignore=a,u.convert=function(t,e){var r=f(t);if(e===r)return t;for(var n=0;n<u.conversions.length;n++){var o=u.conversions[n];if(o.from===r&&o.to===e)return o.convert(t)}throw new Error("Cannot convert from "+r+" to "+e)},u.find=function(t,e){if(!t.signatures)throw new TypeError("Function is no typed-function");var r;if("string"==typeof e){r=e.split(",");for(var n=0;n<r.length;n++)r[n]=r[n].trim()}else{if(!Array.isArray(e))throw new TypeError("String array or a comma separated string expected");r=e}var o=r.join(","),i=t.signatures[o];if(i)return i;throw new TypeError("Signature not found (signature: "+(t.name||"unnamed")+"("+r.join(", ")+"))")},u.addType=function(t,e){if(!t||"string"!=typeof t.name||"function"!=typeof t.test)throw new TypeError("Object with properties {name: string, test: function} expected");if(!1!==e)for(var r=0;r<u.types.length;r++)if("Object"===u.types[r].name)return void u.types.splice(r,0,t);u.types.push(t)},u.addConversion=function(t){if(!t||"string"!=typeof t.from||"string"!=typeof t.to||"function"!=typeof t.convert)throw new TypeError("Object with properties {from: string, to: string, convert: function} expected");u.conversions.push(t)},u}()}()}))),j=E((function(t,e){function r(t){for(var e=[],r=0;r<t;r++)e.push(0);return e}e.isNumber=function(t){return"number"==typeof t},e.isInteger=function(t){return"boolean"==typeof t||!!isFinite(t)&&t===Math.round(t)},e.sign=Math.sign||function(t){return t>0?1:t<0?-1:0},e.format=function(t,r){if("function"==typeof r)return r(t);if(Infinity===t)return"Infinity";if(-Infinity===t)return"-Infinity";if(isNaN(t))return"NaN";var n,o="auto";switch(r&&(r.notation&&(o=r.notation),e.isNumber(r)?n=r:e.isNumber(r.precision)&&(n=r.precision)),o){case"fixed":return e.toFixed(t,n);case"exponential":return e.toExponential(t,n);case"engineering":return e.toEngineering(t,n);case"auto":if(r&&r.exponential&&(void 0!==r.exponential.lower||void 0!==r.exponential.upper)){var i=O.map(r,(function(t){return t}));return i.exponential=void 0,void 0!==r.exponential.lower&&(i.lowerExp=Math.round(Math.log(r.exponential.lower)/Math.LN10)),void 0!==r.exponential.upper&&(i.upperExp=Math.round(Math.log(r.exponential.upper)/Math.LN10)),e.toPrecision(t,n,i)}return e.toPrecision(t,n,r&&r).replace(/((\.\d*?)(0+))($|e)/,(function(){var t=arguments[2],e=arguments[4];return"."!==t?t+e:e}));default:throw new Error('Unknown notation "'+o+'". Choose "auto", "exponential", or "fixed".')}},e.splitNumber=function(t){var e=String(t).toLowerCase().match(/^0*?(-?)(\d+\.?\d*)(e([+-]?\d+))?$/);if(!e)throw new SyntaxError("Invalid number "+t);var r=e[1],n=e[2],o=parseFloat(e[4]||"0"),i=n.indexOf(".");o+=-1!==i?i-1:n.length-1;var a=n.replace(".","").replace(/^0*/,(function(t){return o-=t.length,""})).replace(/0*$/,"").split("").map((function(t){return parseInt(t)}));return 0===a.length&&(a.push(0),o++),{sign:r,coefficients:a,exponent:o}},e.toEngineering=function(t,n){if(isNaN(t)||!isFinite(t))return String(t);var o=e.roundDigits(e.splitNumber(t),n),i=o.exponent,a=o.coefficients,s=i%3==0?i:i<0?i-3-i%3:i-i%3;if(e.isNumber(n))n>a.length&&(a=a.concat(r(n-a.length)));else{var u=i>=0?i:Math.abs(s);a.length-1<u&&(a=a.concat(r(u-(a.length-1))))}for(var c=Math.abs(i-s),p=1;--c>=0;)p++;var f=a.slice(p).join(""),h=e.isNumber(n)&&f.length||f.match(/[1-9]/)?"."+f:"",l=a.slice(0,p).join("")+h+"e"+(i>=0?"+":"")+s.toString();return o.sign+l},e.toFixed=function(t,n){if(isNaN(t)||!isFinite(t))return String(t);var o=e.splitNumber(t),i="number"==typeof n?e.roundDigits(o,o.exponent+1+n):o,a=i.coefficients,s=i.exponent+1,u=s+(n||0);return a.length<u&&(a=a.concat(r(u-a.length))),s<0&&(a=r(1-s).concat(a),s=1),s<a.length&&a.splice(s,0,0===s?"0.":"."),i.sign+a.join("")},e.toExponential=function(t,n){if(isNaN(t)||!isFinite(t))return String(t);var o=e.splitNumber(t),i=n?e.roundDigits(o,n):o,a=i.coefficients,s=i.exponent;a.length<n&&(a=a.concat(r(n-a.length)));var u=a.shift();return i.sign+u+(a.length>0?"."+a.join(""):"")+"e"+(s>=0?"+":"")+s},e.toPrecision=function(t,n,o){if(isNaN(t)||!isFinite(t))return String(t);var i=o&&void 0!==o.lowerExp?o.lowerExp:-3,a=o&&void 0!==o.upperExp?o.upperExp:5,s=e.splitNumber(t);if(s.exponent<i||s.exponent>=a)return e.toExponential(t,n);var u=n?e.roundDigits(s,n):s,c=u.coefficients,p=u.exponent;c.length<n&&(c=c.concat(r(n-c.length))),c=c.concat(r(p-c.length+1+(c.length<n?n-c.length:0)));var f=p>0?p:0;return f<(c=r(-p).concat(c)).length-1&&c.splice(f+1,0,"."),u.sign+c.join("")},e.roundDigits=function(t,e){for(var r={sign:t.sign,coefficients:t.coefficients,exponent:t.exponent},n=r.coefficients;e<=0;)n.unshift(0),r.exponent++,e++;if(n.length>e&&n.splice(e,n.length-e)[0]>=5){var o=e-1;for(n[o]++;10===n[o];)n.pop(),0===o&&(n.unshift(0),r.exponent++,o++),n[--o]++}return r},e.digits=function(t){return t.toExponential().replace(/e.*$/,"").replace(/^0\.?0*|\./,"").length},e.DBL_EPSILON=Number.EPSILON||2220446049250313e-31,e.nearlyEqual=function(t,r,n){if(null==n)return t===r;if(t===r)return!0;if(isNaN(t)||isNaN(r))return!1;if(isFinite(t)&&isFinite(r)){var o=Math.abs(t-r);return o<e.DBL_EPSILON||o<=Math.max(Math.abs(t),Math.abs(r))*n}return!1}})),T=(j.isNumber,j.isInteger,j.sign,j.format,j.splitNumber,j.toEngineering,j.toFixed,j.toExponential,j.toPrecision,j.roundDigits,j.digits,j.DBL_EPSILON,j.nearlyEqual,function(t){return t&&t.constructor.prototype.isMatrix||!1});function k(t){return(k="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t})(t)}var P=j.digits,C=function(){return C=A.create,A},M=function(t){t.isNumber=function(t){return"number"==typeof t},t.isComplex=function(e){return t.Complex&&e instanceof t.Complex||!1},t.isBigNumber=S,t.isFraction=function(e){return t.Fraction&&e instanceof t.Fraction||!1},t.isUnit=function(t){return t&&t.constructor.prototype.isUnit||!1},t.isString=function(t){return"string"==typeof t},t.isArray=Array.isArray,t.isMatrix=T,t.isDenseMatrix=function(t){return t&&t.isDenseMatrix&&t.constructor.prototype.isMatrix||!1},t.isSparseMatrix=function(t){return t&&t.isSparseMatrix&&t.constructor.prototype.isMatrix||!1},t.isRange=function(t){return t&&t.constructor.prototype.isRange||!1},t.isIndex=function(t){return t&&t.constructor.prototype.isIndex||!1},t.isBoolean=function(t){return"boolean"==typeof t},t.isResultSet=function(t){return t&&t.constructor.prototype.isResultSet||!1},t.isHelp=function(t){return t&&t.constructor.prototype.isHelp||!1},t.isFunction=function(t){return"function"==typeof t},t.isDate=function(t){return t instanceof Date},t.isRegExp=function(t){return t instanceof RegExp},t.isObject=function(e){return"object"===k(e)&&e.constructor===Object&&!t.isComplex(e)&&!t.isFraction(e)},t.isNull=function(t){return null===t},t.isUndefined=function(t){return void 0===t},t.isAccessorNode=function(t){return t&&t.isAccessorNode&&t.constructor.prototype.isNode||!1},t.isArrayNode=function(t){return t&&t.isArrayNode&&t.constructor.prototype.isNode||!1},t.isAssignmentNode=function(t){return t&&t.isAssignmentNode&&t.constructor.prototype.isNode||!1},t.isBlockNode=function(t){return t&&t.isBlockNode&&t.constructor.prototype.isNode||!1},t.isConditionalNode=function(t){return t&&t.isConditionalNode&&t.constructor.prototype.isNode||!1},t.isConstantNode=function(t){return t&&t.isConstantNode&&t.constructor.prototype.isNode||!1},t.isFunctionAssignmentNode=function(t){return t&&t.isFunctionAssignmentNode&&t.constructor.prototype.isNode||!1},t.isFunctionNode=function(t){return t&&t.isFunctionNode&&t.constructor.prototype.isNode||!1},t.isIndexNode=function(t){return t&&t.isIndexNode&&t.constructor.prototype.isNode||!1},t.isNode=function(t){return t&&t.isNode&&t.constructor.prototype.isNode||!1},t.isObjectNode=function(t){return t&&t.isObjectNode&&t.constructor.prototype.isNode||!1},t.isOperatorNode=function(t){return t&&t.isOperatorNode&&t.constructor.prototype.isNode||!1},t.isParenthesisNode=function(t){return t&&t.isParenthesisNode&&t.constructor.prototype.isNode||!1},t.isRangeNode=function(t){return t&&t.isRangeNode&&t.constructor.prototype.isNode||!1},t.isSymbolNode=function(t){return t&&t.isSymbolNode&&t.constructor.prototype.isNode||!1},t.isChain=function(t){return t&&t.constructor.prototype.isChain||!1};var e=C();return e.types=[{name:"number",test:t.isNumber},{name:"Complex",test:t.isComplex},{name:"BigNumber",test:t.isBigNumber},{name:"Fraction",test:t.isFraction},{name:"Unit",test:t.isUnit},{name:"string",test:t.isString},{name:"Array",test:t.isArray},{name:"Matrix",test:t.isMatrix},{name:"DenseMatrix",test:t.isDenseMatrix},{name:"SparseMatrix",test:t.isSparseMatrix},{name:"Range",test:t.isRange},{name:"Index",test:t.isIndex},{name:"boolean",test:t.isBoolean},{name:"ResultSet",test:t.isResultSet},{name:"Help",test:t.isHelp},{name:"function",test:t.isFunction},{name:"Date",test:t.isDate},{name:"RegExp",test:t.isRegExp},{name:"null",test:t.isNull},{name:"undefined",test:t.isUndefined},{name:"OperatorNode",test:t.isOperatorNode},{name:"ConstantNode",test:t.isConstantNode},{name:"SymbolNode",test:t.isSymbolNode},{name:"ParenthesisNode",test:t.isParenthesisNode},{name:"FunctionNode",test:t.isFunctionNode},{name:"FunctionAssignmentNode",test:t.isFunctionAssignmentNode},{name:"ArrayNode",test:t.isArrayNode},{name:"AssignmentNode",test:t.isAssignmentNode},{name:"BlockNode",test:t.isBlockNode},{name:"ConditionalNode",test:t.isConditionalNode},{name:"IndexNode",test:t.isIndexNode},{name:"RangeNode",test:t.isRangeNode},{name:"Node",test:t.isNode},{name:"Object",test:t.isObject}],e.conversions=[{from:"number",to:"BigNumber",convert:function(e){if(P(e)>15)throw new TypeError("Cannot implicitly convert a number with >15 significant digits to BigNumber (value: "+e+"). Use function bignumber(x) to convert to BigNumber.");return new t.BigNumber(e)}},{from:"number",to:"Complex",convert:function(e){return new t.Complex(e,0)}},{from:"number",to:"string",convert:function(t){return t+""}},{from:"BigNumber",to:"Complex",convert:function(e){return new t.Complex(e.toNumber(),0)}},{from:"Fraction",to:"BigNumber",convert:function(t){throw new TypeError("Cannot implicitly convert a Fraction to BigNumber or vice versa. Use function bignumber(x) to convert to BigNumber or fraction(x) to convert to Fraction.")}},{from:"Fraction",to:"Complex",convert:function(e){return new t.Complex(e.valueOf(),0)}},{from:"number",to:"Fraction",convert:function(e){if(new t.Fraction(e).valueOf()!==e)throw new TypeError("Cannot implicitly convert a number to a Fraction when there will be a loss of precision (value: "+e+"). Use function fraction(x) to convert to Fraction.");return new t.Fraction(e)}},{from:"string",to:"number",convert:function(t){var e=Number(t);if(isNaN(e))throw new Error('Cannot convert "'+t+'" to a number');return e}},{from:"string",to:"BigNumber",convert:function(e){try{return new t.BigNumber(e)}catch(t){throw new Error('Cannot convert "'+e+'" to BigNumber')}}},{from:"string",to:"Fraction",convert:function(e){try{return new t.Fraction(e)}catch(t){throw new Error('Cannot convert "'+e+'" to Fraction')}}},{from:"string",to:"Complex",convert:function(e){try{return new t.Complex(e)}catch(t){throw new Error('Cannot convert "'+e+'" to Complex')}}},{from:"boolean",to:"number",convert:function(t){return+t}},{from:"boolean",to:"BigNumber",convert:function(e){return new t.BigNumber(+e)}},{from:"boolean",to:"Fraction",convert:function(e){return new t.Fraction(+e)}},{from:"boolean",to:"string",convert:function(t){return+t}},{from:"Array",to:"Matrix",convert:function(e){return new t.DenseMatrix(e)}},{from:"Matrix",to:"Array",convert:function(t){return t.valueOf()}}],e};function F(){}F.prototype={on:function(t,e,r){var n=this.e||(this.e={});return(n[t]||(n[t]=[])).push({fn:e,ctx:r}),this},once:function(t,e,r){var n=this;function o(){n.off(t,o),e.apply(r,arguments)}return o._=e,this.on(t,o,r)},emit:function(t){for(var e=[].slice.call(arguments,1),r=((this.e||(this.e={}))[t]||[]).slice(),n=0,o=r.length;n<o;n++)r[n].fn.apply(r[n].ctx,e);return this},off:function(t,e){var r=this.e||(this.e={}),n=r[t],o=[];if(n&&e)for(var i=0,a=n.length;i<a;i++)n[i].fn!==e&&n[i].fn._!==e&&o.push(n[i]);return o.length?r[t]=o:delete r[t],this}};var _=F,I=F;_.TinyEmitter=I;var D=function(t){var e=new _;return t.on=e.on.bind(e),t.off=e.off.bind(e),t.once=e.once.bind(e),t.emit=e.emit.bind(e),t};function L(t,e,r,n){if(!(this instanceof L))throw new SyntaxError("Constructor must be called with the new operator");this.fn=t,this.count=e,this.min=r,this.max=n,this.message="Wrong number of arguments in function "+t+" ("+e+" provided, "+r+(null!=n?"-"+n:"")+" expected)",this.stack=(new Error).stack}L.prototype=new Error,L.prototype.constructor=Error,L.prototype.name="ArgumentsError",L.prototype.isArgumentsError=!0;var J=L;function R(t){return(R="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t})(t)}var q=O.lazy,B=O.isFactory,H=O.traverse;var W={math:!0,name:"import",factory:function(t,e,r,n,o){function i(t,e,r){if(r.wrap&&"function"==typeof e&&(e=function(t){var e=function(){for(var e=[],r=0,n=arguments.length;r<n;r++){var i=arguments[r];e[r]=i&&i.valueOf()}return t.apply(o,e)};t.transform&&(e.transform=t.transform);return e}(e)),p(o[t])&&p(e))return e=r.override?n(t,e.signatures):n(o[t],e),o[t]=e,a(t,e),void o.emit("import",t,(function(){return e}));if(void 0===o[t]||r.override)return o[t]=e,a(t,e),void o.emit("import",t,(function(){return e}));if(!r.silent)throw new Error('Cannot import "'+t+'": already exists')}function a(t,e){e&&"function"==typeof e.transform?(o.expression.transform[t]=e.transform,f(t)&&(o.expression.mathWithTransform[t]=e.transform)):(delete o.expression.transform[t],f(t)&&(o.expression.mathWithTransform[t]=e))}function s(t){delete o.expression.transform[t],f(t)?o.expression.mathWithTransform[t]=o[t]:delete o.expression.mathWithTransform[t]}function u(t,e){if("string"==typeof t.name){var i=t.name,a=i in o.expression.transform,u=t.path?H(o,t.path):o,c=u.hasOwnProperty(i)?u[i]:void 0,f=function(){var o=r(t);if(o&&"function"==typeof o.transform)throw new Error('Transforms cannot be attached to factory functions. Please create a separate function for it with exports.path="expression.transform"');if(p(c)&&p(o))return e.override||(o=n(c,o)),o;if(void 0===c||e.override)return o;if(!e.silent)throw new Error('Cannot import "'+i+'": already exists')};!1!==t.lazy?(q(u,i,f),a?s(i):("expression.transform"===t.path||h(t))&&q(o.expression.mathWithTransform,i,f)):(u[i]=f(),a?s(i):("expression.transform"===t.path||h(t))&&(o.expression.mathWithTransform[i]=f())),o.emit("import",i,f,t.path)}else r(t)}function c(e){return"function"==typeof e||"number"==typeof e||"string"==typeof e||"boolean"==typeof e||null===e||e&&t.isUnit(e)||e&&t.isComplex(e)||e&&t.isBigNumber(e)||e&&t.isFraction(e)||e&&t.isMatrix(e)||e&&Array.isArray(e)}function p(t){return"function"==typeof t&&"object"===R(t.signatures)}function f(t){return!l.hasOwnProperty(t)}function h(t){return void 0===t.path&&!l.hasOwnProperty(t.name)}var l={expression:!0,type:!0,docs:!0,error:!0,json:!0,chain:!0};return function t(e,r){var n=arguments.length;if(1!==n&&2!==n)throw new J("import",n,1,2);if(r||(r={}),B(e))u(e,r);else if(Array.isArray(e))e.forEach((function(e){t(e,r)}));else if("object"===R(e)){for(var o in e)if(e.hasOwnProperty(o)){var a=e[o];c(a)?i(o,a,r):B(e)?u(e,r):t(a,r)}}else if(!r.silent)throw new TypeError("Factory, Object, or Array expected")}},lazy:!0};function z(t,e,r){if(void 0!==t[e]&&!function(t,e){return-1!==t.indexOf(e)}(r,t[e])){var n=function(t,e){return t.map((function(t){return t.toLowerCase()})).indexOf(e.toLowerCase())}(r,t[e]);-1!==n&&(t[e]=r[n])}}var U={name:"config",math:!0,factory:function(t,e,r,n,o){var i=["Matrix","Array"],a=["number","BigNumber","Fraction"];function s(t){if(t){var r=O.map(e,O.clone);z(t,"matrix",i),z(t,"number",a),O.deepExtend(e,t);var n=O.map(e,O.clone),s=O.map(t,O.clone);return o.emit("config",n,r,s),n}return O.map(e,O.clone)}return s.MATRIX=i,s.NUMBER=a,s}},$=O.isFactory,V={create:function(t){if("function"!=typeof Object.create)throw new Error("ES5 not supported by this JavaScript engine. Please load the es5-shim and es5-sham library for compatibility.");var e=[],r=[],n=D({});n.type={},n.expression={transform:{},mathWithTransform:{}},n.typed=M(n.type);var o={epsilon:1e-12,matrix:"Matrix",number:"number",precision:64,predictable:!1,randomSeed:null};function i(t){if(!$(t))throw new Error("Factory object with properties `type`, `name`, and `factory` expected");var a,s=e.indexOf(t);return-1===s?(a=!0===t.math?t.factory(n.type,o,i,n.typed,n):t.factory(n.type,o,i,n.typed),e.push(t),r.push(a)):a=r[s],a}return n.import=i(W),n.config=i(U),n.expression.mathWithTransform.config=n.config,t&&n.config(t),n}},X=function t(e,r,n){return e&&"function"==typeof e.map?e.map((function(e){return t(e,r)})):r(e)};function Z(t){return(Z="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t})(t)}var G={name:"typeof",factory:function(t,e,r,n){var o=n("_typeof",{any:function(e){var r=Z(e);return"object"===r?null===e?"null":Array.isArray(e)?"Array":e instanceof Date?"Date":e instanceof RegExp?"RegExp":t.isBigNumber(e)?"BigNumber":t.isComplex(e)?"Complex":t.isFraction(e)?"Fraction":t.isMatrix(e)?"Matrix":t.isUnit(e)?"Unit":t.isIndex(e)?"Index":t.isRange(e)?"Range":t.isResultSet(e)?"ResultSet":t.isNode(e)?e.type:t.isChain(e)?"Chain":t.isHelp(e)?"Help":"Object":"function"===r?"Function":r}});return o.toTex=void 0,o}};var K={name:"number",factory:function(t,e,r,n){var o=n("number",{"":function(){return 0},number:function(t){return t},string:function(t){if("NaN"===t)return NaN;var e=Number(t);if(isNaN(e))throw new SyntaxError('String "'+t+'" is no valid number');return e},BigNumber:function(t){return t.toNumber()},Fraction:function(t){return t.valueOf()},Unit:function(t){throw new Error("Second argument with valueless unit expected")},null:function(t){return 0},"Unit, string | Unit":function(t,e){return t.toNumber(e)},"Array | Matrix":function(t){return X(t,o)}});return o.toTex={0:"0",1:"\\left(${args[0]}\\right)",2:"\\left(\\left(${args[0]}\\right)${args[1]}\\right)"},o}};var Q={name:"bignumber",factory:function(t,e,r,n){var o=n("bignumber",{"":function(){return new t.BigNumber(0)},number:function(e){return new t.BigNumber(e+"")},string:function(e){return new t.BigNumber(e)},BigNumber:function(t){return t},Fraction:function(e){return new t.BigNumber(e.n).div(e.d).times(e.s)},null:function(e){return new t.BigNumber(0)},"Array | Matrix":function(t){return X(t,o)}});return o.toTex={0:"0",1:"\\left(${args[0]}\\right)"},o}};var Y={name:"fraction",factory:function(t,e,r,n){var o=n("fraction",{number:function(e){if(!isFinite(e)||isNaN(e))throw new Error(e+" cannot be represented as a fraction");return new t.Fraction(e)},string:function(e){return new t.Fraction(e)},"number, number":function(e,r){return new t.Fraction(e,r)},null:function(e){return new t.Fraction(0)},BigNumber:function(e){return new t.Fraction(e.toString())},Fraction:function(t){return t},Object:function(e){return new t.Fraction(e)},"Array | Matrix":function(t){return X(t,o)}});return o}};var tt={path:"type",name:"_numeric",factory:function(t,e,r,n){var o=r(G),i={string:!0,number:!0,BigNumber:!0,Fraction:!0},a={number:r(K),BigNumber:r(Q),Fraction:r(Y)},s=function(t,e){var r=o(t);if(!(r in i))throw new TypeError("Cannot convert "+t+' of type "'+r+'"; valid input types are '+Object.keys(i).join(", "));if(!(e in a))throw new TypeError("Cannot convert "+t+' to type "'+e+'"; valid output types are '+Object.keys(a).join(", "));return e===r?t:a[e](t)};return s.toTex=function(t,e){return t.args[0].toTex()},s}};function et(t){return(et="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t})(t)}var rt=O.hasOwnProperty;function nt(t,e){return!(!t||"object"!==et(t))&&(!!rt(at,e)||!(e in Object.prototype)&&!(e in Function.prototype))}function ot(t,e){return!(!t||"function"!=typeof t[e])&&(!(rt(t,e)&&Object.getPrototypeOf&&e in Object.getPrototypeOf(t))&&(!!rt(st,e)||!(e in Object.prototype)&&!(e in Function.prototype)))}function it(t){return"object"===et(t)&&t&&t.constructor===Object}var at={length:!0,name:!0},st={toString:!0,valueOf:!0,toLocaleString:!0},ut={getSafeProperty:function(t,e){if(it(t)&&nt(t,e))return t[e];if("function"==typeof t[e]&&ot(t,e))throw new Error('Cannot access method "'+e+'" as a property');throw new Error('No access to property "'+e+'"')},setSafeProperty:function(t,e,r){if(it(t)&&nt(t,e))return t[e]=r,r;throw new Error('No access to property "'+e+'"')},isSafeProperty:nt,validateSafeMethod:function(t,e){if(!ot(t,e))throw new Error('No access to method "'+e+'"')},isSafeMethod:ot,isPlainObject:it},ct={end:!0};function pt(t){return(pt="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t})(t)}var ft=O.deepEqual,ht=O.hasOwnProperty;var lt={name:"Node",path:"expression.node",math:!0,factory:function(t,e,r,n,o){function i(){if(!(this instanceof i))throw new SyntaxError("Constructor must be called with the new operator")}return i.prototype.eval=function(t){return this.compile().eval(t)},i.prototype.type="Node",i.prototype.isNode=!0,i.prototype.comment="",i.prototype.compile=function(){var t=this._compile(o.expression.mathWithTransform,{}),e={};return{eval:function(r){var n=r||{};return function(t){for(var e in t)if(ht(t,e)&&e in ct)throw new Error('Scope contains an illegal symbol, "'+e+'" is a reserved keyword')}(n),t(n,e,null)}}},i.prototype._compile=function(t,e){throw new Error("Method _compile should be implemented by type "+this.type)},i.prototype.forEach=function(t){throw new Error("Cannot run forEach on a Node interface")},i.prototype.map=function(t){throw new Error("Cannot run map on a Node interface")},i.prototype._ifNode=function(e){if(!t.isNode(e))throw new TypeError("Callback function must return a Node");return e},i.prototype.traverse=function(t){t(this,null,null),function t(e,r){e.forEach((function(e,n,o){r(e,n,o),t(e,r)}))}(this,t)},i.prototype.transform=function(t){return function t(e,r){return e.map((function(e,n,o){return t(r(e,n,o),r)}))}(t(this,null,null),t)},i.prototype.filter=function(t){var e=[];return this.traverse((function(r,n,o){t(r,n,o)&&e.push(r)})),e},i.prototype.find=function(){throw new Error("Function Node.find is deprecated. Use Node.filter instead.")},i.prototype.match=function(){throw new Error("Function Node.match is deprecated. See functions Node.filter, Node.transform, Node.traverse.")},i.prototype.clone=function(){throw new Error("Cannot clone a Node interface")},i.prototype.cloneDeep=function(){return this.map((function(t){return t.cloneDeep()}))},i.prototype.equals=function(t){return!!t&&ft(this,t)},i.prototype.toString=function(t){var e;if(t&&"object"===pt(t))switch(pt(t.handler)){case"object":case"undefined":break;case"function":e=t.handler(this,t);break;default:throw new TypeError("Object or function expected as callback")}return void 0!==e?e:this._toString(t)},i.prototype.toJSON=function(){throw new Error("Cannot serialize object: toJSON not implemented by "+this.type)},i.prototype.toHTML=function(t){var e;if(t&&"object"===pt(t))switch(pt(t.handler)){case"object":case"undefined":break;case"function":e=t.handler(this,t);break;default:throw new TypeError("Object or function expected as callback")}return void 0!==e?e:this.toHTML(t)},i.prototype._toString=function(){throw new Error("_toString not implemented for "+this.type)},i.prototype.toTex=function(t){var e;if(t&&"object"===pt(t))switch(pt(t.handler)){case"object":case"undefined":break;case"function":e=t.handler(this,t);break;default:throw new TypeError("Object or function expected as callback")}return void 0!==e?e:this._toTex(t)},i.prototype._toTex=function(t){throw new Error("_toTex not implemented for "+this.type)},i.prototype.getIdentifier=function(){return this.type},i.prototype.getContent=function(){return this},i}};function mt(t,e,r){if(!(this instanceof mt))throw new SyntaxError("Constructor must be called with the new operator");this.index=t,arguments.length<3?(this.min=0,this.max=e):(this.min=e,this.max=r),void 0!==this.min&&this.index<this.min?this.message="Index out of range ("+this.index+" < "+this.min+")":void 0!==this.max&&this.index>=this.max?this.message="Index out of range ("+this.index+" > "+(this.max-1)+")":this.message="Index out of range ("+this.index+")",this.stack=(new Error).stack}mt.prototype=new RangeError,mt.prototype.constructor=RangeError,mt.prototype.name="IndexError",mt.prototype.isIndexError=!0;var dt=mt,yt=function(t){return t&&t.isIndexError?new dt(t.index+1,t.min+1,void 0!==t.max?t.max+1:void 0):t},gt=E((function(t,e){e.format=function(t,r){if("function"==typeof r)return r(t);if(!t.isFinite())return t.isNaN()?"NaN":t.gt(0)?"Infinity":"-Infinity";var n,o="auto";switch(void 0!==r&&(r.notation&&(o=r.notation),"number"==typeof r?n=r:r.precision&&(n=r.precision)),o){case"fixed":return e.toFixed(t,n);case"exponential":return e.toExponential(t,n);case"engineering":return e.toEngineering(t,n);case"auto":if(r&&r.exponential&&(void 0!==r.exponential.lower||void 0!==r.exponential.upper)){var i=O.map(r,(function(t){return t}));return i.exponential=void 0,void 0!==r.exponential.lower&&(i.lowerExp=Math.round(Math.log(r.exponential.lower)/Math.LN10)),void 0!==r.exponential.upper&&(i.upperExp=Math.round(Math.log(r.exponential.upper)/Math.LN10)),e.format(t,i)}var a=r&&void 0!==r.lowerExp?r.lowerExp:-3,s=r&&void 0!==r.upperExp?r.upperExp:5;if(t.isZero())return"0";var u=t.e;return(u>=a&&u<s?t.toSignificantDigits(n).toFixed():e.toExponential(t,n)).replace(/((\.\d*?)(0+))($|e)/,(function(){var t=arguments[2],e=arguments[4];return"."!==t?t+e:e}));default:throw new Error('Unknown notation "'+o+'". Choose "auto", "exponential", or "fixed".')}},e.toEngineering=function(t,e){var r=t.e,n=r%3==0?r:r<0?r-3-r%3:r-r%3,o=Math.abs(r-n);return t.mul(Math.pow(10,o-r)).toPrecision(e).toString()+"e"+(r>=0?"+":"")+n.toString()},e.toExponential=function(t,e){return void 0!==e?t.toExponential(e-1):t.toExponential()},e.toFixed=function(t,e){return t.toFixed(e)}})),vt=(gt.format,gt.toEngineering,gt.toExponential,gt.toFixed,E((function(t,e){function r(t){return(r="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t})(t)}var n=j.format,o=gt.format;e.isString=function(t){return"string"==typeof t},e.endsWith=function(t,e){var r=t.length-e.length,n=t.length;return t.substring(r,n)===e},e.format=function(t,i){if("number"==typeof t)return n(t,i);if(S(t))return o(t,i);if(function(t){return t&&"object"===r(t)&&"number"==typeof t.s&&"number"==typeof t.n&&"number"==typeof t.d||!1}(t))return i&&"decimal"===i.fraction?t.toString():t.s*t.n+"/"+t.d;if(Array.isArray(t))return function t(r,n){if(Array.isArray(r)){for(var o="[",i=r.length,a=0;a<i;a++)0!==a&&(o+=", "),o+=t(r[a],n);return o+="]"}return e.format(r,n)}(t,i);if(e.isString(t))return'"'+t+'"';if("function"==typeof t)return t.syntax?String(t.syntax):"function";if(t&&"object"===r(t)){if("function"==typeof t.format)return t.format(i);if(t&&t.toString()!=={}.toString())return t.toString();var a=[];for(var s in t)t.hasOwnProperty(s)&&a.push('"'+s+'": '+e.format(t[s],i));return"{"+a.join(", ")+"}"}return String(t)},e.stringify=function(t){for(var e=String(t),r="",n=0;n<e.length;){var o=e.charAt(n);"\\"===o?(r+=o,n++,""!==(o=e.charAt(n))&&-1!=='"\\/bfnrtu'.indexOf(o)||(r+="\\"),r+=o):r+='"'===o?'\\"':o,n++}return'"'+r+'"'},e.escape=function(t){var e=String(t);return e=e.replace(/&/g,"&amp;").replace(/"/g,"&quot;").replace(/'/g,"&#39;").replace(/</g,"&lt;").replace(/>/g,"&gt;")}})));vt.isString,vt.endsWith,vt.format,vt.stringify,vt.escape;function wt(t,e,r){if(!(this instanceof wt))throw new SyntaxError("Constructor must be called with the new operator");this.actual=t,this.expected=e,this.relation=r,this.message="Dimension mismatch ("+(Array.isArray(t)?"["+t.join(", ")+"]":t)+" "+(this.relation||"!=")+" "+(Array.isArray(e)?"["+e.join(", ")+"]":e)+")",this.stack=(new Error).stack}wt.prototype=new RangeError,wt.prototype.constructor=RangeError,wt.prototype.name="DimensionError",wt.prototype.isDimensionError=!0;var bt,xt=wt,Nt=E((function(t,e){Object.defineProperty(e,"__esModule",{value:!0}),e.size=s,e.validate=function(t,e){if(0===e.length){if(Array.isArray(t))throw new o.default(t.length,0)}else!function t(e,r,n){var i,a=e.length;if(a!==r[n])throw new o.default(a,r[n]);if(n<r.length-1){var s=n+1;for(i=0;i<a;i++){var u=e[i];if(!Array.isArray(u))throw new o.default(r.length-1,r.length,"<");t(e[i],r,s)}}else for(i=0;i<a;i++)if(Array.isArray(e[i]))throw new o.default(r.length+1,r.length,">")}(t,e,0)},e.validateIndex=function(t,e){if(!r.default.isNumber(t)||!r.default.isInteger(t))throw new TypeError("Index must be an integer (value: "+t+")");if(t<0||"number"==typeof e&&t>=e)throw new i.default(t,e)},e.resize=function(t,e,o){if(!Array.isArray(t)||!Array.isArray(e))throw new TypeError("Array expected");if(0===e.length)throw new Error("Resizing to scalar is not supported");e.forEach((function(t){if(!r.default.isNumber(t)||!r.default.isInteger(t)||t<0)throw new TypeError("Invalid size, must contain positive integers (size: "+n.default.format(e)+")")}));var i=void 0!==o?o:0;return function t(e,r,n,o){var i,a,s=e.length,u=r[n],c=Math.min(s,u);if(e.length=u,n<r.length-1){var p=n+1;for(i=0;i<c;i++)a=e[i],Array.isArray(a)||(a=[a],e[i]=a),t(a,r,p,o);for(i=c;i<u;i++)a=[],e[i]=a,t(a,r,p,o)}else{for(i=0;i<c;i++)for(;Array.isArray(e[i]);)e[i]=e[i][0];for(i=c;i<u;i++)e[i]=o}}(t,e,0,i),t},e.reshape=function(t,e){var r,n=u(t);function i(t){return t.reduce((function(t,e){return t*e}))}if(!Array.isArray(t)||!Array.isArray(e))throw new TypeError("Array expected");if(0===e.length)throw new o.default(0,i(s(t)),"!=");for(var a=1,c=0;c<e.length;c++)a*=e[c];if(n.length!==a)throw new o.default(i(e),i(s(t)),"!=");try{r=function(t,e){for(var r,n=t,o=e.length-1;o>0;o--){var i=e[o];r=[];for(var a=n.length/i,s=0;s<a;s++)r.push(n.slice(s*i,(s+1)*i));n=r}return n}(n,e)}catch(r){if(r instanceof o.default)throw new o.default(i(e),i(s(t)),"!=");throw r}return r},e.squeeze=function(t,e){var r=e||s(t);for(;Array.isArray(t)&&1===t.length;)t=t[0],r.shift();var n=r.length;for(;1===r[n-1];)n--;n<r.length&&(t=function t(e,r,n){var o,i;if(n<r){var a=n+1;for(o=0,i=e.length;o<i;o++)e[o]=t(e[o],r,a)}else for(;Array.isArray(e);)e=e[0];return e}(t,n,0),r.length=n);return t},e.unsqueeze=function(t,e,r,n){var o=n||s(t);if(r)for(var i=0;i<r;i++)t=[t],o.unshift(1);t=function t(e,r,n){var o,i;if(Array.isArray(e)){var a=n+1;for(o=0,i=e.length;o<i;o++)e[o]=t(e[o],r,a)}else for(var s=n;s<r;s++)e=[e];return e}(t,e,0);for(;o.length<e;)o.push(1);return t},e.flatten=u,e.map=function(t,e){return Array.prototype.map.call(t,e)},e.forEach=function(t,e){Array.prototype.forEach.call(t,e)},e.filter=function(t,e){if(1!==s(t).length)throw new Error("Only one dimensional matrices supported");return Array.prototype.filter.call(t,e)},e.filterRegExp=function(t,e){if(1!==s(t).length)throw new Error("Only one dimensional matrices supported");return Array.prototype.filter.call(t,(function(t){return e.test(t)}))},e.join=function(t,e){return Array.prototype.join.call(t,e)},e.identify=function(t){if(!Array.isArray(t))throw new TypeError("Array input expected");if(0===t.length)return t;var e=[],r=0;e[0]={value:t[0],identifier:0};for(var n=1;n<t.length;n++)t[n]===t[n-1]?r++:r=0,e.push({value:t[n],identifier:r});return e},e.generalize=function(t){if(!Array.isArray(t))throw new TypeError("Array input expected");if(0===t.length)return t;for(var e=[],r=0;r<t.length;r++)e.push(t[r].value);return e};var r=a(j),n=a(vt),o=a(xt),i=a(dt);function a(t){return t&&t.__esModule?t:{default:t}}function s(t){for(var e=[];Array.isArray(t);)e.push(t.length),t=t[0];return e}function u(t){if(!Array.isArray(t))return t;var e=[];return t.forEach((function t(r){Array.isArray(r)?r.forEach(t):e.push(r)})),e}}));(bt=Nt)&&bt.__esModule&&Object.prototype.hasOwnProperty.call(bt,"default")&&bt.default;Nt.size,Nt.validate,Nt.validateIndex,Nt.resize,Nt.reshape,Nt.squeeze,Nt.unsqueeze,Nt.flatten,Nt.map,Nt.forEach,Nt.filter,Nt.filterRegExp,Nt.join,Nt.identify,Nt.generalize;var Et={name:"matrix",factory:function(t,e,r,n){var o=n("matrix",{"":function(){return i([])},string:function(t){return i([],t)},"string, string":function(t,e){return i([],t,e)},Array:function(t){return i(t)},Matrix:function(t){return i(t,t.storage())},"Array | Matrix, string":i,"Array | Matrix, string, string":i});return o.toTex={0:"\\begin{bmatrix}\\end{bmatrix}",1:"\\left(${args[0]}\\right)",2:"\\left(${args[0]}\\right)"},o;function i(e,r,n){return new(t.Matrix.storage(r||"default"))(e,n)}}},St=O.clone,Ot=Nt.validateIndex,At=ut.getSafeProperty,jt=ut.setSafeProperty;function Tt(t,e){if(1!==e.size().length)throw new xt(e.size(),1);var r=e.dimension(0);if("string"!=typeof r)throw new TypeError("String expected as index to retrieve an object property");return At(t,r)}function kt(t,e,r){if(1!==e.size().length)throw new xt(e.size(),1);var n=e.dimension(0);if("string"!=typeof n)throw new TypeError("String expected as index to retrieve an object property");var o=St(t);return jt(o,n,r),o}var Pt={name:"subset",factory:function(t,e,r,n){var o=r(Et),i=n("subset",{"Array, Index":function(t,e){var r=o(t).subset(e);return e.isScalar()?r:r.valueOf()},"Matrix, Index":function(t,e){return t.subset(e)},"Object, Index":Tt,"string, Index":function(e,r){if(!t.isIndex(r))throw new TypeError("Index expected");if(1!==r.size().length)throw new xt(r.size().length,1);var n=e.length;Ot(r.min()[0],n),Ot(r.max()[0],n);var o=r.dimension(0),i="";return o.forEach((function(t){i+=e.charAt(t)})),i},"Array, Index, any":function(t,e,r){return o(St(t)).subset(e,r,void 0).valueOf()},"Array, Index, any, any":function(t,e,r,n){return o(St(t)).subset(e,r,n).valueOf()},"Matrix, Index, any":function(t,e,r){return t.clone().subset(e,r)},"Matrix, Index, any, any":function(t,e,r,n){return t.clone().subset(e,r,n)},"string, Index, string":a,"string, Index, string, string":a,"Object, Index, any":kt});return i.toTex=void 0,i;function a(t,e,r,n){if(!e||!0!==e.isIndex)throw new TypeError("Index expected");if(1!==e.size().length)throw new xt(e.size().length,1);if(void 0!==n){if("string"!=typeof n||1!==n.length)throw new TypeError("Single character expected as defaultValue")}else n=" ";var o=e.dimension(0);if(o.size()[0]!==r.length)throw new xt(o.size()[0],r.length);var i=t.length;Ot(e.min()[0]),Ot(e.max()[0]);for(var a=[],s=0;s<i;s++)a[s]=t.charAt(s);if(o.forEach((function(t,e){a[t]=r.charAt(e[0])})),a.length>i)for(var u=i-1,c=a.length;u<c;u++)a[u]||(a[u]=n);return a.join("")}}};function Ct(t){return(Ct="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t})(t)}var Mt=yt,Ft=ut.getSafeProperty;var _t={factory:function(t,e,r,n){var o=r(Pt);return function(t,e){try{if(Array.isArray(t))return o(t,e);if(t&&"function"==typeof t.subset)return t.subset(e);if("string"==typeof t)return o(t,e);if("object"===Ct(t)){if(!e.isObjectProperty())throw new TypeError("Cannot apply a numeric index as object property");return Ft(t,e.getObjectProperty())}throw new TypeError("Cannot apply index: unsupported type of object")}catch(t){throw Mt(t)}}}},It=ut.getSafeProperty;var Dt={name:"AccessorNode",path:"expression.node",factory:function(t,e,r,n){var o=r(lt),i=r(_t);function a(e,r){if(!(this instanceof a))throw new SyntaxError("Constructor must be called with the new operator");if(!t.isNode(e))throw new TypeError('Node expected for parameter "object"');if(!t.isIndexNode(r))throw new TypeError('IndexNode expected for parameter "index"');this.object=e||null,this.index=r,Object.defineProperty(this,"name",{get:function(){return this.index?this.index.isObjectProperty()?this.index.getObjectProperty():"":this.object.name||""}.bind(this),set:function(){throw new Error("Cannot assign a new name, name is read-only")}})}function s(e){return!(t.isAccessorNode(e)||t.isArrayNode(e)||t.isConstantNode(e)||t.isFunctionNode(e)||t.isObjectNode(e)||t.isParenthesisNode(e)||t.isSymbolNode(e))}return a.prototype=new o,a.prototype.type="AccessorNode",a.prototype.isAccessorNode=!0,a.prototype._compile=function(t,e){var r=this.object._compile(t,e),n=this.index._compile(t,e);if(this.index.isObjectProperty()){var o=this.index.getObjectProperty();return function(t,e,n){return It(r(t,e,n),o)}}return function(t,e,o){var a=r(t,e,o),s=n(t,e,a);return i(a,s)}},a.prototype.forEach=function(t){t(this.object,"object",this),t(this.index,"index",this)},a.prototype.map=function(t){return new a(this._ifNode(t(this.object,"object",this)),this._ifNode(t(this.index,"index",this)))},a.prototype.clone=function(){return new a(this.object,this.index)},a.prototype._toString=function(t){var e=this.object.toString(t);return s(this.object)&&(e="("+e+")"),e+this.index.toString(t)},a.prototype.toHTML=function(t){var e=this.object.toHTML(t);return s(this.object)&&(e='<span class="math-parenthesis math-round-parenthesis">(</span>'+e+'<span class="math-parenthesis math-round-parenthesis">)</span>'),e+this.index.toHTML(t)},a.prototype._toTex=function(t){var e=this.object.toTex(t);return s(this.object)&&(e="\\left(' + object + '\\right)"),e+this.index.toTex(t)},a.prototype.toJSON=function(){return{mathjs:"AccessorNode",object:this.object,index:this.index}},a.fromJSON=function(t){return new a(t.object,t.index)},a}},Lt=Nt.map;var Jt={name:"ArrayNode",path:"expression.node",factory:function(t,e,r,n){var o=r(lt);function i(e){if(!(this instanceof i))throw new SyntaxError("Constructor must be called with the new operator");if(this.items=e||[],!Array.isArray(this.items)||!this.items.every(t.isNode))throw new TypeError("Array containing Nodes expected");var r=function(){throw new Error("Property `ArrayNode.nodes` is deprecated, use `ArrayNode.items` instead")};Object.defineProperty(this,"nodes",{get:r,set:r})}return i.prototype=new o,i.prototype.type="ArrayNode",i.prototype.isArrayNode=!0,i.prototype._compile=function(t,e){var r=Lt(this.items,(function(r){return r._compile(t,e)}));if("Array"!==t.config().matrix){var n=t.matrix;return function(t,e,o){return n(Lt(r,(function(r){return r(t,e,o)})))}}return function(t,e,n){return Lt(r,(function(r){return r(t,e,n)}))}},i.prototype.forEach=function(t){for(var e=0;e<this.items.length;e++){t(this.items[e],"items["+e+"]",this)}},i.prototype.map=function(t){for(var e=[],r=0;r<this.items.length;r++)e[r]=this._ifNode(t(this.items[r],"items["+r+"]",this));return new i(e)},i.prototype.clone=function(){return new i(this.items.slice(0))},i.prototype._toString=function(t){return"["+this.items.map((function(e){return e.toString(t)})).join(", ")+"]"},i.prototype.toJSON=function(){return{mathjs:"ArrayNode",items:this.items}},i.fromJSON=function(t){return new i(t.items)},i.prototype.toHTML=function(t){return'<span class="math-parenthesis math-square-parenthesis">[</span>'+this.items.map((function(e){return e.toHTML(t)})).join('<span class="math-separator">,</span>')+'<span class="math-parenthesis math-square-parenthesis">]</span>'},i.prototype._toTex=function(t){var e="\\begin{bmatrix}";return this.items.forEach((function(r){r.items?e+=r.items.map((function(e){return e.toTex(t)})).join("&"):e+=r.toTex(t),e+="\\\\"})),e+="\\end{bmatrix}"},i}};function Rt(t){return(Rt="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t})(t)}var qt=yt,Bt=ut.setSafeProperty;var Ht={factory:function(t,e,r,n){var o=r(Pt),i=r(Et);return function(t,e,r){try{if(Array.isArray(t))return i(t).subset(e,r).valueOf();if(t&&"function"==typeof t.subset)return t.subset(e,r);if("string"==typeof t)return o(t,e,r);if("object"===Rt(t)){if(!e.isObjectProperty())throw TypeError("Cannot apply a numeric index as object property");return Bt(t,e.getObjectProperty(),r),t}throw new TypeError("Cannot apply index: unsupported type of object")}catch(t){throw qt(t)}}}},Wt=[{AssignmentNode:{},FunctionAssignmentNode:{}},{ConditionalNode:{latexLeftParens:!1,latexRightParens:!1,latexParens:!1}},{"OperatorNode:or":{associativity:"left",associativeWith:[]}},{"OperatorNode:xor":{associativity:"left",associativeWith:[]}},{"OperatorNode:and":{associativity:"left",associativeWith:[]}},{"OperatorNode:bitOr":{associativity:"left",associativeWith:[]}},{"OperatorNode:bitXor":{associativity:"left",associativeWith:[]}},{"OperatorNode:bitAnd":{associativity:"left",associativeWith:[]}},{"OperatorNode:equal":{associativity:"left",associativeWith:[]},"OperatorNode:unequal":{associativity:"left",associativeWith:[]},"OperatorNode:smaller":{associativity:"left",associativeWith:[]},"OperatorNode:larger":{associativity:"left",associativeWith:[]},"OperatorNode:smallerEq":{associativity:"left",associativeWith:[]},"OperatorNode:largerEq":{associativity:"left",associativeWith:[]},RelationalNode:{associativity:"left",associativeWith:[]}},{"OperatorNode:leftShift":{associativity:"left",associativeWith:[]},"OperatorNode:rightArithShift":{associativity:"left",associativeWith:[]},"OperatorNode:rightLogShift":{associativity:"left",associativeWith:[]}},{"OperatorNode:to":{associativity:"left",associativeWith:[]}},{RangeNode:{}},{"OperatorNode:add":{associativity:"left",associativeWith:["OperatorNode:add","OperatorNode:subtract"]},"OperatorNode:subtract":{associativity:"left",associativeWith:[]}},{"OperatorNode:multiply":{associativity:"left",associativeWith:["OperatorNode:multiply","OperatorNode:divide","Operator:dotMultiply","Operator:dotDivide"]},"OperatorNode:divide":{associativity:"left",associativeWith:[],latexLeftParens:!1,latexRightParens:!1,latexParens:!1},"OperatorNode:dotMultiply":{associativity:"left",associativeWith:["OperatorNode:multiply","OperatorNode:divide","OperatorNode:dotMultiply","OperatorNode:doDivide"]},"OperatorNode:dotDivide":{associativity:"left",associativeWith:[]},"OperatorNode:mod":{associativity:"left",associativeWith:[]}},{"OperatorNode:unaryPlus":{associativity:"right"},"OperatorNode:unaryMinus":{associativity:"right"},"OperatorNode:bitNot":{associativity:"right"},"OperatorNode:not":{associativity:"right"}},{"OperatorNode:pow":{associativity:"right",associativeWith:[],latexRightParens:!1},"OperatorNode:dotPow":{associativity:"right",associativeWith:[]}},{"OperatorNode:factorial":{associativity:"left"}},{"OperatorNode:transpose":{associativity:"left"}}];function zt(t,e){var r=t;"keep"!==e&&(r=t.getContent());for(var n=r.getIdentifier(),o=0;o<Wt.length;o++)if(n in Wt[o])return o;return null}var Ut={properties:Wt,getPrecedence:zt,getAssociativity:function(t,e){var r=t;"keep"!==e&&(r=t.getContent());var n=r.getIdentifier(),o=zt(r,e);if(null===o)return null;var i=Wt[o][n];if(i.hasOwnProperty("associativity")){if("left"===i.associativity)return"left";if("right"===i.associativity)return"right";throw Error("'"+n+"' has the invalid associativity '"+i.associativity+"'.")}return null},isAssociativeWith:function(t,e,r){var n="keep"!==r?t.getContent():t,o="keep"!==r?t.getContent():e,i=n.getIdentifier(),a=o.getIdentifier(),s=zt(n,r);if(null===s)return null;var u=Wt[s][i];if(u.hasOwnProperty("associativeWith")&&u.associativeWith instanceof Array){for(var c=0;c<u.associativeWith.length;c++)if(u.associativeWith[c]===a)return!0;return!1}return null}},$t=ut.getSafeProperty,Vt=ut.setSafeProperty;var Xt={name:"AssignmentNode",path:"expression.node",factory:function(t,e,r,n){var o=r(lt),i=r(Ht),a=r(_t),s=Ut;function u(e,r,n){if(!(this instanceof u))throw new SyntaxError("Constructor must be called with the new operator");if(this.object=e,this.index=n?r:null,this.value=n||r,!t.isSymbolNode(e)&&!t.isAccessorNode(e))throw new TypeError('SymbolNode or AccessorNode expected as "object"');if(t.isSymbolNode(e)&&"end"===e.name)throw new Error('Cannot assign to symbol "end"');if(this.index&&!t.isIndexNode(this.index))throw new TypeError('IndexNode expected as "index"');if(!t.isNode(this.value))throw new TypeError('Node expected as "value"');Object.defineProperty(this,"name",{get:function(){return this.index?this.index.isObjectProperty()?this.index.getObjectProperty():"":this.object.name||""}.bind(this),set:function(){throw new Error("Cannot assign a new name, name is read-only")}})}function c(t,e){e||(e="keep");var r=s.getPrecedence(t,e),n=s.getPrecedence(t.value,e);return"all"===e||null!==n&&n<=r}return u.prototype=new o,u.prototype.type="AssignmentNode",u.prototype.isAssignmentNode=!0,u.prototype._compile=function(e,r){var n=this.object._compile(e,r),o=this.index?this.index._compile(e,r):null,s=this.value._compile(e,r),u=this.object.name;if(this.index){if(this.index.isObjectProperty()){var c=this.index.getObjectProperty();return function(t,e,r){var o=n(t,e,r),i=s(t,e,r);return Vt(o,c,i)}}if(t.isSymbolNode(this.object))return function(t,e,r){var a=n(t,e,r),c=s(t,e,r),p=o(t,e,a);return Vt(t,u,i(a,p,c)),c};var p=this.object.object._compile(e,r);if(this.object.index.isObjectProperty()){var f=this.object.index.getObjectProperty();return function(t,e,r){var n=p(t,e,r),a=$t(n,f),u=o(t,e,a),c=s(t,e,r);return Vt(n,f,i(a,u,c)),c}}var h=this.object.index._compile(e,r);return function(t,e,r){var n=p(t,e,r),u=h(t,e,n),c=a(n,u),f=o(t,e,c),l=s(t,e,r);return i(n,u,i(c,f,l)),l}}if(!t.isSymbolNode(this.object))throw new TypeError("SymbolNode expected as object");return function(t,e,r){return Vt(t,u,s(t,e,r))}},u.prototype.forEach=function(t){t(this.object,"object",this),this.index&&t(this.index,"index",this),t(this.value,"value",this)},u.prototype.map=function(t){return new u(this._ifNode(t(this.object,"object",this)),this.index?this._ifNode(t(this.index,"index",this)):null,this._ifNode(t(this.value,"value",this)))},u.prototype.clone=function(){return new u(this.object,this.index,this.value)},u.prototype._toString=function(t){var e=this.object.toString(t),r=this.index?this.index.toString(t):"",n=this.value.toString(t);return c(this,t&&t.parenthesis)&&(n="("+n+")"),e+r+" = "+n},u.prototype.toJSON=function(){return{mathjs:"AssignmentNode",object:this.object,index:this.index,value:this.value}},u.fromJSON=function(t){return new u(t.object,t.index,t.value)},u.prototype.toHTML=function(t){var e=this.object.toHTML(t),r=this.index?this.index.toHTML(t):"",n=this.value.toHTML(t);return c(this,t&&t.parenthesis)&&(n='<span class="math-paranthesis math-round-parenthesis">(</span>'+n+'<span class="math-paranthesis math-round-parenthesis">)</span>'),e+r+'<span class="math-operator math-assignment-operator math-variable-assignment-operator math-binary-operator">=</span>'+n},u.prototype._toTex=function(t){var e=this.object.toTex(t),r=this.index?this.index.toTex(t):"",n=this.value.toTex(t);return c(this,t&&t.parenthesis)&&(n="\\left(".concat(n,"\\right)")),e+r+":="+n},u}};var Zt={name:"ResultSet",path:"type",factory:function(t,e,r,n){function o(t){if(!(this instanceof o))throw new SyntaxError("Constructor must be called with the new operator");this.entries=t||[]}return o.prototype.type="ResultSet",o.prototype.isResultSet=!0,o.prototype.valueOf=function(){return this.entries},o.prototype.toString=function(){return"["+this.entries.join(", ")+"]"},o.prototype.toJSON=function(){return{mathjs:"ResultSet",entries:this.entries}},o.fromJSON=function(t){return new o(t.entries)},o}},Gt=Nt.forEach,Kt=Nt.map;var Qt={name:"BlockNode",path:"expression.node",factory:function(t,e,r,n){var o=r(lt),i=r(Zt);function a(e){if(!(this instanceof a))throw new SyntaxError("Constructor must be called with the new operator");if(!Array.isArray(e))throw new Error("Array expected");this.blocks=e.map((function(e){var r=e&&e.node,n=!e||void 0===e.visible||e.visible;if(!t.isNode(r))throw new TypeError('Property "node" must be a Node');if("boolean"!=typeof n)throw new TypeError('Property "visible" must be a boolean');return{node:r,visible:n}}))}return a.prototype=new o,a.prototype.type="BlockNode",a.prototype.isBlockNode=!0,a.prototype._compile=function(t,e){var r=Kt(this.blocks,(function(r){return{eval:r.node._compile(t,e),visible:r.visible}}));return function(t,e,n){var o=[];return Gt(r,(function(r){var i=r.eval(t,e,n);r.visible&&o.push(i)})),new i(o)}},a.prototype.forEach=function(t){for(var e=0;e<this.blocks.length;e++)t(this.blocks[e].node,"blocks["+e+"].node",this)},a.prototype.map=function(t){for(var e=[],r=0;r<this.blocks.length;r++){var n=this.blocks[r],o=this._ifNode(t(n.node,"blocks["+r+"].node",this));e[r]={node:o,visible:n.visible}}return new a(e)},a.prototype.clone=function(){return new a(this.blocks.map((function(t){return{node:t.node,visible:t.visible}})))},a.prototype._toString=function(t){return this.blocks.map((function(e){return e.node.toString(t)+(e.visible?"":";")})).join("\n")},a.prototype.toJSON=function(){return{mathjs:"BlockNode",blocks:this.blocks}},a.fromJSON=function(t){return new a(t.blocks)},a.prototype.toHTML=function(t){return this.blocks.map((function(e){return e.node.toHTML(t)+(e.visible?"":'<span class="math-separator">;</span>')})).join('<span class="math-separator"><br /></span>')},a.prototype._toTex=function(t){return this.blocks.map((function(e){return e.node.toTex(t)+(e.visible?"":";")})).join("\\;\\;\n")},a}};var Yt={name:"ConditionalNode",path:"expression.node",factory:function(t,e,r,n){var o=r(lt),i=r(G);function a(e,r,n){if(!(this instanceof a))throw new SyntaxError("Constructor must be called with the new operator");if(!t.isNode(e))throw new TypeError("Parameter condition must be a Node");if(!t.isNode(r))throw new TypeError("Parameter trueExpr must be a Node");if(!t.isNode(n))throw new TypeError("Parameter falseExpr must be a Node");this.condition=e,this.trueExpr=r,this.falseExpr=n}return a.prototype=new o,a.prototype.type="ConditionalNode",a.prototype.isConditionalNode=!0,a.prototype._compile=function(e,r){var n=this.condition._compile(e,r),o=this.trueExpr._compile(e,r),a=this.falseExpr._compile(e,r);return function(e,r,s){return function(e){if("number"==typeof e||"boolean"==typeof e||"string"==typeof e)return!!e;if(e){if(t.isBigNumber(e))return!e.isZero();if(t.isComplex(e))return!(!e.re&&!e.im);if(t.isUnit(e))return!!e.value}if(null==e)return!1;throw new TypeError('Unsupported type of condition "'+i(e)+'"')}(n(e,r,s))?o(e,r,s):a(e,r,s)}},a.prototype.forEach=function(t){t(this.condition,"condition",this),t(this.trueExpr,"trueExpr",this),t(this.falseExpr,"falseExpr",this)},a.prototype.map=function(t){return new a(this._ifNode(t(this.condition,"condition",this)),this._ifNode(t(this.trueExpr,"trueExpr",this)),this._ifNode(t(this.falseExpr,"falseExpr",this)))},a.prototype.clone=function(){return new a(this.condition,this.trueExpr,this.falseExpr)},a.prototype._toString=function(t){var e=t&&t.parenthesis?t.parenthesis:"keep",r=Ut.getPrecedence(this,e),n=this.condition.toString(t),o=Ut.getPrecedence(this.condition,e);("all"===e||"OperatorNode"===this.condition.type||null!==o&&o<=r)&&(n="("+n+")");var i=this.trueExpr.toString(t),a=Ut.getPrecedence(this.trueExpr,e);("all"===e||"OperatorNode"===this.trueExpr.type||null!==a&&a<=r)&&(i="("+i+")");var s=this.falseExpr.toString(t),u=Ut.getPrecedence(this.falseExpr,e);return("all"===e||"OperatorNode"===this.falseExpr.type||null!==u&&u<=r)&&(s="("+s+")"),n+" ? "+i+" : "+s},a.prototype.toJSON=function(){return{mathjs:"ConditionalNode",condition:this.condition,trueExpr:this.trueExpr,falseExpr:this.falseExpr}},a.fromJSON=function(t){return new a(t.condition,t.trueExpr,t.falseExpr)},a.prototype.toHTML=function(t){var e=t&&t.parenthesis?t.parenthesis:"keep",r=Ut.getPrecedence(this,e),n=this.condition.toHTML(t),o=Ut.getPrecedence(this.condition,e);("all"===e||"OperatorNode"===this.condition.type||null!==o&&o<=r)&&(n='<span class="math-parenthesis math-round-parenthesis">(</span>'+n+'<span class="math-parenthesis math-round-parenthesis">)</span>');var i=this.trueExpr.toHTML(t),a=Ut.getPrecedence(this.trueExpr,e);("all"===e||"OperatorNode"===this.trueExpr.type||null!==a&&a<=r)&&(i='<span class="math-parenthesis math-round-parenthesis">(</span>'+i+'<span class="math-parenthesis math-round-parenthesis">)</span>');var s=this.falseExpr.toHTML(t),u=Ut.getPrecedence(this.falseExpr,e);return("all"===e||"OperatorNode"===this.falseExpr.type||null!==u&&u<=r)&&(s='<span class="math-parenthesis math-round-parenthesis">(</span>'+s+'<span class="math-parenthesis math-round-parenthesis">)</span>'),n+'<span class="math-operator math-conditional-operator">?</span>'+i+'<span class="math-operator math-conditional-operator">:</span>'+s},a.prototype._toTex=function(t){return"\\begin{cases} {"+this.trueExpr.toTex(t)+"}, &\\quad{\\text{if }\\;"+this.condition.toTex(t)+"}\\\\{"+this.falseExpr.toTex(t)+"}, &\\quad{\\text{otherwise}}\\end{cases}"},a}},te=Object.assign||function(t){for(var e=1;e<arguments.length;e++){var r=arguments[e];for(var n in r)Object.prototype.hasOwnProperty.call(r,n)&&(t[n]=r[n])}return t},ee={"{":"\\{","}":"\\}","\\":"\\textbackslash{}","#":"\\#",$:"\\$","%":"\\%","&":"\\&","^":"\\textasciicircum{}",_:"\\_","~":"\\textasciitilde{}"},re={"–":"\\--","—":"\\---"," ":"~","\t":"\\qquad{}","\r\n":"\\newline{}","\n":"\\newline{}"},ne=function(t,e){return te({},t,e)},oe=E((function(t,e){e.symbols={Alpha:"A",alpha:"\\alpha",Beta:"B",beta:"\\beta",Gamma:"\\Gamma",gamma:"\\gamma",Delta:"\\Delta",delta:"\\delta",Epsilon:"E",epsilon:"\\epsilon",varepsilon:"\\varepsilon",Zeta:"Z",zeta:"\\zeta",Eta:"H",eta:"\\eta",Theta:"\\Theta",theta:"\\theta",vartheta:"\\vartheta",Iota:"I",iota:"\\iota",Kappa:"K",kappa:"\\kappa",varkappa:"\\varkappa",Lambda:"\\Lambda",lambda:"\\lambda",Mu:"M",mu:"\\mu",Nu:"N",nu:"\\nu",Xi:"\\Xi",xi:"\\xi",Omicron:"O",omicron:"o",Pi:"\\Pi",pi:"\\pi",varpi:"\\varpi",Rho:"P",rho:"\\rho",varrho:"\\varrho",Sigma:"\\Sigma",sigma:"\\sigma",varsigma:"\\varsigma",Tau:"T",tau:"\\tau",Upsilon:"\\Upsilon",upsilon:"\\upsilon",Phi:"\\Phi",phi:"\\phi",varphi:"\\varphi",Chi:"X",chi:"\\chi",Psi:"\\Psi",psi:"\\psi",Omega:"\\Omega",omega:"\\omega",true:"\\mathrm{True}",false:"\\mathrm{False}",i:"i",inf:"\\infty",Inf:"\\infty",infinity:"\\infty",Infinity:"\\infty",oo:"\\infty",lim:"\\lim",undefined:"\\mathbf{?}"},e.operators={transpose:"^\\top",ctranspose:"^H",factorial:"!",pow:"^",dotPow:".^\\wedge",unaryPlus:"+",unaryMinus:"-",bitNot:"\\~",not:"\\neg",multiply:"\\cdot",divide:"\\frac",dotMultiply:".\\cdot",dotDivide:".:",mod:"\\mod",add:"+",subtract:"-",to:"\\rightarrow",leftShift:"<<",rightArithShift:">>",rightLogShift:">>>",equal:"=",unequal:"\\neq",smaller:"<",larger:">",smallerEq:"\\leq",largerEq:"\\geq",bitAnd:"\\&",bitXor:"\\underline{|}",bitOr:"|",and:"\\wedge",xor:"\\veebar",or:"\\vee"},e.defaultTemplate="\\mathrm{${name}}\\left(${args}\\right)";var r={deg:"^\\circ"};e.escape=function(t){return function(t){for(var e=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},r=e.preserveFormatting,n=void 0!==r&&r,o=e.escapeMapFn,i=void 0===o?ne:o,a=String(t),s="",u=i(te({},ee),n?te({},re):{}),c=Object.keys(u),p=function(){var t=!1;c.forEach((function(e,r){t||a.length>=e.length&&a.slice(0,e.length)===e&&(s+=u[c[r]],a=a.slice(e.length,a.length),t=!0)})),t||(s+=a.slice(0,1),a=a.slice(1,a.length))};a;)p();return s}(t,{preserveFormatting:!0})},e.toSymbol=function(t,n){return(n=void 0!==n&&n)?r.hasOwnProperty(t)?r[t]:"\\mathrm{"+e.escape(t)+"}":e.symbols.hasOwnProperty(t)?e.symbols[t]:e.escape(t)}})),ie=(oe.symbols,oe.operators,oe.defaultTemplate,oe.escape,oe.toSymbol,vt.format),ae=oe.escape;var se={name:"ConstantNode",path:"expression.node",factory:function(t,e,r,n){var o=r(lt),i=r(G);function a(t){if(!(this instanceof a))throw new SyntaxError("Constructor must be called with the new operator");if(2===arguments.length)throw new SyntaxError("new ConstantNode(valueStr, valueType) is not supported anymore since math v4.0.0. Use new ConstantNode(value) instead, where value is a non-stringified value.");this.value=t}return a.prototype=new o,a.prototype.type="ConstantNode",a.prototype.isConstantNode=!0,a.prototype._compile=function(t,e){var r=this.value;return function(){return r}},a.prototype.forEach=function(t){},a.prototype.map=function(t){return this.clone()},a.prototype.clone=function(){return new a(this.value)},a.prototype._toString=function(t){return ie(this.value,t)},a.prototype.toHTML=function(t){var e=this._toString(t);switch(i(this.value)){case"number":case"BigNumber":case"Fraction":return'<span class="math-number">'+e+"</span>";case"string":return'<span class="math-string">'+e+"</span>";case"boolean":return'<span class="math-boolean">'+e+"</span>";case"null":return'<span class="math-null-symbol">'+e+"</span>";case"undefined":return'<span class="math-undefined">'+e+"</span>";default:return'<span class="math-symbol">'+e+"</span>"}},a.prototype.toJSON=function(){return{mathjs:"ConstantNode",value:this.value}},a.fromJSON=function(t){return new a(t.value)},a.prototype._toTex=function(t){var e=this._toString(t);switch(i(this.value)){case"string":return"\\mathtt{"+ae(e)+"}";case"number":case"BigNumber":var r=e.toLowerCase().indexOf("e");return-1!==r?e.substring(0,r)+"\\cdot10^{"+e.substring(r+1)+"}":e;case"Fraction":return this.value.toLatex();default:return e}},a}},ue=vt.escape,ce=Nt.forEach,pe=Nt.join,fe=ut.setSafeProperty;var he={name:"FunctionAssignmentNode",path:"expression.node",factory:function(t,e,r,n){var o=r(lt);function i(e,r,n){if(!(this instanceof i))throw new SyntaxError("Constructor must be called with the new operator");if("string"!=typeof e)throw new TypeError('String expected for parameter "name"');if(!Array.isArray(r))throw new TypeError('Array containing strings or objects expected for parameter "params"');if(!t.isNode(n))throw new TypeError('Node expected for parameter "expr"');if(e in ct)throw new Error('Illegal function name, "'+e+'" is a reserved keyword');this.name=e,this.params=r.map((function(t){return t&&t.name||t})),this.types=r.map((function(t){return t&&t.type||"any"})),this.expr=n}function a(t,e){var r=Ut.getPrecedence(t,e),n=Ut.getPrecedence(t.expr,e);return"all"===e||null!==n&&n<=r}return i.prototype=new o,i.prototype.type="FunctionAssignmentNode",i.prototype.isFunctionAssignmentNode=!0,i.prototype._compile=function(t,e){var r=Object.create(e);ce(this.params,(function(t){r[t]=!0}));var o=this.expr._compile(t,r),i=this.name,a=this.params,s=pe(this.types,","),u=i+"("+pe(this.params,", ")+")";return function(t,e,r){var c={};c[s]=function(){for(var n=Object.create(e),i=0;i<a.length;i++)n[a[i]]=arguments[i];return o(t,n,r)};var p=n(i,c);return p.syntax=u,fe(t,i,p),p}},i.prototype.forEach=function(t){t(this.expr,"expr",this)},i.prototype.map=function(t){var e=this._ifNode(t(this.expr,"expr",this));return new i(this.name,this.params.slice(0),e)},i.prototype.clone=function(){return new i(this.name,this.params.slice(0),this.expr)},i.prototype._toString=function(t){var e=t&&t.parenthesis?t.parenthesis:"keep",r=this.expr.toString(t);return a(this,e)&&(r="("+r+")"),this.name+"("+this.params.join(", ")+") = "+r},i.prototype.toJSON=function(){var t=this.types;return{mathjs:"FunctionAssignmentNode",name:this.name,params:this.params.map((function(e,r){return{name:e,type:t[r]}})),expr:this.expr}},i.fromJSON=function(t){return new i(t.name,t.params,t.expr)},i.prototype.toHTML=function(t){for(var e=t&&t.parenthesis?t.parenthesis:"keep",r=[],n=0;n<this.params.length;n++)r.push('<span class="math-symbol math-parameter">'+ue(this.params[n])+"</span>");var o=this.expr.toHTML(t);return a(this,e)&&(o='<span class="math-parenthesis math-round-parenthesis">(</span>'+o+'<span class="math-parenthesis math-round-parenthesis">)</span>'),'<span class="math-function">'+ue(this.name)+'</span><span class="math-parenthesis math-round-parenthesis">(</span>'+r.join('<span class="math-separator">,</span>')+'<span class="math-parenthesis math-round-parenthesis">)</span><span class="math-operator math-assignment-operator math-variable-assignment-operator math-binary-operator">=</span>'+o},i.prototype._toTex=function(t){var e=t&&t.parenthesis?t.parenthesis:"keep",r=this.expr.toTex(t);return a(this,e)&&(r="\\left(".concat(r,"\\right)")),"\\mathrm{"+this.name+"}\\left("+this.params.map(oe.toSymbol).join(",")+"\\right):="+r},i}};var le={name:"Range",path:"type",factory:function(t,e,r,n){function o(e,r,n){if(!(this instanceof o))throw new SyntaxError("Constructor must be called with the new operator");var i=null!=e,a=null!=r,s=null!=n;if(i)if(t.isBigNumber(e))e=e.toNumber();else if("number"!=typeof e)throw new TypeError("Parameter start must be a number");if(a)if(t.isBigNumber(r))r=r.toNumber();else if("number"!=typeof r)throw new TypeError("Parameter end must be a number");if(s)if(t.isBigNumber(n))n=n.toNumber();else if("number"!=typeof n)throw new TypeError("Parameter step must be a number");this.start=i?parseFloat(e):0,this.end=a?parseFloat(r):0,this.step=s?parseFloat(n):1}return o.prototype.type="Range",o.prototype.isRange=!0,o.parse=function(t){if("string"!=typeof t)return null;var e=t.split(":").map((function(t){return parseFloat(t)}));if(e.some((function(t){return isNaN(t)})))return null;switch(e.length){case 2:return new o(e[0],e[1]);case 3:return new o(e[0],e[2],e[1]);default:return null}},o.prototype.clone=function(){return new o(this.start,this.end,this.step)},o.prototype.size=function(){var t=0,e=this.start,r=this.step,n=this.end-e;return j.sign(r)===j.sign(n)?t=Math.ceil(n/r):0===n&&(t=0),isNaN(t)&&(t=0),[t]},o.prototype.min=function(){var t=this.size()[0];return t>0?this.step>0?this.start:this.start+(t-1)*this.step:void 0},o.prototype.max=function(){var t=this.size()[0];return t>0?this.step>0?this.start+(t-1)*this.step:this.start:void 0},o.prototype.forEach=function(t){var e=this.start,r=this.step,n=this.end,o=0;if(r>0)for(;e<n;)t(e,[o],this),e+=r,o++;else if(r<0)for(;e>n;)t(e,[o],this),e+=r,o++},o.prototype.map=function(t){var e=[];return this.forEach((function(r,n,o){e[n[0]]=t(r,n,o)})),e},o.prototype.toArray=function(){var t=[];return this.forEach((function(e,r){t[r[0]]=e})),t},o.prototype.valueOf=function(){return this.toArray()},o.prototype.format=function(t){var e=j.format(this.start,t);return 1!==this.step&&(e+=":"+j.format(this.step,t)),e+=":"+j.format(this.end,t)},o.prototype.toString=function(){return this.format()},o.prototype.toJSON=function(){return{mathjs:"Range",start:this.start,end:this.end,step:this.step}},o.fromJSON=function(t){return new o(t.start,t.end,t.step)},o}},me=Nt.map,de=vt.escape;var ye={name:"IndexNode",path:"expression.node",factory:function(t,e,r,n){var o=r(lt),i=r(le),a=Array.isArray;function s(e,r){if(!(this instanceof s))throw new SyntaxError("Constructor must be called with the new operator");if(this.dimensions=e,this.dotNotation=r||!1,!a(e)||!e.every(t.isNode))throw new TypeError('Array containing Nodes expected for parameter "dimensions"');if(this.dotNotation&&!this.isObjectProperty())throw new Error("dotNotation only applicable for object properties");var n=function(){throw new Error("Property `IndexNode.object` is deprecated, use `IndexNode.fn` instead")};Object.defineProperty(this,"object",{get:n,set:n})}function u(e,r,n){return new i(t.isBigNumber(e)?e.toNumber():e,t.isBigNumber(r)?r.toNumber():r,t.isBigNumber(n)?n.toNumber():n)}return s.prototype=new o,s.prototype.type="IndexNode",s.prototype.isIndexNode=!0,s.prototype._compile=function(e,r){var n=me(this.dimensions,(function(n,o){if(t.isRangeNode(n)){if(n.needsEnd()){var i=Object.create(r);i.end=!0;var a=n.start._compile(e,i),s=n.end._compile(e,i),c=n.step?n.step._compile(e,i):function(){return 1};return function(t,r,n){var i=e.size(n).valueOf(),p=Object.create(r);return p.end=i[o],u(a(t,p,n),s(t,p,n),c(t,p,n))}}var p=n.start._compile(e,r),f=n.end._compile(e,r),h=n.step?n.step._compile(e,r):function(){return 1};return function(t,e,r){return u(p(t,e,r),f(t,e,r),h(t,e,r))}}if(t.isSymbolNode(n)&&"end"===n.name){var l=Object.create(r);l.end=!0;var m=n._compile(e,l);return function(t,r,n){var i=e.size(n).valueOf(),a=Object.create(r);return a.end=i[o],m(t,a,n)}}var d=n._compile(e,r);return function(t,e,r){return d(t,e,r)}}));return function(t,r,o){var i=me(n,(function(e){return e(t,r,o)}));return e.index.apply(e,i)}},s.prototype.forEach=function(t){for(var e=0;e<this.dimensions.length;e++)t(this.dimensions[e],"dimensions["+e+"]",this)},s.prototype.map=function(t){for(var e=[],r=0;r<this.dimensions.length;r++)e[r]=this._ifNode(t(this.dimensions[r],"dimensions["+r+"]",this));return new s(e)},s.prototype.clone=function(){return new s(this.dimensions.slice(0))},s.prototype.isObjectProperty=function(){return 1===this.dimensions.length&&t.isConstantNode(this.dimensions[0])&&"string"==typeof this.dimensions[0].value},s.prototype.getObjectProperty=function(){return this.isObjectProperty()?this.dimensions[0].value:null},s.prototype._toString=function(t){return this.dotNotation?"."+this.getObjectProperty():"["+this.dimensions.join(", ")+"]"},s.prototype.toJSON=function(){return{mathjs:"IndexNode",dimensions:this.dimensions,dotNotation:this.dotNotation}},s.fromJSON=function(t){return new s(t.dimensions,t.dotNotation)},s.prototype.toHTML=function(t){for(var e=[],r=0;r<this.dimensions.length;r++)e[r]=this.dimensions[r].toHTML();return this.dotNotation?'<span class="math-operator math-accessor-operator">.</span><span class="math-symbol math-property">'+de(this.getObjectProperty())+"</span>":'<span class="math-parenthesis math-square-parenthesis">[</span>'+e.join('<span class="math-separator">,</span>')+'<span class="math-parenthesis math-square-parenthesis">]</span>'},s.prototype._toTex=function(t){var e=this.dimensions.map((function(e){return e.toTex(t)}));return this.dotNotation?"."+this.getObjectProperty():"_{"+e.join(",")+"}"},s}};function ge(t){return(ge="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t})(t)}var ve=vt.stringify,we=vt.escape,be=ut.isSafeProperty,xe=O.hasOwnProperty;var Ne={name:"ObjectNode",path:"expression.node",factory:function(t,e,r,n){var o=r(lt);function i(e){if(!(this instanceof i))throw new SyntaxError("Constructor must be called with the new operator");if(this.properties=e||{},e&&("object"!==ge(e)||!Object.keys(e).every((function(r){return t.isNode(e[r])}))))throw new TypeError("Object containing Nodes expected")}return i.prototype=new o,i.prototype.type="ObjectNode",i.prototype.isObjectNode=!0,i.prototype._compile=function(t,e){var r={};for(var n in this.properties)if(xe(this.properties,n)){var o=ve(n),i=JSON.parse(o);if(!be(this.properties,i))throw new Error('No access to property "'+i+'"');r[i]=this.properties[n]._compile(t,e)}return function(t,e,n){var o={};for(var i in r)xe(r,i)&&(o[i]=r[i](t,e,n));return o}},i.prototype.forEach=function(t){for(var e in this.properties)this.properties.hasOwnProperty(e)&&t(this.properties[e],"properties["+ve(e)+"]",this)},i.prototype.map=function(t){var e={};for(var r in this.properties)this.properties.hasOwnProperty(r)&&(e[r]=this._ifNode(t(this.properties[r],"properties["+ve(r)+"]",this)));return new i(e)},i.prototype.clone=function(){var t={};for(var e in this.properties)this.properties.hasOwnProperty(e)&&(t[e]=this.properties[e]);return new i(t)},i.prototype._toString=function(t){var e=[];for(var r in this.properties)this.properties.hasOwnProperty(r)&&e.push(ve(r)+": "+this.properties[r].toString(t));return"{"+e.join(", ")+"}"},i.prototype.toJSON=function(){return{mathjs:"ObjectNode",properties:this.properties}},i.fromJSON=function(t){return new i(t.properties)},i.prototype.toHTML=function(t){var e=[];for(var r in this.properties)this.properties.hasOwnProperty(r)&&e.push('<span class="math-symbol math-property">'+we(r)+'</span><span class="math-operator math-assignment-operator math-property-assignment-operator math-binary-operator">:</span>'+this.properties[r].toHTML(t));return'<span class="math-parenthesis math-curly-parenthesis">{</span>'+e.join('<span class="math-separator">,</span>')+'<span class="math-parenthesis math-curly-parenthesis">}</span>'},i.prototype._toTex=function(t){var e=[];for(var r in this.properties)this.properties.hasOwnProperty(r)&&e.push("\\mathbf{"+r+":} & "+this.properties[r].toTex(t)+"\\\\");return"\\left\\{\\begin{array}{ll}".concat(e.join("\n"),"\\end{array}\\right\\}")},i}},Ee=Nt.map,Se=vt.escape,Oe=ut.isSafeMethod,Ae=ut.getSafeProperty;var je={name:"OperatorNode",path:"expression.node",factory:function(t,e,r,n){var o=r(lt);function i(e,r,n,o){if(!(this instanceof i))throw new SyntaxError("Constructor must be called with the new operator");if("string"!=typeof e)throw new TypeError('string expected for parameter "op"');if("string"!=typeof r)throw new TypeError('string expected for parameter "fn"');if(!Array.isArray(n)||!n.every(t.isNode))throw new TypeError('Array containing Nodes expected for parameter "args"');this.implicit=!0===o,this.op=e,this.fn=r,this.args=n||[]}function a(t,e,r,n,o){var i,a=Ut.getPrecedence(t,e),s=Ut.getAssociativity(t,e);if("all"===e||n.length>2&&"OperatorNode:add"!==t.getIdentifier()&&"OperatorNode:multiply"!==t.getIdentifier())return n.map((function(t){switch(t.getContent().type){case"ArrayNode":case"ConstantNode":case"SymbolNode":case"ParenthesisNode":return!1;default:return!0}}));switch(n.length){case 0:i=[];break;case 1:var u=Ut.getPrecedence(n[0],e);if(o&&null!==u){var c,p;if("keep"===e?(c=n[0].getIdentifier(),p=t.getIdentifier()):(c=n[0].getContent().getIdentifier(),p=t.getContent().getIdentifier()),!1===Ut.properties[a][p].latexLeftParens){i=[!1];break}if(!1===Ut.properties[u][c].latexParens){i=[!1];break}}if(null===u){i=[!1];break}if(u<=a){i=[!0];break}i=[!1];break;case 2:var f,h,l=Ut.getPrecedence(n[0],e),m=Ut.isAssociativeWith(t,n[0],e);f=null!==l&&(l===a&&"right"===s&&!m||l<a);var d,y,g,v=Ut.getPrecedence(n[1],e),w=Ut.isAssociativeWith(t,n[1],e);if(h=null!==v&&(v===a&&"left"===s&&!w||v<a),o)"keep"===e?(d=t.getIdentifier(),y=t.args[0].getIdentifier(),g=t.args[1].getIdentifier()):(d=t.getContent().getIdentifier(),y=t.args[0].getContent().getIdentifier(),g=t.args[1].getContent().getIdentifier()),null!==l&&(!1===Ut.properties[a][d].latexLeftParens&&(f=!1),!1===Ut.properties[l][y].latexParens&&(f=!1)),null!==v&&(!1===Ut.properties[a][d].latexRightParens&&(h=!1),!1===Ut.properties[v][g].latexParens&&(h=!1));i=[f,h];break;default:"OperatorNode:add"!==t.getIdentifier()&&"OperatorNode:multiply"!==t.getIdentifier()||(i=n.map((function(r){var n=Ut.getPrecedence(r,e),o=Ut.isAssociativeWith(t,r,e),i=Ut.getAssociativity(r,e);return null!==n&&(a===n&&s===i&&!o||n<a)})))}return n.length>=2&&"OperatorNode:multiply"===t.getIdentifier()&&t.implicit&&"auto"===e&&"hide"===r&&(i=n.map((function(t,e){var r="ParenthesisNode"===t.getIdentifier();return!(!i[e]&&!r)}))),i}return i.prototype=new o,i.prototype.type="OperatorNode",i.prototype.isOperatorNode=!0,i.prototype._compile=function(t,e){if("string"!=typeof this.fn||!Oe(t,this.fn))throw t[this.fn]?new Error('No access to function "'+this.fn+'"'):new Error("Function "+this.fn+' missing in provided namespace "math"');var r=Ae(t,this.fn),n=Ee(this.args,(function(r){return r._compile(t,e)}));if(1===n.length){var o=n[0];return function(t,e,n){return r(o(t,e,n))}}if(2===n.length){var i=n[0],a=n[1];return function(t,e,n){return r(i(t,e,n),a(t,e,n))}}return function(t,e,o){return r.apply(null,Ee(n,(function(r){return r(t,e,o)})))}},i.prototype.forEach=function(t){for(var e=0;e<this.args.length;e++)t(this.args[e],"args["+e+"]",this)},i.prototype.map=function(t){for(var e=[],r=0;r<this.args.length;r++)e[r]=this._ifNode(t(this.args[r],"args["+r+"]",this));return new i(this.op,this.fn,e,this.implicit)},i.prototype.clone=function(){return new i(this.op,this.fn,this.args.slice(0),this.implicit)},i.prototype.isUnary=function(){return 1===this.args.length},i.prototype.isBinary=function(){return 2===this.args.length},i.prototype._toString=function(t){var e=t&&t.parenthesis?t.parenthesis:"keep",r=t&&t.implicit?t.implicit:"hide",n=this.args,o=a(this,e,r,n,!1);if(1===n.length){var i=Ut.getAssociativity(this,e),s=n[0].toString(t);o[0]&&(s="("+s+")");var u=/[a-zA-Z]+/.test(this.op);return"right"===i?this.op+(u?" ":"")+s:"left"===i?s+(u?" ":"")+this.op:s+this.op}if(2===n.length){var c=n[0].toString(t),p=n[1].toString(t);return o[0]&&(c="("+c+")"),o[1]&&(p="("+p+")"),this.implicit&&"OperatorNode:multiply"===this.getIdentifier()&&"hide"===r?c+" "+p:c+" "+this.op+" "+p}if(n.length>2&&("OperatorNode:add"===this.getIdentifier()||"OperatorNode:multiply"===this.getIdentifier())){var f=n.map((function(e,r){return e=e.toString(t),o[r]&&(e="("+e+")"),e}));return this.implicit&&"OperatorNode:multiply"===this.getIdentifier()&&"hide"===r?f.join(" "):f.join(" "+this.op+" ")}return this.fn+"("+this.args.join(", ")+")"},i.prototype.toJSON=function(){return{mathjs:"OperatorNode",op:this.op,fn:this.fn,args:this.args,implicit:this.implicit}},i.fromJSON=function(t){return new i(t.op,t.fn,t.args,t.implicit)},i.prototype.toHTML=function(t){var e=t&&t.parenthesis?t.parenthesis:"keep",r=t&&t.implicit?t.implicit:"hide",n=this.args,o=a(this,e,r,n,!1);if(1===n.length){var i=Ut.getAssociativity(this,e),s=n[0].toHTML(t);return o[0]&&(s='<span class="math-parenthesis math-round-parenthesis">(</span>'+s+'<span class="math-parenthesis math-round-parenthesis">)</span>'),"right"===i?'<span class="math-operator math-unary-operator math-lefthand-unary-operator">'+Se(this.op)+"</span>"+s:s+'<span class="math-operator math-unary-operator math-righthand-unary-operator">'+Se(this.op)+"</span>"}if(2===n.length){var u=n[0].toHTML(t),c=n[1].toHTML(t);return o[0]&&(u='<span class="math-parenthesis math-round-parenthesis">(</span>'+u+'<span class="math-parenthesis math-round-parenthesis">)</span>'),o[1]&&(c='<span class="math-parenthesis math-round-parenthesis">(</span>'+c+'<span class="math-parenthesis math-round-parenthesis">)</span>'),this.implicit&&"OperatorNode:multiply"===this.getIdentifier()&&"hide"===r?u+'<span class="math-operator math-binary-operator math-implicit-binary-operator"></span>'+c:u+'<span class="math-operator math-binary-operator math-explicit-binary-operator">'+Se(this.op)+"</span>"+c}var p=n.map((function(e,r){return e=e.toHTML(t),o[r]&&(e='<span class="math-parenthesis math-round-parenthesis">(</span>'+e+'<span class="math-parenthesis math-round-parenthesis">)</span>'),e}));return n.length>2&&("OperatorNode:add"===this.getIdentifier()||"OperatorNode:multiply"===this.getIdentifier())?this.implicit&&"OperatorNode:multiply"===this.getIdentifier()&&"hide"===r?p.join('<span class="math-operator math-binary-operator math-implicit-binary-operator"></span>'):p.join('<span class="math-operator math-binary-operator math-explicit-binary-operator">'+Se(this.op)+"</span>"):'<span class="math-function">'+Se(this.fn)+'</span><span class="math-paranthesis math-round-parenthesis">(</span>'+p.join('<span class="math-separator">,</span>')+'<span class="math-paranthesis math-round-parenthesis">)</span>'},i.prototype._toTex=function(t){var e=t&&t.parenthesis?t.parenthesis:"keep",r=t&&t.implicit?t.implicit:"hide",n=this.args,o=a(this,e,r,n,!0),i=oe.operators[this.fn];if(i=void 0===i?this.op:i,1===n.length){var s=Ut.getAssociativity(this,e),u=n[0].toTex(t);return o[0]&&(u="\\left(".concat(u,"\\right)")),"right"===s?i+u:u+i}if(2===n.length){var c=n[0],p=c.toTex(t);o[0]&&(p="\\left(".concat(p,"\\right)"));var f,h=n[1].toTex(t);switch(o[1]&&(h="\\left(".concat(h,"\\right)")),f="keep"===e?c.getIdentifier():c.getContent().getIdentifier(),this.getIdentifier()){case"OperatorNode:divide":return i+"{"+p+"}{"+h+"}";case"OperatorNode:pow":switch(p="{"+p+"}",h="{"+h+"}",f){case"ConditionalNode":case"OperatorNode:divide":p="\\left(".concat(p,"\\right)")}break;case"OperatorNode:multiply":if(this.implicit&&"hide"===r)return p+"~"+h}return p+i+h}if(n.length>2&&("OperatorNode:add"===this.getIdentifier()||"OperatorNode:multiply"===this.getIdentifier())){var l=n.map((function(e,r){return e=e.toTex(t),o[r]&&(e="\\left(".concat(e,"\\right)")),e}));return"OperatorNode:multiply"===this.getIdentifier()&&this.implicit?l.join("~"):l.join(i)}return"\\mathrm{"+this.fn+"}\\left("+n.map((function(e){return e.toTex(t)})).join(",")+"\\right)"},i.prototype.getIdentifier=function(){return this.type+":"+this.fn},i}};var Te={name:"ParenthesisNode",path:"expression.node",factory:function(t,e,r,n){var o=r(lt);function i(e){if(!(this instanceof i))throw new SyntaxError("Constructor must be called with the new operator");if(!t.isNode(e))throw new TypeError('Node expected for parameter "content"');this.content=e}return i.prototype=new o,i.prototype.type="ParenthesisNode",i.prototype.isParenthesisNode=!0,i.prototype._compile=function(t,e){return this.content._compile(t,e)},i.prototype.getContent=function(){return this.content.getContent()},i.prototype.forEach=function(t){t(this.content,"content",this)},i.prototype.map=function(t){return new i(t(this.content,"content",this))},i.prototype.clone=function(){return new i(this.content)},i.prototype._toString=function(t){return!t||t&&!t.parenthesis||t&&"keep"===t.parenthesis?"("+this.content.toString(t)+")":this.content.toString(t)},i.prototype.toJSON=function(){return{mathjs:"ParenthesisNode",content:this.content}},i.fromJSON=function(t){return new i(t.content)},i.prototype.toHTML=function(t){return!t||t&&!t.parenthesis||t&&"keep"===t.parenthesis?'<span class="math-parenthesis math-round-parenthesis">(</span>'+this.content.toHTML(t)+'<span class="math-parenthesis math-round-parenthesis">)</span>':this.content.toHTML(t)},i.prototype._toTex=function(t){return!t||t&&!t.parenthesis||t&&"keep"===t.parenthesis?"\\left(".concat(this.content.toTex(t),"\\right)"):this.content.toTex(t)},i}},ke=vt.escape,Pe=O.hasOwnProperty,Ce=ut.getSafeProperty;var Me={name:"SymbolNode",path:"expression.node",math:!0,factory:function(t,e,r,n,o){var i=r(lt);function a(e){return!!t.Unit&&t.Unit.isValuelessUnit(e)}function s(t){if(!(this instanceof s))throw new SyntaxError("Constructor must be called with the new operator");if("string"!=typeof t)throw new TypeError('String expected for parameter "name"');this.name=t}return s.prototype=new i,s.prototype.type="SymbolNode",s.prototype.isSymbolNode=!0,s.prototype._compile=function(e,r){var n=this.name;if(Pe(r,n))return function(t,e,r){return e[n]};if(n in e)return function(t,r,o){return Ce(n in t?t:e,n)};var o=a(n);return function(e,r,i){return n in e?Ce(e,n):o?new t.Unit(null,n):function(t){throw new Error("Undefined symbol "+t)}(n)}},s.prototype.forEach=function(t){},s.prototype.map=function(t){return this.clone()},s.prototype.clone=function(){return new s(this.name)},s.prototype._toString=function(t){return this.name},s.prototype.toHTML=function(t){var e=ke(this.name);return"true"===e||"false"===e?'<span class="math-symbol math-boolean">'+e+"</span>":"i"===e?'<span class="math-symbol math-imaginary-symbol">'+e+"</span>":"Infinity"===e?'<span class="math-symbol math-infinity-symbol">'+e+"</span>":"NaN"===e?'<span class="math-symbol math-nan-symbol">'+e+"</span>":"null"===e?'<span class="math-symbol math-null-symbol">'+e+"</span>":"undefined"===e?'<span class="math-symbol math-undefined-symbol">'+e+"</span>":'<span class="math-symbol">'+e+"</span>"},s.prototype.toJSON=function(){return{mathjs:"SymbolNode",name:this.name}},s.fromJSON=function(t){return new s(t.name)},s.prototype._toTex=function(t){var e=!1;void 0===o[this.name]&&a(this.name)&&(e=!0);var r=oe.toSymbol(this.name,e);return"\\"===r[0]?r:" "+r},s}};function Fe(t){return(Fe="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t})(t)}function _e(){return(_e=Object.assign||function(t){for(var e=1;e<arguments.length;e++){var r=arguments[e];for(var n in r)Object.prototype.hasOwnProperty.call(r,n)&&(t[n]=r[n])}return t}).apply(this,arguments)}var Ie=oe,De=vt.escape,Le=O.hasOwnProperty,Je=Nt.map,Re=ut.validateSafeMethod,qe=ut.getSafeProperty;var Be={name:"FunctionNode",path:"expression.node",math:!0,factory:function(t,e,r,n,o){var i=r(lt),a=r(Me);function s(e,r){if(!(this instanceof s))throw new SyntaxError("Constructor must be called with the new operator");if("string"==typeof e&&(e=new a(e)),!t.isNode(e))throw new TypeError('Node expected as parameter "fn"');if(!Array.isArray(r)||!r.every(t.isNode))throw new TypeError('Array containing Nodes expected for parameter "args"');this.fn=e,this.args=r||[],Object.defineProperty(this,"name",{get:function(){return this.fn.name||""}.bind(this),set:function(){throw new Error("Cannot assign a new name, name is read-only")}});var n=function(){throw new Error("Property `FunctionNode.object` is deprecated, use `FunctionNode.fn` instead")};Object.defineProperty(this,"object",{get:n,set:n})}s.prototype=new i,s.prototype.type="FunctionNode",s.prototype.isFunctionNode=!0,s.prototype._compile=function(e,r){if(!(this instanceof s))throw new TypeError("No valid FunctionNode");var n=Je(this.args,(function(t){return t._compile(e,r)}));if(t.isSymbolNode(this.fn)){var o=this.fn.name,i=o in e?qe(e,o):void 0;if("function"==typeof i&&!0===i.rawArgs){var a=this.args;return function(t,r,n){return(o in t?qe(t,o):i)(a,e,_e({},t,r))}}if(1===n.length){var u=n[0];return function(t,e,r){return(o in t?qe(t,o):i)(u(t,e,r))}}if(2===n.length){var c=n[0],p=n[1];return function(t,e,r){return(o in t?qe(t,o):i)(c(t,e,r),p(t,e,r))}}return function(t,e,r){return(o in t?qe(t,o):i).apply(null,Je(n,(function(n){return n(t,e,r)})))}}if(t.isAccessorNode(this.fn)&&t.isIndexNode(this.fn.index)&&this.fn.index.isObjectProperty()){var f=this.fn.object._compile(e,r),h=this.fn.index.getObjectProperty(),l=this.args;return function(t,r,o){var i=f(t,r,o);return Re(i,h),i[h]&&i[h].rawArgs?i[h](l,e,_e({},t,r)):i[h].apply(i,Je(n,(function(e){return e(t,r,o)})))}}var m=this.fn._compile(e,r),d=this.args;return function(t,r,o){var i=m(t,r,o);return i&&i.rawArgs?i(d,e,_e({},t,r)):i.apply(i,Je(n,(function(e){return e(t,r,o)})))}},s.prototype.forEach=function(t){t(this.fn,"fn",this);for(var e=0;e<this.args.length;e++)t(this.args[e],"args["+e+"]",this)},s.prototype.map=function(t){for(var e=this._ifNode(t(this.fn,"fn",this)),r=[],n=0;n<this.args.length;n++)r[n]=this._ifNode(t(this.args[n],"args["+n+"]",this));return new s(e,r)},s.prototype.clone=function(){return new s(this.fn,this.args.slice(0))};var u=s.prototype.toString;function c(e,r,n){for(var o,i="",a=new RegExp("\\$(?:\\{([a-z_][a-z_0-9]*)(?:\\[([0-9]+)\\])?\\}|\\$)","ig"),s=0;null!==(o=a.exec(e));)if(i+=e.substring(s,o.index),s=o.index,"$$"===o[0])i+="$",s++;else{s+=o[0].length;var u=r[o[1]];if(!u)throw new ReferenceError("Template: Property "+o[1]+" does not exist.");if(void 0===o[2])switch(Fe(u)){case"string":i+=u;break;case"object":if(t.isNode(u))i+=u.toTex(n);else{if(!Array.isArray(u))throw new TypeError("Template: "+o[1]+" has to be a Node, String or array of Nodes");i+=u.map((function(e,r){if(t.isNode(e))return e.toTex(n);throw new TypeError("Template: "+o[1]+"["+r+"] is not a Node.")})).join(",")}break;default:throw new TypeError("Template: "+o[1]+" has to be a Node, String or array of Nodes")}else{if(!t.isNode(u[o[2]]&&u[o[2]]))throw new TypeError("Template: "+o[1]+"["+o[2]+"] is not a Node.");i+=u[o[2]].toTex(n)}}return i+=e.slice(s)}s.prototype.toString=function(t){var e,r=this.fn.toString(t);return t&&"object"===Fe(t.handler)&&Le(t.handler,r)&&(e=t.handler[r](this,t)),void 0!==e?e:u.call(this,t)},s.prototype._toString=function(e){var r=this.args.map((function(t){return t.toString(e)}));return(t.isFunctionAssignmentNode(this.fn)?"("+this.fn.toString(e)+")":this.fn.toString(e))+"("+r.join(", ")+")"},s.prototype.toJSON=function(){return{mathjs:"FunctionNode",fn:this.fn,args:this.args}},s.fromJSON=function(t){return new s(t.fn,t.args)},s.prototype.toHTML=function(t){var e=this.args.map((function(e){return e.toHTML(t)}));return'<span class="math-function">'+De(this.fn)+'</span><span class="math-paranthesis math-round-parenthesis">(</span>'+e.join('<span class="math-separator">,</span>')+'<span class="math-paranthesis math-round-parenthesis">)</span>'};var p=s.prototype.toTex;return s.prototype.toTex=function(t){var e;return t&&"object"===Fe(t.handler)&&Le(t.handler,this.name)&&(e=t.handler[this.name](this,t)),void 0!==e?e:p.call(this,t)},s.prototype._toTex=function(t){var e,r,n=this.args.map((function(e){return e.toTex(t)}));switch(!o[this.name]||"function"!=typeof o[this.name].toTex&&"object"!==Fe(o[this.name].toTex)&&"string"!=typeof o[this.name].toTex||(e=o[this.name].toTex),Fe(e)){case"function":r=e(this,t);break;case"string":r=c(e,this,t);break;case"object":switch(Fe(e[n.length])){case"function":r=e[n.length](this,t);break;case"string":r=c(e[n.length],this,t)}}return void 0!==r?r:c(Ie.defaultTemplate,this,t)},s.prototype.getIdentifier=function(){return this.type+":"+this.name},s}};var He={name:"RangeNode",path:"expression.node",factory:function(t,e,r,n){var o=r(lt);function i(e,r,n){if(!(this instanceof i))throw new SyntaxError("Constructor must be called with the new operator");if(!t.isNode(e))throw new TypeError("Node expected");if(!t.isNode(r))throw new TypeError("Node expected");if(n&&!t.isNode(n))throw new TypeError("Node expected");if(arguments.length>3)throw new Error("Too many arguments");this.start=e,this.end=r,this.step=n||null}function a(t,e){var r=Ut.getPrecedence(t,e),n={},o=Ut.getPrecedence(t.start,e);if(n.start=null!==o&&o<=r||"all"===e,t.step){var i=Ut.getPrecedence(t.step,e);n.step=null!==i&&i<=r||"all"===e}var a=Ut.getPrecedence(t.end,e);return n.end=null!==a&&a<=r||"all"===e,n}return i.prototype=new o,i.prototype.type="RangeNode",i.prototype.isRangeNode=!0,i.prototype.needsEnd=function(){return this.filter((function(e){return t.isSymbolNode(e)&&"end"===e.name})).length>0},i.prototype._compile=function(t,e){var r=t.range,n=this.start._compile(t,e),o=this.end._compile(t,e);if(this.step){var i=this.step._compile(t,e);return function(t,e,a){return r(n(t,e,a),o(t,e,a),i(t,e,a))}}return function(t,e,i){return r(n(t,e,i),o(t,e,i))}},i.prototype.forEach=function(t){t(this.start,"start",this),t(this.end,"end",this),this.step&&t(this.step,"step",this)},i.prototype.map=function(t){return new i(this._ifNode(t(this.start,"start",this)),this._ifNode(t(this.end,"end",this)),this.step&&this._ifNode(t(this.step,"step",this)))},i.prototype.clone=function(){return new i(this.start,this.end,this.step&&this.step)},i.prototype._toString=function(t){var e,r=a(this,t&&t.parenthesis?t.parenthesis:"keep"),n=this.start.toString(t);if(r.start&&(n="("+n+")"),e=n,this.step){var o=this.step.toString(t);r.step&&(o="("+o+")"),e+=":"+o}var i=this.end.toString(t);return r.end&&(i="("+i+")"),e+=":"+i},i.prototype.toJSON=function(){return{mathjs:"RangeNode",start:this.start,end:this.end,step:this.step}},i.fromJSON=function(t){return new i(t.start,t.end,t.step)},i.prototype.toHTML=function(t){var e,r=a(this,t&&t.parenthesis?t.parenthesis:"keep"),n=this.start.toHTML(t);if(r.start&&(n='<span class="math-parenthesis math-round-parenthesis">(</span>'+n+'<span class="math-parenthesis math-round-parenthesis">)</span>'),e=n,this.step){var o=this.step.toHTML(t);r.step&&(o='<span class="math-parenthesis math-round-parenthesis">(</span>'+o+'<span class="math-parenthesis math-round-parenthesis">)</span>'),e+='<span class="math-operator math-range-operator">:</span>'+o}var i=this.end.toHTML(t);return r.end&&(i='<span class="math-parenthesis math-round-parenthesis">(</span>'+i+'<span class="math-parenthesis math-round-parenthesis">)</span>'),e+='<span class="math-operator math-range-operator">:</span>'+i},i.prototype._toTex=function(t){var e=a(this,t&&t.parenthesis?t.parenthesis:"keep"),r=this.start.toTex(t);if(e.start&&(r="\\left(".concat(r,"\\right)")),this.step){var n=this.step.toTex(t);e.step&&(n="\\left(".concat(n,"\\right)")),r+=":"+n}var o=this.end.toTex(t);return e.end&&(o="\\left(".concat(o,"\\right)")),r+=":"+o},i}},We=vt.escape;var ze={name:"RelationalNode",path:"expression.node",factory:function(t,e,r,n){var o=r(lt),i=ut.getSafeProperty;function a(t,e){if(!(this instanceof a))throw new SyntaxError("Constructor must be called with the new operator");if(!Array.isArray(t))throw new TypeError("Parameter conditionals must be an array");if(!Array.isArray(e))throw new TypeError("Parameter params must be an array");if(t.length!==e.length-1)throw new TypeError("Parameter params must contain exactly one more element than parameter conditionals");this.conditionals=t,this.params=e}return a.prototype=new o,a.prototype.type="RelationalNode",a.prototype.isRelationalNode=!0,a.prototype._compile=function(t,e){var r=this,n=this.params.map((function(r){return r._compile(t,e)}));return function(e,o,a){for(var s,u=n[0](e,o,a),c=0;c<r.conditionals.length;c++){if(s=u,u=n[c+1](e,o,a),!i(t,r.conditionals[c])(s,u))return!1}return!0}},a.prototype.forEach=function(t){var e=this;this.params.forEach((function(r,n){return t(r,"params["+n+"]",e)}),this)},a.prototype.map=function(t){var e=this;return new a(this.conditionals.slice(),this.params.map((function(r,n){return e._ifNode(t(r,"params["+n+"]",e))}),this))},a.prototype.clone=function(){return new a(this.conditionals,this.params)},a.prototype._toString=function(t){for(var e=t&&t.parenthesis?t.parenthesis:"keep",r=Ut.getPrecedence(this,e),n=this.params.map((function(n,o){var i=Ut.getPrecedence(n,e);return"all"===e||null!==i&&i<=r?"("+n.toString(t)+")":n.toString(t)})),o={equal:"==",unequal:"!=",smaller:"<",larger:">",smallerEq:"<=",largerEq:">="},i=n[0],a=0;a<this.conditionals.length;a++)i+=" "+o[this.conditionals[a]]+" "+n[a+1];return i},a.prototype.toJSON=function(){return{mathjs:"RelationalNode",conditionals:this.conditionals,params:this.params}},a.fromJSON=function(t){return new a(t.conditionals,t.params)},a.prototype.toHTML=function(t){for(var e=t&&t.parenthesis?t.parenthesis:"keep",r=Ut.getPrecedence(this,e),n=this.params.map((function(n,o){var i=Ut.getPrecedence(n,e);return"all"===e||null!==i&&i<=r?'<span class="math-parenthesis math-round-parenthesis">(</span>'+n.toHTML(t)+'<span class="math-parenthesis math-round-parenthesis">)</span>':n.toHTML(t)})),o={equal:"==",unequal:"!=",smaller:"<",larger:">",smallerEq:"<=",largerEq:">="},i=n[0],a=0;a<this.conditionals.length;a++)i+='<span class="math-operator math-binary-operator math-explicit-binary-operator">'+We(o[this.conditionals[a]])+"</span>"+n[a+1];return i},a.prototype._toTex=function(t){for(var e=t&&t.parenthesis?t.parenthesis:"keep",r=Ut.getPrecedence(this,e),n=this.params.map((function(n,o){var i=Ut.getPrecedence(n,e);return"all"===e||null!==i&&i<=r?"\\left("+n.toTex(t)+"\right)":n.toTex(t)})),o=n[0],i=0;i<this.conditionals.length;i++)o+=oe.operators[this.conditionals[i]]+n[i+1];return o},a}};function Ue(){return(Ue=Object.assign||function(t){for(var e=1;e<arguments.length;e++){var r=arguments[e];for(var n in r)Object.prototype.hasOwnProperty.call(r,n)&&(t[n]=r[n])}return t}).apply(this,arguments)}var $e={name:"parse",path:"expression",factory:function(t,e,r,n){var o=r(tt),i=r(Dt),a=r(Jt),s=r(Xt),u=r(Qt),c=r(Yt),p=r(se),f=r(he),h=r(ye),l=r(Ne),m=r(je),d=r(Te),y=r(Be),g=r(He),v=r(ze),w=r(Me);function b(e,r){if(1!==arguments.length&&2!==arguments.length)throw new J("parse",arguments.length,1,2);var n=r&&r.nodes?r.nodes:{};if("string"==typeof e)return q(e,n);if(Array.isArray(e)||e instanceof t.Matrix)return X(e,(function(t){if("string"!=typeof t)throw new TypeError("String expected");return q(t,n)}));throw new TypeError("String or matrix expected")}var x=0,N=1,E=2,S=3,O=4,A={",":!0,"(":!0,")":!0,"[":!0,"]":!0,"{":!0,"}":!0,'"':!0,"'":!0,";":!0,"+":!0,"-":!0,"*":!0,".*":!0,"/":!0,"./":!0,"%":!0,"^":!0,".^":!0,"~":!0,"!":!0,"&":!0,"|":!0,"^|":!0,"=":!0,":":!0,"?":!0,"==":!0,"!=":!0,"<":!0,">":!0,"<=":!0,">=":!0,"<<":!0,">>":!0,">>>":!0},j={mod:!0,to:!0,in:!0,and:!0,xor:!0,or:!0,not:!0},T={true:!0,false:!1,null:null,undefined:void 0},k=["NaN","Infinity"];function P(t,e){return t.expression.substr(t.index,e)}function C(t){return P(t,1)}function M(t){t.index++}function F(t){return t.expression.charAt(t.index-1)}function _(t){return t.expression.charAt(t.index+1)}function I(t){for(t.tokenType=x,t.token="",t.comment="";b.isWhitespace(C(t),t.nestingLevel);)M(t);if("#"===C(t))for(;"\n"!==C(t)&&""!==C(t);)t.comment+=C(t),M(t);if(""!==C(t)){if("\n"===C(t)&&!t.nestingLevel)return t.tokenType=N,t.token=C(t),void M(t);var e=C(t),r=P(t,2),n=P(t,3);if(3===n.length&&A[n])return t.tokenType=N,t.token=n,M(t),M(t),void M(t);if(2===r.length&&A[r])return t.tokenType=N,t.token=r,M(t),void M(t);if(A[e])return t.tokenType=N,t.token=e,void M(t);if(b.isDigitDot(e)){if(t.tokenType=E,"."===C(t))t.token+=C(t),M(t),b.isDigit(C(t))||(t.tokenType=N);else{for(;b.isDigit(C(t));)t.token+=C(t),M(t);b.isDecimalMark(C(t),_(t))&&(t.token+=C(t),M(t))}for(;b.isDigit(C(t));)t.token+=C(t),M(t);if("E"===C(t)||"e"===C(t))if(b.isDigit(_(t))||"-"===_(t)||"+"===_(t)){if(t.token+=C(t),M(t),"+"!==C(t)&&"-"!==C(t)||(t.token+=C(t),M(t)),!b.isDigit(C(t)))throw ct(t,'Digit expected, got "'+C(t)+'"');for(;b.isDigit(C(t));)t.token+=C(t),M(t);if(b.isDecimalMark(C(t),_(t)))throw ct(t,'Digit expected, got "'+C(t)+'"')}else if("."===_(t))throw M(t),ct(t,'Digit expected, got "'+C(t)+'"')}else{if(!b.isAlpha(C(t),F(t),_(t))){for(t.tokenType=O;""!==C(t);)t.token+=C(t),M(t);throw ct(t,'Syntax error in part "'+t.token+'"')}for(;b.isAlpha(C(t),F(t),_(t))||b.isDigit(C(t));)t.token+=C(t),M(t);j.hasOwnProperty(t.token)?t.tokenType=N:t.tokenType=S}}else t.tokenType=N}function D(t){do{I(t)}while("\n"===t.token)}function L(t){t.nestingLevel++}function R(t){t.nestingLevel--}function q(t,e){var r={extraNodes:{},expression:"",comment:"",index:0,token:"",tokenType:x,nestingLevel:0,conditionalLevel:null};Ue(r,{expression:t,extraNodes:e}),I(r);var n=function(t){var e,r,n=[];""!==t.token&&"\n"!==t.token&&";"!==t.token&&((e=B(t)).comment=t.comment);for(;"\n"===t.token||";"===t.token;)0===n.length&&e&&(r=";"!==t.token,n.push({node:e,visible:r})),I(t),"\n"!==t.token&&";"!==t.token&&""!==t.token&&((e=B(t)).comment=t.comment,r=";"!==t.token,n.push({node:e,visible:r}));return n.length>0?new u(n):(e||((e=new p(void 0)).comment=t.comment),e)}(r);if(""!==r.token)throw r.tokenType===N?pt(r,"Unexpected operator "+r.token):ct(r,'Unexpected part "'+r.token+'"');return n}function B(e){var r,n,o,i,a=function(t){var e=function(t){var e=H(t);for(;"or"===t.token;)D(t),e=new m("or","or",[e,H(t)]);return e}(t);for(;"?"===t.token;){var r=t.conditionalLevel;t.conditionalLevel=t.nestingLevel,D(t);var n=e,o=B(t);if(":"!==t.token)throw ct(t,"False part of conditional expression expected");t.conditionalLevel=null,D(t);var i=B(t);e=new c(n,o,i),t.conditionalLevel=r}return e}(e);if("="===e.token){if(t.isSymbolNode(a))return r=a.name,D(e),o=B(e),new s(new w(r),o);if(t.isAccessorNode(a))return D(e),o=B(e),new s(a.object,a.index,o);if(t.isFunctionNode(a)&&t.isSymbolNode(a.fn)&&(i=!0,n=[],r=a.name,a.args.forEach((function(e,r){t.isSymbolNode(e)?n[r]=e.name:i=!1})),i))return D(e),o=B(e),new f(r,n,o);throw ct(e,"Invalid left hand side of assignment operator =")}return a}function H(t){for(var e=W(t);"xor"===t.token;)D(t),e=new m("xor","xor",[e,W(t)]);return e}function W(t){for(var e=z(t);"and"===t.token;)D(t),e=new m("and","and",[e,z(t)]);return e}function z(t){for(var e=U(t);"|"===t.token;)D(t),e=new m("|","bitOr",[e,U(t)]);return e}function U(t){for(var e=$(t);"^|"===t.token;)D(t),e=new m("^|","bitXor",[e,$(t)]);return e}function $(t){for(var e=V(t);"&"===t.token;)D(t),e=new m("&","bitAnd",[e,V(t)]);return e}function V(t){for(var e=[Z(t)],r=[],n={"==":"equal","!=":"unequal","<":"smaller",">":"larger","<=":"smallerEq",">=":"largerEq"};n.hasOwnProperty(t.token);){var o={name:t.token,fn:n[t.token]};r.push(o),D(t),e.push(Z(t))}return 1===e.length?e[0]:2===e.length?new m(r[0].name,r[0].fn,e):new v(r.map((function(t){return t.fn})),e)}function Z(t){var e,r,n,o,i;for(e=G(t),r={"<<":"leftShift",">>":"rightArithShift",">>>":"rightLogShift"};r.hasOwnProperty(t.token);)o=r[n=t.token],D(t),i=[e,G(t)],e=new m(n,o,i);return e}function G(t){var e,r,n,o,i;for(e=K(t),r={to:"to",in:"to"};r.hasOwnProperty(t.token);)o=r[n=t.token],D(t),"in"===n&&""===t.token?e=new m("*","multiply",[e,new w("in")],!0):(i=[e,K(t)],e=new m(n,o,i));return e}function K(t){var e,r=[];if(e=":"===t.token?new p(1):Q(t),":"===t.token&&t.conditionalLevel!==t.nestingLevel){for(r.push(e);":"===t.token&&r.length<3;)D(t),")"===t.token||"]"===t.token||","===t.token||""===t.token?r.push(new w("end")):r.push(Q(t));e=3===r.length?new g(r[0],r[2],r[1]):new g(r[0],r[1])}return e}function Q(t){var e,r,n,o,i;for(e=Y(t),r={"+":"add","-":"subtract"};r.hasOwnProperty(t.token);)o=r[n=t.token],D(t),i=[e,Y(t)],e=new m(n,o,i);return e}function Y(t){var e,r,n,o,i;for(r=e=et(t),n={"*":"multiply",".*":"dotMultiply","/":"divide","./":"dotDivide","%":"mod",mod:"mod"};n.hasOwnProperty(t.token);)i=n[o=t.token],D(t),r=et(t),e=new m(o,i,[e,r]);return e}function et(e){var r,n;for(n=r=rt(e);e.tokenType===S||"in"===e.token&&t.isConstantNode(r)||!(e.tokenType!==E||t.isConstantNode(n)||t.isOperatorNode(n)&&"!"!==n.op)||"("===e.token;)n=rt(e),r=new m("*","multiply",[r,n],!0);return r}function rt(e){for(var r=nt(e),n=r,o=[];"/"===e.token&&t.isConstantNode(n);){if(o.push(Ue({},e)),D(e),e.tokenType!==E){Ue(e,o.pop());break}if(o.push(Ue({},e)),D(e),e.tokenType!==S&&"("!==e.token){o.pop(),Ue(e,o.pop());break}Ue(e,o.pop()),o.pop(),n=nt(e),r=new m("/","divide",[r,n])}return r}function nt(t){var r,n,i,s={"-":"unaryMinus","+":"unaryPlus","~":"bitNot",not:"not"};return s.hasOwnProperty(t.token)?(i=s[t.token],r=t.token,D(t),n=[nt(t)],new m(r,i,n)):function(t){var r,n,i,s;r=function(t){var r,n,i,s;r=function(t){var r=[];if(t.tokenType===S&&t.extraNodes.hasOwnProperty(t.token)){var n=t.extraNodes[t.token];if(I(t),"("===t.token){if(r=[],L(t),I(t),")"!==t.token)for(r.push(B(t));","===t.token;)I(t),r.push(B(t));if(")"!==t.token)throw ct(t,"Parenthesis ) expected");R(t),I(t)}return new n(r)}return function(t){var r,n;if(t.tokenType===S||t.tokenType===N&&t.token in j)return n=t.token,I(t),r=T.hasOwnProperty(n)?new p(T[n]):-1!==k.indexOf(n)?new p(o(n,"number")):new w(n),r=ot(t,r);return function(t){var r,n;if('"'===t.token)return n=it(t),r=new p(n),r=ot(t,r);return function(t){var r,n;if("'"===t.token)return n=at(t),r=new p(n),r=ot(t,r);return function(t){var r,n,i,s;if("["===t.token){if(L(t),I(t),"]"!==t.token){var u=st(t);if(";"===t.token){for(i=1,n=[u];";"===t.token;)I(t),n[i]=st(t),i++;if("]"!==t.token)throw ct(t,"End of matrix ] expected");R(t),I(t),s=n[0].items.length;for(var c=1;c<i;c++)if(n[c].items.length!==s)throw pt(t,"Column dimensions mismatch ("+n[c].items.length+" !== "+s+")");r=new a(n)}else{if("]"!==t.token)throw ct(t,"End of matrix ] expected");R(t),I(t),r=u}}else R(t),I(t),r=new a([]);return ot(t,r)}return function(t){if("{"===t.token){var r;L(t);var n={};do{if(I(t),"}"!==t.token){if('"'===t.token)r=it(t);else if("'"===t.token)r=at(t);else{if(t.tokenType!==S)throw ct(t,"Symbol or string expected as object key");r=t.token,I(t)}if(":"!==t.token)throw ct(t,"Colon : expected after object key");I(t),n[r]=B(t)}}while(","===t.token);if("}"!==t.token)throw ct(t,"Comma , or bracket } expected after object value");R(t),I(t);var i=new l(n);return i=ot(t,i)}return function(t){var r;if(t.tokenType===E)return r=t.token,I(t),new p(o(r,e.number));return function(t){var e;if("("===t.token){if(L(t),I(t),e=B(t),")"!==t.token)throw ct(t,"Parenthesis ) expected");return R(t),I(t),e=new d(e),e=ot(t,e)}return function(t){throw""===t.token?ct(t,"Unexpected end of expression"):ct(t,"Value expected")}(t)}(t)}(t)}(t)}(t)}(t)}(t)}(t)}(t),n={"!":"factorial","'":"ctranspose"};for(;n.hasOwnProperty(t.token);)i=t.token,s=n[i],I(t),r=new m(i,s,[r]),r=ot(t,r);return r}(t),("^"===t.token||".^"===t.token)&&(n=t.token,i="^"===n?"pow":"dotPow",D(t),s=[r,nt(t)],r=new m(n,i,s));return r}(t)}function ot(e,r,n){for(var o;!("("!==e.token&&"["!==e.token&&"."!==e.token||n&&-1===n.indexOf(e.token));)if(o=[],"("===e.token){if(!t.isSymbolNode(r)&&!t.isAccessorNode(r))return r;if(L(e),I(e),")"!==e.token)for(o.push(B(e));","===e.token;)I(e),o.push(B(e));if(")"!==e.token)throw ct(e,"Parenthesis ) expected");R(e),I(e),r=new y(r,o)}else if("["===e.token){if(L(e),I(e),"]"!==e.token)for(o.push(B(e));","===e.token;)I(e),o.push(B(e));if("]"!==e.token)throw ct(e,"Parenthesis ] expected");R(e),I(e),r=new i(r,new h(o))}else{if(I(e),e.tokenType!==S)throw ct(e,"Property name expected after dot");o.push(new p(e.token)),I(e);r=new i(r,new h(o,!0))}return r}function it(t){for(var e="";""!==C(t)&&'"'!==C(t);)"\\"===C(t)&&(e+=C(t),M(t)),e+=C(t),M(t);if(I(t),'"'!==t.token)throw ct(t,'End of string " expected');return I(t),JSON.parse('"'+e+'"')}function at(t){for(var e="";""!==C(t)&&"'"!==C(t);)"\\"===C(t)&&(e+=C(t),M(t)),e+=C(t),M(t);if(I(t),"'"!==t.token)throw ct(t,"End of string ' expected");return I(t),JSON.parse('"'+e+'"')}function st(t){for(var e=[B(t)],r=1;","===t.token;)I(t),e[r]=B(t),r++;return new a(e)}function ut(t){return t.index-t.token.length+1}function ct(t,e){var r=ut(t),n=new SyntaxError(e+" (char "+r+")");return n.char=r,n}function pt(t,e){var r=ut(t),n=new SyntaxError(e+" (char "+r+")");return n.char=r,n}return b.isAlpha=function(t,e,r){return b.isValidLatinOrGreek(t)||b.isValidMathSymbol(t,r)||b.isValidMathSymbol(e,t)},b.isValidLatinOrGreek=function(t){return/^[a-zA-Z_$\u00C0-\u02AF\u0370-\u03FF\u2100-\u214F]$/.test(t)},b.isValidMathSymbol=function(t,e){return/^[\uD835]$/.test(t)&&/^[\uDC00-\uDFFF]$/.test(e)&&/^[^\uDC55\uDC9D\uDCA0\uDCA1\uDCA3\uDCA4\uDCA7\uDCA8\uDCAD\uDCBA\uDCBC\uDCC4\uDD06\uDD0B\uDD0C\uDD15\uDD1D\uDD3A\uDD3F\uDD45\uDD47-\uDD49\uDD51\uDEA6\uDEA7\uDFCC\uDFCD]$/.test(e)},b.isWhitespace=function(t,e){return" "===t||"\t"===t||"\n"===t&&e>0},b.isDecimalMark=function(t,e){return"."===t&&"/"!==e&&"*"!==e&&"^"!==e},b.isDigitDot=function(t){return t>="0"&&t<="9"||"."===t},b.isDigit=function(t){return t>="0"&&t<="9"},b}};var Ve={name:"parse",factory:function(t,e,r,n){var o=r($e);return n("parse",{"string | Array | Matrix":o,"string | Array | Matrix, Object":o})}};var Xe={name:"compile",factory:function(t,e,r,n){var o=r($e);return n("compile",{string:function(t){return o(t).compile()},"Array | Matrix":function(t){return X(t,(function(t){return o(t).compile()}))}})}};var Ze={name:"eval",factory:function(t,e,r,n){var o=r($e);return n("compile",{string:function(t){return o(t).compile().eval({})},"string, Object":function(t,e){return o(t).compile().eval(e)},"Array | Matrix":function(t){var e={};return X(t,(function(t){return o(t).compile().eval(e)}))},"Array | Matrix, Object":function(t,e){return X(t,(function(t){return o(t).compile().eval(e)}))}})}};var Ge={name:"format",factory:function(t,e,r,n){var o=n("format",{any:vt.format,"any, Object | function | number":vt.format});return o.toTex=void 0,o}},Ke=V.create();Ke.import(Ve),Ke.import(Xe),Ke.import(Ze),Ke.import(Ge),Ke.import({add:function(t,e){return t+e},subtract:function(t,e){return t-e},multiply:function(t,e){return t*e},divide:function(t,e){return t/e},mod:function(t,e){return t%e},unaryPlus:function(t){return t},unaryMinus:function(t){return-t},bitOr:function(t,e){return t|e},bitXor:function(t,e){return t^e},bitAnd:function(t,e){return t&e},bitNot:function(t){return~t},leftShift:function(t,e){return t<<e},rightArithShift:function(t,e){return t>>e},rightLogShift:function(t,e){return t>>>e},or:function(t,e){return!(!t&&!e)},xor:function(t,e){return!!t!=!!e},and:function(t,e){return!(!t||!e)},not:function(t){return!t},equal:function(t,e){return t==e},unequal:function(t,e){return t!=e},smaller:function(t,e){return t<e},larger:function(t,e){return t>e},smallerEq:function(t,e){return t<=e},largerEq:function(t,e){return t>=e},matrix:function(){throw new Error("Matrices not supported")},index:function(){throw new Error("Matrix indexes not supported")},pi:Math.PI,e:Math.E,true:!0,false:!1,null:null});var Qe={};Object.getOwnPropertyNames(Math).forEach((function(t){Object.prototype.hasOwnProperty(t)||(Qe[t]=Math[t])})),Ke.import(Qe);var Ye=Ke;const tr=(()=>{const t=e=>{if(Array.isArray(e))return e.map(e=>t(e));if(e instanceof Object)if("dice"===e.type){let r=t(e.sides);r=Array.isArray(r)?r.join(""):r;let n=t(e.qty);switch(n=Ye.eval(Array.isArray(n)?n.join(""):n),e.modifiers=Object.assign({},...Object.keys(e.modifiers).map(r=>({[r]:t(e.modifiers[r])}))),e.subType){case"standard":return new f(e.notation,Ye.eval(r),n,e.modifiers);case"percentile":return new l(e.notation,n,e.modifiers);case"fudge":return new h(e.notation,Ye.eval(r),n,e.modifiers);default:throw Error("Parser: Dice type was not recognised")}}else{if("group"===e.type)return e.expressions=t(e.expressions),e.modifiers=Object.assign({},...Object.keys(e.modifiers).map(r=>({[r]:t(e.modifiers[r])}))),new N(e.notation,e.expressions,e.modifiers);if("modifier"===e.type)switch(e.subType){case"drop":return new v(e.notation,e.end,e.qty);case"explode":return e.comparePoint=t(e.comparePoint),new u(e.notation,e.comparePoint,e.compound,e.penetrate);case"keep":return new g(e.notation,e.end,e.qty);case"target":return e.successCP=t(e.successCP),e.failureCP=e.failureCP?t(e.failureCP):null,new b(e.notation,e.successCP,e.failureCP);case"re-roll":return e.comparePoint=t(e.comparePoint),new p(e.notation,e.once,e.comparePoint);case"critical-success":return e.comparePoint=t(e.comparePoint),new y(e.notation,e.comparePoint);case"critical-failure":return e.comparePoint=t(e.comparePoint),new d(e.notation,e.comparePoint);case"sort":return new w(e.notation,e.direction)}else if("compare-point"===e.type)return new i(e.operator,e.value)}return e};return class{static parse(r){if(!r)throw Error("Notation is required");if("string"!=typeof r)throw Error("Notation must be a string");const n=e(r);return t(n)}}})(),er=(()=>{const t=Symbol("calculateTotals"),e=Symbol("notation"),o=Symbol("parsed-notation"),i=Symbol("rolls"),a=Symbol("totals");class s{constructor(t){if(!t)throw new Error("Notation is required");if(this[o]=[],t instanceof Object&&!Array.isArray(t)){if(!t.notation)throw new Error("Notation is required");if("string"!=typeof t.notation)throw new Error("Notation is not valid: "+t.notation);if(t.rolls){if(!Array.isArray(t.rolls))throw new Error("Rolls must be an Array: "+t.rolls);this[i]=t.rolls.map(t=>t instanceof c?t:Array.isArray(t)?new c(t):t instanceof Object&&Array.isArray(t.rolls)?new c(t.rolls):void 0)}this[e]=t.notation,this[o]=tr.parse(this.notation),this[i]&&this[i].length||(this[i]=[],this.roll())}else{if("string"!=typeof t)throw new Error("Notation is not valid: "+t);this[e]=t,this[i]=[],this[o]=tr.parse(this.notation),this.roll()}}static import(t){if(t){if(r.isJson(t))return s.import(JSON.parse(t));if(r.isBase64(t))return s.import(atob(t));if("object"==typeof t)return t instanceof s?t:new s(t);throw new Error("Unrecognised import format for data: "+t)}throw new Error("No data to import")}get notation(){return this[e]||""}get output(){let t=0,e=this.notation+": ";return this.hasRolls()?(e+=this[o].map(e=>{if(e instanceof f){const e=this.rolls[t]||null;return t++,e}return e}).filter(Boolean).join(""),e+=" = "+this.total):e+="No dice rolled",e}get rolls(){return this[i]||[]}get total(){return!this[a]&&this.hasRolls()&&(this[a]=this[t]()),this[a]||0}export(t=n.JSON){switch(t){case n.BASE_64:return btoa(this.export(n.JSON));case n.JSON:return JSON.stringify(this);case n.OBJECT:return JSON.parse(this.export(n.JSON));default:throw new Error("Unrecognised export format: "+t)}}hasRolls(){return!!(this[o]&&Array.isArray(this.rolls)&&this.rolls.length)}roll(){return this[i]=[],this[a]=0,this[i]=this[o].map(t=>{if(t instanceof f||t instanceof N)return t.roll()}).filter(Boolean),this[i]}toJSON(){const{notation:t,output:e,rolls:r,total:n}=this;return{notation:t,output:e,rolls:r,total:n,type:"dice-roll"}}toString(){return this.output}[t](){let t="",e=0;return this.hasRolls()&&this[o].forEach(r=>{r instanceof f?(t+=this.rolls[e]?this.rolls[e].value:0,e++):t+=r}),t?r.toFixed(Ye.eval(t),2):0}}return s})(),rr=(()=>{const t=Symbol("log");class e{constructor(e){if(this[t]=[],e)if(Array.isArray(e.log))e.log.forEach(e=>{this[t].push(er.import(e))});else if(e.log)throw new Error("DiceRoller: Roll log must be an Array")}get log(){return this[t]||[]}get output(){return this.log.join("; ")}get total(){return this.log.reduce((t,e)=>t+e.total,0)}static import(t){const r=new e;return r.import(t),r}clearLog(){this[t].length=0}export(t){switch(t||n.JSON){case n.BASE_64:return btoa(this.export(n.JSON));case n.JSON:return JSON.stringify(this);case n.OBJECT:return JSON.parse(this.export(n.JSON));default:throw new Error("Unrecognised export format: "+t)}}import(e){if(e){if(r.isJson(e))return this.import(JSON.parse(e));if(r.isBase64(e))return this.import(atob(e));if("object"==typeof e){if(!e.log&&Array.isArray(e)&&e.length&&(e={log:e}),e.log&&Array.isArray(e.log))e.log.forEach(e=>{this[t].push(er.import(e))});else if(e.log)throw new Error("Roll log must be an Array");return this.log}throw new Error("Unrecognised import format for data: "+e)}throw new Error("No data to import")}toJSON(){const{log:t,output:e,total:r}=this;return{log:t,output:e,total:r,type:"dice-roller"}}toString(){return this.output}roll(...e){if(!e||!e.length)throw new Error("No notations specified");const r=e.filter(Boolean);if(!r.length)throw new Error("No notations specified");const n=r.map(e=>{let r=new er(e);return this[t].push(r),r});return n.length>1?n:n[0]}}return e})();export{m as Dice,er as DiceRoll,rr as DiceRoller,x as Modifiers,tr as Parser,r as diceUtils,n as exportFormats};
+/*
+ * Generated by PEG.js 0.10.0.
+ *
+ * http://pegjs.org/
+ */
+function peg$subclass(child, parent) {
+    function ctor() { this.constructor = child; }
+    ctor.prototype = parent.prototype;
+    child.prototype = new ctor();
+}
+function peg$SyntaxError(message, expected, found, location) {
+    this.message = message;
+    this.expected = expected;
+    this.found = found;
+    this.location = location;
+    this.name = "SyntaxError";
+    if (typeof Error.captureStackTrace === "function") {
+        Error.captureStackTrace(this, peg$SyntaxError);
+    }
+}
+peg$subclass(peg$SyntaxError, Error);
+peg$SyntaxError.buildMessage = function (expected, found) {
+    var DESCRIBE_EXPECTATION_FNS = {
+        literal: function (expectation) {
+            return "\"" + literalEscape(expectation.text) + "\"";
+        },
+        "class": function (expectation) {
+            var escapedParts = "", i;
+            for (i = 0; i < expectation.parts.length; i++) {
+                escapedParts += expectation.parts[i] instanceof Array
+                    ? classEscape(expectation.parts[i][0]) + "-" + classEscape(expectation.parts[i][1])
+                    : classEscape(expectation.parts[i]);
+            }
+            return "[" + (expectation.inverted ? "^" : "") + escapedParts + "]";
+        },
+        any: function (expectation) {
+            return "any character";
+        },
+        end: function (expectation) {
+            return "end of input";
+        },
+        other: function (expectation) {
+            return expectation.description;
+        }
+    };
+    function hex(ch) {
+        return ch.charCodeAt(0).toString(16).toUpperCase();
+    }
+    function literalEscape(s) {
+        return s
+            .replace(/\\/g, '\\\\')
+            .replace(/"/g, '\\"')
+            .replace(/\0/g, '\\0')
+            .replace(/\t/g, '\\t')
+            .replace(/\n/g, '\\n')
+            .replace(/\r/g, '\\r')
+            .replace(/[\x00-\x0F]/g, function (ch) { return '\\x0' + hex(ch); })
+            .replace(/[\x10-\x1F\x7F-\x9F]/g, function (ch) { return '\\x' + hex(ch); });
+    }
+    function classEscape(s) {
+        return s
+            .replace(/\\/g, '\\\\')
+            .replace(/\]/g, '\\]')
+            .replace(/\^/g, '\\^')
+            .replace(/-/g, '\\-')
+            .replace(/\0/g, '\\0')
+            .replace(/\t/g, '\\t')
+            .replace(/\n/g, '\\n')
+            .replace(/\r/g, '\\r')
+            .replace(/[\x00-\x0F]/g, function (ch) { return '\\x0' + hex(ch); })
+            .replace(/[\x10-\x1F\x7F-\x9F]/g, function (ch) { return '\\x' + hex(ch); });
+    }
+    function describeExpectation(expectation) {
+        return DESCRIBE_EXPECTATION_FNS[expectation.type](expectation);
+    }
+    function describeExpected(expected) {
+        var descriptions = new Array(expected.length), i, j;
+        for (i = 0; i < expected.length; i++) {
+            descriptions[i] = describeExpectation(expected[i]);
+        }
+        descriptions.sort();
+        if (descriptions.length > 0) {
+            for (i = 1, j = 1; i < descriptions.length; i++) {
+                if (descriptions[i - 1] !== descriptions[i]) {
+                    descriptions[j] = descriptions[i];
+                    j++;
+                }
+            }
+            descriptions.length = j;
+        }
+        switch (descriptions.length) {
+            case 1:
+                return descriptions[0];
+            case 2:
+                return descriptions[0] + " or " + descriptions[1];
+            default:
+                return descriptions.slice(0, -1).join(", ")
+                    + ", or "
+                    + descriptions[descriptions.length - 1];
+        }
+    }
+    function describeFound(found) {
+        return found ? "\"" + literalEscape(found) + "\"" : "end of input";
+    }
+    return "Expected " + describeExpected(expected) + " but " + describeFound(found) + " found.";
+};
+function peg$parse(input, options) {
+    options = options !== void 0 ? options : {};
+    var peg$FAILED = {}, peg$startRuleFunctions = { Main: peg$parseMain }, peg$startRuleFunction = peg$parseMain, peg$c0 = "{", peg$c1 = peg$literalExpectation("{", false), peg$c2 = ",", peg$c3 = peg$literalExpectation(",", false), peg$c4 = "}", peg$c5 = peg$literalExpectation("}", false), peg$c6 = function (expr, exprs, modifiers) {
+        return {
+            type: 'group',
+            notation: text(),
+            expressions: [
+                expr,
+                ...exprs.map(v => v[3])
+            ],
+            modifiers: Object.assign({}, ...modifiers.map(item => {
+                return { [item.subType]: item };
+            })),
+        };
+    }, peg$c7 = function (die, modifiers) {
+        return Object.assign(die, {
+            modifiers: Object.assign({}, ...modifiers.map(item => {
+                return { [item.subType]: item };
+            })),
+        });
+    }, peg$c8 = function (die) { return Object.assign(die, { notation: text() }); }, peg$c9 = "d", peg$c10 = peg$literalExpectation("d", false), peg$c11 = function (qty, d, sides) {
+        return {
+            type: 'dice',
+            subType: 'standard',
+            qty: qty || 1,
+            d,
+            sides,
+        };
+    }, peg$c12 = "%", peg$c13 = peg$literalExpectation("%", false), peg$c14 = function (qty, d, sides) {
+        return {
+            type: 'dice',
+            subType: 'percentile',
+            qty: qty || 1,
+            d,
+            sides: 100,
+        };
+    }, peg$c15 = "dF", peg$c16 = peg$literalExpectation("dF", false), peg$c17 = ".", peg$c18 = peg$literalExpectation(".", false), peg$c19 = /^[12]/, peg$c20 = peg$classExpectation(["1", "2"], false, false), peg$c21 = function (qty, d, sides) {
+        return {
+            type: 'dice',
+            subType: 'fudge',
+            qty: qty || 1,
+            d,
+            sides: sides ? parseInt(sides[1], 10) : 2,
+        };
+    }, peg$c22 = function (modifier) { return Object.assign(modifier, { notation: text() }); }, peg$c23 = "!", peg$c24 = peg$literalExpectation("!", false), peg$c25 = "p", peg$c26 = peg$literalExpectation("p", false), peg$c27 = function (compound, penetrate, comparePoint) {
+        return {
+            type: 'modifier',
+            subType: 'explode',
+            penetrate: !!penetrate,
+            compound: !!compound,
+            comparePoint,
+        };
+    }, peg$c28 = function (successCP, failureCP) {
+        return {
+            type: 'modifier',
+            subType: 'target',
+            successCP,
+            failureCP,
+        };
+    }, peg$c29 = /^[lh]/, peg$c30 = peg$classExpectation(["l", "h"], false, false), peg$c31 = function (end, qty) {
+        return {
+            type: 'modifier',
+            subType: 'drop',
+            end: end || 'l',
+            qty,
+        };
+    }, peg$c32 = "k", peg$c33 = peg$literalExpectation("k", false), peg$c34 = function (end, qty) {
+        return {
+            type: 'modifier',
+            subType: 'keep',
+            end: end || 'h',
+            qty,
+        };
+    }, peg$c35 = "r", peg$c36 = peg$literalExpectation("r", false), peg$c37 = "o", peg$c38 = peg$literalExpectation("o", false), peg$c39 = function (once, comparePoint) {
+        return {
+            type: 'modifier',
+            subType: 're-roll',
+            once: !!once,
+            comparePoint,
+        };
+    }, peg$c40 = "cs", peg$c41 = peg$literalExpectation("cs", false), peg$c42 = function (comparePoint) {
+        return {
+            type: 'modifier',
+            subType: 'critical-success',
+            comparePoint,
+        };
+    }, peg$c43 = "cf", peg$c44 = peg$literalExpectation("cf", false), peg$c45 = function (comparePoint) {
+        return {
+            type: 'modifier',
+            subType: 'critical-failure',
+            comparePoint,
+        };
+    }, peg$c46 = "s", peg$c47 = peg$literalExpectation("s", false), peg$c48 = "a", peg$c49 = peg$literalExpectation("a", false), peg$c50 = function (dir) {
+        return {
+            type: 'modifier',
+            subType: 'sort',
+            direction: dir || 'a',
+        };
+    }, peg$c51 = "f", peg$c52 = peg$literalExpectation("f", false), peg$c53 = function (comparePoint) { return comparePoint; }, peg$c54 = function (operator, value) {
+        return {
+            type: 'compare-point',
+            operator,
+            value,
+        };
+    }, peg$c55 = "!=", peg$c56 = peg$literalExpectation("!=", false), peg$c57 = "<=", peg$c58 = peg$literalExpectation("<=", false), peg$c59 = ">=", peg$c60 = peg$literalExpectation(">=", false), peg$c61 = "=", peg$c62 = peg$literalExpectation("=", false), peg$c63 = ">", peg$c64 = peg$literalExpectation(">", false), peg$c65 = "<", peg$c66 = peg$literalExpectation("<", false), peg$c67 = "(", peg$c68 = peg$literalExpectation("(", false), peg$c69 = ")", peg$c70 = peg$literalExpectation(")", false), peg$c71 = function (l, expr, r) { return [l, ...expr, r]; }, peg$c72 = function (head, tail) {
+        head = Array.isArray(head) ? head : [head];
+        return [
+            ...head,
+            ...tail
+                .map(([, value, , factor]) => {
+                return [
+                    value,
+                    factor
+                ];
+            }).flat(2)
+        ];
+    }, peg$c73 = "abs", peg$c74 = peg$literalExpectation("abs", false), peg$c75 = "ceil", peg$c76 = peg$literalExpectation("ceil", false), peg$c77 = "cos", peg$c78 = peg$literalExpectation("cos", false), peg$c79 = "exp", peg$c80 = peg$literalExpectation("exp", false), peg$c81 = "floor", peg$c82 = peg$literalExpectation("floor", false), peg$c83 = "log", peg$c84 = peg$literalExpectation("log", false), peg$c85 = "round", peg$c86 = peg$literalExpectation("round", false), peg$c87 = "sign", peg$c88 = peg$literalExpectation("sign", false), peg$c89 = "sin", peg$c90 = peg$literalExpectation("sin", false), peg$c91 = "sqrt", peg$c92 = peg$literalExpectation("sqrt", false), peg$c93 = "tan", peg$c94 = peg$literalExpectation("tan", false), peg$c95 = function (func, expr) {
+        return [
+            `${func}(`,
+            ...expr,
+            ')',
+        ];
+    }, peg$c96 = "pow", peg$c97 = peg$literalExpectation("pow", false), peg$c98 = function (func, expr1, expr2) {
+        return [
+            `${func}(`,
+            ...expr1,
+            ',',
+            ...expr2,
+            ')',
+        ];
+    }, peg$c99 = "-", peg$c100 = peg$literalExpectation("-", false), peg$c101 = /^[.]/, peg$c102 = peg$classExpectation(["."], false, false), peg$c103 = function () { return parseFloat(text()); }, peg$c104 = /^[1-9]/, peg$c105 = peg$classExpectation([["1", "9"]], false, false), peg$c106 = /^[0-9]/, peg$c107 = peg$classExpectation([["0", "9"]], false, false), peg$c108 = function () { return parseInt(text(), 10); }, peg$c109 = "**", peg$c110 = peg$literalExpectation("**", false), peg$c111 = function () { return "^"; }, peg$c112 = "*", peg$c113 = peg$literalExpectation("*", false), peg$c114 = "^", peg$c115 = peg$literalExpectation("^", false), peg$c116 = "/", peg$c117 = peg$literalExpectation("/", false), peg$c118 = "+", peg$c119 = peg$literalExpectation("+", false), peg$c120 = peg$otherExpectation("whitespace"), peg$c121 = /^[ \t\n\r]/, peg$c122 = peg$classExpectation([" ", "\t", "\n", "\r"], false, false), peg$currPos = 0, peg$savedPos = 0, peg$posDetailsCache = [{ line: 1, column: 1 }], peg$maxFailPos = 0, peg$maxFailExpected = [], peg$silentFails = 0, peg$result;
+    if ("startRule" in options) {
+        if (!(options.startRule in peg$startRuleFunctions)) {
+            throw new Error("Can't start parsing from rule \"" + options.startRule + "\".");
+        }
+        peg$startRuleFunction = peg$startRuleFunctions[options.startRule];
+    }
+    function text() {
+        return input.substring(peg$savedPos, peg$currPos);
+    }
+    function peg$literalExpectation(text, ignoreCase) {
+        return { type: "literal", text: text, ignoreCase: ignoreCase };
+    }
+    function peg$classExpectation(parts, inverted, ignoreCase) {
+        return { type: "class", parts: parts, inverted: inverted, ignoreCase: ignoreCase };
+    }
+    function peg$endExpectation() {
+        return { type: "end" };
+    }
+    function peg$otherExpectation(description) {
+        return { type: "other", description: description };
+    }
+    function peg$computePosDetails(pos) {
+        var details = peg$posDetailsCache[pos], p;
+        if (details) {
+            return details;
+        }
+        else {
+            p = pos - 1;
+            while (!peg$posDetailsCache[p]) {
+                p--;
+            }
+            details = peg$posDetailsCache[p];
+            details = {
+                line: details.line,
+                column: details.column
+            };
+            while (p < pos) {
+                if (input.charCodeAt(p) === 10) {
+                    details.line++;
+                    details.column = 1;
+                }
+                else {
+                    details.column++;
+                }
+                p++;
+            }
+            peg$posDetailsCache[pos] = details;
+            return details;
+        }
+    }
+    function peg$computeLocation(startPos, endPos) {
+        var startPosDetails = peg$computePosDetails(startPos), endPosDetails = peg$computePosDetails(endPos);
+        return {
+            start: {
+                offset: startPos,
+                line: startPosDetails.line,
+                column: startPosDetails.column
+            },
+            end: {
+                offset: endPos,
+                line: endPosDetails.line,
+                column: endPosDetails.column
+            }
+        };
+    }
+    function peg$fail(expected) {
+        if (peg$currPos < peg$maxFailPos) {
+            return;
+        }
+        if (peg$currPos > peg$maxFailPos) {
+            peg$maxFailPos = peg$currPos;
+            peg$maxFailExpected = [];
+        }
+        peg$maxFailExpected.push(expected);
+    }
+    function peg$buildStructuredError(expected, found, location) {
+        return new peg$SyntaxError(peg$SyntaxError.buildMessage(expected, found), expected, found, location);
+    }
+    function peg$parseMain() {
+        var s0;
+        s0 = peg$parseExpression();
+        return s0;
+    }
+    function peg$parseDiceGroup() {
+        var s0, s1, s2, s3, s4, s5, s6, s7, s8, s9;
+        s0 = peg$currPos;
+        if (input.charCodeAt(peg$currPos) === 123) {
+            s1 = peg$c0;
+            peg$currPos++;
+        }
+        else {
+            s1 = peg$FAILED;
+            if (peg$silentFails === 0) {
+                peg$fail(peg$c1);
+            }
+        }
+        if (s1 !== peg$FAILED) {
+            s2 = peg$parse_();
+            if (s2 !== peg$FAILED) {
+                s3 = peg$parseExpression();
+                if (s3 !== peg$FAILED) {
+                    s4 = [];
+                    s5 = peg$currPos;
+                    s6 = peg$parse_();
+                    if (s6 !== peg$FAILED) {
+                        if (input.charCodeAt(peg$currPos) === 44) {
+                            s7 = peg$c2;
+                            peg$currPos++;
+                        }
+                        else {
+                            s7 = peg$FAILED;
+                            if (peg$silentFails === 0) {
+                                peg$fail(peg$c3);
+                            }
+                        }
+                        if (s7 !== peg$FAILED) {
+                            s8 = peg$parse_();
+                            if (s8 !== peg$FAILED) {
+                                s9 = peg$parseExpression();
+                                if (s9 !== peg$FAILED) {
+                                    s6 = [s6, s7, s8, s9];
+                                    s5 = s6;
+                                }
+                                else {
+                                    peg$currPos = s5;
+                                    s5 = peg$FAILED;
+                                }
+                            }
+                            else {
+                                peg$currPos = s5;
+                                s5 = peg$FAILED;
+                            }
+                        }
+                        else {
+                            peg$currPos = s5;
+                            s5 = peg$FAILED;
+                        }
+                    }
+                    else {
+                        peg$currPos = s5;
+                        s5 = peg$FAILED;
+                    }
+                    while (s5 !== peg$FAILED) {
+                        s4.push(s5);
+                        s5 = peg$currPos;
+                        s6 = peg$parse_();
+                        if (s6 !== peg$FAILED) {
+                            if (input.charCodeAt(peg$currPos) === 44) {
+                                s7 = peg$c2;
+                                peg$currPos++;
+                            }
+                            else {
+                                s7 = peg$FAILED;
+                                if (peg$silentFails === 0) {
+                                    peg$fail(peg$c3);
+                                }
+                            }
+                            if (s7 !== peg$FAILED) {
+                                s8 = peg$parse_();
+                                if (s8 !== peg$FAILED) {
+                                    s9 = peg$parseExpression();
+                                    if (s9 !== peg$FAILED) {
+                                        s6 = [s6, s7, s8, s9];
+                                        s5 = s6;
+                                    }
+                                    else {
+                                        peg$currPos = s5;
+                                        s5 = peg$FAILED;
+                                    }
+                                }
+                                else {
+                                    peg$currPos = s5;
+                                    s5 = peg$FAILED;
+                                }
+                            }
+                            else {
+                                peg$currPos = s5;
+                                s5 = peg$FAILED;
+                            }
+                        }
+                        else {
+                            peg$currPos = s5;
+                            s5 = peg$FAILED;
+                        }
+                    }
+                    if (s4 !== peg$FAILED) {
+                        s5 = peg$parse_();
+                        if (s5 !== peg$FAILED) {
+                            if (input.charCodeAt(peg$currPos) === 125) {
+                                s6 = peg$c4;
+                                peg$currPos++;
+                            }
+                            else {
+                                s6 = peg$FAILED;
+                                if (peg$silentFails === 0) {
+                                    peg$fail(peg$c5);
+                                }
+                            }
+                            if (s6 !== peg$FAILED) {
+                                s7 = [];
+                                s8 = peg$parseModifier();
+                                while (s8 !== peg$FAILED) {
+                                    s7.push(s8);
+                                    s8 = peg$parseModifier();
+                                }
+                                if (s7 !== peg$FAILED) {
+                                    peg$savedPos = s0;
+                                    s1 = peg$c6(s3, s4, s7);
+                                    s0 = s1;
+                                }
+                                else {
+                                    peg$currPos = s0;
+                                    s0 = peg$FAILED;
+                                }
+                            }
+                            else {
+                                peg$currPos = s0;
+                                s0 = peg$FAILED;
+                            }
+                        }
+                        else {
+                            peg$currPos = s0;
+                            s0 = peg$FAILED;
+                        }
+                    }
+                    else {
+                        peg$currPos = s0;
+                        s0 = peg$FAILED;
+                    }
+                }
+                else {
+                    peg$currPos = s0;
+                    s0 = peg$FAILED;
+                }
+            }
+            else {
+                peg$currPos = s0;
+                s0 = peg$FAILED;
+            }
+        }
+        else {
+            peg$currPos = s0;
+            s0 = peg$FAILED;
+        }
+        return s0;
+    }
+    function peg$parseDice() {
+        var s0, s1, s2, s3;
+        s0 = peg$currPos;
+        s1 = peg$parseDie();
+        if (s1 !== peg$FAILED) {
+            s2 = [];
+            s3 = peg$parseModifier();
+            while (s3 !== peg$FAILED) {
+                s2.push(s3);
+                s3 = peg$parseModifier();
+            }
+            if (s2 !== peg$FAILED) {
+                peg$savedPos = s0;
+                s1 = peg$c7(s1, s2);
+                s0 = s1;
+            }
+            else {
+                peg$currPos = s0;
+                s0 = peg$FAILED;
+            }
+        }
+        else {
+            peg$currPos = s0;
+            s0 = peg$FAILED;
+        }
+        return s0;
+    }
+    function peg$parseDie() {
+        var s0, s1;
+        s0 = peg$currPos;
+        s1 = peg$parseStandardDie();
+        if (s1 === peg$FAILED) {
+            s1 = peg$parsePercentileDie();
+            if (s1 === peg$FAILED) {
+                s1 = peg$parseFudgeDie();
+            }
+        }
+        if (s1 !== peg$FAILED) {
+            peg$savedPos = s0;
+            s1 = peg$c8(s1);
+        }
+        s0 = s1;
+        return s0;
+    }
+    function peg$parseStandardDie() {
+        var s0, s1, s2, s3;
+        s0 = peg$currPos;
+        s1 = peg$parseIntegerOrExpression();
+        if (s1 === peg$FAILED) {
+            s1 = null;
+        }
+        if (s1 !== peg$FAILED) {
+            if (input.charCodeAt(peg$currPos) === 100) {
+                s2 = peg$c9;
+                peg$currPos++;
+            }
+            else {
+                s2 = peg$FAILED;
+                if (peg$silentFails === 0) {
+                    peg$fail(peg$c10);
+                }
+            }
+            if (s2 !== peg$FAILED) {
+                s3 = peg$parseIntegerOrExpression();
+                if (s3 !== peg$FAILED) {
+                    peg$savedPos = s0;
+                    s1 = peg$c11(s1, s2, s3);
+                    s0 = s1;
+                }
+                else {
+                    peg$currPos = s0;
+                    s0 = peg$FAILED;
+                }
+            }
+            else {
+                peg$currPos = s0;
+                s0 = peg$FAILED;
+            }
+        }
+        else {
+            peg$currPos = s0;
+            s0 = peg$FAILED;
+        }
+        return s0;
+    }
+    function peg$parsePercentileDie() {
+        var s0, s1, s2, s3;
+        s0 = peg$currPos;
+        s1 = peg$parseIntegerOrExpression();
+        if (s1 === peg$FAILED) {
+            s1 = null;
+        }
+        if (s1 !== peg$FAILED) {
+            if (input.charCodeAt(peg$currPos) === 100) {
+                s2 = peg$c9;
+                peg$currPos++;
+            }
+            else {
+                s2 = peg$FAILED;
+                if (peg$silentFails === 0) {
+                    peg$fail(peg$c10);
+                }
+            }
+            if (s2 !== peg$FAILED) {
+                if (input.charCodeAt(peg$currPos) === 37) {
+                    s3 = peg$c12;
+                    peg$currPos++;
+                }
+                else {
+                    s3 = peg$FAILED;
+                    if (peg$silentFails === 0) {
+                        peg$fail(peg$c13);
+                    }
+                }
+                if (s3 !== peg$FAILED) {
+                    peg$savedPos = s0;
+                    s1 = peg$c14(s1, s2);
+                    s0 = s1;
+                }
+                else {
+                    peg$currPos = s0;
+                    s0 = peg$FAILED;
+                }
+            }
+            else {
+                peg$currPos = s0;
+                s0 = peg$FAILED;
+            }
+        }
+        else {
+            peg$currPos = s0;
+            s0 = peg$FAILED;
+        }
+        return s0;
+    }
+    function peg$parseFudgeDie() {
+        var s0, s1, s2, s3, s4, s5;
+        s0 = peg$currPos;
+        s1 = peg$parseIntegerOrExpression();
+        if (s1 === peg$FAILED) {
+            s1 = null;
+        }
+        if (s1 !== peg$FAILED) {
+            if (input.substr(peg$currPos, 2) === peg$c15) {
+                s2 = peg$c15;
+                peg$currPos += 2;
+            }
+            else {
+                s2 = peg$FAILED;
+                if (peg$silentFails === 0) {
+                    peg$fail(peg$c16);
+                }
+            }
+            if (s2 !== peg$FAILED) {
+                s3 = peg$currPos;
+                if (input.charCodeAt(peg$currPos) === 46) {
+                    s4 = peg$c17;
+                    peg$currPos++;
+                }
+                else {
+                    s4 = peg$FAILED;
+                    if (peg$silentFails === 0) {
+                        peg$fail(peg$c18);
+                    }
+                }
+                if (s4 !== peg$FAILED) {
+                    if (peg$c19.test(input.charAt(peg$currPos))) {
+                        s5 = input.charAt(peg$currPos);
+                        peg$currPos++;
+                    }
+                    else {
+                        s5 = peg$FAILED;
+                        if (peg$silentFails === 0) {
+                            peg$fail(peg$c20);
+                        }
+                    }
+                    if (s5 !== peg$FAILED) {
+                        s4 = [s4, s5];
+                        s3 = s4;
+                    }
+                    else {
+                        peg$currPos = s3;
+                        s3 = peg$FAILED;
+                    }
+                }
+                else {
+                    peg$currPos = s3;
+                    s3 = peg$FAILED;
+                }
+                if (s3 === peg$FAILED) {
+                    s3 = null;
+                }
+                if (s3 !== peg$FAILED) {
+                    peg$savedPos = s0;
+                    s1 = peg$c21(s1, s2, s3);
+                    s0 = s1;
+                }
+                else {
+                    peg$currPos = s0;
+                    s0 = peg$FAILED;
+                }
+            }
+            else {
+                peg$currPos = s0;
+                s0 = peg$FAILED;
+            }
+        }
+        else {
+            peg$currPos = s0;
+            s0 = peg$FAILED;
+        }
+        return s0;
+    }
+    function peg$parseModifier() {
+        var s0, s1;
+        s0 = peg$currPos;
+        s1 = peg$parseExplodeModifier();
+        if (s1 === peg$FAILED) {
+            s1 = peg$parseTargetModifier();
+            if (s1 === peg$FAILED) {
+                s1 = peg$parseDropModifier();
+                if (s1 === peg$FAILED) {
+                    s1 = peg$parseKeepModifier();
+                    if (s1 === peg$FAILED) {
+                        s1 = peg$parseRerollModifier();
+                        if (s1 === peg$FAILED) {
+                            s1 = peg$parseCriticalSuccessModifier();
+                            if (s1 === peg$FAILED) {
+                                s1 = peg$parseCriticalFailModifier();
+                                if (s1 === peg$FAILED) {
+                                    s1 = peg$parseSortingModifier();
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        if (s1 !== peg$FAILED) {
+            peg$savedPos = s0;
+            s1 = peg$c22(s1);
+        }
+        s0 = s1;
+        return s0;
+    }
+    function peg$parseExplodeModifier() {
+        var s0, s1, s2, s3, s4;
+        s0 = peg$currPos;
+        if (input.charCodeAt(peg$currPos) === 33) {
+            s1 = peg$c23;
+            peg$currPos++;
+        }
+        else {
+            s1 = peg$FAILED;
+            if (peg$silentFails === 0) {
+                peg$fail(peg$c24);
+            }
+        }
+        if (s1 !== peg$FAILED) {
+            if (input.charCodeAt(peg$currPos) === 33) {
+                s2 = peg$c23;
+                peg$currPos++;
+            }
+            else {
+                s2 = peg$FAILED;
+                if (peg$silentFails === 0) {
+                    peg$fail(peg$c24);
+                }
+            }
+            if (s2 === peg$FAILED) {
+                s2 = null;
+            }
+            if (s2 !== peg$FAILED) {
+                if (input.charCodeAt(peg$currPos) === 112) {
+                    s3 = peg$c25;
+                    peg$currPos++;
+                }
+                else {
+                    s3 = peg$FAILED;
+                    if (peg$silentFails === 0) {
+                        peg$fail(peg$c26);
+                    }
+                }
+                if (s3 === peg$FAILED) {
+                    s3 = null;
+                }
+                if (s3 !== peg$FAILED) {
+                    s4 = peg$parseComparePoint();
+                    if (s4 === peg$FAILED) {
+                        s4 = null;
+                    }
+                    if (s4 !== peg$FAILED) {
+                        peg$savedPos = s0;
+                        s1 = peg$c27(s2, s3, s4);
+                        s0 = s1;
+                    }
+                    else {
+                        peg$currPos = s0;
+                        s0 = peg$FAILED;
+                    }
+                }
+                else {
+                    peg$currPos = s0;
+                    s0 = peg$FAILED;
+                }
+            }
+            else {
+                peg$currPos = s0;
+                s0 = peg$FAILED;
+            }
+        }
+        else {
+            peg$currPos = s0;
+            s0 = peg$FAILED;
+        }
+        return s0;
+    }
+    function peg$parseTargetModifier() {
+        var s0, s1, s2;
+        s0 = peg$currPos;
+        s1 = peg$parseComparePoint();
+        if (s1 !== peg$FAILED) {
+            s2 = peg$parseFailComparePoint();
+            if (s2 === peg$FAILED) {
+                s2 = null;
+            }
+            if (s2 !== peg$FAILED) {
+                peg$savedPos = s0;
+                s1 = peg$c28(s1, s2);
+                s0 = s1;
+            }
+            else {
+                peg$currPos = s0;
+                s0 = peg$FAILED;
+            }
+        }
+        else {
+            peg$currPos = s0;
+            s0 = peg$FAILED;
+        }
+        return s0;
+    }
+    function peg$parseDropModifier() {
+        var s0, s1, s2, s3;
+        s0 = peg$currPos;
+        if (input.charCodeAt(peg$currPos) === 100) {
+            s1 = peg$c9;
+            peg$currPos++;
+        }
+        else {
+            s1 = peg$FAILED;
+            if (peg$silentFails === 0) {
+                peg$fail(peg$c10);
+            }
+        }
+        if (s1 !== peg$FAILED) {
+            if (peg$c29.test(input.charAt(peg$currPos))) {
+                s2 = input.charAt(peg$currPos);
+                peg$currPos++;
+            }
+            else {
+                s2 = peg$FAILED;
+                if (peg$silentFails === 0) {
+                    peg$fail(peg$c30);
+                }
+            }
+            if (s2 === peg$FAILED) {
+                s2 = null;
+            }
+            if (s2 !== peg$FAILED) {
+                s3 = peg$parseIntegerNumber();
+                if (s3 !== peg$FAILED) {
+                    peg$savedPos = s0;
+                    s1 = peg$c31(s2, s3);
+                    s0 = s1;
+                }
+                else {
+                    peg$currPos = s0;
+                    s0 = peg$FAILED;
+                }
+            }
+            else {
+                peg$currPos = s0;
+                s0 = peg$FAILED;
+            }
+        }
+        else {
+            peg$currPos = s0;
+            s0 = peg$FAILED;
+        }
+        return s0;
+    }
+    function peg$parseKeepModifier() {
+        var s0, s1, s2, s3;
+        s0 = peg$currPos;
+        if (input.charCodeAt(peg$currPos) === 107) {
+            s1 = peg$c32;
+            peg$currPos++;
+        }
+        else {
+            s1 = peg$FAILED;
+            if (peg$silentFails === 0) {
+                peg$fail(peg$c33);
+            }
+        }
+        if (s1 !== peg$FAILED) {
+            if (peg$c29.test(input.charAt(peg$currPos))) {
+                s2 = input.charAt(peg$currPos);
+                peg$currPos++;
+            }
+            else {
+                s2 = peg$FAILED;
+                if (peg$silentFails === 0) {
+                    peg$fail(peg$c30);
+                }
+            }
+            if (s2 === peg$FAILED) {
+                s2 = null;
+            }
+            if (s2 !== peg$FAILED) {
+                s3 = peg$parseIntegerNumber();
+                if (s3 !== peg$FAILED) {
+                    peg$savedPos = s0;
+                    s1 = peg$c34(s2, s3);
+                    s0 = s1;
+                }
+                else {
+                    peg$currPos = s0;
+                    s0 = peg$FAILED;
+                }
+            }
+            else {
+                peg$currPos = s0;
+                s0 = peg$FAILED;
+            }
+        }
+        else {
+            peg$currPos = s0;
+            s0 = peg$FAILED;
+        }
+        return s0;
+    }
+    function peg$parseRerollModifier() {
+        var s0, s1, s2, s3;
+        s0 = peg$currPos;
+        if (input.charCodeAt(peg$currPos) === 114) {
+            s1 = peg$c35;
+            peg$currPos++;
+        }
+        else {
+            s1 = peg$FAILED;
+            if (peg$silentFails === 0) {
+                peg$fail(peg$c36);
+            }
+        }
+        if (s1 !== peg$FAILED) {
+            if (input.charCodeAt(peg$currPos) === 111) {
+                s2 = peg$c37;
+                peg$currPos++;
+            }
+            else {
+                s2 = peg$FAILED;
+                if (peg$silentFails === 0) {
+                    peg$fail(peg$c38);
+                }
+            }
+            if (s2 === peg$FAILED) {
+                s2 = null;
+            }
+            if (s2 !== peg$FAILED) {
+                s3 = peg$parseComparePoint();
+                if (s3 === peg$FAILED) {
+                    s3 = null;
+                }
+                if (s3 !== peg$FAILED) {
+                    peg$savedPos = s0;
+                    s1 = peg$c39(s2, s3);
+                    s0 = s1;
+                }
+                else {
+                    peg$currPos = s0;
+                    s0 = peg$FAILED;
+                }
+            }
+            else {
+                peg$currPos = s0;
+                s0 = peg$FAILED;
+            }
+        }
+        else {
+            peg$currPos = s0;
+            s0 = peg$FAILED;
+        }
+        return s0;
+    }
+    function peg$parseCriticalSuccessModifier() {
+        var s0, s1, s2;
+        s0 = peg$currPos;
+        if (input.substr(peg$currPos, 2) === peg$c40) {
+            s1 = peg$c40;
+            peg$currPos += 2;
+        }
+        else {
+            s1 = peg$FAILED;
+            if (peg$silentFails === 0) {
+                peg$fail(peg$c41);
+            }
+        }
+        if (s1 !== peg$FAILED) {
+            s2 = peg$parseComparePoint();
+            if (s2 !== peg$FAILED) {
+                peg$savedPos = s0;
+                s1 = peg$c42(s2);
+                s0 = s1;
+            }
+            else {
+                peg$currPos = s0;
+                s0 = peg$FAILED;
+            }
+        }
+        else {
+            peg$currPos = s0;
+            s0 = peg$FAILED;
+        }
+        return s0;
+    }
+    function peg$parseCriticalFailModifier() {
+        var s0, s1, s2;
+        s0 = peg$currPos;
+        if (input.substr(peg$currPos, 2) === peg$c43) {
+            s1 = peg$c43;
+            peg$currPos += 2;
+        }
+        else {
+            s1 = peg$FAILED;
+            if (peg$silentFails === 0) {
+                peg$fail(peg$c44);
+            }
+        }
+        if (s1 !== peg$FAILED) {
+            s2 = peg$parseComparePoint();
+            if (s2 !== peg$FAILED) {
+                peg$savedPos = s0;
+                s1 = peg$c45(s2);
+                s0 = s1;
+            }
+            else {
+                peg$currPos = s0;
+                s0 = peg$FAILED;
+            }
+        }
+        else {
+            peg$currPos = s0;
+            s0 = peg$FAILED;
+        }
+        return s0;
+    }
+    function peg$parseSortingModifier() {
+        var s0, s1, s2;
+        s0 = peg$currPos;
+        if (input.charCodeAt(peg$currPos) === 115) {
+            s1 = peg$c46;
+            peg$currPos++;
+        }
+        else {
+            s1 = peg$FAILED;
+            if (peg$silentFails === 0) {
+                peg$fail(peg$c47);
+            }
+        }
+        if (s1 !== peg$FAILED) {
+            if (input.charCodeAt(peg$currPos) === 97) {
+                s2 = peg$c48;
+                peg$currPos++;
+            }
+            else {
+                s2 = peg$FAILED;
+                if (peg$silentFails === 0) {
+                    peg$fail(peg$c49);
+                }
+            }
+            if (s2 === peg$FAILED) {
+                if (input.charCodeAt(peg$currPos) === 100) {
+                    s2 = peg$c9;
+                    peg$currPos++;
+                }
+                else {
+                    s2 = peg$FAILED;
+                    if (peg$silentFails === 0) {
+                        peg$fail(peg$c10);
+                    }
+                }
+            }
+            if (s2 === peg$FAILED) {
+                s2 = null;
+            }
+            if (s2 !== peg$FAILED) {
+                peg$savedPos = s0;
+                s1 = peg$c50(s2);
+                s0 = s1;
+            }
+            else {
+                peg$currPos = s0;
+                s0 = peg$FAILED;
+            }
+        }
+        else {
+            peg$currPos = s0;
+            s0 = peg$FAILED;
+        }
+        return s0;
+    }
+    function peg$parseFailComparePoint() {
+        var s0, s1, s2;
+        s0 = peg$currPos;
+        if (input.charCodeAt(peg$currPos) === 102) {
+            s1 = peg$c51;
+            peg$currPos++;
+        }
+        else {
+            s1 = peg$FAILED;
+            if (peg$silentFails === 0) {
+                peg$fail(peg$c52);
+            }
+        }
+        if (s1 !== peg$FAILED) {
+            s2 = peg$parseComparePoint();
+            if (s2 !== peg$FAILED) {
+                peg$savedPos = s0;
+                s1 = peg$c53(s2);
+                s0 = s1;
+            }
+            else {
+                peg$currPos = s0;
+                s0 = peg$FAILED;
+            }
+        }
+        else {
+            peg$currPos = s0;
+            s0 = peg$FAILED;
+        }
+        return s0;
+    }
+    function peg$parseComparePoint() {
+        var s0, s1, s2;
+        s0 = peg$currPos;
+        s1 = peg$parseCompareOperator();
+        if (s1 !== peg$FAILED) {
+            s2 = peg$parseFloatNumber();
+            if (s2 !== peg$FAILED) {
+                peg$savedPos = s0;
+                s1 = peg$c54(s1, s2);
+                s0 = s1;
+            }
+            else {
+                peg$currPos = s0;
+                s0 = peg$FAILED;
+            }
+        }
+        else {
+            peg$currPos = s0;
+            s0 = peg$FAILED;
+        }
+        return s0;
+    }
+    function peg$parseCompareOperator() {
+        var s0;
+        if (input.substr(peg$currPos, 2) === peg$c55) {
+            s0 = peg$c55;
+            peg$currPos += 2;
+        }
+        else {
+            s0 = peg$FAILED;
+            if (peg$silentFails === 0) {
+                peg$fail(peg$c56);
+            }
+        }
+        if (s0 === peg$FAILED) {
+            if (input.substr(peg$currPos, 2) === peg$c57) {
+                s0 = peg$c57;
+                peg$currPos += 2;
+            }
+            else {
+                s0 = peg$FAILED;
+                if (peg$silentFails === 0) {
+                    peg$fail(peg$c58);
+                }
+            }
+            if (s0 === peg$FAILED) {
+                if (input.substr(peg$currPos, 2) === peg$c59) {
+                    s0 = peg$c59;
+                    peg$currPos += 2;
+                }
+                else {
+                    s0 = peg$FAILED;
+                    if (peg$silentFails === 0) {
+                        peg$fail(peg$c60);
+                    }
+                }
+                if (s0 === peg$FAILED) {
+                    if (input.charCodeAt(peg$currPos) === 61) {
+                        s0 = peg$c61;
+                        peg$currPos++;
+                    }
+                    else {
+                        s0 = peg$FAILED;
+                        if (peg$silentFails === 0) {
+                            peg$fail(peg$c62);
+                        }
+                    }
+                    if (s0 === peg$FAILED) {
+                        if (input.charCodeAt(peg$currPos) === 62) {
+                            s0 = peg$c63;
+                            peg$currPos++;
+                        }
+                        else {
+                            s0 = peg$FAILED;
+                            if (peg$silentFails === 0) {
+                                peg$fail(peg$c64);
+                            }
+                        }
+                        if (s0 === peg$FAILED) {
+                            if (input.charCodeAt(peg$currPos) === 60) {
+                                s0 = peg$c65;
+                                peg$currPos++;
+                            }
+                            else {
+                                s0 = peg$FAILED;
+                                if (peg$silentFails === 0) {
+                                    peg$fail(peg$c66);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return s0;
+    }
+    function peg$parseIntegerOrExpression() {
+        var s0, s1, s2, s3, s4, s5;
+        s0 = peg$parseIntegerNumber();
+        if (s0 === peg$FAILED) {
+            s0 = peg$currPos;
+            if (input.charCodeAt(peg$currPos) === 40) {
+                s1 = peg$c67;
+                peg$currPos++;
+            }
+            else {
+                s1 = peg$FAILED;
+                if (peg$silentFails === 0) {
+                    peg$fail(peg$c68);
+                }
+            }
+            if (s1 !== peg$FAILED) {
+                s2 = peg$parse_();
+                if (s2 !== peg$FAILED) {
+                    s3 = peg$parseExpression();
+                    if (s3 !== peg$FAILED) {
+                        s4 = peg$parse_();
+                        if (s4 !== peg$FAILED) {
+                            if (input.charCodeAt(peg$currPos) === 41) {
+                                s5 = peg$c69;
+                                peg$currPos++;
+                            }
+                            else {
+                                s5 = peg$FAILED;
+                                if (peg$silentFails === 0) {
+                                    peg$fail(peg$c70);
+                                }
+                            }
+                            if (s5 !== peg$FAILED) {
+                                peg$savedPos = s0;
+                                s1 = peg$c71(s1, s3, s5);
+                                s0 = s1;
+                            }
+                            else {
+                                peg$currPos = s0;
+                                s0 = peg$FAILED;
+                            }
+                        }
+                        else {
+                            peg$currPos = s0;
+                            s0 = peg$FAILED;
+                        }
+                    }
+                    else {
+                        peg$currPos = s0;
+                        s0 = peg$FAILED;
+                    }
+                }
+                else {
+                    peg$currPos = s0;
+                    s0 = peg$FAILED;
+                }
+            }
+            else {
+                peg$currPos = s0;
+                s0 = peg$FAILED;
+            }
+        }
+        return s0;
+    }
+    function peg$parseExpression() {
+        var s0, s1, s2, s3, s4, s5, s6, s7;
+        s0 = peg$currPos;
+        s1 = peg$parseFactor();
+        if (s1 !== peg$FAILED) {
+            s2 = [];
+            s3 = peg$currPos;
+            s4 = peg$parse_();
+            if (s4 !== peg$FAILED) {
+                s5 = peg$parseOperator();
+                if (s5 !== peg$FAILED) {
+                    s6 = peg$parse_();
+                    if (s6 !== peg$FAILED) {
+                        s7 = peg$parseFactor();
+                        if (s7 !== peg$FAILED) {
+                            s4 = [s4, s5, s6, s7];
+                            s3 = s4;
+                        }
+                        else {
+                            peg$currPos = s3;
+                            s3 = peg$FAILED;
+                        }
+                    }
+                    else {
+                        peg$currPos = s3;
+                        s3 = peg$FAILED;
+                    }
+                }
+                else {
+                    peg$currPos = s3;
+                    s3 = peg$FAILED;
+                }
+            }
+            else {
+                peg$currPos = s3;
+                s3 = peg$FAILED;
+            }
+            while (s3 !== peg$FAILED) {
+                s2.push(s3);
+                s3 = peg$currPos;
+                s4 = peg$parse_();
+                if (s4 !== peg$FAILED) {
+                    s5 = peg$parseOperator();
+                    if (s5 !== peg$FAILED) {
+                        s6 = peg$parse_();
+                        if (s6 !== peg$FAILED) {
+                            s7 = peg$parseFactor();
+                            if (s7 !== peg$FAILED) {
+                                s4 = [s4, s5, s6, s7];
+                                s3 = s4;
+                            }
+                            else {
+                                peg$currPos = s3;
+                                s3 = peg$FAILED;
+                            }
+                        }
+                        else {
+                            peg$currPos = s3;
+                            s3 = peg$FAILED;
+                        }
+                    }
+                    else {
+                        peg$currPos = s3;
+                        s3 = peg$FAILED;
+                    }
+                }
+                else {
+                    peg$currPos = s3;
+                    s3 = peg$FAILED;
+                }
+            }
+            if (s2 !== peg$FAILED) {
+                peg$savedPos = s0;
+                s1 = peg$c72(s1, s2);
+                s0 = s1;
+            }
+            else {
+                peg$currPos = s0;
+                s0 = peg$FAILED;
+            }
+        }
+        else {
+            peg$currPos = s0;
+            s0 = peg$FAILED;
+        }
+        return s0;
+    }
+    function peg$parseFactor() {
+        var s0, s1, s2, s3, s4, s5;
+        s0 = peg$parseMathFunction();
+        if (s0 === peg$FAILED) {
+            s0 = peg$parseDice();
+            if (s0 === peg$FAILED) {
+                s0 = peg$parseFloatNumber();
+                if (s0 === peg$FAILED) {
+                    s0 = peg$currPos;
+                    if (input.charCodeAt(peg$currPos) === 40) {
+                        s1 = peg$c67;
+                        peg$currPos++;
+                    }
+                    else {
+                        s1 = peg$FAILED;
+                        if (peg$silentFails === 0) {
+                            peg$fail(peg$c68);
+                        }
+                    }
+                    if (s1 !== peg$FAILED) {
+                        s2 = peg$parse_();
+                        if (s2 !== peg$FAILED) {
+                            s3 = peg$parseExpression();
+                            if (s3 !== peg$FAILED) {
+                                s4 = peg$parse_();
+                                if (s4 !== peg$FAILED) {
+                                    if (input.charCodeAt(peg$currPos) === 41) {
+                                        s5 = peg$c69;
+                                        peg$currPos++;
+                                    }
+                                    else {
+                                        s5 = peg$FAILED;
+                                        if (peg$silentFails === 0) {
+                                            peg$fail(peg$c70);
+                                        }
+                                    }
+                                    if (s5 !== peg$FAILED) {
+                                        peg$savedPos = s0;
+                                        s1 = peg$c71(s1, s3, s5);
+                                        s0 = s1;
+                                    }
+                                    else {
+                                        peg$currPos = s0;
+                                        s0 = peg$FAILED;
+                                    }
+                                }
+                                else {
+                                    peg$currPos = s0;
+                                    s0 = peg$FAILED;
+                                }
+                            }
+                            else {
+                                peg$currPos = s0;
+                                s0 = peg$FAILED;
+                            }
+                        }
+                        else {
+                            peg$currPos = s0;
+                            s0 = peg$FAILED;
+                        }
+                    }
+                    else {
+                        peg$currPos = s0;
+                        s0 = peg$FAILED;
+                    }
+                    if (s0 === peg$FAILED) {
+                        s0 = peg$parseDiceGroup();
+                    }
+                }
+            }
+        }
+        return s0;
+    }
+    function peg$parseMathFunction() {
+        var s0, s1, s2, s3, s4, s5, s6, s7, s8, s9, s10;
+        s0 = peg$currPos;
+        if (input.substr(peg$currPos, 3) === peg$c73) {
+            s1 = peg$c73;
+            peg$currPos += 3;
+        }
+        else {
+            s1 = peg$FAILED;
+            if (peg$silentFails === 0) {
+                peg$fail(peg$c74);
+            }
+        }
+        if (s1 === peg$FAILED) {
+            if (input.substr(peg$currPos, 4) === peg$c75) {
+                s1 = peg$c75;
+                peg$currPos += 4;
+            }
+            else {
+                s1 = peg$FAILED;
+                if (peg$silentFails === 0) {
+                    peg$fail(peg$c76);
+                }
+            }
+            if (s1 === peg$FAILED) {
+                if (input.substr(peg$currPos, 3) === peg$c77) {
+                    s1 = peg$c77;
+                    peg$currPos += 3;
+                }
+                else {
+                    s1 = peg$FAILED;
+                    if (peg$silentFails === 0) {
+                        peg$fail(peg$c78);
+                    }
+                }
+                if (s1 === peg$FAILED) {
+                    if (input.substr(peg$currPos, 3) === peg$c79) {
+                        s1 = peg$c79;
+                        peg$currPos += 3;
+                    }
+                    else {
+                        s1 = peg$FAILED;
+                        if (peg$silentFails === 0) {
+                            peg$fail(peg$c80);
+                        }
+                    }
+                    if (s1 === peg$FAILED) {
+                        if (input.substr(peg$currPos, 5) === peg$c81) {
+                            s1 = peg$c81;
+                            peg$currPos += 5;
+                        }
+                        else {
+                            s1 = peg$FAILED;
+                            if (peg$silentFails === 0) {
+                                peg$fail(peg$c82);
+                            }
+                        }
+                        if (s1 === peg$FAILED) {
+                            if (input.substr(peg$currPos, 3) === peg$c83) {
+                                s1 = peg$c83;
+                                peg$currPos += 3;
+                            }
+                            else {
+                                s1 = peg$FAILED;
+                                if (peg$silentFails === 0) {
+                                    peg$fail(peg$c84);
+                                }
+                            }
+                            if (s1 === peg$FAILED) {
+                                if (input.substr(peg$currPos, 5) === peg$c85) {
+                                    s1 = peg$c85;
+                                    peg$currPos += 5;
+                                }
+                                else {
+                                    s1 = peg$FAILED;
+                                    if (peg$silentFails === 0) {
+                                        peg$fail(peg$c86);
+                                    }
+                                }
+                                if (s1 === peg$FAILED) {
+                                    if (input.substr(peg$currPos, 4) === peg$c87) {
+                                        s1 = peg$c87;
+                                        peg$currPos += 4;
+                                    }
+                                    else {
+                                        s1 = peg$FAILED;
+                                        if (peg$silentFails === 0) {
+                                            peg$fail(peg$c88);
+                                        }
+                                    }
+                                    if (s1 === peg$FAILED) {
+                                        if (input.substr(peg$currPos, 3) === peg$c89) {
+                                            s1 = peg$c89;
+                                            peg$currPos += 3;
+                                        }
+                                        else {
+                                            s1 = peg$FAILED;
+                                            if (peg$silentFails === 0) {
+                                                peg$fail(peg$c90);
+                                            }
+                                        }
+                                        if (s1 === peg$FAILED) {
+                                            if (input.substr(peg$currPos, 4) === peg$c91) {
+                                                s1 = peg$c91;
+                                                peg$currPos += 4;
+                                            }
+                                            else {
+                                                s1 = peg$FAILED;
+                                                if (peg$silentFails === 0) {
+                                                    peg$fail(peg$c92);
+                                                }
+                                            }
+                                            if (s1 === peg$FAILED) {
+                                                if (input.substr(peg$currPos, 3) === peg$c93) {
+                                                    s1 = peg$c93;
+                                                    peg$currPos += 3;
+                                                }
+                                                else {
+                                                    s1 = peg$FAILED;
+                                                    if (peg$silentFails === 0) {
+                                                        peg$fail(peg$c94);
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        if (s1 !== peg$FAILED) {
+            if (input.charCodeAt(peg$currPos) === 40) {
+                s2 = peg$c67;
+                peg$currPos++;
+            }
+            else {
+                s2 = peg$FAILED;
+                if (peg$silentFails === 0) {
+                    peg$fail(peg$c68);
+                }
+            }
+            if (s2 !== peg$FAILED) {
+                s3 = peg$parse_();
+                if (s3 !== peg$FAILED) {
+                    s4 = peg$parseExpression();
+                    if (s4 !== peg$FAILED) {
+                        s5 = peg$parse_();
+                        if (s5 !== peg$FAILED) {
+                            if (input.charCodeAt(peg$currPos) === 41) {
+                                s6 = peg$c69;
+                                peg$currPos++;
+                            }
+                            else {
+                                s6 = peg$FAILED;
+                                if (peg$silentFails === 0) {
+                                    peg$fail(peg$c70);
+                                }
+                            }
+                            if (s6 !== peg$FAILED) {
+                                peg$savedPos = s0;
+                                s1 = peg$c95(s1, s4);
+                                s0 = s1;
+                            }
+                            else {
+                                peg$currPos = s0;
+                                s0 = peg$FAILED;
+                            }
+                        }
+                        else {
+                            peg$currPos = s0;
+                            s0 = peg$FAILED;
+                        }
+                    }
+                    else {
+                        peg$currPos = s0;
+                        s0 = peg$FAILED;
+                    }
+                }
+                else {
+                    peg$currPos = s0;
+                    s0 = peg$FAILED;
+                }
+            }
+            else {
+                peg$currPos = s0;
+                s0 = peg$FAILED;
+            }
+        }
+        else {
+            peg$currPos = s0;
+            s0 = peg$FAILED;
+        }
+        if (s0 === peg$FAILED) {
+            s0 = peg$currPos;
+            if (input.substr(peg$currPos, 3) === peg$c96) {
+                s1 = peg$c96;
+                peg$currPos += 3;
+            }
+            else {
+                s1 = peg$FAILED;
+                if (peg$silentFails === 0) {
+                    peg$fail(peg$c97);
+                }
+            }
+            if (s1 !== peg$FAILED) {
+                if (input.charCodeAt(peg$currPos) === 40) {
+                    s2 = peg$c67;
+                    peg$currPos++;
+                }
+                else {
+                    s2 = peg$FAILED;
+                    if (peg$silentFails === 0) {
+                        peg$fail(peg$c68);
+                    }
+                }
+                if (s2 !== peg$FAILED) {
+                    s3 = peg$parse_();
+                    if (s3 !== peg$FAILED) {
+                        s4 = peg$parseExpression();
+                        if (s4 !== peg$FAILED) {
+                            s5 = peg$parse_();
+                            if (s5 !== peg$FAILED) {
+                                if (input.charCodeAt(peg$currPos) === 44) {
+                                    s6 = peg$c2;
+                                    peg$currPos++;
+                                }
+                                else {
+                                    s6 = peg$FAILED;
+                                    if (peg$silentFails === 0) {
+                                        peg$fail(peg$c3);
+                                    }
+                                }
+                                if (s6 !== peg$FAILED) {
+                                    s7 = peg$parse_();
+                                    if (s7 !== peg$FAILED) {
+                                        s8 = peg$parseExpression();
+                                        if (s8 !== peg$FAILED) {
+                                            s9 = peg$parse_();
+                                            if (s9 !== peg$FAILED) {
+                                                if (input.charCodeAt(peg$currPos) === 41) {
+                                                    s10 = peg$c69;
+                                                    peg$currPos++;
+                                                }
+                                                else {
+                                                    s10 = peg$FAILED;
+                                                    if (peg$silentFails === 0) {
+                                                        peg$fail(peg$c70);
+                                                    }
+                                                }
+                                                if (s10 !== peg$FAILED) {
+                                                    peg$savedPos = s0;
+                                                    s1 = peg$c98(s1, s4, s8);
+                                                    s0 = s1;
+                                                }
+                                                else {
+                                                    peg$currPos = s0;
+                                                    s0 = peg$FAILED;
+                                                }
+                                            }
+                                            else {
+                                                peg$currPos = s0;
+                                                s0 = peg$FAILED;
+                                            }
+                                        }
+                                        else {
+                                            peg$currPos = s0;
+                                            s0 = peg$FAILED;
+                                        }
+                                    }
+                                    else {
+                                        peg$currPos = s0;
+                                        s0 = peg$FAILED;
+                                    }
+                                }
+                                else {
+                                    peg$currPos = s0;
+                                    s0 = peg$FAILED;
+                                }
+                            }
+                            else {
+                                peg$currPos = s0;
+                                s0 = peg$FAILED;
+                            }
+                        }
+                        else {
+                            peg$currPos = s0;
+                            s0 = peg$FAILED;
+                        }
+                    }
+                    else {
+                        peg$currPos = s0;
+                        s0 = peg$FAILED;
+                    }
+                }
+                else {
+                    peg$currPos = s0;
+                    s0 = peg$FAILED;
+                }
+            }
+            else {
+                peg$currPos = s0;
+                s0 = peg$FAILED;
+            }
+        }
+        return s0;
+    }
+    function peg$parseFloatNumber() {
+        var s0, s1, s2, s3, s4, s5;
+        s0 = peg$currPos;
+        if (input.charCodeAt(peg$currPos) === 45) {
+            s1 = peg$c99;
+            peg$currPos++;
+        }
+        else {
+            s1 = peg$FAILED;
+            if (peg$silentFails === 0) {
+                peg$fail(peg$c100);
+            }
+        }
+        if (s1 === peg$FAILED) {
+            s1 = null;
+        }
+        if (s1 !== peg$FAILED) {
+            s2 = peg$parseNumber();
+            if (s2 !== peg$FAILED) {
+                s3 = peg$currPos;
+                if (peg$c101.test(input.charAt(peg$currPos))) {
+                    s4 = input.charAt(peg$currPos);
+                    peg$currPos++;
+                }
+                else {
+                    s4 = peg$FAILED;
+                    if (peg$silentFails === 0) {
+                        peg$fail(peg$c102);
+                    }
+                }
+                if (s4 !== peg$FAILED) {
+                    s5 = peg$parseNumber();
+                    if (s5 !== peg$FAILED) {
+                        s4 = [s4, s5];
+                        s3 = s4;
+                    }
+                    else {
+                        peg$currPos = s3;
+                        s3 = peg$FAILED;
+                    }
+                }
+                else {
+                    peg$currPos = s3;
+                    s3 = peg$FAILED;
+                }
+                if (s3 === peg$FAILED) {
+                    s3 = null;
+                }
+                if (s3 !== peg$FAILED) {
+                    peg$savedPos = s0;
+                    s1 = peg$c103();
+                    s0 = s1;
+                }
+                else {
+                    peg$currPos = s0;
+                    s0 = peg$FAILED;
+                }
+            }
+            else {
+                peg$currPos = s0;
+                s0 = peg$FAILED;
+            }
+        }
+        else {
+            peg$currPos = s0;
+            s0 = peg$FAILED;
+        }
+        return s0;
+    }
+    function peg$parseIntegerNumber() {
+        var s0, s1, s2, s3;
+        s0 = peg$currPos;
+        if (peg$c104.test(input.charAt(peg$currPos))) {
+            s1 = input.charAt(peg$currPos);
+            peg$currPos++;
+        }
+        else {
+            s1 = peg$FAILED;
+            if (peg$silentFails === 0) {
+                peg$fail(peg$c105);
+            }
+        }
+        if (s1 !== peg$FAILED) {
+            s2 = [];
+            if (peg$c106.test(input.charAt(peg$currPos))) {
+                s3 = input.charAt(peg$currPos);
+                peg$currPos++;
+            }
+            else {
+                s3 = peg$FAILED;
+                if (peg$silentFails === 0) {
+                    peg$fail(peg$c107);
+                }
+            }
+            while (s3 !== peg$FAILED) {
+                s2.push(s3);
+                if (peg$c106.test(input.charAt(peg$currPos))) {
+                    s3 = input.charAt(peg$currPos);
+                    peg$currPos++;
+                }
+                else {
+                    s3 = peg$FAILED;
+                    if (peg$silentFails === 0) {
+                        peg$fail(peg$c107);
+                    }
+                }
+            }
+            if (s2 !== peg$FAILED) {
+                peg$savedPos = s0;
+                s1 = peg$c108();
+                s0 = s1;
+            }
+            else {
+                peg$currPos = s0;
+                s0 = peg$FAILED;
+            }
+        }
+        else {
+            peg$currPos = s0;
+            s0 = peg$FAILED;
+        }
+        return s0;
+    }
+    function peg$parseNumber() {
+        var s0, s1, s2;
+        s0 = peg$currPos;
+        s1 = [];
+        if (peg$c106.test(input.charAt(peg$currPos))) {
+            s2 = input.charAt(peg$currPos);
+            peg$currPos++;
+        }
+        else {
+            s2 = peg$FAILED;
+            if (peg$silentFails === 0) {
+                peg$fail(peg$c107);
+            }
+        }
+        if (s2 !== peg$FAILED) {
+            while (s2 !== peg$FAILED) {
+                s1.push(s2);
+                if (peg$c106.test(input.charAt(peg$currPos))) {
+                    s2 = input.charAt(peg$currPos);
+                    peg$currPos++;
+                }
+                else {
+                    s2 = peg$FAILED;
+                    if (peg$silentFails === 0) {
+                        peg$fail(peg$c107);
+                    }
+                }
+            }
+        }
+        else {
+            s1 = peg$FAILED;
+        }
+        if (s1 !== peg$FAILED) {
+            peg$savedPos = s0;
+            s1 = peg$c108();
+        }
+        s0 = s1;
+        return s0;
+    }
+    function peg$parseOperator() {
+        var s0, s1;
+        s0 = peg$currPos;
+        if (input.substr(peg$currPos, 2) === peg$c109) {
+            s1 = peg$c109;
+            peg$currPos += 2;
+        }
+        else {
+            s1 = peg$FAILED;
+            if (peg$silentFails === 0) {
+                peg$fail(peg$c110);
+            }
+        }
+        if (s1 !== peg$FAILED) {
+            peg$savedPos = s0;
+            s1 = peg$c111();
+        }
+        s0 = s1;
+        if (s0 === peg$FAILED) {
+            if (input.charCodeAt(peg$currPos) === 42) {
+                s0 = peg$c112;
+                peg$currPos++;
+            }
+            else {
+                s0 = peg$FAILED;
+                if (peg$silentFails === 0) {
+                    peg$fail(peg$c113);
+                }
+            }
+            if (s0 === peg$FAILED) {
+                if (input.charCodeAt(peg$currPos) === 94) {
+                    s0 = peg$c114;
+                    peg$currPos++;
+                }
+                else {
+                    s0 = peg$FAILED;
+                    if (peg$silentFails === 0) {
+                        peg$fail(peg$c115);
+                    }
+                }
+                if (s0 === peg$FAILED) {
+                    if (input.charCodeAt(peg$currPos) === 37) {
+                        s0 = peg$c12;
+                        peg$currPos++;
+                    }
+                    else {
+                        s0 = peg$FAILED;
+                        if (peg$silentFails === 0) {
+                            peg$fail(peg$c13);
+                        }
+                    }
+                    if (s0 === peg$FAILED) {
+                        if (input.charCodeAt(peg$currPos) === 47) {
+                            s0 = peg$c116;
+                            peg$currPos++;
+                        }
+                        else {
+                            s0 = peg$FAILED;
+                            if (peg$silentFails === 0) {
+                                peg$fail(peg$c117);
+                            }
+                        }
+                        if (s0 === peg$FAILED) {
+                            if (input.charCodeAt(peg$currPos) === 43) {
+                                s0 = peg$c118;
+                                peg$currPos++;
+                            }
+                            else {
+                                s0 = peg$FAILED;
+                                if (peg$silentFails === 0) {
+                                    peg$fail(peg$c119);
+                                }
+                            }
+                            if (s0 === peg$FAILED) {
+                                if (input.charCodeAt(peg$currPos) === 45) {
+                                    s0 = peg$c99;
+                                    peg$currPos++;
+                                }
+                                else {
+                                    s0 = peg$FAILED;
+                                    if (peg$silentFails === 0) {
+                                        peg$fail(peg$c100);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return s0;
+    }
+    function peg$parse_() {
+        var s0, s1;
+        peg$silentFails++;
+        s0 = [];
+        if (peg$c121.test(input.charAt(peg$currPos))) {
+            s1 = input.charAt(peg$currPos);
+            peg$currPos++;
+        }
+        else {
+            s1 = peg$FAILED;
+            if (peg$silentFails === 0) {
+                peg$fail(peg$c122);
+            }
+        }
+        while (s1 !== peg$FAILED) {
+            s0.push(s1);
+            if (peg$c121.test(input.charAt(peg$currPos))) {
+                s1 = input.charAt(peg$currPos);
+                peg$currPos++;
+            }
+            else {
+                s1 = peg$FAILED;
+                if (peg$silentFails === 0) {
+                    peg$fail(peg$c122);
+                }
+            }
+        }
+        peg$silentFails--;
+        if (s0 === peg$FAILED) {
+            s1 = peg$FAILED;
+            if (peg$silentFails === 0) {
+                peg$fail(peg$c120);
+            }
+        }
+        return s0;
+    }
+    peg$result = peg$startRuleFunction();
+    if (peg$result !== peg$FAILED && peg$currPos === input.length) {
+        return peg$result;
+    }
+    else {
+        if (peg$result !== peg$FAILED && peg$currPos < input.length) {
+            peg$fail(peg$endExpectation());
+        }
+        throw peg$buildStructuredError(peg$maxFailExpected, peg$maxFailPos < input.length ? input.charAt(peg$maxFailPos) : null, peg$maxFailPos < input.length
+            ? peg$computeLocation(peg$maxFailPos, peg$maxFailPos + 1)
+            : peg$computeLocation(peg$maxFailPos, peg$maxFailPos));
+    }
+}
+var grammar = {
+    SyntaxError: peg$SyntaxError,
+    parse: peg$parse
+};
+var grammar_1 = grammar.parse;
+/**
+ * Polyfill for Array.prototype.flat
+ * @link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/flat#Polyfill
+ */
+if (!Array.prototype.flat) {
+    Array.prototype.flat = function () {
+        var depth = arguments[0];
+        depth = depth === undefined ? 1 : Math.floor(depth);
+        if (depth < 1)
+            return Array.prototype.slice.call(this);
+        return (function flat(arr, depth) {
+            var len = arr.length >>> 0;
+            var flattened = [];
+            var i = 0;
+            while (i < len) {
+                if (i in arr) {
+                    var el = arr[i];
+                    if (Array.isArray(el) && depth > 0)
+                        flattened = flattened.concat(flat(el, depth - 1));
+                    else
+                        flattened.push(el);
+                }
+                i++;
+            }
+            return flattened;
+        })(this, depth);
+    };
+}
+/**
+ * Polyfill for Array.prototype.flatMap
+ * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/flatMap#Polyfill
+ */
+if (!Array.prototype.flatMap) {
+    Array.prototype.flatMap = function () {
+        return Array.prototype.map.apply(this, arguments).flat(1);
+    };
+}
+/**
+ * Utility helper functions
+ *
+ * @type {Readonly<{compareNumbers(number, number, string): boolean, toFixed(number, number=): number, generateNumber((number|string), (number|string)): *, isNumeric(*=): boolean, isJson(*=): (*|boolean|undefined), sumArray(Array): number, isBase64(*=): (*|boolean|undefined)}>}
+ */
+const diceUtils = Object.freeze({
+    /**
+     * Checks if the given val is a valid number
+     *
+     * @param val
+     * @returns {boolean}
+     */
+    isNumeric(val) {
+        return !Array.isArray(val) && !Number.isNaN(val) && Number.isFinite(parseInt(val, 10));
+    },
+    isBase64(val) {
+        try {
+            return !!(val && (btoa(atob(val)) === val));
+        }
+        catch (e) {
+            return false;
+        }
+    },
+    isJson(val) {
+        try {
+            let parsed = val ? JSON.parse(val) : false;
+            return !!(parsed && (typeof parsed === 'object'));
+        }
+        catch (e) {
+            return false;
+        }
+    },
+    /**
+     * Generates a random number between the
+     * min and max, inclusive
+     *
+     * @param {number|string} min
+     * @param {number|string} max
+     * @returns {*}
+     */
+    generateNumber(min, max) {
+        min = min ? parseInt(min, 10) : 1;
+        max = max ? parseInt(max, 10) : min;
+        if (max <= min) {
+            return min;
+        }
+        return Math.floor(Math.random() * (max - min + 1) + min);
+    },
+    /**
+     * @returns {function(Array): number}
+     */
+    get sumArray() {
+        /**
+         * Takes an array of numbers and adds them together,
+         * returning the result
+         *
+         * @param {Number[]} numbers
+         * @returns {number}
+         */
+        return numbers => (!Array.isArray(numbers) ? 0 : numbers.reduce((prev, current) => (prev + (this.isNumeric(current) ? parseFloat(current) : 0)), 0));
+    },
+    /**
+     * Checks if `a` is comparative to `b` with the given operator.
+     * Returns true or false.
+     *
+     * @param {number} a
+     * @param {number} b
+     * @param {string} operator A valid comparative operator (=, <, >, <=, >=, !=)
+     * @returns {boolean}
+     */
+    compareNumbers(a, b, operator) {
+        let result;
+        a = parseFloat(a);
+        b = parseFloat(b);
+        switch (operator) {
+            case '=':
+            case '==':
+                result = a === b;
+                break;
+            case '<':
+                result = a < b;
+                break;
+            case '>':
+                result = a > b;
+                break;
+            case '<=':
+                result = a <= b;
+                break;
+            case '>=':
+                result = a >= b;
+                break;
+            case '!':
+            case '!=':
+                result = a !== b;
+                break;
+            default:
+                result = false;
+                break;
+        }
+        return result;
+    },
+    /**
+     * Rounds a number to the given number of decimal places,
+     * removing any trailing zeros after the decimal point.
+     *
+     * `toFixed(1.236, 2) == 1.24`
+     * `toFixed(30.1, 2) == 30.1`
+     * `toFixed(4.0000000004, 3) == 4`
+     *
+     * @param {number} num
+     * @param {number=} decPlaces
+     * @returns {number}
+     */
+    toFixed(num, decPlaces) {
+        // round to the specified decimal places, then convert back to
+        // a number to remove trailing zeroes after the decimal point
+        return parseFloat(parseFloat(num).toFixed(decPlaces || 0));
+    },
+});
+/**
+ * Allowed formats for exporting dice data
+ *
+ * @type {Readonly<{BASE_64: number, JSON: number, OBJECT: number}>}
+ */
+const exportFormats = Object.freeze({
+    JSON: 0,
+    BASE_64: 1,
+    OBJECT: 2
+});
+const Modifier = (() => {
+    class Modifier {
+        /**
+         *
+         * @param {string} notation
+         */
+        constructor(notation) {
+            if (!notation) {
+                throw new Error('Notation is required');
+            }
+            // set the modifier's notation
+            this.notation = notation;
+            // set the modifier's sort order
+            this.order = 999;
+        }
+        /**
+         * Returns the name for the modifier
+         *
+         * @returns {*}
+         */
+        get name() {
+            return this.constructor.name;
+        }
+        /**
+         * Runs the modifier on the rolls
+         *
+         * @param {RollResults} results
+         * @param {StandardDice} dice
+         *
+         * @returns {RollResults}
+         */
+        run(results, dice) {
+            return results;
+        }
+        /**
+         * Returns an object for JSON serialising
+         *
+         * @returns {{}}
+         */
+        toJSON() {
+            const { notation, name } = this;
+            return {
+                name,
+                notation,
+                type: 'modifier',
+            };
+        }
+        /**
+         * Returns the String representation of the object
+         *
+         * @returns {string}
+         */
+        toString() {
+            return this.notation;
+        }
+    }
+    return Modifier;
+})();
+const ComparePoint = (() => {
+    const _operator = Symbol('operator');
+    const _value = Symbol('value');
+    class ComparePoint {
+        /**
+         *
+         * @param {string} operator
+         * @param {number} value
+         */
+        constructor(operator, value) {
+            if (!operator) {
+                throw new Error('ComparePoint: No compare operator specified');
+            }
+            else if (!value && (value !== 0)) {
+                throw new Error('ComparePoint: No compare value specified');
+            }
+            this.operator = operator;
+            this.value = value;
+        }
+        /**
+         * Checks if the operator is valid
+         *
+         * @param {string} operator
+         *
+         * @returns {boolean}
+         */
+        static isValidOperator(operator) {
+            return (typeof operator === 'string') && /^(?:[<>!]?=|[<>])$/.test(operator);
+        }
+        /**
+         * Sets the operator value
+         *
+         * @param {string} operator
+         *
+         * @throws Error
+         */
+        set operator(operator) {
+            if (!this.constructor.isValidOperator(operator)) {
+                throw new Error(`ComparePoint: operator "${operator}" is not valid`);
+            }
+            this[_operator] = operator;
+        }
+        /**
+         * Returns the comparison operator
+         *
+         * @returns {string}
+         */
+        get operator() {
+            return this[_operator];
+        }
+        /**
+         * Sets the value
+         *
+         * @param {number} value
+         *
+         * @throws Error
+         */
+        set value(value) {
+            if (!diceUtils.isNumeric(value)) {
+                throw new Error('ComparePoint: value must be numeric');
+            }
+            this[_value] = parseInt(value, 10);
+        }
+        /**
+         * Returns the comparison value
+         *
+         * @returns {number}
+         */
+        get value() {
+            return this[_value];
+        }
+        /**
+         * Checks whether value matches the compare point
+         *
+         * @param {number} value
+         *
+         * @returns {boolean}
+         */
+        isMatch(value) {
+            return diceUtils.compareNumbers(value, this.value, this.operator);
+        }
+        /**
+         * Returns an object for JSON serialising
+         *
+         * @returns {{}}
+         */
+        toJSON() {
+            const { operator, value } = this;
+            return {
+                operator,
+                type: 'compare-point',
+                value,
+            };
+        }
+        /**
+         * Returns the String representation of the object
+         *
+         * @returns {string}
+         */
+        toString() {
+            return `${this.operator}${this.value}`;
+        }
+    }
+    return ComparePoint;
+})();
+const ComparisonModifier = (() => {
+    const _comparePoint = Symbol('compare-point');
+    class ComparisonModifier extends Modifier {
+        /**
+         *
+         * @param {string} notation
+         * @param {ComparePoint} comparePoint
+         */
+        constructor(notation, comparePoint) {
+            super(notation);
+            if (comparePoint) {
+                this.comparePoint = comparePoint;
+            }
+        }
+        /**
+         * Returns the compare point for the object
+         *
+         * @returns {ComparePoint}
+         */
+        get comparePoint() {
+            return this[_comparePoint];
+        }
+        /**
+         * Sets the compare point
+         *
+         * @param comparePoint
+         */
+        set comparePoint(comparePoint) {
+            if (!(comparePoint instanceof ComparePoint)) {
+                throw TypeError('comparePoint must be instance of ComparePoint');
+            }
+            this[_comparePoint] = comparePoint;
+        }
+        /**
+         * Checks whether value matches the compare point
+         *
+         * @param {number} value
+         *
+         * @returns {boolean}
+         */
+        isComparePoint(value) {
+            if (!this.comparePoint) {
+                console.warn('No Compare Point specified');
+                return false;
+            }
+            return this.comparePoint.isMatch(value);
+        }
+        /**
+         * Returns an object for JSON serialising
+         *
+         * @returns {{}}
+         */
+        toJSON() {
+            const { comparePoint } = this;
+            return Object.assign(super.toJSON(), {
+                comparePoint,
+            });
+        }
+    }
+    return ComparisonModifier;
+})();
+const RollResult = (() => {
+    const _calculationValue = Symbol('calculation-value');
+    const _modifiers = Symbol('modifiers');
+    const _initialValue = Symbol('initial-value');
+    const _useInTotal = Symbol('use-in-total');
+    const _value = Symbol('value');
+    class RollResult {
+        /**
+         *
+         * @param {number|{value: Number, initialValue: number}} value The value rolled
+         * @param {string[]=} modifiers List of modifier names that affect this roll
+         * @param {boolean=} useInTotal Whether to include the roll value when calculating totals
+         */
+        constructor(value, modifiers, useInTotal = true) {
+            if (diceUtils.isNumeric(value)) {
+                this[_initialValue] = parseInt(value, 10);
+            }
+            else if (value && (typeof value === 'object') && !Array.isArray(value)) {
+                // ensure that we have a valid value
+                const initialVal = diceUtils.isNumeric(value.initialValue) ? value.initialValue : value.value;
+                if (!diceUtils.isNumeric(initialVal)) {
+                    throw new Error(`Result value is invalid: ${initialVal}`);
+                }
+                this[_initialValue] = parseInt(initialVal, 10);
+                if (diceUtils.isNumeric(value.value) && (parseInt(value.value, 10) !== this[_initialValue])) {
+                    this.value = value.value;
+                }
+                if (diceUtils.isNumeric(value.calculationValue) && (parseFloat(value.calculationValue) !== this.value)) {
+                    this.calculationValue = value.calculationValue;
+                }
+                if (Array.isArray(value.modifiers) && value.modifiers.length) {
+                    modifiers = value.modifiers;
+                }
+                if (typeof value.useInTotal === 'boolean') {
+                    useInTotal = value.useInTotal;
+                }
+            }
+            else {
+                throw new Error(`Result value is invalid: ${value}`);
+            }
+            this.modifiers = modifiers || [];
+            this.useInTotal = useInTotal;
+        }
+        /**
+         * Returns the value to use in calculations
+         *
+         * @returns {number}
+         */
+        get calculationValue() {
+            return diceUtils.isNumeric(this[_calculationValue]) ? parseFloat(this[_calculationValue]) : this.value;
+        }
+        /**
+         * Sets the value to use in calculations
+         *
+         * @param value
+         */
+        set calculationValue(value) {
+            const isNumeric = diceUtils.isNumeric(value);
+            if (value && !isNumeric) {
+                throw new Error(`Result calculation value is invalid: ${value}`);
+            }
+            this[_calculationValue] = isNumeric ? parseFloat(value) : null;
+        }
+        /**
+         * The initial roll value before any modifiers.
+         * Not often used, you probably want `value` instead.
+         *
+         * @returns {Number}
+         */
+        get initialValue() {
+            return this[_initialValue];
+        }
+        /**
+         * Returns the flags for the modifiers that affect the roll
+         *
+         * @returns {string}
+         */
+        get modifierFlags() {
+            // @todo need a better way of mapping modifiers to symbols
+            return this.modifiers.reduce((acc, flag) => {
+                switch (flag) {
+                    case 'compound':
+                    case 'explode':
+                        flag = '!';
+                        break;
+                    case 'critical-failure':
+                        flag = '__';
+                        break;
+                    case 'critical-success':
+                        flag = '**';
+                        break;
+                    case 'drop':
+                        flag = 'd';
+                        break;
+                    case 'penetrate':
+                        flag = 'p';
+                        break;
+                    case 're-roll':
+                        flag = 'r';
+                        break;
+                    case 're-roll-once':
+                        flag = 'ro';
+                        break;
+                    case 'target-failure':
+                        flag = '_';
+                        break;
+                    case 'target-success':
+                        flag = '*';
+                        break;
+                }
+                return acc + flag;
+            }, '');
+        }
+        /**
+         * Returns the modifiers that affect the roll
+         *
+         * @returns {string[]}
+         */
+        get modifiers() {
+            return this[_modifiers] || [];
+        }
+        /**
+         * Set the modifiers that affect the roll
+         *
+         * @param value
+         */
+        set modifiers(value) {
+            if ((value || (0 === value)) && (!Array.isArray(value) || value.some(item => typeof item !== 'string'))) {
+                throw new Error(`Modifiers must be an array of modifier names: ${value}`);
+            }
+            this[_modifiers] = value || [];
+        }
+        /**
+         * Returns the useInTotal flag
+         *
+         * @returns {boolean}
+         */
+        get useInTotal() {
+            return !!this[_useInTotal];
+        }
+        /**
+         * Sets the useInTotal flag
+         *
+         * @param {boolean} value
+         */
+        set useInTotal(value) {
+            this[_useInTotal] = !!value;
+        }
+        /**
+         * Roll value after modifiers have affected it
+         *
+         * @returns {number}
+         */
+        get value() {
+            return diceUtils.isNumeric(this[_value]) ? this[_value] : this[_initialValue];
+        }
+        /**
+         * Sets the value
+         *
+         * @param value
+         */
+        set value(value) {
+            if (!diceUtils.isNumeric(value)) {
+                throw new Error(`Result value is invalid: ${value}`);
+            }
+            this[_value] = parseInt(value, 10);
+        }
+        /**
+         * Returns an object for JSON serialising
+         *
+         * @returns {{}}
+         */
+        toJSON() {
+            const { calculationValue, initialValue, modifierFlags, modifiers, useInTotal, value } = this;
+            return {
+                calculationValue,
+                initialValue,
+                modifierFlags,
+                modifiers,
+                type: 'result',
+                useInTotal,
+                value,
+            };
+        }
+        /**
+         * Returns the String representation of the object
+         *
+         * @returns {string}
+         */
+        toString() {
+            return this.value + this.modifierFlags;
+        }
+    }
+    return RollResult;
+})();
+const ExplodeModifier = (() => {
+    const _compound = Symbol('compound');
+    const _penetrate = Symbol('penetrate');
+    class ExplodeModifier extends ComparisonModifier {
+        /**
+         *
+         * @param {string} notation
+         * @param {ComparePoint} comparePoint
+         * @param {boolean=} compound Defaults to false
+         * @param {boolean=} penetrate Defaults to false
+         */
+        constructor(notation, comparePoint = null, compound = false, penetrate = false) {
+            super(notation, comparePoint);
+            this[_compound] = !!compound;
+            this[_penetrate] = !!penetrate;
+            // set the modifier's sort order
+            this.order = 1;
+        }
+        /**
+         * Whether the modifier should compound the results or not
+         *
+         * @type {boolean}
+         */
+        get compound() {
+            return this[_compound];
+        }
+        /**
+         * Whether the modifier should penetrate the results or not
+         *
+         * @returns {boolean}
+         */
+        get penetrate() {
+            return this[_penetrate];
+        }
+        /**
+         * Runs the modifier on the rolls
+         *
+         * @param {RollResults} results
+         * @param {StandardDice} dice
+         *
+         * @returns {RollResults}
+         */
+        run(results, dice) {
+            // ensure that the dice can explode without going into an infinite loop
+            if (dice.min === dice.max) {
+                throw new Error(`Die must have more than 1 side to explode: ${dice}`);
+            }
+            results.rolls = results.rolls
+                .map(roll => {
+                const subRolls = [roll];
+                let compareValue = roll.value;
+                while (this.isComparePoint(compareValue)) {
+                    const prevRoll = subRolls[subRolls.length - 1];
+                    // roll the dice
+                    const rollResult = dice.rollOnce();
+                    // update the value to check against
+                    compareValue = rollResult.value;
+                    // add the explode modifier flag
+                    prevRoll.modifiers.push('explode');
+                    // add the penetrate modifier flag and decrement the value
+                    if (this.penetrate) {
+                        prevRoll.modifiers.push('penetrate');
+                        rollResult.value--;
+                    }
+                    // add the rolls to the list
+                    subRolls.push(rollResult);
+                }
+                // return the rolls (Compounded if necessary)
+                if (this.compound && (subRolls.length > 1)) {
+                    // update the roll value and modifiers
+                    roll.value = diceUtils.sumArray(subRolls);
+                    roll.modifiers = [
+                        'explode',
+                        'compound',
+                    ];
+                    if (this.penetrate) {
+                        roll.modifiers.push('penetrate');
+                    }
+                    return roll;
+                }
+                return subRolls;
+            })
+                .flat();
+            return results;
+        }
+        /**
+         * Returns an object for JSON serialising
+         *
+         * @returns {{}}
+         */
+        toJSON() {
+            const { compound, penetrate } = this;
+            return Object.assign(super.toJSON(), {
+                compound,
+                penetrate,
+            });
+        }
+    }
+    return ExplodeModifier;
+})();
+const RollResults = (() => {
+    const _rolls = Symbol('rolls');
+    class RollResults {
+        /**
+         * @param {RollResult[]=} rolls
+         */
+        constructor(rolls) {
+            this.rolls = rolls || [];
+        }
+        /**
+         * Returns the numbers of rolls
+         *
+         * @returns {number}
+         */
+        get length() {
+            return this.rolls.length || 0;
+        }
+        /**
+         * Returns the rolls
+         *
+         * @returns {RollResult[]}
+         */
+        get rolls() {
+            return [...(this[_rolls] || [])];
+        }
+        /**
+         * Sets the rolls
+         *
+         * @param {RollResult[]|number[]} rolls
+         *
+         * @throws Error
+         */
+        set rolls(rolls) {
+            if (!rolls || !Array.isArray(rolls)) {
+                // roll is not an array
+                throw new Error(`Rolls must be an array: ${rolls}`);
+            }
+            // loop through each result and add it to the rolls list
+            this[_rolls] = [];
+            rolls.forEach(result => {
+                this.addRoll(result);
+            });
+        }
+        /**
+         * The total value of the rolls, taking in to consideration modifiers
+         *
+         * @returns {number}
+         */
+        get value() {
+            return this.rolls.reduce((v, roll) => v + (roll.useInTotal ? roll.calculationValue : 0), 0);
+        }
+        /**
+         * Adds a single roll to the list
+         *
+         * @param {RollResult|number} value
+         */
+        addRoll(value) {
+            const result = (value instanceof RollResult) ? value : new RollResult(value);
+            this[_rolls].push(result);
+        }
+        /**
+         * Returns an object for JSON serialising
+         *
+         * @returns {{}}
+         */
+        toJSON() {
+            const { rolls, value } = this;
+            return {
+                rolls,
+                value,
+            };
+        }
+        /**
+         * Returns the String representation of the object
+         *
+         * @returns {string}
+         */
+        toString() {
+            return `[${this.rolls.join(', ')}]`;
+        }
+    }
+    return RollResults;
+})();
+const ReRollModifier = (() => {
+    const _once = Symbol('once');
+    class ReRollModifier extends ComparisonModifier {
+        /**
+         *
+         * @param {string} notation
+         * @param {boolean} once
+         * @param {ComparePoint} comparePoint
+         */
+        constructor(notation, once = false, comparePoint = null) {
+            super(notation, comparePoint);
+            this.once = !!once;
+            // set the modifier's sort order
+            this.order = 2;
+        }
+        /**
+         * Returns whether the modifier should only re-roll once or not
+         *
+         * @returns {boolean}
+         */
+        get once() {
+            return !!this[_once];
+        }
+        /**
+         * Sets whether the modifier should only re-roll once or not
+         *
+         * @param value
+         */
+        set once(value) {
+            this[_once] = !!value;
+        }
+        /**
+         * Runs the modifier on the rolls
+         *
+         * @param {RollResults} results
+         * @param {StandardDice} dice
+         *
+         * @returns {RollResults}
+         */
+        run(results, dice) {
+            // ensure that the dice can explode without going into an infinite loop
+            if (dice.min === dice.max) {
+                throw new Error(`Die must have more than 1 side to re-roll: ${dice}`);
+            }
+            results.rolls
+                .map(roll => {
+                let hasReRolled = false;
+                // if the die roll matches the compare point we re-roll
+                // unless we're only rolling once, we should re-roll if any consecutive rolls also match the CP
+                while (this.isComparePoint(roll.value) && (!this.once || !hasReRolled)) {
+                    // roll the dice
+                    const rollResult = dice.rollOnce();
+                    // update the roll value (Unlike exploding, the original value if not kept)
+                    roll.value = rollResult.value;
+                    // increment the roll count so we only roll once when required
+                    hasReRolled = true;
+                }
+                // add the re-roll modifier flag outside the loop, otherwise we get duplicate flags
+                if (hasReRolled) {
+                    roll.modifiers.push(`re-roll${this.once ? '-once' : ''}`);
+                }
+                return roll;
+            });
+            return results;
+        }
+        /**
+         * Returns an object for JSON serialising
+         *
+         * @returns {{}}
+         */
+        toJSON() {
+            const { once } = this;
+            return Object.assign(super.toJSON(), {
+                once
+            });
+        }
+    }
+    return ReRollModifier;
+})();
+/**
+ *
+ * @type {StandardDice}
+ *
+ * @property {Map[]} modifiers
+ * @property {string} notation
+ * @property {number|string} sides
+ * @property {number} qty
+ *
+ * @method {RollResults} roll
+ * @method {RollResult} rollDie
+ */
+const StandardDice = (() => {
+    const _modifiers = Symbol('modifiers');
+    const _notation = Symbol('notation');
+    const _qty = Symbol('qty');
+    const _sides = Symbol('sides');
+    class StandardDice {
+        /**
+         *
+         * @param {string} notation
+         * @param {number} sides
+         * @param {number} qty
+         * @param {Map|{}|Map[]|null} modifiers
+         */
+        constructor(notation, sides, qty = 1, modifiers = null) {
+            if (!notation) {
+                throw new TypeError('Dice: Notation is required');
+            }
+            else if (!sides) {
+                throw new TypeError('Dice: sides is required');
+            }
+            else if (!diceUtils.isNumeric(qty) || (qty < 1)) {
+                throw new TypeError('qty must be a positive integer');
+            }
+            this[_notation] = notation;
+            this[_qty] = parseInt(qty, 10);
+            this[_sides] = sides;
+            if (modifiers) {
+                if (modifiers instanceof Map) {
+                    this[_modifiers] = modifiers;
+                }
+                else if (Array.isArray(modifiers)) {
+                    // loop through and get the modifier name of each item and use it as the map key
+                    this[_modifiers] = new Map(modifiers.map(modifier => [modifier.name, modifier]));
+                }
+                else if (typeof modifiers === 'object') {
+                    this[_modifiers] = new Map(Object.entries(modifiers));
+                }
+                else {
+                    throw new Error('modifiers should be a Map or an Object');
+                }
+                if (this[_modifiers].size && [...this[_modifiers].entries()].some(entry => !(entry[1] instanceof Modifier))) {
+                    throw new Error('modifiers is invalid. List must only contain Modifier instances');
+                }
+                // loop through each modifier and ensure that those that require it have compare points
+                // @todo find a better way of defining compare point on modifiers that don't have them
+                this[_modifiers].forEach((modifier) => {
+                    if ((modifier instanceof ExplodeModifier) && !modifier.comparePoint) {
+                        modifier.comparePoint = new ComparePoint('=', this.max);
+                    }
+                    else if ((modifier instanceof ReRollModifier) && !modifier.comparePoint) {
+                        modifier.comparePoint = new ComparePoint('=', this.min);
+                    }
+                });
+            }
+        }
+        /**
+         * The modifiers that affect this dice roll
+         *
+         * @returns {Map|null}
+         */
+        get modifiers() {
+            // ensure modifiers are ordered correctly
+            return this[_modifiers] ? new Map([...this[_modifiers]].sort((a, b) => a[1].order - b[1].order)) : null;
+        }
+        /**
+         * The maximum value that can be rolled om the die
+         *
+         * @returns {number}
+         */
+        get max() {
+            return this.sides;
+        }
+        /**
+         * Returns the minimum value that can be rolled on the die
+         *
+         * @returns {number}
+         */
+        get min() {
+            return 1;
+        }
+        /**
+         * Returns the name for the dice
+         *
+         * @returns {*}
+         */
+        get name() {
+            return this.constructor.name;
+        }
+        /**
+         * The dice notation for this dice roll
+         *
+         * @returns {string}
+         */
+        get notation() {
+            return this[_notation];
+        }
+        /**
+         * Returns the number of dice that should be rolled.
+         *
+         * @returns {number}
+         */
+        get qty() {
+            return this[_qty];
+        }
+        /**
+         * The number of sides the dice has
+         *
+         * @returns {*}
+         */
+        get sides() {
+            return this[_sides];
+        }
+        /**
+         * Rolls the dice, for the specified quantity and
+         * includes any modifiers, and returns the roll output
+         *
+         * @returns {RollResults}
+         */
+        roll() {
+            // create a result object to hold the rolls
+            const rollResult = new RollResults();
+            // loop for the quantity and roll the die
+            for (let i = 0; i < this.qty; i++) {
+                // add the rolls to the list
+                rollResult.addRoll(this.rollOnce());
+            }
+            // loop through each modifier and carry out its actions
+            (this.modifiers || []).forEach(modifier => {
+                modifier.run(rollResult, this);
+            });
+            return rollResult;
+        }
+        /**
+         * Rolls a single die and returns the output value
+         *
+         * @returns {RollResult}
+         */
+        rollOnce() {
+            return new RollResult(diceUtils.generateNumber(this.min, this.max));
+        }
+        /**
+         * Returns an object for JSON serialising
+         *
+         * @returns {{}}
+         */
+        toJSON() {
+            const { max, min, modifiers, name, notation, qty, sides } = this;
+            return {
+                max,
+                min,
+                modifiers,
+                name,
+                notation,
+                qty,
+                sides,
+                type: 'die',
+            };
+        }
+        /**
+         * Returns the String representation of the object
+         *
+         * @returns {string}
+         */
+        toString() {
+            return this.notation;
+        }
+    }
+    return StandardDice;
+})();
+const FudgeDice = (() => {
+    class FudgeDice extends StandardDice {
+        constructor(notation, nonBlanks = 2, qty = 1, modifiers = null) {
+            if (!nonBlanks && (nonBlanks !== 0)) {
+                nonBlanks = 2;
+            }
+            else if ((nonBlanks !== 1) && (nonBlanks !== 2)) {
+                throw new Error('nonBlanks must be 1 or 2');
+            }
+            super(notation, parseInt(nonBlanks, 10), qty, modifiers);
+        }
+        /**
+         * The maximum value that can be rolled om the die
+         *
+         * @returns {number}
+         */
+        get max() {
+            return 1;
+        }
+        /**
+         * Returns the minimum value that can be rolled on the die
+         *
+         * @returns {number}
+         */
+        get min() {
+            return -1;
+        }
+        get nonBlanks() {
+            return super.sides;
+        }
+        get sides() {
+            return `F.${this.nonBlanks}`;
+        }
+        /**
+         * Rolls a single die and returns the output value
+         *
+         * @returns {RollResult}
+         */
+        rollOnce() {
+            let total = 0;
+            if (this.nonBlanks === 2) {
+                // default fudge (2 of each non-blank) = 1d3 - 2
+                total = diceUtils.generateNumber(1, 3) - 2;
+            }
+            else if (this.nonBlanks === 1) {
+                // only 1 of each non-blank
+                // on 1d6 a roll of 1 = -1, 6 = +1, others = 0
+                const num = diceUtils.generateNumber(1, 6);
+                if (num === 1) {
+                    total = -1;
+                }
+                else if (num === 6) {
+                    total = 1;
+                }
+            }
+            return new RollResult(total);
+        }
+    }
+    return FudgeDice;
+})();
+const PercentileDice = (() => {
+    class PercentileDice extends StandardDice {
+        constructor(notation, qty = 1, modifiers = null) {
+            super(notation, 100, qty, modifiers);
+        }
+        /**
+         * The maximum value that can be rolled on the die
+         *
+         * @returns {number}
+         */
+        get max() {
+            return 100;
+        }
+        /**
+         * The number of sides the dice has
+         *
+         * @returns {string}s
+         */
+        get sides() {
+            return '%';
+        }
+    }
+    return PercentileDice;
+})();
+var Dice = /*#__PURE__*/ Object.freeze({
+    __proto__: null,
+    FudgeDice: FudgeDice,
+    PercentileDice: PercentileDice,
+    StandardDice: StandardDice
+});
+const CriticalFailureModifier = (() => {
+    class CriticalFailureModifier extends ComparisonModifier {
+        constructor(notation, comparePoint) {
+            super(notation, comparePoint);
+            // set the modifier's sort order
+            this.order = 7;
+        }
+        /**
+         * Runs the modifier on the rolls
+         *
+         * @param {RollResults} results
+         * @param {StandardDice} dice
+         *
+         * @returns {RollResults}
+         */
+        run(results, dice) {
+            results.rolls
+                .map(roll => {
+                // add the modifier flag
+                if (this.isComparePoint(roll.value)) {
+                    roll.modifiers.push('critical-failure');
+                }
+                return roll;
+            });
+            return results;
+        }
+    }
+    return CriticalFailureModifier;
+})();
+const CriticalSuccessModifier = (() => {
+    class CriticalSuccessModifier extends ComparisonModifier {
+        constructor(notation, comparePoint) {
+            super(notation, comparePoint);
+            // set the modifier's sort order
+            this.order = 6;
+        }
+        /**
+         * Runs the modifier on the rolls
+         *
+         * @param {RollResults} results
+         * @param {StandardDice} dice
+         *
+         * @returns {RollResults}
+         */
+        run(results, dice) {
+            // loop through each roll and see if it's a critical success
+            results.rolls
+                .map(roll => {
+                // add the modifier flag
+                if (this.isComparePoint(roll.value)) {
+                    roll.modifiers.push('critical-success');
+                }
+                return roll;
+            });
+            return results;
+        }
+    }
+    return CriticalSuccessModifier;
+})();
+const KeepModifier = (() => {
+    const _end = Symbol('end');
+    const _qty = Symbol('qty');
+    class KeepModifier extends Modifier {
+        /**
+         *
+         * @param {string} notation
+         * @param {string} end Either `h|l` to keep highest or lowest
+         * @param {number=} qty The amount to keep
+         */
+        constructor(notation, end, qty) {
+            super(notation);
+            this.end = end;
+            this.qty = (qty || (qty === 0)) ? qty : 1;
+            // set the modifier's sort order
+            this.order = 3;
+        }
+        /**
+         * Returns which end the rolls should be kept ("h" = High, "l" = Low)
+         *
+         * @returns {string}
+         */
+        get end() {
+            return this[_end];
+        }
+        /**
+         * Sets which end the rolls should be kept ("h" = High, "l" = Low)
+         *
+         * @param value
+         */
+        set end(value) {
+            if ((value !== 'h') && (value !== 'l')) {
+                throw new Error('End must be "h" or "l"');
+            }
+            this[_end] = value;
+        }
+        /**
+         * Returns the quantity of dice that should be kept
+         *
+         * @returns {number}
+         */
+        get qty() {
+            return this[_qty];
+        }
+        /**
+         * Sets the quantity of dice that should be kept
+         *
+         * @param {number} value
+         */
+        set qty(value) {
+            if (!diceUtils.isNumeric(value) || (value < 1)) {
+                throw new Error('qty must be a positive integer');
+            }
+            this[_qty] = parseInt(value, 10);
+        }
+        /**
+         * Returns the min/max range of rolls to drop
+         *
+         * @param {RollResults} results
+         *
+         * @returns {number[]}
+         *
+         * @private
+         */
+        _rangeToDrop(results) {
+            // we're keeping, so we want to drop all dice that are outside of the qty range
+            return [this.qty, results.length];
+        }
+        /**
+         * Runs the modifier on the rolls
+         *
+         * @param {RollResults} results
+         * @param {StandardDice} dice
+         *
+         * @returns {RollResults}
+         */
+        run(results, dice) {
+            // first clone the rolls so it doesn't affect the original array
+            const rollIndexes = [...results.rolls]
+                // get a list of objects with roll values and original index
+                .map((roll, index) => {
+                return {
+                    value: roll.value,
+                    index
+                };
+            })
+                // sort the list by value (Either ascending or descending depending on end)
+                .sort((a, b) => (this.end === 'h') ? b.value - a.value : a.value - b.value)
+                .map(rollIndex => rollIndex.index)
+                // get the roll indexes to drop
+                .slice(...this._rangeToDrop(results));
+            // loop through all of our dice to drop and flag them as such
+            rollIndexes.forEach(rollIndex => {
+                const roll = results.rolls[rollIndex];
+                roll.modifiers.push('drop');
+                roll.useInTotal = false;
+            });
+            return results;
+        }
+        /**
+         * Returns an object for JSON serialising
+         *
+         * @returns {{}}
+         */
+        toJSON() {
+            const { end, qty } = this;
+            return Object.assign(super.toJSON(), {
+                end,
+                qty
+            });
+        }
+    }
+    return KeepModifier;
+})();
+const DropModifier = (() => {
+    class DropModifier extends KeepModifier {
+        constructor(notation, end, qty) {
+            super(notation, end, qty);
+            // set the modifier's sort order
+            this.order = 4;
+        }
+        /**
+         * Returns the min/max range of rolls to drop
+         *
+         * @param {RollResults} results
+         *
+         * @returns {number[]}
+         *
+         * @private
+         */
+        _rangeToDrop(results) {
+            // we're dropping, so we want to drop all dice that are inside of the qty range
+            return [0, this.qty];
+        }
+    }
+    return DropModifier;
+})();
+const SortingModifier = (() => {
+    const _direction = Symbol('direction');
+    class SortingModifier extends Modifier {
+        /**
+         *
+         * @param {string} notation
+         * @param {string} direction Either `a|d`
+         */
+        constructor(notation, direction = 'a') {
+            super(notation);
+            this.direction = direction || 'a';
+            // set the modifier's sort order
+            this.order = 8;
+        }
+        /**
+         * Returns the sort direction
+         *
+         * @returns {string}
+         */
+        get direction() {
+            return this[_direction];
+        }
+        /**
+         * Sets the sort direction
+         *
+         * @param {string} value
+         */
+        set direction(value) {
+            if ((value !== 'a') && (value !== 'd')) {
+                throw new Error('Direction must be "a" (Ascending) or "d" (Descending)');
+            }
+            this[_direction] = value;
+        }
+        /**
+         * Runs the modifier on the rolls
+         *
+         * @param {RollResults} results
+         * @param {StandardDice} dice
+         *
+         * @returns {RollResults}
+         */
+        run(results, dice) {
+            results.rolls = results.rolls.sort((a, b) => {
+                if (this.direction === 'd') {
+                    return b.value - a.value;
+                }
+                return a.value - b.value;
+            });
+            return results;
+        }
+        /**
+         * Returns an object for JSON serialising
+         *
+         * @returns {{}}
+         */
+        toJSON() {
+            const { direction } = this;
+            return Object.assign(super.toJSON(), {
+                direction,
+            });
+        }
+    }
+    return SortingModifier;
+})();
+const TargetModifier = (() => {
+    const _failureCP = Symbol('failure-cp');
+    class TargetModifier extends ComparisonModifier {
+        /**
+         *
+         * @param {string} notation
+         * @param {ComparePoint} successCP
+         * @param {ComparePoint=} failureCP
+         */
+        constructor(notation, successCP, failureCP) {
+            super(notation, successCP);
+            // set the failure compare point
+            this.failureComparePoint = failureCP;
+            // set the modifier's sort order
+            this.order = 5;
+        }
+        /**
+         * Returns the failure compare point for the modifier
+         *
+         * @returns {ComparePoint|null}
+         */
+        get failureComparePoint() {
+            return this[_failureCP];
+        }
+        /**
+         * Sets the compare point
+         *
+         * @param comparePoint
+         */
+        set failureComparePoint(comparePoint) {
+            if (comparePoint && !(comparePoint instanceof ComparePoint)) {
+                throw TypeError('failure comparePoint must be instance of ComparePoint or null');
+            }
+            this[_failureCP] = comparePoint || null;
+        }
+        /**
+         * Returns the success compare point for the modifier
+         *
+         * @returns {ComparePoint}
+         */
+        get successComparePoint() {
+            return this.comparePoint;
+        }
+        /**
+         * Sets the success compare point for the modifier
+         *
+         * @param value
+         */
+        set successComparePoint(value) {
+            super.comparePoint = value;
+        }
+        /**
+         * Checks if the value is a success/failure/neither and returns
+         * its corresponding state value:
+         * success = 1, fail = -1, neither = 0
+         *
+         * @param {number} value
+         *
+         * @returns {number}
+         */
+        getStateValue(value) {
+            return this.isSuccess(value) ? 1 : (this.isFailure(value) ? -1 : 0);
+        }
+        /**
+         * Returns true if the value matches the failure compare point.
+         *
+         * A response of `false` does NOT indicate a success. A value
+         * is a success ONLY if it passes the success compare point.
+         * A value could be neither a failure or a success.
+         *
+         * @param value
+         * @returns {boolean}
+         */
+        isFailure(value) {
+            return this.failureComparePoint ? this.failureComparePoint.isMatch(value) : false;
+        }
+        /**
+         * Returns true if the value doesn't match both the success compare point
+         * and the failure compare point.
+         *
+         * @param {number} value
+         * @returns {boolean}
+         */
+        isNeutral(value) {
+            return !this.isSuccess(value) && !this.isFailure(value);
+        }
+        /**
+         * Returns true if the value matches the success compare point.
+         *
+         * A response of `false` does NOT indicate a failure. A value
+         * is a failure ONLY if it passes the failure compare point.
+         * A value could be neither a failure or a success.
+         *
+         * @param {number} value
+         *
+         * @returns {boolean}
+         */
+        isSuccess(value) {
+            return this.isComparePoint(value);
+        }
+        /**
+         * Runs the modifier on the rolls
+         *
+         * @param {RollResults} results
+         * @param {StandardDice} dice
+         *
+         * @returns {RollResults}
+         */
+        run(results, dice) {
+            // loop through each roll and see if it matches the target
+            results.rolls
+                .map(roll => {
+                // add the modifier flag
+                if (this.isSuccess(roll.value)) {
+                    roll.modifiers.push('target-success');
+                }
+                else if (this.isFailure(roll)) {
+                    roll.modifiers.push('target-failure');
+                }
+                // set the value to the success state value
+                roll.calculationValue = this.getStateValue(roll.value);
+                return roll;
+            });
+            return results;
+        }
+        /**
+         * Returns an object for JSON serialising
+         *
+         * @returns {{}}
+         */
+        toJSON() {
+            const { failureComparePoint, successComparePoint } = this;
+            // get the inherited object, but remove the comparePoint property
+            const result = super.toJSON();
+            delete result.comparePoint;
+            return Object.assign(result, {
+                failureComparePoint,
+                successComparePoint,
+            });
+        }
+    }
+    return TargetModifier;
+})();
+var Modifiers = /*#__PURE__*/ Object.freeze({
+    __proto__: null,
+    ComparisonModifier: ComparisonModifier,
+    CriticalFailureModifier: CriticalFailureModifier,
+    CriticalSuccessModifier: CriticalSuccessModifier,
+    DropModifier: DropModifier,
+    ExplodeModifier: ExplodeModifier,
+    KeepModifier: KeepModifier,
+    ReRollModifier: ReRollModifier,
+    SortingModifier: SortingModifier,
+    TargetModifier: TargetModifier
+});
+const RollGroup = (() => {
+    const _modifiers = Symbol('modifiers');
+    const _notation = Symbol('notation');
+    const _expressions = Symbol('expressions');
+    class RollGroup {
+        /**
+         *
+         * @param {string} notation
+         * @param {StandardDice[]} expressions
+         * @param {[]|null} modifiers
+         */
+        constructor(notation, expressions, modifiers = null) {
+            this[_notation] = notation;
+            this[_expressions] = expressions;
+            this[_modifiers] = modifiers;
+        }
+        /**
+         * The modifiers that affect this group
+         *
+         * @returns {Modifier[]|null}
+         */
+        get modifiers() {
+            return this[_modifiers];
+        }
+        /**
+         * The dice notation for this group
+         *
+         * @returns {string}
+         */
+        get notation() {
+            return this[_notation];
+        }
+        /**
+         * The expressions in this group
+         *
+         * @returns {StandardDice[]}
+         */
+        get expressions() {
+            return this[_expressions];
+        }
+        /**
+         * Returns an object for JSON serialising
+         *
+         * @returns {{}}
+         */
+        toJSON() {
+            const { modifiers, notation, expressions, } = this;
+            return {
+                expressions,
+                modifiers,
+                notation,
+                type: 'group',
+            };
+        }
+    }
+    return RollGroup;
+})();
+// TODO: remove these polyfills as soon as we have a build process that transpiles the code to ES5
+// Polyfill for IE 11 (Number.isFinite is used in `complex.js`)
+// source: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/isFinite
+Number.isFinite = Number.isFinite || function (value) {
+    return typeof value === 'number' && isFinite(value);
+}; // Polyfill for IE 11
+// source: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/isNaN
+Number.isNaN = Number.isNaN || function (value) {
+    return value !== value; // eslint-disable-line no-self-compare
+};
+var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
+function unwrapExports(x) {
+    return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, 'default') ? x['default'] : x;
+}
+function createCommonjsModule(fn, module) {
+    return module = { exports: {} }, fn(module, module.exports), module.exports;
+}
+/**
+ * Test whether a value is a BigNumber
+ * @param {*} x
+ * @return {boolean}
+ */
+var isBigNumber = function isBigNumber(x) {
+    return x && x.constructor.prototype.isBigNumber || false;
+};
+var object = createCommonjsModule(function (module, exports) {
+    function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
+        _typeof = function _typeof(obj) { return typeof obj; };
+    }
+    else {
+        _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+    } return _typeof(obj); }
+    /**
+     * Clone an object
+     *
+     *     clone(x)
+     *
+     * Can clone any primitive type, array, and object.
+     * If x has a function clone, this function will be invoked to clone the object.
+     *
+     * @param {*} x
+     * @return {*} clone
+     */
+    exports.clone = function clone(x) {
+        var type = _typeof(x); // immutable primitive types
+        if (type === 'number' || type === 'string' || type === 'boolean' || x === null || x === undefined) {
+            return x;
+        } // use clone function of the object when available
+        if (typeof x.clone === 'function') {
+            return x.clone();
+        } // array
+        if (Array.isArray(x)) {
+            return x.map(function (value) {
+                return clone(value);
+            });
+        }
+        if (x instanceof Date)
+            return new Date(x.valueOf());
+        if (isBigNumber(x))
+            return x; // bignumbers are immutable
+        if (x instanceof RegExp)
+            throw new TypeError('Cannot clone ' + x); // TODO: clone a RegExp
+        // object
+        return exports.map(x, clone);
+    };
+    /**
+     * Apply map to all properties of an object
+     * @param {Object} object
+     * @param {function} callback
+     * @return {Object} Returns a copy of the object with mapped properties
+     */
+    exports.map = function (object, callback) {
+        var clone = {};
+        for (var key in object) {
+            if (exports.hasOwnProperty(object, key)) {
+                clone[key] = callback(object[key]);
+            }
+        }
+        return clone;
+    };
+    /**
+     * Extend object a with the properties of object b
+     * @param {Object} a
+     * @param {Object} b
+     * @return {Object} a
+     */
+    exports.extend = function (a, b) {
+        for (var prop in b) {
+            if (exports.hasOwnProperty(b, prop)) {
+                a[prop] = b[prop];
+            }
+        }
+        return a;
+    };
+    /**
+     * Deep extend an object a with the properties of object b
+     * @param {Object} a
+     * @param {Object} b
+     * @returns {Object}
+     */
+    exports.deepExtend = function deepExtend(a, b) {
+        // TODO: add support for Arrays to deepExtend
+        if (Array.isArray(b)) {
+            throw new TypeError('Arrays are not supported by deepExtend');
+        }
+        for (var prop in b) {
+            if (exports.hasOwnProperty(b, prop)) {
+                if (b[prop] && b[prop].constructor === Object) {
+                    if (a[prop] === undefined) {
+                        a[prop] = {};
+                    }
+                    if (a[prop].constructor === Object) {
+                        deepExtend(a[prop], b[prop]);
+                    }
+                    else {
+                        a[prop] = b[prop];
+                    }
+                }
+                else if (Array.isArray(b[prop])) {
+                    throw new TypeError('Arrays are not supported by deepExtend');
+                }
+                else {
+                    a[prop] = b[prop];
+                }
+            }
+        }
+        return a;
+    };
+    /**
+     * Deep test equality of all fields in two pairs of arrays or objects.
+     * @param {Array | Object} a
+     * @param {Array | Object} b
+     * @returns {boolean}
+     */
+    exports.deepEqual = function deepEqual(a, b) {
+        var prop, i, len;
+        if (Array.isArray(a)) {
+            if (!Array.isArray(b)) {
+                return false;
+            }
+            if (a.length !== b.length) {
+                return false;
+            }
+            for (i = 0, len = a.length; i < len; i++) {
+                if (!exports.deepEqual(a[i], b[i])) {
+                    return false;
+                }
+            }
+            return true;
+        }
+        else if (a instanceof Object) {
+            if (Array.isArray(b) || !(b instanceof Object)) {
+                return false;
+            }
+            for (prop in a) {
+                // noinspection JSUnfilteredForInLoop
+                if (!exports.deepEqual(a[prop], b[prop])) {
+                    return false;
+                }
+            }
+            for (prop in b) {
+                // noinspection JSUnfilteredForInLoop
+                if (!exports.deepEqual(a[prop], b[prop])) {
+                    return false;
+                }
+            }
+            return true;
+        }
+        else {
+            return a === b;
+        }
+    };
+    /**
+     * Test whether the current JavaScript engine supports Object.defineProperty
+     * @returns {boolean} returns true if supported
+     */
+    exports.canDefineProperty = function () {
+        // test needed for broken IE8 implementation
+        try {
+            if (Object.defineProperty) {
+                Object.defineProperty({}, 'x', {
+                    get: function get() { }
+                });
+                return true;
+            }
+        }
+        catch (e) { }
+        return false;
+    };
+    /**
+     * Attach a lazy loading property to a constant.
+     * The given function `fn` is called once when the property is first requested.
+     * On older browsers (<IE8), the function will fall back to direct evaluation
+     * of the properties value.
+     * @param {Object} object   Object where to add the property
+     * @param {string} prop     Property name
+     * @param {Function} fn     Function returning the property value. Called
+     *                          without arguments.
+     */
+    exports.lazy = function (object, prop, fn) {
+        if (exports.canDefineProperty()) {
+            var _uninitialized = true;
+            var _value;
+            Object.defineProperty(object, prop, {
+                get: function get() {
+                    if (_uninitialized) {
+                        _value = fn();
+                        _uninitialized = false;
+                    }
+                    return _value;
+                },
+                set: function set(value) {
+                    _value = value;
+                    _uninitialized = false;
+                },
+                configurable: true,
+                enumerable: true
+            });
+        }
+        else {
+            // fall back to immediate evaluation
+            object[prop] = fn();
+        }
+    };
+    /**
+     * Traverse a path into an object.
+     * When a namespace is missing, it will be created
+     * @param {Object} object
+     * @param {string} path   A dot separated string like 'name.space'
+     * @return {Object} Returns the object at the end of the path
+     */
+    exports.traverse = function (object, path) {
+        var obj = object;
+        if (path) {
+            var names = path.split('.');
+            for (var i = 0; i < names.length; i++) {
+                var name = names[i];
+                if (!(name in obj)) {
+                    obj[name] = {};
+                }
+                obj = obj[name];
+            }
+        }
+        return obj;
+    };
+    /**
+     * A safe hasOwnProperty
+     * @param {Object} object
+     * @param {string} property
+     */
+    exports.hasOwnProperty = function (object, property) {
+        return object && Object.hasOwnProperty.call(object, property);
+    };
+    /**
+     * Test whether an object is a factory. a factory has fields:
+     *
+     * - factory: function (type: Object, config: Object, load: function, typed: function [, math: Object])   (required)
+     * - name: string (optional)
+     * - path: string    A dot separated path (optional)
+     * - math: boolean   If true (false by default), the math namespace is passed
+     *                   as fifth argument of the factory function
+     *
+     * @param {*} object
+     * @returns {boolean}
+     */
+    exports.isFactory = function (object) {
+        return object && typeof object.factory === 'function';
+    };
+});
+var object_1 = object.clone;
+var object_2 = object.map;
+var object_3 = object.extend;
+var object_4 = object.deepExtend;
+var object_5 = object.deepEqual;
+var object_6 = object.canDefineProperty;
+var object_7 = object.lazy;
+var object_8 = object.traverse;
+var object_9 = object.isFactory;
+var typedFunction = createCommonjsModule(function (module, exports) {
+    (function (root, factory) {
+        {
+            // OldNode. Does not work with strict CommonJS, but
+            // only CommonJS-like environments that support module.exports,
+            // like OldNode.
+            module.exports = factory();
+        }
+    }(commonjsGlobal, function () {
+        function ok() {
+            return true;
+        }
+        function notOk() {
+            return false;
+        }
+        function undef() {
+            return undefined;
+        }
+        /**
+         * @typedef {{
+         *   params: Param[],
+         *   fn: function
+         * }} Signature
+         *
+         * @typedef {{
+         *   types: Type[],
+         *   restParam: boolean
+         * }} Param
+         *
+         * @typedef {{
+         *   name: string,
+         *   typeIndex: number,
+         *   test: function,
+         *   conversion?: ConversionDef,
+         *   conversionIndex: number,
+         * }} Type
+         *
+         * @typedef {{
+         *   from: string,
+         *   to: string,
+         *   convert: function (*) : *
+         * }} ConversionDef
+         *
+         * @typedef {{
+         *   name: string,
+         *   test: function(*) : boolean
+         * }} TypeDef
+         */
+        // create a new instance of typed-function
+        function create() {
+            // data type tests
+            var _types = [
+                { name: 'number', test: function (x) { return typeof x === 'number'; } },
+                { name: 'string', test: function (x) { return typeof x === 'string'; } },
+                { name: 'boolean', test: function (x) { return typeof x === 'boolean'; } },
+                { name: 'Function', test: function (x) { return typeof x === 'function'; } },
+                { name: 'Array', test: Array.isArray },
+                { name: 'Date', test: function (x) { return x instanceof Date; } },
+                { name: 'RegExp', test: function (x) { return x instanceof RegExp; } },
+                { name: 'Object', test: function (x) {
+                        return typeof x === 'object' && x.constructor === Object;
+                    } },
+                { name: 'null', test: function (x) { return x === null; } },
+                { name: 'undefined', test: function (x) { return x === undefined; } }
+            ];
+            var anyType = {
+                name: 'any',
+                test: ok
+            };
+            // types which need to be ignored
+            var _ignore = [];
+            // type conversions
+            var _conversions = [];
+            // This is a temporary object, will be replaced with a typed function at the end
+            var typed = {
+                types: _types,
+                conversions: _conversions,
+                ignore: _ignore
+            };
+            /**
+             * Find the test function for a type
+             * @param {String} typeName
+             * @return {TypeDef} Returns the type definition when found,
+             *                    Throws a TypeError otherwise
+             */
+            function findTypeByName(typeName) {
+                var entry = findInArray(typed.types, function (entry) {
+                    return entry.name === typeName;
+                });
+                if (entry) {
+                    return entry;
+                }
+                if (typeName === 'any') { // special baked-in case 'any'
+                    return anyType;
+                }
+                var hint = findInArray(typed.types, function (entry) {
+                    return entry.name.toLowerCase() === typeName.toLowerCase();
+                });
+                throw new TypeError('Unknown type "' + typeName + '"' +
+                    (hint ? ('. Did you mean "' + hint.name + '"?') : ''));
+            }
+            /**
+             * Find the index of a type definition. Handles special case 'any'
+             * @param {TypeDef} type
+             * @return {number}
+             */
+            function findTypeIndex(type) {
+                if (type === anyType) {
+                    return 999;
+                }
+                return typed.types.indexOf(type);
+            }
+            /**
+             * Find a type that matches a value.
+             * @param {*} value
+             * @return {string} Returns the name of the first type for which
+             *                  the type test matches the value.
+             */
+            function findTypeName(value) {
+                var entry = findInArray(typed.types, function (entry) {
+                    return entry.test(value);
+                });
+                if (entry) {
+                    return entry.name;
+                }
+                throw new TypeError('Value has unknown type. Value: ' + value);
+            }
+            /**
+             * Find a specific signature from a (composed) typed function, for example:
+             *
+             *   typed.find(fn, ['number', 'string'])
+             *   typed.find(fn, 'number, string')
+             *
+             * Function find only only works for exact matches.
+             *
+             * @param {Function} fn                   A typed-function
+             * @param {string | string[]} signature   Signature to be found, can be
+             *                                        an array or a comma separated string.
+             * @return {Function}                     Returns the matching signature, or
+             *                                        throws an error when no signature
+             *                                        is found.
+             */
+            function find(fn, signature) {
+                if (!fn.signatures) {
+                    throw new TypeError('Function is no typed-function');
+                }
+                // normalize input
+                var arr;
+                if (typeof signature === 'string') {
+                    arr = signature.split(',');
+                    for (var i = 0; i < arr.length; i++) {
+                        arr[i] = arr[i].trim();
+                    }
+                }
+                else if (Array.isArray(signature)) {
+                    arr = signature;
+                }
+                else {
+                    throw new TypeError('String array or a comma separated string expected');
+                }
+                var str = arr.join(',');
+                // find an exact match
+                var match = fn.signatures[str];
+                if (match) {
+                    return match;
+                }
+                // TODO: extend find to match non-exact signatures
+                throw new TypeError('Signature not found (signature: ' + (fn.name || 'unnamed') + '(' + arr.join(', ') + '))');
+            }
+            /**
+             * Convert a given value to another data type.
+             * @param {*} value
+             * @param {string} type
+             */
+            function convert(value, type) {
+                var from = findTypeName(value);
+                // check conversion is needed
+                if (type === from) {
+                    return value;
+                }
+                for (var i = 0; i < typed.conversions.length; i++) {
+                    var conversion = typed.conversions[i];
+                    if (conversion.from === from && conversion.to === type) {
+                        return conversion.convert(value);
+                    }
+                }
+                throw new Error('Cannot convert from ' + from + ' to ' + type);
+            }
+            /**
+             * Stringify parameters in a normalized way
+             * @param {Param[]} params
+             * @return {string}
+             */
+            function stringifyParams(params) {
+                return params
+                    .map(function (param) {
+                    var typeNames = param.types.map(getTypeName);
+                    return (param.restParam ? '...' : '') + typeNames.join('|');
+                })
+                    .join(',');
+            }
+            /**
+             * Parse a parameter, like "...number | boolean"
+             * @param {string} param
+             * @param {ConversionDef[]} conversions
+             * @return {Param} param
+             */
+            function parseParam(param, conversions) {
+                var restParam = param.indexOf('...') === 0;
+                var types = (!restParam)
+                    ? param
+                    : (param.length > 3)
+                        ? param.slice(3)
+                        : 'any';
+                var typeNames = types.split('|').map(trim)
+                    .filter(notEmpty)
+                    .filter(notIgnore);
+                var matchingConversions = filterConversions(conversions, typeNames);
+                var exactTypes = typeNames.map(function (typeName) {
+                    var type = findTypeByName(typeName);
+                    return {
+                        name: typeName,
+                        typeIndex: findTypeIndex(type),
+                        test: type.test,
+                        conversion: null,
+                        conversionIndex: -1
+                    };
+                });
+                var convertibleTypes = matchingConversions.map(function (conversion) {
+                    var type = findTypeByName(conversion.from);
+                    return {
+                        name: conversion.from,
+                        typeIndex: findTypeIndex(type),
+                        test: type.test,
+                        conversion: conversion,
+                        conversionIndex: conversions.indexOf(conversion)
+                    };
+                });
+                return {
+                    types: exactTypes.concat(convertibleTypes),
+                    restParam: restParam
+                };
+            }
+            /**
+             * Parse a signature with comma separated parameters,
+             * like "number | boolean, ...string"
+             * @param {string} signature
+             * @param {function} fn
+             * @param {ConversionDef[]} conversions
+             * @return {Signature | null} signature
+             */
+            function parseSignature(signature, fn, conversions) {
+                var params = [];
+                if (signature.trim() !== '') {
+                    params = signature
+                        .split(',')
+                        .map(trim)
+                        .map(function (param, index, array) {
+                        var parsedParam = parseParam(param, conversions);
+                        if (parsedParam.restParam && (index !== array.length - 1)) {
+                            throw new SyntaxError('Unexpected rest parameter "' + param + '": ' +
+                                'only allowed for the last parameter');
+                        }
+                        return parsedParam;
+                    });
+                }
+                if (params.some(isInvalidParam)) {
+                    // invalid signature: at least one parameter has no types
+                    // (they may have been filtered)
+                    return null;
+                }
+                return {
+                    params: params,
+                    fn: fn
+                };
+            }
+            /**
+             * Test whether a set of params contains a restParam
+             * @param {Param[]} params
+             * @return {boolean} Returns true when the last parameter is a restParam
+             */
+            function hasRestParam(params) {
+                var param = last(params);
+                return param ? param.restParam : false;
+            }
+            /**
+             * Test whether a parameter contains conversions
+             * @param {Param} param
+             * @return {boolean} Returns true when at least one of the parameters
+             *                   contains a conversion.
+             */
+            function hasConversions(param) {
+                return param.types.some(function (type) {
+                    return type.conversion != null;
+                });
+            }
+            /**
+             * Create a type test for a single parameter, which can have one or multiple
+             * types.
+             * @param {Param} param
+             * @return {function(x: *) : boolean} Returns a test function
+             */
+            function compileTest(param) {
+                if (!param || param.types.length === 0) {
+                    // nothing to do
+                    return ok;
+                }
+                else if (param.types.length === 1) {
+                    return findTypeByName(param.types[0].name).test;
+                }
+                else if (param.types.length === 2) {
+                    var test0 = findTypeByName(param.types[0].name).test;
+                    var test1 = findTypeByName(param.types[1].name).test;
+                    return function or(x) {
+                        return test0(x) || test1(x);
+                    };
+                }
+                else { // param.types.length > 2
+                    var tests = param.types.map(function (type) {
+                        return findTypeByName(type.name).test;
+                    });
+                    return function or(x) {
+                        for (var i = 0; i < tests.length; i++) {
+                            if (tests[i](x)) {
+                                return true;
+                            }
+                        }
+                        return false;
+                    };
+                }
+            }
+            /**
+             * Create a test for all parameters of a signature
+             * @param {Param[]} params
+             * @return {function(args: Array<*>) : boolean}
+             */
+            function compileTests(params) {
+                var tests, test0, test1;
+                if (hasRestParam(params)) {
+                    // variable arguments like '...number'
+                    tests = initial(params).map(compileTest);
+                    var varIndex = tests.length;
+                    var lastTest = compileTest(last(params));
+                    var testRestParam = function (args) {
+                        for (var i = varIndex; i < args.length; i++) {
+                            if (!lastTest(args[i])) {
+                                return false;
+                            }
+                        }
+                        return true;
+                    };
+                    return function testArgs(args) {
+                        for (var i = 0; i < tests.length; i++) {
+                            if (!tests[i](args[i])) {
+                                return false;
+                            }
+                        }
+                        return testRestParam(args) && (args.length >= varIndex + 1);
+                    };
+                }
+                else {
+                    // no variable arguments
+                    if (params.length === 0) {
+                        return function testArgs(args) {
+                            return args.length === 0;
+                        };
+                    }
+                    else if (params.length === 1) {
+                        test0 = compileTest(params[0]);
+                        return function testArgs(args) {
+                            return test0(args[0]) && args.length === 1;
+                        };
+                    }
+                    else if (params.length === 2) {
+                        test0 = compileTest(params[0]);
+                        test1 = compileTest(params[1]);
+                        return function testArgs(args) {
+                            return test0(args[0]) && test1(args[1]) && args.length === 2;
+                        };
+                    }
+                    else { // arguments.length > 2
+                        tests = params.map(compileTest);
+                        return function testArgs(args) {
+                            for (var i = 0; i < tests.length; i++) {
+                                if (!tests[i](args[i])) {
+                                    return false;
+                                }
+                            }
+                            return args.length === tests.length;
+                        };
+                    }
+                }
+            }
+            /**
+             * Find the parameter at a specific index of a signature.
+             * Handles rest parameters.
+             * @param {Signature} signature
+             * @param {number} index
+             * @return {Param | null} Returns the matching parameter when found,
+             *                        null otherwise.
+             */
+            function getParamAtIndex(signature, index) {
+                return index < signature.params.length
+                    ? signature.params[index]
+                    : hasRestParam(signature.params)
+                        ? last(signature.params)
+                        : null;
+            }
+            /**
+             * Get all type names of a parameter
+             * @param {Signature} signature
+             * @param {number} index
+             * @param {boolean} excludeConversions
+             * @return {string[]} Returns an array with type names
+             */
+            function getExpectedTypeNames(signature, index, excludeConversions) {
+                var param = getParamAtIndex(signature, index);
+                var types = param
+                    ? excludeConversions
+                        ? param.types.filter(isExactType)
+                        : param.types
+                    : [];
+                return types.map(getTypeName);
+            }
+            /**
+             * Returns the name of a type
+             * @param {Type} type
+             * @return {string} Returns the type name
+             */
+            function getTypeName(type) {
+                return type.name;
+            }
+            /**
+             * Test whether a type is an exact type or conversion
+             * @param {Type} type
+             * @return {boolean} Returns true when
+             */
+            function isExactType(type) {
+                return type.conversion === null || type.conversion === undefined;
+            }
+            /**
+             * Helper function for creating error messages: create an array with
+             * all available types on a specific argument index.
+             * @param {Signature[]} signatures
+             * @param {number} index
+             * @return {string[]} Returns an array with available types
+             */
+            function mergeExpectedParams(signatures, index) {
+                var typeNames = uniq(flatMap(signatures, function (signature) {
+                    return getExpectedTypeNames(signature, index, false);
+                }));
+                return (typeNames.indexOf('any') !== -1) ? ['any'] : typeNames;
+            }
+            /**
+             * Create
+             * @param {string} name             The name of the function
+             * @param {array.<*>} args          The actual arguments passed to the function
+             * @param {Signature[]} signatures  A list with available signatures
+             * @return {TypeError} Returns a type error with additional data
+             *                     attached to it in the property `data`
+             */
+            function createError(name, args, signatures) {
+                var err, expected;
+                var _name = name || 'unnamed';
+                // test for wrong type at some index
+                var matchingSignatures = signatures;
+                var index;
+                for (index = 0; index < args.length; index++) {
+                    var nextMatchingDefs = matchingSignatures.filter(function (signature) {
+                        var test = compileTest(getParamAtIndex(signature, index));
+                        return (index < signature.params.length || hasRestParam(signature.params)) &&
+                            test(args[index]);
+                    });
+                    if (nextMatchingDefs.length === 0) {
+                        // no matching signatures anymore, throw error "wrong type"
+                        expected = mergeExpectedParams(matchingSignatures, index);
+                        if (expected.length > 0) {
+                            var actualType = findTypeName(args[index]);
+                            err = new TypeError('Unexpected type of argument in function ' + _name +
+                                ' (expected: ' + expected.join(' or ') +
+                                ', actual: ' + actualType + ', index: ' + index + ')');
+                            err.data = {
+                                category: 'wrongType',
+                                fn: _name,
+                                index: index,
+                                actual: actualType,
+                                expected: expected
+                            };
+                            return err;
+                        }
+                    }
+                    else {
+                        matchingSignatures = nextMatchingDefs;
+                    }
+                }
+                // test for too few arguments
+                var lengths = matchingSignatures.map(function (signature) {
+                    return hasRestParam(signature.params) ? Infinity : signature.params.length;
+                });
+                if (args.length < Math.min.apply(null, lengths)) {
+                    expected = mergeExpectedParams(matchingSignatures, index);
+                    err = new TypeError('Too few arguments in function ' + _name +
+                        ' (expected: ' + expected.join(' or ') +
+                        ', index: ' + args.length + ')');
+                    err.data = {
+                        category: 'tooFewArgs',
+                        fn: _name,
+                        index: args.length,
+                        expected: expected
+                    };
+                    return err;
+                }
+                // test for too many arguments
+                var maxLength = Math.max.apply(null, lengths);
+                if (args.length > maxLength) {
+                    err = new TypeError('Too many arguments in function ' + _name +
+                        ' (expected: ' + maxLength + ', actual: ' + args.length + ')');
+                    err.data = {
+                        category: 'tooManyArgs',
+                        fn: _name,
+                        index: args.length,
+                        expectedLength: maxLength
+                    };
+                    return err;
+                }
+                err = new TypeError('Arguments of type "' + args.join(', ') +
+                    '" do not match any of the defined signatures of function ' + _name + '.');
+                err.data = {
+                    category: 'mismatch',
+                    actual: args.map(findTypeName)
+                };
+                return err;
+            }
+            /**
+             * Find the lowest index of all exact types of a parameter (no conversions)
+             * @param {Param} param
+             * @return {number} Returns the index of the lowest type in typed.types
+             */
+            function getLowestTypeIndex(param) {
+                var min = 999;
+                for (var i = 0; i < param.types.length; i++) {
+                    if (isExactType(param.types[i])) {
+                        min = Math.min(min, param.types[i].typeIndex);
+                    }
+                }
+                return min;
+            }
+            /**
+             * Find the lowest index of the conversion of all types of the parameter
+             * having a conversion
+             * @param {Param} param
+             * @return {number} Returns the lowest index of the conversions of this type
+             */
+            function getLowestConversionIndex(param) {
+                var min = 999;
+                for (var i = 0; i < param.types.length; i++) {
+                    if (!isExactType(param.types[i])) {
+                        min = Math.min(min, param.types[i].conversionIndex);
+                    }
+                }
+                return min;
+            }
+            /**
+             * Compare two params
+             * @param {Param} param1
+             * @param {Param} param2
+             * @return {number} returns a negative number when param1 must get a lower
+             *                  index than param2, a positive number when the opposite,
+             *                  or zero when both are equal
+             */
+            function compareParams(param1, param2) {
+                var c;
+                // compare having a rest parameter or not
+                c = param1.restParam - param2.restParam;
+                if (c !== 0) {
+                    return c;
+                }
+                // compare having conversions or not
+                c = hasConversions(param1) - hasConversions(param2);
+                if (c !== 0) {
+                    return c;
+                }
+                // compare the index of the types
+                c = getLowestTypeIndex(param1) - getLowestTypeIndex(param2);
+                if (c !== 0) {
+                    return c;
+                }
+                // compare the index of any conversion
+                return getLowestConversionIndex(param1) - getLowestConversionIndex(param2);
+            }
+            /**
+             * Compare two signatures
+             * @param {Signature} signature1
+             * @param {Signature} signature2
+             * @return {number} returns a negative number when param1 must get a lower
+             *                  index than param2, a positive number when the opposite,
+             *                  or zero when both are equal
+             */
+            function compareSignatures(signature1, signature2) {
+                var len = Math.min(signature1.params.length, signature2.params.length);
+                var i;
+                var c;
+                // compare whether the params have conversions at all or not
+                c = signature1.params.some(hasConversions) - signature2.params.some(hasConversions);
+                if (c !== 0) {
+                    return c;
+                }
+                // next compare whether the params have conversions one by one
+                for (i = 0; i < len; i++) {
+                    c = hasConversions(signature1.params[i]) - hasConversions(signature2.params[i]);
+                    if (c !== 0) {
+                        return c;
+                    }
+                }
+                // compare the types of the params one by one
+                for (i = 0; i < len; i++) {
+                    c = compareParams(signature1.params[i], signature2.params[i]);
+                    if (c !== 0) {
+                        return c;
+                    }
+                }
+                // compare the number of params
+                return signature1.params.length - signature2.params.length;
+            }
+            /**
+             * Get params containing all types that can be converted to the defined types.
+             *
+             * @param {ConversionDef[]} conversions
+             * @param {string[]} typeNames
+             * @return {ConversionDef[]} Returns the conversions that are available
+             *                        for every type (if any)
+             */
+            function filterConversions(conversions, typeNames) {
+                var matches = {};
+                conversions.forEach(function (conversion) {
+                    if (typeNames.indexOf(conversion.from) === -1 &&
+                        typeNames.indexOf(conversion.to) !== -1 &&
+                        !matches[conversion.from]) {
+                        matches[conversion.from] = conversion;
+                    }
+                });
+                return Object.keys(matches).map(function (from) {
+                    return matches[from];
+                });
+            }
+            /**
+             * Preprocess arguments before calling the original function:
+             * - if needed convert the parameters
+             * - in case of rest parameters, move the rest parameters into an Array
+             * @param {Param[]} params
+             * @param {function} fn
+             * @return {function} Returns a wrapped function
+             */
+            function compileArgsPreprocessing(params, fn) {
+                var fnConvert = fn;
+                // TODO: can we make this wrapper function smarter/simpler?
+                if (params.some(hasConversions)) {
+                    var restParam = hasRestParam(params);
+                    var compiledConversions = params.map(compileArgConversion);
+                    fnConvert = function convertArgs() {
+                        var args = [];
+                        var last = restParam ? arguments.length - 1 : arguments.length;
+                        for (var i = 0; i < last; i++) {
+                            args[i] = compiledConversions[i](arguments[i]);
+                        }
+                        if (restParam) {
+                            args[last] = arguments[last].map(compiledConversions[last]);
+                        }
+                        return fn.apply(null, args);
+                    };
+                }
+                var fnPreprocess = fnConvert;
+                if (hasRestParam(params)) {
+                    var offset = params.length - 1;
+                    fnPreprocess = function preprocessRestParams() {
+                        return fnConvert.apply(null, slice(arguments, 0, offset).concat([slice(arguments, offset)]));
+                    };
+                }
+                return fnPreprocess;
+            }
+            /**
+             * Compile conversion for a parameter to the right type
+             * @param {Param} param
+             * @return {function} Returns the wrapped function that will convert arguments
+             *
+             */
+            function compileArgConversion(param) {
+                var test0, test1, conversion0, conversion1;
+                var tests = [];
+                var conversions = [];
+                param.types.forEach(function (type) {
+                    if (type.conversion) {
+                        tests.push(findTypeByName(type.conversion.from).test);
+                        conversions.push(type.conversion.convert);
+                    }
+                });
+                // create optimized conversion functions depending on the number of conversions
+                switch (conversions.length) {
+                    case 0:
+                        return function convertArg(arg) {
+                            return arg;
+                        };
+                    case 1:
+                        test0 = tests[0];
+                        conversion0 = conversions[0];
+                        return function convertArg(arg) {
+                            if (test0(arg)) {
+                                return conversion0(arg);
+                            }
+                            return arg;
+                        };
+                    case 2:
+                        test0 = tests[0];
+                        test1 = tests[1];
+                        conversion0 = conversions[0];
+                        conversion1 = conversions[1];
+                        return function convertArg(arg) {
+                            if (test0(arg)) {
+                                return conversion0(arg);
+                            }
+                            if (test1(arg)) {
+                                return conversion1(arg);
+                            }
+                            return arg;
+                        };
+                    default:
+                        return function convertArg(arg) {
+                            for (var i = 0; i < conversions.length; i++) {
+                                if (tests[i](arg)) {
+                                    return conversions[i](arg);
+                                }
+                            }
+                            return arg;
+                        };
+                }
+            }
+            /**
+             * Convert an array with signatures into a map with signatures,
+             * where signatures with union types are split into separate signatures
+             *
+             * Throws an error when there are conflicting types
+             *
+             * @param {Signature[]} signatures
+             * @return {Object.<string, function>}  Returns a map with signatures
+             *                                      as key and the original function
+             *                                      of this signature as value.
+             */
+            function createSignaturesMap(signatures) {
+                var signaturesMap = {};
+                signatures.forEach(function (signature) {
+                    if (!signature.params.some(hasConversions)) {
+                        splitParams(signature.params, true).forEach(function (params) {
+                            signaturesMap[stringifyParams(params)] = signature.fn;
+                        });
+                    }
+                });
+                return signaturesMap;
+            }
+            /**
+             * Split params with union types in to separate params.
+             *
+             * For example:
+             *
+             *     splitParams([['Array', 'Object'], ['string', 'RegExp'])
+             *     // returns:
+             *     // [
+             *     //   ['Array', 'string'],
+             *     //   ['Array', 'RegExp'],
+             *     //   ['Object', 'string'],
+             *     //   ['Object', 'RegExp']
+             *     // ]
+             *
+             * @param {Param[]} params
+             * @param {boolean} ignoreConversionTypes
+             * @return {Param[]}
+             */
+            function splitParams(params, ignoreConversionTypes) {
+                function _splitParams(params, index, types) {
+                    if (index < params.length) {
+                        var param = params[index];
+                        var filteredTypes = ignoreConversionTypes
+                            ? param.types.filter(isExactType)
+                            : param.types;
+                        var typeGroups;
+                        if (param.restParam) {
+                            // split the types of a rest parameter in two:
+                            // one with only exact types, and one with exact types and conversions
+                            var exactTypes = filteredTypes.filter(isExactType);
+                            typeGroups = exactTypes.length < filteredTypes.length
+                                ? [exactTypes, filteredTypes]
+                                : [filteredTypes];
+                        }
+                        else {
+                            // split all the types of a regular parameter into one type per group
+                            typeGroups = filteredTypes.map(function (type) {
+                                return [type];
+                            });
+                        }
+                        // recurse over the groups with types
+                        return flatMap(typeGroups, function (typeGroup) {
+                            return _splitParams(params, index + 1, types.concat([typeGroup]));
+                        });
+                    }
+                    else {
+                        // we've reached the end of the parameters. Now build a new Param
+                        var splittedParams = types.map(function (type, typeIndex) {
+                            return {
+                                types: type,
+                                restParam: (typeIndex === params.length - 1) && hasRestParam(params)
+                            };
+                        });
+                        return [splittedParams];
+                    }
+                }
+                return _splitParams(params, 0, []);
+            }
+            /**
+             * Test whether two signatures have a conflicting signature
+             * @param {Signature} signature1
+             * @param {Signature} signature2
+             * @return {boolean} Returns true when the signatures conflict, false otherwise.
+             */
+            function hasConflictingParams(signature1, signature2) {
+                var ii = Math.max(signature1.params.length, signature2.params.length);
+                for (var i = 0; i < ii; i++) {
+                    var typesNames1 = getExpectedTypeNames(signature1, i, true);
+                    var typesNames2 = getExpectedTypeNames(signature2, i, true);
+                    if (!hasOverlap(typesNames1, typesNames2)) {
+                        return false;
+                    }
+                }
+                var len1 = signature1.params.length;
+                var len2 = signature2.params.length;
+                var restParam1 = hasRestParam(signature1.params);
+                var restParam2 = hasRestParam(signature2.params);
+                return restParam1
+                    ? restParam2 ? (len1 === len2) : (len2 >= len1)
+                    : restParam2 ? (len1 >= len2) : (len1 === len2);
+            }
+            /**
+             * Create a typed function
+             * @param {String} name               The name for the typed function
+             * @param {Object.<string, function>} signaturesMap
+             *                                    An object with one or
+             *                                    multiple signatures as key, and the
+             *                                    function corresponding to the
+             *                                    signature as value.
+             * @return {function}  Returns the created typed function.
+             */
+            function createTypedFunction(name, signaturesMap) {
+                if (Object.keys(signaturesMap).length === 0) {
+                    throw new SyntaxError('No signatures provided');
+                }
+                // parse the signatures, and check for conflicts
+                var parsedSignatures = [];
+                Object.keys(signaturesMap)
+                    .map(function (signature) {
+                    return parseSignature(signature, signaturesMap[signature], typed.conversions);
+                })
+                    .filter(notNull)
+                    .forEach(function (parsedSignature) {
+                    // check whether this parameter conflicts with already parsed signatures
+                    var conflictingSignature = findInArray(parsedSignatures, function (s) {
+                        return hasConflictingParams(s, parsedSignature);
+                    });
+                    if (conflictingSignature) {
+                        throw new TypeError('Conflicting signatures "' +
+                            stringifyParams(conflictingSignature.params) + '" and "' +
+                            stringifyParams(parsedSignature.params) + '".');
+                    }
+                    parsedSignatures.push(parsedSignature);
+                });
+                // split and filter the types of the signatures, and then order them
+                var signatures = flatMap(parsedSignatures, function (parsedSignature) {
+                    var params = parsedSignature ? splitParams(parsedSignature.params, false) : [];
+                    return params.map(function (params) {
+                        return {
+                            params: params,
+                            fn: parsedSignature.fn
+                        };
+                    });
+                }).filter(notNull);
+                signatures.sort(compareSignatures);
+                // we create a highly optimized checks for the first couple of signatures with max 2 arguments
+                var ok0 = signatures[0] && signatures[0].params.length <= 2 && !hasRestParam(signatures[0].params);
+                var ok1 = signatures[1] && signatures[1].params.length <= 2 && !hasRestParam(signatures[1].params);
+                var ok2 = signatures[2] && signatures[2].params.length <= 2 && !hasRestParam(signatures[2].params);
+                var ok3 = signatures[3] && signatures[3].params.length <= 2 && !hasRestParam(signatures[3].params);
+                var ok4 = signatures[4] && signatures[4].params.length <= 2 && !hasRestParam(signatures[4].params);
+                var ok5 = signatures[5] && signatures[5].params.length <= 2 && !hasRestParam(signatures[5].params);
+                var allOk = ok0 && ok1 && ok2 && ok3 && ok4 && ok5;
+                // compile the tests
+                var tests = signatures.map(function (signature) {
+                    return compileTests(signature.params);
+                });
+                var test00 = ok0 ? compileTest(signatures[0].params[0]) : notOk;
+                var test10 = ok1 ? compileTest(signatures[1].params[0]) : notOk;
+                var test20 = ok2 ? compileTest(signatures[2].params[0]) : notOk;
+                var test30 = ok3 ? compileTest(signatures[3].params[0]) : notOk;
+                var test40 = ok4 ? compileTest(signatures[4].params[0]) : notOk;
+                var test50 = ok5 ? compileTest(signatures[5].params[0]) : notOk;
+                var test01 = ok0 ? compileTest(signatures[0].params[1]) : notOk;
+                var test11 = ok1 ? compileTest(signatures[1].params[1]) : notOk;
+                var test21 = ok2 ? compileTest(signatures[2].params[1]) : notOk;
+                var test31 = ok3 ? compileTest(signatures[3].params[1]) : notOk;
+                var test41 = ok4 ? compileTest(signatures[4].params[1]) : notOk;
+                var test51 = ok5 ? compileTest(signatures[5].params[1]) : notOk;
+                // compile the functions
+                var fns = signatures.map(function (signature) {
+                    return compileArgsPreprocessing(signature.params, signature.fn);
+                });
+                var fn0 = ok0 ? fns[0] : undef;
+                var fn1 = ok1 ? fns[1] : undef;
+                var fn2 = ok2 ? fns[2] : undef;
+                var fn3 = ok3 ? fns[3] : undef;
+                var fn4 = ok4 ? fns[4] : undef;
+                var fn5 = ok5 ? fns[5] : undef;
+                var len0 = ok0 ? signatures[0].params.length : -1;
+                var len1 = ok1 ? signatures[1].params.length : -1;
+                var len2 = ok2 ? signatures[2].params.length : -1;
+                var len3 = ok3 ? signatures[3].params.length : -1;
+                var len4 = ok4 ? signatures[4].params.length : -1;
+                var len5 = ok5 ? signatures[5].params.length : -1;
+                // simple and generic, but also slow
+                var iStart = allOk ? 6 : 0;
+                var iEnd = signatures.length;
+                var generic = function generic() {
+                    for (var i = iStart; i < iEnd; i++) {
+                        if (tests[i](arguments)) {
+                            return fns[i].apply(null, arguments);
+                        }
+                    }
+                    throw createError(name, arguments, signatures);
+                };
+                // create the typed function
+                // fast, specialized version. Falls back to the slower, generic one if needed
+                var fn = function fn(arg0, arg1) {
+                    if (arguments.length === len0 && test00(arg0) && test01(arg1)) {
+                        return fn0.apply(null, arguments);
+                    }
+                    if (arguments.length === len1 && test10(arg0) && test11(arg1)) {
+                        return fn1.apply(null, arguments);
+                    }
+                    if (arguments.length === len2 && test20(arg0) && test21(arg1)) {
+                        return fn2.apply(null, arguments);
+                    }
+                    if (arguments.length === len3 && test30(arg0) && test31(arg1)) {
+                        return fn3.apply(null, arguments);
+                    }
+                    if (arguments.length === len4 && test40(arg0) && test41(arg1)) {
+                        return fn4.apply(null, arguments);
+                    }
+                    if (arguments.length === len5 && test50(arg0) && test51(arg1)) {
+                        return fn5.apply(null, arguments);
+                    }
+                    return generic.apply(null, arguments);
+                };
+                // attach name the typed function
+                try {
+                    Object.defineProperty(fn, 'name', { value: name });
+                }
+                catch (err) {
+                    // old browsers do not support Object.defineProperty and some don't support setting the name property
+                    // the function name is not essential for the functioning, it's mostly useful for debugging,
+                    // so it's fine to have unnamed functions.
+                }
+                // attach signatures to the function
+                fn.signatures = createSignaturesMap(signatures);
+                return fn;
+            }
+            /**
+             * Test whether a type should be NOT be ignored
+             * @param {string} typeName
+             * @return {boolean}
+             */
+            function notIgnore(typeName) {
+                return typed.ignore.indexOf(typeName) === -1;
+            }
+            /**
+             * trim a string
+             * @param {string} str
+             * @return {string}
+             */
+            function trim(str) {
+                return str.trim();
+            }
+            /**
+             * Test whether a string is not empty
+             * @param {string} str
+             * @return {boolean}
+             */
+            function notEmpty(str) {
+                return !!str;
+            }
+            /**
+             * test whether a value is not strict equal to null
+             * @param {*} value
+             * @return {boolean}
+             */
+            function notNull(value) {
+                return value !== null;
+            }
+            /**
+             * Test whether a parameter has no types defined
+             * @param {Param} param
+             * @return {boolean}
+             */
+            function isInvalidParam(param) {
+                return param.types.length === 0;
+            }
+            /**
+             * Return all but the last items of an array
+             * @param {Array} arr
+             * @return {Array}
+             */
+            function initial(arr) {
+                return arr.slice(0, arr.length - 1);
+            }
+            /**
+             * return the last item of an array
+             * @param {Array} arr
+             * @return {*}
+             */
+            function last(arr) {
+                return arr[arr.length - 1];
+            }
+            /**
+             * Slice an array or function Arguments
+             * @param {Array | Arguments | IArguments} arr
+             * @param {number} start
+             * @param {number} [end]
+             * @return {Array}
+             */
+            function slice(arr, start, end) {
+                return Array.prototype.slice.call(arr, start, end);
+            }
+            /**
+             * Test whether an array contains some item
+             * @param {Array} array
+             * @param {*} item
+             * @return {boolean} Returns true if array contains item, false if not.
+             */
+            function contains(array, item) {
+                return array.indexOf(item) !== -1;
+            }
+            /**
+             * Test whether two arrays have overlapping items
+             * @param {Array} array1
+             * @param {Array} array2
+             * @return {boolean} Returns true when at least one item exists in both arrays
+             */
+            function hasOverlap(array1, array2) {
+                for (var i = 0; i < array1.length; i++) {
+                    if (contains(array2, array1[i])) {
+                        return true;
+                    }
+                }
+                return false;
+            }
+            /**
+             * Return the first item from an array for which test(arr[i]) returns true
+             * @param {Array} arr
+             * @param {function} test
+             * @return {* | undefined} Returns the first matching item
+             *                         or undefined when there is no match
+             */
+            function findInArray(arr, test) {
+                for (var i = 0; i < arr.length; i++) {
+                    if (test(arr[i])) {
+                        return arr[i];
+                    }
+                }
+                return undefined;
+            }
+            /**
+             * Filter unique items of an array with strings
+             * @param {string[]} arr
+             * @return {string[]}
+             */
+            function uniq(arr) {
+                var entries = {};
+                for (var i = 0; i < arr.length; i++) {
+                    entries[arr[i]] = true;
+                }
+                return Object.keys(entries);
+            }
+            /**
+             * Flat map the result invoking a callback for every item in an array.
+             * https://gist.github.com/samgiles/762ee337dff48623e729
+             * @param {Array} arr
+             * @param {function} callback
+             * @return {Array}
+             */
+            function flatMap(arr, callback) {
+                return Array.prototype.concat.apply([], arr.map(callback));
+            }
+            /**
+             * Retrieve the function name from a set of typed functions,
+             * and check whether the name of all functions match (if given)
+             * @param {function[]} fns
+             */
+            function getName(fns) {
+                var name = '';
+                for (var i = 0; i < fns.length; i++) {
+                    var fn = fns[i];
+                    // check whether the names are the same when defined
+                    if ((typeof fn.signatures === 'object' || typeof fn.signature === 'string') && fn.name !== '') {
+                        if (name === '') {
+                            name = fn.name;
+                        }
+                        else if (name !== fn.name) {
+                            var err = new Error('Function names do not match (expected: ' + name + ', actual: ' + fn.name + ')');
+                            err.data = {
+                                actual: fn.name,
+                                expected: name
+                            };
+                            throw err;
+                        }
+                    }
+                }
+                return name;
+            }
+            // extract and merge all signatures of a list with typed functions
+            function extractSignatures(fns) {
+                var err;
+                var signaturesMap = {};
+                function validateUnique(_signature, _fn) {
+                    if (signaturesMap.hasOwnProperty(_signature) && _fn !== signaturesMap[_signature]) {
+                        err = new Error('Signature "' + _signature + '" is defined twice');
+                        err.data = { signature: _signature };
+                        throw err;
+                        // else: both signatures point to the same function, that's fine
+                    }
+                }
+                for (var i = 0; i < fns.length; i++) {
+                    var fn = fns[i];
+                    // test whether this is a typed-function
+                    if (typeof fn.signatures === 'object') {
+                        // merge the signatures
+                        for (var signature in fn.signatures) {
+                            if (fn.signatures.hasOwnProperty(signature)) {
+                                validateUnique(signature, fn.signatures[signature]);
+                                signaturesMap[signature] = fn.signatures[signature];
+                            }
+                        }
+                    }
+                    else if (typeof fn.signature === 'string') {
+                        validateUnique(fn.signature, fn);
+                        signaturesMap[fn.signature] = fn;
+                    }
+                    else {
+                        err = new TypeError('Function is no typed-function (index: ' + i + ')');
+                        err.data = { index: i };
+                        throw err;
+                    }
+                }
+                return signaturesMap;
+            }
+            typed = createTypedFunction('typed', {
+                'string, Object': createTypedFunction,
+                'Object': function (signaturesMap) {
+                    // find existing name
+                    var fns = [];
+                    for (var signature in signaturesMap) {
+                        if (signaturesMap.hasOwnProperty(signature)) {
+                            fns.push(signaturesMap[signature]);
+                        }
+                    }
+                    var name = getName(fns);
+                    return createTypedFunction(name, signaturesMap);
+                },
+                '...Function': function (fns) {
+                    return createTypedFunction(getName(fns), extractSignatures(fns));
+                },
+                'string, ...Function': function (name, fns) {
+                    return createTypedFunction(name, extractSignatures(fns));
+                }
+            });
+            typed.create = create;
+            typed.types = _types;
+            typed.conversions = _conversions;
+            typed.ignore = _ignore;
+            typed.convert = convert;
+            typed.find = find;
+            /**
+             * add a type
+             * @param {{name: string, test: function}} type
+             * @param {boolean} [beforeObjectTest=true]
+             *                          If true, the new test will be inserted before
+             *                          the test with name 'Object' (if any), since
+             *                          tests for Object match Array and classes too.
+             */
+            typed.addType = function (type, beforeObjectTest) {
+                if (!type || typeof type.name !== 'string' || typeof type.test !== 'function') {
+                    throw new TypeError('Object with properties {name: string, test: function} expected');
+                }
+                if (beforeObjectTest !== false) {
+                    for (var i = 0; i < typed.types.length; i++) {
+                        if (typed.types[i].name === 'Object') {
+                            typed.types.splice(i, 0, type);
+                            return;
+                        }
+                    }
+                }
+                typed.types.push(type);
+            };
+            // add a conversion
+            typed.addConversion = function (conversion) {
+                if (!conversion
+                    || typeof conversion.from !== 'string'
+                    || typeof conversion.to !== 'string'
+                    || typeof conversion.convert !== 'function') {
+                    throw new TypeError('Object with properties {from: string, to: string, convert: function} expected');
+                }
+                typed.conversions.push(conversion);
+            };
+            return typed;
+        }
+        return create();
+    }));
+});
+var number = createCommonjsModule(function (module, exports) {
+    /**
+     * @typedef {{sign: '+' | '-' | '', coefficients: number[], exponent: number}} SplitValue
+     */
+    /**
+     * Test whether value is a number
+     * @param {*} value
+     * @return {boolean} isNumber
+     */
+    exports.isNumber = function (value) {
+        return typeof value === 'number';
+    };
+    /**
+     * Check if a number is integer
+     * @param {number | boolean} value
+     * @return {boolean} isInteger
+     */
+    exports.isInteger = function (value) {
+        if (typeof value === 'boolean') {
+            return true;
+        }
+        return isFinite(value) ? value === Math.round(value) : false; // Note: we use ==, not ===, as we can have Booleans as well
+    };
+    /**
+     * Calculate the sign of a number
+     * @param {number} x
+     * @returns {*}
+     */
+    exports.sign = Math.sign || function (x) {
+        if (x > 0) {
+            return 1;
+        }
+        else if (x < 0) {
+            return -1;
+        }
+        else {
+            return 0;
+        }
+    };
+    /**
+     * Convert a number to a formatted string representation.
+     *
+     * Syntax:
+     *
+     *    format(value)
+     *    format(value, options)
+     *    format(value, precision)
+     *    format(value, fn)
+     *
+     * Where:
+     *
+     *    {number} value   The value to be formatted
+     *    {Object} options An object with formatting options. Available options:
+     *                     {string} notation
+     *                         Number notation. Choose from:
+     *                         'fixed'          Always use regular number notation.
+     *                                          For example '123.40' and '14000000'
+     *                         'exponential'    Always use exponential notation.
+     *                                          For example '1.234e+2' and '1.4e+7'
+     *                         'engineering'    Always use engineering notation.
+     *                                          For example '123.4e+0' and '14.0e+6'
+     *                         'auto' (default) Regular number notation for numbers
+     *                                          having an absolute value between
+     *                                          `lowerExp` and `upperExp` bounds, and
+     *                                          uses exponential notation elsewhere.
+     *                                          Lower bound is included, upper bound
+     *                                          is excluded.
+     *                                          For example '123.4' and '1.4e7'.
+     *                     {number} precision   A number between 0 and 16 to round
+     *                                          the digits of the number.
+     *                                          In case of notations 'exponential',
+     *                                          'engineering', and 'auto',
+     *                                          `precision` defines the total
+     *                                          number of significant digits returned.
+     *                                          In case of notation 'fixed',
+     *                                          `precision` defines the number of
+     *                                          significant digits after the decimal
+     *                                          point.
+     *                                          `precision` is undefined by default,
+     *                                          not rounding any digits.
+     *                     {number} lowerExp    Exponent determining the lower boundary
+     *                                          for formatting a value with an exponent
+     *                                          when `notation='auto`.
+     *                                          Default value is `-3`.
+     *                     {number} upperExp    Exponent determining the upper boundary
+     *                                          for formatting a value with an exponent
+     *                                          when `notation='auto`.
+     *                                          Default value is `5`.
+     *    {Function} fn    A custom formatting function. Can be used to override the
+     *                     built-in notations. Function `fn` is called with `value` as
+     *                     parameter and must return a string. Is useful for example to
+     *                     format all values inside a matrix in a particular way.
+     *
+     * Examples:
+     *
+     *    format(6.4)                                        // '6.4'
+     *    format(1240000)                                    // '1.24e6'
+     *    format(1/3)                                        // '0.3333333333333333'
+     *    format(1/3, 3)                                     // '0.333'
+     *    format(21385, 2)                                   // '21000'
+     *    format(12.071, {notation: 'fixed'})                // '12'
+     *    format(2.3,    {notation: 'fixed', precision: 2})  // '2.30'
+     *    format(52.8,   {notation: 'exponential'})          // '5.28e+1'
+     *    format(12345678, {notation: 'engineering'})        // '12.345678e+6'
+     *
+     * @param {number} value
+     * @param {Object | Function | number} [options]
+     * @return {string} str The formatted value
+     */
+    exports.format = function (value, options) {
+        if (typeof options === 'function') {
+            // handle format(value, fn)
+            return options(value);
+        } // handle special cases
+        if (value === Infinity) {
+            return 'Infinity';
+        }
+        else if (value === -Infinity) {
+            return '-Infinity';
+        }
+        else if (isNaN(value)) {
+            return 'NaN';
+        } // default values for options
+        var notation = 'auto';
+        var precision;
+        if (options) {
+            // determine notation from options
+            if (options.notation) {
+                notation = options.notation;
+            } // determine precision from options
+            if (exports.isNumber(options)) {
+                precision = options;
+            }
+            else if (exports.isNumber(options.precision)) {
+                precision = options.precision;
+            }
+        } // handle the various notations
+        switch (notation) {
+            case 'fixed':
+                return exports.toFixed(value, precision);
+            case 'exponential':
+                return exports.toExponential(value, precision);
+            case 'engineering':
+                return exports.toEngineering(value, precision);
+            case 'auto':
+                // TODO: clean up some day. Deprecated since: 2018-01-24
+                // @deprecated upper and lower are replaced with upperExp and lowerExp since v4.0.0
+                if (options && options.exponential && (options.exponential.lower !== undefined || options.exponential.upper !== undefined)) {
+                    var fixedOptions = object.map(options, function (x) {
+                        return x;
+                    });
+                    fixedOptions.exponential = undefined;
+                    if (options.exponential.lower !== undefined) {
+                        fixedOptions.lowerExp = Math.round(Math.log(options.exponential.lower) / Math.LN10);
+                    }
+                    if (options.exponential.upper !== undefined) {
+                        fixedOptions.upperExp = Math.round(Math.log(options.exponential.upper) / Math.LN10);
+                    }
+                    console.warn('Deprecation warning: Formatting options exponential.lower and exponential.upper ' + '(minimum and maximum value) ' + 'are replaced with exponential.lowerExp and exponential.upperExp ' + '(minimum and maximum exponent) since version 4.0.0. ' + 'Replace ' + JSON.stringify(options) + ' with ' + JSON.stringify(fixedOptions));
+                    return exports.toPrecision(value, precision, fixedOptions);
+                }
+                return exports.toPrecision(value, precision, options && options) // remove trailing zeros after the decimal point
+                    .replace(/((\.\d*?)(0+))($|e)/, function () {
+                    var digits = arguments[2];
+                    var e = arguments[4];
+                    return digits !== '.' ? digits + e : e;
+                });
+            default:
+                throw new Error('Unknown notation "' + notation + '". ' + 'Choose "auto", "exponential", or "fixed".');
+        }
+    };
+    /**
+     * Split a number into sign, coefficients, and exponent
+     * @param {number | string} value
+     * @return {SplitValue}
+     *              Returns an object containing sign, coefficients, and exponent
+     */
+    exports.splitNumber = function (value) {
+        // parse the input value
+        var match = String(value).toLowerCase().match(/^0*?(-?)(\d+\.?\d*)(e([+-]?\d+))?$/);
+        if (!match) {
+            throw new SyntaxError('Invalid number ' + value);
+        }
+        var sign = match[1];
+        var digits = match[2];
+        var exponent = parseFloat(match[4] || '0');
+        var dot = digits.indexOf('.');
+        exponent += dot !== -1 ? dot - 1 : digits.length - 1;
+        var coefficients = digits.replace('.', '') // remove the dot (must be removed before removing leading zeros)
+            .replace(/^0*/, function (zeros) {
+            // remove leading zeros, add their count to the exponent
+            exponent -= zeros.length;
+            return '';
+        }).replace(/0*$/, '') // remove trailing zeros
+            .split('').map(function (d) {
+            return parseInt(d);
+        });
+        if (coefficients.length === 0) {
+            coefficients.push(0);
+            exponent++;
+        }
+        return {
+            sign: sign,
+            coefficients: coefficients,
+            exponent: exponent
+        };
+    };
+    /**
+     * Format a number in engineering notation. Like '1.23e+6', '2.3e+0', '3.500e-3'
+     * @param {number | string} value
+     * @param {number} [precision]        Optional number of significant figures to return.
+     */
+    exports.toEngineering = function (value, precision) {
+        if (isNaN(value) || !isFinite(value)) {
+            return String(value);
+        }
+        var rounded = exports.roundDigits(exports.splitNumber(value), precision);
+        var e = rounded.exponent;
+        var c = rounded.coefficients; // find nearest lower multiple of 3 for exponent
+        var newExp = e % 3 === 0 ? e : e < 0 ? e - 3 - e % 3 : e - e % 3;
+        if (exports.isNumber(precision)) {
+            // add zeroes to give correct sig figs
+            if (precision > c.length)
+                c = c.concat(zeros(precision - c.length));
+        }
+        else {
+            // concatenate coefficients with necessary zeros
+            var significandsDiff = e >= 0 ? e : Math.abs(newExp); // add zeros if necessary (for ex: 1e+8)
+            if (c.length - 1 < significandsDiff)
+                c = c.concat(zeros(significandsDiff - (c.length - 1)));
+        } // find difference in exponents
+        var expDiff = Math.abs(e - newExp);
+        var decimalIdx = 1; // push decimal index over by expDiff times
+        while (--expDiff >= 0) {
+            decimalIdx++;
+        } // if all coefficient values are zero after the decimal point and precision is unset, don't add a decimal value.
+        // otherwise concat with the rest of the coefficients
+        var decimals = c.slice(decimalIdx).join('');
+        var decimalVal = exports.isNumber(precision) && decimals.length || decimals.match(/[1-9]/) ? '.' + decimals : '';
+        var str = c.slice(0, decimalIdx).join('') + decimalVal + 'e' + (e >= 0 ? '+' : '') + newExp.toString();
+        return rounded.sign + str;
+    };
+    /**
+     * Format a number with fixed notation.
+     * @param {number | string} value
+     * @param {number} [precision=undefined]  Optional number of decimals after the
+     *                                        decimal point. null by default.
+     */
+    exports.toFixed = function (value, precision) {
+        if (isNaN(value) || !isFinite(value)) {
+            return String(value);
+        }
+        var splitValue = exports.splitNumber(value);
+        var rounded = typeof precision === 'number' ? exports.roundDigits(splitValue, splitValue.exponent + 1 + precision) : splitValue;
+        var c = rounded.coefficients;
+        var p = rounded.exponent + 1; // exponent may have changed
+        // append zeros if needed
+        var pp = p + (precision || 0);
+        if (c.length < pp) {
+            c = c.concat(zeros(pp - c.length));
+        } // prepend zeros if needed
+        if (p < 0) {
+            c = zeros(-p + 1).concat(c);
+            p = 1;
+        } // insert a dot if needed
+        if (p < c.length) {
+            c.splice(p, 0, p === 0 ? '0.' : '.');
+        }
+        return rounded.sign + c.join('');
+    };
+    /**
+     * Format a number in exponential notation. Like '1.23e+5', '2.3e+0', '3.500e-3'
+     * @param {number | string} value
+     * @param {number} [precision]  Number of digits in formatted output.
+     *                              If not provided, the maximum available digits
+     *                              is used.
+     */
+    exports.toExponential = function (value, precision) {
+        if (isNaN(value) || !isFinite(value)) {
+            return String(value);
+        } // round if needed, else create a clone
+        var split = exports.splitNumber(value);
+        var rounded = precision ? exports.roundDigits(split, precision) : split;
+        var c = rounded.coefficients;
+        var e = rounded.exponent; // append zeros if needed
+        if (c.length < precision) {
+            c = c.concat(zeros(precision - c.length));
+        } // format as `C.CCCe+EEE` or `C.CCCe-EEE`
+        var first = c.shift();
+        return rounded.sign + first + (c.length > 0 ? '.' + c.join('') : '') + 'e' + (e >= 0 ? '+' : '') + e;
+    };
+    /**
+     * Format a number with a certain precision
+     * @param {number | string} value
+     * @param {number} [precision=undefined] Optional number of digits.
+     * @param {{lowerExp: number | undefined, upperExp: number | undefined}} [options]
+     *                                       By default:
+     *                                         lowerExp = -3 (incl)
+     *                                         upper = +5 (excl)
+     * @return {string}
+     */
+    exports.toPrecision = function (value, precision, options) {
+        if (isNaN(value) || !isFinite(value)) {
+            return String(value);
+        } // determine lower and upper bound for exponential notation.
+        var lowerExp = options && options.lowerExp !== undefined ? options.lowerExp : -3;
+        var upperExp = options && options.upperExp !== undefined ? options.upperExp : 5;
+        var split = exports.splitNumber(value);
+        if (split.exponent < lowerExp || split.exponent >= upperExp) {
+            // exponential notation
+            return exports.toExponential(value, precision);
+        }
+        else {
+            var rounded = precision ? exports.roundDigits(split, precision) : split;
+            var c = rounded.coefficients;
+            var e = rounded.exponent; // append trailing zeros
+            if (c.length < precision) {
+                c = c.concat(zeros(precision - c.length));
+            } // append trailing zeros
+            // TODO: simplify the next statement
+            c = c.concat(zeros(e - c.length + 1 + (c.length < precision ? precision - c.length : 0))); // prepend zeros
+            c = zeros(-e).concat(c);
+            var dot = e > 0 ? e : 0;
+            if (dot < c.length - 1) {
+                c.splice(dot + 1, 0, '.');
+            }
+            return rounded.sign + c.join('');
+        }
+    };
+    /**
+     * Round the number of digits of a number *
+     * @param {SplitValue} split       A value split with .splitNumber(value)
+     * @param {number} precision  A positive integer
+     * @return {SplitValue}
+     *              Returns an object containing sign, coefficients, and exponent
+     *              with rounded digits
+     */
+    exports.roundDigits = function (split, precision) {
+        // create a clone
+        var rounded = {
+            sign: split.sign,
+            coefficients: split.coefficients,
+            exponent: split.exponent
+        };
+        var c = rounded.coefficients; // prepend zeros if needed
+        while (precision <= 0) {
+            c.unshift(0);
+            rounded.exponent++;
+            precision++;
+        }
+        if (c.length > precision) {
+            var removed = c.splice(precision, c.length - precision);
+            if (removed[0] >= 5) {
+                var i = precision - 1;
+                c[i]++;
+                while (c[i] === 10) {
+                    c.pop();
+                    if (i === 0) {
+                        c.unshift(0);
+                        rounded.exponent++;
+                        i++;
+                    }
+                    i--;
+                    c[i]++;
+                }
+            }
+        }
+        return rounded;
+    };
+    /**
+     * Create an array filled with zeros.
+     * @param {number} length
+     * @return {Array}
+     */
+    function zeros(length) {
+        var arr = [];
+        for (var i = 0; i < length; i++) {
+            arr.push(0);
+        }
+        return arr;
+    }
+    /**
+     * Count the number of significant digits of a number.
+     *
+     * For example:
+     *   2.34 returns 3
+     *   0.0034 returns 2
+     *   120.5e+30 returns 4
+     *
+     * @param {number} value
+     * @return {number} digits   Number of significant digits
+     */
+    exports.digits = function (value) {
+        return value.toExponential().replace(/e.*$/, '') // remove exponential notation
+            .replace(/^0\.?0*|\./, '') // remove decimal point and leading zeros
+            .length;
+    };
+    /**
+     * Minimum number added to one that makes the result different than one
+     */
+    exports.DBL_EPSILON = Number.EPSILON || 2.2204460492503130808472633361816E-16;
+    /**
+     * Compares two floating point numbers.
+     * @param {number} x          First value to compare
+     * @param {number} y          Second value to compare
+     * @param {number} [epsilon]  The maximum relative difference between x and y
+     *                            If epsilon is undefined or null, the function will
+     *                            test whether x and y are exactly equal.
+     * @return {boolean} whether the two numbers are nearly equal
+    */
+    exports.nearlyEqual = function (x, y, epsilon) {
+        // if epsilon is null or undefined, test whether x and y are exactly equal
+        if (epsilon === null || epsilon === undefined) {
+            return x === y;
+        }
+        if (x === y) {
+            return true;
+        } // NaN
+        if (isNaN(x) || isNaN(y)) {
+            return false;
+        } // at this point x and y should be finite
+        if (isFinite(x) && isFinite(y)) {
+            // check numbers are very close, needed when comparing numbers near zero
+            var diff = Math.abs(x - y);
+            if (diff < exports.DBL_EPSILON) {
+                return true;
+            }
+            else {
+                // use relative error
+                return diff <= Math.max(Math.abs(x), Math.abs(y)) * epsilon;
+            }
+        } // Infinite and Number or negative Infinite and positive Infinite cases
+        return false;
+    };
+});
+var number_1 = number.isNumber;
+var number_2 = number.isInteger;
+var number_3 = number.sign;
+var number_4 = number.format;
+var number_5 = number.splitNumber;
+var number_6 = number.toEngineering;
+var number_7 = number.toFixed;
+var number_8 = number.toExponential;
+var number_9 = number.toPrecision;
+var number_10 = number.roundDigits;
+var number_11 = number.digits;
+var number_12 = number.DBL_EPSILON;
+var number_13 = number.nearlyEqual;
+/**
+ * Test whether a value is a Matrix
+ * @param {*} x
+ * @returns {boolean} returns true with input is a Matrix
+ *                    (like a DenseMatrix or SparseMatrix)
+ */
+var isMatrix = function isMatrix(x) {
+    return x && x.constructor.prototype.isMatrix || false;
+};
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
+    _typeof = function _typeof(obj) { return typeof obj; };
+}
+else {
+    _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+} return _typeof(obj); }
+var digits = number.digits;
+// returns a new instance of typed-function
+var _createTyped = function createTyped() {
+    // initially, return the original instance of typed-function
+    // consecutively, return a new instance from typed.create.
+    _createTyped = typedFunction.create;
+    return typedFunction;
+};
+/**
+ * Factory function for creating a new typed instance
+ * @param {Object} type   Object with data types like Complex and BigNumber
+ * @returns {Function}
+ */
+var create = function create(type) {
+    // TODO: typed-function must be able to silently ignore signatures with unknown data types
+    // type checks for all known types
+    //
+    // note that:
+    //
+    // - check by duck-typing on a property like `isUnit`, instead of checking instanceof.
+    //   instanceof cannot be used because that would not allow to pass data from
+    //   one instance of math.js to another since each has it's own instance of Unit.
+    // - check the `isUnit` property via the constructor, so there will be no
+    //   matches for "fake" instances like plain objects with a property `isUnit`.
+    //   That is important for security reasons.
+    // - It must not be possible to override the type checks used internally,
+    //   for security reasons, so these functions are not exposed in the expression
+    //   parser.
+    type.isNumber = function (x) {
+        return typeof x === 'number';
+    };
+    type.isComplex = function (x) {
+        return type.Complex && x instanceof type.Complex || false;
+    };
+    type.isBigNumber = isBigNumber;
+    type.isFraction = function (x) {
+        return type.Fraction && x instanceof type.Fraction || false;
+    };
+    type.isUnit = function (x) {
+        return x && x.constructor.prototype.isUnit || false;
+    };
+    type.isString = function (x) {
+        return typeof x === 'string';
+    };
+    type.isArray = Array.isArray;
+    type.isMatrix = isMatrix;
+    type.isDenseMatrix = function (x) {
+        return x && x.isDenseMatrix && x.constructor.prototype.isMatrix || false;
+    };
+    type.isSparseMatrix = function (x) {
+        return x && x.isSparseMatrix && x.constructor.prototype.isMatrix || false;
+    };
+    type.isRange = function (x) {
+        return x && x.constructor.prototype.isRange || false;
+    };
+    type.isIndex = function (x) {
+        return x && x.constructor.prototype.isIndex || false;
+    };
+    type.isBoolean = function (x) {
+        return typeof x === 'boolean';
+    };
+    type.isResultSet = function (x) {
+        return x && x.constructor.prototype.isResultSet || false;
+    };
+    type.isHelp = function (x) {
+        return x && x.constructor.prototype.isHelp || false;
+    };
+    type.isFunction = function (x) {
+        return typeof x === 'function';
+    };
+    type.isDate = function (x) {
+        return x instanceof Date;
+    };
+    type.isRegExp = function (x) {
+        return x instanceof RegExp;
+    };
+    type.isObject = function (x) {
+        return _typeof(x) === 'object' && x.constructor === Object && !type.isComplex(x) && !type.isFraction(x);
+    };
+    type.isNull = function (x) {
+        return x === null;
+    };
+    type.isUndefined = function (x) {
+        return x === undefined;
+    };
+    type.isAccessorNode = function (x) {
+        return x && x.isAccessorNode && x.constructor.prototype.isNode || false;
+    };
+    type.isArrayNode = function (x) {
+        return x && x.isArrayNode && x.constructor.prototype.isNode || false;
+    };
+    type.isAssignmentNode = function (x) {
+        return x && x.isAssignmentNode && x.constructor.prototype.isNode || false;
+    };
+    type.isBlockNode = function (x) {
+        return x && x.isBlockNode && x.constructor.prototype.isNode || false;
+    };
+    type.isConditionalNode = function (x) {
+        return x && x.isConditionalNode && x.constructor.prototype.isNode || false;
+    };
+    type.isConstantNode = function (x) {
+        return x && x.isConstantNode && x.constructor.prototype.isNode || false;
+    };
+    type.isFunctionAssignmentNode = function (x) {
+        return x && x.isFunctionAssignmentNode && x.constructor.prototype.isNode || false;
+    };
+    type.isFunctionNode = function (x) {
+        return x && x.isFunctionNode && x.constructor.prototype.isNode || false;
+    };
+    type.isIndexNode = function (x) {
+        return x && x.isIndexNode && x.constructor.prototype.isNode || false;
+    };
+    type.isNode = function (x) {
+        return x && x.isNode && x.constructor.prototype.isNode || false;
+    };
+    type.isObjectNode = function (x) {
+        return x && x.isObjectNode && x.constructor.prototype.isNode || false;
+    };
+    type.isOperatorNode = function (x) {
+        return x && x.isOperatorNode && x.constructor.prototype.isNode || false;
+    };
+    type.isParenthesisNode = function (x) {
+        return x && x.isParenthesisNode && x.constructor.prototype.isNode || false;
+    };
+    type.isRangeNode = function (x) {
+        return x && x.isRangeNode && x.constructor.prototype.isNode || false;
+    };
+    type.isSymbolNode = function (x) {
+        return x && x.isSymbolNode && x.constructor.prototype.isNode || false;
+    };
+    type.isChain = function (x) {
+        return x && x.constructor.prototype.isChain || false;
+    }; // get a new instance of typed-function
+    var typed = _createTyped(); // define all types. The order of the types determines in which order function
+    // arguments are type-checked (so for performance it's important to put the
+    // most used types first).
+    typed.types = [{
+            name: 'number',
+            test: type.isNumber
+        }, {
+            name: 'Complex',
+            test: type.isComplex
+        }, {
+            name: 'BigNumber',
+            test: type.isBigNumber
+        }, {
+            name: 'Fraction',
+            test: type.isFraction
+        }, {
+            name: 'Unit',
+            test: type.isUnit
+        }, {
+            name: 'string',
+            test: type.isString
+        }, {
+            name: 'Array',
+            test: type.isArray
+        }, {
+            name: 'Matrix',
+            test: type.isMatrix
+        }, {
+            name: 'DenseMatrix',
+            test: type.isDenseMatrix
+        }, {
+            name: 'SparseMatrix',
+            test: type.isSparseMatrix
+        }, {
+            name: 'Range',
+            test: type.isRange
+        }, {
+            name: 'Index',
+            test: type.isIndex
+        }, {
+            name: 'boolean',
+            test: type.isBoolean
+        }, {
+            name: 'ResultSet',
+            test: type.isResultSet
+        }, {
+            name: 'Help',
+            test: type.isHelp
+        }, {
+            name: 'function',
+            test: type.isFunction
+        }, {
+            name: 'Date',
+            test: type.isDate
+        }, {
+            name: 'RegExp',
+            test: type.isRegExp
+        }, {
+            name: 'null',
+            test: type.isNull
+        }, {
+            name: 'undefined',
+            test: type.isUndefined
+        }, {
+            name: 'OperatorNode',
+            test: type.isOperatorNode
+        }, {
+            name: 'ConstantNode',
+            test: type.isConstantNode
+        }, {
+            name: 'SymbolNode',
+            test: type.isSymbolNode
+        }, {
+            name: 'ParenthesisNode',
+            test: type.isParenthesisNode
+        }, {
+            name: 'FunctionNode',
+            test: type.isFunctionNode
+        }, {
+            name: 'FunctionAssignmentNode',
+            test: type.isFunctionAssignmentNode
+        }, {
+            name: 'ArrayNode',
+            test: type.isArrayNode
+        }, {
+            name: 'AssignmentNode',
+            test: type.isAssignmentNode
+        }, {
+            name: 'BlockNode',
+            test: type.isBlockNode
+        }, {
+            name: 'ConditionalNode',
+            test: type.isConditionalNode
+        }, {
+            name: 'IndexNode',
+            test: type.isIndexNode
+        }, {
+            name: 'RangeNode',
+            test: type.isRangeNode
+        }, {
+            name: 'Node',
+            test: type.isNode
+        }, {
+            name: 'Object',
+            test: type.isObject // order 'Object' last, it matches on other classes too
+        }]; // TODO: add conversion from BigNumber to number?
+    typed.conversions = [{
+            from: 'number',
+            to: 'BigNumber',
+            convert: function convert(x) {
+                // note: conversion from number to BigNumber can fail if x has >15 digits
+                if (digits(x) > 15) {
+                    throw new TypeError('Cannot implicitly convert a number with >15 significant digits to BigNumber ' + '(value: ' + x + '). ' + 'Use function bignumber(x) to convert to BigNumber.');
+                }
+                return new type.BigNumber(x);
+            }
+        }, {
+            from: 'number',
+            to: 'Complex',
+            convert: function convert(x) {
+                return new type.Complex(x, 0);
+            }
+        }, {
+            from: 'number',
+            to: 'string',
+            convert: function convert(x) {
+                return x + '';
+            }
+        }, {
+            from: 'BigNumber',
+            to: 'Complex',
+            convert: function convert(x) {
+                return new type.Complex(x.toNumber(), 0);
+            }
+        }, {
+            from: 'Fraction',
+            to: 'BigNumber',
+            convert: function convert(x) {
+                throw new TypeError('Cannot implicitly convert a Fraction to BigNumber or vice versa. ' + 'Use function bignumber(x) to convert to BigNumber or fraction(x) to convert to Fraction.');
+            }
+        }, {
+            from: 'Fraction',
+            to: 'Complex',
+            convert: function convert(x) {
+                return new type.Complex(x.valueOf(), 0);
+            }
+        }, {
+            from: 'number',
+            to: 'Fraction',
+            convert: function convert(x) {
+                var f = new type.Fraction(x);
+                if (f.valueOf() !== x) {
+                    throw new TypeError('Cannot implicitly convert a number to a Fraction when there will be a loss of precision ' + '(value: ' + x + '). ' + 'Use function fraction(x) to convert to Fraction.');
+                }
+                return new type.Fraction(x);
+            }
+        }, {
+            // FIXME: add conversion from Fraction to number, for example for `sqrt(fraction(1,3))`
+            //  from: 'Fraction',
+            //  to: 'number',
+            //  convert: function (x) {
+            //    return x.valueOf()
+            //  }
+            // }, {
+            from: 'string',
+            to: 'number',
+            convert: function convert(x) {
+                var n = Number(x);
+                if (isNaN(n)) {
+                    throw new Error('Cannot convert "' + x + '" to a number');
+                }
+                return n;
+            }
+        }, {
+            from: 'string',
+            to: 'BigNumber',
+            convert: function convert(x) {
+                try {
+                    return new type.BigNumber(x);
+                }
+                catch (err) {
+                    throw new Error('Cannot convert "' + x + '" to BigNumber');
+                }
+            }
+        }, {
+            from: 'string',
+            to: 'Fraction',
+            convert: function convert(x) {
+                try {
+                    return new type.Fraction(x);
+                }
+                catch (err) {
+                    throw new Error('Cannot convert "' + x + '" to Fraction');
+                }
+            }
+        }, {
+            from: 'string',
+            to: 'Complex',
+            convert: function convert(x) {
+                try {
+                    return new type.Complex(x);
+                }
+                catch (err) {
+                    throw new Error('Cannot convert "' + x + '" to Complex');
+                }
+            }
+        }, {
+            from: 'boolean',
+            to: 'number',
+            convert: function convert(x) {
+                return +x;
+            }
+        }, {
+            from: 'boolean',
+            to: 'BigNumber',
+            convert: function convert(x) {
+                return new type.BigNumber(+x);
+            }
+        }, {
+            from: 'boolean',
+            to: 'Fraction',
+            convert: function convert(x) {
+                return new type.Fraction(+x);
+            }
+        }, {
+            from: 'boolean',
+            to: 'string',
+            convert: function convert(x) {
+                return +x;
+            }
+        }, {
+            from: 'Array',
+            to: 'Matrix',
+            convert: function convert(array) {
+                return new type.DenseMatrix(array);
+            }
+        }, {
+            from: 'Matrix',
+            to: 'Array',
+            convert: function convert(matrix) {
+                return matrix.valueOf();
+            }
+        }];
+    return typed;
+};
+var typed = {
+    create: create
+};
+function E() {
+    // Keep this empty so it's easier to inherit from
+    // (via https://github.com/lipsmack from https://github.com/scottcorgan/tiny-emitter/issues/3)
+}
+E.prototype = {
+    on: function (name, callback, ctx) {
+        var e = this.e || (this.e = {});
+        (e[name] || (e[name] = [])).push({
+            fn: callback,
+            ctx: ctx
+        });
+        return this;
+    },
+    once: function (name, callback, ctx) {
+        var self = this;
+        function listener() {
+            self.off(name, listener);
+            callback.apply(ctx, arguments);
+        }
+        listener._ = callback;
+        return this.on(name, listener, ctx);
+    },
+    emit: function (name) {
+        var data = [].slice.call(arguments, 1);
+        var evtArr = ((this.e || (this.e = {}))[name] || []).slice();
+        var i = 0;
+        var len = evtArr.length;
+        for (i; i < len; i++) {
+            evtArr[i].fn.apply(evtArr[i].ctx, data);
+        }
+        return this;
+    },
+    off: function (name, callback) {
+        var e = this.e || (this.e = {});
+        var evts = e[name];
+        var liveEvents = [];
+        if (evts && callback) {
+            for (var i = 0, len = evts.length; i < len; i++) {
+                if (evts[i].fn !== callback && evts[i].fn._ !== callback)
+                    liveEvents.push(evts[i]);
+            }
+        }
+        // Remove event from queue to prevent memory leak
+        // Suggested by https://github.com/lazd
+        // Ref: https://github.com/scottcorgan/tiny-emitter/commit/c6ebfaa9bc973b33d110a84a307742b7cf94c953#commitcomment-5024910
+        (liveEvents.length)
+            ? e[name] = liveEvents
+            : delete e[name];
+        return this;
+    }
+};
+var tinyEmitter = E;
+var TinyEmitter = E;
+tinyEmitter.TinyEmitter = TinyEmitter;
+/**
+ * Extend given object with emitter functions `on`, `off`, `once`, `emit`
+ * @param {Object} obj
+ * @return {Object} obj
+ */
+var mixin = function (obj) {
+    // create event emitter
+    var emitter = new tinyEmitter(); // bind methods to obj (we don't want to expose the emitter.e Array...)
+    obj.on = emitter.on.bind(emitter);
+    obj.off = emitter.off.bind(emitter);
+    obj.once = emitter.once.bind(emitter);
+    obj.emit = emitter.emit.bind(emitter);
+    return obj;
+};
+var emitter = {
+    mixin: mixin
+};
+/**
+ * Create a syntax error with the message:
+ *     'Wrong number of arguments in function <fn> (<count> provided, <min>-<max> expected)'
+ * @param {string} fn     Function name
+ * @param {number} count  Actual argument count
+ * @param {number} min    Minimum required argument count
+ * @param {number} [max]  Maximum required argument count
+ * @extends Error
+ */
+function ArgumentsError(fn, count, min, max) {
+    if (!(this instanceof ArgumentsError)) {
+        throw new SyntaxError('Constructor must be called with the new operator');
+    }
+    this.fn = fn;
+    this.count = count;
+    this.min = min;
+    this.max = max;
+    this.message = 'Wrong number of arguments in function ' + fn + ' (' + count + ' provided, ' + min + (max !== undefined && max !== null ? '-' + max : '') + ' expected)';
+    this.stack = new Error().stack;
+}
+ArgumentsError.prototype = new Error();
+ArgumentsError.prototype.constructor = Error;
+ArgumentsError.prototype.name = 'ArgumentsError';
+ArgumentsError.prototype.isArgumentsError = true;
+var ArgumentsError_1 = ArgumentsError;
+function _typeof$1(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
+    _typeof$1 = function _typeof(obj) { return typeof obj; };
+}
+else {
+    _typeof$1 = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+} return _typeof$1(obj); }
+var lazy = object.lazy;
+var isFactory = object.isFactory;
+var traverse = object.traverse;
+function factory(type, config, load, typed, math) {
+    /**
+     * Import functions from an object or a module
+     *
+     * Syntax:
+     *
+     *    math.import(object)
+     *    math.import(object, options)
+     *
+     * Where:
+     *
+     * - `object: Object`
+     *   An object with functions to be imported.
+     * - `options: Object` An object with import options. Available options:
+     *   - `override: boolean`
+     *     If true, existing functions will be overwritten. False by default.
+     *   - `silent: boolean`
+     *     If true, the function will not throw errors on duplicates or invalid
+     *     types. False by default.
+     *   - `wrap: boolean`
+     *     If true, the functions will be wrapped in a wrapper function
+     *     which converts data types like Matrix to primitive data types like Array.
+     *     The wrapper is needed when extending math.js with libraries which do not
+     *     support these data type. False by default.
+     *
+     * Examples:
+     *
+     *    // define new functions and variables
+     *    math.import({
+     *      myvalue: 42,
+     *      hello: function (name) {
+     *        return 'hello, ' + name + '!'
+     *      }
+     *    })
+     *
+     *    // use the imported function and variable
+     *    math.myvalue * 2               // 84
+     *    math.hello('user')             // 'hello, user!'
+     *
+     *    // import the npm module 'numbers'
+     *    // (must be installed first with `npm install numbers`)
+     *    math.import(require('numbers'), {wrap: true})
+     *
+     *    math.fibonacci(7) // returns 13
+     *
+     * @param {Object | Array} object   Object with functions to be imported.
+     * @param {Object} [options]        Import options.
+     */
+    function mathImport(object, options) {
+        var num = arguments.length;
+        if (num !== 1 && num !== 2) {
+            throw new ArgumentsError_1('import', num, 1, 2);
+        }
+        if (!options) {
+            options = {};
+        } // TODO: allow a typed-function with name too
+        if (isFactory(object)) {
+            _importFactory(object, options);
+        }
+        else if (Array.isArray(object)) {
+            object.forEach(function (entry) {
+                mathImport(entry, options);
+            });
+        }
+        else if (_typeof$1(object) === 'object') {
+            // a map with functions
+            for (var name in object) {
+                if (object.hasOwnProperty(name)) {
+                    var value = object[name];
+                    if (isSupportedType(value)) {
+                        _import(name, value, options);
+                    }
+                    else if (isFactory(object)) {
+                        _importFactory(object, options);
+                    }
+                    else {
+                        mathImport(value, options);
+                    }
+                }
+            }
+        }
+        else {
+            if (!options.silent) {
+                throw new TypeError('Factory, Object, or Array expected');
+            }
+        }
+    }
+    /**
+     * Add a property to the math namespace and create a chain proxy for it.
+     * @param {string} name
+     * @param {*} value
+     * @param {Object} options  See import for a description of the options
+     * @private
+     */
+    function _import(name, value, options) {
+        // TODO: refactor this function, it's to complicated and contains duplicate code
+        if (options.wrap && typeof value === 'function') {
+            // create a wrapper around the function
+            value = _wrap(value);
+        }
+        if (isTypedFunction(math[name]) && isTypedFunction(value)) {
+            if (options.override) {
+                // give the typed function the right name
+                value = typed(name, value.signatures);
+            }
+            else {
+                // merge the existing and typed function
+                value = typed(math[name], value);
+            }
+            math[name] = value;
+            _importTransform(name, value);
+            math.emit('import', name, function resolver() {
+                return value;
+            });
+            return;
+        }
+        if (math[name] === undefined || options.override) {
+            math[name] = value;
+            _importTransform(name, value);
+            math.emit('import', name, function resolver() {
+                return value;
+            });
+            return;
+        }
+        if (!options.silent) {
+            throw new Error('Cannot import "' + name + '": already exists');
+        }
+    }
+    function _importTransform(name, value) {
+        if (value && typeof value.transform === 'function') {
+            math.expression.transform[name] = value.transform;
+            if (allowedInExpressions(name)) {
+                math.expression.mathWithTransform[name] = value.transform;
+            }
+        }
+        else {
+            // remove existing transform
+            delete math.expression.transform[name];
+            if (allowedInExpressions(name)) {
+                math.expression.mathWithTransform[name] = value;
+            }
+        }
+    }
+    function _deleteTransform(name) {
+        delete math.expression.transform[name];
+        if (allowedInExpressions(name)) {
+            math.expression.mathWithTransform[name] = math[name];
+        }
+        else {
+            delete math.expression.mathWithTransform[name];
+        }
+    }
+    /**
+     * Create a wrapper a round an function which converts the arguments
+     * to their primitive values (like convert a Matrix to Array)
+     * @param {Function} fn
+     * @return {Function} Returns the wrapped function
+     * @private
+     */
+    function _wrap(fn) {
+        var wrapper = function wrapper() {
+            var args = [];
+            for (var i = 0, len = arguments.length; i < len; i++) {
+                var arg = arguments[i];
+                args[i] = arg && arg.valueOf();
+            }
+            return fn.apply(math, args);
+        };
+        if (fn.transform) {
+            wrapper.transform = fn.transform;
+        }
+        return wrapper;
+    }
+    /**
+     * Import an instance of a factory into math.js
+     * @param {{factory: Function, name: string, path: string, math: boolean}} factory
+     * @param {Object} options  See import for a description of the options
+     * @private
+     */
+    function _importFactory(factory, options) {
+        if (typeof factory.name === 'string') {
+            var name = factory.name;
+            var existingTransform = name in math.expression.transform;
+            var namespace = factory.path ? traverse(math, factory.path) : math;
+            var existing = namespace.hasOwnProperty(name) ? namespace[name] : undefined;
+            var resolver = function resolver() {
+                var instance = load(factory);
+                if (instance && typeof instance.transform === 'function') {
+                    throw new Error('Transforms cannot be attached to factory functions. ' + 'Please create a separate function for it with exports.path="expression.transform"');
+                }
+                if (isTypedFunction(existing) && isTypedFunction(instance)) {
+                    if (options.override)
+                        ;
+                    else {
+                        // merge the existing and new typed function
+                        instance = typed(existing, instance);
+                    }
+                    return instance;
+                }
+                if (existing === undefined || options.override) {
+                    return instance;
+                }
+                if (!options.silent) {
+                    throw new Error('Cannot import "' + name + '": already exists');
+                }
+            };
+            if (factory.lazy !== false) {
+                lazy(namespace, name, resolver);
+                if (existingTransform) {
+                    _deleteTransform(name);
+                }
+                else {
+                    if (factory.path === 'expression.transform' || factoryAllowedInExpressions(factory)) {
+                        lazy(math.expression.mathWithTransform, name, resolver);
+                    }
+                }
+            }
+            else {
+                namespace[name] = resolver();
+                if (existingTransform) {
+                    _deleteTransform(name);
+                }
+                else {
+                    if (factory.path === 'expression.transform' || factoryAllowedInExpressions(factory)) {
+                        math.expression.mathWithTransform[name] = resolver();
+                    }
+                }
+            }
+            math.emit('import', name, resolver, factory.path);
+        }
+        else {
+            // unnamed factory.
+            // no lazy loading
+            load(factory);
+        }
+    }
+    /**
+     * Check whether given object is a type which can be imported
+     * @param {Function | number | string | boolean | null | Unit | Complex} object
+     * @return {boolean}
+     * @private
+     */
+    function isSupportedType(object) {
+        return typeof object === 'function' || typeof object === 'number' || typeof object === 'string' || typeof object === 'boolean' || object === null || object && type.isUnit(object) || object && type.isComplex(object) || object && type.isBigNumber(object) || object && type.isFraction(object) || object && type.isMatrix(object) || object && Array.isArray(object);
+    }
+    /**
+     * Test whether a given thing is a typed-function
+     * @param {*} fn
+     * @return {boolean} Returns true when `fn` is a typed-function
+     */
+    function isTypedFunction(fn) {
+        return typeof fn === 'function' && _typeof$1(fn.signatures) === 'object';
+    }
+    function allowedInExpressions(name) {
+        return !unsafe.hasOwnProperty(name);
+    }
+    function factoryAllowedInExpressions(factory) {
+        return factory.path === undefined && !unsafe.hasOwnProperty(factory.name);
+    } // namespaces and functions not available in the parser for safety reasons
+    var unsafe = {
+        'expression': true,
+        'type': true,
+        'docs': true,
+        'error': true,
+        'json': true,
+        'chain': true // chain method not supported. Note that there is a unit chain too.
+    };
+    return mathImport;
+}
+var math = true; // request access to the math namespace as 5th argument of the factory function
+var name = 'import';
+var factory_1 = factory;
+var lazy_1 = true;
+var _import = {
+    math: math,
+    name: name,
+    factory: factory_1,
+    lazy: lazy_1
+};
+function factory$1(type, config, load, typed, math) {
+    var MATRIX = ['Matrix', 'Array']; // valid values for option matrix
+    var NUMBER = ['number', 'BigNumber', 'Fraction']; // valid values for option number
+    /**
+     * Set configuration options for math.js, and get current options.
+     * Will emit a 'config' event, with arguments (curr, prev, changes).
+     *
+     * Syntax:
+     *
+     *     math.config(config: Object): Object
+     *
+     * Examples:
+     *
+     *     math.config().number                // outputs 'number'
+     *     math.eval('0.4')                    // outputs number 0.4
+     *     math.config({number: 'Fraction'})
+     *     math.eval('0.4')                    // outputs Fraction 2/5
+     *
+     * @param {Object} [options] Available options:
+     *                            {number} epsilon
+     *                              Minimum relative difference between two
+     *                              compared values, used by all comparison functions.
+     *                            {string} matrix
+     *                              A string 'Matrix' (default) or 'Array'.
+     *                            {string} number
+     *                              A string 'number' (default), 'BigNumber', or 'Fraction'
+     *                            {number} precision
+     *                              The number of significant digits for BigNumbers.
+     *                              Not applicable for Numbers.
+     *                            {string} parenthesis
+     *                              How to display parentheses in LaTeX and string
+     *                              output.
+     *                            {string} randomSeed
+     *                              Random seed for seeded pseudo random number generator.
+     *                              Set to null to randomly seed.
+     * @return {Object} Returns the current configuration
+     */
+    function _config(options) {
+        if (options) {
+            var prev = object.map(config, object.clone); // validate some of the options
+            validateOption(options, 'matrix', MATRIX);
+            validateOption(options, 'number', NUMBER); // merge options
+            object.deepExtend(config, options);
+            var curr = object.map(config, object.clone);
+            var changes = object.map(options, object.clone); // emit 'config' event
+            math.emit('config', curr, prev, changes);
+            return curr;
+        }
+        else {
+            return object.map(config, object.clone);
+        }
+    } // attach the valid options to the function so they can be extended
+    _config.MATRIX = MATRIX;
+    _config.NUMBER = NUMBER;
+    return _config;
+}
+/**
+ * Test whether an Array contains a specific item.
+ * @param {Array.<string>} array
+ * @param {string} item
+ * @return {boolean}
+ */
+function contains(array, item) {
+    return array.indexOf(item) !== -1;
+}
+/**
+ * Find a string in an array. Case insensitive search
+ * @param {Array.<string>} array
+ * @param {string} item
+ * @return {number} Returns the index when found. Returns -1 when not found
+ */
+function findIndex(array, item) {
+    return array.map(function (i) {
+        return i.toLowerCase();
+    }).indexOf(item.toLowerCase());
+}
+/**
+ * Validate an option
+ * @param {Object} options         Object with options
+ * @param {string} name            Name of the option to validate
+ * @param {Array.<string>} values  Array with valid values for this option
+ */
+function validateOption(options, name, values) {
+    if (options[name] !== undefined && !contains(values, options[name])) {
+        var index = findIndex(values, options[name]);
+        if (index !== -1) {
+            // right value, wrong casing
+            // TODO: lower case values are deprecated since v3, remove this warning some day.
+            console.warn('Warning: Wrong casing for configuration option "' + name + '", should be "' + values[index] + '" instead of "' + options[name] + '".');
+            options[name] = values[index]; // change the option to the right casing
+        }
+        else {
+            // unknown value
+            console.warn('Warning: Unknown value "' + options[name] + '" for configuration option "' + name + '". Available options: ' + values.map(JSON.stringify).join(', ') + '.');
+        }
+    }
+}
+var name$1 = 'config';
+var math$1 = true; // request the math namespace as fifth argument
+var factory_1$1 = factory$1;
+var config = {
+    name: name$1,
+    math: math$1,
+    factory: factory_1$1
+};
+var isFactory$1 = object.isFactory;
+/**
+ * Math.js core. Creates a new, empty math.js instance
+ * @param {Object} [options] Available options:
+ *                            {number} epsilon
+ *                              Minimum relative difference between two
+ *                              compared values, used by all comparison functions.
+ *                            {string} matrix
+ *                              A string 'Matrix' (default) or 'Array'.
+ *                            {string} number
+ *                              A string 'number' (default), 'BigNumber', or 'Fraction'
+ *                            {number} precision
+ *                              The number of significant digits for BigNumbers.
+ *                              Not applicable for Numbers.
+ *                            {boolean} predictable
+ *                              Predictable output type of functions. When true,
+ *                              output type depends only on the input types. When
+ *                              false (default), output type can vary depending
+ *                              on input values. For example `math.sqrt(-4)`
+ *                              returns `complex('2i')` when predictable is false, and
+ *                              returns `NaN` when true.
+ *                            {string} randomSeed
+ *                              Random seed for seeded pseudo random number generator.
+ *                              Set to null to randomly seed.
+ * @returns {Object} Returns a bare-bone math.js instance containing
+ *                   functions:
+ *                   - `import` to add new functions
+ *                   - `config` to change configuration
+ *                   - `on`, `off`, `once`, `emit` for events
+ */
+var create$1 = function create(options) {
+    // simple test for ES5 support
+    if (typeof Object.create !== 'function') {
+        throw new Error('ES5 not supported by this JavaScript engine. ' + 'Please load the es5-shim and es5-sham library for compatibility.');
+    } // cached factories and instances
+    var factories = [];
+    var instances = []; // create a namespace for the mathjs instance, and attach emitter functions
+    var math = emitter.mixin({});
+    math.type = {};
+    math.expression = {
+        transform: {},
+        mathWithTransform: {} // create a new typed instance
+    };
+    math.typed = typed.create(math.type); // create configuration options. These are private
+    var _config = {
+        // minimum relative difference between two compared values,
+        // used by all comparison functions
+        epsilon: 1e-12,
+        // type of default matrix output. Choose 'matrix' (default) or 'array'
+        matrix: 'Matrix',
+        // type of default number output. Choose 'number' (default) 'BigNumber', or 'Fraction
+        number: 'number',
+        // number of significant digits in BigNumbers
+        precision: 64,
+        // predictable output type of functions. When true, output type depends only
+        // on the input types. When false (default), output type can vary depending
+        // on input values. For example `math.sqrt(-4)` returns `complex('2i')` when
+        // predictable is false, and returns `NaN` when true.
+        predictable: false,
+        // random seed for seeded pseudo random number generation
+        // null = randomly seed
+        randomSeed: null
+        /**
+         * Load a function or data type from a factory.
+         * If the function or data type already exists, the existing instance is
+         * returned.
+         * @param {{type: string, name: string, factory: Function}} factory
+         * @returns {*}
+         */
+    };
+    function load(factory) {
+        if (!isFactory$1(factory)) {
+            throw new Error('Factory object with properties `type`, `name`, and `factory` expected');
+        }
+        var index = factories.indexOf(factory);
+        var instance;
+        if (index === -1) {
+            // doesn't yet exist
+            if (factory.math === true) {
+                // pass with math namespace
+                instance = factory.factory(math.type, _config, load, math.typed, math);
+            }
+            else {
+                instance = factory.factory(math.type, _config, load, math.typed);
+            } // append to the cache
+            factories.push(factory);
+            instances.push(instance);
+        }
+        else {
+            // already existing function, return the cached instance
+            instance = instances[index];
+        }
+        return instance;
+    } // load the import and config functions
+    math['import'] = load(_import);
+    math['config'] = load(config);
+    math.expression.mathWithTransform['config'] = math['config']; // apply options
+    if (options) {
+        math.config(options);
+    }
+    return math;
+};
+var core = {
+    create: create$1
+};
+var core$1 = core;
+/**
+ * Execute the callback function element wise for each element in array and any
+ * nested array
+ * Returns an array with the results
+ * @param {Array | Matrix} array
+ * @param {Function} callback   The callback is called with two parameters:
+ *                              value1 and value2, which contain the current
+ *                              element of both arrays.
+ * @param {boolean} [skipZeros] Invoke callback function for non-zero values only.
+ *
+ * @return {Array | Matrix} res
+ */
+var deepMap = function deepMap(array, callback, skipZeros) {
+    if (array && typeof array.map === 'function') {
+        // TODO: replace array.map with a for loop to improve performance
+        return array.map(function (x) {
+            return deepMap(x, callback);
+        });
+    }
+    else {
+        return callback(array);
+    }
+};
+function _typeof2(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
+    _typeof2 = function _typeof2(obj) { return typeof obj; };
+}
+else {
+    _typeof2 = function _typeof2(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+} return _typeof2(obj); }
+function factory$2(type, config, load, typed) {
+    /**
+     * Determine the type of a variable.
+     *
+     * Function `typeof` recognizes the following types of objects:
+     *
+     * Object                 | Returns       | Example
+     * ---------------------- | ------------- | ------------------------------------------
+     * null                   | `'null'`      | `math.typeof(null)`
+     * number                 | `'number'`    | `math.typeof(3.5)`
+     * boolean                | `'boolean'`   | `math.typeof(true)`
+     * string                 | `'string'`    | `math.typeof('hello world')`
+     * Array                  | `'Array'`     | `math.typeof([1, 2, 3])`
+     * Date                   | `'Date'`      | `math.typeof(new Date())`
+     * Function               | `'Function'`  | `math.typeof(function () {})`
+     * Object                 | `'Object'`    | `math.typeof({a: 2, b: 3})`
+     * RegExp                 | `'RegExp'`    | `math.typeof(/a regexp/)`
+     * undefined              | `'undefined'` | `math.typeof(undefined)`
+     * math.type.BigNumber    | `'BigNumber'` | `math.typeof(math.bignumber('2.3e500'))`
+     * math.type.Chain        | `'Chain'`     | `math.typeof(math.chain(2))`
+     * math.type.Complex      | `'Complex'`   | `math.typeof(math.complex(2, 3))`
+     * math.type.Fraction     | `'Fraction'`  | `math.typeof(math.fraction(1, 3))`
+     * math.type.Help         | `'Help'`      | `math.typeof(math.help('sqrt'))`
+     * math.type.Help         | `'Help'`      | `math.typeof(math.help('sqrt'))`
+     * math.type.Index        | `'Index'`     | `math.typeof(math.index(1, 3))`
+     * math.type.Matrix       | `'Matrix'`    | `math.typeof(math.matrix([[1,2], [3, 4]]))`
+     * math.type.Range        | `'Range'`     | `math.typeof(math.range(0, 10))`
+     * math.type.ResultSet    | `'ResultSet'` | `math.typeof(math.eval('a=2\nb=3'))`
+     * math.type.Unit         | `'Unit'`      | `math.typeof(math.unit('45 deg'))`
+     * math.expression.node&#8203;.AccessorNode            | `'AccessorNode'`            | `math.typeof(math.parse('A[2]'))`
+     * math.expression.node&#8203;.ArrayNode               | `'ArrayNode'`               | `math.typeof(math.parse('[1,2,3]'))`
+     * math.expression.node&#8203;.AssignmentNode          | `'AssignmentNode'`          | `math.typeof(math.parse('x=2'))`
+     * math.expression.node&#8203;.BlockNode               | `'BlockNode'`               | `math.typeof(math.parse('a=2; b=3'))`
+     * math.expression.node&#8203;.ConditionalNode         | `'ConditionalNode'`         | `math.typeof(math.parse('x<0 ? -x : x'))`
+     * math.expression.node&#8203;.ConstantNode            | `'ConstantNode'`            | `math.typeof(math.parse('2.3'))`
+     * math.expression.node&#8203;.FunctionAssignmentNode  | `'FunctionAssignmentNode'`  | `math.typeof(math.parse('f(x)=x^2'))`
+     * math.expression.node&#8203;.FunctionNode            | `'FunctionNode'`            | `math.typeof(math.parse('sqrt(4)'))`
+     * math.expression.node&#8203;.IndexNode               | `'IndexNode'`               | `math.typeof(math.parse('A[2]').index)`
+     * math.expression.node&#8203;.ObjectNode              | `'ObjectNode'`              | `math.typeof(math.parse('{a:2}'))`
+     * math.expression.node&#8203;.ParenthesisNode         | `'ParenthesisNode'`         | `math.typeof(math.parse('(2+3)'))`
+     * math.expression.node&#8203;.RangeNode               | `'RangeNode'`               | `math.typeof(math.parse('1:10'))`
+     * math.expression.node&#8203;.SymbolNode              | `'SymbolNode'`              | `math.typeof(math.parse('x'))`
+     *
+     * Syntax:
+     *
+     *    math.typeof(x)
+     *
+     * Examples:
+     *
+     *    math.typeof(3.5)                     // returns 'number'
+     *    math.typeof(math.complex('2-4i'))    // returns 'Complex'
+     *    math.typeof(math.unit('45 deg'))     // returns 'Unit'
+     *    math.typeof('hello world')           // returns 'string'
+     *
+     * @param {*} x     The variable for which to test the type.
+     * @return {string} Returns the name of the type. Primitive types are lower case,
+     *                  non-primitive types are upper-camel-case.
+     *                  For example 'number', 'string', 'Array', 'Date'.
+     */
+    var _typeof = typed('_typeof', {
+        'any': function any(x) {
+            var t = _typeof2(x);
+            if (t === 'object') {
+                // JavaScript types
+                if (x === null)
+                    return 'null';
+                if (Array.isArray(x))
+                    return 'Array';
+                if (x instanceof Date)
+                    return 'Date';
+                if (x instanceof RegExp)
+                    return 'RegExp'; // math.js types
+                if (type.isBigNumber(x))
+                    return 'BigNumber';
+                if (type.isComplex(x))
+                    return 'Complex';
+                if (type.isFraction(x))
+                    return 'Fraction';
+                if (type.isMatrix(x))
+                    return 'Matrix';
+                if (type.isUnit(x))
+                    return 'Unit';
+                if (type.isIndex(x))
+                    return 'Index';
+                if (type.isRange(x))
+                    return 'Range';
+                if (type.isResultSet(x))
+                    return 'ResultSet';
+                if (type.isNode(x))
+                    return x.type;
+                if (type.isChain(x))
+                    return 'Chain';
+                if (type.isHelp(x))
+                    return 'Help';
+                return 'Object';
+            }
+            if (t === 'function')
+                return 'Function';
+            return t; // can be 'string', 'number', 'boolean', ...
+        }
+    });
+    _typeof.toTex = undefined; // use default template
+    return _typeof;
+}
+var name$2 = 'typeof';
+var factory_1$2 = factory$2;
+var _typeof$2 = {
+    name: name$2,
+    factory: factory_1$2
+};
+function factory$3(type, config, load, typed) {
+    /**
+     * Create a number or convert a string, boolean, or unit to a number.
+     * When value is a matrix, all elements will be converted to number.
+     *
+     * Syntax:
+     *
+     *    math.number(value)
+     *    math.number(unit, valuelessUnit)
+     *
+     * Examples:
+     *
+     *    math.number(2)                         // returns number 2
+     *    math.number('7.2')                     // returns number 7.2
+     *    math.number(true)                      // returns number 1
+     *    math.number([true, false, true, true]) // returns [1, 0, 1, 1]
+     *    math.number(math.unit('52cm'), 'm')    // returns 0.52
+     *
+     * See also:
+     *
+     *    bignumber, boolean, complex, index, matrix, string, unit
+     *
+     * @param {string | number | BigNumber | Fraction | boolean | Array | Matrix | Unit | null} [value]  Value to be converted
+     * @param {Unit | string} [valuelessUnit] A valueless unit, used to convert a unit to a number
+     * @return {number | Array | Matrix} The created number
+     */
+    var number = typed('number', {
+        '': function _() {
+            return 0;
+        },
+        'number': function number(x) {
+            return x;
+        },
+        'string': function string(x) {
+            if (x === 'NaN')
+                return NaN;
+            var num = Number(x);
+            if (isNaN(num)) {
+                throw new SyntaxError('String "' + x + '" is no valid number');
+            }
+            return num;
+        },
+        'BigNumber': function BigNumber(x) {
+            return x.toNumber();
+        },
+        'Fraction': function Fraction(x) {
+            return x.valueOf();
+        },
+        'Unit': function Unit(x) {
+            throw new Error('Second argument with valueless unit expected');
+        },
+        'null': function _null(x) {
+            return 0;
+        },
+        'Unit, string | Unit': function UnitStringUnit(unit, valuelessUnit) {
+            return unit.toNumber(valuelessUnit);
+        },
+        'Array | Matrix': function ArrayMatrix(x) {
+            return deepMap(x, number);
+        }
+    });
+    number.toTex = {
+        0: "0",
+        1: "\\left(${args[0]}\\right)",
+        2: "\\left(\\left(${args[0]}\\right)${args[1]}\\right)"
+    };
+    return number;
+}
+var name$3 = 'number';
+var factory_1$3 = factory$3;
+var number$1 = {
+    name: name$3,
+    factory: factory_1$3
+};
+function factory$4(type, config, load, typed) {
+    /**
+     * Create a BigNumber, which can store numbers with arbitrary precision.
+     * When a matrix is provided, all elements will be converted to BigNumber.
+     *
+     * Syntax:
+     *
+     *    math.bignumber(x)
+     *
+     * Examples:
+     *
+     *    0.1 + 0.2                                  // returns number 0.30000000000000004
+     *    math.bignumber(0.1) + math.bignumber(0.2)  // returns BigNumber 0.3
+     *
+     *
+     *    7.2e500                                    // returns number Infinity
+     *    math.bignumber('7.2e500')                  // returns BigNumber 7.2e500
+     *
+     * See also:
+     *
+     *    boolean, complex, index, matrix, string, unit
+     *
+     * @param {number | string | Fraction | BigNumber | Array | Matrix | boolean | null} [value]  Value for the big number,
+     *                                                    0 by default.
+     * @returns {BigNumber} The created bignumber
+     */
+    var bignumber = typed('bignumber', {
+        '': function _() {
+            return new type.BigNumber(0);
+        },
+        'number': function number(x) {
+            // convert to string to prevent errors in case of >15 digits
+            return new type.BigNumber(x + '');
+        },
+        'string': function string(x) {
+            return new type.BigNumber(x);
+        },
+        'BigNumber': function BigNumber(x) {
+            // we assume a BigNumber is immutable
+            return x;
+        },
+        'Fraction': function Fraction(x) {
+            return new type.BigNumber(x.n).div(x.d).times(x.s);
+        },
+        'null': function _null(x) {
+            return new type.BigNumber(0);
+        },
+        'Array | Matrix': function ArrayMatrix(x) {
+            return deepMap(x, bignumber);
+        }
+    });
+    bignumber.toTex = {
+        0: '0',
+        1: "\\left(${args[0]}\\right)"
+    };
+    return bignumber;
+}
+var name$4 = 'bignumber';
+var factory_1$4 = factory$4;
+var bignumber = {
+    name: name$4,
+    factory: factory_1$4
+};
+function factory$5(type, config, load, typed) {
+    /**
+     * Create a fraction convert a value to a fraction.
+     *
+     * Syntax:
+     *     math.fraction(numerator, denominator)
+     *     math.fraction({n: numerator, d: denominator})
+     *     math.fraction(matrix: Array | Matrix)         Turn all matrix entries
+     *                                                   into fractions
+     *
+     * Examples:
+     *
+     *     math.fraction(1, 3)
+     *     math.fraction('2/3')
+     *     math.fraction({n: 2, d: 3})
+     *     math.fraction([0.2, 0.25, 1.25])
+     *
+     * See also:
+     *
+     *    bignumber, number, string, unit
+     *
+     * @param {number | string | Fraction | BigNumber | Array | Matrix} [args]
+     *            Arguments specifying the numerator and denominator of
+     *            the fraction
+     * @return {Fraction | Array | Matrix} Returns a fraction
+     */
+    var fraction = typed('fraction', {
+        'number': function number(x) {
+            if (!isFinite(x) || isNaN(x)) {
+                throw new Error(x + ' cannot be represented as a fraction');
+            }
+            return new type.Fraction(x);
+        },
+        'string': function string(x) {
+            return new type.Fraction(x);
+        },
+        'number, number': function numberNumber(numerator, denominator) {
+            return new type.Fraction(numerator, denominator);
+        },
+        'null': function _null(x) {
+            return new type.Fraction(0);
+        },
+        'BigNumber': function BigNumber(x) {
+            return new type.Fraction(x.toString());
+        },
+        'Fraction': function Fraction(x) {
+            return x; // fractions are immutable
+        },
+        'Object': function Object(x) {
+            return new type.Fraction(x);
+        },
+        'Array | Matrix': function ArrayMatrix(x) {
+            return deepMap(x, fraction);
+        }
+    });
+    return fraction;
+}
+var name$5 = 'fraction';
+var factory_1$5 = factory$5;
+var fraction = {
+    name: name$5,
+    factory: factory_1$5
+};
+function factory$6(type, config, load, typed) {
+    var getTypeOf = load(_typeof$2);
+    var validInputTypes = {
+        'string': true,
+        'number': true,
+        'BigNumber': true,
+        'Fraction': true // Load the conversion functions for each output type
+    };
+    var validOutputTypes = {
+        'number': load(number$1),
+        'BigNumber': load(bignumber),
+        'Fraction': load(fraction)
+        /**
+         * Convert a numeric value to a specific type: number, BigNumber, or Fraction
+         *
+         * @param {string | number | BigNumber | Fraction } value
+         * @param {'number' | 'BigNumber' | 'Fraction'} outputType
+         * @return {number | BigNumber | Fraction} Returns an instance of the
+         *                                         numeric in the requested type
+         */
+    };
+    var numeric = function numeric(value, outputType) {
+        var inputType = getTypeOf(value);
+        if (!(inputType in validInputTypes)) {
+            throw new TypeError('Cannot convert ' + value + ' of type "' + inputType + '"; valid input types are ' + Object.keys(validInputTypes).join(', '));
+        }
+        if (!(outputType in validOutputTypes)) {
+            throw new TypeError('Cannot convert ' + value + ' to type "' + outputType + '"; valid output types are ' + Object.keys(validOutputTypes).join(', '));
+        }
+        if (outputType === inputType) {
+            return value;
+        }
+        else {
+            return validOutputTypes[outputType](value);
+        }
+    };
+    numeric.toTex = function (node, options) {
+        // Not sure if this is strictly right but should work correctly for the vast majority of use cases.
+        return node.args[0].toTex();
+    };
+    return numeric;
+} // FIXME: expose numeric in the math namespace after we've decided on a name and have written proper docs for this function. See https://github.com/josdejong/mathjs/pull/1270
+// exports.name = 'type._numeric'
+var path = 'type';
+var name$6 = '_numeric';
+var factory_1$6 = factory$6;
+var numeric = {
+    path: path,
+    name: name$6,
+    factory: factory_1$6
+};
+function _typeof$3(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
+    _typeof$3 = function _typeof(obj) { return typeof obj; };
+}
+else {
+    _typeof$3 = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+} return _typeof$3(obj); }
+var hasOwnProperty = object.hasOwnProperty;
+/**
+ * Get a property of a plain object
+ * Throws an error in case the object is not a plain object or the
+ * property is not defined on the object itself
+ * @param {Object} object
+ * @param {string} prop
+ * @return {*} Returns the property value when safe
+ */
+function getSafeProperty(object, prop) {
+    // only allow getting safe properties of a plain object
+    if (isPlainObject(object) && isSafeProperty(object, prop)) {
+        return object[prop];
+    }
+    if (typeof object[prop] === 'function' && isSafeMethod(object, prop)) {
+        throw new Error('Cannot access method "' + prop + '" as a property');
+    }
+    throw new Error('No access to property "' + prop + '"');
+}
+/**
+ * Set a property on a plain object.
+ * Throws an error in case the object is not a plain object or the
+ * property would override an inherited property like .constructor or .toString
+ * @param {Object} object
+ * @param {string} prop
+ * @param {*} value
+ * @return {*} Returns the value
+ */
+// TODO: merge this function into access.js?
+function setSafeProperty(object, prop, value) {
+    // only allow setting safe properties of a plain object
+    if (isPlainObject(object) && isSafeProperty(object, prop)) {
+        object[prop] = value;
+        return value;
+    }
+    throw new Error('No access to property "' + prop + '"');
+}
+/**
+ * Test whether a property is safe to use for an object.
+ * For example .toString and .constructor are not safe
+ * @param {string} prop
+ * @return {boolean} Returns true when safe
+ */
+function isSafeProperty(object, prop) {
+    if (!object || _typeof$3(object) !== 'object') {
+        return false;
+    } // SAFE: whitelisted
+    // e.g length
+    if (hasOwnProperty(safeNativeProperties, prop)) {
+        return true;
+    } // UNSAFE: inherited from Object prototype
+    // e.g constructor
+    if (prop in Object.prototype) {
+        // 'in' is used instead of hasOwnProperty for nodejs v0.10
+        // which is inconsistent on root prototypes. It is safe
+        // here because Object.prototype is a root object
+        return false;
+    } // UNSAFE: inherited from Function prototype
+    // e.g call, apply
+    if (prop in Function.prototype) {
+        // 'in' is used instead of hasOwnProperty for nodejs v0.10
+        // which is inconsistent on root prototypes. It is safe
+        // here because Function.prototype is a root object
+        return false;
+    }
+    return true;
+}
+/**
+ * Validate whether a method is safe.
+ * Throws an error when that's not the case.
+ * @param {Object} object
+ * @param {string} method
+ */
+// TODO: merge this function into assign.js?
+function validateSafeMethod(object, method) {
+    if (!isSafeMethod(object, method)) {
+        throw new Error('No access to method "' + method + '"');
+    }
+}
+/**
+ * Check whether a method is safe.
+ * Throws an error when that's not the case (for example for `constructor`).
+ * @param {Object} object
+ * @param {string} method
+ * @return {boolean} Returns true when safe, false otherwise
+ */
+function isSafeMethod(object, method) {
+    if (!object || typeof object[method] !== 'function') {
+        return false;
+    } // UNSAFE: ghosted
+    // e.g overridden toString
+    // Note that IE10 doesn't support __proto__ and we can't do this check there.
+    if (hasOwnProperty(object, method) && Object.getPrototypeOf && method in Object.getPrototypeOf(object)) {
+        return false;
+    } // SAFE: whitelisted
+    // e.g toString
+    if (hasOwnProperty(safeNativeMethods, method)) {
+        return true;
+    } // UNSAFE: inherited from Object prototype
+    // e.g constructor
+    if (method in Object.prototype) {
+        // 'in' is used instead of hasOwnProperty for nodejs v0.10
+        // which is inconsistent on root prototypes. It is safe
+        // here because Object.prototype is a root object
+        return false;
+    } // UNSAFE: inherited from Function prototype
+    // e.g call, apply
+    if (method in Function.prototype) {
+        // 'in' is used instead of hasOwnProperty for nodejs v0.10
+        // which is inconsistent on root prototypes. It is safe
+        // here because Function.prototype is a root object
+        return false;
+    }
+    return true;
+}
+function isPlainObject(object) {
+    return _typeof$3(object) === 'object' && object && object.constructor === Object;
+}
+var safeNativeProperties = {
+    length: true,
+    name: true
+};
+var safeNativeMethods = {
+    toString: true,
+    valueOf: true,
+    toLocaleString: true
+};
+var getSafeProperty_1 = getSafeProperty;
+var setSafeProperty_1 = setSafeProperty;
+var isSafeProperty_1 = isSafeProperty;
+var validateSafeMethod_1 = validateSafeMethod;
+var isSafeMethod_1 = isSafeMethod;
+var isPlainObject_1 = isPlainObject;
+var customs = {
+    getSafeProperty: getSafeProperty_1,
+    setSafeProperty: setSafeProperty_1,
+    isSafeProperty: isSafeProperty_1,
+    validateSafeMethod: validateSafeMethod_1,
+    isSafeMethod: isSafeMethod_1,
+    isPlainObject: isPlainObject_1
+};
+var keywords = {
+    end: true
+};
+function _typeof$4(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
+    _typeof$4 = function _typeof(obj) { return typeof obj; };
+}
+else {
+    _typeof$4 = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+} return _typeof$4(obj); }
+var deepEqual = object.deepEqual;
+var hasOwnProperty$1 = object.hasOwnProperty;
+function factory$7(type, config, load, typed, math) {
+    /**
+     * Node
+     */
+    function Node() {
+        if (!(this instanceof Node)) {
+            throw new SyntaxError('Constructor must be called with the new operator');
+        }
+    }
+    /**
+     * Evaluate the node
+     * @param {Object} [scope]  Scope to read/write variables
+     * @return {*}              Returns the result
+     */
+    Node.prototype.eval = function (scope) {
+        return this.compile().eval(scope);
+    };
+    Node.prototype.type = 'Node';
+    Node.prototype.isNode = true;
+    Node.prototype.comment = '';
+    /**
+     * Compile the node into an optimized, evauatable JavaScript function
+     * @return {{eval: function([Object])}} expr  Returns an object with a function 'eval',
+     *                                  which can be invoked as expr.eval([scope: Object]),
+     *                                  where scope is an optional object with
+     *                                  variables.
+     */
+    Node.prototype.compile = function () {
+        var expr = this._compile(math.expression.mathWithTransform, {});
+        var args = {};
+        var context = null;
+        return {
+            eval: function evalNode(scope) {
+                var s = scope || {};
+                _validateScope(s);
+                return expr(s, args, context);
+            }
+        };
+    };
+    /**
+     * Compile a node into a JavaScript function.
+     * This basically pre-calculates as much as possible and only leaves open
+     * calculations which depend on a dynamic scope with variables.
+     * @param {Object} math     Math.js namespace with functions and constants.
+     * @param {Object} argNames An object with argument names as key and `true`
+     *                          as value. Used in the SymbolNode to optimize
+     *                          for arguments from user assigned functions
+     *                          (see FunctionAssignmentNode) or special symbols
+     *                          like `end` (see IndexNode).
+     * @return {function} Returns a function which can be called like:
+     *                        evalNode(scope: Object, args: Object, context: *)
+     */
+    Node.prototype._compile = function (math, argNames) {
+        throw new Error('Method _compile should be implemented by type ' + this.type);
+    };
+    /**
+     * Execute a callback for each of the child nodes of this node
+     * @param {function(child: Node, path: string, parent: Node)} callback
+     */
+    Node.prototype.forEach = function (callback) {
+        // must be implemented by each of the Node implementations
+        throw new Error('Cannot run forEach on a Node interface');
+    };
+    /**
+     * Create a new Node having it's childs be the results of calling
+     * the provided callback function for each of the childs of the original node.
+     * @param {function(child: Node, path: string, parent: Node): Node} callback
+     * @returns {OperatorNode} Returns a transformed copy of the node
+     */
+    Node.prototype.map = function (callback) {
+        // must be implemented by each of the Node implementations
+        throw new Error('Cannot run map on a Node interface');
+    };
+    /**
+     * Validate whether an object is a Node, for use with map
+     * @param {Node} node
+     * @returns {Node} Returns the input if it's a node, else throws an Error
+     * @protected
+     */
+    Node.prototype._ifNode = function (node) {
+        if (!type.isNode(node)) {
+            throw new TypeError('Callback function must return a Node');
+        }
+        return node;
+    };
+    /**
+     * Recursively traverse all nodes in a node tree. Executes given callback for
+     * this node and each of its child nodes.
+     * @param {function(node: Node, path: string, parent: Node)} callback
+     *          A callback called for every node in the node tree.
+     */
+    Node.prototype.traverse = function (callback) {
+        // execute callback for itself
+        callback(this, null, null); // eslint-disable-line standard/no-callback-literal
+        // recursively traverse over all childs of a node
+        function _traverse(node, callback) {
+            node.forEach(function (child, path, parent) {
+                callback(child, path, parent);
+                _traverse(child, callback);
+            });
+        }
+        _traverse(this, callback);
+    };
+    /**
+     * Recursively transform a node tree via a transform function.
+     *
+     * For example, to replace all nodes of type SymbolNode having name 'x' with a
+     * ConstantNode with value 2:
+     *
+     *     const res = Node.transform(function (node, path, parent) {
+     *       if (node && node.isSymbolNode) && (node.name === 'x')) {
+     *         return new ConstantNode(2)
+     *       }
+     *       else {
+     *         return node
+     *       }
+     *     })
+     *
+     * @param {function(node: Node, path: string, parent: Node) : Node} callback
+     *          A mapping function accepting a node, and returning
+     *          a replacement for the node or the original node.
+     *          Signature: callback(node: Node, index: string, parent: Node) : Node
+     * @return {Node} Returns the original node or its replacement
+     */
+    Node.prototype.transform = function (callback) {
+        // traverse over all childs
+        function _transform(node, callback) {
+            return node.map(function (child, path, parent) {
+                var replacement = callback(child, path, parent);
+                return _transform(replacement, callback);
+            });
+        }
+        var replacement = callback(this, null, null); // eslint-disable-line standard/no-callback-literal
+        return _transform(replacement, callback);
+    };
+    /**
+     * Find any node in the node tree matching given filter function. For example, to
+     * find all nodes of type SymbolNode having name 'x':
+     *
+     *     const results = Node.filter(function (node) {
+     *       return (node && node.isSymbolNode) && (node.name === 'x')
+     *     })
+     *
+     * @param {function(node: Node, path: string, parent: Node) : Node} callback
+     *            A test function returning true when a node matches, and false
+     *            otherwise. Function signature:
+     *            callback(node: Node, index: string, parent: Node) : boolean
+     * @return {Node[]} nodes       An array with nodes matching given filter criteria
+     */
+    Node.prototype.filter = function (callback) {
+        var nodes = [];
+        this.traverse(function (node, path, parent) {
+            if (callback(node, path, parent)) {
+                nodes.push(node);
+            }
+        });
+        return nodes;
+    }; // TODO: deprecated since version 1.1.0, remove this some day
+    Node.prototype.find = function () {
+        throw new Error('Function Node.find is deprecated. Use Node.filter instead.');
+    }; // TODO: deprecated since version 1.1.0, remove this some day
+    Node.prototype.match = function () {
+        throw new Error('Function Node.match is deprecated. See functions Node.filter, Node.transform, Node.traverse.');
+    };
+    /**
+     * Create a shallow clone of this node
+     * @return {Node}
+     */
+    Node.prototype.clone = function () {
+        // must be implemented by each of the Node implementations
+        throw new Error('Cannot clone a Node interface');
+    };
+    /**
+     * Create a deep clone of this node
+     * @return {Node}
+     */
+    Node.prototype.cloneDeep = function () {
+        return this.map(function (node) {
+            return node.cloneDeep();
+        });
+    };
+    /**
+     * Deep compare this node with another node.
+     * @param {Node} other
+     * @return {boolean} Returns true when both nodes are of the same type and
+     *                   contain the same values (as do their childs)
+     */
+    Node.prototype.equals = function (other) {
+        return other ? deepEqual(this, other) : false;
+    };
+    /**
+     * Get string representation. (wrapper function)
+     *
+     * This function can get an object of the following form:
+     * {
+     *    handler: //This can be a callback function of the form
+     *             // "function callback(node, options)"or
+     *             // a map that maps function names (used in FunctionNodes)
+     *             // to callbacks
+     *    parenthesis: "keep" //the parenthesis option (This is optional)
+     * }
+     *
+     * @param {Object} [options]
+     * @return {string}
+     */
+    Node.prototype.toString = function (options) {
+        var customString;
+        if (options && _typeof$4(options) === 'object') {
+            switch (_typeof$4(options.handler)) {
+                case 'object':
+                case 'undefined':
+                    break;
+                case 'function':
+                    customString = options.handler(this, options);
+                    break;
+                default:
+                    throw new TypeError('Object or function expected as callback');
+            }
+        }
+        if (typeof customString !== 'undefined') {
+            return customString;
+        }
+        return this._toString(options);
+    };
+    /**
+     * Get a JSON representation of the node
+     * Both .toJSON() and the static .fromJSON(json) should be implemented by all
+     * implementations of Node
+     * @returns {Object}
+     */
+    Node.prototype.toJSON = function () {
+        throw new Error('Cannot serialize object: toJSON not implemented by ' + this.type);
+    };
+    /**
+     * Get HTML representation. (wrapper function)
+     *
+     * This function can get an object of the following form:
+     * {
+     *    handler: //This can be a callback function of the form
+     *             // "function callback(node, options)" or
+     *             // a map that maps function names (used in FunctionNodes)
+     *             // to callbacks
+     *    parenthesis: "keep" //the parenthesis option (This is optional)
+     * }
+     *
+     * @param {Object} [options]
+     * @return {string}
+     */
+    Node.prototype.toHTML = function (options) {
+        var customString;
+        if (options && _typeof$4(options) === 'object') {
+            switch (_typeof$4(options.handler)) {
+                case 'object':
+                case 'undefined':
+                    break;
+                case 'function':
+                    customString = options.handler(this, options);
+                    break;
+                default:
+                    throw new TypeError('Object or function expected as callback');
+            }
+        }
+        if (typeof customString !== 'undefined') {
+            return customString;
+        }
+        return this.toHTML(options);
+    };
+    /**
+     * Internal function to generate the string output.
+     * This has to be implemented by every Node
+     *
+     * @throws {Error}
+     */
+    Node.prototype._toString = function () {
+        // must be implemented by each of the Node implementations
+        throw new Error('_toString not implemented for ' + this.type);
+    };
+    /**
+     * Get LaTeX representation. (wrapper function)
+     *
+     * This function can get an object of the following form:
+     * {
+     *    handler: //This can be a callback function of the form
+     *             // "function callback(node, options)"or
+     *             // a map that maps function names (used in FunctionNodes)
+     *             // to callbacks
+     *    parenthesis: "keep" //the parenthesis option (This is optional)
+     * }
+     *
+     * @param {Object} [options]
+     * @return {string}
+     */
+    Node.prototype.toTex = function (options) {
+        var customTex;
+        if (options && _typeof$4(options) === 'object') {
+            switch (_typeof$4(options.handler)) {
+                case 'object':
+                case 'undefined':
+                    break;
+                case 'function':
+                    customTex = options.handler(this, options);
+                    break;
+                default:
+                    throw new TypeError('Object or function expected as callback');
+            }
+        }
+        if (typeof customTex !== 'undefined') {
+            return customTex;
+        }
+        return this._toTex(options);
+    };
+    /**
+     * Internal function to generate the LaTeX output.
+     * This has to be implemented by every Node
+     *
+     * @param {Object} [options]
+     * @throws {Error}
+     */
+    Node.prototype._toTex = function (options) {
+        // must be implemented by each of the Node implementations
+        throw new Error('_toTex not implemented for ' + this.type);
+    };
+    /**
+     * Get identifier.
+     * @return {string}
+     */
+    Node.prototype.getIdentifier = function () {
+        return this.type;
+    };
+    /**
+     * Get the content of the current Node.
+     * @return {Node} node
+     **/
+    Node.prototype.getContent = function () {
+        return this;
+    };
+    /**
+     * Validate the symbol names of a scope.
+     * Throws an error when the scope contains an illegal symbol.
+     * @param {Object} scope
+     */
+    function _validateScope(scope) {
+        for (var symbol in scope) {
+            if (hasOwnProperty$1(scope, symbol)) {
+                if (symbol in keywords) {
+                    throw new Error('Scope contains an illegal symbol, "' + symbol + '" is a reserved keyword');
+                }
+            }
+        }
+    }
+    return Node;
+}
+var name$7 = 'Node';
+var path$1 = 'expression.node';
+var math$2 = true; // request access to the math namespace as 5th argument of the factory function
+var factory_1$7 = factory$7;
+var Node = {
+    name: name$7,
+    path: path$1,
+    math: math$2,
+    factory: factory_1$7
+};
+/**
+ * Create a range error with the message:
+ *     'Index out of range (index < min)'
+ *     'Index out of range (index < max)'
+ *
+ * @param {number} index     The actual index
+ * @param {number} [min=0]   Minimum index (included)
+ * @param {number} [max]     Maximum index (excluded)
+ * @extends RangeError
+ */
+function IndexError(index, min, max) {
+    if (!(this instanceof IndexError)) {
+        throw new SyntaxError('Constructor must be called with the new operator');
+    }
+    this.index = index;
+    if (arguments.length < 3) {
+        this.min = 0;
+        this.max = min;
+    }
+    else {
+        this.min = min;
+        this.max = max;
+    }
+    if (this.min !== undefined && this.index < this.min) {
+        this.message = 'Index out of range (' + this.index + ' < ' + this.min + ')';
+    }
+    else if (this.max !== undefined && this.index >= this.max) {
+        this.message = 'Index out of range (' + this.index + ' > ' + (this.max - 1) + ')';
+    }
+    else {
+        this.message = 'Index out of range (' + this.index + ')';
+    }
+    this.stack = new Error().stack;
+}
+IndexError.prototype = new RangeError();
+IndexError.prototype.constructor = RangeError;
+IndexError.prototype.name = 'IndexError';
+IndexError.prototype.isIndexError = true;
+var IndexError_1 = IndexError;
+/**
+ * Transform zero-based indices to one-based indices in errors
+ * @param {Error} err
+ * @returns {Error} Returns the transformed error
+ */
+var transform = function (err) {
+    if (err && err.isIndexError) {
+        return new IndexError_1(err.index + 1, err.min + 1, err.max !== undefined ? err.max + 1 : undefined);
+    }
+    return err;
+};
+var error_transform = {
+    transform: transform
+};
+var formatter = createCommonjsModule(function (module, exports) {
+    /**
+     * Convert a BigNumber to a formatted string representation.
+     *
+     * Syntax:
+     *
+     *    format(value)
+     *    format(value, options)
+     *    format(value, precision)
+     *    format(value, fn)
+     *
+     * Where:
+     *
+     *    {number} value   The value to be formatted
+     *    {Object} options An object with formatting options. Available options:
+     *                     {string} notation
+     *                         Number notation. Choose from:
+     *                         'fixed'          Always use regular number notation.
+     *                                          For example '123.40' and '14000000'
+     *                         'exponential'    Always use exponential notation.
+     *                                          For example '1.234e+2' and '1.4e+7'
+     *                         'auto' (default) Regular number notation for numbers
+     *                                          having an absolute value between
+     *                                          `lower` and `upper` bounds, and uses
+     *                                          exponential notation elsewhere.
+     *                                          Lower bound is included, upper bound
+     *                                          is excluded.
+     *                                          For example '123.4' and '1.4e7'.
+     *                     {number} precision   A number between 0 and 16 to round
+     *                                          the digits of the number.
+     *                                          In case of notations 'exponential',
+     *                                          'engineering', and 'auto',
+     *                                          `precision` defines the total
+     *                                          number of significant digits returned.
+     *                                          In case of notation 'fixed',
+     *                                          `precision` defines the number of
+     *                                          significant digits after the decimal
+     *                                          point.
+     *                                          `precision` is undefined by default.
+     *                     {number} lowerExp    Exponent determining the lower boundary
+     *                                          for formatting a value with an exponent
+     *                                          when `notation='auto`.
+     *                                          Default value is `-3`.
+     *                     {number} upperExp    Exponent determining the upper boundary
+     *                                          for formatting a value with an exponent
+     *                                          when `notation='auto`.
+     *                                          Default value is `5`.
+     *    {Function} fn    A custom formatting function. Can be used to override the
+     *                     built-in notations. Function `fn` is called with `value` as
+     *                     parameter and must return a string. Is useful for example to
+     *                     format all values inside a matrix in a particular way.
+     *
+     * Examples:
+     *
+     *    format(6.4)                                        // '6.4'
+     *    format(1240000)                                    // '1.24e6'
+     *    format(1/3)                                        // '0.3333333333333333'
+     *    format(1/3, 3)                                     // '0.333'
+     *    format(21385, 2)                                   // '21000'
+     *    format(12e8, {notation: 'fixed'})                  // returns '1200000000'
+     *    format(2.3,    {notation: 'fixed', precision: 4})  // returns '2.3000'
+     *    format(52.8,   {notation: 'exponential'})          // returns '5.28e+1'
+     *    format(12400,  {notation: 'engineering'})          // returns '12.400e+3'
+     *
+     * @param {BigNumber} value
+     * @param {Object | Function | number} [options]
+     * @return {string} str The formatted value
+     */
+    exports.format = function (value, options) {
+        if (typeof options === 'function') {
+            // handle format(value, fn)
+            return options(value);
+        } // handle special cases
+        if (!value.isFinite()) {
+            return value.isNaN() ? 'NaN' : value.gt(0) ? 'Infinity' : '-Infinity';
+        } // default values for options
+        var notation = 'auto';
+        var precision;
+        if (options !== undefined) {
+            // determine notation from options
+            if (options.notation) {
+                notation = options.notation;
+            } // determine precision from options
+            if (typeof options === 'number') {
+                precision = options;
+            }
+            else if (options.precision) {
+                precision = options.precision;
+            }
+        } // handle the various notations
+        switch (notation) {
+            case 'fixed':
+                return exports.toFixed(value, precision);
+            case 'exponential':
+                return exports.toExponential(value, precision);
+            case 'engineering':
+                return exports.toEngineering(value, precision);
+            case 'auto':
+                // TODO: clean up some day. Deprecated since: 2018-01-24
+                // @deprecated upper and lower are replaced with upperExp and lowerExp since v4.0.0
+                if (options && options.exponential && (options.exponential.lower !== undefined || options.exponential.upper !== undefined)) {
+                    var fixedOptions = object.map(options, function (x) {
+                        return x;
+                    });
+                    fixedOptions.exponential = undefined;
+                    if (options.exponential.lower !== undefined) {
+                        fixedOptions.lowerExp = Math.round(Math.log(options.exponential.lower) / Math.LN10);
+                    }
+                    if (options.exponential.upper !== undefined) {
+                        fixedOptions.upperExp = Math.round(Math.log(options.exponential.upper) / Math.LN10);
+                    }
+                    console.warn('Deprecation warning: Formatting options exponential.lower and exponential.upper ' + '(minimum and maximum value) ' + 'are replaced with exponential.lowerExp and exponential.upperExp ' + '(minimum and maximum exponent) since version 4.0.0. ' + 'Replace ' + JSON.stringify(options) + ' with ' + JSON.stringify(fixedOptions));
+                    return exports.format(value, fixedOptions);
+                } // determine lower and upper bound for exponential notation.
+                // TODO: implement support for upper and lower to be BigNumbers themselves
+                var lowerExp = options && options.lowerExp !== undefined ? options.lowerExp : -3;
+                var upperExp = options && options.upperExp !== undefined ? options.upperExp : 5; // handle special case zero
+                if (value.isZero())
+                    return '0'; // determine whether or not to output exponential notation
+                var str;
+                var exp = value.e;
+                if (exp >= lowerExp && exp < upperExp) {
+                    // normal number notation
+                    str = value.toSignificantDigits(precision).toFixed();
+                }
+                else {
+                    // exponential notation
+                    str = exports.toExponential(value, precision);
+                } // remove trailing zeros after the decimal point
+                return str.replace(/((\.\d*?)(0+))($|e)/, function () {
+                    var digits = arguments[2];
+                    var e = arguments[4];
+                    return digits !== '.' ? digits + e : e;
+                });
+            default:
+                throw new Error('Unknown notation "' + notation + '". ' + 'Choose "auto", "exponential", or "fixed".');
+        }
+    };
+    /**
+     * Format a BigNumber in engineering notation. Like '1.23e+6', '2.3e+0', '3.500e-3'
+     * @param {BigNumber | string} value
+     * @param {number} [precision]        Optional number of significant figures to return.
+     */
+    exports.toEngineering = function (value, precision) {
+        // find nearest lower multiple of 3 for exponent
+        var e = value.e;
+        var newExp = e % 3 === 0 ? e : e < 0 ? e - 3 - e % 3 : e - e % 3; // find difference in exponents, and calculate the value without exponent
+        var expDiff = Math.abs(e - newExp);
+        var valueWithoutExp = value.mul(Math.pow(10, expDiff - e));
+        return valueWithoutExp.toPrecision(precision).toString() + 'e' + (e >= 0 ? '+' : '') + newExp.toString();
+    };
+    /**
+     * Format a number in exponential notation. Like '1.23e+5', '2.3e+0', '3.500e-3'
+     * @param {BigNumber} value
+     * @param {number} [precision]  Number of digits in formatted output.
+     *                              If not provided, the maximum available digits
+     *                              is used.
+     * @returns {string} str
+     */
+    exports.toExponential = function (value, precision) {
+        if (precision !== undefined) {
+            return value.toExponential(precision - 1); // Note the offset of one
+        }
+        else {
+            return value.toExponential();
+        }
+    };
+    /**
+     * Format a number with fixed notation.
+     * @param {BigNumber} value
+     * @param {number} [precision=undefined] Optional number of decimals after the
+     *                                       decimal point. Undefined by default.
+     */
+    exports.toFixed = function (value, precision) {
+        return value.toFixed(precision);
+    };
+});
+var formatter_1 = formatter.format;
+var formatter_2 = formatter.toEngineering;
+var formatter_3 = formatter.toExponential;
+var formatter_4 = formatter.toFixed;
+var string = createCommonjsModule(function (module, exports) {
+    function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
+        _typeof = function _typeof(obj) { return typeof obj; };
+    }
+    else {
+        _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+    } return _typeof(obj); }
+    var formatNumber = number.format;
+    var formatBigNumber = formatter.format;
+    /**
+     * Test whether value is a string
+     * @param {*} value
+     * @return {boolean} isString
+     */
+    exports.isString = function (value) {
+        return typeof value === 'string';
+    };
+    /**
+     * Check if a text ends with a certain string.
+     * @param {string} text
+     * @param {string} search
+     */
+    exports.endsWith = function (text, search) {
+        var start = text.length - search.length;
+        var end = text.length;
+        return text.substring(start, end) === search;
+    };
+    /**
+     * Format a value of any type into a string.
+     *
+     * Usage:
+     *     math.format(value)
+     *     math.format(value, precision)
+     *
+     * When value is a function:
+     *
+     * - When the function has a property `syntax`, it returns this
+     *   syntax description.
+     * - In other cases, a string `'function'` is returned.
+     *
+     * When `value` is an Object:
+     *
+     * - When the object contains a property `format` being a function, this
+     *   function is invoked as `value.format(options)` and the result is returned.
+     * - When the object has its own `toString` method, this method is invoked
+     *   and the result is returned.
+     * - In other cases the function will loop over all object properties and
+     *   return JSON object notation like '{"a": 2, "b": 3}'.
+     *
+     * Example usage:
+     *     math.format(2/7)                // '0.2857142857142857'
+     *     math.format(math.pi, 3)         // '3.14'
+     *     math.format(new Complex(2, 3))  // '2 + 3i'
+     *     math.format('hello')            // '"hello"'
+     *
+     * @param {*} value             Value to be stringified
+     * @param {Object | number | Function} [options]  Formatting options. See
+     *                                                lib/utils/number:format for a
+     *                                                description of the available
+     *                                                options.
+     * @return {string} str
+     */
+    exports.format = function (value, options) {
+        if (typeof value === 'number') {
+            return formatNumber(value, options);
+        }
+        if (isBigNumber(value)) {
+            return formatBigNumber(value, options);
+        } // note: we use unsafe duck-typing here to check for Fractions, this is
+        // ok here since we're only invoking toString or concatenating its values
+        if (looksLikeFraction(value)) {
+            if (!options || options.fraction !== 'decimal') {
+                // output as ratio, like '1/3'
+                return value.s * value.n + '/' + value.d;
+            }
+            else {
+                // output as decimal, like '0.(3)'
+                return value.toString();
+            }
+        }
+        if (Array.isArray(value)) {
+            return formatArray(value, options);
+        }
+        if (exports.isString(value)) {
+            return '"' + value + '"';
+        }
+        if (typeof value === 'function') {
+            return value.syntax ? String(value.syntax) : 'function';
+        }
+        if (value && _typeof(value) === 'object') {
+            if (typeof value.format === 'function') {
+                return value.format(options);
+            }
+            else if (value && value.toString() !== {}.toString()) {
+                // this object has a non-native toString method, use that one
+                return value.toString();
+            }
+            else {
+                var entries = [];
+                for (var key in value) {
+                    if (value.hasOwnProperty(key)) {
+                        entries.push('"' + key + '": ' + exports.format(value[key], options));
+                    }
+                }
+                return '{' + entries.join(', ') + '}';
+            }
+        }
+        return String(value);
+    };
+    /**
+     * Stringify a value into a string enclosed in double quotes.
+     * Unescaped double quotes and backslashes inside the value are escaped.
+     * @param {*} value
+     * @return {string}
+     */
+    exports.stringify = function (value) {
+        var text = String(value);
+        var escaped = '';
+        var i = 0;
+        while (i < text.length) {
+            var c = text.charAt(i);
+            if (c === '\\') {
+                escaped += c;
+                i++;
+                c = text.charAt(i);
+                if (c === '' || '"\\/bfnrtu'.indexOf(c) === -1) {
+                    escaped += '\\'; // no valid escape character -> escape it
+                }
+                escaped += c;
+            }
+            else if (c === '"') {
+                escaped += '\\"';
+            }
+            else {
+                escaped += c;
+            }
+            i++;
+        }
+        return '"' + escaped + '"';
+    };
+    /**
+     * Escape special HTML characters
+     * @param {*} value
+     * @return {string}
+     */
+    exports.escape = function (value) {
+        var text = String(value);
+        text = text.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/'/g, '&#39;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        return text;
+    };
+    /**
+     * Recursively format an n-dimensional matrix
+     * Example output: "[[1, 2], [3, 4]]"
+     * @param {Array} array
+     * @param {Object | number | Function} [options]  Formatting options. See
+     *                                                lib/utils/number:format for a
+     *                                                description of the available
+     *                                                options.
+     * @returns {string} str
+     */
+    function formatArray(array, options) {
+        if (Array.isArray(array)) {
+            var str = '[';
+            var len = array.length;
+            for (var i = 0; i < len; i++) {
+                if (i !== 0) {
+                    str += ', ';
+                }
+                str += formatArray(array[i], options);
+            }
+            str += ']';
+            return str;
+        }
+        else {
+            return exports.format(array, options);
+        }
+    }
+    /**
+     * Check whether a value looks like a Fraction (unsafe duck-type check)
+     * @param {*} value
+     * @return {boolean}
+     */
+    function looksLikeFraction(value) {
+        return value && _typeof(value) === 'object' && typeof value.s === 'number' && typeof value.n === 'number' && typeof value.d === 'number' || false;
+    }
+});
+var string_1 = string.isString;
+var string_2 = string.endsWith;
+var string_3 = string.format;
+var string_4 = string.stringify;
+var string_5 = string.escape;
+/**
+ * Create a range error with the message:
+ *     'Dimension mismatch (<actual size> != <expected size>)'
+ * @param {number | number[]} actual        The actual size
+ * @param {number | number[]} expected      The expected size
+ * @param {string} [relation='!=']          Optional relation between actual
+ *                                          and expected size: '!=', '<', etc.
+ * @extends RangeError
+ */
+function DimensionError(actual, expected, relation) {
+    if (!(this instanceof DimensionError)) {
+        throw new SyntaxError('Constructor must be called with the new operator');
+    }
+    this.actual = actual;
+    this.expected = expected;
+    this.relation = relation;
+    this.message = 'Dimension mismatch (' + (Array.isArray(actual) ? '[' + actual.join(', ') + ']' : actual) + ' ' + (this.relation || '!=') + ' ' + (Array.isArray(expected) ? '[' + expected.join(', ') + ']' : expected) + ')';
+    this.stack = new Error().stack;
+}
+DimensionError.prototype = new RangeError();
+DimensionError.prototype.constructor = RangeError;
+DimensionError.prototype.name = 'DimensionError';
+DimensionError.prototype.isDimensionError = true;
+var DimensionError_1 = DimensionError;
+var array = createCommonjsModule(function (module, exports) {
+    Object.defineProperty(exports, "__esModule", {
+        value: true
+    });
+    exports.size = size;
+    exports.validate = validate;
+    exports.validateIndex = validateIndex;
+    exports.resize = resize;
+    exports.reshape = reshape;
+    exports.squeeze = squeeze;
+    exports.unsqueeze = unsqueeze;
+    exports.flatten = flatten;
+    exports.map = map;
+    exports.forEach = forEach;
+    exports.filter = filter;
+    exports.filterRegExp = filterRegExp;
+    exports.join = join;
+    exports.identify = identify;
+    exports.generalize = generalize;
+    var _number = _interopRequireDefault(number);
+    var _string = _interopRequireDefault(string);
+    var _DimensionError = _interopRequireDefault(DimensionError_1);
+    var _IndexError = _interopRequireDefault(IndexError_1);
+    function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+    /**
+     * Calculate the size of a multi dimensional array.
+     * This function checks the size of the first entry, it does not validate
+     * whether all dimensions match. (use function `validate` for that)
+     * @param {Array} x
+     * @Return {Number[]} size
+     */
+    function size(x) {
+        var s = [];
+        while (Array.isArray(x)) {
+            s.push(x.length);
+            x = x[0];
+        }
+        return s;
+    }
+    /**
+     * Recursively validate whether each element in a multi dimensional array
+     * has a size corresponding to the provided size array.
+     * @param {Array} array    Array to be validated
+     * @param {number[]} size  Array with the size of each dimension
+     * @param {number} dim   Current dimension
+     * @throws DimensionError
+     * @private
+     */
+    function _validate(array, size, dim) {
+        var i;
+        var len = array.length;
+        if (len !== size[dim]) {
+            throw new _DimensionError["default"](len, size[dim]);
+        }
+        if (dim < size.length - 1) {
+            // recursively validate each child array
+            var dimNext = dim + 1;
+            for (i = 0; i < len; i++) {
+                var child = array[i];
+                if (!Array.isArray(child)) {
+                    throw new _DimensionError["default"](size.length - 1, size.length, '<');
+                }
+                _validate(array[i], size, dimNext);
+            }
+        }
+        else {
+            // last dimension. none of the childs may be an array
+            for (i = 0; i < len; i++) {
+                if (Array.isArray(array[i])) {
+                    throw new _DimensionError["default"](size.length + 1, size.length, '>');
+                }
+            }
+        }
+    }
+    /**
+     * Validate whether each element in a multi dimensional array has
+     * a size corresponding to the provided size array.
+     * @param {Array} array    Array to be validated
+     * @param {number[]} size  Array with the size of each dimension
+     * @throws DimensionError
+     */
+    function validate(array, size) {
+        var isScalar = size.length === 0;
+        if (isScalar) {
+            // scalar
+            if (Array.isArray(array)) {
+                throw new _DimensionError["default"](array.length, 0);
+            }
+        }
+        else {
+            // array
+            _validate(array, size, 0);
+        }
+    }
+    /**
+     * Test whether index is an integer number with index >= 0 and index < length
+     * when length is provided
+     * @param {number} index    Zero-based index
+     * @param {number} [length] Length of the array
+     */
+    function validateIndex(index, length) {
+        if (!_number["default"].isNumber(index) || !_number["default"].isInteger(index)) {
+            throw new TypeError('Index must be an integer (value: ' + index + ')');
+        }
+        if (index < 0 || typeof length === 'number' && index >= length) {
+            throw new _IndexError["default"](index, length);
+        }
+    }
+    /**
+     * Resize a multi dimensional array. The resized array is returned.
+     * @param {Array} array         Array to be resized
+     * @param {Array.<number>} size Array with the size of each dimension
+     * @param {*} [defaultValue=0]  Value to be filled in in new entries,
+     *                              zero by default. Specify for example `null`,
+     *                              to clearly see entries that are not explicitly
+     *                              set.
+     * @return {Array} array         The resized array
+     */
+    function resize(array, size, defaultValue) {
+        // TODO: add support for scalars, having size=[] ?
+        // check the type of the arguments
+        if (!Array.isArray(array) || !Array.isArray(size)) {
+            throw new TypeError('Array expected');
+        }
+        if (size.length === 0) {
+            throw new Error('Resizing to scalar is not supported');
+        } // check whether size contains positive integers
+        size.forEach(function (value) {
+            if (!_number["default"].isNumber(value) || !_number["default"].isInteger(value) || value < 0) {
+                throw new TypeError('Invalid size, must contain positive integers ' + '(size: ' + _string["default"].format(size) + ')');
+            }
+        }); // recursively resize the array
+        var _defaultValue = defaultValue !== undefined ? defaultValue : 0;
+        _resize(array, size, 0, _defaultValue);
+        return array;
+    }
+    /**
+     * Recursively resize a multi dimensional array
+     * @param {Array} array         Array to be resized
+     * @param {number[]} size       Array with the size of each dimension
+     * @param {number} dim          Current dimension
+     * @param {*} [defaultValue]    Value to be filled in in new entries,
+     *                              undefined by default.
+     * @private
+     */
+    function _resize(array, size, dim, defaultValue) {
+        var i;
+        var elem;
+        var oldLen = array.length;
+        var newLen = size[dim];
+        var minLen = Math.min(oldLen, newLen); // apply new length
+        array.length = newLen;
+        if (dim < size.length - 1) {
+            // non-last dimension
+            var dimNext = dim + 1; // resize existing child arrays
+            for (i = 0; i < minLen; i++) {
+                // resize child array
+                elem = array[i];
+                if (!Array.isArray(elem)) {
+                    elem = [elem]; // add a dimension
+                    array[i] = elem;
+                }
+                _resize(elem, size, dimNext, defaultValue);
+            } // create new child arrays
+            for (i = minLen; i < newLen; i++) {
+                // get child array
+                elem = [];
+                array[i] = elem; // resize new child array
+                _resize(elem, size, dimNext, defaultValue);
+            }
+        }
+        else {
+            // last dimension
+            // remove dimensions of existing values
+            for (i = 0; i < minLen; i++) {
+                while (Array.isArray(array[i])) {
+                    array[i] = array[i][0];
+                }
+            } // fill new elements with the default value
+            for (i = minLen; i < newLen; i++) {
+                array[i] = defaultValue;
+            }
+        }
+    }
+    /**
+     * Re-shape a multi dimensional array to fit the specified dimensions
+     * @param {Array} array           Array to be reshaped
+     * @param {Array.<number>} sizes  List of sizes for each dimension
+     * @returns {Array}               Array whose data has been formatted to fit the
+     *                                specified dimensions
+     *
+     * @throws {DimensionError}       If the product of the new dimension sizes does
+     *                                not equal that of the old ones
+     */
+    function reshape(array, sizes) {
+        var flatArray = flatten(array);
+        var newArray;
+        function product(arr) {
+            return arr.reduce(function (prev, curr) {
+                return prev * curr;
+            });
+        }
+        if (!Array.isArray(array) || !Array.isArray(sizes)) {
+            throw new TypeError('Array expected');
+        }
+        if (sizes.length === 0) {
+            throw new _DimensionError["default"](0, product(size(array)), '!=');
+        }
+        var totalSize = 1;
+        for (var sizeIndex = 0; sizeIndex < sizes.length; sizeIndex++) {
+            totalSize *= sizes[sizeIndex];
+        }
+        if (flatArray.length !== totalSize) {
+            throw new _DimensionError["default"](product(sizes), product(size(array)), '!=');
+        }
+        try {
+            newArray = _reshape(flatArray, sizes);
+        }
+        catch (e) {
+            if (e instanceof _DimensionError["default"]) {
+                throw new _DimensionError["default"](product(sizes), product(size(array)), '!=');
+            }
+            throw e;
+        }
+        return newArray;
+    }
+    /**
+     * Iteratively re-shape a multi dimensional array to fit the specified dimensions
+     * @param {Array} array           Array to be reshaped
+     * @param {Array.<number>} sizes  List of sizes for each dimension
+     * @returns {Array}               Array whose data has been formatted to fit the
+     *                                specified dimensions
+     */
+    function _reshape(array, sizes) {
+        // testing if there are enough elements for the requested shape
+        var tmpArray = array;
+        var tmpArray2; // for each dimensions starting by the last one and ignoring the first one
+        for (var sizeIndex = sizes.length - 1; sizeIndex > 0; sizeIndex--) {
+            var size = sizes[sizeIndex];
+            tmpArray2 = []; // aggregate the elements of the current tmpArray in elements of the requested size
+            var length = tmpArray.length / size;
+            for (var i = 0; i < length; i++) {
+                tmpArray2.push(tmpArray.slice(i * size, (i + 1) * size));
+            } // set it as the new tmpArray for the next loop turn or for return
+            tmpArray = tmpArray2;
+        }
+        return tmpArray;
+    }
+    /**
+     * Squeeze a multi dimensional array
+     * @param {Array} array
+     * @param {Array} [arraySize]
+     * @returns {Array} returns the array itself
+     */
+    function squeeze(array, arraySize) {
+        var s = arraySize || size(array); // squeeze outer dimensions
+        while (Array.isArray(array) && array.length === 1) {
+            array = array[0];
+            s.shift();
+        } // find the first dimension to be squeezed
+        var dims = s.length;
+        while (s[dims - 1] === 1) {
+            dims--;
+        } // squeeze inner dimensions
+        if (dims < s.length) {
+            array = _squeeze(array, dims, 0);
+            s.length = dims;
+        }
+        return array;
+    }
+    /**
+     * Recursively squeeze a multi dimensional array
+     * @param {Array} array
+     * @param {number} dims Required number of dimensions
+     * @param {number} dim  Current dimension
+     * @returns {Array | *} Returns the squeezed array
+     * @private
+     */
+    function _squeeze(array, dims, dim) {
+        var i, ii;
+        if (dim < dims) {
+            var next = dim + 1;
+            for (i = 0, ii = array.length; i < ii; i++) {
+                array[i] = _squeeze(array[i], dims, next);
+            }
+        }
+        else {
+            while (Array.isArray(array)) {
+                array = array[0];
+            }
+        }
+        return array;
+    }
+    /**
+     * Unsqueeze a multi dimensional array: add dimensions when missing
+     *
+     * Paramter `size` will be mutated to match the new, unqueezed matrix size.
+     *
+     * @param {Array} array
+     * @param {number} dims       Desired number of dimensions of the array
+     * @param {number} [outer]    Number of outer dimensions to be added
+     * @param {Array} [arraySize] Current size of array.
+     * @returns {Array} returns the array itself
+     * @private
+     */
+    function unsqueeze(array, dims, outer, arraySize) {
+        var s = arraySize || size(array); // unsqueeze outer dimensions
+        if (outer) {
+            for (var i = 0; i < outer; i++) {
+                array = [array];
+                s.unshift(1);
+            }
+        } // unsqueeze inner dimensions
+        array = _unsqueeze(array, dims, 0);
+        while (s.length < dims) {
+            s.push(1);
+        }
+        return array;
+    }
+    /**
+     * Recursively unsqueeze a multi dimensional array
+     * @param {Array} array
+     * @param {number} dims Required number of dimensions
+     * @param {number} dim  Current dimension
+     * @returns {Array | *} Returns the squeezed array
+     * @private
+     */
+    function _unsqueeze(array, dims, dim) {
+        var i, ii;
+        if (Array.isArray(array)) {
+            var next = dim + 1;
+            for (i = 0, ii = array.length; i < ii; i++) {
+                array[i] = _unsqueeze(array[i], dims, next);
+            }
+        }
+        else {
+            for (var d = dim; d < dims; d++) {
+                array = [array];
+            }
+        }
+        return array;
+    }
+    /**
+     * Flatten a multi dimensional array, put all elements in a one dimensional
+     * array
+     * @param {Array} array   A multi dimensional array
+     * @return {Array}        The flattened array (1 dimensional)
+     */
+    function flatten(array) {
+        if (!Array.isArray(array)) {
+            // if not an array, return as is
+            return array;
+        }
+        var flat = [];
+        array.forEach(function callback(value) {
+            if (Array.isArray(value)) {
+                value.forEach(callback); // traverse through sub-arrays recursively
+            }
+            else {
+                flat.push(value);
+            }
+        });
+        return flat;
+    }
+    /**
+     * A safe map
+     * @param {Array} array
+     * @param {function} callback
+     */
+    function map(array, callback) {
+        return Array.prototype.map.call(array, callback);
+    }
+    /**
+     * A safe forEach
+     * @param {Array} array
+     * @param {function} callback
+     */
+    function forEach(array, callback) {
+        Array.prototype.forEach.call(array, callback);
+    }
+    /**
+     * A safe filter
+     * @param {Array} array
+     * @param {function} callback
+     */
+    function filter(array, callback) {
+        if (size(array).length !== 1) {
+            throw new Error('Only one dimensional matrices supported');
+        }
+        return Array.prototype.filter.call(array, callback);
+    }
+    /**
+     * Filter values in a callback given a regular expression
+     * @param {Array} array
+     * @param {RegExp} regexp
+     * @return {Array} Returns the filtered array
+     * @private
+     */
+    function filterRegExp(array, regexp) {
+        if (size(array).length !== 1) {
+            throw new Error('Only one dimensional matrices supported');
+        }
+        return Array.prototype.filter.call(array, function (entry) {
+            return regexp.test(entry);
+        });
+    }
+    /**
+     * A safe join
+     * @param {Array} array
+     * @param {string} separator
+     */
+    function join(array, separator) {
+        return Array.prototype.join.call(array, separator);
+    }
+    /**
+     * Assign a numeric identifier to every element of a sorted array
+     * @param {Array} a  An array
+     * @return {Array} An array of objects containing the original value and its identifier
+     */
+    function identify(a) {
+        if (!Array.isArray(a)) {
+            throw new TypeError('Array input expected');
+        }
+        if (a.length === 0) {
+            return a;
+        }
+        var b = [];
+        var count = 0;
+        b[0] = {
+            value: a[0],
+            identifier: 0
+        };
+        for (var i = 1; i < a.length; i++) {
+            if (a[i] === a[i - 1]) {
+                count++;
+            }
+            else {
+                count = 0;
+            }
+            b.push({
+                value: a[i],
+                identifier: count
+            });
+        }
+        return b;
+    }
+    /**
+     * Remove the numeric identifier from the elements
+     * @param {array} a  An array
+     * @return {array} An array of values without identifiers
+     */
+    function generalize(a) {
+        if (!Array.isArray(a)) {
+            throw new TypeError('Array input expected');
+        }
+        if (a.length === 0) {
+            return a;
+        }
+        var b = [];
+        for (var i = 0; i < a.length; i++) {
+            b.push(a[i].value);
+        }
+        return b;
+    }
+});
+unwrapExports(array);
+var array_1 = array.size;
+var array_2 = array.validate;
+var array_3 = array.validateIndex;
+var array_4 = array.resize;
+var array_5 = array.reshape;
+var array_6 = array.squeeze;
+var array_7 = array.unsqueeze;
+var array_8 = array.flatten;
+var array_9 = array.map;
+var array_10 = array.forEach;
+var array_11 = array.filter;
+var array_12 = array.filterRegExp;
+var array_13 = array.join;
+var array_14 = array.identify;
+var array_15 = array.generalize;
+function factory$8(type, config, load, typed) {
+    /**
+     * Create a Matrix. The function creates a new `math.type.Matrix` object from
+     * an `Array`. A Matrix has utility functions to manipulate the data in the
+     * matrix, like getting the size and getting or setting values in the matrix.
+     * Supported storage formats are 'dense' and 'sparse'.
+     *
+     * Syntax:
+     *
+     *    math.matrix()                         // creates an empty matrix using default storage format (dense).
+     *    math.matrix(data)                     // creates a matrix with initial data using default storage format (dense).
+     *    math.matrix('dense')                  // creates an empty matrix using the given storage format.
+     *    math.matrix(data, 'dense')            // creates a matrix with initial data using the given storage format.
+     *    math.matrix(data, 'sparse')           // creates a sparse matrix with initial data.
+     *    math.matrix(data, 'sparse', 'number') // creates a sparse matrix with initial data, number data type.
+     *
+     * Examples:
+     *
+     *    let m = math.matrix([[1, 2], [3, 4]])
+     *    m.size()                        // Array [2, 2]
+     *    m.resize([3, 2], 5)
+     *    m.valueOf()                     // Array [[1, 2], [3, 4], [5, 5]]
+     *    m.get([1, 0])                    // number 3
+     *
+     * See also:
+     *
+     *    bignumber, boolean, complex, index, number, string, unit, sparse
+     *
+     * @param {Array | Matrix} [data]    A multi dimensional array
+     * @param {string} [format]          The Matrix storage format
+     *
+     * @return {Matrix} The created matrix
+     */
+    var matrix = typed('matrix', {
+        '': function _() {
+            return _create([]);
+        },
+        'string': function string(format) {
+            return _create([], format);
+        },
+        'string, string': function stringString(format, datatype) {
+            return _create([], format, datatype);
+        },
+        'Array': function Array(data) {
+            return _create(data);
+        },
+        'Matrix': function Matrix(data) {
+            return _create(data, data.storage());
+        },
+        'Array | Matrix, string': _create,
+        'Array | Matrix, string, string': _create
+    });
+    matrix.toTex = {
+        0: '\\begin{bmatrix}\\end{bmatrix}',
+        1: "\\left(${args[0]}\\right)",
+        2: "\\left(${args[0]}\\right)"
+    };
+    return matrix;
+    /**
+     * Create a new Matrix with given storage format
+     * @param {Array} data
+     * @param {string} [format]
+     * @param {string} [datatype]
+     * @returns {Matrix} Returns a new Matrix
+     * @private
+     */
+    function _create(data, format, datatype) {
+        // get storage format constructor
+        var M = type.Matrix.storage(format || 'default'); // create instance
+        return new M(data, datatype);
+    }
+}
+var name$8 = 'matrix';
+var factory_1$8 = factory$8;
+var matrix = {
+    name: name$8,
+    factory: factory_1$8
+};
+var clone = object.clone;
+var validateIndex = array.validateIndex;
+var getSafeProperty$1 = customs.getSafeProperty;
+var setSafeProperty$1 = customs.setSafeProperty;
+function factory$9(type, config, load, typed) {
+    var matrix$1 = load(matrix);
+    /**
+     * Get or set a subset of a matrix or string.
+     *
+     * Syntax:
+     *     math.subset(value, index)                                // retrieve a subset
+     *     math.subset(value, index, replacement [, defaultValue])  // replace a subset
+     *
+     * Examples:
+     *
+     *     // get a subset
+     *     const d = [[1, 2], [3, 4]]
+     *     math.subset(d, math.index(1, 0))        // returns 3
+     *     math.subset(d, math.index([0, 1], 1))   // returns [[2], [4]]
+     *
+     *     // replace a subset
+     *     const e = []
+     *     const f = math.subset(e, math.index(0, [0, 2]), [5, 6])  // f = [[5, 6]]
+     *     const g = math.subset(f, math.index(1, 1), 7, 0)         // g = [[5, 6], [0, 7]]
+     *
+     * See also:
+     *
+     *     size, resize, squeeze, index
+     *
+     * @param {Array | Matrix | string} matrix  An array, matrix, or string
+     * @param {Index} index                     An index containing ranges for each
+     *                                          dimension
+     * @param {*} [replacement]                 An array, matrix, or scalar.
+     *                                          If provided, the subset is replaced with replacement.
+     *                                          If not provided, the subset is returned
+     * @param {*} [defaultValue=undefined]      Default value, filled in on new entries when
+     *                                          the matrix is resized. If not provided,
+     *                                          math.matrix elements will be left undefined.
+     * @return {Array | Matrix | string} Either the retrieved subset or the updated matrix.
+     */
+    var subset = typed('subset', {
+        // get subset
+        'Array, Index': function ArrayIndex(value, index) {
+            var m = matrix$1(value);
+            var subset = m.subset(index); // returns a Matrix
+            return index.isScalar() ? subset : subset.valueOf(); // return an Array (like the input)
+        },
+        'Matrix, Index': function MatrixIndex(value, index) {
+            return value.subset(index);
+        },
+        'Object, Index': _getObjectProperty,
+        'string, Index': _getSubstring,
+        // set subset
+        'Array, Index, any': function ArrayIndexAny(value, index, replacement) {
+            return matrix$1(clone(value)).subset(index, replacement, undefined).valueOf();
+        },
+        'Array, Index, any, any': function ArrayIndexAnyAny(value, index, replacement, defaultValue) {
+            return matrix$1(clone(value)).subset(index, replacement, defaultValue).valueOf();
+        },
+        'Matrix, Index, any': function MatrixIndexAny(value, index, replacement) {
+            return value.clone().subset(index, replacement);
+        },
+        'Matrix, Index, any, any': function MatrixIndexAnyAny(value, index, replacement, defaultValue) {
+            return value.clone().subset(index, replacement, defaultValue);
+        },
+        'string, Index, string': _setSubstring,
+        'string, Index, string, string': _setSubstring,
+        'Object, Index, any': _setObjectProperty
+    });
+    subset.toTex = undefined; // use default template
+    return subset;
+    /**
+     * Retrieve a subset of a string
+     * @param {string} str            string from which to get a substring
+     * @param {Index} index           An index containing ranges for each dimension
+     * @returns {string} substring
+     * @private
+     */
+    function _getSubstring(str, index) {
+        if (!type.isIndex(index)) {
+            // TODO: better error message
+            throw new TypeError('Index expected');
+        }
+        if (index.size().length !== 1) {
+            throw new DimensionError_1(index.size().length, 1);
+        } // validate whether the range is out of range
+        var strLen = str.length;
+        validateIndex(index.min()[0], strLen);
+        validateIndex(index.max()[0], strLen);
+        var range = index.dimension(0);
+        var substr = '';
+        range.forEach(function (v) {
+            substr += str.charAt(v);
+        });
+        return substr;
+    }
+    /**
+     * Replace a substring in a string
+     * @param {string} str            string to be replaced
+     * @param {Index} index           An index containing ranges for each dimension
+     * @param {string} replacement    Replacement string
+     * @param {string} [defaultValue] Default value to be uses when resizing
+     *                                the string. is ' ' by default
+     * @returns {string} result
+     * @private
+     */
+    function _setSubstring(str, index, replacement, defaultValue) {
+        if (!index || index.isIndex !== true) {
+            // TODO: better error message
+            throw new TypeError('Index expected');
+        }
+        if (index.size().length !== 1) {
+            throw new DimensionError_1(index.size().length, 1);
+        }
+        if (defaultValue !== undefined) {
+            if (typeof defaultValue !== 'string' || defaultValue.length !== 1) {
+                throw new TypeError('Single character expected as defaultValue');
+            }
+        }
+        else {
+            defaultValue = ' ';
+        }
+        var range = index.dimension(0);
+        var len = range.size()[0];
+        if (len !== replacement.length) {
+            throw new DimensionError_1(range.size()[0], replacement.length);
+        } // validate whether the range is out of range
+        var strLen = str.length;
+        validateIndex(index.min()[0]);
+        validateIndex(index.max()[0]); // copy the string into an array with characters
+        var chars = [];
+        for (var i = 0; i < strLen; i++) {
+            chars[i] = str.charAt(i);
+        }
+        range.forEach(function (v, i) {
+            chars[v] = replacement.charAt(i[0]);
+        }); // initialize undefined characters with a space
+        if (chars.length > strLen) {
+            for (var _i = strLen - 1, _len = chars.length; _i < _len; _i++) {
+                if (!chars[_i]) {
+                    chars[_i] = defaultValue;
+                }
+            }
+        }
+        return chars.join('');
+    }
+}
+/**
+ * Retrieve a property from an object
+ * @param {Object} object
+ * @param {Index} index
+ * @return {*} Returns the value of the property
+ * @private
+ */
+function _getObjectProperty(object, index) {
+    if (index.size().length !== 1) {
+        throw new DimensionError_1(index.size(), 1);
+    }
+    var key = index.dimension(0);
+    if (typeof key !== 'string') {
+        throw new TypeError('String expected as index to retrieve an object property');
+    }
+    return getSafeProperty$1(object, key);
+}
+/**
+ * Set a property on an object
+ * @param {Object} object
+ * @param {Index} index
+ * @param {*} replacement
+ * @return {*} Returns the updated object
+ * @private
+ */
+function _setObjectProperty(object, index, replacement) {
+    if (index.size().length !== 1) {
+        throw new DimensionError_1(index.size(), 1);
+    }
+    var key = index.dimension(0);
+    if (typeof key !== 'string') {
+        throw new TypeError('String expected as index to retrieve an object property');
+    } // clone the object, and apply the property to the clone
+    var updated = clone(object);
+    setSafeProperty$1(updated, key, replacement);
+    return updated;
+}
+var name$9 = 'subset';
+var factory_1$9 = factory$9;
+var subset = {
+    name: name$9,
+    factory: factory_1$9
+};
+function _typeof$5(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
+    _typeof$5 = function _typeof(obj) { return typeof obj; };
+}
+else {
+    _typeof$5 = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+} return _typeof$5(obj); }
+var errorTransform = error_transform.transform;
+var getSafeProperty$2 = customs.getSafeProperty;
+function factory$a(type, config, load, typed) {
+    var subset$1 = load(subset);
+    /**
+     * Retrieve part of an object:
+     *
+     * - Retrieve a property from an object
+     * - Retrieve a part of a string
+     * - Retrieve a matrix subset
+     *
+     * @param {Object | Array | Matrix | string} object
+     * @param {Index} index
+     * @return {Object | Array | Matrix | string} Returns the subset
+     */
+    return function access(object, index) {
+        try {
+            if (Array.isArray(object)) {
+                return subset$1(object, index);
+            }
+            else if (object && typeof object.subset === 'function') {
+                // Matrix
+                return object.subset(index);
+            }
+            else if (typeof object === 'string') {
+                // TODO: move getStringSubset into a separate util file, use that
+                return subset$1(object, index);
+            }
+            else if (_typeof$5(object) === 'object') {
+                if (!index.isObjectProperty()) {
+                    throw new TypeError('Cannot apply a numeric index as object property');
+                }
+                return getSafeProperty$2(object, index.getObjectProperty());
+            }
+            else {
+                throw new TypeError('Cannot apply index: unsupported type of object');
+            }
+        }
+        catch (err) {
+            throw errorTransform(err);
+        }
+    };
+}
+var factory_1$a = factory$a;
+var access = {
+    factory: factory_1$a
+};
+var getSafeProperty$3 = customs.getSafeProperty;
+function factory$b(type, config, load, typed) {
+    var Node$1 = load(Node);
+    var access$1 = load(access);
+    /**
+     * @constructor AccessorNode
+     * @extends {Node}
+     * Access an object property or get a matrix subset
+     *
+     * @param {Node} object                 The object from which to retrieve
+     *                                      a property or subset.
+     * @param {IndexNode} index             IndexNode containing ranges
+     */
+    function AccessorNode(object, index) {
+        if (!(this instanceof AccessorNode)) {
+            throw new SyntaxError('Constructor must be called with the new operator');
+        }
+        if (!type.isNode(object)) {
+            throw new TypeError('Node expected for parameter "object"');
+        }
+        if (!type.isIndexNode(index)) {
+            throw new TypeError('IndexNode expected for parameter "index"');
+        }
+        this.object = object || null;
+        this.index = index; // readonly property name
+        Object.defineProperty(this, 'name', {
+            get: function () {
+                if (this.index) {
+                    return this.index.isObjectProperty() ? this.index.getObjectProperty() : '';
+                }
+                else {
+                    return this.object.name || '';
+                }
+            }.bind(this),
+            set: function set() {
+                throw new Error('Cannot assign a new name, name is read-only');
+            }
+        });
+    }
+    AccessorNode.prototype = new Node$1();
+    AccessorNode.prototype.type = 'AccessorNode';
+    AccessorNode.prototype.isAccessorNode = true;
+    /**
+     * Compile a node into a JavaScript function.
+     * This basically pre-calculates as much as possible and only leaves open
+     * calculations which depend on a dynamic scope with variables.
+     * @param {Object} math     Math.js namespace with functions and constants.
+     * @param {Object} argNames An object with argument names as key and `true`
+     *                          as value. Used in the SymbolNode to optimize
+     *                          for arguments from user assigned functions
+     *                          (see FunctionAssignmentNode) or special symbols
+     *                          like `end` (see IndexNode).
+     * @return {function} Returns a function which can be called like:
+     *                        evalNode(scope: Object, args: Object, context: *)
+     */
+    AccessorNode.prototype._compile = function (math, argNames) {
+        var evalObject = this.object._compile(math, argNames);
+        var evalIndex = this.index._compile(math, argNames);
+        if (this.index.isObjectProperty()) {
+            var prop = this.index.getObjectProperty();
+            return function evalAccessorNode(scope, args, context) {
+                return getSafeProperty$3(evalObject(scope, args, context), prop);
+            };
+        }
+        else {
+            return function evalAccessorNode(scope, args, context) {
+                var object = evalObject(scope, args, context);
+                var index = evalIndex(scope, args, object); // we pass object here instead of context
+                return access$1(object, index);
+            };
+        }
+    };
+    /**
+     * Execute a callback for each of the child nodes of this node
+     * @param {function(child: Node, path: string, parent: Node)} callback
+     */
+    AccessorNode.prototype.forEach = function (callback) {
+        callback(this.object, 'object', this);
+        callback(this.index, 'index', this);
+    };
+    /**
+     * Create a new AccessorNode having it's childs be the results of calling
+     * the provided callback function for each of the childs of the original node.
+     * @param {function(child: Node, path: string, parent: Node): Node} callback
+     * @returns {AccessorNode} Returns a transformed copy of the node
+     */
+    AccessorNode.prototype.map = function (callback) {
+        return new AccessorNode(this._ifNode(callback(this.object, 'object', this)), this._ifNode(callback(this.index, 'index', this)));
+    };
+    /**
+     * Create a clone of this node, a shallow copy
+     * @return {AccessorNode}
+     */
+    AccessorNode.prototype.clone = function () {
+        return new AccessorNode(this.object, this.index);
+    };
+    /**
+     * Get string representation
+     * @param {Object} options
+     * @return {string}
+     */
+    AccessorNode.prototype._toString = function (options) {
+        var object = this.object.toString(options);
+        if (needParenthesis(this.object)) {
+            object = '(' + object + ')';
+        }
+        return object + this.index.toString(options);
+    };
+    /**
+     * Get HTML representation
+     * @param {Object} options
+     * @return {string}
+     */
+    AccessorNode.prototype.toHTML = function (options) {
+        var object = this.object.toHTML(options);
+        if (needParenthesis(this.object)) {
+            object = '<span class="math-parenthesis math-round-parenthesis">(</span>' + object + '<span class="math-parenthesis math-round-parenthesis">)</span>';
+        }
+        return object + this.index.toHTML(options);
+    };
+    /**
+     * Get LaTeX representation
+     * @param {Object} options
+     * @return {string}
+     */
+    AccessorNode.prototype._toTex = function (options) {
+        var object = this.object.toTex(options);
+        if (needParenthesis(this.object)) {
+            object = "\\left(' + object + '\\right)";
+        }
+        return object + this.index.toTex(options);
+    };
+    /**
+     * Get a JSON representation of the node
+     * @returns {Object}
+     */
+    AccessorNode.prototype.toJSON = function () {
+        return {
+            mathjs: 'AccessorNode',
+            object: this.object,
+            index: this.index
+        };
+    };
+    /**
+     * Instantiate an AccessorNode from its JSON representation
+     * @param {Object} json  An object structured like
+     *                       `{"mathjs": "AccessorNode", object: ..., index: ...}`,
+     *                       where mathjs is optional
+     * @returns {AccessorNode}
+     */
+    AccessorNode.fromJSON = function (json) {
+        return new AccessorNode(json.object, json.index);
+    };
+    /**
+     * Are parenthesis needed?
+     * @private
+     */
+    function needParenthesis(node) {
+        // TODO: maybe make a method on the nodes which tells whether they need parenthesis?
+        return !(type.isAccessorNode(node) || type.isArrayNode(node) || type.isConstantNode(node) || type.isFunctionNode(node) || type.isObjectNode(node) || type.isParenthesisNode(node) || type.isSymbolNode(node));
+    }
+    return AccessorNode;
+}
+var name$a = 'AccessorNode';
+var path$2 = 'expression.node';
+var factory_1$b = factory$b;
+var AccessorNode = {
+    name: name$a,
+    path: path$2,
+    factory: factory_1$b
+};
+var map = array.map;
+function factory$c(type, config, load, typed) {
+    var Node$1 = load(Node);
+    /**
+     * @constructor ArrayNode
+     * @extends {Node}
+     * Holds an 1-dimensional array with items
+     * @param {Node[]} [items]   1 dimensional array with items
+     */
+    function ArrayNode(items) {
+        if (!(this instanceof ArrayNode)) {
+            throw new SyntaxError('Constructor must be called with the new operator');
+        }
+        this.items = items || []; // validate input
+        if (!Array.isArray(this.items) || !this.items.every(type.isNode)) {
+            throw new TypeError('Array containing Nodes expected');
+        } // TODO: deprecated since v3, remove some day
+        var deprecated = function deprecated() {
+            throw new Error('Property `ArrayNode.nodes` is deprecated, use `ArrayNode.items` instead');
+        };
+        Object.defineProperty(this, 'nodes', {
+            get: deprecated,
+            set: deprecated
+        });
+    }
+    ArrayNode.prototype = new Node$1();
+    ArrayNode.prototype.type = 'ArrayNode';
+    ArrayNode.prototype.isArrayNode = true;
+    /**
+     * Compile a node into a JavaScript function.
+     * This basically pre-calculates as much as possible and only leaves open
+     * calculations which depend on a dynamic scope with variables.
+     * @param {Object} math     Math.js namespace with functions and constants.
+     * @param {Object} argNames An object with argument names as key and `true`
+     *                          as value. Used in the SymbolNode to optimize
+     *                          for arguments from user assigned functions
+     *                          (see FunctionAssignmentNode) or special symbols
+     *                          like `end` (see IndexNode).
+     * @return {function} Returns a function which can be called like:
+     *                        evalNode(scope: Object, args: Object, context: *)
+     */
+    ArrayNode.prototype._compile = function (math, argNames) {
+        var evalItems = map(this.items, function (item) {
+            return item._compile(math, argNames);
+        });
+        var asMatrix = math.config().matrix !== 'Array';
+        if (asMatrix) {
+            var matrix = math.matrix;
+            return function evalArrayNode(scope, args, context) {
+                return matrix(map(evalItems, function (evalItem) {
+                    return evalItem(scope, args, context);
+                }));
+            };
+        }
+        else {
+            return function evalArrayNode(scope, args, context) {
+                return map(evalItems, function (evalItem) {
+                    return evalItem(scope, args, context);
+                });
+            };
+        }
+    };
+    /**
+     * Execute a callback for each of the child nodes of this node
+     * @param {function(child: Node, path: string, parent: Node)} callback
+     */
+    ArrayNode.prototype.forEach = function (callback) {
+        for (var i = 0; i < this.items.length; i++) {
+            var node = this.items[i];
+            callback(node, 'items[' + i + ']', this);
+        }
+    };
+    /**
+     * Create a new ArrayNode having it's childs be the results of calling
+     * the provided callback function for each of the childs of the original node.
+     * @param {function(child: Node, path: string, parent: Node): Node} callback
+     * @returns {ArrayNode} Returns a transformed copy of the node
+     */
+    ArrayNode.prototype.map = function (callback) {
+        var items = [];
+        for (var i = 0; i < this.items.length; i++) {
+            items[i] = this._ifNode(callback(this.items[i], 'items[' + i + ']', this));
+        }
+        return new ArrayNode(items);
+    };
+    /**
+     * Create a clone of this node, a shallow copy
+     * @return {ArrayNode}
+     */
+    ArrayNode.prototype.clone = function () {
+        return new ArrayNode(this.items.slice(0));
+    };
+    /**
+     * Get string representation
+     * @param {Object} options
+     * @return {string} str
+     * @override
+     */
+    ArrayNode.prototype._toString = function (options) {
+        var items = this.items.map(function (node) {
+            return node.toString(options);
+        });
+        return '[' + items.join(', ') + ']';
+    };
+    /**
+     * Get a JSON representation of the node
+     * @returns {Object}
+     */
+    ArrayNode.prototype.toJSON = function () {
+        return {
+            mathjs: 'ArrayNode',
+            items: this.items
+        };
+    };
+    /**
+     * Instantiate an ArrayNode from its JSON representation
+     * @param {Object} json  An object structured like
+     *                       `{"mathjs": "ArrayNode", items: [...]}`,
+     *                       where mathjs is optional
+     * @returns {ArrayNode}
+     */
+    ArrayNode.fromJSON = function (json) {
+        return new ArrayNode(json.items);
+    };
+    /**
+     * Get HTML representation
+     * @param {Object} options
+     * @return {string} str
+     * @override
+     */
+    ArrayNode.prototype.toHTML = function (options) {
+        var items = this.items.map(function (node) {
+            return node.toHTML(options);
+        });
+        return '<span class="math-parenthesis math-square-parenthesis">[</span>' + items.join('<span class="math-separator">,</span>') + '<span class="math-parenthesis math-square-parenthesis">]</span>';
+    };
+    /**
+     * Get LaTeX representation
+     * @param {Object} options
+     * @return {string} str
+     */
+    ArrayNode.prototype._toTex = function (options) {
+        var s = '\\begin{bmatrix}';
+        this.items.forEach(function (node) {
+            if (node.items) {
+                s += node.items.map(function (childNode) {
+                    return childNode.toTex(options);
+                }).join('&');
+            }
+            else {
+                s += node.toTex(options);
+            } // new line
+            s += '\\\\';
+        });
+        s += '\\end{bmatrix}';
+        return s;
+    };
+    return ArrayNode;
+}
+var name$b = 'ArrayNode';
+var path$3 = 'expression.node';
+var factory_1$c = factory$c;
+var ArrayNode = {
+    name: name$b,
+    path: path$3,
+    factory: factory_1$c
+};
+function _typeof$6(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
+    _typeof$6 = function _typeof(obj) { return typeof obj; };
+}
+else {
+    _typeof$6 = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+} return _typeof$6(obj); }
+var errorTransform$1 = error_transform.transform;
+var setSafeProperty$2 = customs.setSafeProperty;
+function factory$d(type, config, load, typed) {
+    var subset$1 = load(subset);
+    var matrix$1 = load(matrix);
+    /**
+     * Replace part of an object:
+     *
+     * - Assign a property to an object
+     * - Replace a part of a string
+     * - Replace a matrix subset
+     *
+     * @param {Object | Array | Matrix | string} object
+     * @param {Index} index
+     * @param {*} value
+     * @return {Object | Array | Matrix | string} Returns the original object
+     *                                            except in case of a string
+     */
+    // TODO: change assign to return the value instead of the object
+    return function assign(object, index, value) {
+        try {
+            if (Array.isArray(object)) {
+                return matrix$1(object).subset(index, value).valueOf();
+            }
+            else if (object && typeof object.subset === 'function') {
+                // Matrix
+                return object.subset(index, value);
+            }
+            else if (typeof object === 'string') {
+                // TODO: move setStringSubset into a separate util file, use that
+                return subset$1(object, index, value);
+            }
+            else if (_typeof$6(object) === 'object') {
+                if (!index.isObjectProperty()) {
+                    throw TypeError('Cannot apply a numeric index as object property');
+                }
+                setSafeProperty$2(object, index.getObjectProperty(), value);
+                return object;
+            }
+            else {
+                throw new TypeError('Cannot apply index: unsupported type of object');
+            }
+        }
+        catch (err) {
+            throw errorTransform$1(err);
+        }
+    };
+}
+var factory_1$d = factory$d;
+var assign = {
+    factory: factory_1$d
+};
+// also contains information about left/right associativity
+// and which other operator the operator is associative with
+// Example:
+// addition is associative with addition and subtraction, because:
+// (a+b)+c=a+(b+c)
+// (a+b)-c=a+(b-c)
+//
+// postfix operators are left associative, prefix operators
+// are right associative
+//
+// It's also possible to set the following properties:
+// latexParens: if set to false, this node doesn't need to be enclosed
+//              in parentheses when using LaTeX
+// latexLeftParens: if set to false, this !OperatorNode's!
+//                  left argument doesn't need to be enclosed
+//                  in parentheses
+// latexRightParens: the same for the right argument
+var properties = [{
+        // assignment
+        'AssignmentNode': {},
+        'FunctionAssignmentNode': {}
+    }, {
+        // conditional expression
+        'ConditionalNode': {
+            latexLeftParens: false,
+            latexRightParens: false,
+            latexParens: false // conditionals don't need parentheses in LaTeX because
+            // they are 2 dimensional
+        }
+    }, {
+        // logical or
+        'OperatorNode:or': {
+            associativity: 'left',
+            associativeWith: []
+        }
+    }, {
+        // logical xor
+        'OperatorNode:xor': {
+            associativity: 'left',
+            associativeWith: []
+        }
+    }, {
+        // logical and
+        'OperatorNode:and': {
+            associativity: 'left',
+            associativeWith: []
+        }
+    }, {
+        // bitwise or
+        'OperatorNode:bitOr': {
+            associativity: 'left',
+            associativeWith: []
+        }
+    }, {
+        // bitwise xor
+        'OperatorNode:bitXor': {
+            associativity: 'left',
+            associativeWith: []
+        }
+    }, {
+        // bitwise and
+        'OperatorNode:bitAnd': {
+            associativity: 'left',
+            associativeWith: []
+        }
+    }, {
+        // relational operators
+        'OperatorNode:equal': {
+            associativity: 'left',
+            associativeWith: []
+        },
+        'OperatorNode:unequal': {
+            associativity: 'left',
+            associativeWith: []
+        },
+        'OperatorNode:smaller': {
+            associativity: 'left',
+            associativeWith: []
+        },
+        'OperatorNode:larger': {
+            associativity: 'left',
+            associativeWith: []
+        },
+        'OperatorNode:smallerEq': {
+            associativity: 'left',
+            associativeWith: []
+        },
+        'OperatorNode:largerEq': {
+            associativity: 'left',
+            associativeWith: []
+        },
+        'RelationalNode': {
+            associativity: 'left',
+            associativeWith: []
+        }
+    }, {
+        // bitshift operators
+        'OperatorNode:leftShift': {
+            associativity: 'left',
+            associativeWith: []
+        },
+        'OperatorNode:rightArithShift': {
+            associativity: 'left',
+            associativeWith: []
+        },
+        'OperatorNode:rightLogShift': {
+            associativity: 'left',
+            associativeWith: []
+        }
+    }, {
+        // unit conversion
+        'OperatorNode:to': {
+            associativity: 'left',
+            associativeWith: []
+        }
+    }, {
+        // range
+        'RangeNode': {}
+    }, {
+        // addition, subtraction
+        'OperatorNode:add': {
+            associativity: 'left',
+            associativeWith: ['OperatorNode:add', 'OperatorNode:subtract']
+        },
+        'OperatorNode:subtract': {
+            associativity: 'left',
+            associativeWith: []
+        }
+    }, {
+        // multiply, divide, modulus
+        'OperatorNode:multiply': {
+            associativity: 'left',
+            associativeWith: ['OperatorNode:multiply', 'OperatorNode:divide', 'Operator:dotMultiply', 'Operator:dotDivide']
+        },
+        'OperatorNode:divide': {
+            associativity: 'left',
+            associativeWith: [],
+            latexLeftParens: false,
+            latexRightParens: false,
+            latexParens: false // fractions don't require parentheses because
+            // they're 2 dimensional, so parens aren't needed
+            // in LaTeX
+        },
+        'OperatorNode:dotMultiply': {
+            associativity: 'left',
+            associativeWith: ['OperatorNode:multiply', 'OperatorNode:divide', 'OperatorNode:dotMultiply', 'OperatorNode:doDivide']
+        },
+        'OperatorNode:dotDivide': {
+            associativity: 'left',
+            associativeWith: []
+        },
+        'OperatorNode:mod': {
+            associativity: 'left',
+            associativeWith: []
+        }
+    }, {
+        // unary prefix operators
+        'OperatorNode:unaryPlus': {
+            associativity: 'right'
+        },
+        'OperatorNode:unaryMinus': {
+            associativity: 'right'
+        },
+        'OperatorNode:bitNot': {
+            associativity: 'right'
+        },
+        'OperatorNode:not': {
+            associativity: 'right'
+        }
+    }, {
+        // exponentiation
+        'OperatorNode:pow': {
+            associativity: 'right',
+            associativeWith: [],
+            latexRightParens: false // the exponent doesn't need parentheses in
+            // LaTeX because it's 2 dimensional
+            // (it's on top)
+        },
+        'OperatorNode:dotPow': {
+            associativity: 'right',
+            associativeWith: []
+        }
+    }, {
+        // factorial
+        'OperatorNode:factorial': {
+            associativity: 'left'
+        }
+    }, {
+        // matrix transpose
+        'OperatorNode:transpose': {
+            associativity: 'left'
+        }
+    }];
+/**
+ * Get the precedence of a Node.
+ * Higher number for higher precedence, starting with 0.
+ * Returns null if the precedence is undefined.
+ *
+ * @param {Node}
+ * @param {string} parenthesis
+ * @return {number|null}
+ */
+function getPrecedence(_node, parenthesis) {
+    var node = _node;
+    if (parenthesis !== 'keep') {
+        // ParenthesisNodes are only ignored when not in 'keep' mode
+        node = _node.getContent();
+    }
+    var identifier = node.getIdentifier();
+    for (var i = 0; i < properties.length; i++) {
+        if (identifier in properties[i]) {
+            return i;
+        }
+    }
+    return null;
+}
+/**
+ * Get the associativity of an operator (left or right).
+ * Returns a string containing 'left' or 'right' or null if
+ * the associativity is not defined.
+ *
+ * @param {Node}
+ * @param {string} parenthesis
+ * @return {string|null}
+ * @throws {Error}
+ */
+function getAssociativity(_node, parenthesis) {
+    var node = _node;
+    if (parenthesis !== 'keep') {
+        // ParenthesisNodes are only ignored when not in 'keep' mode
+        node = _node.getContent();
+    }
+    var identifier = node.getIdentifier();
+    var index = getPrecedence(node, parenthesis);
+    if (index === null) {
+        // node isn't in the list
+        return null;
+    }
+    var property = properties[index][identifier];
+    if (property.hasOwnProperty('associativity')) {
+        if (property.associativity === 'left') {
+            return 'left';
+        }
+        if (property.associativity === 'right') {
+            return 'right';
+        } // associativity is invalid
+        throw Error('\'' + identifier + '\' has the invalid associativity \'' + property.associativity + '\'.');
+    } // associativity is undefined
+    return null;
+}
+/**
+ * Check if an operator is associative with another operator.
+ * Returns either true or false or null if not defined.
+ *
+ * @param {Node} nodeA
+ * @param {Node} nodeB
+ * @param {string} parenthesis
+ * @return {bool|null}
+ */
+function isAssociativeWith(nodeA, nodeB, parenthesis) {
+    // ParenthesisNodes are only ignored when not in 'keep' mode
+    var a = parenthesis !== 'keep' ? nodeA.getContent() : nodeA;
+    var b = parenthesis !== 'keep' ? nodeA.getContent() : nodeB;
+    var identifierA = a.getIdentifier();
+    var identifierB = b.getIdentifier();
+    var index = getPrecedence(a, parenthesis);
+    if (index === null) {
+        // node isn't in the list
+        return null;
+    }
+    var property = properties[index][identifierA];
+    if (property.hasOwnProperty('associativeWith') && property.associativeWith instanceof Array) {
+        for (var i = 0; i < property.associativeWith.length; i++) {
+            if (property.associativeWith[i] === identifierB) {
+                return true;
+            }
+        }
+        return false;
+    } // associativeWith is not defined
+    return null;
+}
+var properties_1 = properties;
+var getPrecedence_1 = getPrecedence;
+var getAssociativity_1 = getAssociativity;
+var isAssociativeWith_1 = isAssociativeWith;
+var operators = {
+    properties: properties_1,
+    getPrecedence: getPrecedence_1,
+    getAssociativity: getAssociativity_1,
+    isAssociativeWith: isAssociativeWith_1
+};
+var getSafeProperty$4 = customs.getSafeProperty;
+var setSafeProperty$3 = customs.setSafeProperty;
+function factory$e(type, config, load, typed) {
+    var Node$1 = load(Node);
+    var assign$1 = load(assign);
+    var access$1 = load(access);
+    var operators$1 = operators;
+    /**
+     * @constructor AssignmentNode
+     * @extends {Node}
+     *
+     * Define a symbol, like `a=3.2`, update a property like `a.b=3.2`, or
+     * replace a subset of a matrix like `A[2,2]=42`.
+     *
+     * Syntax:
+     *
+     *     new AssignmentNode(symbol, value)
+     *     new AssignmentNode(object, index, value)
+     *
+     * Usage:
+     *
+     *    new AssignmentNode(new SymbolNode('a'), new ConstantNode(2))                       // a=2
+     *    new AssignmentNode(new SymbolNode('a'), new IndexNode('b'), new ConstantNode(2))   // a.b=2
+     *    new AssignmentNode(new SymbolNode('a'), new IndexNode(1, 2), new ConstantNode(3))  // a[1,2]=3
+     *
+     * @param {SymbolNode | AccessorNode} object  Object on which to assign a value
+     * @param {IndexNode} [index=null]            Index, property name or matrix
+     *                                            index. Optional. If not provided
+     *                                            and `object` is a SymbolNode,
+     *                                            the property is assigned to the
+     *                                            global scope.
+     * @param {Node} value                        The value to be assigned
+     */
+    function AssignmentNode(object, index, value) {
+        if (!(this instanceof AssignmentNode)) {
+            throw new SyntaxError('Constructor must be called with the new operator');
+        }
+        this.object = object;
+        this.index = value ? index : null;
+        this.value = value || index; // validate input
+        if (!type.isSymbolNode(object) && !type.isAccessorNode(object)) {
+            throw new TypeError('SymbolNode or AccessorNode expected as "object"');
+        }
+        if (type.isSymbolNode(object) && object.name === 'end') {
+            throw new Error('Cannot assign to symbol "end"');
+        }
+        if (this.index && !type.isIndexNode(this.index)) {
+            // index is optional
+            throw new TypeError('IndexNode expected as "index"');
+        }
+        if (!type.isNode(this.value)) {
+            throw new TypeError('Node expected as "value"');
+        } // readonly property name
+        Object.defineProperty(this, 'name', {
+            get: function () {
+                if (this.index) {
+                    return this.index.isObjectProperty() ? this.index.getObjectProperty() : '';
+                }
+                else {
+                    return this.object.name || '';
+                }
+            }.bind(this),
+            set: function set() {
+                throw new Error('Cannot assign a new name, name is read-only');
+            }
+        });
+    }
+    AssignmentNode.prototype = new Node$1();
+    AssignmentNode.prototype.type = 'AssignmentNode';
+    AssignmentNode.prototype.isAssignmentNode = true;
+    /**
+     * Compile a node into a JavaScript function.
+     * This basically pre-calculates as much as possible and only leaves open
+     * calculations which depend on a dynamic scope with variables.
+     * @param {Object} math     Math.js namespace with functions and constants.
+     * @param {Object} argNames An object with argument names as key and `true`
+     *                          as value. Used in the SymbolNode to optimize
+     *                          for arguments from user assigned functions
+     *                          (see FunctionAssignmentNode) or special symbols
+     *                          like `end` (see IndexNode).
+     * @return {function} Returns a function which can be called like:
+     *                        evalNode(scope: Object, args: Object, context: *)
+     */
+    AssignmentNode.prototype._compile = function (math, argNames) {
+        var evalObject = this.object._compile(math, argNames);
+        var evalIndex = this.index ? this.index._compile(math, argNames) : null;
+        var evalValue = this.value._compile(math, argNames);
+        var name = this.object.name;
+        if (!this.index) {
+            // apply a variable to the scope, for example `a=2`
+            if (!type.isSymbolNode(this.object)) {
+                throw new TypeError('SymbolNode expected as object');
+            }
+            return function evalAssignmentNode(scope, args, context) {
+                return setSafeProperty$3(scope, name, evalValue(scope, args, context));
+            };
+        }
+        else if (this.index.isObjectProperty()) {
+            // apply an object property for example `a.b=2`
+            var prop = this.index.getObjectProperty();
+            return function evalAssignmentNode(scope, args, context) {
+                var object = evalObject(scope, args, context);
+                var value = evalValue(scope, args, context);
+                return setSafeProperty$3(object, prop, value);
+            };
+        }
+        else if (type.isSymbolNode(this.object)) {
+            // update a matrix subset, for example `a[2]=3`
+            return function evalAssignmentNode(scope, args, context) {
+                var childObject = evalObject(scope, args, context);
+                var value = evalValue(scope, args, context);
+                var index = evalIndex(scope, args, childObject); // Important:  we pass childObject instead of context
+                setSafeProperty$3(scope, name, assign$1(childObject, index, value));
+                return value;
+            };
+        }
+        else {
+            // type.isAccessorNode(node.object) === true
+            // update a matrix subset, for example `a.b[2]=3`
+            // we will not use the compile function of the AccessorNode, but compile it
+            // ourselves here as we need the parent object of the AccessorNode:
+            // wee need to apply the updated object to parent object
+            var evalParentObject = this.object.object._compile(math, argNames);
+            if (this.object.index.isObjectProperty()) {
+                var parentProp = this.object.index.getObjectProperty();
+                return function evalAssignmentNode(scope, args, context) {
+                    var parent = evalParentObject(scope, args, context);
+                    var childObject = getSafeProperty$4(parent, parentProp);
+                    var index = evalIndex(scope, args, childObject); // Important: we pass childObject instead of context
+                    var value = evalValue(scope, args, context);
+                    setSafeProperty$3(parent, parentProp, assign$1(childObject, index, value));
+                    return value;
+                };
+            }
+            else {
+                // if some parameters use the 'end' parameter, we need to calculate the size
+                var evalParentIndex = this.object.index._compile(math, argNames);
+                return function evalAssignmentNode(scope, args, context) {
+                    var parent = evalParentObject(scope, args, context);
+                    var parentIndex = evalParentIndex(scope, args, parent); // Important: we pass parent instead of context
+                    var childObject = access$1(parent, parentIndex);
+                    var index = evalIndex(scope, args, childObject); // Important:  we pass childObject instead of context
+                    var value = evalValue(scope, args, context);
+                    assign$1(parent, parentIndex, assign$1(childObject, index, value));
+                    return value;
+                };
+            }
+        }
+    };
+    /**
+     * Execute a callback for each of the child nodes of this node
+     * @param {function(child: Node, path: string, parent: Node)} callback
+     */
+    AssignmentNode.prototype.forEach = function (callback) {
+        callback(this.object, 'object', this);
+        if (this.index) {
+            callback(this.index, 'index', this);
+        }
+        callback(this.value, 'value', this);
+    };
+    /**
+     * Create a new AssignmentNode having it's childs be the results of calling
+     * the provided callback function for each of the childs of the original node.
+     * @param {function(child: Node, path: string, parent: Node): Node} callback
+     * @returns {AssignmentNode} Returns a transformed copy of the node
+     */
+    AssignmentNode.prototype.map = function (callback) {
+        var object = this._ifNode(callback(this.object, 'object', this));
+        var index = this.index ? this._ifNode(callback(this.index, 'index', this)) : null;
+        var value = this._ifNode(callback(this.value, 'value', this));
+        return new AssignmentNode(object, index, value);
+    };
+    /**
+     * Create a clone of this node, a shallow copy
+     * @return {AssignmentNode}
+     */
+    AssignmentNode.prototype.clone = function () {
+        return new AssignmentNode(this.object, this.index, this.value);
+    };
+    /*
+     * Is parenthesis needed?
+     * @param {node} node
+     * @param {string} [parenthesis='keep']
+     * @private
+     */
+    function needParenthesis(node, parenthesis) {
+        if (!parenthesis) {
+            parenthesis = 'keep';
+        }
+        var precedence = operators$1.getPrecedence(node, parenthesis);
+        var exprPrecedence = operators$1.getPrecedence(node.value, parenthesis);
+        return parenthesis === 'all' || exprPrecedence !== null && exprPrecedence <= precedence;
+    }
+    /**
+     * Get string representation
+     * @param {Object} options
+     * @return {string}
+     */
+    AssignmentNode.prototype._toString = function (options) {
+        var object = this.object.toString(options);
+        var index = this.index ? this.index.toString(options) : '';
+        var value = this.value.toString(options);
+        if (needParenthesis(this, options && options.parenthesis)) {
+            value = '(' + value + ')';
+        }
+        return object + index + ' = ' + value;
+    };
+    /**
+     * Get a JSON representation of the node
+     * @returns {Object}
+     */
+    AssignmentNode.prototype.toJSON = function () {
+        return {
+            mathjs: 'AssignmentNode',
+            object: this.object,
+            index: this.index,
+            value: this.value
+        };
+    };
+    /**
+     * Instantiate an AssignmentNode from its JSON representation
+     * @param {Object} json  An object structured like
+     *                       `{"mathjs": "AssignmentNode", object: ..., index: ..., value: ...}`,
+     *                       where mathjs is optional
+     * @returns {AssignmentNode}
+     */
+    AssignmentNode.fromJSON = function (json) {
+        return new AssignmentNode(json.object, json.index, json.value);
+    };
+    /**
+     * Get HTML representation
+     * @param {Object} options
+     * @return {string}
+     */
+    AssignmentNode.prototype.toHTML = function (options) {
+        var object = this.object.toHTML(options);
+        var index = this.index ? this.index.toHTML(options) : '';
+        var value = this.value.toHTML(options);
+        if (needParenthesis(this, options && options.parenthesis)) {
+            value = '<span class="math-paranthesis math-round-parenthesis">(</span>' + value + '<span class="math-paranthesis math-round-parenthesis">)</span>';
+        }
+        return object + index + '<span class="math-operator math-assignment-operator math-variable-assignment-operator math-binary-operator">=</span>' + value;
+    };
+    /**
+     * Get LaTeX representation
+     * @param {Object} options
+     * @return {string}
+     */
+    AssignmentNode.prototype._toTex = function (options) {
+        var object = this.object.toTex(options);
+        var index = this.index ? this.index.toTex(options) : '';
+        var value = this.value.toTex(options);
+        if (needParenthesis(this, options && options.parenthesis)) {
+            value = "\\left(".concat(value, "\\right)");
+        }
+        return object + index + ':=' + value;
+    };
+    return AssignmentNode;
+}
+var name$c = 'AssignmentNode';
+var path$4 = 'expression.node';
+var factory_1$e = factory$e;
+var AssignmentNode = {
+    name: name$c,
+    path: path$4,
+    factory: factory_1$e
+};
+function factory$f(type, config, load, typed) {
+    /**
+     * A ResultSet contains a list or results
+     * @class ResultSet
+     * @param {Array} entries
+     * @constructor ResultSet
+     */
+    function ResultSet(entries) {
+        if (!(this instanceof ResultSet)) {
+            throw new SyntaxError('Constructor must be called with the new operator');
+        }
+        this.entries = entries || [];
+    }
+    /**
+     * Attach type information
+     */
+    ResultSet.prototype.type = 'ResultSet';
+    ResultSet.prototype.isResultSet = true;
+    /**
+     * Returns the array with results hold by this ResultSet
+     * @memberof ResultSet
+     * @returns {Array} entries
+     */
+    ResultSet.prototype.valueOf = function () {
+        return this.entries;
+    };
+    /**
+     * Returns the stringified results of the ResultSet
+     * @memberof ResultSet
+     * @returns {string} string
+     */
+    ResultSet.prototype.toString = function () {
+        return '[' + this.entries.join(', ') + ']';
+    };
+    /**
+     * Get a JSON representation of the ResultSet
+     * @memberof ResultSet
+     * @returns {Object} Returns a JSON object structured as:
+     *                   `{"mathjs": "ResultSet", "entries": [...]}`
+     */
+    ResultSet.prototype.toJSON = function () {
+        return {
+            mathjs: 'ResultSet',
+            entries: this.entries
+        };
+    };
+    /**
+     * Instantiate a ResultSet from a JSON object
+     * @memberof ResultSet
+     * @param {Object} json  A JSON object structured as:
+     *                       `{"mathjs": "ResultSet", "entries": [...]}`
+     * @return {ResultSet}
+     */
+    ResultSet.fromJSON = function (json) {
+        return new ResultSet(json.entries);
+    };
+    return ResultSet;
+}
+var name$d = 'ResultSet';
+var path$5 = 'type';
+var factory_1$f = factory$f;
+var ResultSet = {
+    name: name$d,
+    path: path$5,
+    factory: factory_1$f
+};
+var forEach = array.forEach;
+var map$1 = array.map;
+function factory$g(type, config, load, typed) {
+    var Node$1 = load(Node);
+    var ResultSet$1 = load(ResultSet);
+    /**
+     * @constructor BlockNode
+     * @extends {Node}
+     * Holds a set with blocks
+     * @param {Array.<{node: Node} | {node: Node, visible: boolean}>} blocks
+     *            An array with blocks, where a block is constructed as an Object
+     *            with properties block, which is a Node, and visible, which is
+     *            a boolean. The property visible is optional and is true by default
+     */
+    function BlockNode(blocks) {
+        if (!(this instanceof BlockNode)) {
+            throw new SyntaxError('Constructor must be called with the new operator');
+        } // validate input, copy blocks
+        if (!Array.isArray(blocks))
+            throw new Error('Array expected');
+        this.blocks = blocks.map(function (block) {
+            var node = block && block.node;
+            var visible = block && block.visible !== undefined ? block.visible : true;
+            if (!type.isNode(node))
+                throw new TypeError('Property "node" must be a Node');
+            if (typeof visible !== 'boolean')
+                throw new TypeError('Property "visible" must be a boolean');
+            return {
+                node: node,
+                visible: visible
+            };
+        });
+    }
+    BlockNode.prototype = new Node$1();
+    BlockNode.prototype.type = 'BlockNode';
+    BlockNode.prototype.isBlockNode = true;
+    /**
+     * Compile a node into a JavaScript function.
+     * This basically pre-calculates as much as possible and only leaves open
+     * calculations which depend on a dynamic scope with variables.
+     * @param {Object} math     Math.js namespace with functions and constants.
+     * @param {Object} argNames An object with argument names as key and `true`
+     *                          as value. Used in the SymbolNode to optimize
+     *                          for arguments from user assigned functions
+     *                          (see FunctionAssignmentNode) or special symbols
+     *                          like `end` (see IndexNode).
+     * @return {function} Returns a function which can be called like:
+     *                        evalNode(scope: Object, args: Object, context: *)
+     */
+    BlockNode.prototype._compile = function (math, argNames) {
+        var evalBlocks = map$1(this.blocks, function (block) {
+            return {
+                eval: block.node._compile(math, argNames),
+                visible: block.visible
+            };
+        });
+        return function evalBlockNodes(scope, args, context) {
+            var results = [];
+            forEach(evalBlocks, function evalBlockNode(block) {
+                var result = block.eval(scope, args, context);
+                if (block.visible) {
+                    results.push(result);
+                }
+            });
+            return new ResultSet$1(results);
+        };
+    };
+    /**
+     * Execute a callback for each of the child blocks of this node
+     * @param {function(child: Node, path: string, parent: Node)} callback
+     */
+    BlockNode.prototype.forEach = function (callback) {
+        for (var i = 0; i < this.blocks.length; i++) {
+            callback(this.blocks[i].node, 'blocks[' + i + '].node', this);
+        }
+    };
+    /**
+     * Create a new BlockNode having it's childs be the results of calling
+     * the provided callback function for each of the childs of the original node.
+     * @param {function(child: Node, path: string, parent: Node): Node} callback
+     * @returns {BlockNode} Returns a transformed copy of the node
+     */
+    BlockNode.prototype.map = function (callback) {
+        var blocks = [];
+        for (var i = 0; i < this.blocks.length; i++) {
+            var block = this.blocks[i];
+            var node = this._ifNode(callback(block.node, 'blocks[' + i + '].node', this));
+            blocks[i] = {
+                node: node,
+                visible: block.visible
+            };
+        }
+        return new BlockNode(blocks);
+    };
+    /**
+     * Create a clone of this node, a shallow copy
+     * @return {BlockNode}
+     */
+    BlockNode.prototype.clone = function () {
+        var blocks = this.blocks.map(function (block) {
+            return {
+                node: block.node,
+                visible: block.visible
+            };
+        });
+        return new BlockNode(blocks);
+    };
+    /**
+     * Get string representation
+     * @param {Object} options
+     * @return {string} str
+     * @override
+     */
+    BlockNode.prototype._toString = function (options) {
+        return this.blocks.map(function (param) {
+            return param.node.toString(options) + (param.visible ? '' : ';');
+        }).join('\n');
+    };
+    /**
+     * Get a JSON representation of the node
+     * @returns {Object}
+     */
+    BlockNode.prototype.toJSON = function () {
+        return {
+            mathjs: 'BlockNode',
+            blocks: this.blocks
+        };
+    };
+    /**
+     * Instantiate an BlockNode from its JSON representation
+     * @param {Object} json  An object structured like
+     *                       `{"mathjs": "BlockNode", blocks: [{node: ..., visible: false}, ...]}`,
+     *                       where mathjs is optional
+     * @returns {BlockNode}
+     */
+    BlockNode.fromJSON = function (json) {
+        return new BlockNode(json.blocks);
+    };
+    /**
+     * Get HTML representation
+     * @param {Object} options
+     * @return {string} str
+     * @override
+     */
+    BlockNode.prototype.toHTML = function (options) {
+        return this.blocks.map(function (param) {
+            return param.node.toHTML(options) + (param.visible ? '' : '<span class="math-separator">;</span>');
+        }).join('<span class="math-separator"><br /></span>');
+    };
+    /**
+     * Get LaTeX representation
+     * @param {Object} options
+     * @return {string} str
+     */
+    BlockNode.prototype._toTex = function (options) {
+        return this.blocks.map(function (param) {
+            return param.node.toTex(options) + (param.visible ? '' : ';');
+        }).join('\\;\\;\n');
+    };
+    return BlockNode;
+}
+var name$e = 'BlockNode';
+var path$6 = 'expression.node';
+var factory_1$g = factory$g;
+var BlockNode = {
+    name: name$e,
+    path: path$6,
+    factory: factory_1$g
+};
+function factory$h(type, config, load, typed) {
+    var Node$1 = load(Node);
+    var mathTypeOf = load(_typeof$2);
+    /**
+     * A lazy evaluating conditional operator: 'condition ? trueExpr : falseExpr'
+     *
+     * @param {Node} condition   Condition, must result in a boolean
+     * @param {Node} trueExpr    Expression evaluated when condition is true
+     * @param {Node} falseExpr   Expression evaluated when condition is true
+     *
+     * @constructor ConditionalNode
+     * @extends {Node}
+     */
+    function ConditionalNode(condition, trueExpr, falseExpr) {
+        if (!(this instanceof ConditionalNode)) {
+            throw new SyntaxError('Constructor must be called with the new operator');
+        }
+        if (!type.isNode(condition))
+            throw new TypeError('Parameter condition must be a Node');
+        if (!type.isNode(trueExpr))
+            throw new TypeError('Parameter trueExpr must be a Node');
+        if (!type.isNode(falseExpr))
+            throw new TypeError('Parameter falseExpr must be a Node');
+        this.condition = condition;
+        this.trueExpr = trueExpr;
+        this.falseExpr = falseExpr;
+    }
+    ConditionalNode.prototype = new Node$1();
+    ConditionalNode.prototype.type = 'ConditionalNode';
+    ConditionalNode.prototype.isConditionalNode = true;
+    /**
+     * Compile a node into a JavaScript function.
+     * This basically pre-calculates as much as possible and only leaves open
+     * calculations which depend on a dynamic scope with variables.
+     * @param {Object} math     Math.js namespace with functions and constants.
+     * @param {Object} argNames An object with argument names as key and `true`
+     *                          as value. Used in the SymbolNode to optimize
+     *                          for arguments from user assigned functions
+     *                          (see FunctionAssignmentNode) or special symbols
+     *                          like `end` (see IndexNode).
+     * @return {function} Returns a function which can be called like:
+     *                        evalNode(scope: Object, args: Object, context: *)
+     */
+    ConditionalNode.prototype._compile = function (math, argNames) {
+        var evalCondition = this.condition._compile(math, argNames);
+        var evalTrueExpr = this.trueExpr._compile(math, argNames);
+        var evalFalseExpr = this.falseExpr._compile(math, argNames);
+        return function evalConditionalNode(scope, args, context) {
+            return testCondition(evalCondition(scope, args, context)) ? evalTrueExpr(scope, args, context) : evalFalseExpr(scope, args, context);
+        };
+    };
+    /**
+     * Execute a callback for each of the child nodes of this node
+     * @param {function(child: Node, path: string, parent: Node)} callback
+     */
+    ConditionalNode.prototype.forEach = function (callback) {
+        callback(this.condition, 'condition', this);
+        callback(this.trueExpr, 'trueExpr', this);
+        callback(this.falseExpr, 'falseExpr', this);
+    };
+    /**
+     * Create a new ConditionalNode having it's childs be the results of calling
+     * the provided callback function for each of the childs of the original node.
+     * @param {function(child: Node, path: string, parent: Node): Node} callback
+     * @returns {ConditionalNode} Returns a transformed copy of the node
+     */
+    ConditionalNode.prototype.map = function (callback) {
+        return new ConditionalNode(this._ifNode(callback(this.condition, 'condition', this)), this._ifNode(callback(this.trueExpr, 'trueExpr', this)), this._ifNode(callback(this.falseExpr, 'falseExpr', this)));
+    };
+    /**
+     * Create a clone of this node, a shallow copy
+     * @return {ConditionalNode}
+     */
+    ConditionalNode.prototype.clone = function () {
+        return new ConditionalNode(this.condition, this.trueExpr, this.falseExpr);
+    };
+    /**
+     * Get string representation
+     * @param {Object} options
+     * @return {string} str
+     */
+    ConditionalNode.prototype._toString = function (options) {
+        var parenthesis = options && options.parenthesis ? options.parenthesis : 'keep';
+        var precedence = operators.getPrecedence(this, parenthesis); // Enclose Arguments in parentheses if they are an OperatorNode
+        // or have lower or equal precedence
+        // NOTE: enclosing all OperatorNodes in parentheses is a decision
+        // purely based on aesthetics and readability
+        var condition = this.condition.toString(options);
+        var conditionPrecedence = operators.getPrecedence(this.condition, parenthesis);
+        if (parenthesis === 'all' || this.condition.type === 'OperatorNode' || conditionPrecedence !== null && conditionPrecedence <= precedence) {
+            condition = '(' + condition + ')';
+        }
+        var trueExpr = this.trueExpr.toString(options);
+        var truePrecedence = operators.getPrecedence(this.trueExpr, parenthesis);
+        if (parenthesis === 'all' || this.trueExpr.type === 'OperatorNode' || truePrecedence !== null && truePrecedence <= precedence) {
+            trueExpr = '(' + trueExpr + ')';
+        }
+        var falseExpr = this.falseExpr.toString(options);
+        var falsePrecedence = operators.getPrecedence(this.falseExpr, parenthesis);
+        if (parenthesis === 'all' || this.falseExpr.type === 'OperatorNode' || falsePrecedence !== null && falsePrecedence <= precedence) {
+            falseExpr = '(' + falseExpr + ')';
+        }
+        return condition + ' ? ' + trueExpr + ' : ' + falseExpr;
+    };
+    /**
+     * Get a JSON representation of the node
+     * @returns {Object}
+     */
+    ConditionalNode.prototype.toJSON = function () {
+        return {
+            mathjs: 'ConditionalNode',
+            condition: this.condition,
+            trueExpr: this.trueExpr,
+            falseExpr: this.falseExpr
+        };
+    };
+    /**
+     * Instantiate an ConditionalNode from its JSON representation
+     * @param {Object} json  An object structured like
+     *                       `{"mathjs": "ConditionalNode", "condition": ..., "trueExpr": ..., "falseExpr": ...}`,
+     *                       where mathjs is optional
+     * @returns {ConditionalNode}
+     */
+    ConditionalNode.fromJSON = function (json) {
+        return new ConditionalNode(json.condition, json.trueExpr, json.falseExpr);
+    };
+    /**
+     * Get HTML representation
+     * @param {Object} options
+     * @return {string} str
+     */
+    ConditionalNode.prototype.toHTML = function (options) {
+        var parenthesis = options && options.parenthesis ? options.parenthesis : 'keep';
+        var precedence = operators.getPrecedence(this, parenthesis); // Enclose Arguments in parentheses if they are an OperatorNode
+        // or have lower or equal precedence
+        // NOTE: enclosing all OperatorNodes in parentheses is a decision
+        // purely based on aesthetics and readability
+        var condition = this.condition.toHTML(options);
+        var conditionPrecedence = operators.getPrecedence(this.condition, parenthesis);
+        if (parenthesis === 'all' || this.condition.type === 'OperatorNode' || conditionPrecedence !== null && conditionPrecedence <= precedence) {
+            condition = '<span class="math-parenthesis math-round-parenthesis">(</span>' + condition + '<span class="math-parenthesis math-round-parenthesis">)</span>';
+        }
+        var trueExpr = this.trueExpr.toHTML(options);
+        var truePrecedence = operators.getPrecedence(this.trueExpr, parenthesis);
+        if (parenthesis === 'all' || this.trueExpr.type === 'OperatorNode' || truePrecedence !== null && truePrecedence <= precedence) {
+            trueExpr = '<span class="math-parenthesis math-round-parenthesis">(</span>' + trueExpr + '<span class="math-parenthesis math-round-parenthesis">)</span>';
+        }
+        var falseExpr = this.falseExpr.toHTML(options);
+        var falsePrecedence = operators.getPrecedence(this.falseExpr, parenthesis);
+        if (parenthesis === 'all' || this.falseExpr.type === 'OperatorNode' || falsePrecedence !== null && falsePrecedence <= precedence) {
+            falseExpr = '<span class="math-parenthesis math-round-parenthesis">(</span>' + falseExpr + '<span class="math-parenthesis math-round-parenthesis">)</span>';
+        }
+        return condition + '<span class="math-operator math-conditional-operator">?</span>' + trueExpr + '<span class="math-operator math-conditional-operator">:</span>' + falseExpr;
+    };
+    /**
+     * Get LaTeX representation
+     * @param {Object} options
+     * @return {string} str
+     */
+    ConditionalNode.prototype._toTex = function (options) {
+        return '\\begin{cases} {' + this.trueExpr.toTex(options) + '}, &\\quad{\\text{if }\\;' + this.condition.toTex(options) + '}\\\\{' + this.falseExpr.toTex(options) + '}, &\\quad{\\text{otherwise}}\\end{cases}';
+    };
+    /**
+     * Test whether a condition is met
+     * @param {*} condition
+     * @returns {boolean} true if condition is true or non-zero, else false
+     */
+    function testCondition(condition) {
+        if (typeof condition === 'number' || typeof condition === 'boolean' || typeof condition === 'string') {
+            return !!condition;
+        }
+        if (condition) {
+            if (type.isBigNumber(condition)) {
+                return !condition.isZero();
+            }
+            if (type.isComplex(condition)) {
+                return !!(condition.re || condition.im);
+            }
+            if (type.isUnit(condition)) {
+                return !!condition.value;
+            }
+        }
+        if (condition === null || condition === undefined) {
+            return false;
+        }
+        throw new TypeError('Unsupported type of condition "' + mathTypeOf(condition) + '"');
+    }
+    return ConditionalNode;
+}
+var name$f = 'ConditionalNode';
+var path$7 = 'expression.node';
+var factory_1$h = factory$h;
+var ConditionalNode = {
+    name: name$f,
+    path: path$7,
+    factory: factory_1$h
+};
+// Map the characters to escape to their escaped values. The list is derived
+// from http://www.cespedes.org/blog/85/how-to-escape-latex-special-characters
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i];
+    for (var key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+        }
+    }
+} return target; };
+var defaultEscapes = {
+    "{": "\\{",
+    "}": "\\}",
+    "\\": "\\textbackslash{}",
+    "#": "\\#",
+    $: "\\$",
+    "%": "\\%",
+    "&": "\\&",
+    "^": "\\textasciicircum{}",
+    _: "\\_",
+    "~": "\\textasciitilde{}"
+};
+var formatEscapes = {
+    "\u2013": "\\--",
+    "\u2014": "\\---",
+    " ": "~",
+    "\t": "\\qquad{}",
+    "\r\n": "\\newline{}",
+    "\n": "\\newline{}"
+};
+var defaultEscapeMapFn = function defaultEscapeMapFn(defaultEscapes, formatEscapes) {
+    return _extends({}, defaultEscapes, formatEscapes);
+};
+/**
+ * Escape a string to be used in LaTeX documents.
+ * @param {string} str the string to be escaped.
+ * @param {boolean} params.preserveFormatting whether formatting escapes should
+ *  be performed (default: false).
+ * @param {function} params.escapeMapFn the function to modify the escape maps.
+ * @return {string} the escaped string, ready to be used in LaTeX.
+ */
+var dist = function (str) {
+    var _ref = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {}, _ref$preserveFormatti = _ref.preserveFormatting, preserveFormatting = _ref$preserveFormatti === undefined ? false : _ref$preserveFormatti, _ref$escapeMapFn = _ref.escapeMapFn, escapeMapFn = _ref$escapeMapFn === undefined ? defaultEscapeMapFn : _ref$escapeMapFn;
+    var runningStr = String(str);
+    var result = "";
+    var escapes = escapeMapFn(_extends({}, defaultEscapes), preserveFormatting ? _extends({}, formatEscapes) : {});
+    var escapeKeys = Object.keys(escapes); // as it is reused later on
+    // Algorithm: Go through the string character by character, if it matches
+    // with one of the special characters then we'll replace it with the escaped
+    // version.
+    var _loop = function _loop() {
+        var specialCharFound = false;
+        escapeKeys.forEach(function (key, index) {
+            if (specialCharFound) {
+                return;
+            }
+            if (runningStr.length >= key.length && runningStr.slice(0, key.length) === key) {
+                result += escapes[escapeKeys[index]];
+                runningStr = runningStr.slice(key.length, runningStr.length);
+                specialCharFound = true;
+            }
+        });
+        if (!specialCharFound) {
+            result += runningStr.slice(0, 1);
+            runningStr = runningStr.slice(1, runningStr.length);
+        }
+    };
+    while (runningStr) {
+        _loop();
+    }
+    return result;
+};
+var latex = createCommonjsModule(function (module, exports) {
+    exports.symbols = {
+        // GREEK LETTERS
+        Alpha: 'A',
+        alpha: '\\alpha',
+        Beta: 'B',
+        beta: '\\beta',
+        Gamma: '\\Gamma',
+        gamma: '\\gamma',
+        Delta: '\\Delta',
+        delta: '\\delta',
+        Epsilon: 'E',
+        epsilon: '\\epsilon',
+        varepsilon: '\\varepsilon',
+        Zeta: 'Z',
+        zeta: '\\zeta',
+        Eta: 'H',
+        eta: '\\eta',
+        Theta: '\\Theta',
+        theta: '\\theta',
+        vartheta: '\\vartheta',
+        Iota: 'I',
+        iota: '\\iota',
+        Kappa: 'K',
+        kappa: '\\kappa',
+        varkappa: '\\varkappa',
+        Lambda: '\\Lambda',
+        lambda: '\\lambda',
+        Mu: 'M',
+        mu: '\\mu',
+        Nu: 'N',
+        nu: '\\nu',
+        Xi: '\\Xi',
+        xi: '\\xi',
+        Omicron: 'O',
+        omicron: 'o',
+        Pi: '\\Pi',
+        pi: '\\pi',
+        varpi: '\\varpi',
+        Rho: 'P',
+        rho: '\\rho',
+        varrho: '\\varrho',
+        Sigma: '\\Sigma',
+        sigma: '\\sigma',
+        varsigma: '\\varsigma',
+        Tau: 'T',
+        tau: '\\tau',
+        Upsilon: "\\Upsilon",
+        upsilon: "\\upsilon",
+        Phi: '\\Phi',
+        phi: '\\phi',
+        varphi: '\\varphi',
+        Chi: 'X',
+        chi: '\\chi',
+        Psi: '\\Psi',
+        psi: '\\psi',
+        Omega: '\\Omega',
+        omega: '\\omega',
+        // logic
+        'true': '\\mathrm{True}',
+        'false': '\\mathrm{False}',
+        // other
+        i: 'i',
+        // TODO use \i ??
+        inf: '\\infty',
+        Inf: '\\infty',
+        infinity: '\\infty',
+        Infinity: '\\infty',
+        oo: '\\infty',
+        lim: '\\lim',
+        'undefined': '\\mathbf{?}'
+    };
+    exports.operators = {
+        'transpose': '^\\top',
+        'ctranspose': '^H',
+        'factorial': '!',
+        'pow': '^',
+        'dotPow': '.^\\wedge',
+        // TODO find ideal solution
+        'unaryPlus': '+',
+        'unaryMinus': '-',
+        'bitNot': '\\~',
+        // TODO find ideal solution
+        'not': '\\neg',
+        'multiply': '\\cdot',
+        'divide': '\\frac',
+        // TODO how to handle that properly?
+        'dotMultiply': '.\\cdot',
+        // TODO find ideal solution
+        'dotDivide': '.:',
+        // TODO find ideal solution
+        'mod': '\\mod',
+        'add': '+',
+        'subtract': '-',
+        'to': '\\rightarrow',
+        'leftShift': '<<',
+        'rightArithShift': '>>',
+        'rightLogShift': '>>>',
+        'equal': '=',
+        'unequal': '\\neq',
+        'smaller': '<',
+        'larger': '>',
+        'smallerEq': '\\leq',
+        'largerEq': '\\geq',
+        'bitAnd': '\\&',
+        'bitXor': "\\underline{|}",
+        'bitOr': '|',
+        'and': '\\wedge',
+        'xor': '\\veebar',
+        'or': '\\vee'
+    };
+    exports.defaultTemplate = "\\mathrm{${name}}\\left(${args}\\right)";
+    var units = {
+        deg: '^\\circ'
+    };
+    exports.escape = function (string) {
+        return dist(string, {
+            'preserveFormatting': true
+        });
+    }; // @param {string} name
+    // @param {boolean} isUnit
+    exports.toSymbol = function (name, isUnit) {
+        isUnit = typeof isUnit === 'undefined' ? false : isUnit;
+        if (isUnit) {
+            if (units.hasOwnProperty(name)) {
+                return units[name];
+            }
+            return '\\mathrm{' + exports.escape(name) + '}';
+        }
+        if (exports.symbols.hasOwnProperty(name)) {
+            return exports.symbols[name];
+        }
+        return exports.escape(name);
+    };
+});
+var latex_1 = latex.symbols;
+var latex_2 = latex.operators;
+var latex_3 = latex.defaultTemplate;
+var latex_4 = latex.escape;
+var latex_5 = latex.toSymbol;
+var format = string.format;
+var escapeLatex = latex.escape;
+function factory$i(type, config, load, typed) {
+    var Node$1 = load(Node);
+    var getType = load(_typeof$2);
+    /**
+     * A ConstantNode holds a constant value like a number or string.
+     *
+     * Usage:
+     *
+     *     new ConstantNode(2.3)
+     *     new ConstantNode('hello')
+     *
+     * @param {*} value    Value can be any type (number, BigNumber, string, ...)
+     * @constructor ConstantNode
+     * @extends {Node}
+     */
+    function ConstantNode(value) {
+        if (!(this instanceof ConstantNode)) {
+            throw new SyntaxError('Constructor must be called with the new operator');
+        }
+        if (arguments.length === 2) {
+            // TODO: remove deprecation error some day (created 2018-01-23)
+            throw new SyntaxError('new ConstantNode(valueStr, valueType) is not supported anymore since math v4.0.0. Use new ConstantNode(value) instead, where value is a non-stringified value.');
+        }
+        this.value = value;
+    }
+    ConstantNode.prototype = new Node$1();
+    ConstantNode.prototype.type = 'ConstantNode';
+    ConstantNode.prototype.isConstantNode = true;
+    /**
+     * Compile a node into a JavaScript function.
+     * This basically pre-calculates as much as possible and only leaves open
+     * calculations which depend on a dynamic scope with variables.
+     * @param {Object} math     Math.js namespace with functions and constants.
+     * @param {Object} argNames An object with argument names as key and `true`
+     *                          as value. Used in the SymbolNode to optimize
+     *                          for arguments from user assigned functions
+     *                          (see FunctionAssignmentNode) or special symbols
+     *                          like `end` (see IndexNode).
+     * @return {function} Returns a function which can be called like:
+     *                        evalNode(scope: Object, args: Object, context: *)
+     */
+    ConstantNode.prototype._compile = function (math, argNames) {
+        var value = this.value;
+        return function evalConstantNode() {
+            return value;
+        };
+    };
+    /**
+     * Execute a callback for each of the child nodes of this node
+     * @param {function(child: Node, path: string, parent: Node)} callback
+     */
+    ConstantNode.prototype.forEach = function (callback) { } // nothing to do, we don't have childs
+    ;
+    ConstantNode.prototype.map = function (callback) {
+        return this.clone();
+    };
+    /**
+     * Create a clone of this node, a shallow copy
+     * @return {ConstantNode}
+     */
+    ConstantNode.prototype.clone = function () {
+        return new ConstantNode(this.value);
+    };
+    /**
+     * Get string representation
+     * @param {Object} options
+     * @return {string} str
+     */
+    ConstantNode.prototype._toString = function (options) {
+        return format(this.value, options);
+    };
+    /**
+     * Get HTML representation
+     * @param {Object} options
+     * @return {string} str
+     */
+    ConstantNode.prototype.toHTML = function (options) {
+        var value = this._toString(options);
+        switch (getType(this.value)) {
+            case 'number':
+            case 'BigNumber':
+            case 'Fraction':
+                return '<span class="math-number">' + value + '</span>';
+            case 'string':
+                return '<span class="math-string">' + value + '</span>';
+            case 'boolean':
+                return '<span class="math-boolean">' + value + '</span>';
+            case 'null':
+                return '<span class="math-null-symbol">' + value + '</span>';
+            case 'undefined':
+                return '<span class="math-undefined">' + value + '</span>';
+            default:
+                return '<span class="math-symbol">' + value + '</span>';
+        }
+    };
+    /**
+     * Get a JSON representation of the node
+     * @returns {Object}
+     */
+    ConstantNode.prototype.toJSON = function () {
+        return {
+            mathjs: 'ConstantNode',
+            value: this.value
+        };
+    };
+    /**
+     * Instantiate a ConstantNode from its JSON representation
+     * @param {Object} json  An object structured like
+     *                       `{"mathjs": "SymbolNode", value: 2.3}`,
+     *                       where mathjs is optional
+     * @returns {ConstantNode}
+     */
+    ConstantNode.fromJSON = function (json) {
+        return new ConstantNode(json.value);
+    };
+    /**
+     * Get LaTeX representation
+     * @param {Object} options
+     * @return {string} str
+     */
+    ConstantNode.prototype._toTex = function (options) {
+        var value = this._toString(options);
+        switch (getType(this.value)) {
+            case 'string':
+                return '\\mathtt{' + escapeLatex(value) + '}';
+            case 'number':
+            case 'BigNumber':
+                var index = value.toLowerCase().indexOf('e');
+                if (index !== -1) {
+                    return value.substring(0, index) + '\\cdot10^{' + value.substring(index + 1) + '}';
+                }
+                return value;
+            case 'Fraction':
+                return this.value.toLatex();
+            default:
+                return value;
+        }
+    };
+    return ConstantNode;
+}
+var name$g = 'ConstantNode';
+var path$8 = 'expression.node';
+var factory_1$i = factory$i;
+var ConstantNode = {
+    name: name$g,
+    path: path$8,
+    factory: factory_1$i
+};
+var escape = string.escape;
+var forEach$1 = array.forEach;
+var join = array.join;
+var setSafeProperty$4 = customs.setSafeProperty;
+function factory$j(type, config, load, typed) {
+    var Node$1 = load(Node);
+    /**
+     * @constructor FunctionAssignmentNode
+     * @extends {Node}
+     * Function assignment
+     *
+     * @param {string} name           Function name
+     * @param {string[] | Array.<{name: string, type: string}>} params
+     *                                Array with function parameter names, or an
+     *                                array with objects containing the name
+     *                                and type of the parameter
+     * @param {Node} expr             The function expression
+     */
+    function FunctionAssignmentNode(name, params, expr) {
+        if (!(this instanceof FunctionAssignmentNode)) {
+            throw new SyntaxError('Constructor must be called with the new operator');
+        } // validate input
+        if (typeof name !== 'string')
+            throw new TypeError('String expected for parameter "name"');
+        if (!Array.isArray(params))
+            throw new TypeError('Array containing strings or objects expected for parameter "params"');
+        if (!type.isNode(expr))
+            throw new TypeError('Node expected for parameter "expr"');
+        if (name in keywords)
+            throw new Error('Illegal function name, "' + name + '" is a reserved keyword');
+        this.name = name;
+        this.params = params.map(function (param) {
+            return param && param.name || param;
+        });
+        this.types = params.map(function (param) {
+            return param && param.type || 'any';
+        });
+        this.expr = expr;
+    }
+    FunctionAssignmentNode.prototype = new Node$1();
+    FunctionAssignmentNode.prototype.type = 'FunctionAssignmentNode';
+    FunctionAssignmentNode.prototype.isFunctionAssignmentNode = true;
+    /**
+     * Compile a node into a JavaScript function.
+     * This basically pre-calculates as much as possible and only leaves open
+     * calculations which depend on a dynamic scope with variables.
+     * @param {Object} math     Math.js namespace with functions and constants.
+     * @param {Object} argNames An object with argument names as key and `true`
+     *                          as value. Used in the SymbolNode to optimize
+     *                          for arguments from user assigned functions
+     *                          (see FunctionAssignmentNode) or special symbols
+     *                          like `end` (see IndexNode).
+     * @return {function} Returns a function which can be called like:
+     *                        evalNode(scope: Object, args: Object, context: *)
+     */
+    FunctionAssignmentNode.prototype._compile = function (math, argNames) {
+        var childArgNames = Object.create(argNames);
+        forEach$1(this.params, function (param) {
+            childArgNames[param] = true;
+        }); // compile the function expression with the child args
+        var evalExpr = this.expr._compile(math, childArgNames);
+        var name = this.name;
+        var params = this.params;
+        var signature = join(this.types, ',');
+        var syntax = name + '(' + join(this.params, ', ') + ')';
+        return function evalFunctionAssignmentNode(scope, args, context) {
+            var signatures = {};
+            signatures[signature] = function () {
+                var childArgs = Object.create(args);
+                for (var i = 0; i < params.length; i++) {
+                    childArgs[params[i]] = arguments[i];
+                }
+                return evalExpr(scope, childArgs, context);
+            };
+            var fn = typed(name, signatures);
+            fn.syntax = syntax;
+            setSafeProperty$4(scope, name, fn);
+            return fn;
+        };
+    };
+    /**
+     * Execute a callback for each of the child nodes of this node
+     * @param {function(child: Node, path: string, parent: Node)} callback
+     */
+    FunctionAssignmentNode.prototype.forEach = function (callback) {
+        callback(this.expr, 'expr', this);
+    };
+    /**
+     * Create a new FunctionAssignmentNode having it's childs be the results of calling
+     * the provided callback function for each of the childs of the original node.
+     * @param {function(child: Node, path: string, parent: Node): Node} callback
+     * @returns {FunctionAssignmentNode} Returns a transformed copy of the node
+     */
+    FunctionAssignmentNode.prototype.map = function (callback) {
+        var expr = this._ifNode(callback(this.expr, 'expr', this));
+        return new FunctionAssignmentNode(this.name, this.params.slice(0), expr);
+    };
+    /**
+     * Create a clone of this node, a shallow copy
+     * @return {FunctionAssignmentNode}
+     */
+    FunctionAssignmentNode.prototype.clone = function () {
+        return new FunctionAssignmentNode(this.name, this.params.slice(0), this.expr);
+    };
+    /**
+     * Is parenthesis needed?
+     * @param {Node} node
+     * @param {Object} parenthesis
+     * @private
+     */
+    function needParenthesis(node, parenthesis) {
+        var precedence = operators.getPrecedence(node, parenthesis);
+        var exprPrecedence = operators.getPrecedence(node.expr, parenthesis);
+        return parenthesis === 'all' || exprPrecedence !== null && exprPrecedence <= precedence;
+    }
+    /**
+     * get string representation
+     * @param {Object} options
+     * @return {string} str
+     */
+    FunctionAssignmentNode.prototype._toString = function (options) {
+        var parenthesis = options && options.parenthesis ? options.parenthesis : 'keep';
+        var expr = this.expr.toString(options);
+        if (needParenthesis(this, parenthesis)) {
+            expr = '(' + expr + ')';
+        }
+        return this.name + '(' + this.params.join(', ') + ') = ' + expr;
+    };
+    /**
+     * Get a JSON representation of the node
+     * @returns {Object}
+     */
+    FunctionAssignmentNode.prototype.toJSON = function () {
+        var types = this.types;
+        return {
+            mathjs: 'FunctionAssignmentNode',
+            name: this.name,
+            params: this.params.map(function (param, index) {
+                return {
+                    name: param,
+                    type: types[index]
+                };
+            }),
+            expr: this.expr
+        };
+    };
+    /**
+     * Instantiate an FunctionAssignmentNode from its JSON representation
+     * @param {Object} json  An object structured like
+     *                       `{"mathjs": "FunctionAssignmentNode", name: ..., params: ..., expr: ...}`,
+     *                       where mathjs is optional
+     * @returns {FunctionAssignmentNode}
+     */
+    FunctionAssignmentNode.fromJSON = function (json) {
+        return new FunctionAssignmentNode(json.name, json.params, json.expr);
+    };
+    /**
+     * get HTML representation
+     * @param {Object} options
+     * @return {string} str
+     */
+    FunctionAssignmentNode.prototype.toHTML = function (options) {
+        var parenthesis = options && options.parenthesis ? options.parenthesis : 'keep';
+        var params = [];
+        for (var i = 0; i < this.params.length; i++) {
+            params.push('<span class="math-symbol math-parameter">' + escape(this.params[i]) + '</span>');
+        }
+        var expr = this.expr.toHTML(options);
+        if (needParenthesis(this, parenthesis)) {
+            expr = '<span class="math-parenthesis math-round-parenthesis">(</span>' + expr + '<span class="math-parenthesis math-round-parenthesis">)</span>';
+        }
+        return '<span class="math-function">' + escape(this.name) + '</span>' + '<span class="math-parenthesis math-round-parenthesis">(</span>' + params.join('<span class="math-separator">,</span>') + '<span class="math-parenthesis math-round-parenthesis">)</span><span class="math-operator math-assignment-operator math-variable-assignment-operator math-binary-operator">=</span>' + expr;
+    };
+    /**
+     * get LaTeX representation
+     * @param {Object} options
+     * @return {string} str
+     */
+    FunctionAssignmentNode.prototype._toTex = function (options) {
+        var parenthesis = options && options.parenthesis ? options.parenthesis : 'keep';
+        var expr = this.expr.toTex(options);
+        if (needParenthesis(this, parenthesis)) {
+            expr = "\\left(".concat(expr, "\\right)");
+        }
+        return '\\mathrm{' + this.name + '}\\left(' + this.params.map(latex.toSymbol).join(',') + '\\right):=' + expr;
+    };
+    return FunctionAssignmentNode;
+}
+var name$h = 'FunctionAssignmentNode';
+var path$9 = 'expression.node';
+var factory_1$j = factory$j;
+var FunctionAssignmentNode = {
+    name: name$h,
+    path: path$9,
+    factory: factory_1$j
+};
+function factory$k(type, config, load, typed) {
+    /**
+     * Create a range. A range has a start, step, and end, and contains functions
+     * to iterate over the range.
+     *
+     * A range can be constructed as:
+     *
+     *     const range = new Range(start, end)
+     *     const range = new Range(start, end, step)
+     *
+     * To get the result of the range:
+     *     range.forEach(function (x) {
+     *         console.log(x)
+     *     })
+     *     range.map(function (x) {
+     *         return math.sin(x)
+     *     })
+     *     range.toArray()
+     *
+     * Example usage:
+     *
+     *     const c = new Range(2, 6)       // 2:1:5
+     *     c.toArray()                     // [2, 3, 4, 5]
+     *     const d = new Range(2, -3, -1)  // 2:-1:-2
+     *     d.toArray()                     // [2, 1, 0, -1, -2]
+     *
+     * @class Range
+     * @constructor Range
+     * @param {number} start  included lower bound
+     * @param {number} end    excluded upper bound
+     * @param {number} [step] step size, default value is 1
+     */
+    function Range(start, end, step) {
+        if (!(this instanceof Range)) {
+            throw new SyntaxError('Constructor must be called with the new operator');
+        }
+        var hasStart = start !== null && start !== undefined;
+        var hasEnd = end !== null && end !== undefined;
+        var hasStep = step !== null && step !== undefined;
+        if (hasStart) {
+            if (type.isBigNumber(start)) {
+                start = start.toNumber();
+            }
+            else if (typeof start !== 'number') {
+                throw new TypeError('Parameter start must be a number');
+            }
+        }
+        if (hasEnd) {
+            if (type.isBigNumber(end)) {
+                end = end.toNumber();
+            }
+            else if (typeof end !== 'number') {
+                throw new TypeError('Parameter end must be a number');
+            }
+        }
+        if (hasStep) {
+            if (type.isBigNumber(step)) {
+                step = step.toNumber();
+            }
+            else if (typeof step !== 'number') {
+                throw new TypeError('Parameter step must be a number');
+            }
+        }
+        this.start = hasStart ? parseFloat(start) : 0;
+        this.end = hasEnd ? parseFloat(end) : 0;
+        this.step = hasStep ? parseFloat(step) : 1;
+    }
+    /**
+     * Attach type information
+     */
+    Range.prototype.type = 'Range';
+    Range.prototype.isRange = true;
+    /**
+     * Parse a string into a range,
+     * The string contains the start, optional step, and end, separated by a colon.
+     * If the string does not contain a valid range, null is returned.
+     * For example str='0:2:11'.
+     * @memberof Range
+     * @param {string} str
+     * @return {Range | null} range
+     */
+    Range.parse = function (str) {
+        if (typeof str !== 'string') {
+            return null;
+        }
+        var args = str.split(':');
+        var nums = args.map(function (arg) {
+            return parseFloat(arg);
+        });
+        var invalid = nums.some(function (num) {
+            return isNaN(num);
+        });
+        if (invalid) {
+            return null;
+        }
+        switch (nums.length) {
+            case 2:
+                return new Range(nums[0], nums[1]);
+            case 3:
+                return new Range(nums[0], nums[2], nums[1]);
+            default:
+                return null;
+        }
+    };
+    /**
+     * Create a clone of the range
+     * @return {Range} clone
+     */
+    Range.prototype.clone = function () {
+        return new Range(this.start, this.end, this.step);
+    };
+    /**
+     * Retrieve the size of the range.
+     * Returns an array containing one number, the number of elements in the range.
+     * @memberof Range
+     * @returns {number[]} size
+     */
+    Range.prototype.size = function () {
+        var len = 0;
+        var start = this.start;
+        var step = this.step;
+        var end = this.end;
+        var diff = end - start;
+        if (number.sign(step) === number.sign(diff)) {
+            len = Math.ceil(diff / step);
+        }
+        else if (diff === 0) {
+            len = 0;
+        }
+        if (isNaN(len)) {
+            len = 0;
+        }
+        return [len];
+    };
+    /**
+     * Calculate the minimum value in the range
+     * @memberof Range
+     * @return {number | undefined} min
+     */
+    Range.prototype.min = function () {
+        var size = this.size()[0];
+        if (size > 0) {
+            if (this.step > 0) {
+                // positive step
+                return this.start;
+            }
+            else {
+                // negative step
+                return this.start + (size - 1) * this.step;
+            }
+        }
+        else {
+            return undefined;
+        }
+    };
+    /**
+     * Calculate the maximum value in the range
+     * @memberof Range
+     * @return {number | undefined} max
+     */
+    Range.prototype.max = function () {
+        var size = this.size()[0];
+        if (size > 0) {
+            if (this.step > 0) {
+                // positive step
+                return this.start + (size - 1) * this.step;
+            }
+            else {
+                // negative step
+                return this.start;
+            }
+        }
+        else {
+            return undefined;
+        }
+    };
+    /**
+     * Execute a callback function for each value in the range.
+     * @memberof Range
+     * @param {function} callback   The callback method is invoked with three
+     *                              parameters: the value of the element, the index
+     *                              of the element, and the Range being traversed.
+     */
+    Range.prototype.forEach = function (callback) {
+        var x = this.start;
+        var step = this.step;
+        var end = this.end;
+        var i = 0;
+        if (step > 0) {
+            while (x < end) {
+                callback(x, [i], this);
+                x += step;
+                i++;
+            }
+        }
+        else if (step < 0) {
+            while (x > end) {
+                callback(x, [i], this);
+                x += step;
+                i++;
+            }
+        }
+    };
+    /**
+     * Execute a callback function for each value in the Range, and return the
+     * results as an array
+     * @memberof Range
+     * @param {function} callback   The callback method is invoked with three
+     *                              parameters: the value of the element, the index
+     *                              of the element, and the Matrix being traversed.
+     * @returns {Array} array
+     */
+    Range.prototype.map = function (callback) {
+        var array = [];
+        this.forEach(function (value, index, obj) {
+            array[index[0]] = callback(value, index, obj);
+        });
+        return array;
+    };
+    /**
+     * Create an Array with a copy of the Ranges data
+     * @memberof Range
+     * @returns {Array} array
+     */
+    Range.prototype.toArray = function () {
+        var array = [];
+        this.forEach(function (value, index) {
+            array[index[0]] = value;
+        });
+        return array;
+    };
+    /**
+     * Get the primitive value of the Range, a one dimensional array
+     * @memberof Range
+     * @returns {Array} array
+     */
+    Range.prototype.valueOf = function () {
+        // TODO: implement a caching mechanism for range.valueOf()
+        return this.toArray();
+    };
+    /**
+     * Get a string representation of the range, with optional formatting options.
+     * Output is formatted as 'start:step:end', for example '2:6' or '0:0.2:11'
+     * @memberof Range
+     * @param {Object | number | function} [options]  Formatting options. See
+     *                                                lib/utils/number:format for a
+     *                                                description of the available
+     *                                                options.
+     * @returns {string} str
+     */
+    Range.prototype.format = function (options) {
+        var str = number.format(this.start, options);
+        if (this.step !== 1) {
+            str += ':' + number.format(this.step, options);
+        }
+        str += ':' + number.format(this.end, options);
+        return str;
+    };
+    /**
+     * Get a string representation of the range.
+     * @memberof Range
+     * @returns {string}
+     */
+    Range.prototype.toString = function () {
+        return this.format();
+    };
+    /**
+     * Get a JSON representation of the range
+     * @memberof Range
+     * @returns {Object} Returns a JSON object structured as:
+     *                   `{"mathjs": "Range", "start": 2, "end": 4, "step": 1}`
+     */
+    Range.prototype.toJSON = function () {
+        return {
+            mathjs: 'Range',
+            start: this.start,
+            end: this.end,
+            step: this.step
+        };
+    };
+    /**
+     * Instantiate a Range from a JSON object
+     * @memberof Range
+     * @param {Object} json A JSON object structured as:
+     *                      `{"mathjs": "Range", "start": 2, "end": 4, "step": 1}`
+     * @return {Range}
+     */
+    Range.fromJSON = function (json) {
+        return new Range(json.start, json.end, json.step);
+    };
+    return Range;
+}
+var name$i = 'Range';
+var path$a = 'type';
+var factory_1$k = factory$k;
+var Range = {
+    name: name$i,
+    path: path$a,
+    factory: factory_1$k
+};
+var map$2 = array.map;
+var escape$1 = string.escape;
+function factory$l(type, config, load, typed) {
+    var Node$1 = load(Node);
+    var Range$1 = load(Range);
+    var isArray = Array.isArray;
+    /**
+     * @constructor IndexNode
+     * @extends Node
+     *
+     * Describes a subset of a matrix or an object property.
+     * Cannot be used on its own, needs to be used within an AccessorNode or
+     * AssignmentNode.
+     *
+     * @param {Node[]} dimensions
+     * @param {boolean} [dotNotation=false]  Optional property describing whether
+     *                                       this index was written using dot
+     *                                       notation like `a.b`, or using bracket
+     *                                       notation like `a["b"]` (default).
+     *                                       Used to stringify an IndexNode.
+     */
+    function IndexNode(dimensions, dotNotation) {
+        if (!(this instanceof IndexNode)) {
+            throw new SyntaxError('Constructor must be called with the new operator');
+        }
+        this.dimensions = dimensions;
+        this.dotNotation = dotNotation || false; // validate input
+        if (!isArray(dimensions) || !dimensions.every(type.isNode)) {
+            throw new TypeError('Array containing Nodes expected for parameter "dimensions"');
+        }
+        if (this.dotNotation && !this.isObjectProperty()) {
+            throw new Error('dotNotation only applicable for object properties');
+        } // TODO: deprecated since v3, remove some day
+        var deprecated = function deprecated() {
+            throw new Error('Property `IndexNode.object` is deprecated, use `IndexNode.fn` instead');
+        };
+        Object.defineProperty(this, 'object', {
+            get: deprecated,
+            set: deprecated
+        });
+    }
+    IndexNode.prototype = new Node$1();
+    IndexNode.prototype.type = 'IndexNode';
+    IndexNode.prototype.isIndexNode = true;
+    /**
+     * Compile a node into a JavaScript function.
+     * This basically pre-calculates as much as possible and only leaves open
+     * calculations which depend on a dynamic scope with variables.
+     * @param {Object} math     Math.js namespace with functions and constants.
+     * @param {Object} argNames An object with argument names as key and `true`
+     *                          as value. Used in the SymbolNode to optimize
+     *                          for arguments from user assigned functions
+     *                          (see FunctionAssignmentNode) or special symbols
+     *                          like `end` (see IndexNode).
+     * @return {function} Returns a function which can be called like:
+     *                        evalNode(scope: Object, args: Object, context: *)
+     */
+    IndexNode.prototype._compile = function (math, argNames) {
+        // TODO: implement support for bignumber (currently bignumbers are silently
+        //       reduced to numbers when changing the value to zero-based)
+        // TODO: Optimization: when the range values are ConstantNodes,
+        //       we can beforehand resolve the zero-based value
+        // optimization for a simple object property
+        var evalDimensions = map$2(this.dimensions, function (range, i) {
+            if (type.isRangeNode(range)) {
+                if (range.needsEnd()) {
+                    // create a range containing end (like '4:end')
+                    var childArgNames = Object.create(argNames);
+                    childArgNames['end'] = true;
+                    var evalStart = range.start._compile(math, childArgNames);
+                    var evalEnd = range.end._compile(math, childArgNames);
+                    var evalStep = range.step ? range.step._compile(math, childArgNames) : function () {
+                        return 1;
+                    };
+                    return function evalDimension(scope, args, context) {
+                        var size = math.size(context).valueOf();
+                        var childArgs = Object.create(args);
+                        childArgs['end'] = size[i];
+                        return createRange(evalStart(scope, childArgs, context), evalEnd(scope, childArgs, context), evalStep(scope, childArgs, context));
+                    };
+                }
+                else {
+                    // create range
+                    var _evalStart = range.start._compile(math, argNames);
+                    var _evalEnd = range.end._compile(math, argNames);
+                    var _evalStep = range.step ? range.step._compile(math, argNames) : function () {
+                        return 1;
+                    };
+                    return function evalDimension(scope, args, context) {
+                        return createRange(_evalStart(scope, args, context), _evalEnd(scope, args, context), _evalStep(scope, args, context));
+                    };
+                }
+            }
+            else if (type.isSymbolNode(range) && range.name === 'end') {
+                // SymbolNode 'end'
+                var _childArgNames = Object.create(argNames);
+                _childArgNames['end'] = true;
+                var evalRange = range._compile(math, _childArgNames);
+                return function evalDimension(scope, args, context) {
+                    var size = math.size(context).valueOf();
+                    var childArgs = Object.create(args);
+                    childArgs['end'] = size[i];
+                    return evalRange(scope, childArgs, context);
+                };
+            }
+            else {
+                // ConstantNode
+                var _evalRange = range._compile(math, argNames);
+                return function evalDimension(scope, args, context) {
+                    return _evalRange(scope, args, context);
+                };
+            }
+        });
+        return function evalIndexNode(scope, args, context) {
+            var dimensions = map$2(evalDimensions, function (evalDimension) {
+                return evalDimension(scope, args, context);
+            });
+            return math.index.apply(math, dimensions);
+        };
+    };
+    /**
+     * Execute a callback for each of the child nodes of this node
+     * @param {function(child: Node, path: string, parent: Node)} callback
+     */
+    IndexNode.prototype.forEach = function (callback) {
+        for (var i = 0; i < this.dimensions.length; i++) {
+            callback(this.dimensions[i], 'dimensions[' + i + ']', this);
+        }
+    };
+    /**
+     * Create a new IndexNode having it's childs be the results of calling
+     * the provided callback function for each of the childs of the original node.
+     * @param {function(child: Node, path: string, parent: Node): Node} callback
+     * @returns {IndexNode} Returns a transformed copy of the node
+     */
+    IndexNode.prototype.map = function (callback) {
+        var dimensions = [];
+        for (var i = 0; i < this.dimensions.length; i++) {
+            dimensions[i] = this._ifNode(callback(this.dimensions[i], 'dimensions[' + i + ']', this));
+        }
+        return new IndexNode(dimensions);
+    };
+    /**
+     * Create a clone of this node, a shallow copy
+     * @return {IndexNode}
+     */
+    IndexNode.prototype.clone = function () {
+        return new IndexNode(this.dimensions.slice(0));
+    };
+    /**
+     * Test whether this IndexNode contains a single property name
+     * @return {boolean}
+     */
+    IndexNode.prototype.isObjectProperty = function () {
+        return this.dimensions.length === 1 && type.isConstantNode(this.dimensions[0]) && typeof this.dimensions[0].value === 'string';
+    };
+    /**
+     * Returns the property name if IndexNode contains a property.
+     * If not, returns null.
+     * @return {string | null}
+     */
+    IndexNode.prototype.getObjectProperty = function () {
+        return this.isObjectProperty() ? this.dimensions[0].value : null;
+    };
+    /**
+     * Get string representation
+     * @param {Object} options
+     * @return {string} str
+     */
+    IndexNode.prototype._toString = function (options) {
+        // format the parameters like "[1, 0:5]"
+        return this.dotNotation ? '.' + this.getObjectProperty() : '[' + this.dimensions.join(', ') + ']';
+    };
+    /**
+     * Get a JSON representation of the node
+     * @returns {Object}
+     */
+    IndexNode.prototype.toJSON = function () {
+        return {
+            mathjs: 'IndexNode',
+            dimensions: this.dimensions,
+            dotNotation: this.dotNotation
+        };
+    };
+    /**
+     * Instantiate an IndexNode from its JSON representation
+     * @param {Object} json  An object structured like
+     *                       `{"mathjs": "IndexNode", dimensions: [...], dotNotation: false}`,
+     *                       where mathjs is optional
+     * @returns {IndexNode}
+     */
+    IndexNode.fromJSON = function (json) {
+        return new IndexNode(json.dimensions, json.dotNotation);
+    };
+    /**
+     * Get HTML representation
+     * @param {Object} options
+     * @return {string} str
+     */
+    IndexNode.prototype.toHTML = function (options) {
+        // format the parameters like "[1, 0:5]"
+        var dimensions = [];
+        for (var i = 0; i < this.dimensions.length; i++) {
+            dimensions[i] = this.dimensions[i].toHTML();
+        }
+        if (this.dotNotation) {
+            return '<span class="math-operator math-accessor-operator">.</span>' + '<span class="math-symbol math-property">' + escape$1(this.getObjectProperty()) + '</span>';
+        }
+        else {
+            return '<span class="math-parenthesis math-square-parenthesis">[</span>' + dimensions.join('<span class="math-separator">,</span>') + '<span class="math-parenthesis math-square-parenthesis">]</span>';
+        }
+    };
+    /**
+     * Get LaTeX representation
+     * @param {Object} options
+     * @return {string} str
+     */
+    IndexNode.prototype._toTex = function (options) {
+        var dimensions = this.dimensions.map(function (range) {
+            return range.toTex(options);
+        });
+        return this.dotNotation ? '.' + this.getObjectProperty() + '' : '_{' + dimensions.join(',') + '}';
+    }; // helper function to create a Range from start, step and end
+    function createRange(start, end, step) {
+        return new Range$1(type.isBigNumber(start) ? start.toNumber() : start, type.isBigNumber(end) ? end.toNumber() : end, type.isBigNumber(step) ? step.toNumber() : step);
+    }
+    return IndexNode;
+}
+var name$j = 'IndexNode';
+var path$b = 'expression.node';
+var factory_1$l = factory$l;
+var IndexNode = {
+    name: name$j,
+    path: path$b,
+    factory: factory_1$l
+};
+function _typeof$7(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
+    _typeof$7 = function _typeof(obj) { return typeof obj; };
+}
+else {
+    _typeof$7 = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+} return _typeof$7(obj); }
+var stringify = string.stringify;
+var escape$2 = string.escape;
+var isSafeProperty$1 = customs.isSafeProperty;
+var hasOwnProperty$2 = object.hasOwnProperty;
+function factory$m(type, config, load, typed) {
+    var Node$1 = load(Node);
+    /**
+     * @constructor ObjectNode
+     * @extends {Node}
+     * Holds an object with keys/values
+     * @param {Object.<string, Node>} [properties]   object with key/value pairs
+     */
+    function ObjectNode(properties) {
+        if (!(this instanceof ObjectNode)) {
+            throw new SyntaxError('Constructor must be called with the new operator');
+        }
+        this.properties = properties || {}; // validate input
+        if (properties) {
+            if (!(_typeof$7(properties) === 'object') || !Object.keys(properties).every(function (key) {
+                return type.isNode(properties[key]);
+            })) {
+                throw new TypeError('Object containing Nodes expected');
+            }
+        }
+    }
+    ObjectNode.prototype = new Node$1();
+    ObjectNode.prototype.type = 'ObjectNode';
+    ObjectNode.prototype.isObjectNode = true;
+    /**
+     * Compile a node into a JavaScript function.
+     * This basically pre-calculates as much as possible and only leaves open
+     * calculations which depend on a dynamic scope with variables.
+     * @param {Object} math     Math.js namespace with functions and constants.
+     * @param {Object} argNames An object with argument names as key and `true`
+     *                          as value. Used in the SymbolNode to optimize
+     *                          for arguments from user assigned functions
+     *                          (see FunctionAssignmentNode) or special symbols
+     *                          like `end` (see IndexNode).
+     * @return {function} Returns a function which can be called like:
+     *                        evalNode(scope: Object, args: Object, context: *)
+     */
+    ObjectNode.prototype._compile = function (math, argNames) {
+        var evalEntries = {};
+        for (var key in this.properties) {
+            if (hasOwnProperty$2(this.properties, key)) {
+                // we stringify/parse the key here to resolve unicode characters,
+                // so you cannot create a key like {"co\\u006Estructor": null}
+                var stringifiedKey = stringify(key);
+                var parsedKey = JSON.parse(stringifiedKey);
+                if (!isSafeProperty$1(this.properties, parsedKey)) {
+                    throw new Error('No access to property "' + parsedKey + '"');
+                }
+                evalEntries[parsedKey] = this.properties[key]._compile(math, argNames);
+            }
+        }
+        return function evalObjectNode(scope, args, context) {
+            var obj = {};
+            for (var _key in evalEntries) {
+                if (hasOwnProperty$2(evalEntries, _key)) {
+                    obj[_key] = evalEntries[_key](scope, args, context);
+                }
+            }
+            return obj;
+        };
+    };
+    /**
+     * Execute a callback for each of the child nodes of this node
+     * @param {function(child: Node, path: string, parent: Node)} callback
+     */
+    ObjectNode.prototype.forEach = function (callback) {
+        for (var key in this.properties) {
+            if (this.properties.hasOwnProperty(key)) {
+                callback(this.properties[key], 'properties[' + stringify(key) + ']', this);
+            }
+        }
+    };
+    /**
+     * Create a new ObjectNode having it's childs be the results of calling
+     * the provided callback function for each of the childs of the original node.
+     * @param {function(child: Node, path: string, parent: Node): Node} callback
+     * @returns {ObjectNode} Returns a transformed copy of the node
+     */
+    ObjectNode.prototype.map = function (callback) {
+        var properties = {};
+        for (var key in this.properties) {
+            if (this.properties.hasOwnProperty(key)) {
+                properties[key] = this._ifNode(callback(this.properties[key], 'properties[' + stringify(key) + ']', this));
+            }
+        }
+        return new ObjectNode(properties);
+    };
+    /**
+     * Create a clone of this node, a shallow copy
+     * @return {ObjectNode}
+     */
+    ObjectNode.prototype.clone = function () {
+        var properties = {};
+        for (var key in this.properties) {
+            if (this.properties.hasOwnProperty(key)) {
+                properties[key] = this.properties[key];
+            }
+        }
+        return new ObjectNode(properties);
+    };
+    /**
+     * Get string representation
+     * @param {Object} options
+     * @return {string} str
+     * @override
+     */
+    ObjectNode.prototype._toString = function (options) {
+        var entries = [];
+        for (var key in this.properties) {
+            if (this.properties.hasOwnProperty(key)) {
+                entries.push(stringify(key) + ': ' + this.properties[key].toString(options));
+            }
+        }
+        return '{' + entries.join(', ') + '}';
+    };
+    /**
+     * Get a JSON representation of the node
+     * @returns {Object}
+     */
+    ObjectNode.prototype.toJSON = function () {
+        return {
+            mathjs: 'ObjectNode',
+            properties: this.properties
+        };
+    };
+    /**
+     * Instantiate an OperatorNode from its JSON representation
+     * @param {Object} json  An object structured like
+     *                       `{"mathjs": "ObjectNode", "properties": {...}}`,
+     *                       where mathjs is optional
+     * @returns {ObjectNode}
+     */
+    ObjectNode.fromJSON = function (json) {
+        return new ObjectNode(json.properties);
+    };
+    /**
+     * Get HTML representation
+     * @param {Object} options
+     * @return {string} str
+     * @override
+     */
+    ObjectNode.prototype.toHTML = function (options) {
+        var entries = [];
+        for (var key in this.properties) {
+            if (this.properties.hasOwnProperty(key)) {
+                entries.push('<span class="math-symbol math-property">' + escape$2(key) + '</span>' + '<span class="math-operator math-assignment-operator math-property-assignment-operator math-binary-operator">:</span>' + this.properties[key].toHTML(options));
+            }
+        }
+        return '<span class="math-parenthesis math-curly-parenthesis">{</span>' + entries.join('<span class="math-separator">,</span>') + '<span class="math-parenthesis math-curly-parenthesis">}</span>';
+    };
+    /**
+     * Get LaTeX representation
+     * @param {Object} options
+     * @return {string} str
+     */
+    ObjectNode.prototype._toTex = function (options) {
+        var entries = [];
+        for (var key in this.properties) {
+            if (this.properties.hasOwnProperty(key)) {
+                entries.push('\\mathbf{' + key + ':} & ' + this.properties[key].toTex(options) + '\\\\');
+            }
+        }
+        return "\\left\\{\\begin{array}{ll}".concat(entries.join('\n'), "\\end{array}\\right\\}");
+    };
+    return ObjectNode;
+}
+var name$k = 'ObjectNode';
+var path$c = 'expression.node';
+var factory_1$m = factory$m;
+var ObjectNode = {
+    name: name$k,
+    path: path$c,
+    factory: factory_1$m
+};
+var map$3 = array.map;
+var escape$3 = string.escape;
+var isSafeMethod$1 = customs.isSafeMethod;
+var getSafeProperty$5 = customs.getSafeProperty;
+function factory$n(type, config, load, typed) {
+    var Node$1 = load(Node);
+    /**
+     * @constructor OperatorNode
+     * @extends {Node}
+     * An operator with two arguments, like 2+3
+     *
+     * @param {string} op           Operator name, for example '+'
+     * @param {string} fn           Function name, for example 'add'
+     * @param {Node[]} args         Operator arguments
+     * @param {boolean} [implicit]  Is this an implicit multiplication?
+     */
+    function OperatorNode(op, fn, args, implicit) {
+        if (!(this instanceof OperatorNode)) {
+            throw new SyntaxError('Constructor must be called with the new operator');
+        } // validate input
+        if (typeof op !== 'string') {
+            throw new TypeError('string expected for parameter "op"');
+        }
+        if (typeof fn !== 'string') {
+            throw new TypeError('string expected for parameter "fn"');
+        }
+        if (!Array.isArray(args) || !args.every(type.isNode)) {
+            throw new TypeError('Array containing Nodes expected for parameter "args"');
+        }
+        this.implicit = implicit === true;
+        this.op = op;
+        this.fn = fn;
+        this.args = args || [];
+    }
+    OperatorNode.prototype = new Node$1();
+    OperatorNode.prototype.type = 'OperatorNode';
+    OperatorNode.prototype.isOperatorNode = true;
+    /**
+     * Compile a node into a JavaScript function.
+     * This basically pre-calculates as much as possible and only leaves open
+     * calculations which depend on a dynamic scope with variables.
+     * @param {Object} math     Math.js namespace with functions and constants.
+     * @param {Object} argNames An object with argument names as key and `true`
+     *                          as value. Used in the SymbolNode to optimize
+     *                          for arguments from user assigned functions
+     *                          (see FunctionAssignmentNode) or special symbols
+     *                          like `end` (see IndexNode).
+     * @return {function} Returns a function which can be called like:
+     *                        evalNode(scope: Object, args: Object, context: *)
+     */
+    OperatorNode.prototype._compile = function (math, argNames) {
+        // validate fn
+        if (typeof this.fn !== 'string' || !isSafeMethod$1(math, this.fn)) {
+            if (!math[this.fn]) {
+                throw new Error('Function ' + this.fn + ' missing in provided namespace "math"');
+            }
+            else {
+                throw new Error('No access to function "' + this.fn + '"');
+            }
+        }
+        var fn = getSafeProperty$5(math, this.fn);
+        var evalArgs = map$3(this.args, function (arg) {
+            return arg._compile(math, argNames);
+        });
+        if (evalArgs.length === 1) {
+            var evalArg0 = evalArgs[0];
+            return function evalOperatorNode(scope, args, context) {
+                return fn(evalArg0(scope, args, context));
+            };
+        }
+        else if (evalArgs.length === 2) {
+            var _evalArg = evalArgs[0];
+            var evalArg1 = evalArgs[1];
+            return function evalOperatorNode(scope, args, context) {
+                return fn(_evalArg(scope, args, context), evalArg1(scope, args, context));
+            };
+        }
+        else {
+            return function evalOperatorNode(scope, args, context) {
+                return fn.apply(null, map$3(evalArgs, function (evalArg) {
+                    return evalArg(scope, args, context);
+                }));
+            };
+        }
+    };
+    /**
+     * Execute a callback for each of the child nodes of this node
+     * @param {function(child: Node, path: string, parent: Node)} callback
+     */
+    OperatorNode.prototype.forEach = function (callback) {
+        for (var i = 0; i < this.args.length; i++) {
+            callback(this.args[i], 'args[' + i + ']', this);
+        }
+    };
+    /**
+     * Create a new OperatorNode having it's childs be the results of calling
+     * the provided callback function for each of the childs of the original node.
+     * @param {function(child: Node, path: string, parent: Node): Node} callback
+     * @returns {OperatorNode} Returns a transformed copy of the node
+     */
+    OperatorNode.prototype.map = function (callback) {
+        var args = [];
+        for (var i = 0; i < this.args.length; i++) {
+            args[i] = this._ifNode(callback(this.args[i], 'args[' + i + ']', this));
+        }
+        return new OperatorNode(this.op, this.fn, args, this.implicit);
+    };
+    /**
+     * Create a clone of this node, a shallow copy
+     * @return {OperatorNode}
+     */
+    OperatorNode.prototype.clone = function () {
+        return new OperatorNode(this.op, this.fn, this.args.slice(0), this.implicit);
+    };
+    /**
+     * Check whether this is an unary OperatorNode:
+     * has exactly one argument, like `-a`.
+     * @return {boolean} Returns true when an unary operator node, false otherwise.
+     */
+    OperatorNode.prototype.isUnary = function () {
+        return this.args.length === 1;
+    };
+    /**
+     * Check whether this is a binary OperatorNode:
+     * has exactly two arguments, like `a + b`.
+     * @return {boolean} Returns true when a binary operator node, false otherwise.
+     */
+    OperatorNode.prototype.isBinary = function () {
+        return this.args.length === 2;
+    };
+    /**
+     * Calculate which parentheses are necessary. Gets an OperatorNode
+     * (which is the root of the tree) and an Array of Nodes
+     * (this.args) and returns an array where 'true' means that an argument
+     * has to be enclosed in parentheses whereas 'false' means the opposite.
+     *
+     * @param {OperatorNode} root
+     * @param {string} parenthesis
+     * @param {Node[]} args
+     * @param {boolean} latex
+     * @return {boolean[]}
+     * @private
+     */
+    function calculateNecessaryParentheses(root, parenthesis, implicit, args, latex) {
+        // precedence of the root OperatorNode
+        var precedence = operators.getPrecedence(root, parenthesis);
+        var associativity = operators.getAssociativity(root, parenthesis);
+        if (parenthesis === 'all' || args.length > 2 && root.getIdentifier() !== 'OperatorNode:add' && root.getIdentifier() !== 'OperatorNode:multiply') {
+            var parens = args.map(function (arg) {
+                switch (arg.getContent().type) {
+                    // Nodes that don't need extra parentheses
+                    case 'ArrayNode':
+                    case 'ConstantNode':
+                    case 'SymbolNode':
+                    case 'ParenthesisNode':
+                        return false;
+                    default:
+                        return true;
+                }
+            });
+            return parens;
+        }
+        var result;
+        switch (args.length) {
+            case 0:
+                result = [];
+                break;
+            case 1:
+                // unary operators
+                // precedence of the operand
+                var operandPrecedence = operators.getPrecedence(args[0], parenthesis); // handle special cases for LaTeX, where some of the parentheses aren't needed
+                if (latex && operandPrecedence !== null) {
+                    var operandIdentifier;
+                    var rootIdentifier;
+                    if (parenthesis === 'keep') {
+                        operandIdentifier = args[0].getIdentifier();
+                        rootIdentifier = root.getIdentifier();
+                    }
+                    else {
+                        // Ignore Parenthesis Nodes when not in 'keep' mode
+                        operandIdentifier = args[0].getContent().getIdentifier();
+                        rootIdentifier = root.getContent().getIdentifier();
+                    }
+                    if (operators.properties[precedence][rootIdentifier].latexLeftParens === false) {
+                        result = [false];
+                        break;
+                    }
+                    if (operators.properties[operandPrecedence][operandIdentifier].latexParens === false) {
+                        result = [false];
+                        break;
+                    }
+                }
+                if (operandPrecedence === null) {
+                    // if the operand has no defined precedence, no parens are needed
+                    result = [false];
+                    break;
+                }
+                if (operandPrecedence <= precedence) {
+                    // if the operands precedence is lower, parens are needed
+                    result = [true];
+                    break;
+                } // otherwise, no parens needed
+                result = [false];
+                break;
+            case 2:
+                // binary operators
+                var lhsParens; // left hand side needs parenthesis?
+                // precedence of the left hand side
+                var lhsPrecedence = operators.getPrecedence(args[0], parenthesis); // is the root node associative with the left hand side
+                var assocWithLhs = operators.isAssociativeWith(root, args[0], parenthesis);
+                if (lhsPrecedence === null) {
+                    // if the left hand side has no defined precedence, no parens are needed
+                    // FunctionNode for example
+                    lhsParens = false;
+                }
+                else if (lhsPrecedence === precedence && associativity === 'right' && !assocWithLhs) {
+                    // In case of equal precedence, if the root node is left associative
+                    // parens are **never** necessary for the left hand side.
+                    // If it is right associative however, parens are necessary
+                    // if the root node isn't associative with the left hand side
+                    lhsParens = true;
+                }
+                else if (lhsPrecedence < precedence) {
+                    lhsParens = true;
+                }
+                else {
+                    lhsParens = false;
+                }
+                var rhsParens; // right hand side needs parenthesis?
+                // precedence of the right hand side
+                var rhsPrecedence = operators.getPrecedence(args[1], parenthesis); // is the root node associative with the right hand side?
+                var assocWithRhs = operators.isAssociativeWith(root, args[1], parenthesis);
+                if (rhsPrecedence === null) {
+                    // if the right hand side has no defined precedence, no parens are needed
+                    // FunctionNode for example
+                    rhsParens = false;
+                }
+                else if (rhsPrecedence === precedence && associativity === 'left' && !assocWithRhs) {
+                    // In case of equal precedence, if the root node is right associative
+                    // parens are **never** necessary for the right hand side.
+                    // If it is left associative however, parens are necessary
+                    // if the root node isn't associative with the right hand side
+                    rhsParens = true;
+                }
+                else if (rhsPrecedence < precedence) {
+                    rhsParens = true;
+                }
+                else {
+                    rhsParens = false;
+                } // handle special cases for LaTeX, where some of the parentheses aren't needed
+                if (latex) {
+                    var _rootIdentifier;
+                    var lhsIdentifier;
+                    var rhsIdentifier;
+                    if (parenthesis === 'keep') {
+                        _rootIdentifier = root.getIdentifier();
+                        lhsIdentifier = root.args[0].getIdentifier();
+                        rhsIdentifier = root.args[1].getIdentifier();
+                    }
+                    else {
+                        // Ignore ParenthesisNodes when not in 'keep' mode
+                        _rootIdentifier = root.getContent().getIdentifier();
+                        lhsIdentifier = root.args[0].getContent().getIdentifier();
+                        rhsIdentifier = root.args[1].getContent().getIdentifier();
+                    }
+                    if (lhsPrecedence !== null) {
+                        if (operators.properties[precedence][_rootIdentifier].latexLeftParens === false) {
+                            lhsParens = false;
+                        }
+                        if (operators.properties[lhsPrecedence][lhsIdentifier].latexParens === false) {
+                            lhsParens = false;
+                        }
+                    }
+                    if (rhsPrecedence !== null) {
+                        if (operators.properties[precedence][_rootIdentifier].latexRightParens === false) {
+                            rhsParens = false;
+                        }
+                        if (operators.properties[rhsPrecedence][rhsIdentifier].latexParens === false) {
+                            rhsParens = false;
+                        }
+                    }
+                }
+                result = [lhsParens, rhsParens];
+                break;
+            default:
+                if (root.getIdentifier() === 'OperatorNode:add' || root.getIdentifier() === 'OperatorNode:multiply') {
+                    result = args.map(function (arg) {
+                        var argPrecedence = operators.getPrecedence(arg, parenthesis);
+                        var assocWithArg = operators.isAssociativeWith(root, arg, parenthesis);
+                        var argAssociativity = operators.getAssociativity(arg, parenthesis);
+                        if (argPrecedence === null) {
+                            // if the argument has no defined precedence, no parens are needed
+                            return false;
+                        }
+                        else if (precedence === argPrecedence && associativity === argAssociativity && !assocWithArg) {
+                            return true;
+                        }
+                        else if (argPrecedence < precedence) {
+                            return true;
+                        }
+                        return false;
+                    });
+                }
+                break;
+        } // handles an edge case of 'auto' parentheses with implicit multiplication of ConstantNode
+        // In that case print parentheses for ParenthesisNodes even though they normally wouldn't be
+        // printed.
+        if (args.length >= 2 && root.getIdentifier() === 'OperatorNode:multiply' && root.implicit && parenthesis === 'auto' && implicit === 'hide') {
+            result = args.map(function (arg, index) {
+                var isParenthesisNode = arg.getIdentifier() === 'ParenthesisNode';
+                if (result[index] || isParenthesisNode) {
+                    // put in parenthesis?
+                    return true;
+                }
+                return false;
+            });
+        }
+        return result;
+    }
+    /**
+     * Get string representation.
+     * @param {Object} options
+     * @return {string} str
+     */
+    OperatorNode.prototype._toString = function (options) {
+        var parenthesis = options && options.parenthesis ? options.parenthesis : 'keep';
+        var implicit = options && options.implicit ? options.implicit : 'hide';
+        var args = this.args;
+        var parens = calculateNecessaryParentheses(this, parenthesis, implicit, args, false);
+        if (args.length === 1) {
+            // unary operators
+            var assoc = operators.getAssociativity(this, parenthesis);
+            var operand = args[0].toString(options);
+            if (parens[0]) {
+                operand = '(' + operand + ')';
+            } // for example for "not", we want a space between operand and argument
+            var opIsNamed = /[a-zA-Z]+/.test(this.op);
+            if (assoc === 'right') {
+                // prefix operator
+                return this.op + (opIsNamed ? ' ' : '') + operand;
+            }
+            else if (assoc === 'left') {
+                // postfix
+                return operand + (opIsNamed ? ' ' : '') + this.op;
+            } // fall back to postfix
+            return operand + this.op;
+        }
+        else if (args.length === 2) {
+            var lhs = args[0].toString(options); // left hand side
+            var rhs = args[1].toString(options); // right hand side
+            if (parens[0]) {
+                // left hand side in parenthesis?
+                lhs = '(' + lhs + ')';
+            }
+            if (parens[1]) {
+                // right hand side in parenthesis?
+                rhs = '(' + rhs + ')';
+            }
+            if (this.implicit && this.getIdentifier() === 'OperatorNode:multiply' && implicit === 'hide') {
+                return lhs + ' ' + rhs;
+            }
+            return lhs + ' ' + this.op + ' ' + rhs;
+        }
+        else if (args.length > 2 && (this.getIdentifier() === 'OperatorNode:add' || this.getIdentifier() === 'OperatorNode:multiply')) {
+            var stringifiedArgs = args.map(function (arg, index) {
+                arg = arg.toString(options);
+                if (parens[index]) {
+                    // put in parenthesis?
+                    arg = '(' + arg + ')';
+                }
+                return arg;
+            });
+            if (this.implicit && this.getIdentifier() === 'OperatorNode:multiply' && implicit === 'hide') {
+                return stringifiedArgs.join(' ');
+            }
+            return stringifiedArgs.join(' ' + this.op + ' ');
+        }
+        else {
+            // fallback to formatting as a function call
+            return this.fn + '(' + this.args.join(', ') + ')';
+        }
+    };
+    /**
+     * Get a JSON representation of the node
+     * @returns {Object}
+     */
+    OperatorNode.prototype.toJSON = function () {
+        return {
+            mathjs: 'OperatorNode',
+            op: this.op,
+            fn: this.fn,
+            args: this.args,
+            implicit: this.implicit
+        };
+    };
+    /**
+     * Instantiate an OperatorNode from its JSON representation
+     * @param {Object} json  An object structured like
+     *                       `{"mathjs": "OperatorNode", "op": "+", "fn": "add", "args": [...], "implicit": false}`,
+     *                       where mathjs is optional
+     * @returns {OperatorNode}
+     */
+    OperatorNode.fromJSON = function (json) {
+        return new OperatorNode(json.op, json.fn, json.args, json.implicit);
+    };
+    /**
+     * Get HTML representation.
+     * @param {Object} options
+     * @return {string} str
+     */
+    OperatorNode.prototype.toHTML = function (options) {
+        var parenthesis = options && options.parenthesis ? options.parenthesis : 'keep';
+        var implicit = options && options.implicit ? options.implicit : 'hide';
+        var args = this.args;
+        var parens = calculateNecessaryParentheses(this, parenthesis, implicit, args, false);
+        if (args.length === 1) {
+            // unary operators
+            var assoc = operators.getAssociativity(this, parenthesis);
+            var operand = args[0].toHTML(options);
+            if (parens[0]) {
+                operand = '<span class="math-parenthesis math-round-parenthesis">(</span>' + operand + '<span class="math-parenthesis math-round-parenthesis">)</span>';
+            }
+            if (assoc === 'right') {
+                // prefix operator
+                return '<span class="math-operator math-unary-operator math-lefthand-unary-operator">' + escape$3(this.op) + '</span>' + operand;
+            }
+            else {
+                // postfix when assoc === 'left' or undefined
+                return operand + '<span class="math-operator math-unary-operator math-righthand-unary-operator">' + escape$3(this.op) + '</span>';
+            }
+        }
+        else if (args.length === 2) {
+            // binary operatoes
+            var lhs = args[0].toHTML(options); // left hand side
+            var rhs = args[1].toHTML(options); // right hand side
+            if (parens[0]) {
+                // left hand side in parenthesis?
+                lhs = '<span class="math-parenthesis math-round-parenthesis">(</span>' + lhs + '<span class="math-parenthesis math-round-parenthesis">)</span>';
+            }
+            if (parens[1]) {
+                // right hand side in parenthesis?
+                rhs = '<span class="math-parenthesis math-round-parenthesis">(</span>' + rhs + '<span class="math-parenthesis math-round-parenthesis">)</span>';
+            }
+            if (this.implicit && this.getIdentifier() === 'OperatorNode:multiply' && implicit === 'hide') {
+                return lhs + '<span class="math-operator math-binary-operator math-implicit-binary-operator"></span>' + rhs;
+            }
+            return lhs + '<span class="math-operator math-binary-operator math-explicit-binary-operator">' + escape$3(this.op) + '</span>' + rhs;
+        }
+        else {
+            var stringifiedArgs = args.map(function (arg, index) {
+                arg = arg.toHTML(options);
+                if (parens[index]) {
+                    // put in parenthesis?
+                    arg = '<span class="math-parenthesis math-round-parenthesis">(</span>' + arg + '<span class="math-parenthesis math-round-parenthesis">)</span>';
+                }
+                return arg;
+            });
+            if (args.length > 2 && (this.getIdentifier() === 'OperatorNode:add' || this.getIdentifier() === 'OperatorNode:multiply')) {
+                if (this.implicit && this.getIdentifier() === 'OperatorNode:multiply' && implicit === 'hide') {
+                    return stringifiedArgs.join('<span class="math-operator math-binary-operator math-implicit-binary-operator"></span>');
+                }
+                return stringifiedArgs.join('<span class="math-operator math-binary-operator math-explicit-binary-operator">' + escape$3(this.op) + '</span>');
+            }
+            else {
+                // fallback to formatting as a function call
+                return '<span class="math-function">' + escape$3(this.fn) + '</span><span class="math-paranthesis math-round-parenthesis">(</span>' + stringifiedArgs.join('<span class="math-separator">,</span>') + '<span class="math-paranthesis math-round-parenthesis">)</span>';
+            }
+        }
+    };
+    /**
+     * Get LaTeX representation
+     * @param {Object} options
+     * @return {string} str
+     */
+    OperatorNode.prototype._toTex = function (options) {
+        var parenthesis = options && options.parenthesis ? options.parenthesis : 'keep';
+        var implicit = options && options.implicit ? options.implicit : 'hide';
+        var args = this.args;
+        var parens = calculateNecessaryParentheses(this, parenthesis, implicit, args, true);
+        var op = latex.operators[this.fn];
+        op = typeof op === 'undefined' ? this.op : op; // fall back to using this.op
+        if (args.length === 1) {
+            // unary operators
+            var assoc = operators.getAssociativity(this, parenthesis);
+            var operand = args[0].toTex(options);
+            if (parens[0]) {
+                operand = "\\left(".concat(operand, "\\right)");
+            }
+            if (assoc === 'right') {
+                // prefix operator
+                return op + operand;
+            }
+            else if (assoc === 'left') {
+                // postfix operator
+                return operand + op;
+            } // fall back to postfix
+            return operand + op;
+        }
+        else if (args.length === 2) {
+            // binary operators
+            var lhs = args[0]; // left hand side
+            var lhsTex = lhs.toTex(options);
+            if (parens[0]) {
+                lhsTex = "\\left(".concat(lhsTex, "\\right)");
+            }
+            var rhs = args[1]; // right hand side
+            var rhsTex = rhs.toTex(options);
+            if (parens[1]) {
+                rhsTex = "\\left(".concat(rhsTex, "\\right)");
+            } // handle some exceptions (due to the way LaTeX works)
+            var lhsIdentifier;
+            if (parenthesis === 'keep') {
+                lhsIdentifier = lhs.getIdentifier();
+            }
+            else {
+                // Ignore ParenthesisNodes if in 'keep' mode
+                lhsIdentifier = lhs.getContent().getIdentifier();
+            }
+            switch (this.getIdentifier()) {
+                case 'OperatorNode:divide':
+                    // op contains '\\frac' at this point
+                    return op + '{' + lhsTex + '}' + '{' + rhsTex + '}';
+                case 'OperatorNode:pow':
+                    lhsTex = '{' + lhsTex + '}';
+                    rhsTex = '{' + rhsTex + '}';
+                    switch (lhsIdentifier) {
+                        case 'ConditionalNode': //
+                        case 'OperatorNode:divide':
+                            lhsTex = "\\left(".concat(lhsTex, "\\right)");
+                    }
+                    break;
+                case 'OperatorNode:multiply':
+                    if (this.implicit && implicit === 'hide') {
+                        return lhsTex + '~' + rhsTex;
+                    }
+            }
+            return lhsTex + op + rhsTex;
+        }
+        else if (args.length > 2 && (this.getIdentifier() === 'OperatorNode:add' || this.getIdentifier() === 'OperatorNode:multiply')) {
+            var texifiedArgs = args.map(function (arg, index) {
+                arg = arg.toTex(options);
+                if (parens[index]) {
+                    arg = "\\left(".concat(arg, "\\right)");
+                }
+                return arg;
+            });
+            if (this.getIdentifier() === 'OperatorNode:multiply' && this.implicit) {
+                return texifiedArgs.join('~');
+            }
+            return texifiedArgs.join(op);
+        }
+        else {
+            // fall back to formatting as a function call
+            // as this is a fallback, it doesn't use
+            // fancy function names
+            return '\\mathrm{' + this.fn + '}\\left(' + args.map(function (arg) {
+                return arg.toTex(options);
+            }).join(',') + '\\right)';
+        }
+    };
+    /**
+     * Get identifier.
+     * @return {string}
+     */
+    OperatorNode.prototype.getIdentifier = function () {
+        return this.type + ':' + this.fn;
+    };
+    return OperatorNode;
+}
+var name$l = 'OperatorNode';
+var path$d = 'expression.node';
+var factory_1$n = factory$n;
+var OperatorNode = {
+    name: name$l,
+    path: path$d,
+    factory: factory_1$n
+};
+function factory$o(type, config, load, typed) {
+    var Node$1 = load(Node);
+    /**
+     * @constructor ParenthesisNode
+     * @extends {Node}
+     * A parenthesis node describes manual parenthesis from the user input
+     * @param {Node} content
+     * @extends {Node}
+     */
+    function ParenthesisNode(content) {
+        if (!(this instanceof ParenthesisNode)) {
+            throw new SyntaxError('Constructor must be called with the new operator');
+        } // validate input
+        if (!type.isNode(content)) {
+            throw new TypeError('Node expected for parameter "content"');
+        }
+        this.content = content;
+    }
+    ParenthesisNode.prototype = new Node$1();
+    ParenthesisNode.prototype.type = 'ParenthesisNode';
+    ParenthesisNode.prototype.isParenthesisNode = true;
+    /**
+     * Compile a node into a JavaScript function.
+     * This basically pre-calculates as much as possible and only leaves open
+     * calculations which depend on a dynamic scope with variables.
+     * @param {Object} math     Math.js namespace with functions and constants.
+     * @param {Object} argNames An object with argument names as key and `true`
+     *                          as value. Used in the SymbolNode to optimize
+     *                          for arguments from user assigned functions
+     *                          (see FunctionAssignmentNode) or special symbols
+     *                          like `end` (see IndexNode).
+     * @return {function} Returns a function which can be called like:
+     *                        evalNode(scope: Object, args: Object, context: *)
+     */
+    ParenthesisNode.prototype._compile = function (math, argNames) {
+        return this.content._compile(math, argNames);
+    };
+    /**
+     * Get the content of the current Node.
+     * @return {Node} content
+     * @override
+     **/
+    ParenthesisNode.prototype.getContent = function () {
+        return this.content.getContent();
+    };
+    /**
+     * Execute a callback for each of the child nodes of this node
+     * @param {function(child: Node, path: string, parent: Node)} callback
+     */
+    ParenthesisNode.prototype.forEach = function (callback) {
+        callback(this.content, 'content', this);
+    };
+    /**
+     * Create a new ParenthesisNode having it's childs be the results of calling
+     * the provided callback function for each of the childs of the original node.
+     * @param {function(child: Node, path: string, parent: Node) : Node} callback
+     * @returns {ParenthesisNode} Returns a clone of the node
+     */
+    ParenthesisNode.prototype.map = function (callback) {
+        var content = callback(this.content, 'content', this);
+        return new ParenthesisNode(content);
+    };
+    /**
+     * Create a clone of this node, a shallow copy
+     * @return {ParenthesisNode}
+     */
+    ParenthesisNode.prototype.clone = function () {
+        return new ParenthesisNode(this.content);
+    };
+    /**
+     * Get string representation
+     * @param {Object} options
+     * @return {string} str
+     * @override
+     */
+    ParenthesisNode.prototype._toString = function (options) {
+        if (!options || options && !options.parenthesis || options && options.parenthesis === 'keep') {
+            return '(' + this.content.toString(options) + ')';
+        }
+        return this.content.toString(options);
+    };
+    /**
+     * Get a JSON representation of the node
+     * @returns {Object}
+     */
+    ParenthesisNode.prototype.toJSON = function () {
+        return {
+            mathjs: 'ParenthesisNode',
+            content: this.content
+        };
+    };
+    /**
+     * Instantiate an ParenthesisNode from its JSON representation
+     * @param {Object} json  An object structured like
+     *                       `{"mathjs": "ParenthesisNode", "content": ...}`,
+     *                       where mathjs is optional
+     * @returns {ParenthesisNode}
+     */
+    ParenthesisNode.fromJSON = function (json) {
+        return new ParenthesisNode(json.content);
+    };
+    /**
+     * Get HTML representation
+     * @param {Object} options
+     * @return {string} str
+     * @override
+     */
+    ParenthesisNode.prototype.toHTML = function (options) {
+        if (!options || options && !options.parenthesis || options && options.parenthesis === 'keep') {
+            return '<span class="math-parenthesis math-round-parenthesis">(</span>' + this.content.toHTML(options) + '<span class="math-parenthesis math-round-parenthesis">)</span>';
+        }
+        return this.content.toHTML(options);
+    };
+    /**
+     * Get LaTeX representation
+     * @param {Object} options
+     * @return {string} str
+     * @override
+     */
+    ParenthesisNode.prototype._toTex = function (options) {
+        if (!options || options && !options.parenthesis || options && options.parenthesis === 'keep') {
+            return "\\left(".concat(this.content.toTex(options), "\\right)");
+        }
+        return this.content.toTex(options);
+    };
+    return ParenthesisNode;
+}
+var name$m = 'ParenthesisNode';
+var path$e = 'expression.node';
+var factory_1$o = factory$o;
+var ParenthesisNode = {
+    name: name$m,
+    path: path$e,
+    factory: factory_1$o
+};
+var escape$4 = string.escape;
+var hasOwnProperty$3 = object.hasOwnProperty;
+var getSafeProperty$6 = customs.getSafeProperty;
+function factory$p(type, config, load, typed, math) {
+    var Node$1 = load(Node);
+    /**
+     * Check whether some name is a valueless unit like "inch".
+     * @param {string} name
+     * @return {boolean}
+     */
+    function isValuelessUnit(name) {
+        return type.Unit ? type.Unit.isValuelessUnit(name) : false;
+    }
+    /**
+     * @constructor SymbolNode
+     * @extends {Node}
+     * A symbol node can hold and resolve a symbol
+     * @param {string} name
+     * @extends {Node}
+     */
+    function SymbolNode(name) {
+        if (!(this instanceof SymbolNode)) {
+            throw new SyntaxError('Constructor must be called with the new operator');
+        } // validate input
+        if (typeof name !== 'string')
+            throw new TypeError('String expected for parameter "name"');
+        this.name = name;
+    }
+    SymbolNode.prototype = new Node$1();
+    SymbolNode.prototype.type = 'SymbolNode';
+    SymbolNode.prototype.isSymbolNode = true;
+    /**
+     * Compile a node into a JavaScript function.
+     * This basically pre-calculates as much as possible and only leaves open
+     * calculations which depend on a dynamic scope with variables.
+     * @param {Object} math     Math.js namespace with functions and constants.
+     * @param {Object} argNames An object with argument names as key and `true`
+     *                          as value. Used in the SymbolNode to optimize
+     *                          for arguments from user assigned functions
+     *                          (see FunctionAssignmentNode) or special symbols
+     *                          like `end` (see IndexNode).
+     * @return {function} Returns a function which can be called like:
+     *                        evalNode(scope: Object, args: Object, context: *)
+     */
+    SymbolNode.prototype._compile = function (math, argNames) {
+        var name = this.name;
+        if (hasOwnProperty$3(argNames, name)) {
+            // this is a FunctionAssignment argument
+            // (like an x when inside the expression of a function assignment `f(x) = ...`)
+            return function (scope, args, context) {
+                return args[name];
+            };
+        }
+        else if (name in math) {
+            return function (scope, args, context) {
+                return name in scope ? getSafeProperty$6(scope, name) : getSafeProperty$6(math, name);
+            };
+        }
+        else {
+            var isUnit = isValuelessUnit(name);
+            return function (scope, args, context) {
+                return name in scope ? getSafeProperty$6(scope, name) : isUnit ? new type.Unit(null, name) : undef(name);
+            };
+        }
+    };
+    /**
+     * Execute a callback for each of the child nodes of this node
+     * @param {function(child: Node, path: string, parent: Node)} callback
+     */
+    SymbolNode.prototype.forEach = function (callback) { } // nothing to do, we don't have childs
+    ;
+    SymbolNode.prototype.map = function (callback) {
+        return this.clone();
+    };
+    /**
+     * Throws an error 'Undefined symbol {name}'
+     * @param {string} name
+     */
+    function undef(name) {
+        throw new Error('Undefined symbol ' + name);
+    }
+    /**
+     * Create a clone of this node, a shallow copy
+     * @return {SymbolNode}
+     */
+    SymbolNode.prototype.clone = function () {
+        return new SymbolNode(this.name);
+    };
+    /**
+     * Get string representation
+     * @param {Object} options
+     * @return {string} str
+     * @override
+     */
+    SymbolNode.prototype._toString = function (options) {
+        return this.name;
+    };
+    /**
+     * Get HTML representation
+     * @param {Object} options
+     * @return {string} str
+     * @override
+     */
+    SymbolNode.prototype.toHTML = function (options) {
+        var name = escape$4(this.name);
+        if (name === 'true' || name === 'false') {
+            return '<span class="math-symbol math-boolean">' + name + '</span>';
+        }
+        else if (name === 'i') {
+            return '<span class="math-symbol math-imaginary-symbol">' + name + '</span>';
+        }
+        else if (name === 'Infinity') {
+            return '<span class="math-symbol math-infinity-symbol">' + name + '</span>';
+        }
+        else if (name === 'NaN') {
+            return '<span class="math-symbol math-nan-symbol">' + name + '</span>';
+        }
+        else if (name === 'null') {
+            return '<span class="math-symbol math-null-symbol">' + name + '</span>';
+        }
+        else if (name === 'undefined') {
+            return '<span class="math-symbol math-undefined-symbol">' + name + '</span>';
+        }
+        return '<span class="math-symbol">' + name + '</span>';
+    };
+    /**
+     * Get a JSON representation of the node
+     * @returns {Object}
+     */
+    SymbolNode.prototype.toJSON = function () {
+        return {
+            mathjs: 'SymbolNode',
+            name: this.name
+        };
+    };
+    /**
+     * Instantiate a SymbolNode from its JSON representation
+     * @param {Object} json  An object structured like
+     *                       `{"mathjs": "SymbolNode", name: "x"}`,
+     *                       where mathjs is optional
+     * @returns {SymbolNode}
+     */
+    SymbolNode.fromJSON = function (json) {
+        return new SymbolNode(json.name);
+    };
+    /**
+     * Get LaTeX representation
+     * @param {Object} options
+     * @return {string} str
+     * @override
+     */
+    SymbolNode.prototype._toTex = function (options) {
+        var isUnit = false;
+        if (typeof math[this.name] === 'undefined' && isValuelessUnit(this.name)) {
+            isUnit = true;
+        }
+        var symbol = latex.toSymbol(this.name, isUnit);
+        if (symbol[0] === '\\') {
+            // no space needed if the symbol starts with '\'
+            return symbol;
+        } // the space prevents symbols from breaking stuff like '\cdot' if it's written right before the symbol
+        return ' ' + symbol;
+    };
+    return SymbolNode;
+}
+var name$n = 'SymbolNode';
+var path$f = 'expression.node';
+var math$3 = true; // request access to the math namespace as 5th argument of the factory function
+var factory_1$p = factory$p;
+var SymbolNode = {
+    name: name$n,
+    path: path$f,
+    math: math$3,
+    factory: factory_1$p
+};
+function _typeof$8(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
+    _typeof$8 = function _typeof(obj) { return typeof obj; };
+}
+else {
+    _typeof$8 = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+} return _typeof$8(obj); }
+function _extends$1() { _extends$1 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i];
+    for (var key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+        }
+    }
+} return target; }; return _extends$1.apply(this, arguments); }
+var latex$1 = latex;
+var escape$5 = string.escape;
+var hasOwnProperty$4 = object.hasOwnProperty;
+var map$4 = array.map;
+var validateSafeMethod$1 = customs.validateSafeMethod;
+var getSafeProperty$7 = customs.getSafeProperty;
+function factory$q(type, config, load, typed, math) {
+    var Node$1 = load(Node);
+    var SymbolNode$1 = load(SymbolNode);
+    /**
+     * @constructor FunctionNode
+     * @extends {./Node}
+     * invoke a list with arguments on a node
+     * @param {./Node | string} fn Node resolving with a function on which to invoke
+     *                             the arguments, typically a SymboNode or AccessorNode
+     * @param {./Node[]} args
+     */
+    function FunctionNode(fn, args) {
+        if (!(this instanceof FunctionNode)) {
+            throw new SyntaxError('Constructor must be called with the new operator');
+        }
+        if (typeof fn === 'string') {
+            fn = new SymbolNode$1(fn);
+        } // validate input
+        if (!type.isNode(fn))
+            throw new TypeError('Node expected as parameter "fn"');
+        if (!Array.isArray(args) || !args.every(type.isNode)) {
+            throw new TypeError('Array containing Nodes expected for parameter "args"');
+        }
+        this.fn = fn;
+        this.args = args || []; // readonly property name
+        Object.defineProperty(this, 'name', {
+            get: function () {
+                return this.fn.name || '';
+            }.bind(this),
+            set: function set() {
+                throw new Error('Cannot assign a new name, name is read-only');
+            }
+        }); // TODO: deprecated since v3, remove some day
+        var deprecated = function deprecated() {
+            throw new Error('Property `FunctionNode.object` is deprecated, use `FunctionNode.fn` instead');
+        };
+        Object.defineProperty(this, 'object', {
+            get: deprecated,
+            set: deprecated
+        });
+    }
+    FunctionNode.prototype = new Node$1();
+    FunctionNode.prototype.type = 'FunctionNode';
+    FunctionNode.prototype.isFunctionNode = true;
+    /**
+     * Compile a node into a JavaScript function.
+     * This basically pre-calculates as much as possible and only leaves open
+     * calculations which depend on a dynamic scope with variables.
+     * @param {Object} math     Math.js namespace with functions and constants.
+     * @param {Object} argNames An object with argument names as key and `true`
+     *                          as value. Used in the SymbolNode to optimize
+     *                          for arguments from user assigned functions
+     *                          (see FunctionAssignmentNode) or special symbols
+     *                          like `end` (see IndexNode).
+     * @return {function} Returns a function which can be called like:
+     *                        evalNode(scope: Object, args: Object, context: *)
+     */
+    FunctionNode.prototype._compile = function (math, argNames) {
+        if (!(this instanceof FunctionNode)) {
+            throw new TypeError('No valid FunctionNode');
+        } // compile arguments
+        var evalArgs = map$4(this.args, function (arg) {
+            return arg._compile(math, argNames);
+        });
+        if (type.isSymbolNode(this.fn)) {
+            // we can statically determine whether the function has an rawArgs property
+            var name = this.fn.name;
+            var fn = name in math ? getSafeProperty$7(math, name) : undefined;
+            var isRaw = typeof fn === 'function' && fn.rawArgs === true;
+            if (isRaw) {
+                // pass unevaluated parameters (nodes) to the function
+                // "raw" evaluation
+                var rawArgs = this.args;
+                return function evalFunctionNode(scope, args, context) {
+                    return (name in scope ? getSafeProperty$7(scope, name) : fn)(rawArgs, math, _extends$1({}, scope, args));
+                };
+            }
+            else {
+                // "regular" evaluation
+                if (evalArgs.length === 1) {
+                    var evalArg0 = evalArgs[0];
+                    return function evalFunctionNode(scope, args, context) {
+                        return (name in scope ? getSafeProperty$7(scope, name) : fn)(evalArg0(scope, args, context));
+                    };
+                }
+                else if (evalArgs.length === 2) {
+                    var _evalArg = evalArgs[0];
+                    var evalArg1 = evalArgs[1];
+                    return function evalFunctionNode(scope, args, context) {
+                        return (name in scope ? getSafeProperty$7(scope, name) : fn)(_evalArg(scope, args, context), evalArg1(scope, args, context));
+                    };
+                }
+                else {
+                    return function evalFunctionNode(scope, args, context) {
+                        return (name in scope ? getSafeProperty$7(scope, name) : fn).apply(null, map$4(evalArgs, function (evalArg) {
+                            return evalArg(scope, args, context);
+                        }));
+                    };
+                }
+            }
+        }
+        else if (type.isAccessorNode(this.fn) && type.isIndexNode(this.fn.index) && this.fn.index.isObjectProperty()) {
+            // execute the function with the right context: the object of the AccessorNode
+            var evalObject = this.fn.object._compile(math, argNames);
+            var prop = this.fn.index.getObjectProperty();
+            var _rawArgs = this.args;
+            return function evalFunctionNode(scope, args, context) {
+                var object = evalObject(scope, args, context);
+                validateSafeMethod$1(object, prop);
+                var isRaw = object[prop] && object[prop].rawArgs;
+                return isRaw ? object[prop](_rawArgs, math, _extends$1({}, scope, args)) // "raw" evaluation
+                    : object[prop].apply(object, map$4(evalArgs, function (evalArg) {
+                        // "regular" evaluation
+                        return evalArg(scope, args, context);
+                    }));
+            };
+        }
+        else {
+            // node.fn.isAccessorNode && !node.fn.index.isObjectProperty()
+            // we have to dynamically determine whether the function has a rawArgs property
+            var evalFn = this.fn._compile(math, argNames);
+            var _rawArgs2 = this.args;
+            return function evalFunctionNode(scope, args, context) {
+                var fn = evalFn(scope, args, context);
+                var isRaw = fn && fn.rawArgs;
+                return isRaw ? fn(_rawArgs2, math, _extends$1({}, scope, args)) // "raw" evaluation
+                    : fn.apply(fn, map$4(evalArgs, function (evalArg) {
+                        // "regular" evaluation
+                        return evalArg(scope, args, context);
+                    }));
+            };
+        }
+    };
+    /**
+     * Execute a callback for each of the child nodes of this node
+     * @param {function(child: Node, path: string, parent: Node)} callback
+     */
+    FunctionNode.prototype.forEach = function (callback) {
+        callback(this.fn, 'fn', this);
+        for (var i = 0; i < this.args.length; i++) {
+            callback(this.args[i], 'args[' + i + ']', this);
+        }
+    };
+    /**
+     * Create a new FunctionNode having it's childs be the results of calling
+     * the provided callback function for each of the childs of the original node.
+     * @param {function(child: Node, path: string, parent: Node): Node} callback
+     * @returns {FunctionNode} Returns a transformed copy of the node
+     */
+    FunctionNode.prototype.map = function (callback) {
+        var fn = this._ifNode(callback(this.fn, 'fn', this));
+        var args = [];
+        for (var i = 0; i < this.args.length; i++) {
+            args[i] = this._ifNode(callback(this.args[i], 'args[' + i + ']', this));
+        }
+        return new FunctionNode(fn, args);
+    };
+    /**
+     * Create a clone of this node, a shallow copy
+     * @return {FunctionNode}
+     */
+    FunctionNode.prototype.clone = function () {
+        return new FunctionNode(this.fn, this.args.slice(0));
+    }; // backup Node's toString function
+    // @private
+    var nodeToString = FunctionNode.prototype.toString;
+    /**
+     * Get string representation. (wrapper function)
+     * This overrides parts of Node's toString function.
+     * If callback is an object containing callbacks, it
+     * calls the correct callback for the current node,
+     * otherwise it falls back to calling Node's toString
+     * function.
+     *
+     * @param {Object} options
+     * @return {string} str
+     * @override
+     */
+    FunctionNode.prototype.toString = function (options) {
+        var customString;
+        var name = this.fn.toString(options);
+        if (options && _typeof$8(options.handler) === 'object' && hasOwnProperty$4(options.handler, name)) {
+            // callback is a map of callback functions
+            customString = options.handler[name](this, options);
+        }
+        if (typeof customString !== 'undefined') {
+            return customString;
+        } // fall back to Node's toString
+        return nodeToString.call(this, options);
+    };
+    /**
+     * Get string representation
+     * @param {Object} options
+     * @return {string} str
+     */
+    FunctionNode.prototype._toString = function (options) {
+        var args = this.args.map(function (arg) {
+            return arg.toString(options);
+        });
+        var fn = type.isFunctionAssignmentNode(this.fn) ? '(' + this.fn.toString(options) + ')' : this.fn.toString(options); // format the arguments like "add(2, 4.2)"
+        return fn + '(' + args.join(', ') + ')';
+    };
+    /**
+     * Get a JSON representation of the node
+     * @returns {Object}
+     */
+    FunctionNode.prototype.toJSON = function () {
+        return {
+            mathjs: 'FunctionNode',
+            fn: this.fn,
+            args: this.args
+        };
+    };
+    /**
+     * Instantiate an AssignmentNode from its JSON representation
+     * @param {Object} json  An object structured like
+     *                       `{"mathjs": "FunctionNode", fn: ..., args: ...}`,
+     *                       where mathjs is optional
+     * @returns {FunctionNode}
+     */
+    FunctionNode.fromJSON = function (json) {
+        return new FunctionNode(json.fn, json.args);
+    };
+    /**
+     * Get HTML representation
+     * @param {Object} options
+     * @return {string} str
+     */
+    FunctionNode.prototype.toHTML = function (options) {
+        var args = this.args.map(function (arg) {
+            return arg.toHTML(options);
+        }); // format the arguments like "add(2, 4.2)"
+        return '<span class="math-function">' + escape$5(this.fn) + '</span><span class="math-paranthesis math-round-parenthesis">(</span>' + args.join('<span class="math-separator">,</span>') + '<span class="math-paranthesis math-round-parenthesis">)</span>';
+    };
+    /*
+     * Expand a LaTeX template
+     *
+     * @param {string} template
+     * @param {Node} node
+     * @param {Object} options
+     * @private
+     **/
+    function expandTemplate(template, node, options) {
+        var latex = ''; // Match everything of the form ${identifier} or ${identifier[2]} or $$
+        // while submatching identifier and 2 (in the second case)
+        var regex = new RegExp('\\$(?:\\{([a-z_][a-z_0-9]*)(?:\\[([0-9]+)\\])?\\}|\\$)', 'ig');
+        var inputPos = 0; // position in the input string
+        var match;
+        while ((match = regex.exec(template)) !== null) {
+            // go through all matches
+            // add everything in front of the match to the LaTeX string
+            latex += template.substring(inputPos, match.index);
+            inputPos = match.index;
+            if (match[0] === '$$') {
+                // escaped dollar sign
+                latex += '$';
+                inputPos++;
+            }
+            else {
+                // template parameter
+                inputPos += match[0].length;
+                var property = node[match[1]];
+                if (!property) {
+                    throw new ReferenceError('Template: Property ' + match[1] + ' does not exist.');
+                }
+                if (match[2] === undefined) {
+                    // no square brackets
+                    switch (_typeof$8(property)) {
+                        case 'string':
+                            latex += property;
+                            break;
+                        case 'object':
+                            if (type.isNode(property)) {
+                                latex += property.toTex(options);
+                            }
+                            else if (Array.isArray(property)) {
+                                // make array of Nodes into comma separated list
+                                latex += property.map(function (arg, index) {
+                                    if (type.isNode(arg)) {
+                                        return arg.toTex(options);
+                                    }
+                                    throw new TypeError('Template: ' + match[1] + '[' + index + '] is not a Node.');
+                                }).join(',');
+                            }
+                            else {
+                                throw new TypeError('Template: ' + match[1] + ' has to be a Node, String or array of Nodes');
+                            }
+                            break;
+                        default:
+                            throw new TypeError('Template: ' + match[1] + ' has to be a Node, String or array of Nodes');
+                    }
+                }
+                else {
+                    // with square brackets
+                    if (type.isNode(property[match[2]] && property[match[2]])) {
+                        latex += property[match[2]].toTex(options);
+                    }
+                    else {
+                        throw new TypeError('Template: ' + match[1] + '[' + match[2] + '] is not a Node.');
+                    }
+                }
+            }
+        }
+        latex += template.slice(inputPos); // append rest of the template
+        return latex;
+    } // backup Node's toTex function
+    // @private
+    var nodeToTex = FunctionNode.prototype.toTex;
+    /**
+     * Get LaTeX representation. (wrapper function)
+     * This overrides parts of Node's toTex function.
+     * If callback is an object containing callbacks, it
+     * calls the correct callback for the current node,
+     * otherwise it falls back to calling Node's toTex
+     * function.
+     *
+     * @param {Object} options
+     * @return {string}
+     */
+    FunctionNode.prototype.toTex = function (options) {
+        var customTex;
+        if (options && _typeof$8(options.handler) === 'object' && hasOwnProperty$4(options.handler, this.name)) {
+            // callback is a map of callback functions
+            customTex = options.handler[this.name](this, options);
+        }
+        if (typeof customTex !== 'undefined') {
+            return customTex;
+        } // fall back to Node's toTex
+        return nodeToTex.call(this, options);
+    };
+    /**
+     * Get LaTeX representation
+     * @param {Object} options
+     * @return {string} str
+     */
+    FunctionNode.prototype._toTex = function (options) {
+        var args = this.args.map(function (arg) {
+            // get LaTeX of the arguments
+            return arg.toTex(options);
+        });
+        var latexConverter;
+        if (math[this.name] && (typeof math[this.name].toTex === 'function' || _typeof$8(math[this.name].toTex) === 'object' || typeof math[this.name].toTex === 'string')) {
+            // .toTex is a callback function
+            latexConverter = math[this.name].toTex;
+        }
+        var customToTex;
+        switch (_typeof$8(latexConverter)) {
+            case 'function':
+                // a callback function
+                customToTex = latexConverter(this, options);
+                break;
+            case 'string':
+                // a template string
+                customToTex = expandTemplate(latexConverter, this, options);
+                break;
+            case 'object':
+                // an object with different "converters" for different numbers of arguments
+                switch (_typeof$8(latexConverter[args.length])) {
+                    case 'function':
+                        customToTex = latexConverter[args.length](this, options);
+                        break;
+                    case 'string':
+                        customToTex = expandTemplate(latexConverter[args.length], this, options);
+                        break;
+                }
+        }
+        if (typeof customToTex !== 'undefined') {
+            return customToTex;
+        }
+        return expandTemplate(latex$1.defaultTemplate, this, options);
+    };
+    /**
+     * Get identifier.
+     * @return {string}
+     */
+    FunctionNode.prototype.getIdentifier = function () {
+        return this.type + ':' + this.name;
+    };
+    return FunctionNode;
+}
+var name$o = 'FunctionNode';
+var path$g = 'expression.node';
+var math$4 = true; // request access to the math namespace as 5th argument of the factory function
+var factory_1$q = factory$q;
+var FunctionNode = {
+    name: name$o,
+    path: path$g,
+    math: math$4,
+    factory: factory_1$q
+};
+function factory$r(type, config, load, typed) {
+    var Node$1 = load(Node);
+    /**
+     * @constructor RangeNode
+     * @extends {Node}
+     * create a range
+     * @param {Node} start  included lower-bound
+     * @param {Node} end    included upper-bound
+     * @param {Node} [step] optional step
+     */
+    function RangeNode(start, end, step) {
+        if (!(this instanceof RangeNode)) {
+            throw new SyntaxError('Constructor must be called with the new operator');
+        } // validate inputs
+        if (!type.isNode(start))
+            throw new TypeError('Node expected');
+        if (!type.isNode(end))
+            throw new TypeError('Node expected');
+        if (step && !type.isNode(step))
+            throw new TypeError('Node expected');
+        if (arguments.length > 3)
+            throw new Error('Too many arguments');
+        this.start = start; // included lower-bound
+        this.end = end; // included upper-bound
+        this.step = step || null; // optional step
+    }
+    RangeNode.prototype = new Node$1();
+    RangeNode.prototype.type = 'RangeNode';
+    RangeNode.prototype.isRangeNode = true;
+    /**
+     * Check whether the RangeNode needs the `end` symbol to be defined.
+     * This end is the size of the Matrix in current dimension.
+     * @return {boolean}
+     */
+    RangeNode.prototype.needsEnd = function () {
+        // find all `end` symbols in this RangeNode
+        var endSymbols = this.filter(function (node) {
+            return type.isSymbolNode(node) && node.name === 'end';
+        });
+        return endSymbols.length > 0;
+    };
+    /**
+     * Compile a node into a JavaScript function.
+     * This basically pre-calculates as much as possible and only leaves open
+     * calculations which depend on a dynamic scope with variables.
+     * @param {Object} math     Math.js namespace with functions and constants.
+     * @param {Object} argNames An object with argument names as key and `true`
+     *                          as value. Used in the SymbolNode to optimize
+     *                          for arguments from user assigned functions
+     *                          (see FunctionAssignmentNode) or special symbols
+     *                          like `end` (see IndexNode).
+     * @return {function} Returns a function which can be called like:
+     *                        evalNode(scope: Object, args: Object, context: *)
+     */
+    RangeNode.prototype._compile = function (math, argNames) {
+        var range = math.range;
+        var evalStart = this.start._compile(math, argNames);
+        var evalEnd = this.end._compile(math, argNames);
+        if (this.step) {
+            var evalStep = this.step._compile(math, argNames);
+            return function evalRangeNode(scope, args, context) {
+                return range(evalStart(scope, args, context), evalEnd(scope, args, context), evalStep(scope, args, context));
+            };
+        }
+        else {
+            return function evalRangeNode(scope, args, context) {
+                return range(evalStart(scope, args, context), evalEnd(scope, args, context));
+            };
+        }
+    };
+    /**
+     * Execute a callback for each of the child nodes of this node
+     * @param {function(child: Node, path: string, parent: Node)} callback
+     */
+    RangeNode.prototype.forEach = function (callback) {
+        callback(this.start, 'start', this);
+        callback(this.end, 'end', this);
+        if (this.step) {
+            callback(this.step, 'step', this);
+        }
+    };
+    /**
+     * Create a new RangeNode having it's childs be the results of calling
+     * the provided callback function for each of the childs of the original node.
+     * @param {function(child: Node, path: string, parent: Node): Node} callback
+     * @returns {RangeNode} Returns a transformed copy of the node
+     */
+    RangeNode.prototype.map = function (callback) {
+        return new RangeNode(this._ifNode(callback(this.start, 'start', this)), this._ifNode(callback(this.end, 'end', this)), this.step && this._ifNode(callback(this.step, 'step', this)));
+    };
+    /**
+     * Create a clone of this node, a shallow copy
+     * @return {RangeNode}
+     */
+    RangeNode.prototype.clone = function () {
+        return new RangeNode(this.start, this.end, this.step && this.step);
+    };
+    /**
+     * Calculate the necessary parentheses
+     * @param {Node} node
+     * @param {string} parenthesis
+     * @return {Object} parentheses
+     * @private
+     */
+    function calculateNecessaryParentheses(node, parenthesis) {
+        var precedence = operators.getPrecedence(node, parenthesis);
+        var parens = {};
+        var startPrecedence = operators.getPrecedence(node.start, parenthesis);
+        parens.start = startPrecedence !== null && startPrecedence <= precedence || parenthesis === 'all';
+        if (node.step) {
+            var stepPrecedence = operators.getPrecedence(node.step, parenthesis);
+            parens.step = stepPrecedence !== null && stepPrecedence <= precedence || parenthesis === 'all';
+        }
+        var endPrecedence = operators.getPrecedence(node.end, parenthesis);
+        parens.end = endPrecedence !== null && endPrecedence <= precedence || parenthesis === 'all';
+        return parens;
+    }
+    /**
+     * Get string representation
+     * @param {Object} options
+     * @return {string} str
+     */
+    RangeNode.prototype._toString = function (options) {
+        var parenthesis = options && options.parenthesis ? options.parenthesis : 'keep';
+        var parens = calculateNecessaryParentheses(this, parenthesis); // format string as start:step:stop
+        var str;
+        var start = this.start.toString(options);
+        if (parens.start) {
+            start = '(' + start + ')';
+        }
+        str = start;
+        if (this.step) {
+            var step = this.step.toString(options);
+            if (parens.step) {
+                step = '(' + step + ')';
+            }
+            str += ':' + step;
+        }
+        var end = this.end.toString(options);
+        if (parens.end) {
+            end = '(' + end + ')';
+        }
+        str += ':' + end;
+        return str;
+    };
+    /**
+     * Get a JSON representation of the node
+     * @returns {Object}
+     */
+    RangeNode.prototype.toJSON = function () {
+        return {
+            mathjs: 'RangeNode',
+            start: this.start,
+            end: this.end,
+            step: this.step
+        };
+    };
+    /**
+     * Instantiate an RangeNode from its JSON representation
+     * @param {Object} json  An object structured like
+     *                       `{"mathjs": "RangeNode", "start": ..., "end": ..., "step": ...}`,
+     *                       where mathjs is optional
+     * @returns {RangeNode}
+     */
+    RangeNode.fromJSON = function (json) {
+        return new RangeNode(json.start, json.end, json.step);
+    };
+    /**
+     * Get HTML representation
+     * @param {Object} options
+     * @return {string} str
+     */
+    RangeNode.prototype.toHTML = function (options) {
+        var parenthesis = options && options.parenthesis ? options.parenthesis : 'keep';
+        var parens = calculateNecessaryParentheses(this, parenthesis); // format string as start:step:stop
+        var str;
+        var start = this.start.toHTML(options);
+        if (parens.start) {
+            start = '<span class="math-parenthesis math-round-parenthesis">(</span>' + start + '<span class="math-parenthesis math-round-parenthesis">)</span>';
+        }
+        str = start;
+        if (this.step) {
+            var step = this.step.toHTML(options);
+            if (parens.step) {
+                step = '<span class="math-parenthesis math-round-parenthesis">(</span>' + step + '<span class="math-parenthesis math-round-parenthesis">)</span>';
+            }
+            str += '<span class="math-operator math-range-operator">:</span>' + step;
+        }
+        var end = this.end.toHTML(options);
+        if (parens.end) {
+            end = '<span class="math-parenthesis math-round-parenthesis">(</span>' + end + '<span class="math-parenthesis math-round-parenthesis">)</span>';
+        }
+        str += '<span class="math-operator math-range-operator">:</span>' + end;
+        return str;
+    };
+    /**
+     * Get LaTeX representation
+     * @params {Object} options
+     * @return {string} str
+     */
+    RangeNode.prototype._toTex = function (options) {
+        var parenthesis = options && options.parenthesis ? options.parenthesis : 'keep';
+        var parens = calculateNecessaryParentheses(this, parenthesis);
+        var str = this.start.toTex(options);
+        if (parens.start) {
+            str = "\\left(".concat(str, "\\right)");
+        }
+        if (this.step) {
+            var step = this.step.toTex(options);
+            if (parens.step) {
+                step = "\\left(".concat(step, "\\right)");
+            }
+            str += ':' + step;
+        }
+        var end = this.end.toTex(options);
+        if (parens.end) {
+            end = "\\left(".concat(end, "\\right)");
+        }
+        str += ':' + end;
+        return str;
+    };
+    return RangeNode;
+}
+var name$p = 'RangeNode';
+var path$h = 'expression.node';
+var factory_1$r = factory$r;
+var RangeNode = {
+    name: name$p,
+    path: path$h,
+    factory: factory_1$r
+};
+var escape$6 = string.escape;
+function factory$s(type, config, load, typed) {
+    var Node$1 = load(Node);
+    var getSafeProperty = customs.getSafeProperty;
+    /**
+     * A node representing a chained conditional expression, such as 'x > y > z'
+     *
+     * @param {String[]} conditionals   An array of conditional operators used to compare the parameters
+     * @param {Node[]} params   The parameters that will be compared
+     *
+     * @constructor RelationalNode
+     * @extends {Node}
+     */
+    function RelationalNode(conditionals, params) {
+        if (!(this instanceof RelationalNode)) {
+            throw new SyntaxError('Constructor must be called with the new operator');
+        }
+        if (!Array.isArray(conditionals))
+            throw new TypeError('Parameter conditionals must be an array');
+        if (!Array.isArray(params))
+            throw new TypeError('Parameter params must be an array');
+        if (conditionals.length !== params.length - 1)
+            throw new TypeError('Parameter params must contain exactly one more element than parameter conditionals');
+        this.conditionals = conditionals;
+        this.params = params;
+    }
+    RelationalNode.prototype = new Node$1();
+    RelationalNode.prototype.type = 'RelationalNode';
+    RelationalNode.prototype.isRelationalNode = true;
+    /**
+     * Compile a node into a JavaScript function.
+     * This basically pre-calculates as much as possible and only leaves open
+     * calculations which depend on a dynamic scope with variables.
+     * @param {Object} math     Math.js namespace with functions and constants.
+     * @param {Object} argNames An object with argument names as key and `true`
+     *                          as value. Used in the SymbolNode to optimize
+     *                          for arguments from user assigned functions
+     *                          (see FunctionAssignmentNode) or special symbols
+     *                          like `end` (see IndexNode).
+     * @return {function} Returns a function which can be called like:
+     *                        evalNode(scope: Object, args: Object, context: *)
+     */
+    RelationalNode.prototype._compile = function (math, argNames) {
+        var self = this;
+        var compiled = this.params.map(function (p) {
+            return p._compile(math, argNames);
+        });
+        return function evalRelationalNode(scope, args, context) {
+            var evalLhs;
+            var evalRhs = compiled[0](scope, args, context);
+            for (var i = 0; i < self.conditionals.length; i++) {
+                evalLhs = evalRhs;
+                evalRhs = compiled[i + 1](scope, args, context);
+                var condFn = getSafeProperty(math, self.conditionals[i]);
+                if (!condFn(evalLhs, evalRhs)) {
+                    return false;
+                }
+            }
+            return true;
+        };
+    };
+    /**
+     * Execute a callback for each of the child nodes of this node
+     * @param {function(child: Node, path: string, parent: Node)} callback
+     */
+    RelationalNode.prototype.forEach = function (callback) {
+        var _this = this;
+        this.params.forEach(function (n, i) {
+            return callback(n, 'params[' + i + ']', _this);
+        }, this);
+    };
+    /**
+     * Create a new RelationalNode having its childs be the results of calling
+     * the provided callback function for each of the childs of the original node.
+     * @param {function(child: Node, path: string, parent: Node): Node} callback
+     * @returns {RelationalNode} Returns a transformed copy of the node
+     */
+    RelationalNode.prototype.map = function (callback) {
+        var _this2 = this;
+        return new RelationalNode(this.conditionals.slice(), this.params.map(function (n, i) {
+            return _this2._ifNode(callback(n, 'params[' + i + ']', _this2));
+        }, this));
+    };
+    /**
+     * Create a clone of this node, a shallow copy
+     * @return {RelationalNode}
+     */
+    RelationalNode.prototype.clone = function () {
+        return new RelationalNode(this.conditionals, this.params);
+    };
+    /**
+     * Get string representation.
+     * @param {Object} options
+     * @return {string} str
+     */
+    RelationalNode.prototype._toString = function (options) {
+        var parenthesis = options && options.parenthesis ? options.parenthesis : 'keep';
+        var precedence = operators.getPrecedence(this, parenthesis);
+        var paramStrings = this.params.map(function (p, index) {
+            var paramPrecedence = operators.getPrecedence(p, parenthesis);
+            return parenthesis === 'all' || paramPrecedence !== null && paramPrecedence <= precedence ? '(' + p.toString(options) + ')' : p.toString(options);
+        });
+        var operatorMap = {
+            'equal': '==',
+            'unequal': '!=',
+            'smaller': '<',
+            'larger': '>',
+            'smallerEq': '<=',
+            'largerEq': '>='
+        };
+        var ret = paramStrings[0];
+        for (var i = 0; i < this.conditionals.length; i++) {
+            ret += ' ' + operatorMap[this.conditionals[i]] + ' ' + paramStrings[i + 1];
+        }
+        return ret;
+    };
+    /**
+     * Get a JSON representation of the node
+     * @returns {Object}
+     */
+    RelationalNode.prototype.toJSON = function () {
+        return {
+            mathjs: 'RelationalNode',
+            conditionals: this.conditionals,
+            params: this.params
+        };
+    };
+    /**
+     * Instantiate a RelationalNode from its JSON representation
+     * @param {Object} json  An object structured like
+     *                       `{"mathjs": "RelationalNode", "condition": ..., "trueExpr": ..., "falseExpr": ...}`,
+     *                       where mathjs is optional
+     * @returns {RelationalNode}
+     */
+    RelationalNode.fromJSON = function (json) {
+        return new RelationalNode(json.conditionals, json.params);
+    };
+    /**
+     * Get HTML representation
+     * @param {Object} options
+     * @return {string} str
+     */
+    RelationalNode.prototype.toHTML = function (options) {
+        var parenthesis = options && options.parenthesis ? options.parenthesis : 'keep';
+        var precedence = operators.getPrecedence(this, parenthesis);
+        var paramStrings = this.params.map(function (p, index) {
+            var paramPrecedence = operators.getPrecedence(p, parenthesis);
+            return parenthesis === 'all' || paramPrecedence !== null && paramPrecedence <= precedence ? '<span class="math-parenthesis math-round-parenthesis">(</span>' + p.toHTML(options) + '<span class="math-parenthesis math-round-parenthesis">)</span>' : p.toHTML(options);
+        });
+        var operatorMap = {
+            'equal': '==',
+            'unequal': '!=',
+            'smaller': '<',
+            'larger': '>',
+            'smallerEq': '<=',
+            'largerEq': '>='
+        };
+        var ret = paramStrings[0];
+        for (var i = 0; i < this.conditionals.length; i++) {
+            ret += '<span class="math-operator math-binary-operator math-explicit-binary-operator">' + escape$6(operatorMap[this.conditionals[i]]) + '</span>' + paramStrings[i + 1];
+        }
+        return ret;
+    };
+    /**
+     * Get LaTeX representation
+     * @param {Object} options
+     * @return {string} str
+     */
+    RelationalNode.prototype._toTex = function (options) {
+        var parenthesis = options && options.parenthesis ? options.parenthesis : 'keep';
+        var precedence = operators.getPrecedence(this, parenthesis);
+        var paramStrings = this.params.map(function (p, index) {
+            var paramPrecedence = operators.getPrecedence(p, parenthesis);
+            return parenthesis === 'all' || paramPrecedence !== null && paramPrecedence <= precedence ? '\\left(' + p.toTex(options) + '\right)' : p.toTex(options);
+        });
+        var ret = paramStrings[0];
+        for (var i = 0; i < this.conditionals.length; i++) {
+            ret += latex.operators[this.conditionals[i]] + paramStrings[i + 1];
+        }
+        return ret;
+    };
+    return RelationalNode;
+}
+var name$q = 'RelationalNode';
+var path$i = 'expression.node';
+var factory_1$s = factory$s;
+var RelationalNode = {
+    name: name$q,
+    path: path$i,
+    factory: factory_1$s
+};
+function _extends$2() { _extends$2 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i];
+    for (var key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+        }
+    }
+} return target; }; return _extends$2.apply(this, arguments); }
+function factory$t(type, config, load, typed) {
+    var numeric$1 = load(numeric);
+    var AccessorNode$1 = load(AccessorNode);
+    var ArrayNode$1 = load(ArrayNode);
+    var AssignmentNode$1 = load(AssignmentNode);
+    var BlockNode$1 = load(BlockNode);
+    var ConditionalNode$1 = load(ConditionalNode);
+    var ConstantNode$1 = load(ConstantNode);
+    var FunctionAssignmentNode$1 = load(FunctionAssignmentNode);
+    var IndexNode$1 = load(IndexNode);
+    var ObjectNode$1 = load(ObjectNode);
+    var OperatorNode$1 = load(OperatorNode);
+    var ParenthesisNode$1 = load(ParenthesisNode);
+    var FunctionNode$1 = load(FunctionNode);
+    var RangeNode$1 = load(RangeNode);
+    var RelationalNode$1 = load(RelationalNode);
+    var SymbolNode$1 = load(SymbolNode);
+    /**
+     * Parse an expression. Returns a node tree, which can be evaluated by
+     * invoking node.eval().
+     *
+     * Syntax:
+     *
+     *     parse(expr)
+     *     parse(expr, options)
+     *     parse([expr1, expr2, expr3, ...])
+     *     parse([expr1, expr2, expr3, ...], options)
+     *
+     * Example:
+     *
+     *     const node = parse('sqrt(3^2 + 4^2)')
+     *     node.compile(math).eval() // 5
+     *
+     *     let scope = {a:3, b:4}
+     *     const node = parse('a * b') // 12
+     *     const code = node.compile(math)
+     *     code.eval(scope) // 12
+     *     scope.a = 5
+     *     code.eval(scope) // 20
+     *
+     *     const nodes = math.parse(['a = 3', 'b = 4', 'a * b'])
+     *     nodes[2].compile(math).eval() // 12
+     *
+     * @param {string | string[] | Matrix} expr
+     * @param {{nodes: Object<string, Node>}} [options]  Available options:
+     *                                                   - `nodes` a set of custom nodes
+     * @return {Node | Node[]} node
+     * @throws {Error}
+     */
+    function parse(expr, options) {
+        if (arguments.length !== 1 && arguments.length !== 2) {
+            throw new ArgumentsError_1('parse', arguments.length, 1, 2);
+        } // pass extra nodes
+        var extraNodes = options && options.nodes ? options.nodes : {};
+        if (typeof expr === 'string') {
+            // parse a single expression
+            return parseStart(expr, extraNodes);
+        }
+        else if (Array.isArray(expr) || expr instanceof type.Matrix) {
+            // parse an array or matrix with expressions
+            return deepMap(expr, function (elem) {
+                if (typeof elem !== 'string')
+                    throw new TypeError('String expected');
+                return parseStart(elem, extraNodes);
+            });
+        }
+        else {
+            // oops
+            throw new TypeError('String or matrix expected');
+        }
+    } // token types enumeration
+    var TOKENTYPE = {
+        NULL: 0,
+        DELIMITER: 1,
+        NUMBER: 2,
+        SYMBOL: 3,
+        UNKNOWN: 4 // map with all delimiters
+    };
+    var DELIMITERS = {
+        ',': true,
+        '(': true,
+        ')': true,
+        '[': true,
+        ']': true,
+        '{': true,
+        '}': true,
+        '"': true,
+        '\'': true,
+        ';': true,
+        '+': true,
+        '-': true,
+        '*': true,
+        '.*': true,
+        '/': true,
+        './': true,
+        '%': true,
+        '^': true,
+        '.^': true,
+        '~': true,
+        '!': true,
+        '&': true,
+        '|': true,
+        '^|': true,
+        '=': true,
+        ':': true,
+        '?': true,
+        '==': true,
+        '!=': true,
+        '<': true,
+        '>': true,
+        '<=': true,
+        '>=': true,
+        '<<': true,
+        '>>': true,
+        '>>>': true // map with all named delimiters
+    };
+    var NAMED_DELIMITERS = {
+        'mod': true,
+        'to': true,
+        'in': true,
+        'and': true,
+        'xor': true,
+        'or': true,
+        'not': true
+    };
+    var CONSTANTS = {
+        'true': true,
+        'false': false,
+        'null': null,
+        'undefined': undefined
+    };
+    var NUMERIC_CONSTANTS = ['NaN', 'Infinity'];
+    function initialState() {
+        return {
+            extraNodes: {},
+            // current extra nodes, must be careful not to mutate
+            expression: '',
+            // current expression
+            comment: '',
+            // last parsed comment
+            index: 0,
+            // current index in expr
+            token: '',
+            // current token
+            tokenType: TOKENTYPE.NULL,
+            // type of the token
+            nestingLevel: 0,
+            // level of nesting inside parameters, used to ignore newline characters
+            conditionalLevel: null // when a conditional is being parsed, the level of the conditional is stored here
+        };
+    }
+    /**
+     * View upto `length` characters of the expression starting at the current character.
+     *
+     * @param {State} state
+     * @param {number} [length=1] Number of characters to view
+     * @returns {string}
+     * @private
+     */
+    function currentString(state, length) {
+        return state.expression.substr(state.index, length);
+    }
+    /**
+     * View the current character. Returns '' if end of expression is reached.
+     *
+     * @param {State} state
+     * @returns {string}
+     * @private
+     */
+    function currentCharacter(state) {
+        return currentString(state, 1);
+    }
+    /**
+     * Get the next character from the expression.
+     * The character is stored into the char c. If the end of the expression is
+     * reached, the function puts an empty string in c.
+     * @private
+     */
+    function next(state) {
+        state.index++;
+    }
+    /**
+     * Preview the previous character from the expression.
+     * @return {string} cNext
+     * @private
+     */
+    function prevCharacter(state) {
+        return state.expression.charAt(state.index - 1);
+    }
+    /**
+     * Preview the next character from the expression.
+     * @return {string} cNext
+     * @private
+     */
+    function nextCharacter(state) {
+        return state.expression.charAt(state.index + 1);
+    }
+    /**
+     * Get next token in the current string expr.
+     * The token and token type are available as token and tokenType
+     * @private
+     */
+    function getToken(state) {
+        state.tokenType = TOKENTYPE.NULL;
+        state.token = '';
+        state.comment = ''; // skip over whitespaces
+        // space, tab, and newline when inside parameters
+        while (parse.isWhitespace(currentCharacter(state), state.nestingLevel)) {
+            next(state);
+        } // skip comment
+        if (currentCharacter(state) === '#') {
+            while (currentCharacter(state) !== '\n' && currentCharacter(state) !== '') {
+                state.comment += currentCharacter(state);
+                next(state);
+            }
+        } // check for end of expression
+        if (currentCharacter(state) === '') {
+            // token is still empty
+            state.tokenType = TOKENTYPE.DELIMITER;
+            return;
+        } // check for new line character
+        if (currentCharacter(state) === '\n' && !state.nestingLevel) {
+            state.tokenType = TOKENTYPE.DELIMITER;
+            state.token = currentCharacter(state);
+            next(state);
+            return;
+        }
+        var c1 = currentCharacter(state);
+        var c2 = currentString(state, 2);
+        var c3 = currentString(state, 3);
+        if (c3.length === 3 && DELIMITERS[c3]) {
+            state.tokenType = TOKENTYPE.DELIMITER;
+            state.token = c3;
+            next(state);
+            next(state);
+            next(state);
+            return;
+        } // check for delimiters consisting of 2 characters
+        if (c2.length === 2 && DELIMITERS[c2]) {
+            state.tokenType = TOKENTYPE.DELIMITER;
+            state.token = c2;
+            next(state);
+            next(state);
+            return;
+        } // check for delimiters consisting of 1 character
+        if (DELIMITERS[c1]) {
+            state.tokenType = TOKENTYPE.DELIMITER;
+            state.token = c1;
+            next(state);
+            return;
+        } // check for a number
+        if (parse.isDigitDot(c1)) {
+            state.tokenType = TOKENTYPE.NUMBER; // get number, can have a single dot
+            if (currentCharacter(state) === '.') {
+                state.token += currentCharacter(state);
+                next(state);
+                if (!parse.isDigit(currentCharacter(state))) {
+                    // this is no number, it is just a dot (can be dot notation)
+                    state.tokenType = TOKENTYPE.DELIMITER;
+                }
+            }
+            else {
+                while (parse.isDigit(currentCharacter(state))) {
+                    state.token += currentCharacter(state);
+                    next(state);
+                }
+                if (parse.isDecimalMark(currentCharacter(state), nextCharacter(state))) {
+                    state.token += currentCharacter(state);
+                    next(state);
+                }
+            }
+            while (parse.isDigit(currentCharacter(state))) {
+                state.token += currentCharacter(state);
+                next(state);
+            } // check for exponential notation like "2.3e-4", "1.23e50" or "2e+4"
+            if (currentCharacter(state) === 'E' || currentCharacter(state) === 'e') {
+                if (parse.isDigit(nextCharacter(state)) || nextCharacter(state) === '-' || nextCharacter(state) === '+') {
+                    state.token += currentCharacter(state);
+                    next(state);
+                    if (currentCharacter(state) === '+' || currentCharacter(state) === '-') {
+                        state.token += currentCharacter(state);
+                        next(state);
+                    } // Scientific notation MUST be followed by an exponent
+                    if (!parse.isDigit(currentCharacter(state))) {
+                        throw createSyntaxError(state, 'Digit expected, got "' + currentCharacter(state) + '"');
+                    }
+                    while (parse.isDigit(currentCharacter(state))) {
+                        state.token += currentCharacter(state);
+                        next(state);
+                    }
+                    if (parse.isDecimalMark(currentCharacter(state), nextCharacter(state))) {
+                        throw createSyntaxError(state, 'Digit expected, got "' + currentCharacter(state) + '"');
+                    }
+                }
+                else if (nextCharacter(state) === '.') {
+                    next(state);
+                    throw createSyntaxError(state, 'Digit expected, got "' + currentCharacter(state) + '"');
+                }
+            }
+            return;
+        } // check for variables, functions, named operators
+        if (parse.isAlpha(currentCharacter(state), prevCharacter(state), nextCharacter(state))) {
+            while (parse.isAlpha(currentCharacter(state), prevCharacter(state), nextCharacter(state)) || parse.isDigit(currentCharacter(state))) {
+                state.token += currentCharacter(state);
+                next(state);
+            }
+            if (NAMED_DELIMITERS.hasOwnProperty(state.token)) {
+                state.tokenType = TOKENTYPE.DELIMITER;
+            }
+            else {
+                state.tokenType = TOKENTYPE.SYMBOL;
+            }
+            return;
+        } // something unknown is found, wrong characters -> a syntax error
+        state.tokenType = TOKENTYPE.UNKNOWN;
+        while (currentCharacter(state) !== '') {
+            state.token += currentCharacter(state);
+            next(state);
+        }
+        throw createSyntaxError(state, 'Syntax error in part "' + state.token + '"');
+    }
+    /**
+     * Get next token and skip newline tokens
+     */
+    function getTokenSkipNewline(state) {
+        do {
+            getToken(state);
+        } while (state.token === '\n'); // eslint-disable-line no-unmodified-loop-condition
+    }
+    /**
+     * Open parameters.
+     * New line characters will be ignored until closeParams(state) is called
+     */
+    function openParams(state) {
+        state.nestingLevel++;
+    }
+    /**
+     * Close parameters.
+     * New line characters will no longer be ignored
+     */
+    function closeParams(state) {
+        state.nestingLevel--;
+    }
+    /**
+     * Checks whether the current character `c` is a valid alpha character:
+     *
+     * - A latin letter (upper or lower case) Ascii: a-z, A-Z
+     * - An underscore                        Ascii: _
+     * - A dollar sign                        Ascii: $
+     * - A latin letter with accents          Unicode: \u00C0 - \u02AF
+     * - A greek letter                       Unicode: \u0370 - \u03FF
+     * - A mathematical alphanumeric symbol   Unicode: \u{1D400} - \u{1D7FF} excluding invalid code points
+     *
+     * The previous and next characters are needed to determine whether
+     * this character is part of a unicode surrogate pair.
+     *
+     * @param {string} c      Current character in the expression
+     * @param {string} cPrev  Previous character
+     * @param {string} cNext  Next character
+     * @return {boolean}
+     */
+    parse.isAlpha = function isAlpha(c, cPrev, cNext) {
+        return parse.isValidLatinOrGreek(c) || parse.isValidMathSymbol(c, cNext) || parse.isValidMathSymbol(cPrev, c);
+    };
+    /**
+     * Test whether a character is a valid latin, greek, or letter-like character
+     * @param {string} c
+     * @return {boolean}
+     */
+    parse.isValidLatinOrGreek = function isValidLatinOrGreek(c) {
+        return /^[a-zA-Z_$\u00C0-\u02AF\u0370-\u03FF\u2100-\u214F]$/.test(c);
+    };
+    /**
+     * Test whether two given 16 bit characters form a surrogate pair of a
+     * unicode math symbol.
+     *
+     * https://unicode-table.com/en/
+     * https://www.wikiwand.com/en/Mathematical_operators_and_symbols_in_Unicode
+     *
+     * Note: In ES6 will be unicode aware:
+     * https://stackoverflow.com/questions/280712/javascript-unicode-regexes
+     * https://mathiasbynens.be/notes/es6-unicode-regex
+     *
+     * @param {string} high
+     * @param {string} low
+     * @return {boolean}
+     */
+    parse.isValidMathSymbol = function isValidMathSymbol(high, low) {
+        return /^[\uD835]$/.test(high) && /^[\uDC00-\uDFFF]$/.test(low) && /^[^\uDC55\uDC9D\uDCA0\uDCA1\uDCA3\uDCA4\uDCA7\uDCA8\uDCAD\uDCBA\uDCBC\uDCC4\uDD06\uDD0B\uDD0C\uDD15\uDD1D\uDD3A\uDD3F\uDD45\uDD47-\uDD49\uDD51\uDEA6\uDEA7\uDFCC\uDFCD]$/.test(low);
+    };
+    /**
+     * Check whether given character c is a white space character: space, tab, or enter
+     * @param {string} c
+     * @param {number} nestingLevel
+     * @return {boolean}
+     */
+    parse.isWhitespace = function isWhitespace(c, nestingLevel) {
+        // TODO: also take '\r' carriage return as newline? Or does that give problems on mac?
+        return c === ' ' || c === '\t' || c === '\n' && nestingLevel > 0;
+    };
+    /**
+     * Test whether the character c is a decimal mark (dot).
+     * This is the case when it's not the start of a delimiter '.*', './', or '.^'
+     * @param {string} c
+     * @param {string} cNext
+     * @return {boolean}
+     */
+    parse.isDecimalMark = function isDecimalMark(c, cNext) {
+        return c === '.' && cNext !== '/' && cNext !== '*' && cNext !== '^';
+    };
+    /**
+     * checks if the given char c is a digit or dot
+     * @param {string} c   a string with one character
+     * @return {boolean}
+     */
+    parse.isDigitDot = function isDigitDot(c) {
+        return c >= '0' && c <= '9' || c === '.';
+    };
+    /**
+     * checks if the given char c is a digit
+     * @param {string} c   a string with one character
+     * @return {boolean}
+     */
+    parse.isDigit = function isDigit(c) {
+        return c >= '0' && c <= '9';
+    };
+    /**
+     * Start of the parse levels below, in order of precedence
+     * @return {Node} node
+     * @private
+     */
+    function parseStart(expression, extraNodes) {
+        var state = initialState();
+        _extends$2(state, {
+            expression: expression,
+            extraNodes: extraNodes
+        });
+        getToken(state);
+        var node = parseBlock(state); // check for garbage at the end of the expression
+        // an expression ends with a empty character '' and tokenType DELIMITER
+        if (state.token !== '') {
+            if (state.tokenType === TOKENTYPE.DELIMITER) {
+                // user entered a not existing operator like "//"
+                // TODO: give hints for aliases, for example with "<>" give as hint " did you mean !== ?"
+                throw createError(state, 'Unexpected operator ' + state.token);
+            }
+            else {
+                throw createSyntaxError(state, 'Unexpected part "' + state.token + '"');
+            }
+        }
+        return node;
+    }
+    /**
+     * Parse a block with expressions. Expressions can be separated by a newline
+     * character '\n', or by a semicolon ';'. In case of a semicolon, no output
+     * of the preceding line is returned.
+     * @return {Node} node
+     * @private
+     */
+    function parseBlock(state) {
+        var node;
+        var blocks = [];
+        var visible;
+        if (state.token !== '' && state.token !== '\n' && state.token !== ';') {
+            node = parseAssignment(state);
+            node.comment = state.comment;
+        } // TODO: simplify this loop
+        while (state.token === '\n' || state.token === ';') {
+            // eslint-disable-line no-unmodified-loop-condition
+            if (blocks.length === 0 && node) {
+                visible = state.token !== ';';
+                blocks.push({
+                    node: node,
+                    visible: visible
+                });
+            }
+            getToken(state);
+            if (state.token !== '\n' && state.token !== ';' && state.token !== '') {
+                node = parseAssignment(state);
+                node.comment = state.comment;
+                visible = state.token !== ';';
+                blocks.push({
+                    node: node,
+                    visible: visible
+                });
+            }
+        }
+        if (blocks.length > 0) {
+            return new BlockNode$1(blocks);
+        }
+        else {
+            if (!node) {
+                node = new ConstantNode$1(undefined);
+                node.comment = state.comment;
+            }
+            return node;
+        }
+    }
+    /**
+     * Assignment of a function or variable,
+     * - can be a variable like 'a=2.3'
+     * - or a updating an existing variable like 'matrix(2,3:5)=[6,7,8]'
+     * - defining a function like 'f(x) = x^2'
+     * @return {Node} node
+     * @private
+     */
+    function parseAssignment(state) {
+        var name, args, value, valid;
+        var node = parseConditional(state);
+        if (state.token === '=') {
+            if (type.isSymbolNode(node)) {
+                // parse a variable assignment like 'a = 2/3'
+                name = node.name;
+                getTokenSkipNewline(state);
+                value = parseAssignment(state);
+                return new AssignmentNode$1(new SymbolNode$1(name), value);
+            }
+            else if (type.isAccessorNode(node)) {
+                // parse a matrix subset assignment like 'A[1,2] = 4'
+                getTokenSkipNewline(state);
+                value = parseAssignment(state);
+                return new AssignmentNode$1(node.object, node.index, value);
+            }
+            else if (type.isFunctionNode(node) && type.isSymbolNode(node.fn)) {
+                // parse function assignment like 'f(x) = x^2'
+                valid = true;
+                args = [];
+                name = node.name;
+                node.args.forEach(function (arg, index) {
+                    if (type.isSymbolNode(arg)) {
+                        args[index] = arg.name;
+                    }
+                    else {
+                        valid = false;
+                    }
+                });
+                if (valid) {
+                    getTokenSkipNewline(state);
+                    value = parseAssignment(state);
+                    return new FunctionAssignmentNode$1(name, args, value);
+                }
+            }
+            throw createSyntaxError(state, 'Invalid left hand side of assignment operator =');
+        }
+        return node;
+    }
+    /**
+     * conditional operation
+     *
+     *     condition ? truePart : falsePart
+     *
+     * Note: conditional operator is right-associative
+     *
+     * @return {Node} node
+     * @private
+     */
+    function parseConditional(state) {
+        var node = parseLogicalOr(state);
+        while (state.token === '?') {
+            // eslint-disable-line no-unmodified-loop-condition
+            // set a conditional level, the range operator will be ignored as long
+            // as conditionalLevel === state.nestingLevel.
+            var prev = state.conditionalLevel;
+            state.conditionalLevel = state.nestingLevel;
+            getTokenSkipNewline(state);
+            var condition = node;
+            var trueExpr = parseAssignment(state);
+            if (state.token !== ':')
+                throw createSyntaxError(state, 'False part of conditional expression expected');
+            state.conditionalLevel = null;
+            getTokenSkipNewline(state);
+            var falseExpr = parseAssignment(state); // Note: check for conditional operator again, right associativity
+            node = new ConditionalNode$1(condition, trueExpr, falseExpr); // restore the previous conditional level
+            state.conditionalLevel = prev;
+        }
+        return node;
+    }
+    /**
+     * logical or, 'x or y'
+     * @return {Node} node
+     * @private
+     */
+    function parseLogicalOr(state) {
+        var node = parseLogicalXor(state);
+        while (state.token === 'or') {
+            // eslint-disable-line no-unmodified-loop-condition
+            getTokenSkipNewline(state);
+            node = new OperatorNode$1('or', 'or', [node, parseLogicalXor(state)]);
+        }
+        return node;
+    }
+    /**
+     * logical exclusive or, 'x xor y'
+     * @return {Node} node
+     * @private
+     */
+    function parseLogicalXor(state) {
+        var node = parseLogicalAnd(state);
+        while (state.token === 'xor') {
+            // eslint-disable-line no-unmodified-loop-condition
+            getTokenSkipNewline(state);
+            node = new OperatorNode$1('xor', 'xor', [node, parseLogicalAnd(state)]);
+        }
+        return node;
+    }
+    /**
+     * logical and, 'x and y'
+     * @return {Node} node
+     * @private
+     */
+    function parseLogicalAnd(state) {
+        var node = parseBitwiseOr(state);
+        while (state.token === 'and') {
+            // eslint-disable-line no-unmodified-loop-condition
+            getTokenSkipNewline(state);
+            node = new OperatorNode$1('and', 'and', [node, parseBitwiseOr(state)]);
+        }
+        return node;
+    }
+    /**
+     * bitwise or, 'x | y'
+     * @return {Node} node
+     * @private
+     */
+    function parseBitwiseOr(state) {
+        var node = parseBitwiseXor(state);
+        while (state.token === '|') {
+            // eslint-disable-line no-unmodified-loop-condition
+            getTokenSkipNewline(state);
+            node = new OperatorNode$1('|', 'bitOr', [node, parseBitwiseXor(state)]);
+        }
+        return node;
+    }
+    /**
+     * bitwise exclusive or (xor), 'x ^| y'
+     * @return {Node} node
+     * @private
+     */
+    function parseBitwiseXor(state) {
+        var node = parseBitwiseAnd(state);
+        while (state.token === '^|') {
+            // eslint-disable-line no-unmodified-loop-condition
+            getTokenSkipNewline(state);
+            node = new OperatorNode$1('^|', 'bitXor', [node, parseBitwiseAnd(state)]);
+        }
+        return node;
+    }
+    /**
+     * bitwise and, 'x & y'
+     * @return {Node} node
+     * @private
+     */
+    function parseBitwiseAnd(state) {
+        var node = parseRelational(state);
+        while (state.token === '&') {
+            // eslint-disable-line no-unmodified-loop-condition
+            getTokenSkipNewline(state);
+            node = new OperatorNode$1('&', 'bitAnd', [node, parseRelational(state)]);
+        }
+        return node;
+    }
+    /**
+     * Parse a chained conditional, like 'a > b >= c'
+     * @return {Node} node
+     */
+    function parseRelational(state) {
+        var params = [parseShift(state)];
+        var conditionals = [];
+        var operators = {
+            '==': 'equal',
+            '!=': 'unequal',
+            '<': 'smaller',
+            '>': 'larger',
+            '<=': 'smallerEq',
+            '>=': 'largerEq'
+        };
+        while (operators.hasOwnProperty(state.token)) {
+            // eslint-disable-line no-unmodified-loop-condition
+            var cond = {
+                name: state.token,
+                fn: operators[state.token]
+            };
+            conditionals.push(cond);
+            getTokenSkipNewline(state);
+            params.push(parseShift(state));
+        }
+        if (params.length === 1) {
+            return params[0];
+        }
+        else if (params.length === 2) {
+            return new OperatorNode$1(conditionals[0].name, conditionals[0].fn, params);
+        }
+        else {
+            return new RelationalNode$1(conditionals.map(function (c) {
+                return c.fn;
+            }), params);
+        }
+    }
+    /**
+     * Bitwise left shift, bitwise right arithmetic shift, bitwise right logical shift
+     * @return {Node} node
+     * @private
+     */
+    function parseShift(state) {
+        var node, operators, name, fn, params;
+        node = parseConversion(state);
+        operators = {
+            '<<': 'leftShift',
+            '>>': 'rightArithShift',
+            '>>>': 'rightLogShift'
+        };
+        while (operators.hasOwnProperty(state.token)) {
+            name = state.token;
+            fn = operators[name];
+            getTokenSkipNewline(state);
+            params = [node, parseConversion(state)];
+            node = new OperatorNode$1(name, fn, params);
+        }
+        return node;
+    }
+    /**
+     * conversion operators 'to' and 'in'
+     * @return {Node} node
+     * @private
+     */
+    function parseConversion(state) {
+        var node, operators, name, fn, params;
+        node = parseRange(state);
+        operators = {
+            'to': 'to',
+            'in': 'to' // alias of 'to'
+        };
+        while (operators.hasOwnProperty(state.token)) {
+            name = state.token;
+            fn = operators[name];
+            getTokenSkipNewline(state);
+            if (name === 'in' && state.token === '') {
+                // end of expression -> this is the unit 'in' ('inch')
+                node = new OperatorNode$1('*', 'multiply', [node, new SymbolNode$1('in')], true);
+            }
+            else {
+                // operator 'a to b' or 'a in b'
+                params = [node, parseRange(state)];
+                node = new OperatorNode$1(name, fn, params);
+            }
+        }
+        return node;
+    }
+    /**
+     * parse range, "start:end", "start:step:end", ":", "start:", ":end", etc
+     * @return {Node} node
+     * @private
+     */
+    function parseRange(state) {
+        var node;
+        var params = [];
+        if (state.token === ':') {
+            // implicit start=1 (one-based)
+            node = new ConstantNode$1(1);
+        }
+        else {
+            // explicit start
+            node = parseAddSubtract(state);
+        }
+        if (state.token === ':' && state.conditionalLevel !== state.nestingLevel) {
+            // we ignore the range operator when a conditional operator is being processed on the same level
+            params.push(node); // parse step and end
+            while (state.token === ':' && params.length < 3) {
+                // eslint-disable-line no-unmodified-loop-condition
+                getTokenSkipNewline(state);
+                if (state.token === ')' || state.token === ']' || state.token === ',' || state.token === '') {
+                    // implicit end
+                    params.push(new SymbolNode$1('end'));
+                }
+                else {
+                    // explicit end
+                    params.push(parseAddSubtract(state));
+                }
+            }
+            if (params.length === 3) {
+                // params = [start, step, end]
+                node = new RangeNode$1(params[0], params[2], params[1]); // start, end, step
+            }
+            else {
+                // length === 2
+                // params = [start, end]
+                node = new RangeNode$1(params[0], params[1]); // start, end
+            }
+        }
+        return node;
+    }
+    /**
+     * add or subtract
+     * @return {Node} node
+     * @private
+     */
+    function parseAddSubtract(state) {
+        var node, operators, name, fn, params;
+        node = parseMultiplyDivide(state);
+        operators = {
+            '+': 'add',
+            '-': 'subtract'
+        };
+        while (operators.hasOwnProperty(state.token)) {
+            name = state.token;
+            fn = operators[name];
+            getTokenSkipNewline(state);
+            params = [node, parseMultiplyDivide(state)];
+            node = new OperatorNode$1(name, fn, params);
+        }
+        return node;
+    }
+    /**
+     * multiply, divide, modulus
+     * @return {Node} node
+     * @private
+     */
+    function parseMultiplyDivide(state) {
+        var node, last, operators, name, fn;
+        node = parseImplicitMultiplication(state);
+        last = node;
+        operators = {
+            '*': 'multiply',
+            '.*': 'dotMultiply',
+            '/': 'divide',
+            './': 'dotDivide',
+            '%': 'mod',
+            'mod': 'mod'
+        };
+        while (true) {
+            if (operators.hasOwnProperty(state.token)) {
+                // explicit operators
+                name = state.token;
+                fn = operators[name];
+                getTokenSkipNewline(state);
+                last = parseImplicitMultiplication(state);
+                node = new OperatorNode$1(name, fn, [node, last]);
+            }
+            else {
+                break;
+            }
+        }
+        return node;
+    }
+    /**
+     * implicit multiplication
+     * @return {Node} node
+     * @private
+     */
+    function parseImplicitMultiplication(state) {
+        var node, last;
+        node = parseRule2(state);
+        last = node;
+        while (true) {
+            if (state.tokenType === TOKENTYPE.SYMBOL || state.token === 'in' && type.isConstantNode(node) || state.tokenType === TOKENTYPE.NUMBER && !type.isConstantNode(last) && (!type.isOperatorNode(last) || last.op === '!') || state.token === '(') {
+                // parse implicit multiplication
+                //
+                // symbol:      implicit multiplication like '2a', '(2+3)a', 'a b'
+                // number:      implicit multiplication like '(2+3)2'
+                // parenthesis: implicit multiplication like '2(3+4)', '(3+4)(1+2)'
+                last = parseRule2(state);
+                node = new OperatorNode$1('*', 'multiply', [node, last], true
+                /* implicit */
+                );
+            }
+            else {
+                break;
+            }
+        }
+        return node;
+    }
+    /**
+     * Infamous "rule 2" as described in https://github.com/josdejong/mathjs/issues/792#issuecomment-361065370
+     * Explicit division gets higher precedence than implicit multiplication
+     * when the division matches this pattern: [number] / [number] [symbol]
+     * @return {Node} node
+     * @private
+     */
+    function parseRule2(state) {
+        var node = parseUnary(state);
+        var last = node;
+        var tokenStates = [];
+        while (true) {
+            // Match the "number /" part of the pattern "number / number symbol"
+            if (state.token === '/' && type.isConstantNode(last)) {
+                // Look ahead to see if the next token is a number
+                tokenStates.push(_extends$2({}, state));
+                getTokenSkipNewline(state); // Match the "number / number" part of the pattern
+                if (state.tokenType === TOKENTYPE.NUMBER) {
+                    // Look ahead again
+                    tokenStates.push(_extends$2({}, state));
+                    getTokenSkipNewline(state); // Match the "symbol" part of the pattern, or a left parenthesis
+                    if (state.tokenType === TOKENTYPE.SYMBOL || state.token === '(') {
+                        // We've matched the pattern "number / number symbol".
+                        // Rewind once and build the "number / number" node; the symbol will be consumed later
+                        _extends$2(state, tokenStates.pop());
+                        tokenStates.pop();
+                        last = parseUnary(state);
+                        node = new OperatorNode$1('/', 'divide', [node, last]);
+                    }
+                    else {
+                        // Not a match, so rewind
+                        tokenStates.pop();
+                        _extends$2(state, tokenStates.pop());
+                        break;
+                    }
+                }
+                else {
+                    // Not a match, so rewind
+                    _extends$2(state, tokenStates.pop());
+                    break;
+                }
+            }
+            else {
+                break;
+            }
+        }
+        return node;
+    }
+    /**
+     * Unary plus and minus, and logical and bitwise not
+     * @return {Node} node
+     * @private
+     */
+    function parseUnary(state) {
+        var name, params, fn;
+        var operators = {
+            '-': 'unaryMinus',
+            '+': 'unaryPlus',
+            '~': 'bitNot',
+            'not': 'not'
+        };
+        if (operators.hasOwnProperty(state.token)) {
+            fn = operators[state.token];
+            name = state.token;
+            getTokenSkipNewline(state);
+            params = [parseUnary(state)];
+            return new OperatorNode$1(name, fn, params);
+        }
+        return parsePow(state);
+    }
+    /**
+     * power
+     * Note: power operator is right associative
+     * @return {Node} node
+     * @private
+     */
+    function parsePow(state) {
+        var node, name, fn, params;
+        node = parseLeftHandOperators(state);
+        if (state.token === '^' || state.token === '.^') {
+            name = state.token;
+            fn = name === '^' ? 'pow' : 'dotPow';
+            getTokenSkipNewline(state);
+            params = [node, parseUnary(state)]; // Go back to unary, we can have '2^-3'
+            node = new OperatorNode$1(name, fn, params);
+        }
+        return node;
+    }
+    /**
+     * Left hand operators: factorial x!, ctranspose x'
+     * @return {Node} node
+     * @private
+     */
+    function parseLeftHandOperators(state) {
+        var node, operators, name, fn, params;
+        node = parseCustomNodes(state);
+        operators = {
+            '!': 'factorial',
+            '\'': 'ctranspose'
+        };
+        while (operators.hasOwnProperty(state.token)) {
+            name = state.token;
+            fn = operators[name];
+            getToken(state);
+            params = [node];
+            node = new OperatorNode$1(name, fn, params);
+            node = parseAccessors(state, node);
+        }
+        return node;
+    }
+    /**
+     * Parse a custom node handler. A node handler can be used to process
+     * nodes in a custom way, for example for handling a plot.
+     *
+     * A handler must be passed as second argument of the parse function.
+     * - must extend math.expression.node.Node
+     * - must contain a function _compile(defs: Object) : string
+     * - must contain a function find(filter: Object) : Node[]
+     * - must contain a function toString() : string
+     * - the constructor is called with a single argument containing all parameters
+     *
+     * For example:
+     *
+     *     nodes = {
+     *       'plot': PlotHandler
+     *     }
+     *
+     * The constructor of the handler is called as:
+     *
+     *     node = new PlotHandler(params)
+     *
+     * The handler will be invoked when evaluating an expression like:
+     *
+     *     node = math.parse('plot(sin(x), x)', nodes)
+     *
+     * @return {Node} node
+     * @private
+     */
+    function parseCustomNodes(state) {
+        var params = [];
+        if (state.tokenType === TOKENTYPE.SYMBOL && state.extraNodes.hasOwnProperty(state.token)) {
+            var CustomNode = state.extraNodes[state.token];
+            getToken(state); // parse parameters
+            if (state.token === '(') {
+                params = [];
+                openParams(state);
+                getToken(state);
+                if (state.token !== ')') {
+                    params.push(parseAssignment(state)); // parse a list with parameters
+                    while (state.token === ',') {
+                        // eslint-disable-line no-unmodified-loop-condition
+                        getToken(state);
+                        params.push(parseAssignment(state));
+                    }
+                }
+                if (state.token !== ')') {
+                    throw createSyntaxError(state, 'Parenthesis ) expected');
+                }
+                closeParams(state);
+                getToken(state);
+            } // create a new custom node
+            // noinspection JSValidateTypes
+            return new CustomNode(params);
+        }
+        return parseSymbol(state);
+    }
+    /**
+     * parse symbols: functions, variables, constants, units
+     * @return {Node} node
+     * @private
+     */
+    function parseSymbol(state) {
+        var node, name;
+        if (state.tokenType === TOKENTYPE.SYMBOL || state.tokenType === TOKENTYPE.DELIMITER && state.token in NAMED_DELIMITERS) {
+            name = state.token;
+            getToken(state);
+            if (CONSTANTS.hasOwnProperty(name)) {
+                // true, false, null, ...
+                node = new ConstantNode$1(CONSTANTS[name]);
+            }
+            else if (NUMERIC_CONSTANTS.indexOf(name) !== -1) {
+                // NaN, Infinity
+                node = new ConstantNode$1(numeric$1(name, 'number'));
+            }
+            else {
+                node = new SymbolNode$1(name);
+            } // parse function parameters and matrix index
+            node = parseAccessors(state, node);
+            return node;
+        }
+        return parseDoubleQuotesString(state);
+    }
+    /**
+     * parse accessors:
+     * - function invocation in round brackets (...), for example sqrt(2)
+     * - index enclosed in square brackets [...], for example A[2,3]
+     * - dot notation for properties, like foo.bar
+     * @param {Node} node    Node on which to apply the parameters. If there
+     *                       are no parameters in the expression, the node
+     *                       itself is returned
+     * @param {string[]} [types]  Filter the types of notations
+     *                            can be ['(', '[', '.']
+     * @return {Node} node
+     * @private
+     */
+    function parseAccessors(state, node, types) {
+        var params;
+        while ((state.token === '(' || state.token === '[' || state.token === '.') && (!types || types.indexOf(state.token) !== -1)) {
+            // eslint-disable-line no-unmodified-loop-condition
+            params = [];
+            if (state.token === '(') {
+                if (type.isSymbolNode(node) || type.isAccessorNode(node)) {
+                    // function invocation like fn(2, 3) or obj.fn(2, 3)
+                    openParams(state);
+                    getToken(state);
+                    if (state.token !== ')') {
+                        params.push(parseAssignment(state)); // parse a list with parameters
+                        while (state.token === ',') {
+                            // eslint-disable-line no-unmodified-loop-condition
+                            getToken(state);
+                            params.push(parseAssignment(state));
+                        }
+                    }
+                    if (state.token !== ')') {
+                        throw createSyntaxError(state, 'Parenthesis ) expected');
+                    }
+                    closeParams(state);
+                    getToken(state);
+                    node = new FunctionNode$1(node, params);
+                }
+                else {
+                    // implicit multiplication like (2+3)(4+5) or sqrt(2)(1+2)
+                    // don't parse it here but let it be handled by parseImplicitMultiplication
+                    // with correct precedence
+                    return node;
+                }
+            }
+            else if (state.token === '[') {
+                // index notation like variable[2, 3]
+                openParams(state);
+                getToken(state);
+                if (state.token !== ']') {
+                    params.push(parseAssignment(state)); // parse a list with parameters
+                    while (state.token === ',') {
+                        // eslint-disable-line no-unmodified-loop-condition
+                        getToken(state);
+                        params.push(parseAssignment(state));
+                    }
+                }
+                if (state.token !== ']') {
+                    throw createSyntaxError(state, 'Parenthesis ] expected');
+                }
+                closeParams(state);
+                getToken(state);
+                node = new AccessorNode$1(node, new IndexNode$1(params));
+            }
+            else {
+                // dot notation like variable.prop
+                getToken(state);
+                if (state.tokenType !== TOKENTYPE.SYMBOL) {
+                    throw createSyntaxError(state, 'Property name expected after dot');
+                }
+                params.push(new ConstantNode$1(state.token));
+                getToken(state);
+                var dotNotation = true;
+                node = new AccessorNode$1(node, new IndexNode$1(params, dotNotation));
+            }
+        }
+        return node;
+    }
+    /**
+     * Parse a double quotes string.
+     * @return {Node} node
+     * @private
+     */
+    function parseDoubleQuotesString(state) {
+        var node, str;
+        if (state.token === '"') {
+            str = parseDoubleQuotesStringToken(state); // create constant
+            node = new ConstantNode$1(str); // parse index parameters
+            node = parseAccessors(state, node);
+            return node;
+        }
+        return parseSingleQuotesString(state);
+    }
+    /**
+     * Parse a string surrounded by double quotes "..."
+     * @return {string}
+     */
+    function parseDoubleQuotesStringToken(state) {
+        var str = '';
+        while (currentCharacter(state) !== '' && currentCharacter(state) !== '"') {
+            if (currentCharacter(state) === '\\') {
+                // escape character, immediately process the next
+                // character to prevent stopping at a next '\"'
+                str += currentCharacter(state);
+                next(state);
+            }
+            str += currentCharacter(state);
+            next(state);
+        }
+        getToken(state);
+        if (state.token !== '"') {
+            throw createSyntaxError(state, 'End of string " expected');
+        }
+        getToken(state);
+        return JSON.parse('"' + str + '"'); // unescape escaped characters
+    }
+    /**
+     * Parse a single quotes string.
+     * @return {Node} node
+     * @private
+     */
+    function parseSingleQuotesString(state) {
+        var node, str;
+        if (state.token === '\'') {
+            str = parseSingleQuotesStringToken(state); // create constant
+            node = new ConstantNode$1(str); // parse index parameters
+            node = parseAccessors(state, node);
+            return node;
+        }
+        return parseMatrix(state);
+    }
+    /**
+     * Parse a string surrounded by single quotes '...'
+     * @return {string}
+     */
+    function parseSingleQuotesStringToken(state) {
+        var str = '';
+        while (currentCharacter(state) !== '' && currentCharacter(state) !== '\'') {
+            if (currentCharacter(state) === '\\') {
+                // escape character, immediately process the next
+                // character to prevent stopping at a next '\''
+                str += currentCharacter(state);
+                next(state);
+            }
+            str += currentCharacter(state);
+            next(state);
+        }
+        getToken(state);
+        if (state.token !== '\'') {
+            throw createSyntaxError(state, 'End of string \' expected');
+        }
+        getToken(state);
+        return JSON.parse('"' + str + '"'); // unescape escaped characters
+    }
+    /**
+     * parse the matrix
+     * @return {Node} node
+     * @private
+     */
+    function parseMatrix(state) {
+        var array, params, rows, cols;
+        if (state.token === '[') {
+            // matrix [...]
+            openParams(state);
+            getToken(state);
+            if (state.token !== ']') {
+                // this is a non-empty matrix
+                var row = parseRow(state);
+                if (state.token === ';') {
+                    // 2 dimensional array
+                    rows = 1;
+                    params = [row]; // the rows of the matrix are separated by dot-comma's
+                    while (state.token === ';') {
+                        // eslint-disable-line no-unmodified-loop-condition
+                        getToken(state);
+                        params[rows] = parseRow(state);
+                        rows++;
+                    }
+                    if (state.token !== ']') {
+                        throw createSyntaxError(state, 'End of matrix ] expected');
+                    }
+                    closeParams(state);
+                    getToken(state); // check if the number of columns matches in all rows
+                    cols = params[0].items.length;
+                    for (var r = 1; r < rows; r++) {
+                        if (params[r].items.length !== cols) {
+                            throw createError(state, 'Column dimensions mismatch ' + '(' + params[r].items.length + ' !== ' + cols + ')');
+                        }
+                    }
+                    array = new ArrayNode$1(params);
+                }
+                else {
+                    // 1 dimensional vector
+                    if (state.token !== ']') {
+                        throw createSyntaxError(state, 'End of matrix ] expected');
+                    }
+                    closeParams(state);
+                    getToken(state);
+                    array = row;
+                }
+            }
+            else {
+                // this is an empty matrix "[ ]"
+                closeParams(state);
+                getToken(state);
+                array = new ArrayNode$1([]);
+            }
+            return parseAccessors(state, array);
+        }
+        return parseObject(state);
+    }
+    /**
+     * Parse a single comma-separated row from a matrix, like 'a, b, c'
+     * @return {ArrayNode} node
+     */
+    function parseRow(state) {
+        var params = [parseAssignment(state)];
+        var len = 1;
+        while (state.token === ',') {
+            // eslint-disable-line no-unmodified-loop-condition
+            getToken(state); // parse expression
+            params[len] = parseAssignment(state);
+            len++;
+        }
+        return new ArrayNode$1(params);
+    }
+    /**
+     * parse an object, enclosed in angle brackets{...}, for example {value: 2}
+     * @return {Node} node
+     * @private
+     */
+    function parseObject(state) {
+        if (state.token === '{') {
+            openParams(state);
+            var key;
+            var properties = {};
+            do {
+                getToken(state);
+                if (state.token !== '}') {
+                    // parse key
+                    if (state.token === '"') {
+                        key = parseDoubleQuotesStringToken(state);
+                    }
+                    else if (state.token === '\'') {
+                        key = parseSingleQuotesStringToken(state);
+                    }
+                    else if (state.tokenType === TOKENTYPE.SYMBOL) {
+                        key = state.token;
+                        getToken(state);
+                    }
+                    else {
+                        throw createSyntaxError(state, 'Symbol or string expected as object key');
+                    } // parse key/value separator
+                    if (state.token !== ':') {
+                        throw createSyntaxError(state, 'Colon : expected after object key');
+                    }
+                    getToken(state); // parse key
+                    properties[key] = parseAssignment(state);
+                }
+            } while (state.token === ','); // eslint-disable-line no-unmodified-loop-condition
+            if (state.token !== '}') {
+                throw createSyntaxError(state, 'Comma , or bracket } expected after object value');
+            }
+            closeParams(state);
+            getToken(state);
+            var node = new ObjectNode$1(properties); // parse index parameters
+            node = parseAccessors(state, node);
+            return node;
+        }
+        return parseNumber(state);
+    }
+    /**
+     * parse a number
+     * @return {Node} node
+     * @private
+     */
+    function parseNumber(state) {
+        var numberStr;
+        if (state.tokenType === TOKENTYPE.NUMBER) {
+            // this is a number
+            numberStr = state.token;
+            getToken(state);
+            return new ConstantNode$1(numeric$1(numberStr, config.number));
+        }
+        return parseParentheses(state);
+    }
+    /**
+     * parentheses
+     * @return {Node} node
+     * @private
+     */
+    function parseParentheses(state) {
+        var node; // check if it is a parenthesized expression
+        if (state.token === '(') {
+            // parentheses (...)
+            openParams(state);
+            getToken(state);
+            node = parseAssignment(state); // start again
+            if (state.token !== ')') {
+                throw createSyntaxError(state, 'Parenthesis ) expected');
+            }
+            closeParams(state);
+            getToken(state);
+            node = new ParenthesisNode$1(node);
+            node = parseAccessors(state, node);
+            return node;
+        }
+        return parseEnd(state);
+    }
+    /**
+     * Evaluated when the expression is not yet ended but expected to end
+     * @return {Node} res
+     * @private
+     */
+    function parseEnd(state) {
+        if (state.token === '') {
+            // syntax error or unexpected end of expression
+            throw createSyntaxError(state, 'Unexpected end of expression');
+        }
+        else {
+            throw createSyntaxError(state, 'Value expected');
+        }
+    }
+    /**
+     * Shortcut for getting the current row value (one based)
+     * Returns the line of the currently handled expression
+     * @private
+     */
+    /* TODO: implement keeping track on the row number
+    function row () {
+      return null
+    }
+    */
+    /**
+     * Shortcut for getting the current col value (one based)
+     * Returns the column (position) where the last state.token starts
+     * @private
+     */
+    function col(state) {
+        return state.index - state.token.length + 1;
+    }
+    /**
+     * Create an error
+     * @param {string} message
+     * @return {SyntaxError} instantiated error
+     * @private
+     */
+    function createSyntaxError(state, message) {
+        var c = col(state);
+        var error = new SyntaxError(message + ' (char ' + c + ')');
+        error['char'] = c;
+        return error;
+    }
+    /**
+     * Create an error
+     * @param {string} message
+     * @return {Error} instantiated error
+     * @private
+     */
+    function createError(state, message) {
+        var c = col(state);
+        var error = new SyntaxError(message + ' (char ' + c + ')');
+        error['char'] = c;
+        return error;
+    }
+    return parse;
+}
+var name$r = 'parse';
+var path$j = 'expression';
+var factory_1$t = factory$t;
+var parse = {
+    name: name$r,
+    path: path$j,
+    factory: factory_1$t
+};
+function factory$u(type, config, load, typed) {
+    var parse$1 = load(parse);
+    /**
+     * Parse an expression. Returns a node tree, which can be evaluated by
+     * invoking node.eval().
+     *
+     * Note the evaluating arbitrary expressions may involve security risks,
+     * see [https://mathjs.org/docs/expressions/security.html](https://mathjs.org/docs/expressions/security.html) for more information.
+     *
+     * Syntax:
+     *
+     *     math.parse(expr)
+     *     math.parse(expr, options)
+     *     math.parse([expr1, expr2, expr3, ...])
+     *     math.parse([expr1, expr2, expr3, ...], options)
+     *
+     * Example:
+     *
+     *     const node1 = math.parse('sqrt(3^2 + 4^2)')
+     *     node1.compile().eval() // 5
+     *
+     *     let scope = {a:3, b:4}
+     *     const node2 = math.parse('a * b') // 12
+     *     const code2 = node2.compile()
+     *     code2.eval(scope) // 12
+     *     scope.a = 5
+     *     code2.eval(scope) // 20
+     *
+     *     const nodes = math.parse(['a = 3', 'b = 4', 'a * b'])
+     *     nodes[2].compile().eval() // 12
+     *
+     * See also:
+     *
+     *     eval, compile
+     *
+     * @param {string | string[] | Matrix} expr          Expression to be parsed
+     * @param {{nodes: Object<string, Node>}} [options]  Available options:
+     *                                                   - `nodes` a set of custom nodes
+     * @return {Node | Node[]} node
+     * @throws {Error}
+     */
+    return typed('parse', {
+        'string | Array | Matrix': parse$1,
+        'string | Array | Matrix, Object': parse$1
+    });
+}
+var name$s = 'parse';
+var factory_1$u = factory$u;
+var parse$1 = {
+    name: name$s,
+    factory: factory_1$u
+};
+function factory$v(type, config, load, typed) {
+    var parse$1 = load(parse);
+    /**
+     * Parse and compile an expression.
+     * Returns a an object with a function `eval([scope])` to evaluate the
+     * compiled expression.
+     *
+     * Syntax:
+     *
+     *     math.compile(expr)                       // returns one node
+     *     math.compile([expr1, expr2, expr3, ...]) // returns an array with nodes
+     *
+     * Examples:
+     *
+     *     const code1 = math.compile('sqrt(3^2 + 4^2)')
+     *     code1.eval() // 5
+     *
+     *     let scope = {a: 3, b: 4}
+     *     const code2 = math.compile('a * b') // 12
+     *     code2.eval(scope) // 12
+     *     scope.a = 5
+     *     code2.eval(scope) // 20
+     *
+     *     const nodes = math.compile(['a = 3', 'b = 4', 'a * b'])
+     *     nodes[2].eval() // 12
+     *
+     * See also:
+     *
+     *    parse, eval
+     *
+     * @param {string | string[] | Array | Matrix} expr
+     *            The expression to be compiled
+     * @return {{eval: Function} | Array.<{eval: Function}>} code
+     *            An object with the compiled expression
+     * @throws {Error}
+     */
+    return typed('compile', {
+        'string': function string(expr) {
+            return parse$1(expr).compile();
+        },
+        'Array | Matrix': function ArrayMatrix(expr) {
+            return deepMap(expr, function (entry) {
+                return parse$1(entry).compile();
+            });
+        }
+    });
+}
+var name$t = 'compile';
+var factory_1$v = factory$v;
+var compile = {
+    name: name$t,
+    factory: factory_1$v
+};
+function factory$w(type, config, load, typed) {
+    var parse$1 = load(parse);
+    /**
+     * Evaluate an expression.
+     *
+     * Note the evaluating arbitrary expressions may involve security risks,
+     * see [https://mathjs.org/docs/expressions/security.html](https://mathjs.org/docs/expressions/security.html) for more information.
+     *
+     * Syntax:
+     *
+     *     math.eval(expr)
+     *     math.eval(expr, scope)
+     *     math.eval([expr1, expr2, expr3, ...])
+     *     math.eval([expr1, expr2, expr3, ...], scope)
+     *
+     * Example:
+     *
+     *     math.eval('(2+3)/4')                // 1.25
+     *     math.eval('sqrt(3^2 + 4^2)')        // 5
+     *     math.eval('sqrt(-4)')               // 2i
+     *     math.eval(['a=3', 'b=4', 'a*b'])    // [3, 4, 12]
+     *
+     *     let scope = {a:3, b:4}
+     *     math.eval('a * b', scope)           // 12
+     *
+     * See also:
+     *
+     *    parse, compile
+     *
+     * @param {string | string[] | Matrix} expr   The expression to be evaluated
+     * @param {Object} [scope]                    Scope to read/write variables
+     * @return {*} The result of the expression
+     * @throws {Error}
+     */
+    return typed('compile', {
+        'string': function string(expr) {
+            var scope = {};
+            return parse$1(expr).compile().eval(scope);
+        },
+        'string, Object': function stringObject(expr, scope) {
+            return parse$1(expr).compile().eval(scope);
+        },
+        'Array | Matrix': function ArrayMatrix(expr) {
+            var scope = {};
+            return deepMap(expr, function (entry) {
+                return parse$1(entry).compile().eval(scope);
+            });
+        },
+        'Array | Matrix, Object': function ArrayMatrixObject(expr, scope) {
+            return deepMap(expr, function (entry) {
+                return parse$1(entry).compile().eval(scope);
+            });
+        }
+    });
+}
+var name$u = 'eval';
+var factory_1$w = factory$w;
+var _eval = {
+    name: name$u,
+    factory: factory_1$w
+};
+function factory$x(type, config, load, typed) {
+    /**
+     * Format a value of any type into a string.
+     *
+     * Syntax:
+     *
+     *    math.format(value)
+     *    math.format(value, options)
+     *    math.format(value, precision)
+     *    math.format(value, callback)
+     *
+     * Where:
+     *
+     *  - `value: *`
+     *    The value to be formatted
+     *  - `options: Object`
+     *    An object with formatting options. Available options:
+     *    - `notation: string`
+     *      Number notation. Choose from:
+     *      - 'fixed'
+     *        Always use regular number notation.
+     *        For example '123.40' and '14000000'
+     *      - 'exponential'
+     *        Always use exponential notation.
+     *        For example '1.234e+2' and '1.4e+7'
+     *      - 'engineering'
+     *        Always use engineering notation.
+     *        For example '123.4e+0' and '14.0e+6'
+     *      - 'auto' (default)
+     *        Regular number notation for numbers having an absolute value between
+     *        `lower` and `upper` bounds, and uses exponential notation elsewhere.
+     *        Lower bound is included, upper bound is excluded.
+     *        For example '123.4' and '1.4e7'.
+     *    - `precision: number`
+     *      A number between 0 and 16 to round the digits of the number. In case
+     *      of notations 'exponential', 'engineering', and 'auto', `precision`
+     *      defines the total number of significant digits returned.
+     *      In case of notation 'fixed', `precision` defines the number of
+     *      significant digits after the decimal point.
+     *      `precision` is undefined by default.
+     *    - `lowerExp: number`
+     *      Exponent determining the lower boundary for formatting a value with
+     *      an exponent when `notation='auto`. Default value is `-3`.
+     *    - `upperExp: number`
+     *      Exponent determining the upper boundary for formatting a value with
+     *      an exponent when `notation='auto`. Default value is `5`.
+     *    - `fraction: string`. Available values: 'ratio' (default) or 'decimal'.
+     *      For example `format(fraction(1, 3))` will output '1/3' when 'ratio' is
+     *      configured, and will output `0.(3)` when 'decimal' is configured.
+     * - `callback: function`
+     *   A custom formatting function, invoked for all numeric elements in `value`,
+     *   for example all elements of a matrix, or the real and imaginary
+     *   parts of a complex number. This callback can be used to override the
+     *   built-in numeric notation with any type of formatting. Function `callback`
+     *   is called with `value` as parameter and must return a string.
+     *
+     * When `value` is an Object:
+     *
+     * - When the object contains a property `format` being a function, this function
+     *   is invoked as `value.format(options)` and the result is returned.
+     * - When the object has its own `toString` method, this method is invoked
+     *   and the result is returned.
+     * - In other cases the function will loop over all object properties and
+     *   return JSON object notation like '{"a": 2, "b": 3}'.
+     *
+     * When value is a function:
+     *
+     * - When the function has a property `syntax`, it returns this
+     *   syntax description.
+     * - In other cases, a string `'function'` is returned.
+     *
+     * Examples:
+     *
+     *    math.format(6.4)                                        // returns '6.4'
+     *    math.format(1240000)                                    // returns '1.24e6'
+     *    math.format(1/3)                                        // returns '0.3333333333333333'
+     *    math.format(1/3, 3)                                     // returns '0.333'
+     *    math.format(21385, 2)                                   // returns '21000'
+     *    math.format(12e8, {notation: 'fixed'})                  // returns '1200000000'
+     *    math.format(2.3,  {notation: 'fixed', precision: 4})    // returns '2.3000'
+     *    math.format(52.8, {notation: 'exponential'})            // returns '5.28e+1'
+     *    math.format(12400,{notation: 'engineering'})            // returns '12.400e+3'
+     *    math.format(2000, {lowerExp: -2, upperExp: 2})          // returns '2e+3'
+     *
+     *    function formatCurrency(value) {
+     *      // return currency notation with two digits:
+     *      return '$' + value.toFixed(2)
+     *
+     *      // you could also use math.format inside the callback:
+     *      // return '$' + math.format(value, {notation: 'fixed', precision: 2})
+     *    }
+     *    math.format([2.1, 3, 0.016], formatCurrency}            // returns '[$2.10, $3.00, $0.02]'
+     *
+     * See also:
+     *
+     *    print
+     *
+     * @param {*} value                               Value to be stringified
+     * @param {Object | Function | number} [options]  Formatting options
+     * @return {string} The formatted value
+     */
+    var format = typed('format', {
+        'any': string.format,
+        'any, Object | function | number': string.format
+    });
+    format.toTex = undefined; // use default template
+    return format;
+}
+var name$v = 'format';
+var factory_1$x = factory$x;
+var format$1 = {
+    name: name$v,
+    factory: factory_1$x
+};
+// Load the math.js core
+// Create a new, empty math.js instance
+// It will only contain methods `import` and `config`
+var math$5 = core$1.create();
+math$5.import(parse$1);
+math$5.import(compile);
+math$5.import(_eval);
+math$5.import(format$1);
+// create simple functions for all operators
+math$5.import({
+    // arithmetic
+    add: function (a, b) { return a + b; },
+    subtract: function (a, b) { return a - b; },
+    multiply: function (a, b) { return a * b; },
+    divide: function (a, b) { return a / b; },
+    mod: function (a, b) { return a % b; },
+    unaryPlus: function (a) { return a; },
+    unaryMinus: function (a) { return -a; },
+    // bitwise
+    bitOr: function (a, b) { return a | b; },
+    bitXor: function (a, b) { return a ^ b; },
+    bitAnd: function (a, b) { return a & b; },
+    bitNot: function (a) { return ~a; },
+    leftShift: function (a, b) { return a << b; },
+    rightArithShift: function (a, b) { return a >> b; },
+    rightLogShift: function (a, b) { return a >>> b; },
+    // logical
+    or: function (a, b) { return !!(a || b); },
+    xor: function (a, b) { return !!a !== !!b; },
+    and: function (a, b) { return !!(a && b); },
+    not: function (a) { return !a; },
+    // relational
+    equal: function (a, b) { return a == b; },
+    unequal: function (a, b) { return a != b; },
+    smaller: function (a, b) { return a < b; },
+    larger: function (a, b) { return a > b; },
+    smallerEq: function (a, b) { return a <= b; },
+    largerEq: function (a, b) { return a >= b; },
+    // matrix
+    // matrix: function (a) { return a },
+    matrix: function () {
+        throw new Error('Matrices not supported');
+    },
+    index: function () {
+        // TODO: create a simple index function
+        throw new Error('Matrix indexes not supported');
+    },
+    // add pi and e as lowercase
+    pi: Math.PI,
+    e: Math.E,
+    'true': true,
+    'false': false,
+    'null': null
+});
+// import everything from Math (like trigonometric functions)
+var allFromMath = {};
+Object.getOwnPropertyNames(Math).forEach(function (name) {
+    // filter out stuff like Firefox's "toSource" method.
+    if (!Object.prototype.hasOwnProperty(name)) {
+        allFromMath[name] = Math[name];
+    }
+});
+math$5.import(allFromMath);
+var mathjsExpressionParser = math$5;
+/**
+ * A DiceParser object, which takes a notation
+ * and parses it in to dice and modifiers
+ *
+ * @type {Parser}
+ */
+const Parser = (() => {
+    /**
+     * (Hopefully) temporary method for converting parsed notation
+     * into proper class objects.
+     * Currently the PEG parser returns generic objects, but we need
+     * our class objects like `StandardDice`.
+     * Once we have the PEG parser able to return class objects, this
+     * method can be removed.
+     *
+     * @param {*} expression
+     * @returns {*}
+     */
+    const parseExpression = expression => {
+        if (Array.isArray(expression)) {
+            // loop through each array item and parse it
+            return expression.map(item => {
+                return parseExpression(item);
+            });
+        }
+        else if (expression instanceof Object) {
+            if (expression.type === 'dice') {
+                // @todo calculation of sides and qty should be done in grammar as they should only be simple equations
+                let sides = parseExpression(expression.sides);
+                sides = Array.isArray(sides) ? sides.join('') : sides;
+                let qty = parseExpression(expression.qty);
+                qty = mathjsExpressionParser.eval(Array.isArray(qty) ? qty.join('') : qty);
+                // parse the modifiers to proper objects
+                expression.modifiers = Object.assign({}, ...Object.keys(expression.modifiers).map(k => ({ [k]: parseExpression(expression.modifiers[k]) })));
+                switch (expression.subType) {
+                    case 'standard':
+                        return new StandardDice(expression.notation, mathjsExpressionParser.eval(sides), qty, expression.modifiers);
+                    case 'percentile':
+                        return new PercentileDice(expression.notation, qty, expression.modifiers);
+                    case 'fudge':
+                        return new FudgeDice(expression.notation, mathjsExpressionParser.eval(sides), qty, expression.modifiers);
+                    default:
+                        throw Error(`Parser: Dice type was not recognised`);
+                }
+            }
+            else if (expression.type === 'group') {
+                expression.expressions = parseExpression(expression.expressions);
+                // parse the modifiers to proper objects
+                expression.modifiers = Object.assign({}, ...Object.keys(expression.modifiers).map(k => ({ [k]: parseExpression(expression.modifiers[k]) })));
+                return new RollGroup(expression.notation, expression.expressions, expression.modifiers);
+            }
+            else if (expression.type === 'modifier') {
+                switch (expression.subType) {
+                    case 'drop':
+                        return new DropModifier(expression.notation, expression.end, expression.qty);
+                    case 'explode':
+                        expression.comparePoint = parseExpression(expression.comparePoint);
+                        return new ExplodeModifier(expression.notation, expression.comparePoint, expression.compound, expression.penetrate);
+                    case 'keep':
+                        return new KeepModifier(expression.notation, expression.end, expression.qty);
+                    case 'target':
+                        expression.successCP = parseExpression(expression.successCP);
+                        expression.failureCP = expression.failureCP ? parseExpression(expression.failureCP) : null;
+                        return new TargetModifier(expression.notation, expression.successCP, expression.failureCP);
+                    case 're-roll':
+                        expression.comparePoint = parseExpression(expression.comparePoint);
+                        return new ReRollModifier(expression.notation, expression.once, expression.comparePoint);
+                    case 'critical-success':
+                        expression.comparePoint = parseExpression(expression.comparePoint);
+                        return new CriticalSuccessModifier(expression.notation, expression.comparePoint);
+                    case 'critical-failure':
+                        expression.comparePoint = parseExpression(expression.comparePoint);
+                        return new CriticalFailureModifier(expression.notation, expression.comparePoint);
+                    case 'sort':
+                        return new SortingModifier(expression.notation, expression.direction);
+                }
+            }
+            else if (expression.type === 'compare-point') {
+                return new ComparePoint(expression.operator, expression.value);
+            }
+        }
+        return expression;
+    };
+    /**
+     * A DiceParser object, which takes a notation
+     * and parses it in to rolls
+     *
+     * @param {string|Object} notation  The dice notation or object
+     */
+    class Parser {
+        /** Public methods **/
+        /**
+         * Parses the given dice notation
+         * and returns a list of dice and modifiers found
+         *
+         * @link https://en.m.wikipedia.org/wiki/Dice_notation
+         * @param {string} notation
+         * @returns {Array}
+         */
+        static parse(notation) {
+            if (!notation) {
+                throw Error('Notation is required');
+            }
+            else if (typeof notation !== 'string') {
+                throw Error('Notation must be a string');
+            }
+            // parse the notation
+            const parsed = grammar_1(notation);
+            // (Hopefully) temporary solution to parse the generic objects into class instances
+            return parseExpression(parsed);
+        }
+    }
+    return Parser;
+})();
+const DiceRoll = (() => {
+    /**
+     * @type {symbol}
+     *
+     * @private
+     */
+    const _calculateTotal = Symbol('calculateTotals');
+    /**
+     * The notation
+     *
+     * @type {symbol}
+     *
+     * @private
+     */
+    const _notation = Symbol('notation');
+    /**
+     * List of dice definition objects
+     *
+     * @type {symbol}
+     *
+     * @private
+     */
+    const _parsedNotation = Symbol('parsed-notation');
+    /**
+     * List of rolls
+     *
+     * @type {symbol}
+     *
+     * @private
+     */
+    const _rolls = Symbol('rolls');
+    /**
+     * The roll total
+     *
+     * @type {symbol}
+     *
+     * @private
+     */
+    const _total = Symbol('totals');
+    class DiceRoll {
+        /**
+         * Parses the notation and rolls the dice
+         *
+         * @param notation
+         */
+        constructor(notation) {
+            if (!notation) {
+                throw new Error('Notation is required');
+            }
+            // initialise the parsed dice array
+            this[_parsedNotation] = [];
+            if ((notation instanceof Object) && !Array.isArray(notation)) {
+                // validate object
+                // @todo see if we can assert that the notation is valid
+                if (!notation.notation) {
+                    // object doesn't contain a notation property
+                    throw new Error('Notation is required');
+                }
+                else if (typeof notation.notation !== 'string') {
+                    throw new Error(`Notation is not valid: ${notation.notation}`);
+                }
+                else if (notation.rolls) {
+                    // we have rolls - validate them
+                    if (!Array.isArray(notation.rolls)) {
+                        // rolls is not an array
+                        throw new Error(`Rolls must be an Array: ${notation.rolls}`);
+                    }
+                    else {
+                        // if roll is a RollResults, return it, otherwise try to convert to a RollResults object
+                        this[_rolls] = notation.rolls.map(roll => {
+                            if (roll instanceof RollResults) {
+                                // already a RollResults object
+                                return roll;
+                            }
+                            else if (Array.isArray(roll)) {
+                                // array of values
+                                return new RollResults(roll);
+                            }
+                            else if ((roll instanceof Object) && Array.isArray(roll.rolls)) {
+                                // object with list of rolls
+                                return new RollResults(roll.rolls);
+                            }
+                        });
+                    }
+                }
+                // store the notation
+                this[_notation] = notation.notation;
+                // parse the notation
+                this[_parsedNotation] = Parser.parse(this.notation);
+                if (!this[_rolls] || !this[_rolls].length) {
+                    // ensure rolls is an empty array
+                    this[_rolls] = [];
+                    // roll the dice
+                    this.roll();
+                }
+            }
+            else if (typeof notation === 'string') {
+                // @todo see if we can assert that the notation is valid
+                // store the notation
+                this[_notation] = notation;
+                // empty the current rolls
+                this[_rolls] = [];
+                // parse the notation
+                this[_parsedNotation] = Parser.parse(this.notation);
+                // roll the dice
+                this.roll();
+            }
+            else {
+                throw new Error(`Notation is not valid: ${notation}`);
+            }
+        }
+        /*************************
+         * Static Methods
+         *************************/
+        /**
+         * Imports the given dice roll data and builds an object from it.
+         *
+         * Throws Error on failure
+         *
+         * @param {{}|string|DiceRoll} data The data to import
+         *
+         * @throws Error
+         *
+         * @returns {DiceRoll}
+         */
+        static import(data) {
+            if (!data) {
+                throw new Error('No data to import');
+            }
+            else if (diceUtils.isJson(data)) {
+                // data is JSON format - parse and import
+                return DiceRoll.import(JSON.parse(data));
+            }
+            else if (diceUtils.isBase64(data)) {
+                // data is base64 encoded - decode and import
+                return DiceRoll.import(atob(data));
+            }
+            else if (typeof data === 'object') {
+                // if data is a `DiceRoll` return it, otherwise build it
+                return (data instanceof DiceRoll) ? data : new DiceRoll(data);
+            }
+            else {
+                throw new Error(`Unrecognised import format for data: ${data}`);
+            }
+        }
+        /*************************
+         * Public Properties
+         *************************/
+        /**
+         * The dice notation
+         *
+         * @returns {string}
+         */
+        get notation() {
+            return this[_notation] || '';
+        }
+        /**
+         * Returns the roll notation and rolls in the format of:
+         * 2d20+1d6: [20,2]+[2] = 24
+         *
+         * @returns {string}
+         */
+        get output() {
+            let rollIndex = 0;
+            let output = `${this.notation}: `;
+            if (this.hasRolls()) {
+                output += this[_parsedNotation]
+                    .map(item => {
+                    if (item instanceof StandardDice) {
+                        const rollResults = this.rolls[rollIndex] || null;
+                        // increment the roll index
+                        rollIndex++;
+                        return rollResults;
+                    }
+                    return item;
+                })
+                    // remove any empty values
+                    .filter(Boolean)
+                    // join into a single string
+                    .join('');
+                // add the total
+                output += ` = ${this.total}`;
+            }
+            else {
+                output += 'No dice rolled';
+            }
+            return output;
+        }
+        /**
+         * The dice rolled for the notation
+         *
+         * @returns {RollResults[]}
+         */
+        get rolls() {
+            return this[_rolls] || [];
+        }
+        /**
+         * Returns the roll total
+         *
+         * @returns {number}
+         */
+        get total() {
+            // only calculate the total if it has not already been done
+            if (!this[_total] && this.hasRolls()) {
+                this[_total] = this[_calculateTotal]();
+            }
+            // return the total
+            return this[_total] || 0;
+        }
+        /*************************
+         * Public methods
+         *************************/
+        /**
+         * Exports the DiceRoll in the given format.
+         * If no format is specified, JSON is returned.
+         *
+         * @throws Error
+         * @param {exportFormats=} format The format to export the data as (ie. JSON, base64)
+         * @returns {string|null}
+         */
+        export(format = exportFormats.JSON) {
+            switch (format) {
+                case exportFormats.BASE_64:
+                    // JSON encode, then base64, otherwise it exports the string representation of the roll output
+                    return btoa(this.export(exportFormats.JSON));
+                case exportFormats.JSON:
+                    return JSON.stringify(this);
+                case exportFormats.OBJECT:
+                    return JSON.parse(this.export(exportFormats.JSON));
+                default:
+                    throw new Error(`Unrecognised export format: ${format}`);
+            }
+        }
+        /**
+         * Returns whether the object has rolled dice or not
+         *
+         * @returns {boolean}
+         */
+        hasRolls() {
+            return !!(this[_parsedNotation] && Array.isArray(this.rolls) && this.rolls.length);
+        }
+        /**
+         * Rolls the dice for the existing notation.
+         * This is useful if you want to re-roll the dice,
+         * for some reason, but it's usually better to
+         * create a new DiceRoll instance instead.
+         *
+         * @returns {Array}
+         */
+        roll() {
+            // clear the roll log
+            this[_rolls] = [];
+            // reset the cached total
+            this[_total] = 0;
+            // saved the rolls to the log
+            this[_rolls] = this[_parsedNotation].map(item => {
+                if ((item instanceof StandardDice) || (item instanceof RollGroup)) {
+                    // roll the object and return the value
+                    return item.roll();
+                }
+            }).filter(Boolean);
+            // return the rolls;
+            return this[_rolls];
+        }
+        /**
+         * Returns an object for JSON serialising
+         *
+         * @returns {{}}
+         */
+        toJSON() {
+            const { notation, output, rolls, total } = this;
+            return {
+                notation,
+                output,
+                rolls,
+                total,
+                type: 'dice-roll',
+            };
+        }
+        /**
+         * Returns the String representation
+         * of the object as the roll notation
+         *
+         * @returns {string}
+         */
+        toString() {
+            return this.output;
+        }
+        /*************************
+         * Private Methods
+         *************************/
+        /**
+         * Calculates the total roll value and returns it
+         *
+         * @returns {Number}
+         */
+        [_calculateTotal]() {
+            let formula = '';
+            let rollIndex = 0;
+            if (this.hasRolls()) {
+                // loop through each roll and calculate the totals
+                this[_parsedNotation].forEach(item => {
+                    // @todo need to handle roll groups
+                    if (item instanceof StandardDice) {
+                        // @todo should roll results be stored on their relevant parsed object?
+                        // item is a die - total the rolls for it
+                        formula += this.rolls[rollIndex] ? this.rolls[rollIndex].value : 0;
+                        // increment the roll index and store the previous rolls / parsed die
+                        rollIndex++;
+                    }
+                    else {
+                        formula += item;
+                    }
+                });
+            }
+            // if a total formula has been produced, evaluate it and round it to max 2 decimal places
+            return formula ? diceUtils.toFixed(mathjsExpressionParser.eval(formula), 2) : 0;
+        }
+    }
+    return DiceRoll;
+})();
+/**
+ * A DiceRoller handles dice rolling functionality,
+ * keeps track of rolls and can output logs etc.
+ *
+ * @type {DiceRoller}
+ */
+const DiceRoller = (() => {
+    /**
+     * history of log rolls
+     *
+     * @type {symbol}
+     */
+    const _log = Symbol('log');
+    /**
+     * A DiceRoller handles dice rolling functionality,
+     * keeps track of rolls and can output logs etc.
+     *
+     * @param {{}=} data
+     */
+    class DiceRoller {
+        /**
+         * Initialises the object
+         *
+         * @constructor
+         * @param data
+         */
+        constructor(data) {
+            this[_log] = [];
+            if (data) {
+                if (Array.isArray(data.log)) {
+                    // loop through each log entry and import it
+                    data.log.forEach(roll => {
+                        this[_log].push(DiceRoll.import(roll));
+                    });
+                }
+                else if (data.log) {
+                    throw new Error('DiceRoller: Roll log must be an Array');
+                }
+            }
+        }
+        /**
+         * Returns the current roll log
+         *
+         * @returns {DiceRoll[]}
+         */
+        get log() {
+            return this[_log] || [];
+        }
+        /**
+         * Returns the roll notation and rolls in the format of:
+         * 2d20+1d6: [20,2]+[2] = 24; 1d8: [6] = 6
+         *
+         * @returns {string}
+         */
+        get output() {
+            // return the log as a joined string
+            return this.log.join('; ');
+        }
+        /**
+         * Returns the total for all the rolls
+         *
+         * @returns {number}
+         */
+        get total() {
+            return this.log.reduce((prev, current) => prev + current.total, 0);
+        }
+        /**
+         * Takes the given data, imports it into a new DiceRoller instance
+         * and returns the DiceRoller
+         *
+         * @throws Error
+         * @param data
+         * @returns {DiceRoller}
+         */
+        static import(data) {
+            // create a new DiceRoller object
+            const diceRoller = new DiceRoller();
+            // import the data
+            diceRoller.import(data);
+            // return the DiceRoller
+            return diceRoller;
+        }
+        /**
+         * Clears the roll history log
+         */
+        clearLog() {
+            this[_log].length = 0;
+        }
+        /**
+         * Exports the roll log in the given format.
+         * If no format is specified, JSON is returned.
+         *
+         * @throws Error
+         * @param {exportFormats=} format The format to export the data as (ie. JSON, base64)
+         * @returns {string|null}
+         */
+        export(format) {
+            switch (format || exportFormats.JSON) {
+                case exportFormats.BASE_64:
+                    // JSON encode, then base64
+                    return btoa(this.export(exportFormats.JSON));
+                case exportFormats.JSON:
+                    return JSON.stringify(this);
+                case exportFormats.OBJECT:
+                    return JSON.parse(this.export(exportFormats.JSON));
+                default:
+                    throw new Error('Unrecognised export format: ' + format);
+            }
+        }
+        /**
+         * Takes the given roll data and imports it into
+         * the existing DiceRoller, appending the rolls
+         * to the current roll log.
+         * Returns the roll log.
+         *
+         * @param {*} data
+         *
+         * @throws Error
+         *
+         * @returns {DiceRoll[]}
+         */
+        import(data) {
+            if (!data) {
+                throw new Error('No data to import');
+            }
+            else if (diceUtils.isJson(data)) {
+                // data is JSON - parse and import
+                return this.import(JSON.parse(data));
+            }
+            else if (diceUtils.isBase64(data)) {
+                // data is base64 encoded - decode an import
+                return this.import(atob(data));
+            }
+            else if (typeof data === 'object') {
+                // if `log` is not defined, but data is an array, use it as the list of logs
+                if (!data.log && Array.isArray(data) && data.length) {
+                    data = { log: data };
+                }
+                if (data.log && Array.isArray(data.log)) {
+                    // loop through each log entry and import it
+                    data.log.forEach(roll => {
+                        this[_log].push(DiceRoll.import(roll));
+                    });
+                }
+                else if (data.log) {
+                    throw new Error('Roll log must be an Array');
+                }
+                return this.log;
+            }
+            else {
+                throw new Error('Unrecognised import format for data: ' + data);
+            }
+        }
+        /**
+         * Returns an object for JSON serialising
+         *
+         * @returns {{}}
+         */
+        toJSON() {
+            const { log, output, total } = this;
+            return {
+                log,
+                output,
+                total,
+                type: 'dice-roller',
+            };
+        }
+        /**
+         * Returns the String representation
+         * of the object as the roll notations
+         *
+         * @returns {string}
+         */
+        toString() {
+            return this.output;
+        }
+        /**
+         * Rolls the given dice notation(s) and returns them.
+         *
+         * You can roll multiple, separate notations at once by
+         * passing them as separate arguments like:
+         * ```
+         * roll('2d6', '4d10', 'd8');
+         * ```
+         *
+         * If only a single notation is passed, a single DiceRoll
+         * object will be returned, if multiple are provided then
+         * it will return an array of DiceRoll objects.
+         *
+         * @param {string[]} notations
+         *
+         * @returns {DiceRoll|DiceRoll[]}
+         */
+        roll(...notations) {
+            if (!notations || !notations.length) {
+                throw new Error('No notations specified');
+            }
+            // remove any empty/falsey notations
+            const filteredNotations = notations.filter(Boolean);
+            // ensure we still have notations
+            if (!filteredNotations.length) {
+                throw new Error('No notations specified');
+            }
+            const rolls = filteredNotations.map(notation => {
+                let diceRoll = new DiceRoll(notation);
+                // add the roll log to our global log
+                this[_log].push(diceRoll);
+                // return the current DiceRoll
+                return diceRoll;
+            });
+            return (rolls.length > 1) ? rolls : rolls[0];
+        }
+    }
+    return DiceRoller;
+})();
+export { Dice, DiceRoll, DiceRoller, Modifiers, Parser, diceUtils, exportFormats };

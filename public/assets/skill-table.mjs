@@ -1,1 +1,78 @@
-import{hookup as e,disconnect as i}from"./broadcaster.mjs";class t extends HTMLElement{constructor(){super(),this.toggleProficiencyBonus=e=>{const i=e.currentTarget,t=i.dataset.skill,s=document.body.querySelector('input[name="fields[proficiencyBonus]"]');for(let e=0;e<this.modifiers.length;e++)if(this.modifiers[e].dataset.skill===t){i.checked?this.modifiers[e].value=""+(parseInt(this.modifiers[e].value)+parseInt(s.value)):this.modifiers[e].value=""+(parseInt(this.modifiers[e].value)-parseInt(s.value));break}},this.modifiers=Array.from(this.querySelectorAll('input[type="number"]')),this.checkboxes=Array.from(this.querySelectorAll('input[type="checkbox"]')),this.inboxUid=e("character-update",this.inbox.bind(this))}inbox(e){switch(e.type){case"proficiency":this.updateCheckedSkills(e.difference);break;case"strength":this.updateModifiers("strength",e.difference);break;case"dexterity":this.updateModifiers("dexterity",e.difference);break;case"constitution":this.updateModifiers("constitution",e.difference);break;case"intelligence":this.updateModifiers("intelligence",e.difference);break;case"wisdom":this.updateModifiers("wisdom",e.difference);break;case"charisma":this.updateModifiers("charisma",e.difference)}}updateModifiers(e,i){this.querySelectorAll(`input[type="number"][data-ability="${e}"]`).forEach(e=>{e.value=""+(parseInt(e.value)+i)})}updateCheckedSkills(e){for(let i=0;i<this.checkboxes.length;i++)if(this.checkboxes[i].checked)for(let t=0;t<this.modifiers.length;t++)if(this.modifiers[t].dataset.skill===this.checkboxes[i].dataset.skill){this.modifiers[t].value=""+(parseInt(this.modifiers[t].value)+e);break}}connectedCallback(){for(let e=0;e<this.checkboxes.length;e++)this.checkboxes[e].addEventListener("change",this.toggleProficiencyBonus)}disconnectedCallback(){i(this.inboxUid)}}customElements.define("skill-table",t);
+import { hookup, disconnect } from "./broadcaster.mjs";
+class SkillTable extends HTMLElement {
+    constructor() {
+        super();
+        this.toggleProficiencyBonus = (e) => {
+            const input = e.currentTarget;
+            const skill = input.dataset.skill;
+            const profBonus = document.body.querySelector('input[name="fields[proficiencyBonus]"]');
+            for (let i = 0; i < this.modifiers.length; i++) {
+                if (this.modifiers[i].dataset.skill === skill) {
+                    if (input.checked) {
+                        this.modifiers[i].value = `${parseInt(this.modifiers[i].value) + parseInt(profBonus.value)}`;
+                    }
+                    else {
+                        this.modifiers[i].value = `${parseInt(this.modifiers[i].value) - parseInt(profBonus.value)}`;
+                    }
+                    break;
+                }
+            }
+        };
+        this.modifiers = Array.from(this.querySelectorAll('input[type="number"]'));
+        this.checkboxes = Array.from(this.querySelectorAll('input[type="checkbox"]'));
+        this.inboxUid = hookup("character-update", this.inbox.bind(this));
+    }
+    inbox(data) {
+        switch (data.type) {
+            case "proficiency":
+                this.updateCheckedSkills(data.difference);
+                break;
+            case "strength":
+                this.updateModifiers("strength", data.difference);
+                break;
+            case "dexterity":
+                this.updateModifiers("dexterity", data.difference);
+                break;
+            case "constitution":
+                this.updateModifiers("constitution", data.difference);
+                break;
+            case "intelligence":
+                this.updateModifiers("intelligence", data.difference);
+                break;
+            case "wisdom":
+                this.updateModifiers("wisdom", data.difference);
+                break;
+            case "charisma":
+                this.updateModifiers("charisma", data.difference);
+                break;
+            default:
+                break;
+        }
+    }
+    updateModifiers(skill, difference) {
+        this.querySelectorAll(`input[type="number"][data-ability="${skill}"]`).forEach((input) => {
+            input.value = `${parseInt(input.value) + difference}`;
+        });
+    }
+    updateCheckedSkills(diff) {
+        for (let i = 0; i < this.checkboxes.length; i++) {
+            if (this.checkboxes[i].checked) {
+                for (let k = 0; k < this.modifiers.length; k++) {
+                    if (this.modifiers[k].dataset.skill === this.checkboxes[i].dataset.skill) {
+                        this.modifiers[k].value = `${parseInt(this.modifiers[k].value) + diff}`;
+                        break;
+                    }
+                }
+            }
+        }
+    }
+    connectedCallback() {
+        for (let i = 0; i < this.checkboxes.length; i++) {
+            this.checkboxes[i].addEventListener("change", this.toggleProficiencyBonus);
+        }
+    }
+    disconnectedCallback() {
+        disconnect(this.inboxUid);
+    }
+}
+customElements.define("skill-table", SkillTable);

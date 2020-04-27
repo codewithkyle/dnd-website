@@ -1,1 +1,111 @@
-spell-component{display:block;width:100%;padding:2rem;border:1px solid var(--neutral-200);border-radius:.25rem}spell-component line-items{display:block;width:100%}spell-component line-items input{display:block;width:100%;height:36px;padding:0 1rem;background-color:var(--neutral-100);padding-right:2.5rem;text-overflow:ellipsis;transition:all 150ms var(--ease-in-out)}spell-component line-items input:hover{background-color:var(--neutral-200)}spell-component line-items input:active{background-color:var(--neutral-300)}spell-component line-items button{width:24px;height:24px;position:absolute;top:50%;right:.5rem;transform:translateY(-50%)}spell-component line-items button:hover::before{transform:translate(-50%,-50%) scale(1);transition:all 150ms var(--ease-bounce)}spell-component line-items button:active::before{opacity:.1;transform:translate(-50%,-50%) scale(1)}spell-component line-items button svg{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)}spell-component line-items button::before{content:"";display:inline-block;width:24px;height:24px;border-radius:50%;background-color:var(--black);opacity:.06;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) scale(0);transition:all 75ms var(--ease-in-out)}spell-component .add-spell{display:flex;justify-content:center;align-items:center;width:100%;height:36px;font-size:var(--font-sm);font-weight:var(--font-medium);text-transform:uppercase;cursor:pointer;transition:all 150ms var(--ease-in-out);color:var(--grey-700)}spell-component .add-spell:hover{background-color:var(--neutral-100)}spell-component .add-spell:active{background-color:var(--neutral-200)}spell-component .add-spell i{width:24px;height:24px;display:inline-block;position:relative;margin-right:.25rem}spell-component .add-spell i svg{width:14px;height:14px;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)}
+spell-component {
+  display: block;
+  width: 100%;
+  padding: 2rem;
+  border: 1px solid var(--neutral-200);
+  border-radius: 0.25rem;
+}
+
+spell-component line-items {
+  display: block;
+  width: 100%;
+}
+
+spell-component line-items input {
+  display: block;
+  width: 100%;
+  height: 36px;
+  padding: 0 1rem;
+  background-color: var(--neutral-100);
+  padding-right: 2.5rem;
+  text-overflow: ellipsis;
+  transition: all 150ms var(--ease-in-out);
+}
+
+spell-component line-items input:hover {
+  background-color: var(--neutral-200);
+}
+
+spell-component line-items input:active {
+  background-color: var(--neutral-300);
+}
+
+spell-component line-items button {
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  top: 50%;
+  right: 0.5rem;
+  transform: translateY(-50%);
+}
+
+spell-component line-items button:hover::before {
+  transform: translate(-50%, -50%) scale(1);
+  transition: all 150ms var(--ease-bounce);
+}
+
+spell-component line-items button:active::before {
+  opacity: 0.1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+spell-component line-items button svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+spell-component line-items button::before {
+  content: "";
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: var(--black);
+  opacity: 0.06;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  transition: all 75ms var(--ease-in-out);
+}
+
+spell-component .add-spell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 36px;
+  font-size: var(--font-sm);
+  font-weight: var(--font-medium);
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 150ms var(--ease-in-out);
+  color: var(--grey-700);
+}
+
+spell-component .add-spell:hover {
+  background-color: var(--neutral-100);
+}
+
+spell-component .add-spell:active {
+  background-color: var(--neutral-200);
+}
+
+spell-component .add-spell i {
+  width: 24px;
+  height: 24px;
+  display: inline-block;
+  position: relative;
+  margin-right: 0.25rem;
+}
+
+spell-component .add-spell i svg {
+  width: 14px;
+  height: 14px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

@@ -1,1 +1,201 @@
-import{env as e}from"./env.mjs";import{message as t}from"./broadcaster.mjs";import{snackbar as s}from"./notifyjs.mjs";class l extends HTMLElement{constructor(){super(),this.switchView=e=>{const t=e.currentTarget,s=parseInt(t.value);for(let e=0;e<this.pages.length;e++)this.pages[e].style.display=e===s?"grid":"none";window.history.replaceState(null,null,`${location.origin}/character/${this.dataset.characterUid}/${t.dataset.slug}`)},this.handleCharacterSave=e=>{e.preventDefault(),this.saveCharacter(!0)},this.handleKeypress=e=>{e instanceof KeyboardEvent&&"s"===e.key&&(e.ctrlKey||e.metaKey)&&(e.preventDefault(),this.saveCharacter(!0))},this.handleExit=()=>{const e=new FormData(this.form),t=this.querySelector("attack-component");e.append("fields[attacksAndSpells]",t.dumpAttacks());const s=this.querySelector("#cantrip-spellbook");e.append("fields[cantrips]",s.dumpData());const l=this.querySelector("#level-1-spellbook");e.append("fields[level1Spells]",l.dumpData());const a=this.querySelector("#level-2-spellbook");e.append("fields[level2Spells]",a.dumpData());const i=this.querySelector("#level-3-spellbook");e.append("fields[level3Spells]",i.dumpData());const o=this.querySelector("#level-4-spellbook");e.append("fields[level4Spells]",o.dumpData());const n=this.querySelector("#level-5-spellbook");e.append("fields[level5Spells]",n.dumpData());const r=this.querySelector("#level-6-spellbook");e.append("fields[level6Spells]",r.dumpData());const c=this.querySelector("#level-7-spellbook");e.append("fields[level7Spells]",c.dumpData());const p=this.querySelector("#level-8-spellbook");e.append("fields[level8Spells]",p.dumpData());const d=this.querySelector("#level-9-spellbook");e.append("fields[level9Spells]",d.dumpData());const h=this.getProficientSkills();for(const[t,s]of Object.entries(h))e.append(`fields[${t}Proficiency]`,""+s);navigator.sendBeacon(location.origin+"/actions/entries/save-entry",e)},this.isSaving=!1,this.pages=Array.from(this.querySelectorAll("form-page")),this.form=this.querySelector("form"),this.countdown=300}getProficientSkills(){const e={};return this.querySelectorAll('skill-table input[type="checkbox"]').forEach(t=>{t.checked?e[t.dataset.skill]=1:e[t.dataset.skill]=0}),e}async saveCharacter(t=!1){if(this.dataset.preventSave)return;if(this.isSaving)return;this.isSaving=!0;const l=new FormData(this.form),a=this.querySelector("attack-component");l.append("fields[attacksAndSpells]",a.dumpAttacks());const i=this.querySelector("#cantrip-spellbook");l.append("fields[cantrips]",i.dumpData());const o=this.querySelector("#level-1-spellbook");l.append("fields[level1Spells]",o.dumpData());const n=this.querySelector("#level-2-spellbook");l.append("fields[level2Spells]",n.dumpData());const r=this.querySelector("#level-3-spellbook");l.append("fields[level3Spells]",r.dumpData());const c=this.querySelector("#level-4-spellbook");l.append("fields[level4Spells]",c.dumpData());const p=this.querySelector("#level-5-spellbook");l.append("fields[level5Spells]",p.dumpData());const d=this.querySelector("#level-6-spellbook");l.append("fields[level6Spells]",d.dumpData());const h=this.querySelector("#level-7-spellbook");l.append("fields[level7Spells]",h.dumpData());const u=this.querySelector("#level-8-spellbook");l.append("fields[level8Spells]",u.dumpData());const v=this.querySelector("#level-9-spellbook");l.append("fields[level9Spells]",v.dumpData());const S=this.getProficientSkills();for(const[e,t]of Object.entries(S))l.append(`fields[${e}Proficiency]`,""+t);let m;t&&(m=e.startLoading());const f=await fetch(location.origin+"/actions/entries/save-entry",{method:"POST",body:l,headers:new Headers({Accept:"application/json"}),credentials:"include"});if(f.ok){(await f.json()).success}else{await f.text()}t&&(e.stopLoading(m),s({message:"Character saved.",force:!1,closeable:!0,duration:3})),this.countdown=300,this.isSaving=!1}autoSave(){const e=performance.now(),t=(e-this.time)/1e3;this.time=e,this.isSaving||(this.countdown-=t,this.countdown<=0&&this.isActive&&this.saveCharacter()),window.requestAnimationFrame(this.autoSave.bind(this))}disconnectedCallback(){this.isActive=!1,this.countdown=0,this.autoSave=()=>{},t("server",{type:"leave",campaign:this.dataset.campaignUid})}connectedCallback(){if(this.querySelectorAll("nav input").forEach(e=>{e.addEventListener("change",this.switchView)}),this.dataset.preventSave||!this.dataset.campaignUid||!this.dataset.characterName)return this.querySelectorAll("textarea, input").forEach(e=>{e.readOnly=!0}),void this.form.addEventListener("submit",e=>{e.preventDefault()});this.form.addEventListener("submit",this.handleCharacterSave),this.dataset.preventSave||(this.querySelector("#save-button").addEventListener("click",this.handleCharacterSave),document.addEventListener("keydown",this.handleKeypress),this.time=performance.now(),this.isActive=!0,this.autoSave(),window.addEventListener("unload",this.handleExit)),t("server",{type:"join",name:this.dataset.characterName,campaign:this.dataset.campaignUid,characterUid:this.dataset.characterUid})}}customElements.define("character-sheet",l);
+import { env } from "./env.mjs";
+import { message } from "./broadcaster.mjs";
+import { snackbar } from "./notifyjs.mjs";
+class CharacterSheet extends HTMLElement {
+    constructor() {
+        super();
+        this.switchView = (e) => {
+            const input = e.currentTarget;
+            const index = parseInt(input.value);
+            for (let i = 0; i < this.pages.length; i++) {
+                if (i === index) {
+                    this.pages[i].style.display = "grid";
+                }
+                else {
+                    this.pages[i].style.display = "none";
+                }
+            }
+            window.history.replaceState(null, null, `${location.origin}/character/${this.dataset.characterUid}/${input.dataset.slug}`);
+        };
+        this.handleCharacterSave = (e) => {
+            e.preventDefault();
+            this.saveCharacter(true);
+        };
+        this.handleKeypress = (e) => {
+            if (e instanceof KeyboardEvent) {
+                if (e.key === "s" && (e.ctrlKey || e.metaKey)) {
+                    e.preventDefault();
+                    this.saveCharacter(true);
+                }
+            }
+        };
+        this.handleExit = () => {
+            const data = new FormData(this.form);
+            const attackComponent = this.querySelector("attack-component");
+            data.append(`fields[attacksAndSpells]`, attackComponent.dumpAttacks());
+            const cantripsComponent = this.querySelector("#cantrip-spellbook");
+            data.append(`fields[cantrips]`, cantripsComponent.dumpData());
+            const level1Spells = this.querySelector("#level-1-spellbook");
+            data.append(`fields[level1Spells]`, level1Spells.dumpData());
+            const level2Spells = this.querySelector("#level-2-spellbook");
+            data.append(`fields[level2Spells]`, level2Spells.dumpData());
+            const level3Spells = this.querySelector("#level-3-spellbook");
+            data.append(`fields[level3Spells]`, level3Spells.dumpData());
+            const level4Spells = this.querySelector("#level-4-spellbook");
+            data.append(`fields[level4Spells]`, level4Spells.dumpData());
+            const level5Spells = this.querySelector("#level-5-spellbook");
+            data.append(`fields[level5Spells]`, level5Spells.dumpData());
+            const level6Spells = this.querySelector("#level-6-spellbook");
+            data.append(`fields[level6Spells]`, level6Spells.dumpData());
+            const level7Spells = this.querySelector("#level-7-spellbook");
+            data.append(`fields[level7Spells]`, level7Spells.dumpData());
+            const level8Spells = this.querySelector("#level-8-spellbook");
+            data.append(`fields[level8Spells]`, level8Spells.dumpData());
+            const level9Spells = this.querySelector("#level-9-spellbook");
+            data.append(`fields[level9Spells]`, level9Spells.dumpData());
+            const proficientSkills = this.getProficientSkills();
+            for (const [key, value] of Object.entries(proficientSkills)) {
+                data.append(`fields[${key}Proficiency]`, `${value}`);
+            }
+            navigator.sendBeacon(`${location.origin}/actions/entries/save-entry`, data);
+        };
+        this.isSaving = false;
+        this.pages = Array.from(this.querySelectorAll("form-page"));
+        this.form = this.querySelector("form");
+        this.countdown = 300;
+    }
+    getProficientSkills() {
+        const skills = {};
+        this.querySelectorAll(`skill-table input[type="checkbox"]`).forEach((input) => {
+            if (input.checked) {
+                skills[input.dataset.skill] = 1;
+            }
+            else {
+                skills[input.dataset.skill] = 0;
+            }
+        });
+        return skills;
+    }
+    async saveCharacter(doLoading = false) {
+        if (this.dataset.preventSave) {
+            return;
+        }
+        if (this.isSaving) {
+            return;
+        }
+        this.isSaving = true;
+        const data = new FormData(this.form);
+        const attackComponent = this.querySelector("attack-component");
+        data.append(`fields[attacksAndSpells]`, attackComponent.dumpAttacks());
+        const cantripsComponent = this.querySelector("#cantrip-spellbook");
+        data.append(`fields[cantrips]`, cantripsComponent.dumpData());
+        const level1Spells = this.querySelector("#level-1-spellbook");
+        data.append(`fields[level1Spells]`, level1Spells.dumpData());
+        const level2Spells = this.querySelector("#level-2-spellbook");
+        data.append(`fields[level2Spells]`, level2Spells.dumpData());
+        const level3Spells = this.querySelector("#level-3-spellbook");
+        data.append(`fields[level3Spells]`, level3Spells.dumpData());
+        const level4Spells = this.querySelector("#level-4-spellbook");
+        data.append(`fields[level4Spells]`, level4Spells.dumpData());
+        const level5Spells = this.querySelector("#level-5-spellbook");
+        data.append(`fields[level5Spells]`, level5Spells.dumpData());
+        const level6Spells = this.querySelector("#level-6-spellbook");
+        data.append(`fields[level6Spells]`, level6Spells.dumpData());
+        const level7Spells = this.querySelector("#level-7-spellbook");
+        data.append(`fields[level7Spells]`, level7Spells.dumpData());
+        const level8Spells = this.querySelector("#level-8-spellbook");
+        data.append(`fields[level8Spells]`, level8Spells.dumpData());
+        const level9Spells = this.querySelector("#level-9-spellbook");
+        data.append(`fields[level9Spells]`, level9Spells.dumpData());
+        const proficientSkills = this.getProficientSkills();
+        for (const [key, value] of Object.entries(proficientSkills)) {
+            data.append(`fields[${key}Proficiency]`, `${value}`);
+        }
+        let ticket;
+        if (doLoading) {
+            ticket = env.startLoading();
+        }
+        const request = await fetch(`${location.origin}/actions/entries/save-entry`, {
+            method: "POST",
+            body: data,
+            headers: new Headers({
+                Accept: "application/json",
+            }),
+            credentials: "include",
+        });
+        if (request.ok) {
+            const response = await request.json();
+            if (!response.success) {
+                console.error(response);
+            }
+        }
+        else {
+            const error = await request.text();
+            console.error(error);
+        }
+        if (doLoading) {
+            env.stopLoading(ticket);
+            snackbar({
+                message: "Character saved.",
+                force: false,
+                closeable: true,
+                duration: 3,
+            });
+        }
+        this.countdown = 300;
+        this.isSaving = false;
+    }
+    autoSave() {
+        const newTime = performance.now();
+        const deltaTime = (newTime - this.time) / 1000;
+        this.time = newTime;
+        if (!this.isSaving) {
+            this.countdown -= deltaTime;
+            if (this.countdown <= 0 && this.isActive) {
+                this.saveCharacter();
+            }
+        }
+        window.requestAnimationFrame(this.autoSave.bind(this));
+    }
+    disconnectedCallback() {
+        this.isActive = false;
+        this.countdown = 0;
+        this.autoSave = () => { };
+        message("server", {
+            type: "leave",
+            campaign: this.dataset.campaignUid,
+        });
+    }
+    connectedCallback() {
+        this.querySelectorAll("nav input").forEach((input) => {
+            input.addEventListener("change", this.switchView);
+        });
+        if (this.dataset.preventSave || !this.dataset.campaignUid || !this.dataset.characterName) {
+            this.querySelectorAll("textarea, input").forEach((input) => {
+                input.readOnly = true;
+            });
+            this.form.addEventListener("submit", (e) => {
+                e.preventDefault();
+            });
+            return;
+        }
+        else {
+            this.form.addEventListener("submit", this.handleCharacterSave);
+        }
+        if (!this.dataset.preventSave) {
+            this.querySelector("#save-button").addEventListener("click", this.handleCharacterSave);
+            document.addEventListener("keydown", this.handleKeypress);
+            this.time = performance.now();
+            this.isActive = true;
+            this.autoSave();
+            window.addEventListener("unload", this.handleExit);
+        }
+        message("server", {
+            type: "join",
+            name: this.dataset.characterName,
+            campaign: this.dataset.campaignUid,
+            characterUid: this.dataset.characterUid,
+        });
+    }
+}
+customElements.define("character-sheet", CharacterSheet);

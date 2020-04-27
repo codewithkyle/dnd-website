@@ -1,1 +1,33 @@
-class t extends HTMLElement{constructor(){super(),this.handleTabSwitch=t=>{const e=t.currentTarget,s=parseInt(e.dataset.index);for(let t=0;t<this.tabButtons.length;t++)t!==s?this.tabButtons[t].classList.remove("is-active"):this.tabButtons[t].classList.add("is-active");for(let t=0;t<this.pages.length;t++)this.pages[t].style.display=t!==s?"none":"block"},this.tabButtons=Array.from(this.querySelectorAll("spellbook-tabs button")),this.pages=Array.from(this.querySelectorAll("spellbook-page"))}connectedCallback(){this.tabButtons.forEach(t=>{t.addEventListener("click",this.handleTabSwitch)})}}customElements.define("spellbook-component",t);
+class SpellbookComponent extends HTMLElement {
+    constructor() {
+        super();
+        this.handleTabSwitch = (e) => {
+            const button = e.currentTarget;
+            const index = parseInt(button.dataset.index);
+            for (let i = 0; i < this.tabButtons.length; i++) {
+                if (i !== index) {
+                    this.tabButtons[i].classList.remove("is-active");
+                }
+                else {
+                    this.tabButtons[i].classList.add("is-active");
+                }
+            }
+            for (let i = 0; i < this.pages.length; i++) {
+                if (i !== index) {
+                    this.pages[i].style.display = "none";
+                }
+                else {
+                    this.pages[i].style.display = "block";
+                }
+            }
+        };
+        this.tabButtons = Array.from(this.querySelectorAll("spellbook-tabs button"));
+        this.pages = Array.from(this.querySelectorAll("spellbook-page"));
+    }
+    connectedCallback() {
+        this.tabButtons.forEach((button) => {
+            button.addEventListener("click", this.handleTabSwitch);
+        });
+    }
+}
+customElements.define("spellbook-component", SpellbookComponent);

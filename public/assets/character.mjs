@@ -1,1 +1,3 @@
-export function calculateModifier(o){return Math.floor((o-10)/2)}
+export function calculateModifier(value) {
+    return Math.floor((value - 10) / 2);
+}
