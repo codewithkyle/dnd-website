@@ -185,6 +185,7 @@ EOD;
     {
         $firstTime = true;
         $badUserCredentials = false;
+        $isNitro = App::isNitro();
 
         top:
 
@@ -202,11 +203,15 @@ EOD;
         }
 
         // server
-        $this->server = $this->prompt('Database server name or IP address:', [
-            'required' => true,
-            'default' => $this->server ?: '127.0.0.1',
-        ]);
-        $this->server = strtolower($this->server);
+        if ($isNitro) {
+            $this->server = '127.0.0.1';
+        } else {
+            $this->server = $this->prompt('Database server name or IP address:', [
+                'required' => true,
+                'default' => $this->server ?: '127.0.0.1',
+            ]);
+            $this->server = strtolower($this->server);
+        }
 
         // port
         if ($firstTime) {
@@ -225,15 +230,19 @@ EOD;
 
         userCredentials:
 
-        // user
-        $this->user = $this->prompt('Database username:', [
-            'default' => $this->user ?: null,
-        ]);
+        // user & password
+        if ($isNitro) {
+            $this->user = 'nitro';
+            $this->password = 'nitro';
+        } else {
+            $this->user = $this->prompt('Database username:', [
+                'default' => $this->user ?: null,
+            ]);
 
-        // password
-        if ($this->interactive) {
-            $this->stdout('Database password: ');
-            $this->password = CliPrompt::hiddenPrompt(true);
+            if ($this->interactive) {
+                $this->stdout('Database password: ');
+                $this->password = CliPrompt::hiddenPrompt(true);
+            }
         }
 
         if ($badUserCredentials) {
@@ -431,7 +440,7 @@ EOD;
     private function _outputCommand(string $command)
     {
         $script = FileHelper::normalizePath(Craft::$app->getRequest()->getScriptFile());
-        if (!Platform::isWindows() && ($home = getenv('HOME')) !== false) {
+        if (!Platform::isWindows() && ($home = App::env('HOME')) !== false) {
             $home = FileHelper::normalizePath($home);
             if (strpos($script, $home . DIRECTORY_SEPARATOR) === 0) {
                 $script = '~' . substr($script, strlen($home));

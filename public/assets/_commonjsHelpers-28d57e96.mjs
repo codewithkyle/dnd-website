@@ -1,8 +1,1 @@
-var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
-function createCommonjsModule(fn, module) {
-    return module = { exports: {} }, fn(module, module.exports), module.exports;
-}
-function getCjsExportFromNamespace(n) {
-    return n && n['default'] || n;
-}
-export { commonjsGlobal as a, createCommonjsModule as c, getCjsExportFromNamespace as g };
+var e="undefined"!=typeof globalThis?globalThis:"undefined"!=typeof window?window:"undefined"!=typeof global?global:"undefined"!=typeof self?self:{};function n(e,n){return e(n={exports:{}},n.exports),n.exports}function o(e){return e&&e.default||e}export{e as a,n as c,o as g};

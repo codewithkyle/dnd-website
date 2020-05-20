@@ -1,4 +1,4 @@
-dateModified: 1587159490
+dateModified: 1590018635
 email:
   fromEmail: codingwithkyle@gmail.com
   fromName: Boilerplate
@@ -2290,6 +2290,16 @@ plugins:
     enabled: true
     schemaVersion: 2.0.0
 routes:
+  152612ba-1b9b-46ce-b2e7-57d272be9f09:
+    siteUid: null
+    sortOrder: 5
+    template: monster/index.twig
+    uriParts:
+      - monster/
+      -
+        - uid
+        - '[A-Za-z0-9]{8}-[A-Za-z0-9]{4}-4[A-Za-z0-9]{3}-[89abAB][A-Za-z0-9]{3}-[A-Za-z0-9]{12}'
+    uriPattern: 'monster/<uid:[A-Za-z0-9]{8}-[A-Za-z0-9]{4}-4[A-Za-z0-9]{3}-[89abAB][A-Za-z0-9]{3}-[A-Za-z0-9]{12}>'
   5678e7f4-eae1-4721-b3d9-0f0c32aa1c37:
     siteUid: null
     sortOrder: 4
@@ -2364,27 +2374,30 @@ sections:
             tabs:
               -
                 fields:
-                  1697c79c-8540-4999-9569-62f8fc98a9e3:
-                    required: false
-                    sortOrder: 3
                   36aa3e64-a598-457e-b0bb-d5cbc2c2dc98:
                     required: false
-                    sortOrder: 4
+                    sortOrder: 5
                   40055f18-8f93-4a56-906d-6cc34f74bf32:
                     required: false
                     sortOrder: 1
                   48101cdf-b572-4e6c-8bf5-0137f5573ae5:
                     required: false
+                    sortOrder: 3
+                  8614def5-7fbd-4ba4-8f14-f73be6102fc7:
+                    required: false
                     sortOrder: 2
                   8a20aeca-3742-4f3f-9e47-c1fe5f9496f2:
                     required: false
-                    sortOrder: 5
+                    sortOrder: 6
+                  ad531314-4d9b-4449-a387-9c9b8df3e538:
+                    required: false
+                    sortOrder: 4
                   d4b7d281-0862-495f-a914-8401f4234bc8:
                     required: false
-                    sortOrder: 7
+                    sortOrder: 8
                   d8a26bf8-2ad7-4ba9-b03b-60449d7dfbf5:
                     required: false
-                    sortOrder: 6
+                    sortOrder: 7
                 name: Details
                 sortOrder: 1
               -

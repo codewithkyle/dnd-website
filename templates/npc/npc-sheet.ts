@@ -77,12 +77,6 @@ class NPCSheet extends HTMLElement {
 		this.form.addEventListener("submit", this.handleSave);
 		document.addEventListener("keydown", this.handleKeypress);
 		document.body.querySelector("#save-button").addEventListener("click", this.handleSave);
-
-		message("server", {
-			type: "join",
-			name: "Game Master",
-			campaign: this.dataset.campaignUid,
-		});
 	}
 }
 customElements.define("npc-sheet", NPCSheet);

@@ -1,6 +1,12 @@
 Yii Framework 2 Shell extension Change Log
 ==========================================
 
+2.0.4 May 02, 2020
+------------------
+
+- Enh #27: Allow psy/psysh ~0.10.3 additionally to ~0.9.3 (tobiase)
+
+
 2.0.3 March 03, 2020
 --------------------
 

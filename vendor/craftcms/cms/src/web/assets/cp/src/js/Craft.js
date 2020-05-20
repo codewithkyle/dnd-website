@@ -1,5 +1,14 @@
 /** global: Craft */
 /** global: Garnish */
+
+// Use old jQuery prefilter behavior
+// see https://jquery.com/upgrade-guide/3.5/
+var rxhtmlTag = /<(?!area|br|col|embed|hr|img|input|link|meta|param)(([a-z][^\/\0>\x20\t\r\n\f]*)[^>]*)\/>/gi;
+jQuery.htmlPrefilter = function( html ) {
+    return html.replace( rxhtmlTag, "<$1></$2>" );
+};
+
+
 // Set all the standard Craft.* stuff
 $.extend(Craft,
     {
@@ -636,18 +645,29 @@ $.extend(Craft,
                         resolve(apiResponse.data);
 
                         if (!this._processedApiHeaders) {
-                            this._processedApiHeaders = true;
-                            this.sendActionRequest('POST', 'app/process-api-response-headers', {
-                                data: {
-                                    headers: apiResponse.headers,
-                                },
-                                cancelToken: cancelToken,
-                            });
+                            if (apiResponse.headers['x-craft-license-status']) {
+                                this._processedApiHeaders = true;
+                                this.sendActionRequest('POST', 'app/process-api-response-headers', {
+                                    data: {
+                                        headers: apiResponse.headers,
+                                    },
+                                    cancelToken: cancelToken,
+                                });
 
-                            // If we just got a new license key, set it and then resolve the header waitlist
-                            if (this._apiHeaders && this._apiHeaders['X-Craft-License'] === '__REQUEST__') {
-                                this._apiHeaders['X-Craft-License'] = apiResponse.headers['x-craft-license'];
-                                this._resolveHeaderWaitlist();
+                                // If we just got a new license key, set it and then resolve the header waitlist
+                                if (this._apiHeaders && this._apiHeaders['X-Craft-License'] === '__REQUEST__') {
+                                    this._apiHeaders['X-Craft-License'] = apiResponse.headers['x-craft-license'];
+                                    this._resolveHeaderWaitlist();
+                                }
+                            } else if (
+                                this._apiHeaders &&
+                                this._apiHeaders['X-Craft-License'] === '__REQUEST__' &&
+                                this._apiHeaderWaitlist.length
+                            ) {
+                                // The request didn't send headers. Go ahead and resolve the next request on the
+                                // header waitlist.
+                                let item = this._apiHeaderWaitlist.shift()
+                                item[0](this._apiHeaders);
                             }
                         }
                     }).catch(reject);

@@ -128,7 +128,7 @@ class Elements extends Component
      * use craft\services\Elements;
      *
      * Craft::$app->elements->on(Elements::EVENT_BEFORE_SAVE_ELEMENT, function(ElementEvent $e) {
-     *     if (ElementHelper::isDraftOrRevision($e->element) {
+     *     if (ElementHelper::isDraftOrRevision($e->element)) {
      *         return;
      *     }
      *
@@ -150,7 +150,7 @@ class Elements extends Component
      * use craft\services\Elements;
      *
      * Craft::$app->elements->on(Elements::EVENT_AFTER_SAVE_ELEMENT, function(ElementEvent $e) {
-     *     if (ElementHelper::isDraftOrRevision($e->element) {
+     *     if (ElementHelper::isDraftOrRevision($e->element)) {
      *         return;
      *     }
      *
@@ -629,9 +629,9 @@ class Elements extends Component
      * Propagates all elements that match a given element query to another site(s).
      *
      * @param ElementQueryInterface $query The element query to fetch elements with
+     * @param int|int[]|null $siteIds The site ID(s) that the elements should be propagated to. If null, elements will be
      * @param bool $continueOnError Whether to continue going if an error occurs
      * @throws \Throwable if reasons
-     * @var int|int[]|null The site ID(s) that the elements should be propagated to. If null, elements will be
      * propagated to all supported sites, except the one they were queried in.
      * @since 3.2.0
      */
@@ -1972,8 +1972,9 @@ class Elements extends Component
         }
 
         // If the element only supports a single site, ensure it's enabled for that site
-        if (count($supportedSites) === 1) {
-            $element->enabledForSite = true;
+        if (count($supportedSites) === 1 && !$element->getEnabledForSite()) {
+            $element->enabled = false;
+            $element->setEnabledForSite(true);
         }
 
         // Set a dummy title if there isn't one already and the element type has titles

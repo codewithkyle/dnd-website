@@ -1,16 +1,1 @@
-import { message } from "./broadcaster.mjs";
-class MapComponent extends HTMLElement {
-    constructor() {
-        super(...arguments);
-        this.handleClick = () => {
-            message("server", {
-                type: "load-map",
-                url: this.dataset.url,
-            });
-        };
-    }
-    connectedCallback() {
-        this.addEventListener("click", this.handleClick);
-    }
-}
-customElements.define("map-component", MapComponent);
+import{message as e}from"./broadcaster.mjs";class t extends HTMLElement{constructor(){super(...arguments),this.handleClick=()=>{e("server",{type:"load-map",url:this.dataset.url})}}connectedCallback(){this.addEventListener("click",this.handleClick)}}customElements.define("map-component",t);

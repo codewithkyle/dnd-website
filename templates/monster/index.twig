@@ -1,0 +1,94 @@
+{% extends "_base/page" %}
+
+{% import "_macros" as inputs %}
+
+{% if not currentUser.isInGroup('gm') %}
+    {% redirect siteUrl %}
+{% endif %}
+
+{% set monster = craft.entries({
+    section: 'monsters',
+    uid: uid
+}).one() %}
+
+{% if not monster %}
+    {% redirect siteUrl %}
+{% endif %}
+
+{% block content %}
+    <article style="width:100%;display: block;">
+        <section style="width:100%;display: block;">
+            <div class="mx-auto mb-2" flex="justify-between items-center" style="width: 768px;">
+                <button class="button -solid -primary" onClick="window.history.back();">Back to Campaign</button>
+                <div>
+                    <delete-monster-button web-component data-entry-id="{{ monster.id }}" data-campaign-uid="{{ monster.campaign[0].uid }}" class="button -outline -danger">Delete Monster</delete-monster-button>
+                    <button class="ml-1 button -solid -primary" id="save-button">Save Monster</button>
+                </div>
+            </div>
+            <monster-sheet web-component data-campaign-uid="{{ monster.campaign[0].uid }}">
+                <form eager-load-css="snackbar" grid="columns 1 gap-1" method="post" accept-charset="UTF-8" class="bg-white shadow-md block mx-auto my-0 p-2" style="width:768px;max-width:100%;border-radius: 0.25rem;">
+                    {{ csrfInput() }}
+                    {{ hiddenInput('entryId', monster.id) }}
+
+                    <div class="block w-full">
+                        <div flex="justify-between items-center">
+                            <h1 class="font-grey-800 font-xl font-bold mb-0.5">{{ monster.title }}</h1>
+                            <span class="font-grey-700 mb-0.5 font-sm">{{ monster.alignment }}</span>
+                        </div>
+                    </div>
+
+                    <div class="w-full" grid="columns 2 gap-1">
+                        {{ inputs.text("Armor Class", "fields[armorClass]", false, null, monster.armorClass) }}
+                        {{ inputs.number("Max Hit Points", "fields[maximumHitPoints]", false, null, 0, null, 1, monster.maximumHitPoints) }}
+                    </div>
+
+                    <div class="w-full" grid="columns 2 gap-1">
+                        {{ inputs.number("Speed", "fields[speed]", false, null, 0, null, 1, monster.speed) }}
+                        {{ inputs.number("Exp", "fields[exp]", false, null, 0, null, 1, monster.exp) }}
+                    </div>
+
+                    <character-abilities eager-load-css="character-abilities">
+                        <character-ability>
+                            <span>Strength</span>
+                            <input class="ability" type="number" max="99" step="1" value="{{ monster.strength }}" name="fields[strength]" />
+                            <input class="modifier" type="number" max="99" step="1" value="{{ monster.strengthModifier }}" name="fields[strengthModifier]" />
+                        </character-ability>
+                        <character-ability>
+                            <span>Dexterity</span>
+                            <input class="ability" type="number" max="99" step="1" value="{{ monster.dexterity }}" name="fields[dexterity]" />
+                            <input class="modifier" type="number" max="99" step="1" value="{{ monster.dexterityModifier }}" name="fields[dexterityModifier]" />
+                        </character-ability>
+                        <character-ability>
+                            <span>Constitution</span>
+                            <input class="ability" type="number" max="99" step="1" value="{{ monster.constitution }}" name="fields[constitution]" />
+                            <input class="modifier" type="number" max="99" step="1" value="{{ monster.constitutionModifier }}" name="fields[constitutionModifier]" />
+                        </character-ability>
+                        <character-ability>
+                            <span>Intelligence</span>
+                            <input class="ability" type="number" max="99" step="1" value="{{ monster.intelligence }}" name="fields[intelligence]" />
+                            <input class="modifier" type="number" max="99" step="1" value="{{ monster.intelligenceModifier }}" name="fields[intelligenceModifier]" />
+                        </character-ability>
+                        <character-ability>
+                            <span>Wisdom</span>
+                            <input class="ability" type="number" max="99" step="1" value="{{ monster.wisdom }}" name="fields[wisdom]" />
+                            <input class="modifier" type="number" max="99" step="1" value="{{ monster.wisdomModifier }}" name="fields[wisdomModifier]" />
+                        </character-ability>
+                        <character-ability>
+                            <span>Charisma</span>
+                            <input class="ability" type="number" max="99" step="1" value="{{ monster.charisma }}" name="fields[charisma]" />
+                            <input class="modifier" type="number" max="99" step="1" value="{{ monster.charismaModifier }}" name="fields[charismaModifier]" />
+                        </character-ability>
+                    </character-abilities>
+
+                    {{ inputs.textarea("Actions", "fields[actions]", false, null, monster.actions) }}
+                    {{ inputs.textarea("Legendary Actions", "fields[legendaryActions]", false, null, monster.legendaryActions) }}
+                    {{ inputs.textarea("Notes", "fields[notes]", false, null, monster.notes) }}
+                </form>
+            </monster-sheet>
+        </section>
+    </article>
+    <div class="w-full p-1 text-center fixed l-0 b-0" style="pointer-events: none;">
+        <div class="mx-0.5 inline-block" id="dice-mounting-point"></div>
+        <script src="{{ alias('@rootUrl')|trim('/') }}/preact/dice-roller.js"></script>
+    </div>
+{% endblock %}

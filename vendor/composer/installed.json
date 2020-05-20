@@ -469,12 +469,12 @@
     },
     {
         "name": "craftcms/cms",
-        "version": "3.4.17.1",
-        "version_normalized": "3.4.17.1",
+        "version": "3.4.20",
+        "version_normalized": "3.4.20.0",
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/craftcms/cms/zipball/30d971566cd65bcae1b10719eb3958cb4c99fdcd",
-            "reference": "30d971566cd65bcae1b10719eb3958cb4c99fdcd",
+            "url": "https://api.github.com/repos/craftcms/cms/zipball/a4e4ae5ce7b067f31d00c27770bc3e7c8434ba91",
+            "reference": "a4e4ae5ce7b067f31d00c27770bc3e7c8434ba91",
             "shasum": ""
         },
         "require": {
@@ -510,7 +510,7 @@
             "voku/stringy": "~5.1.0",
             "webonyx/graphql-php": "^0.12.0",
             "yii2tech/ar-softdelete": "^1.0.2",
-            "yiisoft/yii2": "~2.0.34.0",
+            "yiisoft/yii2": "~2.0.35.0",
             "yiisoft/yii2-debug": "^2.1.0",
             "yiisoft/yii2-queue": "~2.3.0",
             "yiisoft/yii2-shell": "^2.0.2",
@@ -521,7 +521,7 @@
         },
         "provide": {
             "bower-asset/inputmask": "~3.2.2 | ~3.3.5",
-            "bower-asset/jquery": "3.4.*@stable | 3.3.*@stable | 3.2.*@stable | 3.1.*@stable | 2.2.*@stable | 2.1.*@stable | 1.11.*@stable | 1.12.*@stable",
+            "bower-asset/jquery": "3.5.*@stable | 3.4.*@stable | 3.3.*@stable | 3.2.*@stable | 3.1.*@stable | 2.2.*@stable | 2.1.*@stable | 1.11.*@stable | 1.12.*@stable",
             "bower-asset/punycode": "1.3.*",
             "bower-asset/yii2-pjax": "~2.0.1"
         },
@@ -530,7 +530,7 @@
             "ext-imagick": "Adds support for more image processing formats and options.",
             "ext-intl": "Adds rich internationalization support."
         },
-        "time": "2020-04-25T14:25:32+00:00",
+        "time": "2020-05-18T15:31:36+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -1941,88 +1941,6 @@
         ]
     },
     {
-        "name": "jakub-onderka/php-console-color",
-        "version": "v0.2",
-        "version_normalized": "0.2.0.0",
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/JakubOnderka/PHP-Console-Color/zipball/d5deaecff52a0d61ccb613bb3804088da0307191",
-            "reference": "d5deaecff52a0d61ccb613bb3804088da0307191",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.4.0"
-        },
-        "require-dev": {
-            "jakub-onderka/php-code-style": "1.0",
-            "jakub-onderka/php-parallel-lint": "1.0",
-            "jakub-onderka/php-var-dump-check": "0.*",
-            "phpunit/phpunit": "~4.3",
-            "squizlabs/php_codesniffer": "1.*"
-        },
-        "time": "2018-09-29T17:23:10+00:00",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "JakubOnderka\\PhpConsoleColor\\": "src/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "BSD-2-Clause"
-        ],
-        "authors": [
-            {
-                "name": "Jakub Onderka",
-                "email": "jakub.onderka@gmail.com"
-            }
-        ]
-    },
-    {
-        "name": "jakub-onderka/php-console-highlighter",
-        "version": "v0.4",
-        "version_normalized": "0.4.0.0",
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/JakubOnderka/PHP-Console-Highlighter/zipball/9f7a229a69d52506914b4bc61bfdb199d90c5547",
-            "reference": "9f7a229a69d52506914b4bc61bfdb199d90c5547",
-            "shasum": ""
-        },
-        "require": {
-            "ext-tokenizer": "*",
-            "jakub-onderka/php-console-color": "~0.2",
-            "php": ">=5.4.0"
-        },
-        "require-dev": {
-            "jakub-onderka/php-code-style": "~1.0",
-            "jakub-onderka/php-parallel-lint": "~1.0",
-            "jakub-onderka/php-var-dump-check": "~0.1",
-            "phpunit/phpunit": "~4.0",
-            "squizlabs/php_codesniffer": "~1.5"
-        },
-        "time": "2018-09-29T18:48:56+00:00",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "JakubOnderka\\PhpConsoleHighlighter\\": "src/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Jakub Onderka",
-                "email": "acci@acci.cz",
-                "homepage": "http://www.acci.cz/"
-            }
-        ],
-        "description": "Highlight PHP code in terminal"
-    },
-    {
         "name": "jalendport/craft-readtime",
         "version": "1.6.0",
         "version_normalized": "1.6.0.0",
@@ -2410,12 +2328,12 @@
     },
     {
         "name": "league/flysystem",
-        "version": "1.0.67",
-        "version_normalized": "1.0.67.0",
+        "version": "1.0.69",
+        "version_normalized": "1.0.69.0",
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/5b1f36c75c4bdde981294c2a0ebdb437ee6f275e",
-            "reference": "5b1f36c75c4bdde981294c2a0ebdb437ee6f275e",
+            "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/7106f78428a344bc4f643c233a94e48795f10967",
+            "reference": "7106f78428a344bc4f643c233a94e48795f10967",
             "shasum": ""
         },
         "require": {
@@ -2441,7 +2359,7 @@
             "spatie/flysystem-dropbox": "Allows you to use Dropbox storage",
             "srmklive/flysystem-dropbox-v2": "Allows you to use Dropbox storage for PHP 5 applications"
         },
-        "time": "2020-04-16T13:21:26+00:00",
+        "time": "2020-05-18T15:13:39+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -3633,28 +3551,22 @@
     },
     {
         "name": "psy/psysh",
-        "version": "v0.9.12",
-        "version_normalized": "0.9.12.0",
+        "version": "v0.10.4",
+        "version_normalized": "0.10.4.0",
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/bobthecow/psysh/zipball/90da7f37568aee36b116a030c5f99c915267edd4",
-            "reference": "90da7f37568aee36b116a030c5f99c915267edd4",
+            "url": "https://api.github.com/repos/bobthecow/psysh/zipball/a8aec1b2981ab66882a01cce36a49b6317dc3560",
+            "reference": "a8aec1b2981ab66882a01cce36a49b6317dc3560",
             "shasum": ""
         },
         "require": {
             "dnoegel/php-xdg-base-dir": "0.1.*",
             "ext-json": "*",
             "ext-tokenizer": "*",
-            "jakub-onderka/php-console-highlighter": "0.3.*|0.4.*",
-            "nikic/php-parser": "~1.3|~2.0|~3.0|~4.0",
-            "php": ">=5.4.0",
-            "symfony/console": "~2.3.10|^2.4.2|~3.0|~4.0|~5.0",
-            "symfony/var-dumper": "~2.7|~3.0|~4.0|~5.0"
-        },
-        "require-dev": {
-            "bamarni/composer-bin-plugin": "^1.2",
-            "hoa/console": "~2.15|~3.16",
-            "phpunit/phpunit": "~4.8.35|~5.0|~6.0|~7.0"
+            "nikic/php-parser": "~4.0|~3.0|~2.0|~1.3",
+            "php": "^8.0 || ^7.0 || ^5.5.9",
+            "symfony/console": "~5.0|~4.0|~3.0|^2.4.2|~2.3.10",
+            "symfony/var-dumper": "~5.0|~4.0|~3.0|~2.7"
         },
         "suggest": {
             "ext-pcntl": "Enabling the PCNTL extension makes PsySH a lot happier :)",
@@ -3663,14 +3575,14 @@
             "ext-readline": "Enables support for arrow-key history navigation, and showing and manipulating command history.",
             "hoa/console": "A pure PHP readline implementation. You'll want this if your PHP install doesn't already support readline or libedit."
         },
-        "time": "2019-12-06T14:19:43+00:00",
+        "time": "2020-05-03T19:32:03+00:00",
         "bin": [
             "bin/psysh"
         ],
         "type": "library",
         "extra": {
             "branch-alias": {
-                "dev-develop": "0.9.x-dev"
+                "dev-master": "0.10.x-dev"
             }
         },
         "installation-source": "dist",
@@ -3682,7 +3594,6 @@
                 "Psy\\": "src/"
             }
         },
-        "notification-url": "https://packagist.org/downloads/",
         "license": [
             "MIT"
         ],
@@ -3927,21 +3838,18 @@
     },
     {
         "name": "seld/jsonlint",
-        "version": "1.7.2",
-        "version_normalized": "1.7.2.0",
+        "version": "1.8.0",
+        "version_normalized": "1.8.0.0",
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/Seldaek/jsonlint/zipball/e2e5d290e4d2a4f0eb449f510071392e00e10d19",
-            "reference": "e2e5d290e4d2a4f0eb449f510071392e00e10d19",
+            "url": "https://api.github.com/repos/Seldaek/jsonlint/zipball/ff2aa5420bfbc296cf6a0bc785fa5b35736de7c1",
+            "reference": "ff2aa5420bfbc296cf6a0bc785fa5b35736de7c1",
             "shasum": ""
         },
         "require": {
-            "php": "^5.3 || ^7.0"
+            "php": "^5.3 || ^7.0 || ^8.0"
         },
-        "require-dev": {
-            "phpunit/phpunit": "^4.8.35 || ^5.7 || ^6.0"
-        },
-        "time": "2019-10-24T14:27:39+00:00",
+        "time": "2020-04-30T19:05:18+00:00",
         "bin": [
             "bin/jsonlint"
         ],
@@ -3952,7 +3860,6 @@
                 "Seld\\JsonLint\\": "src/Seld/JsonLint/"
             }
         },
-        "notification-url": "https://packagist.org/downloads/",
         "license": [
             "MIT"
         ],
@@ -4340,12 +4247,12 @@
     },
     {
         "name": "symfony/polyfill-ctype",
-        "version": "v1.15.0",
-        "version_normalized": "1.15.0.0",
+        "version": "v1.17.0",
+        "version_normalized": "1.17.0.0",
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/polyfill-ctype/zipball/4719fa9c18b0464d399f1a63bf624b42b6fa8d14",
-            "reference": "4719fa9c18b0464d399f1a63bf624b42b6fa8d14",
+            "url": "https://api.github.com/repos/symfony/polyfill-ctype/zipball/e94c8b1bbe2bc77507a1056cdb06451c75b427f9",
+            "reference": "e94c8b1bbe2bc77507a1056cdb06451c75b427f9",
             "shasum": ""
         },
         "require": {
@@ -4354,11 +4261,11 @@
         "suggest": {
             "ext-ctype": "For best performance"
         },
-        "time": "2020-02-27T09:26:54+00:00",
+        "time": "2020-05-12T16:14:59+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
-                "dev-master": "1.15-dev"
+                "dev-master": "1.17-dev"
             }
         },
         "installation-source": "dist",
@@ -4394,12 +4301,12 @@
     },
     {
         "name": "symfony/polyfill-iconv",
-        "version": "v1.15.0",
-        "version_normalized": "1.15.0.0",
+        "version": "v1.17.0",
+        "version_normalized": "1.17.0.0",
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/polyfill-iconv/zipball/ad6d62792bfbcfc385dd34b424d4fcf9712a32c8",
-            "reference": "ad6d62792bfbcfc385dd34b424d4fcf9712a32c8",
+            "url": "https://api.github.com/repos/symfony/polyfill-iconv/zipball/c4de7601eefbf25f9d47190abe07f79fe0a27424",
+            "reference": "c4de7601eefbf25f9d47190abe07f79fe0a27424",
             "shasum": ""
         },
         "require": {
@@ -4408,11 +4315,11 @@
         "suggest": {
             "ext-iconv": "For best performance"
         },
-        "time": "2020-03-09T19:04:49+00:00",
+        "time": "2020-05-12T16:47:27+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
-                "dev-master": "1.15-dev"
+                "dev-master": "1.17-dev"
             }
         },
         "installation-source": "dist",
@@ -4449,12 +4356,12 @@
     },
     {
         "name": "symfony/polyfill-intl-grapheme",
-        "version": "v1.15.0",
-        "version_normalized": "1.15.0.0",
+        "version": "v1.17.0",
+        "version_normalized": "1.17.0.0",
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/polyfill-intl-grapheme/zipball/b6786f69dd7b062390582f20520ab4918283217e",
-            "reference": "b6786f69dd7b062390582f20520ab4918283217e",
+            "url": "https://api.github.com/repos/symfony/polyfill-intl-grapheme/zipball/e094b0770f7833fdf257e6ba4775be4e258230b2",
+            "reference": "e094b0770f7833fdf257e6ba4775be4e258230b2",
             "shasum": ""
         },
         "require": {
@@ -4463,11 +4370,11 @@
         "suggest": {
             "ext-intl": "For best performance"
         },
-        "time": "2020-03-09T19:04:49+00:00",
+        "time": "2020-05-12T16:47:27+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
-                "dev-master": "1.15-dev"
+                "dev-master": "1.17-dev"
             }
         },
         "installation-source": "dist",
@@ -4505,12 +4412,12 @@
     },
     {
         "name": "symfony/polyfill-intl-idn",
-        "version": "v1.15.0",
-        "version_normalized": "1.15.0.0",
+        "version": "v1.17.0",
+        "version_normalized": "1.17.0.0",
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/polyfill-intl-idn/zipball/47bd6aa45beb1cd7c6a16b7d1810133b728bdfcf",
-            "reference": "47bd6aa45beb1cd7c6a16b7d1810133b728bdfcf",
+            "url": "https://api.github.com/repos/symfony/polyfill-intl-idn/zipball/3bff59ea7047e925be6b7f2059d60af31bb46d6a",
+            "reference": "3bff59ea7047e925be6b7f2059d60af31bb46d6a",
             "shasum": ""
         },
         "require": {
@@ -4521,11 +4428,11 @@
         "suggest": {
             "ext-intl": "For best performance"
         },
-        "time": "2020-03-09T19:04:49+00:00",
+        "time": "2020-05-12T16:47:27+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
-                "dev-master": "1.15-dev"
+                "dev-master": "1.17-dev"
             }
         },
         "installation-source": "dist",
@@ -4563,12 +4470,12 @@
     },
     {
         "name": "symfony/polyfill-intl-normalizer",
-        "version": "v1.15.0",
-        "version_normalized": "1.15.0.0",
+        "version": "v1.17.0",
+        "version_normalized": "1.17.0.0",
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/polyfill-intl-normalizer/zipball/e62715f03f90dd8d2f3eb5daa21b4d19d71aebde",
-            "reference": "e62715f03f90dd8d2f3eb5daa21b4d19d71aebde",
+            "url": "https://api.github.com/repos/symfony/polyfill-intl-normalizer/zipball/1357b1d168eb7f68ad6a134838e46b0b159444a9",
+            "reference": "1357b1d168eb7f68ad6a134838e46b0b159444a9",
             "shasum": ""
         },
         "require": {
@@ -4577,11 +4484,11 @@
         "suggest": {
             "ext-intl": "For best performance"
         },
-        "time": "2020-02-27T09:26:54+00:00",
+        "time": "2020-05-12T16:14:59+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
-                "dev-master": "1.15-dev"
+                "dev-master": "1.17-dev"
             }
         },
         "installation-source": "dist",
@@ -4622,12 +4529,12 @@
     },
     {
         "name": "symfony/polyfill-mbstring",
-        "version": "v1.15.0",
-        "version_normalized": "1.15.0.0",
+        "version": "v1.17.0",
+        "version_normalized": "1.17.0.0",
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/81ffd3a9c6d707be22e3012b827de1c9775fc5ac",
-            "reference": "81ffd3a9c6d707be22e3012b827de1c9775fc5ac",
+            "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/fa79b11539418b02fc5e1897267673ba2c19419c",
+            "reference": "fa79b11539418b02fc5e1897267673ba2c19419c",
             "shasum": ""
         },
         "require": {
@@ -4636,11 +4543,11 @@
         "suggest": {
             "ext-mbstring": "For best performance"
         },
-        "time": "2020-03-09T19:04:49+00:00",
+        "time": "2020-05-12T16:47:27+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
-                "dev-master": "1.15-dev"
+                "dev-master": "1.17-dev"
             }
         },
         "installation-source": "dist",
@@ -4677,22 +4584,22 @@
     },
     {
         "name": "symfony/polyfill-php72",
-        "version": "v1.15.0",
-        "version_normalized": "1.15.0.0",
+        "version": "v1.17.0",
+        "version_normalized": "1.17.0.0",
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/polyfill-php72/zipball/37b0976c78b94856543260ce09b460a7bc852747",
-            "reference": "37b0976c78b94856543260ce09b460a7bc852747",
+            "url": "https://api.github.com/repos/symfony/polyfill-php72/zipball/f048e612a3905f34931127360bdd2def19a5e582",
+            "reference": "f048e612a3905f34931127360bdd2def19a5e582",
             "shasum": ""
         },
         "require": {
             "php": ">=5.3.3"
         },
-        "time": "2020-02-27T09:26:54+00:00",
+        "time": "2020-05-12T16:47:27+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
-                "dev-master": "1.15-dev"
+                "dev-master": "1.17-dev"
             }
         },
         "installation-source": "dist",
@@ -5547,12 +5454,12 @@
     },
     {
         "name": "voku/portable-utf8",
-        "version": "5.4.41",
-        "version_normalized": "5.4.41.0",
+        "version": "5.4.43",
+        "version_normalized": "5.4.43.0",
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/voku/portable-utf8/zipball/e34247dce28f9aebebd2d752d8813b91de689aec",
-            "reference": "e34247dce28f9aebebd2d752d8813b91de689aec",
+            "url": "https://api.github.com/repos/voku/portable-utf8/zipball/ca43fcf0d953909217565d6cbfa923053de0acdc",
+            "reference": "ca43fcf0d953909217565d6cbfa923053de0acdc",
             "shasum": ""
         },
         "require": {
@@ -5564,9 +5471,6 @@
             "symfony/polyfill-php72": "~1.0",
             "voku/portable-ascii": "~1.4"
         },
-        "require-dev": {
-            "phpunit/phpunit": "~6.0 || ~7.0"
-        },
         "suggest": {
             "ext-ctype": "Use Ctype for e.g. hexadecimal digit detection",
             "ext-fileinfo": "Use Fileinfo for better binary file detection",
@@ -5575,19 +5479,17 @@
             "ext-json": "Use JSON for string detection",
             "ext-mbstring": "Use Mbstring for best performance"
         },
-        "time": "2020-03-06T01:23:48+00:00",
+        "time": "2020-05-14T00:59:19+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
             "psr-4": {
-                "voku\\": "src/voku/",
-                "voku\\tests\\": "tests/"
+                "voku\\": "src/voku/"
             },
             "files": [
                 "bootstrap.php"
             ]
         },
-        "notification-url": "https://packagist.org/downloads/",
         "license": [
             "(Apache-2.0 or GPL-2.0)"
         ],
@@ -5912,12 +5814,12 @@
     },
     {
         "name": "yiisoft/yii2",
-        "version": "2.0.34",
-        "version_normalized": "2.0.34.0",
+        "version": "2.0.35",
+        "version_normalized": "2.0.35.0",
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/ef2585379bc387433e150a62451a89a4b1e130d7",
-            "reference": "ef2585379bc387433e150a62451a89a4b1e130d7",
+            "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/d42809e4969cdc0adb97197ba32774b3e4cd9e8e",
+            "reference": "d42809e4969cdc0adb97197ba32774b3e4cd9e8e",
             "shasum": ""
         },
         "require": {
@@ -5933,7 +5835,7 @@
             "php": ">=5.4.0",
             "yiisoft/yii2-composer": "~2.0.4"
         },
-        "time": "2020-03-26T20:42:29+00:00",
+        "time": "2020-05-02T11:11:31+00:00",
         "bin": [
             "yii"
         ],
@@ -6249,20 +6151,20 @@
     },
     {
         "name": "yiisoft/yii2-shell",
-        "version": "2.0.3",
-        "version_normalized": "2.0.3.0",
+        "version": "2.0.4",
+        "version_normalized": "2.0.4.0",
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/yiisoft/yii2-shell/zipball/8439588d187c23d47e0e6fd773f5b544c87f4d56",
-            "reference": "8439588d187c23d47e0e6fd773f5b544c87f4d56",
+            "url": "https://api.github.com/repos/yiisoft/yii2-shell/zipball/6832c3dde303d89f7123bdbcb8cb4d5c80fae4df",
+            "reference": "6832c3dde303d89f7123bdbcb8cb4d5c80fae4df",
             "shasum": ""
         },
         "require": {
-            "psy/psysh": "~0.9.3",
+            "psy/psysh": "~0.9.3|~0.10.3",
             "symfony/var-dumper": "~2.7|~3.0|~4.0|~5.0",
             "yiisoft/yii2": "~2.0.0"
         },
-        "time": "2020-03-03T20:19:36+00:00",
+        "time": "2020-05-02T11:43:24+00:00",
         "type": "yii2-extension",
         "extra": {
             "bootstrap": "yii\\shell\\Bootstrap",
@@ -6276,7 +6178,6 @@
                 "yii\\shell\\": ""
             }
         },
-        "notification-url": "https://packagist.org/downloads/",
         "license": [
             "BSD-3-Clause"
         ],

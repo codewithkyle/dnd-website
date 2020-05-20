@@ -52,6 +52,29 @@ class App
     private static $_iconv;
 
     /**
+     * Returns an environment variable, checking for it in `$_SERVER` and calling `getenv()` as a fallback.
+     *
+     * @param string $name The environment variable name
+     * @return string|array|false The environment variable value
+     * @since 3.4.18
+     */
+    public static function env(string $name)
+    {
+        return $_SERVER[$name] ?? getenv($name);
+    }
+
+    /**
+     * Returns whether Craft is running within [Nitro](https://getnitro.sh).
+     *
+     * @return bool
+     * @since 3.4.19
+     */
+    public static function isNitro(): bool
+    {
+        return static::env('CRAFT_NITRO') === '1';
+    }
+
+    /**
      * Returns an array of all known Craft editions’ IDs.
      *
      * @return array All the known Craft editions’ IDs.

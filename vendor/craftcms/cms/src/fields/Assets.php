@@ -596,10 +596,11 @@ class Assets extends BaseRelationField
         // If it's a list of source IDs, we need to convert them to their folder counterparts
         if (is_array($this->sources)) {
             foreach ($this->sources as $source) {
-                if (strpos($source, 'folder:') === 0) {
-                    $sources[] = $source;
-                } else if (strpos($source, 'volume:') === 0) {
+                if (strpos($source, 'volume:') === 0) {
+                    // volume:x → folder:x
                     $sources[] = $this->_volumeSourceToFolderSource($source);
+                } else {
+                    $sources[] = $source;
                 }
             }
         } else {
@@ -613,18 +614,17 @@ class Assets extends BaseRelationField
         // Now enforce the showUnpermittedVolumes setting
         if (!$this->showUnpermittedVolumes && !empty($sources)) {
             $userService = Craft::$app->getUser();
-            $permittedSources = [];
-            foreach ($sources as $i => $source) {
-                if (strpos($source, 'folder:') === 0) {
-                    $folder = $assetsService->getFolderByUid(explode(':', $source)[1]);
-                    /** @var Volume $volume */
-                    $volume = $folder ? $folder->getVolume() : null;
-                    if ($volume && $userService->checkPermission("viewVolume:{$volume->uid}")) {
-                        $permittedSources[] = $source;
-                    }
+            return ArrayHelper::where($sources, function(string $source) use ($assetsService, $userService) {
+                // If it's not a volume folder, let it through
+                if (strpos($source, 'folder:') !== 0) {
+                    return true;
                 }
-            }
-            return $permittedSources;
+                // Only show it if they have permission to view it
+                $folder = $assetsService->getFolderByUid(explode(':', $source)[1]);
+                /** @var Volume $volume */
+                $volume = $folder ? $folder->getVolume() : null;
+                return $volume && $userService->checkPermission("viewVolume:{$volume->uid}");
+            });
         }
 
         return $sources;
@@ -656,6 +656,20 @@ class Assets extends BaseRelationField
         }
 
         return $criteria;
+    }
+
+    /**
+     * @inheritdoc
+     * @since 3.4.19
+     */
+    protected function inputSiteId(ElementInterface $element = null)
+    {
+        if ($element) {
+            // Maintain the same site as the element
+            return $element->siteId;
+        }
+
+        return null;
     }
 
     /**

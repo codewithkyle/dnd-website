@@ -12,16 +12,6 @@ return array (
       '@yii/swiftmailer' => $vendorDir . '/yiisoft/yii2-swiftmailer/src',
     ),
   ),
-  'yiisoft/yii2-shell' => 
-  array (
-    'name' => 'yiisoft/yii2-shell',
-    'version' => '2.0.3.0',
-    'alias' => 
-    array (
-      '@yii/shell' => $vendorDir . '/yiisoft/yii2-shell',
-    ),
-    'bootstrap' => 'yii\\shell\\Bootstrap',
-  ),
   'yiisoft/yii2-queue' => 
   array (
     'name' => 'yiisoft/yii2-queue',
@@ -76,5 +66,15 @@ return array (
     array (
       '@yii/redis' => $vendorDir . '/yiisoft/yii2-redis/src',
     ),
+  ),
+  'yiisoft/yii2-shell' => 
+  array (
+    'name' => 'yiisoft/yii2-shell',
+    'version' => '2.0.4.0',
+    'alias' => 
+    array (
+      '@yii/shell' => $vendorDir . '/yiisoft/yii2-shell',
+    ),
+    'bootstrap' => 'yii\\shell\\Bootstrap',
   ),
 );
