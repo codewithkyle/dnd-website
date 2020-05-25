@@ -10,9 +10,9 @@ class ComposerStaticInit07872e652f82eab19dd311fd3a5643ab
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         '25072dd6e2470089de65ae7bf11d3109' => __DIR__ . '/..' . '/symfony/polyfill-php72/bootstrap.php',
         'f598d06aa772fa33d905e87be6398fb1' => __DIR__ . '/..' . '/symfony/polyfill-intl-idn/bootstrap.php',
-        '2cffec82183ee1cea088009cef9a6fc3' => __DIR__ . '/..' . '/ezyang/htmlpurifier/library/HTMLPurifier.composer.php',
         '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
         'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
+        '2cffec82183ee1cea088009cef9a6fc3' => __DIR__ . '/..' . '/ezyang/htmlpurifier/library/HTMLPurifier.composer.php',
         'c964ee0ededf28c96ebd9db5099ef910' => __DIR__ . '/..' . '/guzzlehttp/promises/src/functions_include.php',
         'def43f6c87e4f8dfd0c9e1b1bab14fe8' => __DIR__ . '/..' . '/symfony/polyfill-iconv/bootstrap.php',
         '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
@@ -64,14 +64,10 @@ class ComposerStaticInit07872e652f82eab19dd311fd3a5643ab
             'voku\\tests\\' => 11,
             'voku\\helper\\' => 12,
             'voku\\' => 5,
-            'verbb\\supertable\\' => 17,
-            'verbb\\smith\\' => 12,
             'verbb\\base\\' => 11,
-            'vaersaagod\\matrixmate\\' => 22,
         ),
         't' => 
         array (
-            'typedlinkfield\\' => 15,
             'tubalmartin\\CssMin\\' => 19,
         ),
         'p' => 
@@ -88,14 +84,8 @@ class ComposerStaticInit07872e652f82eab19dd311fd3a5643ab
             'modules\\dndmodule\\' => 18,
             'mikehaertl\\shellcommand\\' => 24,
         ),
-        'j' => 
-        array (
-            'jalendport\\readtime\\' => 20,
-        ),
         'e' => 
         array (
-            'ether\\splash\\' => 13,
-            'ether\\seo\\' => 10,
             'enshrined\\svgSanitize\\' => 22,
         ),
         'c' => 
@@ -103,7 +93,6 @@ class ComposerStaticInit07872e652f82eab19dd311fd3a5643ab
             'creocoder\\nestedsets\\' => 21,
             'crafttests\\fixtures\\' => 20,
             'craftcms\\oauth2\\client\\' => 23,
-            'craft\\redactor\\' => 15,
             'craft\\elementapi\\' => 17,
             'craft\\composer\\' => 15,
             'craft\\' => 6,
@@ -111,7 +100,6 @@ class ComposerStaticInit07872e652f82eab19dd311fd3a5643ab
         ),
         'a' => 
         array (
-            'anubarak\\relabel\\' => 17,
             'aelvan\\imager\\' => 14,
         ),
         'X' => 
@@ -404,25 +392,9 @@ class ComposerStaticInit07872e652f82eab19dd311fd3a5643ab
             1 => __DIR__ . '/..' . '/voku/portable-utf8/src/voku',
             2 => __DIR__ . '/..' . '/voku/stop-words/src/voku',
         ),
-        'verbb\\supertable\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/verbb/super-table/src',
-        ),
-        'verbb\\smith\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/verbb/smith/src',
-        ),
         'verbb\\base\\' => 
         array (
             0 => __DIR__ . '/..' . '/verbb/base/src',
-        ),
-        'vaersaagod\\matrixmate\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/vaersaagod/matrixmate/src',
-        ),
-        'typedlinkfield\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/sebastianlenz/linkfield/src',
         ),
         'tubalmartin\\CssMin\\' => 
         array (
@@ -450,18 +422,6 @@ class ComposerStaticInit07872e652f82eab19dd311fd3a5643ab
         array (
             0 => __DIR__ . '/..' . '/mikehaertl/php-shellcommand/src',
         ),
-        'jalendport\\readtime\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/jalendport/craft-readtime/src',
-        ),
-        'ether\\splash\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/ether/splash/src',
-        ),
-        'ether\\seo\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/ether/seo/src',
-        ),
         'enshrined\\svgSanitize\\' => 
         array (
             0 => __DIR__ . '/..' . '/enshrined/svg-sanitize/src',
@@ -478,10 +438,6 @@ class ComposerStaticInit07872e652f82eab19dd311fd3a5643ab
         array (
             0 => __DIR__ . '/..' . '/craftcms/oauth2-craftid/src',
         ),
-        'craft\\redactor\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/craftcms/redactor/src',
-        ),
         'craft\\elementapi\\' => 
         array (
             0 => __DIR__ . '/..' . '/craftcms/element-api/src',
@@ -497,10 +453,6 @@ class ComposerStaticInit07872e652f82eab19dd311fd3a5643ab
         'cebe\\markdown\\' => 
         array (
             0 => __DIR__ . '/..' . '/cebe/markdown',
-        ),
-        'anubarak\\relabel\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/anubarak/craft-relabel/src',
         ),
         'aelvan\\imager\\' => 
         array (
@@ -9168,15 +9120,6 @@ class ComposerStaticInit07872e652f82eab19dd311fd3a5643ab
         'aelvan\\imager\\transformers\\TransformerInterface' => __DIR__ . '/..' . '/aelvan/imager/src/transformers/TransformerInterface.php',
         'aelvan\\imager\\twigextensions\\ImagerTwigExtension' => __DIR__ . '/..' . '/aelvan/imager/src/twigextensions/ImagerTwigExtension.php',
         'aelvan\\imager\\variables\\ImagerVariable' => __DIR__ . '/..' . '/aelvan/imager/src/variables/ImagerVariable.php',
-        'anubarak\\relabel\\Relabel' => __DIR__ . '/..' . '/anubarak/craft-relabel/src/Relabel.php',
-        'anubarak\\relabel\\RelabelAsset' => __DIR__ . '/..' . '/anubarak/craft-relabel/src/RelabelAsset.php',
-        'anubarak\\relabel\\Variable' => __DIR__ . '/..' . '/anubarak/craft-relabel/src/Variable.php',
-        'anubarak\\relabel\\events\\RegisterAdditionalLabelEvent' => __DIR__ . '/..' . '/anubarak/craft-relabel/src/events/RegisterAdditionalLabelEvent.php',
-        'anubarak\\relabel\\events\\RegisterLabelEvent' => __DIR__ . '/..' . '/anubarak/craft-relabel/src/events/RegisterLabelEvent.php',
-        'anubarak\\relabel\\migrations\\Install' => __DIR__ . '/..' . '/anubarak/craft-relabel/src/migrations/Install.php',
-        'anubarak\\relabel\\migrations\\m190128_183303_include_project_config' => __DIR__ . '/..' . '/anubarak/craft-relabel/src/migrations/m190128_183303_include_project_config.php',
-        'anubarak\\relabel\\records\\RelabelRecord' => __DIR__ . '/..' . '/anubarak/craft-relabel/src/records/RelabelRecord.php',
-        'anubarak\\relabel\\services\\RelabelService' => __DIR__ . '/..' . '/anubarak/craft-relabel/src/services/RelabelService.php',
         'cebe\\markdown\\GithubMarkdown' => __DIR__ . '/..' . '/cebe/markdown/GithubMarkdown.php',
         'cebe\\markdown\\Markdown' => __DIR__ . '/..' . '/cebe/markdown/Markdown.php',
         'cebe\\markdown\\MarkdownExtra' => __DIR__ . '/..' . '/cebe/markdown/MarkdownExtra.php',
@@ -9963,18 +9906,6 @@ class ComposerStaticInit07872e652f82eab19dd311fd3a5643ab
         'craft\\records\\Volume' => __DIR__ . '/..' . '/craftcms/cms/src/records/Volume.php',
         'craft\\records\\VolumeFolder' => __DIR__ . '/..' . '/craftcms/cms/src/records/VolumeFolder.php',
         'craft\\records\\Widget' => __DIR__ . '/..' . '/craftcms/cms/src/records/Widget.php',
-        'craft\\redactor\\Field' => __DIR__ . '/..' . '/craftcms/redactor/src/Field.php',
-        'craft\\redactor\\FieldData' => __DIR__ . '/..' . '/craftcms/redactor/src/FieldData.php',
-        'craft\\redactor\\Plugin' => __DIR__ . '/..' . '/craftcms/redactor/src/Plugin.php',
-        'craft\\redactor\\assets\\field\\FieldAsset' => __DIR__ . '/..' . '/craftcms/redactor/src/assets/field/FieldAsset.php',
-        'craft\\redactor\\assets\\redactor\\RedactorAsset' => __DIR__ . '/..' . '/craftcms/redactor/src/assets/redactor/RedactorAsset.php',
-        'craft\\redactor\\controllers\\DefaultController' => __DIR__ . '/..' . '/craftcms/redactor/src/controllers/DefaultController.php',
-        'craft\\redactor\\events\\ModifyPurifierConfigEvent' => __DIR__ . '/..' . '/craftcms/redactor/src/events/ModifyPurifierConfigEvent.php',
-        'craft\\redactor\\events\\RegisterLinkOptionsEvent' => __DIR__ . '/..' . '/craftcms/redactor/src/events/RegisterLinkOptionsEvent.php',
-        'craft\\redactor\\events\\RegisterPluginPathsEvent' => __DIR__ . '/..' . '/craftcms/redactor/src/events/RegisterPluginPathsEvent.php',
-        'craft\\redactor\\migrations\\Install' => __DIR__ . '/..' . '/craftcms/redactor/src/migrations/Install.php',
-        'craft\\redactor\\migrations\\m180430_204710_remove_old_plugins' => __DIR__ . '/..' . '/craftcms/redactor/src/migrations/m180430_204710_remove_old_plugins.php',
-        'craft\\redactor\\migrations\\m190225_003922_split_cleanup_html_settings' => __DIR__ . '/..' . '/craftcms/redactor/src/migrations/m190225_003922_split_cleanup_html_settings.php',
         'craft\\search\\SearchQuery' => __DIR__ . '/..' . '/craftcms/cms/src/search/SearchQuery.php',
         'craft\\search\\SearchQueryTerm' => __DIR__ . '/..' . '/craftcms/cms/src/search/SearchQueryTerm.php',
         'craft\\search\\SearchQueryTermGroup' => __DIR__ . '/..' . '/craftcms/cms/src/search/SearchQueryTermGroup.php',
@@ -10247,46 +10178,6 @@ class ComposerStaticInit07872e652f82eab19dd311fd3a5643ab
         'enshrined\\svgSanitize\\data\\AttributeInterface' => __DIR__ . '/..' . '/enshrined/svg-sanitize/src/data/AttributeInterface.php',
         'enshrined\\svgSanitize\\data\\TagInterface' => __DIR__ . '/..' . '/enshrined/svg-sanitize/src/data/TagInterface.php',
         'enshrined\\svgSanitize\\data\\XPath' => __DIR__ . '/..' . '/enshrined/svg-sanitize/src/data/XPath.php',
-        'ether\\seo\\Seo' => __DIR__ . '/..' . '/ether/seo/src/Seo.php',
-        'ether\\seo\\console\\controllers\\UpgradeController' => __DIR__ . '/..' . '/ether/seo/src/console/controllers/UpgradeController.php',
-        'ether\\seo\\controllers\\RedirectsController' => __DIR__ . '/..' . '/ether/seo/src/controllers/RedirectsController.php',
-        'ether\\seo\\controllers\\SchemaController' => __DIR__ . '/..' . '/ether/seo/src/controllers/SchemaController.php',
-        'ether\\seo\\controllers\\SeoController' => __DIR__ . '/..' . '/ether/seo/src/controllers/SeoController.php',
-        'ether\\seo\\controllers\\SettingsController' => __DIR__ . '/..' . '/ether/seo/src/controllers/SettingsController.php',
-        'ether\\seo\\controllers\\SitemapController' => __DIR__ . '/..' . '/ether/seo/src/controllers/SitemapController.php',
-        'ether\\seo\\controllers\\sitemap\\XmlController' => __DIR__ . '/..' . '/ether/seo/src/controllers/sitemap/XmlController.php',
-        'ether\\seo\\fields\\SeoField' => __DIR__ . '/..' . '/ether/seo/src/fields/SeoField.php',
-        'ether\\seo\\integrations\\craftql\\GetCraftQLSchema' => __DIR__ . '/..' . '/ether/seo/src/integrations/craftql/GetCraftQLSchema.php',
-        'ether\\seo\\jobs\\UpgradeSeoDataJob' => __DIR__ . '/..' . '/ether/seo/src/jobs/UpgradeSeoDataJob.php',
-        'ether\\seo\\migrations\\Install' => __DIR__ . '/..' . '/ether/seo/src/migrations/Install.php',
-        'ether\\seo\\migrations\\m180906_152947_add_site_id_to_redirects' => __DIR__ . '/..' . '/ether/seo/src/migrations/m180906_152947_add_site_id_to_redirects.php',
-        'ether\\seo\\migrations\\m190114_152300_upgrade_to_new_data_format' => __DIR__ . '/..' . '/ether/seo/src/migrations/m190114_152300_upgrade_to_new_data_format.php',
-        'ether\\seo\\models\\Redirect' => __DIR__ . '/..' . '/ether/seo/src/models/Redirect.php',
-        'ether\\seo\\models\\Settings' => __DIR__ . '/..' . '/ether/seo/src/models/Settings.php',
-        'ether\\seo\\models\\Sitemap' => __DIR__ . '/..' . '/ether/seo/src/models/Sitemap.php',
-        'ether\\seo\\models\\data\\SeoData' => __DIR__ . '/..' . '/ether/seo/src/models/data/SeoData.php',
-        'ether\\seo\\models\\data\\SocialData' => __DIR__ . '/..' . '/ether/seo/src/models/data/SocialData.php',
-        'ether\\seo\\records\\RedirectRecord' => __DIR__ . '/..' . '/ether/seo/src/records/RedirectRecord.php',
-        'ether\\seo\\records\\SitemapRecord' => __DIR__ . '/..' . '/ether/seo/src/records/SitemapRecord.php',
-        'ether\\seo\\services\\RedirectsService' => __DIR__ . '/..' . '/ether/seo/src/services/RedirectsService.php',
-        'ether\\seo\\services\\SeoService' => __DIR__ . '/..' . '/ether/seo/src/services/SeoService.php',
-        'ether\\seo\\services\\SitemapService' => __DIR__ . '/..' . '/ether/seo/src/services/SitemapService.php',
-        'ether\\seo\\services\\UpgradeService' => __DIR__ . '/..' . '/ether/seo/src/services/UpgradeService.php',
-        'ether\\seo\\web\\assets\\RedirectsAsset' => __DIR__ . '/..' . '/ether/seo/src/web/assets/RedirectsAsset.php',
-        'ether\\seo\\web\\assets\\SeoFieldAsset' => __DIR__ . '/..' . '/ether/seo/src/web/assets/SeoFieldAsset.php',
-        'ether\\seo\\web\\assets\\SeoFieldSettingsAsset' => __DIR__ . '/..' . '/ether/seo/src/web/assets/SeoFieldSettingsAsset.php',
-        'ether\\seo\\web\\assets\\SeoSettingsAsset' => __DIR__ . '/..' . '/ether/seo/src/web/assets/SeoSettingsAsset.php',
-        'ether\\seo\\web\\twig\\Extension' => __DIR__ . '/..' . '/ether/seo/src/web/twig/Extension.php',
-        'ether\\seo\\web\\twig\\Variable' => __DIR__ . '/..' . '/ether/seo/src/web/twig/Variable.php',
-        'ether\\splash\\Splash' => __DIR__ . '/..' . '/ether/splash/src/Splash.php',
-        'ether\\splash\\Volume' => __DIR__ . '/..' . '/ether/splash/src/Volume.php',
-        'ether\\splash\\controllers\\SplashController' => __DIR__ . '/..' . '/ether/splash/src/controllers/SplashController.php',
-        'ether\\splash\\models\\Settings' => __DIR__ . '/..' . '/ether/splash/src/models/Settings.php',
-        'ether\\splash\\resources\\SplashAssets' => __DIR__ . '/..' . '/ether/splash/src/resources/SplashAssets.php',
-        'jalendport\\readtime\\ReadTime' => __DIR__ . '/..' . '/jalendport/craft-readtime/src/ReadTime.php',
-        'jalendport\\readtime\\models\\Settings' => __DIR__ . '/..' . '/jalendport/craft-readtime/src/models/Settings.php',
-        'jalendport\\readtime\\models\\TimeModel' => __DIR__ . '/..' . '/jalendport/craft-readtime/src/models/TimeModel.php',
-        'jalendport\\readtime\\twigextensions\\ReadTimeTwigExtension' => __DIR__ . '/..' . '/jalendport/craft-readtime/src/twigextensions/ReadTimeTwigExtension.php',
         'lessc' => __DIR__ . '/..' . '/marcusschwarz/lesserphp/lessc.inc.php',
         'lessc_formatter_classic' => __DIR__ . '/..' . '/marcusschwarz/lesserphp/lessc.inc.php',
         'lessc_formatter_compressed' => __DIR__ . '/..' . '/marcusschwarz/lesserphp/lessc.inc.php',
@@ -10381,73 +10272,10 @@ class ComposerStaticInit07872e652f82eab19dd311fd3a5643ab
         'tubalmartin\\CssMin\\Command' => __DIR__ . '/..' . '/tubalmartin/cssmin/src/Command.php',
         'tubalmartin\\CssMin\\Minifier' => __DIR__ . '/..' . '/tubalmartin/cssmin/src/Minifier.php',
         'tubalmartin\\CssMin\\Utils' => __DIR__ . '/..' . '/tubalmartin/cssmin/src/Utils.php',
-        'typedlinkfield\\Plugin' => __DIR__ . '/..' . '/sebastianlenz/linkfield/src/Plugin.php',
-        'typedlinkfield\\events\\LinkTypeEvent' => __DIR__ . '/..' . '/sebastianlenz/linkfield/src/events/LinkTypeEvent.php',
-        'typedlinkfield\\fields\\LinkField' => __DIR__ . '/..' . '/sebastianlenz/linkfield/src/fields/LinkField.php',
-        'typedlinkfield\\models\\ElementLinkType' => __DIR__ . '/..' . '/sebastianlenz/linkfield/src/models/ElementLinkType.php',
-        'typedlinkfield\\models\\InputLinkType' => __DIR__ . '/..' . '/sebastianlenz/linkfield/src/models/InputLinkType.php',
-        'typedlinkfield\\models\\Link' => __DIR__ . '/..' . '/sebastianlenz/linkfield/src/models/Link.php',
-        'typedlinkfield\\models\\LinkTypeInterface' => __DIR__ . '/..' . '/sebastianlenz/linkfield/src/models/LinkTypeInterface.php',
-        'typedlinkfield\\models\\SiteLinkType' => __DIR__ . '/..' . '/sebastianlenz/linkfield/src/models/SiteLinkType.php',
-        'typedlinkfield\\utilities\\CpAdminAssetBundle' => __DIR__ . '/..' . '/sebastianlenz/linkfield/src/utilities/CpAdminAssetBundle.php',
-        'typedlinkfield\\utilities\\CpAssetBundle' => __DIR__ . '/..' . '/sebastianlenz/linkfield/src/utilities/CpAssetBundle.php',
-        'typedlinkfield\\utilities\\CraftQLListener' => __DIR__ . '/..' . '/sebastianlenz/linkfield/src/utilities/CraftQLListener.php',
-        'typedlinkfield\\utilities\\ElementPrefetch' => __DIR__ . '/..' . '/sebastianlenz/linkfield/src/utilities/ElementPrefetch.php',
-        'typedlinkfield\\utilities\\ElementSourceValidator' => __DIR__ . '/..' . '/sebastianlenz/linkfield/src/utilities/ElementSourceValidator.php',
-        'typedlinkfield\\utilities\\Url' => __DIR__ . '/..' . '/sebastianlenz/linkfield/src/utilities/Url.php',
-        'typedlinkfield\\validators\\LinkFieldValidator' => __DIR__ . '/..' . '/sebastianlenz/linkfield/src/validators/LinkFieldValidator.php',
-        'vaersaagod\\matrixmate\\MatrixMate' => __DIR__ . '/..' . '/vaersaagod/matrixmate/src/MatrixMate.php',
-        'vaersaagod\\matrixmate\\assetbundles\\matrixmate\\MatrixMateAsset' => __DIR__ . '/..' . '/vaersaagod/matrixmate/src/assetbundles/matrixmate/MatrixMateAsset.php',
-        'vaersaagod\\matrixmate\\models\\Settings' => __DIR__ . '/..' . '/vaersaagod/matrixmate/src/models/Settings.php',
-        'vaersaagod\\matrixmate\\services\\MatrixMateService' => __DIR__ . '/..' . '/vaersaagod/matrixmate/src/services/MatrixMateService.php',
         'verbb\\base\\Base' => __DIR__ . '/..' . '/verbb/base/src/Base.php',
         'verbb\\base\\BaseHelper' => __DIR__ . '/..' . '/verbb/base/src/BaseHelper.php',
         'verbb\\base\\assetbundles\\CpAsset' => __DIR__ . '/..' . '/verbb/base/src/assetbundles/CpAsset.php',
         'verbb\\base\\base\\Module' => __DIR__ . '/..' . '/verbb/base/src/base/Module.php',
-        'verbb\\smith\\Smith' => __DIR__ . '/..' . '/verbb/smith/src/Smith.php',
-        'verbb\\smith\\assetbundles\\SmithAsset' => __DIR__ . '/..' . '/verbb/smith/src/assetbundles/SmithAsset.php',
-        'verbb\\smith\\base\\PluginTrait' => __DIR__ . '/..' . '/verbb/smith/src/base/PluginTrait.php',
-        'verbb\\smith\\controllers\\FieldController' => __DIR__ . '/..' . '/verbb/smith/src/controllers/FieldController.php',
-        'verbb\\smith\\services\\Field' => __DIR__ . '/..' . '/verbb/smith/src/services/Field.php',
-        'verbb\\supertable\\SuperTable' => __DIR__ . '/..' . '/verbb/super-table/src/SuperTable.php',
-        'verbb\\supertable\\assetbundles\\SuperTableAsset' => __DIR__ . '/..' . '/verbb/super-table/src/assetbundles/SuperTableAsset.php',
-        'verbb\\supertable\\base\\PluginTrait' => __DIR__ . '/..' . '/verbb/super-table/src/base/PluginTrait.php',
-        'verbb\\supertable\\controllers\\PluginController' => __DIR__ . '/..' . '/verbb/super-table/src/controllers/PluginController.php',
-        'verbb\\supertable\\elements\\SuperTableBlockElement' => __DIR__ . '/..' . '/verbb/super-table/src/elements/SuperTableBlockElement.php',
-        'verbb\\supertable\\elements\\db\\SuperTableBlockQuery' => __DIR__ . '/..' . '/verbb/super-table/src/elements/db/SuperTableBlockQuery.php',
-        'verbb\\supertable\\errors\\SuperTableBlockTypeNotFoundException' => __DIR__ . '/..' . '/verbb/super-table/src/errors/SuperTableBlockTypeNotFoundException.php',
-        'verbb\\supertable\\fields\\SuperTableField' => __DIR__ . '/..' . '/verbb/super-table/src/fields/SuperTableField.php',
-        'verbb\\supertable\\gql\\arguments\\elements\\SuperTableBlock' => __DIR__ . '/..' . '/verbb/super-table/src/gql/arguments/elements/SuperTableBlock.php',
-        'verbb\\supertable\\gql\\interfaces\\elements\\SuperTableBlock' => __DIR__ . '/..' . '/verbb/super-table/src/gql/interfaces/elements/SuperTableBlock.php',
-        'verbb\\supertable\\gql\\resolvers\\elements\\SuperTableBlock' => __DIR__ . '/..' . '/verbb/super-table/src/gql/resolvers/elements/SuperTableBlock.php',
-        'verbb\\supertable\\gql\\types\\elements\\SuperTableBlock' => __DIR__ . '/..' . '/verbb/super-table/src/gql/types/elements/SuperTableBlock.php',
-        'verbb\\supertable\\gql\\types\\generators\\SuperTableBlockType' => __DIR__ . '/..' . '/verbb/super-table/src/gql/types/generators/SuperTableBlockType.php',
-        'verbb\\supertable\\helpers\\ProjectConfigData' => __DIR__ . '/..' . '/verbb/super-table/src/helpers/ProjectConfigData.php',
-        'verbb\\supertable\\integrations\\schematic\\converters\\fields\\SuperTableSchematic' => __DIR__ . '/..' . '/verbb/super-table/src/integrations/schematic/converters/fields/SuperTableSchematic.php',
-        'verbb\\supertable\\integrations\\schematic\\converters\\models\\SuperTableBlockTypeSchematic' => __DIR__ . '/..' . '/verbb/super-table/src/integrations/schematic/converters/models/SuperTableBlockTypeSchematic.php',
-        'verbb\\supertable\\integrations\\sproutimport\\importers\\fields\\SuperTableImporter' => __DIR__ . '/..' . '/verbb/super-table/src/integrations/sproutimport/importers/fields/SuperTableImporter.php',
-        'verbb\\supertable\\migrations\\CreateSuperTableContentTable' => __DIR__ . '/..' . '/verbb/super-table/src/migrations/CreateSuperTableContentTable.php',
-        'verbb\\supertable\\migrations\\Install' => __DIR__ . '/..' . '/verbb/super-table/src/migrations/Install.php',
-        'verbb\\supertable\\migrations\\m180210_000000_migrate_content_tables' => __DIR__ . '/..' . '/verbb/super-table/src/migrations/m180210_000000_migrate_content_tables.php',
-        'verbb\\supertable\\migrations\\m180211_000000_type_columns' => __DIR__ . '/..' . '/verbb/super-table/src/migrations/m180211_000000_type_columns.php',
-        'verbb\\supertable\\migrations\\m180219_000000_sites' => __DIR__ . '/..' . '/verbb/super-table/src/migrations/m180219_000000_sites.php',
-        'verbb\\supertable\\migrations\\m180220_000000_fix_context' => __DIR__ . '/..' . '/verbb/super-table/src/migrations/m180220_000000_fix_context.php',
-        'verbb\\supertable\\migrations\\m190117_000000_soft_deletes' => __DIR__ . '/..' . '/verbb/super-table/src/migrations/m190117_000000_soft_deletes.php',
-        'verbb\\supertable\\migrations\\m190117_000001_context_to_uids' => __DIR__ . '/..' . '/verbb/super-table/src/migrations/m190117_000001_context_to_uids.php',
-        'verbb\\supertable\\migrations\\m190120_000000_fix_supertablecontent_tables' => __DIR__ . '/..' . '/verbb/super-table/src/migrations/m190120_000000_fix_supertablecontent_tables.php',
-        'verbb\\supertable\\migrations\\m190131_000000_fix_supertable_missing_fields' => __DIR__ . '/..' . '/verbb/super-table/src/migrations/m190131_000000_fix_supertable_missing_fields.php',
-        'verbb\\supertable\\migrations\\m190227_100000_fix_project_config' => __DIR__ . '/..' . '/verbb/super-table/src/migrations/m190227_100000_fix_project_config.php',
-        'verbb\\supertable\\migrations\\m190511_100000_fix_project_config' => __DIR__ . '/..' . '/verbb/super-table/src/migrations/m190511_100000_fix_project_config.php',
-        'verbb\\supertable\\migrations\\m190520_000000_fix_project_config' => __DIR__ . '/..' . '/verbb/super-table/src/migrations/m190520_000000_fix_project_config.php',
-        'verbb\\supertable\\migrations\\m190714_000000_propagation_method' => __DIR__ . '/..' . '/verbb/super-table/src/migrations/m190714_000000_propagation_method.php',
-        'verbb\\supertable\\migrations\\m191127_000000_fix_width' => __DIR__ . '/..' . '/verbb/super-table/src/migrations/m191127_000000_fix_width.php',
-        'verbb\\supertable\\models\\SuperTableBlockTypeModel' => __DIR__ . '/..' . '/verbb/super-table/src/models/SuperTableBlockTypeModel.php',
-        'verbb\\supertable\\queue\\jobs\\ApplySuperTablePropagationMethod' => __DIR__ . '/..' . '/verbb/super-table/src/queue/jobs/ApplySuperTablePropagationMethod.php',
-        'verbb\\supertable\\records\\SuperTableBlockRecord' => __DIR__ . '/..' . '/verbb/super-table/src/records/SuperTableBlockRecord.php',
-        'verbb\\supertable\\records\\SuperTableBlockTypeRecord' => __DIR__ . '/..' . '/verbb/super-table/src/records/SuperTableBlockTypeRecord.php',
-        'verbb\\supertable\\services\\SuperTableMatrixService' => __DIR__ . '/..' . '/verbb/super-table/src/services/SuperTableMatrixService.php',
-        'verbb\\supertable\\services\\SuperTableService' => __DIR__ . '/..' . '/verbb/super-table/src/services/SuperTableService.php',
-        'verbb\\supertable\\variables\\SuperTableVariable' => __DIR__ . '/..' . '/verbb/super-table/src/variables/SuperTableVariable.php',
         'voku\\helper\\ASCII' => __DIR__ . '/..' . '/voku/portable-ascii/src/voku/helper/ASCII.php',
         'voku\\helper\\AntiXSS' => __DIR__ . '/..' . '/voku/anti-xss/src/voku/helper/AntiXSS.php',
         'voku\\helper\\Bootup' => __DIR__ . '/..' . '/voku/portable-utf8/src/voku/helper/Bootup.php',

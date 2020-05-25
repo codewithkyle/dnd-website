@@ -29,7 +29,15 @@
 {% block content %}
     <article style="width:100%;display: block;">
         <section style="width:100%;display: block;">
-            <campaign-component {% if isGameMaster %}web-component data-campaign-uid="{{ campaign.uid }}"{% endif %} style="width: 1024px;max-width: 100%;" class="block mx-auto">
+            <campaign-component 
+                {% if isGameMaster %}
+                    web-component 
+                    data-campaign-uid="{{ campaign.uid }}" 
+                    data-campaign-id="{{ campaign.id }}"
+                {% endif %} 
+                style="width: 1024px;max-width: 100%;" 
+                class="block mx-auto"
+            >
                 {% if isGameMaster %}
                     <div class="w-full mb-2" grid="columns 2 gap-1">
 

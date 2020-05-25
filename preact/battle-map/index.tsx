@@ -44,21 +44,55 @@ type BattleMapState = {
 			y: number;
 		};
 	}>;
+	monsters: Array<Monster>;
+	newEntity: {
+		name: string;
+		ac: number;
+		hp: number;
+		uid: string;
+	};
+};
+
+type Monster = {
+	uid: string;
+	name: string;
+	flavorText: string;
+	alignment: string;
+	ac: number;
+	maxHitPoints: number;
+	speed: string;
+	exp: number;
+	notes: string;
+	actions: string;
+	legendaryActions: string;
+	charisma: number;
+	charismaModifier: number;
+	constitution: number;
+	constitutionModifier: number;
+	dexterity: number;
+	dexterityModifier: number;
+	intelligence: number;
+	intelligenceModifier: number;
+	strength: number;
+	strengthModifier: number;
+	wisdom: number;
+	wisdomModifier: number;
 };
 
 class BattleMap extends Component<{}, BattleMapState> {
 	private inboxUid: string;
 	private canPing: boolean;
+	private characterSheet: HTMLElement;
 
 	constructor() {
 		super();
-		const characterSheet: HTMLElement = document.body.querySelector("character-sheet") || null;
+		this.characterSheet = document.body.querySelector("character-sheet") || null;
 		this.state = {
 			map: null,
 			open: false,
 			entities: [],
-			name: characterSheet ? characterSheet.dataset.characterName : null,
-			characterUid: characterSheet ? characterSheet.dataset.characterUid : null,
+			name: this.characterSheet ? this.characterSheet.dataset.characterName : null,
+			characterUid: this.characterSheet ? this.characterSheet.dataset.characterUid : null,
 			showNametags: false,
 			gmMenuPos: null,
 			pins: [],
@@ -69,10 +103,15 @@ class BattleMap extends Component<{}, BattleMapState> {
 			enableDrawing: false,
 			drawing: null,
 			allowInput: true,
+			monsters: [],
+			newEntity: null,
 		};
 		this.canPing = true;
 		this.inboxUid = hookup("battle-map", this.inbox.bind(this));
 		document.body.addEventListener("keyup", this.handleKeypress);
+		if (!this.characterSheet) {
+			this.fetchMonsters();
+		}
 	}
 
 	private inbox(data) {
@@ -102,6 +141,21 @@ class BattleMap extends Component<{}, BattleMapState> {
 			default:
 				console.log(`Battle Map recieved an undefined message type: ${data.type}`);
 				break;
+		}
+	}
+
+	private async fetchMonsters() {
+		const campaignEl: HTMLElement = document.body.querySelector("campaign-component");
+		const request = await fetch(`${location.origin}/api/${campaignEl.dataset.campaignId}/monsters.json`, {
+			method: "GET",
+			credentials: "include",
+			headers: new Headers({
+				Accept: "application/json",
+			}),
+		});
+		if (request.ok) {
+			const response = await request.json();
+			this.setState({ monsters: response.data });
 		}
 	}
 
@@ -303,6 +357,7 @@ class BattleMap extends Component<{}, BattleMapState> {
 			pos: this.state.gmMenuPos,
 			ac: acInput.value,
 			hp: hpInput.value,
+			entityUid: this.state.newEntity.uid,
 		});
 		this.setState({ gmMenuPos: null, gmModal: null, entityType: null, savedPos: null });
 	};
@@ -387,6 +442,23 @@ class BattleMap extends Component<{}, BattleMapState> {
 		});
 	};
 
+	private prefillData: EventListener = (e: Event) => {
+		const target = e.currentTarget as HTMLInputElement;
+		for (let i = 0; i < this.state.monsters.length; i++) {
+			if (this.state.monsters[i].name === target.value) {
+				this.setState({
+					newEntity: {
+						name: target.value,
+						ac: this.state.monsters[i].ac,
+						hp: this.state.monsters[i].maxHitPoints,
+						uid: this.state.monsters[i].uid,
+					},
+				});
+				break;
+			}
+		}
+	};
+
 	render() {
 		let map: any = <span>The Game Master hasn't loaded a map yet.</span>;
 
@@ -469,7 +541,14 @@ class BattleMap extends Component<{}, BattleMapState> {
 							<label htmlFor="name-input" className="block w-full font-sm font-grey-800 mb-0.5 text-left font-medium">
 								Name
 							</label>
-							<input type="text" id="name-input" />
+							<input type="text" id="name-input" list="entity-list" autocomplete="off" onInput={this.prefillData} />
+							<datalist id="entity-list">
+								{this.state.entityType === "enemy"
+									? this.state.monsters.map((monster) => {
+											return <option value={monster.name} data-monster-id={monster.uid}></option>;
+									  })
+									: null}
+							</datalist>
 							{/* 
 							// @ts-ignore */}
 							<div grid="columns 2 gap-1.5">
@@ -477,13 +556,13 @@ class BattleMap extends Component<{}, BattleMapState> {
 									<label htmlFor="hp-input" className="block w-full font-sm font-grey-800 mb-0.5 text-left font-medium">
 										Hit Points
 									</label>
-									<input min={0} step={1} type="number" id="hp-input" />
+									<input min={0} step={1} type="number" id="hp-input" value={this.state.newEntity?.hp} />
 								</div>
 								<div>
 									<label htmlFor="ac-input" className="block w-full font-sm font-grey-800 mb-0.5 text-left font-medium">
 										Armor Class
 									</label>
-									<input min={0} step={1} type="number" id="ac-input" />
+									<input min={0} step={1} type="number" id="ac-input" value={this.state.newEntity?.ac} />
 								</div>
 							</div>
 							<div className="block w-full text-right">
@@ -685,9 +764,18 @@ class BattleMap extends Component<{}, BattleMapState> {
 					}
 				}
 			}
-			entityDrawer = <EntityDrawer entity={entity} />;
+			let monster = null;
+			if (entity.type === "enemy") {
+				for (let i = 0; i < this.state.monsters.length; i++) {
+					if (this.state.monsters[i].uid === entity.entityUid) {
+						monster = this.state.monsters[i];
+						break;
+					}
+				}
+			}
+			entityDrawer = <EntityDrawer entity={entity} monster={monster} />;
 		} else {
-			entityDrawer = <EntityDrawer entity={null} />;
+			entityDrawer = <EntityDrawer entity={null} monster={null} />;
 		}
 		return (
 			<Fragment>

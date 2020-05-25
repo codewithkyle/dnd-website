@@ -1,4 +1,4 @@
-import { h, Component } from "preact";
+import { h, Component, Fragment } from "preact";
 import { message } from "djinnjs/broadcaster";
 
 import "./entity-drawer.scss";
@@ -10,6 +10,32 @@ type EntityDrawerProps = {
 		hp: string;
 		ac: string;
 	} | null;
+	monster: Monster | null;
+};
+type Monster = {
+	uid: string;
+	name: string;
+	flavorText: string;
+	alignment: string;
+	ac: number;
+	maxHitPoints: number;
+	speed: string;
+	exp: number;
+	notes: string;
+	actions: string;
+	legendaryActions: string;
+	charisma: number;
+	charismaModifier: number;
+	constitution: number;
+	constitutionModifier: number;
+	dexterity: number;
+	dexterityModifier: number;
+	intelligence: number;
+	intelligenceModifier: number;
+	strength: number;
+	strengthModifier: number;
+	wisdom: number;
+	wisdomModifier: number;
 };
 type EntityDrawerState = {
 	forceClose: boolean;
@@ -47,10 +73,21 @@ export class EntityDrawer extends Component<EntityDrawerProps, EntityDrawerState
 
 	render() {
 		let info = null;
+		let flavorText = null;
+		if (this.props?.monster) {
+			flavorText = (
+				<span className="font-xs font-grey-700 block mt-0.5" style={{ fontStyle: "italic" }}>
+					{this.props?.monster?.flavorText}
+				</span>
+			);
+		}
 		if (this.props.entity !== null) {
 			info = (
 				<form className="block w-full" onSubmit={this.updateEntity}>
-					<span className="font-grey-800 font-medium w-full block text-left font-lg mb-1 pb-1 bb-1 bb-solid bb-grey-300">{this.props.entity.name}</span>
+					<div className="w-full block text-left mb-1 pb-1 bb-1 bb-solid bb-grey-300">
+						<span className="font-grey-800 font-medium font-lg block">{this.props.entity.name}</span>
+						{flavorText}
+					</div>
 					<div className="block w-full mb-1">
 						<label htmlFor="hp-input" className="block w-full font-sm font-grey-800 mb-0.5 text-left font-medium">
 							Hit Points
@@ -69,9 +106,69 @@ export class EntityDrawer extends Component<EntityDrawerProps, EntityDrawerState
 				</form>
 			);
 		}
+		let monsterInfo = null;
+		if (this.props?.monster) {
+			monsterInfo = (
+				<Fragment>
+					<div className="block w-full mt-1 pt-1 bt-1 bt-grey-300 bt-solid text-left">
+						<span className="font-grey-700 block mb-0.5">{this.props.monster.alignment}</span>
+						<span className="font-grey-700 block">{this.props.monster.speed}</span>
+					</div>
+					<div className="block w-full mt-1 pt-1 bt-1 bt-grey-300 bt-solid text-left">
+						<div class="block w-full mb-0.25">
+							<span className="inline-block font-grey-800 font-bold mr-0.25">Str:</span>
+							<span className="inline-block font-grey-700">
+								{this.props.monster.strength} ({this.props.monster.strengthModifier})
+							</span>
+						</div>
+						<div class="block w-full mb-0.25">
+							<span className="inline-block font-grey-800 font-bold mr-0.25">Dex:</span>
+							<span className="inline-block font-grey-700">
+								{this.props.monster.dexterity} ({this.props.monster.dexterityModifier})
+							</span>
+						</div>
+						<div class="block w-full mb-0.25">
+							<span className="inline-block font-grey-800 font-bold mr-0.25">Con:</span>
+							<span className="inline-block font-grey-700">
+								{this.props.monster.constitution} ({this.props.monster.constitutionModifier})
+							</span>
+						</div>
+						<div class="block w-full mb-0.25">
+							<span className="inline-block font-grey-800 font-bold mr-0.25">Int:</span>
+							<span className="inline-block font-grey-700">
+								{this.props.monster.intelligence} ({this.props.monster.intelligenceModifier})
+							</span>
+						</div>
+						<div class="block w-full mb-0.25">
+							<span className="inline-block font-grey-800 font-bold mr-0.25">Wis:</span>
+							<span className="inline-block font-grey-700">
+								{this.props.monster.wisdom} ({this.props.monster.wisdomModifier})
+							</span>
+						</div>
+						<div class="block w-full mb-0.25">
+							<span className="inline-block font-grey-800 font-bold mr-0.25">Char:</span>
+							<span className="inline-block font-grey-700">
+								{this.props.monster.charisma} ({this.props.monster.charismaModifier})
+							</span>
+						</div>
+					</div>
+					<div className="block w-full mt-1 pt-1 bt-1 bt-grey-300 bt-solid text-left">
+						<p className="font-sm font-grey-700 block mb-1 line-normal">
+							{this.props.monster.actions ? this.props.monster.actions : "This monster does not have any actions."}
+						</p>
+						<p className="font-sm font-grey-700 block line-normal">
+							{this.props.monster.legendaryActions ? this.props.monster.legendaryActions : "This monster does not have any legendary actions."}
+						</p>
+					</div>
+				</Fragment>
+			);
+		}
 		return (
 			<div className={`entity-drawer ${this.props.entity !== null && !this.state.forceClose ? "is-open" : ""}`}>
-				{info}
+				<div className="block w-full h-full" style={{ overflowY: "auto" }}>
+					{info}
+					{monsterInfo}
+				</div>
 				<button className="close-button" onClick={this.forceCloseDrawer}>
 					<svg aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
 						<path

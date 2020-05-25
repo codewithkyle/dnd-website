@@ -203,6 +203,7 @@ class SocketManager {
 						type: data.entityType,
 						ac: data.ac,
 						hp: data.hp,
+						entityUid: data.entityUid,
 					});
 				}
 				break;
