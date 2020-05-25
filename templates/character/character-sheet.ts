@@ -217,7 +217,7 @@ class CharacterSheet extends HTMLElement {
 			input.addEventListener("change", this.switchView);
 		});
 
-		if (this.dataset.preventSave || !this.dataset.campaignUid || !this.dataset.characterName) {
+		if (this.dataset.preventSave) {
 			this.querySelectorAll("textarea, input").forEach((input: HTMLInputElement) => {
 				input.readOnly = true;
 			});
