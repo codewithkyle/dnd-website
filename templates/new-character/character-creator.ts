@@ -28,7 +28,7 @@ class CharacterCreator extends HTMLElement {
 		this.form = this.querySelector("form");
 		this.buttons = Array.from(this.querySelectorAll(`button[type="button"][data-direction]`));
 		this.pages = Array.from(this.querySelectorAll("form-page"));
-		this.classInput = this.querySelector('select[name="fields[class]"]');
+		this.classInput = this.querySelector('[name="fields[class]"]');
 		this.modifiers = {
 			strength: 0,
 			dexterity: 0,
